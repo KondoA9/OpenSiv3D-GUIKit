@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Test">
+      <UniqueIdentifier>{d6255252-0159-4e44-8323-42998f4891a5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit">
+      <UniqueIdentifier>{d18ad27a-3448-423c-90bc-d9025cb8c6ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resources">
+      <UniqueIdentifier>{a8001d28-4cb0-48a4-9867-981e93e04cd8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\Types">
+      <UniqueIdentifier>{4bbdb22e-336d-409f-b5e3-130912f33b3e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\WindowManager">
+      <UniqueIdentifier>{d1bd0030-cede-45db-8d08-e225b6c50b47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\GUIKitCore">
+      <UniqueIdentifier>{0086af61-234e-4e53-ae61-3fd91445158c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\Components">
+      <UniqueIdentifier>{7e110120-1c90-4f08-b183-ad9797ceb882}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="include\ColorTheme\ColorTheme.cpp" />
+    <ClCompile Include="include\Window\WindowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Component\Component.h">
+      <Filter>GUIKit\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window\WindowManager.h">
+      <Filter>GUIKit\WindowManager</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\UIRect.h">
+      <Filter>GUIKit\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUIKit.h">
+      <Filter>GUIKit</Filter>
+    </ClInclude>
+    <ClInclude Include="src\GUIKitCore\GUIKitCore.h">
+      <Filter>GUIKit\GUIKitCore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\UIButton.h">
+      <Filter>GUIKit\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Component\View.h">
+      <Filter>GUIKit\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UserInterface\UserInterface.h" />
+    <ClInclude Include="src\Component\Constraint\Constraint.h" />
+    <ClInclude Include="src\Component\Layer\Layer.h" />
+    <ClInclude Include="src\Component\UIImage.h" />
+    <ClInclude Include="src\Component\UICircle.h" />
+    <ClInclude Include="include\GUIKit.h" />
+    <ClInclude Include="include\UserInterface\Constraint\Constraint.h" />
+    <ClInclude Include="include\UserInterface\Layer\Layer.h" />
+    <ClInclude Include="include\UserInterface\UIComponent.h" />
+    <ClInclude Include="include\UserInterface\UIButton.h" />
+    <ClInclude Include="include\UserInterface\UICircle.h" />
+    <ClInclude Include="include\UserInterface\UIImage.h" />
+    <ClInclude Include="include\UserInterface\UIRect.h" />
+    <ClInclude Include="include\UserInterface\UIView.h" />
+    <ClInclude Include="include\GUIKitCore\GUIKitCore.h" />
+    <ClInclude Include="include\Page\Page.h" />
+    <ClInclude Include="include\Window\WindowManager.h" />
+    <ClInclude Include="include\ColorTheme\ColorTheme.h" />
+    <ClInclude Include="include\ColorTheme\DynamicColor.h" />
+    <ClInclude Include="include\UserInterface\UIText.h" />
+    <ClInclude Include="include\UserInterface\UIVStackView.h" />
+  </ItemGroup>
+</Project>
