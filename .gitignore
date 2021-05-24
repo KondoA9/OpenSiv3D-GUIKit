@@ -361,3 +361,8 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# OpenSiv3D GUIKit
+AS_DEBUG/
+*.exe
+*.html
