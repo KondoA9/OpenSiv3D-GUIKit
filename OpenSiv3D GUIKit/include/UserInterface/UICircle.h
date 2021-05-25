@@ -21,16 +21,56 @@ namespace s3d::gui {
 		}
 
 	private:
-		void clicked() override {
-			if (onClicked && circle.leftClicked()) {
-				onClicked(*this);
+		bool clicked() override {
+			if (circle.leftClicked()) {
+				callMouseEventHandler(*this, MouseEvent::Clicked);
+				return true;
 			}
+			return false;
 		}
 
-		void hovered() override {
-			if (onHovered && circle.mouseOver()) {
-				onHovered(*this);
+		bool hovered() override {
+			static bool hovered = false;
+			if (hovered && !circle.mouseOver()) {
+				hovered = false;
 			}
+			else if (circle.mouseOver()) {
+				callMouseEventHandler(*this, MouseEvent::Hovered);
+				hovered = true;
+				return true;
+			}
+			return false;
+		}
+
+		bool hovering() override {
+			if (circle.mouseOver()) {
+				callMouseEventHandler(*this, MouseEvent::Hovering);
+				return true;
+			}
+			return false;
+		}
+
+		bool unHovered() override {
+			static bool hovered = false;
+			if (hovered && !circle.mouseOver()) {
+				if (circle.mouseOver()) {
+					callMouseEventHandler(*this, MouseEvent::UnHovered);
+					return true;
+				}
+				hovered = false;
+			}
+			else if (circle.mouseOver()) {
+				hovered = true;
+			}
+			return false;
+		}
+
+		bool dragging() override {
+			if (circle.leftPressed()) {
+				callMouseEventHandler(*this, MouseEvent::Dragging);
+				return true;
+			}
+			return false;
 		}
 	};
 }

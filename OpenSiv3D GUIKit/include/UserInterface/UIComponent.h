@@ -6,27 +6,54 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	enum class MouseEvent {
+	enum class MouseEvent: size_t {
 		Clicked,
 		Hovered,
-		Dragged
+		Hovering,
+		UnHovered,
+		Dragging
 	};
 	
 	class UIComponent {
+	private:
+		// Event handler
+		std::vector <std::function<void(UIComponent& component)>> m_mouseEventHandlers;
+	protected:
+		/*std::function<void(UIComponent& component)>& mouseEventHandler(MouseEvent e) {
+			const size_t index = static_cast<size_t>(e);
+			if (index < m_mouseEventHandlers.size()) {
+				return m_mouseEventHandlers[index];
+			}
+			throw "Error";
+		}*/
+		void callMouseEventHandler(UIComponent& component, MouseEvent e) {
+			const size_t index = static_cast<size_t>(e);
+			if (index < m_mouseEventHandlers.size() && m_mouseEventHandlers[index]) {
+				m_mouseEventHandlers[index](component);
+			}
+		}
+
+		// Run by loop
+		virtual bool clicked() = 0;
+		virtual bool hovered() = 0;
+		virtual bool hovering() = 0;
+		virtual bool unHovered() = 0;
+		virtual bool dragging() = 0;
+
 	public:
 		ColorTheme backgroundColor;
 
 	protected:
 		Layer layer;
 		bool shouldUpdateLayer = true;
-		std::function<void(UIComponent& component)> onClicked;
-		std::function<void(UIComponent& component)> onHovered;
-		std::function<void(UIComponent& component)> onDragged;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::backgroundSecondary) :
-			backgroundColor(_backgroundColor)
+			backgroundColor(_backgroundColor),
+			m_mouseEventHandlers(std::vector <std::function<void(UIComponent& component)>>(5))
 		{}
+
+		virtual ~UIComponent() = default;
 
 		virtual void updateShape() {
 			layer.updateConstraints();
@@ -47,33 +74,11 @@ namespace s3d::gui {
 		}
 
 		void addEventListener(MouseEvent e, std::function<void(UIComponent& component)> f) {
-			switch (e)
-			{
-			case MouseEvent::Clicked:
-				onClicked = f;
-				break;
-			case MouseEvent::Hovered:
-				onHovered = f;
-				break;
-			case MouseEvent::Dragged:
-				onDragged = f;
-				break;
-			}
+			m_mouseEventHandlers[static_cast<size_t>(e)] = f;
 		}
 
 		void addEventListener(MouseEvent e, const std::function<void()>& f) {
-			switch (e)
-			{
-			case MouseEvent::Clicked:
-				onClicked = [f](UIComponent&) {f(); };
-				break;
-			case MouseEvent::Hovered:
-				onHovered = [f](UIComponent&) {f(); };
-				break;
-			case MouseEvent::Dragged:
-				onDragged = [f](UIComponent&) {f(); };
-				break;
-			}
+			m_mouseEventHandlers[static_cast<size_t>(e)] = [f](UIComponent&) {f(); };
 		}
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0) {
@@ -103,16 +108,13 @@ namespace s3d::gui {
 			constraint->removeConstraint();
 		}
 
-	protected:
-		virtual void clicked() {};
-		virtual void hovered() {};
-		virtual void dragged() {};
-
 	private:
 		void control() {
 			clicked();
 			hovered();
-			dragged();
+			hovering();
+			unHovered();
+			dragging();
 		}
 	};
 }

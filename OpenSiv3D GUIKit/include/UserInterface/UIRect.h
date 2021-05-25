@@ -28,22 +28,54 @@ namespace s3d::gui {
 		}
 
 	protected:
-		void clicked() override {
-			if (onClicked && rect.leftClicked()) {
-				onClicked(*this);
+		bool clicked() override {
+			if (rect.leftClicked()) {
+				callMouseEventHandler(*this, MouseEvent::Clicked);
+				return true;
 			}
+			return false;
 		}
 
-		void hovered() override {
-			if (onHovered && rect.mouseOver()) {
-				onHovered(*this);
+		bool h1 = false;
+		bool hovered() override {
+			if (h1 && !rect.mouseOver()) {
+				h1 = false;
 			}
+			else if (rect.mouseOver()) {
+				callMouseEventHandler(*this, MouseEvent::Hovered);
+				h1 = true;
+				return true;
+			}
+			return false;
 		}
 
-		void dragged() override {
-			if (onDragged && rect.leftPressed()) {
-				onDragged(*this);
+		bool hovering() override {
+			if (rect.mouseOver()) {
+				callMouseEventHandler(*this, MouseEvent::Hovering);
+				return true;
 			}
+			return false;
+		}
+
+		bool h2 = false;
+		bool unHovered() override {
+			if (h2 && !rect.mouseOver()) {
+				callMouseEventHandler(*this, MouseEvent::UnHovered);
+				h2 = false;
+				return true;
+			}
+			else if (rect.mouseOver()) {
+				h2 = true;
+			}
+			return false;
+		}
+
+		bool dragging() override {
+			if (rect.leftPressed()) {
+				callMouseEventHandler(*this, MouseEvent::Dragging);
+				return true;
+			}
+			return false;
 		}
 	};
 }

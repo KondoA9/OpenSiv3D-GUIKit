@@ -56,21 +56,26 @@ namespace s3d::gui {
 		}
 
 	protected:
-		void hovered() override {
-			UIRect::hovered();
-			m_textureRegion = m_texture.scaled(m_scale).regionAt(rect.center());
-			m_pixel = Point(static_cast<int>((Cursor::Pos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::Pos().y - m_textureRegion.y) / m_scale));
-			m_prePixel = Point(static_cast<int>((Cursor::PreviousPos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::PreviousPos().y - m_textureRegion.y) / m_scale));
-			if (m_pixel.x < 0) m_pixel.x = 0;
-			if (m_pixel.x > m_texture.width()) m_pixel.x = m_texture.width() - 1;
-			if (m_pixel.y < 0) m_pixel.y = 0;
-			if (m_pixel.y > m_texture.height()) m_pixel.y = m_texture.height() - 1;
+		bool hovering() override {
+			if (UIRect::hovering()) {
+				m_textureRegion = m_texture.scaled(m_scale).regionAt(rect.center());
+				m_pixel = Point(static_cast<int>((Cursor::Pos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::Pos().y - m_textureRegion.y) / m_scale));
+				m_prePixel = Point(static_cast<int>((Cursor::PreviousPos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::PreviousPos().y - m_textureRegion.y) / m_scale));
+				if (m_pixel.x < 0) m_pixel.x = 0;
+				if (m_pixel.x > m_texture.width()) m_pixel.x = m_texture.width() - 1;
+				if (m_pixel.y < 0) m_pixel.y = 0;
+				if (m_pixel.y > m_texture.height()) m_pixel.y = m_texture.height() - 1;
+				return true;
+			}
+			return false;
 		}
 
-		void dragged() override {
-			if (onDragged && m_textureRegion.leftPressed()) {
-				onDragged(*this);
+		bool dragging() override {
+			if (m_textureRegion.leftPressed()) {
+				callMouseEventHandler(*this, MouseEvent::Dragging);
+				return true;
 			}
+			return false;
 		}
 	};
 }

@@ -32,13 +32,28 @@ namespace s3d::gui {
 		Color color() const;
 
 		void setColor(const Color& lightColor, const Color& darkColor, double transitionTime = 0.0) {
+			if (m_isTransition) {
+				const auto c = color();
+				light = c;
+				dark = c;
+			}
+
 			if (transitionTime <= 0.0) {
 				light = lightColor;
 				dark = darkColor;
-				return;
 			}
-			m_transitionLight = lightColor;
-			m_transitionDark = darkColor;
+
+			if (light.a == 0) {
+				light.setRGB(lightColor.r, lightColor.g, lightColor.b);
+			}
+
+			if (dark.a == 0) {
+				dark.setRGB(darkColor.r, darkColor.g, darkColor.b);
+			}
+
+			m_transitionLight = lightColor.a == 0 ? Color(light, 0) : lightColor;
+			m_transitionDark = darkColor.a == 0 ? Color(dark, 0) : darkColor;
+
 			m_transitionTime = transitionTime;
 			m_transitionTimer = 0.0;
 			m_isTransition = true;
@@ -50,6 +65,30 @@ namespace s3d::gui {
 
 		void setColor(const ColorTheme& color, double transitionTime = 0.0) {
 			setColor(color.light, color.dark, transitionTime);
+		}
+
+		void highlight(const Color& lightColor, const Color& darkColor) {
+			setColor(lightColor, darkColor, 0.25);
+		}
+
+		void highlight(const Color& color) {
+			setColor(color, 0.25);
+		}
+
+		void highlight(const ColorTheme& color) {
+			setColor(color,  0.25);
+		}
+
+		void lowlight(const Color& lightColor, const Color& darkColor) {
+			setColor(lightColor, darkColor, 0.1);
+		}
+
+		void lowlight(const Color& color) {
+			setColor(color, 0.1);
+		}
+
+		void lowlight(const ColorTheme& color) {
+			setColor(color, 0.1);
 		}
 
 		operator Color() const {
