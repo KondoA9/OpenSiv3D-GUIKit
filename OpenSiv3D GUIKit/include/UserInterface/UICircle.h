@@ -23,13 +23,13 @@ namespace s3d::gui {
 	private:
 		void clicked() override {
 			if (onClicked && circle.leftClicked()) {
-				onClicked();
+				onClicked(*this);
 			}
 		}
 
 		void hovered() override {
 			if (onHovered && circle.mouseOver()) {
-				onHovered();
+				onHovered(*this);
 			}
 		}
 	};

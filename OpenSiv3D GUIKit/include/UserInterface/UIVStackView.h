@@ -18,7 +18,7 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		void appendComponent(T& component) {
+		void appendComponent(const T& component) {
 			auto cmp = new T(component);
 
 			const auto i = userInterfaces.size();

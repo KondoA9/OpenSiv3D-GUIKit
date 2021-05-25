@@ -19,9 +19,9 @@ namespace s3d::gui {
 	protected:
 		Layer layer;
 		bool shouldUpdateLayer = true;
-		std::function<void()> onClicked;
-		std::function<void()> onHovered;
-		std::function<void()> onDragged;
+		std::function<void(UIComponent& component)> onClicked;
+		std::function<void(UIComponent& component)> onHovered;
+		std::function<void(UIComponent& component)> onDragged;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::backgroundSecondary) :
@@ -46,7 +46,7 @@ namespace s3d::gui {
 			control();
 		}
 
-		void addEventListener(MouseEvent e, std::function<void()> f) {
+		void addEventListener(MouseEvent e, std::function<void(UIComponent& component)> f) {
 			switch (e)
 			{
 			case MouseEvent::Clicked:
@@ -57,6 +57,21 @@ namespace s3d::gui {
 				break;
 			case MouseEvent::Dragged:
 				onDragged = f;
+				break;
+			}
+		}
+
+		void addEventListener(MouseEvent e, const std::function<void()>& f) {
+			switch (e)
+			{
+			case MouseEvent::Clicked:
+				onClicked = [f](UIComponent&) {f(); };
+				break;
+			case MouseEvent::Hovered:
+				onHovered = [f](UIComponent&) {f(); };
+				break;
+			case MouseEvent::Dragged:
+				onDragged = [f](UIComponent&) {f(); };
 				break;
 			}
 		}

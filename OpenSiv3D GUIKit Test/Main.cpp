@@ -3,16 +3,23 @@
 class StartPage : public gui::Page {
     using Page::Page;
 
-    gui::UIText title = gui::UIText(U"GUIKit", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
-    gui::UIButton nextButton = gui::UIButton(U"Next");
-    gui::UIButton switchThemeButton = gui::UIButton(U"Switch theme");
+    gui::UIText title;
+    gui::UIButton nextButton;
+    gui::UIButton switchThemeButton;
 
     void onLoaded() override {
+        title = gui::UIText(U"GUIKit", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
         title.setConstraint(gui::LayerDirection::Top);
         title.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom, 0.0, 0.5);
         title.setConstraint(gui::LayerDirection::Left);
         title.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
+        title.addEventListener(gui::MouseEvent::Clicked, [](gui::UIComponent& component) {
+            static bool flag = true;
+            component.backgroundColor = flag ? gui::DynamicColor::backgroundSecondary : gui::DynamicColor::background;
+            flag = !flag;
+            });
 
+        nextButton = gui::UIButton(U"Next");
         nextButton.setConstraint(gui::LayerDirection::Top, title, gui::LayerDirection::Bottom);
         nextButton.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
         nextButton.setConstraint(gui::LayerDirection::Left);
@@ -21,6 +28,7 @@ class StartPage : public gui::Page {
             guikit->switchPage(U"NextPage");
             });
 
+        switchThemeButton = gui::UIButton(U"Switch theme");
         switchThemeButton.setConstraint(gui::LayerDirection::Top, nextButton, gui::LayerDirection::Top);
         switchThemeButton.setConstraint(gui::LayerDirection::Bottom, nextButton, gui::LayerDirection::Bottom);
         switchThemeButton.setConstraint(gui::LayerDirection::Left, nextButton, gui::LayerDirection::Right);

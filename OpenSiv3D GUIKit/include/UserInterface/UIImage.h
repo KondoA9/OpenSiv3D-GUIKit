@@ -69,7 +69,7 @@ namespace s3d::gui {
 
 		void dragged() override {
 			if (onDragged && m_textureRegion.leftPressed()) {
-				onDragged();
+				onDragged(*this);
 			}
 		}
 	};

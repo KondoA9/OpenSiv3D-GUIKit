@@ -30,19 +30,19 @@ namespace s3d::gui {
 	protected:
 		void clicked() override {
 			if (onClicked && rect.leftClicked()) {
-				onClicked();
+				onClicked(*this);
 			}
 		}
 
 		void hovered() override {
 			if (onHovered && rect.mouseOver()) {
-				onHovered();
+				onHovered(*this);
 			}
 		}
 
 		void dragged() override {
 			if (onDragged && rect.leftPressed()) {
-				onDragged();
+				onDragged(*this);
 			}
 		}
 	};

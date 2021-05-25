@@ -23,6 +23,10 @@ namespace s3d::gui {
 		TextDirection direction;
 
 	public:
+		UIText():
+			UIRect()
+		{}
+
 		UIText(const String& _text, UnifiedFontStyle _style, TextDirection _direction, const ColorTheme& _backgroundColor = DynamicColor::clear) :
 			UIRect(_backgroundColor),
 			text(_text),
