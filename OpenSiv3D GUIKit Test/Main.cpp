@@ -15,7 +15,7 @@ class StartPage : public gui::Page {
         title.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
         title.addEventListener(gui::MouseEvent::Clicked, [](gui::UIComponent& component) {
             static bool flag = true;
-            component.backgroundColor = flag ? gui::DynamicColor::backgroundSecondary : gui::DynamicColor::background;
+            component.backgroundColor.setColor(flag ? gui::DynamicColor::backgroundSecondary : gui::DynamicColor::background, 2.0);
             flag = !flag;
             });
 

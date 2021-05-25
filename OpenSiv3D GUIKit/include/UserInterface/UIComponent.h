@@ -11,7 +11,7 @@ namespace s3d::gui {
 		Hovered,
 		Dragged
 	};
-
+	
 	class UIComponent {
 	public:
 		ColorTheme backgroundColor;
