@@ -69,8 +69,14 @@ namespace s3d::gui {
 			return false;
 		}
 
-		virtual void draw() {
-			control();
+		virtual void draw() {};
+
+		virtual void control() {
+			clicked();
+			hovered();
+			hovering();
+			unHovered();
+			dragging();
 		}
 
 		void addEventListener(MouseEvent e, std::function<void(UIComponent& component)> f) {
@@ -106,15 +112,6 @@ namespace s3d::gui {
 		void removeConstraint(LayerDirection direction) {
 			auto constraint = layer.constraintPtr(direction);
 			constraint->removeConstraint();
-		}
-
-	private:
-		void control() {
-			clicked();
-			hovered();
-			hovering();
-			unHovered();
-			dragging();
 		}
 	};
 }

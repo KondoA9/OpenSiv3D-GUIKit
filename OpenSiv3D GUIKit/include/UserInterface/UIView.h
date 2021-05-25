@@ -49,5 +49,12 @@ namespace s3d::gui {
 				ui->draw();
 			}
 		}
+
+		void control() override {
+			UIRect::control();
+			for (auto& ui : userInterfaces) {
+				ui->control();
+			}
+		}
 	};
 }

@@ -23,7 +23,6 @@ namespace s3d::gui {
 		}
 
 		void draw() override {
-			UIComponent::draw();
 			rect.draw(backgroundColor.color());
 		}
 

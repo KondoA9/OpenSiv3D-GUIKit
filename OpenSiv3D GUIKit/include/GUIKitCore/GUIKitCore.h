@@ -175,6 +175,8 @@ namespace s3d::gui {
 			}
 			// Draw the page
 			else {
+				m_drawingPage->view.control();
+
 				if (WindowManager::didResized()) {
 					m_drawingPage->onWindowResized();
 					m_drawingPage->view.updateShape();
@@ -185,6 +187,8 @@ namespace s3d::gui {
 
 				m_drawingPage->view.draw();
 			}
+
+			Graphics::SkipClearScreen();
 		}
 
 		void animateColor() {
