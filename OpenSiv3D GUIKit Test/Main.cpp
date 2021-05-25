@@ -3,7 +3,7 @@
 class StartPage : public gui::Page {
     using Page::Page;
 
-    gui::UIText title = gui::UIText(U"GUIKit", gui::TextDirection::Center);
+    gui::UIText title = gui::UIText(U"GUIKit", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
     gui::UIButton nextButton = gui::UIButton(U"Next");
     gui::UIButton switchThemeButton = gui::UIButton(U"Switch theme");
 

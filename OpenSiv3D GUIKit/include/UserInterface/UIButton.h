@@ -1,18 +1,16 @@
 #pragma once
 
 #include "UIRect.h"
+#include "Font/UnifiedFont.h"
 
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
 	class UIButton : public UIRect {
 	public:
-		String m_title;
-		Texture m_icon;
-		ColorTheme m_defaultColor, m_hoveredColor, m_textColor;
-
-	private:
-		const SDFFont m_font;
+		String title;
+		Texture icon;
+		ColorTheme defaultColor, hoveredColor, textColor;
 
 	public:
 		UIButton(const String& title, const Texture& icon,
@@ -20,12 +18,11 @@ namespace s3d::gui {
 			const ColorTheme& hoveredColor = DynamicColor::buttonPushed,
 			const ColorTheme& textColor = Palette::White) :
 			UIRect(defaultColor),
-			m_title(title),
-			m_icon(icon),
-			m_defaultColor(defaultColor),
-			m_hoveredColor(hoveredColor),
-			m_textColor(textColor),
-			m_font(SDFFont(60, Typeface::Light))
+			title(title),
+			icon(icon),
+			defaultColor(defaultColor),
+			hoveredColor(hoveredColor),
+			textColor(textColor)
 		{}
 
 		UIButton(
@@ -54,17 +51,10 @@ namespace s3d::gui {
 		void draw() override {
 			UIRect::draw();
 
-			const auto text = m_font(m_title);
-			Graphics2D::SetSDFParameters(text.font.pixelRange());
+			UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(rect.center(), textColor);
 
-			double fontsize = rect.h * 0.5;
-			if (const auto region = text.regionAt(fontsize); region.w > rect.w * 0.5) {
-				fontsize *= rect.w * 0.5 / region.w;
-			}
-			text.drawAt(fontsize, rect.center(), m_textColor);
-
-			if (m_icon) {
-				m_icon.drawAt(rect.center());
+			if (icon) {
+				icon.drawAt(rect.center());
 			}
 		}
 
@@ -72,10 +62,10 @@ namespace s3d::gui {
 		void hovered() override {
 			if (rect.mouseOver()) {
 				Cursor::RequestStyle(CursorStyle::Hand);
-				backgroundColor = m_hoveredColor;
+				backgroundColor = hoveredColor;
 			}
 			else {
-				backgroundColor = m_defaultColor;
+				backgroundColor = defaultColor;
 			}
 			if (onHovered) {
 			}

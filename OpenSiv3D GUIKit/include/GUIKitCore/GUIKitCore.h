@@ -2,6 +2,7 @@
 
 #include "../Page/Page.h"
 #include "../Window/WindowManager.h"
+#include "../UserInterface/Font/UnifiedFont.h"
 
 #include <Siv3D.hpp>
 
@@ -81,6 +82,7 @@ namespace s3d::gui {
 	private:
 		void initialize() {
 			WindowManager::initialize();
+			UnifiedFont::Initialize();
 
 			Scene::SetScaleMode(ScaleMode::ResizeFill);
 		}

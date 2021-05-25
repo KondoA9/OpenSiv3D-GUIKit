@@ -26,6 +26,7 @@
   <ItemGroup>
     <ClCompile Include="include\ColorTheme\ColorTheme.cpp" />
     <ClCompile Include="include\Window\WindowManager.cpp" />
+    <ClCompile Include="include\UserInterface\Font\UnifiedFont.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component\Component.h">
@@ -70,5 +71,6 @@
     <ClInclude Include="include\ColorTheme\DynamicColor.h" />
     <ClInclude Include="include\UserInterface\UIText.h" />
     <ClInclude Include="include\UserInterface\UIVStackView.h" />
+    <ClInclude Include="include\UserInterface\Font\UnifiedFont.h" />
   </ItemGroup>
 </Project>

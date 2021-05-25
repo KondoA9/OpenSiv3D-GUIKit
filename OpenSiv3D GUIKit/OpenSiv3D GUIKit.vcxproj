@@ -109,6 +109,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="include\ColorTheme\ColorTheme.cpp" />
+    <ClCompile Include="include\UserInterface\Font\UnifiedFont.cpp" />
     <ClCompile Include="include\Window\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -127,6 +128,7 @@
     <ClInclude Include="include\GUIKitCore\GUIKitCore.h" />
     <ClInclude Include="include\Page\Page.h" />
     <ClInclude Include="include\UserInterface\UIVStackView.h" />
+    <ClInclude Include="include\UserInterface\Font\UnifiedFont.h" />
     <ClInclude Include="include\Window\WindowManager.h" />
     <ClInclude Include="src\Component\UIButton.h" />
     <ClInclude Include="src\Component\UICircle.h" />
