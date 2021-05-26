@@ -29,13 +29,13 @@ namespace s3d::gui {
 		virtual void onBeforeAppeared() {}
 
 		// Called after guikit core system draws the page
-		virtual void onAfrerAppeared() {}
+		virtual void onAfterAppeared() {}
 
 		// Called before guikit core system erases the page
 		virtual void onBeforeDisappeared() {}
 
 		// Called after guikit core system erases the page
-		virtual void onAfrerDisappeared() {}
+		virtual void onAfterDisappeared() {}
 
 		// Called when window resized
 		virtual void onWindowResized() {}

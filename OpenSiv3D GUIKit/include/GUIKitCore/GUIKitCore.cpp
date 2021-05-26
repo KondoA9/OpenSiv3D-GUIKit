@@ -43,7 +43,7 @@ void GUIKit::update() {
 			appeared = true;
 		}
 		else {
-			m_forwardPage->onAfrerAppeared();
+			m_forwardPage->onAfterAppeared();
 			m_forwardPage = nullptr;
 			startup = false;
 		}
@@ -74,8 +74,8 @@ void GUIKit::update() {
 	// Page changed
 	static bool uiChanged = false;
 	if (uiChanged) {
-		m_forwardPage->onAfrerAppeared();
-		m_backwardPage->onAfrerDisappeared();
+		m_forwardPage->onAfterAppeared();
+		m_backwardPage->onAfterDisappeared();
 		m_drawingPage = m_forwardPage;
 		m_forwardPage.reset();
 		m_backwardPage.reset();

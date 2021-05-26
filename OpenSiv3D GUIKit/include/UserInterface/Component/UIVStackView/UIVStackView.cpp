@@ -19,7 +19,7 @@ void UIVStackView::release() {
 
 bool UIVStackView::mouseWheel() {
 	if (UIView::mouseWheel()) {
-		m_topPositionConstant -= Mouse::Wheel() * 10;
+		m_topPositionConstant -= Mouse::Wheel() * 40;
 		m_topPositionConstant = Clamp(m_topPositionConstant, -m_layer.height.value, 0.0);
 		m_layer.top.setConstraint(m_topPositionConstant);
 		requestToUpdateLayer();
