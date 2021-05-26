@@ -14,8 +14,8 @@ namespace s3d::gui {
 
 	public:
 		UIButton(const String& title, const Texture& icon,
-			const ColorTheme& defaultColor = DynamicColor::buttonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::buttonPushed,
+			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& textColor = Palette::White) :
 			UIRect(defaultColor),
 			title(title),
@@ -27,23 +27,23 @@ namespace s3d::gui {
 
 		UIButton(
 			const String& title, 
-			const ColorTheme& defaultColor = DynamicColor::buttonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::buttonPushed,
+			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& textColor = Palette::White) :
 			UIButton(title, Texture(), defaultColor, hoveredColor, textColor)
 		{}
 
 		UIButton(
 			const Texture& _icon, 
-			const ColorTheme& _defaultColor = DynamicColor::buttonDefault,
-			const ColorTheme& _hoveredColor = DynamicColor::buttonPushed,
+			const ColorTheme& _defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& _hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& textColor = Palette::White) :
 			UIButton(U"", _icon, _defaultColor, _hoveredColor, textColor)
 		{}
 
 		UIButton(
-			const ColorTheme& defaultColor = DynamicColor::buttonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::buttonPushed,
+			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& textColor = Palette::White) :
 			UIButton(U"", defaultColor, hoveredColor, textColor)
 		{}

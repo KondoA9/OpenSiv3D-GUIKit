@@ -35,7 +35,7 @@ namespace s3d::gui {
 		bool shouldUpdateLayer = true;
 
 	public:
-		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::backgroundSecondary) :
+		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
 			backgroundColor(_backgroundColor)
 		{}
 

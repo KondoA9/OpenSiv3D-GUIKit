@@ -11,7 +11,7 @@ namespace s3d::gui {
 		Array<UIComponent*> userInterfaces;
 
 	public:
-		UIView(const ColorTheme& _backgroundColor = DynamicColor::background) :
+		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor)
 		{
 			layer.top.setConstraint();

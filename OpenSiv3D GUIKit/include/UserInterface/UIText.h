@@ -27,7 +27,7 @@ namespace s3d::gui {
 			UIRect()
 		{}
 
-		UIText(const String& _text, UnifiedFontStyle _style, TextDirection _direction, const ColorTheme& _backgroundColor = DynamicColor::clear) :
+		UIText(const String& _text, UnifiedFontStyle _style, TextDirection _direction, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
 			UIRect(_backgroundColor),
 			text(_text),
 			style(_style),
@@ -37,7 +37,7 @@ namespace s3d::gui {
 		void draw() override {
 			UIRect::draw();
 
-			const Color color = DynamicColor::text;
+			const Color color = DynamicColor::Text;
 			const auto t = UnifiedFont::Get(style)(text);
 
 			switch (direction)
