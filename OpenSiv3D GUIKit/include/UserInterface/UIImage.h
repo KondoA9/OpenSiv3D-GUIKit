@@ -84,11 +84,13 @@ namespace s3d::gui {
 		void updateMouseEvent() override {
 			UIRect::updateMouseEvent();
 
-			if (const int scroll = static_cast<int>(Sign(Mouse::Wheel())); scroll < 0) {
-				m_scale *= 1.6;
-			}
-			else if (scroll > 0) {
-				m_scale *= 0.625;
+			if (m_mouseOver) {
+				if (const int wheel = static_cast<int>(Sign(Mouse::Wheel())); wheel < 0) {
+					m_scale *= 1.6;
+				}
+				else if (wheel > 0) {
+					m_scale *= 0.625;
+				}
 			}
 		}
 	};
