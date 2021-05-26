@@ -59,7 +59,7 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		std::shared_ptr<T> getUserInterface(const String& identifier) {
+		std::shared_ptr<T> getUserInterface(const String& identifier) const {
 			for (const auto& page : m_pages) {
 				if (page->identifier == identifier) {
 					return std::dynamic_pointer_cast<T>(page);

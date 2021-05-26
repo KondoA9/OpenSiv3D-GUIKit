@@ -96,7 +96,14 @@ namespace s3d::gui {
 		}
 
 	protected:
-		void callMouseEventHandler(const MouseEvent& e) {
+		virtual bool mouseClicked() = 0;
+		virtual bool mouseHovered() = 0;
+		virtual bool mouseHovering() = 0;
+		virtual bool mouseUnHovered() = 0;
+		virtual bool mouseDragging() = 0;
+		virtual bool mouseWheel() = 0;
+
+		void callMouseEventHandler(const MouseEvent& e) const {
 			for (auto& handler : m_mouseEventHandlers) {
 				if (handler.eventType == e.type) {
 					handler.handler(e);
@@ -104,12 +111,5 @@ namespace s3d::gui {
 			}
 		}
 
-		// Run by loop
-		virtual bool mouseClicked() = 0;
-		virtual bool mouseHovered() = 0;
-		virtual bool mouseHovering() = 0;
-		virtual bool mouseUnHovered() = 0;
-		virtual bool mouseDragging() = 0;
-		virtual bool mouseWheel() = 0;
 	};
 }

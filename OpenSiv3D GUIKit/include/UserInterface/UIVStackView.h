@@ -4,8 +4,10 @@
 
 namespace s3d::gui {
 	class UIVStackView : public UIView {
+	private:
 		size_t m_maxStackCount = 0;
 		double m_rowHeight = 0.0;
+		double m_topPositionConstant = 0.0;
 
 	public:
 		using UIView::UIView;
@@ -56,6 +58,18 @@ namespace s3d::gui {
 				ui = nullptr;
 			}
 			userInterfaces.release();
+		}
+
+	protected:
+		bool mouseWheel() override {
+			if (UIView::mouseWheel()) {
+				m_topPositionConstant += Mouse::Wheel() * 10;
+				m_topPositionConstant = Clamp(m_topPositionConstant, -m_layer.height.value, 0.0);
+				m_layer.top.setConstraint(m_topPositionConstant);
+				requestToUpdateLayer();
+				return true;
+			}
+			return false;
 		}
 	};
 }

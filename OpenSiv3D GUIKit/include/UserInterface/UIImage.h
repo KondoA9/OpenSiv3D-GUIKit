@@ -6,6 +6,7 @@ namespace s3d::gui {
 	class UIImage : public UIRect {
 	public:
 		Image image;
+		bool manualScalingEnabled = true;
 
 	private:
 		DynamicTexture m_texture;
@@ -23,10 +24,7 @@ namespace s3d::gui {
 			m_texture = DynamicTexture(image, TextureDesc::Mipped);
 			m_scale = 1.0;
 			if (m_texture) {
-				m_scale = static_cast<double>(m_rect.w) / static_cast<double>(m_texture.width());
-				if (const double h = m_scale * m_texture.height(); h > m_rect.h) {
-					m_scale *= m_rect.h / h;
-				}
+				m_scale = calcInitialScale();
 			}
 		}
 
@@ -34,12 +32,16 @@ namespace s3d::gui {
 			m_texture.fill(image);
 		}
 
-		void scale(double scale) {
+		void setScale(double scale) {
 			m_scale = scale;
 		}
 
-		void scaleBy(double magnification) {
+		void setScaleBy(double magnification) {
 			m_scale *= magnification;
+		}
+
+		void resetScale() {
+			m_scale = calcInitialScale();
 		}
 
 		void paint(double thickness, const Color& color, bool antialiased = true) {
@@ -81,7 +83,7 @@ namespace s3d::gui {
 		}
 
 		bool mouseWheel() override {
-			if (UIRect::mouseWheel()) {
+			if (UIRect::mouseWheel() && manualScalingEnabled) {
 				if (const int wheel = static_cast<int>(Sign(Mouse::Wheel())); wheel < 0) {
 					m_scale *= 1.6;
 				}
@@ -91,6 +93,15 @@ namespace s3d::gui {
 				return true;
 			}
 			return false;
+		}
+
+	private:
+		double calcInitialScale() {
+			double scale = static_cast<double>(m_rect.w) / static_cast<double>(m_texture.width());
+			if (const double h = scale * m_texture.height(); h > m_rect.h) {
+				scale *= m_rect.h / h;
+			}
+			return scale;
 		}
 	};
 }
