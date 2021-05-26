@@ -21,7 +21,7 @@ bool UIComponent::updateLayerIfNeeded() {
 
 
 void UIComponent::updateMouseEvent() {
-	mouseClicked();
+	mouseDown();
 	mouseUp();
 	mouseHovered();
 	mouseHovering();

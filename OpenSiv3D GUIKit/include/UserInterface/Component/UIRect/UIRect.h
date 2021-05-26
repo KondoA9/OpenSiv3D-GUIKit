@@ -19,7 +19,7 @@ namespace s3d::gui {
 		void updateLayer() override;
 
 	protected:
-		bool mouseClicked() override;
+		bool mouseDown() override;
 
 		bool mouseUp() override;
 

@@ -15,7 +15,7 @@ namespace s3d::gui {
 		void draw() override;
 
 	private:
-		bool mouseClicked() override;
+		bool mouseDown() override;
 
 		bool mouseUp() override;
 

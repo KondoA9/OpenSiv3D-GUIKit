@@ -12,9 +12,9 @@ void UIRect::updateLayer() {
 	);
 }
 
-bool UIRect::mouseClicked() {
+bool UIRect::mouseDown() {
 	if (!m_mouseDraggingEnable && m_rect.leftClicked()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
+		callMouseEventHandler(MouseEvent(MouseEventType::Down, this));
 		m_mouseDraggingEnable = true;
 		return true;
 	}

@@ -12,9 +12,9 @@ void UICircle::draw() {
 	m_circle.draw(backgroundColor);
 }
 
-bool UICircle::mouseClicked() {
+bool UICircle::mouseDown() {
 	if (m_circle.leftClicked()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
+		callMouseEventHandler(MouseEvent(MouseEventType::Down, this));
 		m_mouseDraggingEnable = true;
 		return true;
 	}

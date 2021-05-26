@@ -57,7 +57,7 @@ namespace s3d::gui {
 		void removeConstraint(LayerDirection direction);
 
 	protected:
-		virtual bool mouseClicked() = 0;
+		virtual bool mouseDown() = 0;
 		virtual bool mouseUp() = 0;
 		virtual bool mouseHovered() = 0;
 		virtual bool mouseHovering() = 0;

@@ -6,7 +6,7 @@ namespace s3d::gui {
 	class UIComponent;
 
 	enum class MouseEventType : size_t {
-		Clicked,
+		Down,
 		Up,
 		Hovered,
 		Hovering,
