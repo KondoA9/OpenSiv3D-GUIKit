@@ -15,6 +15,15 @@ void UICircle::draw() {
 bool UICircle::mouseClicked() {
 	if (m_circle.leftClicked()) {
 		callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
+		m_mouseDraggingEnable = true;
+		return true;
+	}
+	return false;
+}
+
+bool UICircle::mouseUp() {
+	if (m_mouseDraggingEnable && !m_mouseOver || m_circle.leftReleased()) {
+		m_mouseDraggingEnable = false;
 		return true;
 	}
 	return false;

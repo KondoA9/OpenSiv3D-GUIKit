@@ -41,6 +41,8 @@ namespace s3d::gui {
 
 		void draw() override;
 
+		void updateLayer() override;
+
 	protected:
 		bool mouseHovering() override;
 

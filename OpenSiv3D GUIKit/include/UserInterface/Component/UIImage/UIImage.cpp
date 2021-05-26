@@ -26,6 +26,19 @@ void UIImage::draw() {
 	}
 }
 
+void UIImage::updateLayer() {
+	const double preLimit = calcInitialScale();
+	const double preScale = m_scale;
+
+	UIRect::updateLayer();
+
+	const double limit = calcInitialScale();
+	m_scale = preScale * limit / preLimit;
+	if (m_scale < limit) {
+		m_scale = limit;
+	}
+}
+
 bool UIImage::mouseHovering() {
 	if (UIRect::mouseHovering()) {
 		m_textureRegion = m_texture.scaled(m_scale).regionAt(m_rect.center());
@@ -42,8 +55,7 @@ bool UIImage::mouseHovering() {
 
 bool UIImage::mouseDragging() {
 	if (m_textureRegion.leftPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
-		return true;
+		return UIRect::mouseDragging();
 	}
 	return false;
 }
@@ -51,10 +63,18 @@ bool UIImage::mouseDragging() {
 bool UIImage::mouseWheel() {
 	if (UIRect::mouseWheel() && manualScalingEnabled) {
 		if (const int wheel = static_cast<int>(Sign(Mouse::Wheel())); wheel < 0) {
-			m_scale *= 1.6;
+			// Able to zoom in up to 20x20px
+			constexpr double limitation = 1.0 / 20;
+			const double pxh = m_rect.h * limitation, pxw = m_rect.w * limitation;
+			if (m_texture.height() * pxh > m_textureRegion.h && m_texture.width() * pxw > m_textureRegion.w) {
+				m_scale *= 1.6;
+			}
 		}
 		else if (wheel > 0) {
 			m_scale *= 0.625;
+			if (const double limit = calcInitialScale(); m_scale < limit) {
+				m_scale = limit;
+			}
 		}
 		return true;
 	}

@@ -13,8 +13,17 @@ void UIRect::updateLayer() {
 }
 
 bool UIRect::mouseClicked() {
-	if (m_rect.leftClicked()) {
+	if (!m_mouseDraggingEnable && m_rect.leftClicked()) {
 		callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
+		m_mouseDraggingEnable = true;
+		return true;
+	}
+	return false;
+}
+
+bool UIRect::mouseUp() {
+	if (m_mouseDraggingEnable && (!m_mouseOver || m_rect.leftReleased())) {
+		m_mouseDraggingEnable = false;
 		return true;
 	}
 	return false;
@@ -45,7 +54,7 @@ bool UIRect::mouseUnHovered() {
 }
 
 bool UIRect::mouseDragging() {
-	if (m_rect.leftPressed()) {
+	if (m_mouseDraggingEnable && m_rect.leftPressed()) {
 		callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 		return true;
 	}

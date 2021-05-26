@@ -16,6 +16,7 @@ namespace s3d::gui {
 	protected:
 		Layer m_layer;
 		bool m_mouseOver = false, m_preMouseOver = false;
+		bool m_mouseDraggingEnable = false;
 
 	public:
 		ColorTheme backgroundColor;
@@ -57,6 +58,7 @@ namespace s3d::gui {
 
 	protected:
 		virtual bool mouseClicked() = 0;
+		virtual bool mouseUp() = 0;
 		virtual bool mouseHovered() = 0;
 		virtual bool mouseHovering() = 0;
 		virtual bool mouseUnHovered() = 0;

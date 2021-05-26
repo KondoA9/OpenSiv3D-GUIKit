@@ -17,6 +17,8 @@ namespace s3d::gui {
 	private:
 		bool mouseClicked() override;
 
+		bool mouseUp() override;
+
 		bool mouseHovered() override;
 
 		bool mouseHovering() override;
