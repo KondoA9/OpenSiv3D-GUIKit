@@ -115,26 +115,19 @@ namespace s3d::gui {
 			}
 
 			// Page changing
-			static bool synchronized = false;
 			static bool forwardUILoaded = false;
 			static double pageColorMultiplier = 1.0;
 			if (m_forwardPage && m_backwardPage) {
-				if (!synchronized) {
-					if (!forwardUILoaded) {
-						if (!m_forwardPage->loaded) {
-							m_forwardPage->onLoaded();
-							m_forwardPage->loaded = true;
-						}
-						m_uiChanging = true;
-						forwardUILoaded = true;
+				if (!forwardUILoaded) {
+					if (!m_forwardPage->loaded) {
+						m_forwardPage->onLoaded();
+						m_forwardPage->loaded = true;
 					}
-					else {
-						// Sync forwardPage.onAppeared & backwardPage.onDisappeared
-						m_forwardPage->onBeforeAppeared();
-						m_forwardPage->view.updateLayer();
-						m_backwardPage->onBeforeDisappeared();
-						synchronized = true;
-					}
+					m_forwardPage->view.updateLayer();
+					m_forwardPage->onBeforeAppeared();
+					m_backwardPage->onBeforeDisappeared();
+					m_uiChanging = true;
+					forwardUILoaded = true;
 				}
 			}
 
@@ -146,12 +139,11 @@ namespace s3d::gui {
 			// Page changed
 			static bool uiChanged = false;
 			if (uiChanged) {
-				m_drawingPage = m_forwardPage;
 				m_forwardPage->onAfrerAppeared();
 				m_backwardPage->onAfrerDisappeared();
-				m_forwardPage = nullptr;
-				m_backwardPage = nullptr;
-				synchronized = false;
+				m_drawingPage = m_forwardPage;
+				m_forwardPage.reset();
+				m_backwardPage.reset();
 				forwardUILoaded = false;
 				uiChanged = false;
 			}

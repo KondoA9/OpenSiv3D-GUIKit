@@ -30,7 +30,6 @@ namespace s3d::gui {
 					m_scale *= m_rect.h / h;
 				}
 			}
-			requestToUpdateLayer();
 		}
 
 		void updateTexture() {
