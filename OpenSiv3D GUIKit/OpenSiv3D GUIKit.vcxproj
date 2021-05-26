@@ -115,6 +115,7 @@
   <ItemGroup>
     <ClInclude Include="include\ColorTheme\ColorTheme.h" />
     <ClInclude Include="include\ColorTheme\DynamicColor.h" />
+    <ClInclude Include="include\UserInterface\MouseEvent\MouseEvent.h" />
     <ClInclude Include="include\UserInterface\UIComponent.h" />
     <ClInclude Include="include\UserInterface\Constraint\Constraint.h" />
     <ClInclude Include="include\UserInterface\Layer\Layer.h" />

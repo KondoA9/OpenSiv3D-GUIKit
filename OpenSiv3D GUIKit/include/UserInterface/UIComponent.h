@@ -2,34 +2,21 @@
 
 #include "Layer/Layer.h"
 #include "../ColorTheme/DynamicColor.h"
+#include "MouseEvent/MouseEvent.h"
 
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	enum class MouseEvent: size_t {
-		Clicked,
-		Hovered,
-		Hovering,
-		UnHovered,
-		Dragging
-	};
-	
 	class UIComponent {
 	private:
-		// Event handler
-		std::vector <std::function<void(UIComponent& component)>> m_mouseEventHandlers;
+		std::vector <MouseEventHandler> m_mouseEventHandlers;
+
 	protected:
-		/*std::function<void(UIComponent& component)>& mouseEventHandler(MouseEvent e) {
-			const size_t index = static_cast<size_t>(e);
-			if (index < m_mouseEventHandlers.size()) {
-				return m_mouseEventHandlers[index];
-			}
-			throw "Error";
-		}*/
-		void callMouseEventHandler(UIComponent& component, MouseEvent e) {
-			const size_t index = static_cast<size_t>(e);
-			if (index < m_mouseEventHandlers.size() && m_mouseEventHandlers[index]) {
-				m_mouseEventHandlers[index](component);
+		void callMouseEventHandler(const MouseEvent& e) {
+			for (auto& handler : m_mouseEventHandlers) {
+				if (handler.eventType == e.type) {
+					handler.handler(e);
+				}
 			}
 		}
 
@@ -49,8 +36,7 @@ namespace s3d::gui {
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::backgroundSecondary) :
-			backgroundColor(_backgroundColor),
-			m_mouseEventHandlers(std::vector <std::function<void(UIComponent& component)>>(5))
+			backgroundColor(_backgroundColor)
 		{}
 
 		virtual ~UIComponent() = default;
@@ -79,12 +65,12 @@ namespace s3d::gui {
 			dragging();
 		}
 
-		void addEventListener(MouseEvent e, std::function<void(UIComponent& component)> f) {
-			m_mouseEventHandlers[static_cast<size_t>(e)] = f;
+		void addEventListener(MouseEventType e, const std::function<void(const MouseEvent& e)>& f) {
+			m_mouseEventHandlers.push_back(MouseEventHandler(e, f));
 		}
 
-		void addEventListener(MouseEvent e, const std::function<void()>& f) {
-			m_mouseEventHandlers[static_cast<size_t>(e)] = [f](UIComponent&) {f(); };
+		void addEventListener(MouseEventType e, const std::function<void()>& f) {
+			m_mouseEventHandlers.push_back(MouseEventHandler(e, [f](const MouseEvent&) {f(); }));
 		}
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0) {

@@ -29,7 +29,7 @@ namespace s3d::gui {
 	protected:
 		bool clicked() override {
 			if (rect.leftClicked()) {
-				callMouseEventHandler(*this, MouseEvent::Clicked);
+				callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
 				return true;
 			}
 			return false;
@@ -41,7 +41,7 @@ namespace s3d::gui {
 				h1 = false;
 			}
 			else if (rect.mouseOver()) {
-				callMouseEventHandler(*this, MouseEvent::Hovered);
+				callMouseEventHandler(MouseEvent(MouseEventType::Hovered, this));
 				h1 = true;
 				return true;
 			}
@@ -50,7 +50,7 @@ namespace s3d::gui {
 
 		bool hovering() override {
 			if (rect.mouseOver()) {
-				callMouseEventHandler(*this, MouseEvent::Hovering);
+				callMouseEventHandler(MouseEvent(MouseEventType::Hovering, this));
 				return true;
 			}
 			return false;
@@ -59,7 +59,7 @@ namespace s3d::gui {
 		bool h2 = false;
 		bool unHovered() override {
 			if (h2 && !rect.mouseOver()) {
-				callMouseEventHandler(*this, MouseEvent::UnHovered);
+				callMouseEventHandler(MouseEvent(MouseEventType::UnHovered, this));
 				h2 = false;
 				return true;
 			}
@@ -71,7 +71,7 @@ namespace s3d::gui {
 
 		bool dragging() override {
 			if (rect.leftPressed()) {
-				callMouseEventHandler(*this, MouseEvent::Dragging);
+				callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 				return true;
 			}
 			return false;

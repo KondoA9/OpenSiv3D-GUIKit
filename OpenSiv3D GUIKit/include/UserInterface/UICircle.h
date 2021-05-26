@@ -23,7 +23,7 @@ namespace s3d::gui {
 	private:
 		bool clicked() override {
 			if (circle.leftClicked()) {
-				callMouseEventHandler(*this, MouseEvent::Clicked);
+				callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
 				return true;
 			}
 			return false;
@@ -35,7 +35,7 @@ namespace s3d::gui {
 				hovered = false;
 			}
 			else if (circle.mouseOver()) {
-				callMouseEventHandler(*this, MouseEvent::Hovered);
+				callMouseEventHandler(MouseEvent(MouseEventType::Hovered, this));
 				hovered = true;
 				return true;
 			}
@@ -44,7 +44,7 @@ namespace s3d::gui {
 
 		bool hovering() override {
 			if (circle.mouseOver()) {
-				callMouseEventHandler(*this, MouseEvent::Hovering);
+				callMouseEventHandler(MouseEvent(MouseEventType::Hovering, this));
 				return true;
 			}
 			return false;
@@ -54,7 +54,7 @@ namespace s3d::gui {
 			static bool hovered = false;
 			if (hovered && !circle.mouseOver()) {
 				if (circle.mouseOver()) {
-					callMouseEventHandler(*this, MouseEvent::UnHovered);
+					callMouseEventHandler(MouseEvent(MouseEventType::UnHovered, this));
 					return true;
 				}
 				hovered = false;
@@ -67,7 +67,7 @@ namespace s3d::gui {
 
 		bool dragging() override {
 			if (circle.leftPressed()) {
-				callMouseEventHandler(*this, MouseEvent::Dragging);
+				callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 				return true;
 			}
 			return false;

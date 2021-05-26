@@ -13,9 +13,9 @@ class StartPage : public gui::Page {
         title.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom, 0.0, 0.5);
         title.setConstraint(gui::LayerDirection::Left);
         title.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
-        title.addEventListener(gui::MouseEvent::Clicked, [](gui::UIComponent& component) {
+        title.addEventListener(gui::MouseEventType::Clicked, [](gui::MouseEvent e) {
             static bool flag = true;
-            component.backgroundColor.setColor(flag ? gui::DynamicColor::backgroundSecondary : gui::DynamicColor::background, 2.0);
+            e.component->backgroundColor.setColor(flag ? gui::DynamicColor::backgroundSecondary : gui::DynamicColor::background, 2.0);
             flag = !flag;
             });
 
@@ -24,7 +24,7 @@ class StartPage : public gui::Page {
         nextButton.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
         nextButton.setConstraint(gui::LayerDirection::Left);
         nextButton.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right, 0.0, 0.5);
-        nextButton.addEventListener(gui::MouseEvent::Clicked, [this]() {
+        nextButton.addEventListener(gui::MouseEventType::Clicked, [this]() {
             guikit->switchPage(U"NextPage");
             });
 
@@ -33,7 +33,7 @@ class StartPage : public gui::Page {
         switchThemeButton.setConstraint(gui::LayerDirection::Bottom, nextButton, gui::LayerDirection::Bottom);
         switchThemeButton.setConstraint(gui::LayerDirection::Left, nextButton, gui::LayerDirection::Right);
         switchThemeButton.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
-        switchThemeButton.addEventListener(gui::MouseEvent::Clicked, [this]() {
+        switchThemeButton.addEventListener(gui::MouseEventType::Clicked, [this]() {
             guikit->toggleColorMode();
             });
 
@@ -53,7 +53,7 @@ class NextPage : public gui::Page {
         backButton.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
         backButton.setConstraint(gui::LayerDirection::Left);
         backButton.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
-        backButton.addEventListener(gui::MouseEvent::Clicked, [this]() {
+        backButton.addEventListener(gui::MouseEventType::Clicked, [this]() {
             guikit->switchPage(U"StartPage");
             });
 

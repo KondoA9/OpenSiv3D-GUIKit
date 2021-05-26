@@ -20,13 +20,20 @@ namespace s3d::gui {
 
 		void setImage(const Image& _image) {
 			image = _image;
-			m_texture = DynamicTexture(image);
+			m_texture = DynamicTexture(image, TextureDesc::Mipped);
 			shouldUpdateLayer = true;
-			//updateTexture();
 		}
 
 		void updateTexture() {
 			m_texture.fill(image);
+		}
+
+		void scale(double scale) {
+			m_scale = scale;
+		}
+
+		void scaleBy(double magnification) {
+			m_scale *= magnification;
 		}
 
 		void updateShape() override {
@@ -48,10 +55,21 @@ namespace s3d::gui {
 				m_texture.scaled(m_scale).drawAt(rect.center());
 				m_texture.scaled(m_scale).regionAt(rect.center()).drawFrame(2, Palette::Black);
 			}
+
+			
+			static int index = 1;
+			const int scroll = Sign(Mouse::Wheel());
+			if (scroll < 0 || scroll>0 && index > 1) {
+				index += -scroll;
+			}
+			m_scale = Pow(2, index);
+			/*if (const double scale = m_scale + Math::Sign(-Mouse::Wheel()); scale > 0.0) {
+				m_scale = scale;
+			}*/
 		}
 
-		void paint(double thickness, const Color& color) {
-			Line(m_prePixel, m_pixel).overwrite(image, static_cast<int32>(thickness), color);
+		void paint(double thickness, const Color& color, bool antialiased = true) {
+			Line(m_prePixel, m_pixel).overwrite(image, static_cast<int32>(thickness), color, antialiased);
 			updateTexture();
 		}
 
@@ -72,7 +90,7 @@ namespace s3d::gui {
 
 		bool dragging() override {
 			if (m_textureRegion.leftPressed()) {
-				callMouseEventHandler(*this, MouseEvent::Dragging);
+				callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 				return true;
 			}
 			return false;

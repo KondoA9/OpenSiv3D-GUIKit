@@ -72,5 +72,6 @@
     <ClInclude Include="include\UserInterface\UIText.h" />
     <ClInclude Include="include\UserInterface\UIVStackView.h" />
     <ClInclude Include="include\UserInterface\Font\UnifiedFont.h" />
+    <ClInclude Include="include\UserInterface\MouseEvent\MouseEvent.h" />
   </ItemGroup>
 </Project>
