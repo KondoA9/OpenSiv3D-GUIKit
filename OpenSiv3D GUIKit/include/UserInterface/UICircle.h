@@ -21,7 +21,7 @@ namespace s3d::gui {
 		}
 
 	private:
-		bool clicked() override {
+		bool mouseClicked() override {
 			if (m_circle.leftClicked()) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
 				return true;
@@ -29,7 +29,7 @@ namespace s3d::gui {
 			return false;
 		}
 
-		bool hovered() override {
+		bool mouseHovered() override {
 			static bool hovered = false;
 			if (hovered && !m_mouseOver) {
 				hovered = false;
@@ -42,7 +42,7 @@ namespace s3d::gui {
 			return false;
 		}
 
-		bool hovering() override {
+		bool mouseHovering() override {
 			if (m_mouseOver) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Hovering, this));
 				return true;
@@ -50,7 +50,7 @@ namespace s3d::gui {
 			return false;
 		}
 
-		bool unHovered() override {
+		bool mouseUnHovered() override {
 			static bool hovered = false;
 			if (hovered && !m_mouseOver) {
 				if (m_mouseOver) {
@@ -65,9 +65,17 @@ namespace s3d::gui {
 			return false;
 		}
 
-		bool dragging() override {
+		bool mouseDragging() override {
 			if (m_circle.leftPressed()) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
+				return true;
+			}
+			return false;
+		}
+
+		bool mouseWheel() override {
+			if (const double wheel = Mouse::Wheel(); m_mouseOver && wheel != 0.0) {
+				callMouseEventHandler(MouseEvent(MouseEventType::Wheel, this));
 				return true;
 			}
 			return false;

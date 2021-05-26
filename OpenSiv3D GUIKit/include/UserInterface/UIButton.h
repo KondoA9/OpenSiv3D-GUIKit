@@ -59,24 +59,24 @@ namespace s3d::gui {
 		}
 
 	private:
-		bool hovered() override {
-			if (UIRect::hovered()) {
+		bool mouseHovered() override {
+			if (UIRect::mouseHovered()) {
 				backgroundColor.highlight(hoveredColor);
 				return true;
 			}
 			return false;
 		}
 
-		bool unHovered() override {
-			if (UIRect::unHovered()) {
+		bool mouseUnHovered() override {
+			if (UIRect::mouseUnHovered()) {
 				backgroundColor.lowlight(defaultColor);
 				return true;
 			}
 			return false;
 		}
 
-		bool hovering() override {
-			if (UIRect::hovering()) {
+		bool mouseHovering() override {
+			if (UIRect::mouseHovering()) {
 				Cursor::RequestStyle(CursorStyle::Hand);
 				return true;
 			}

@@ -23,9 +23,7 @@ namespace s3d::gui {
 			m_texture = DynamicTexture(image, TextureDesc::Mipped);
 			m_scale = 1.0;
 			if (m_texture) {
-				if (m_texture.width() > m_rect.w) {
-					m_scale = static_cast<double>(m_rect.w) / static_cast<double>(m_texture.width());
-				}
+				m_scale = static_cast<double>(m_rect.w) / static_cast<double>(m_texture.width());
 				if (const double h = m_scale * m_texture.height(); h > m_rect.h) {
 					m_scale *= m_rect.h / h;
 				}
@@ -44,6 +42,12 @@ namespace s3d::gui {
 			m_scale *= magnification;
 		}
 
+		void paint(double thickness, const Color& color, bool antialiased = true) {
+			const int32 t = static_cast<int32>(thickness / m_scale);
+			Line(m_prePixel, m_pixel).overwrite(image, t > 0 ? t : 1, color, antialiased);
+			updateTexture();
+		}
+
 		void draw() override {
 			UIRect::draw();
 
@@ -53,14 +57,9 @@ namespace s3d::gui {
 			}
 		}
 
-		void paint(double thickness, const Color& color, bool antialiased = true) {
-			Line(m_prePixel, m_pixel).overwrite(image, static_cast<int32>(thickness), color, antialiased);
-			updateTexture();
-		}
-
 	protected:
-		bool hovering() override {
-			if (UIRect::hovering()) {
+		bool mouseHovering() override {
+			if (UIRect::mouseHovering()) {
 				m_textureRegion = m_texture.scaled(m_scale).regionAt(m_rect.center());
 				m_pixel = Point(static_cast<int>((Cursor::Pos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::Pos().y - m_textureRegion.y) / m_scale));
 				m_prePixel = Point(static_cast<int>((Cursor::PreviousPos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::PreviousPos().y - m_textureRegion.y) / m_scale));
@@ -73,7 +72,7 @@ namespace s3d::gui {
 			return false;
 		}
 
-		bool dragging() override {
+		bool mouseDragging() override {
 			if (m_textureRegion.leftPressed()) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 				return true;
@@ -81,17 +80,17 @@ namespace s3d::gui {
 			return false;
 		}
 
-		void updateMouseEvent() override {
-			UIRect::updateMouseEvent();
-
-			if (m_mouseOver) {
+		bool mouseWheel() override {
+			if (UIRect::mouseWheel()) {
 				if (const int wheel = static_cast<int>(Sign(Mouse::Wheel())); wheel < 0) {
 					m_scale *= 1.6;
 				}
 				else if (wheel > 0) {
 					m_scale *= 0.625;
 				}
+				return true;
 			}
+			return false;
 		}
 	};
 }

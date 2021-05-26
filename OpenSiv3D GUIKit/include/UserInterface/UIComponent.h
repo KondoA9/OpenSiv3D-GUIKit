@@ -47,11 +47,12 @@ namespace s3d::gui {
 		virtual void draw() {};
 
 		virtual void updateMouseEvent() {
-			clicked();
-			hovered();
-			hovering();
-			unHovered();
-			dragging();
+			mouseClicked();
+			mouseHovered();
+			mouseHovering();
+			mouseUnHovered();
+			mouseDragging();
+			mouseWheel();
 		}
 
 		void addEventListener(MouseEventType e, const std::function<void(const MouseEvent& e)>& f) {
@@ -104,10 +105,11 @@ namespace s3d::gui {
 		}
 
 		// Run by loop
-		virtual bool clicked() = 0;
-		virtual bool hovered() = 0;
-		virtual bool hovering() = 0;
-		virtual bool unHovered() = 0;
-		virtual bool dragging() = 0;
+		virtual bool mouseClicked() = 0;
+		virtual bool mouseHovered() = 0;
+		virtual bool mouseHovering() = 0;
+		virtual bool mouseUnHovered() = 0;
+		virtual bool mouseDragging() = 0;
+		virtual bool mouseWheel() = 0;
 	};
 }
