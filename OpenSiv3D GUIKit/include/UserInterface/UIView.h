@@ -14,10 +14,10 @@ namespace s3d::gui {
 		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor)
 		{
-			layer.top.setConstraint();
-			layer.left.setConstraint();
-			layer.bottom.setConstraint([]() {return Window::ClientHeight(); });
-			layer.right.setConstraint([]() {return Window::ClientWidth(); });
+			m_layer.top.setConstraint();
+			m_layer.left.setConstraint();
+			m_layer.bottom.setConstraint([]() {return Window::ClientHeight(); });
+			m_layer.right.setConstraint([]() {return Window::ClientWidth(); });
 		}
 
 		~UIView() {}
@@ -26,18 +26,18 @@ namespace s3d::gui {
 			userInterfaces.push_back(&ui);
 		}
 
-		void updateShape() override {
-			UIRect::updateShape();
+		void updateLayer() override {
+			UIRect::updateLayer();
 			for (auto& ui : userInterfaces) {
-				ui->updateShape();
+				ui->updateLayer();
 			}
 		}
 
-		bool updateShapeIfNeeded() override {
+		bool updateLayerIfNeeded() override {
 			bool updated = false;
-			updated |= UIRect::updateShapeIfNeeded();
+			updated |= UIRect::updateLayerIfNeeded();
 			for (auto& ui : userInterfaces) {
-				updated |= ui->updateShapeIfNeeded();
+				updated |= ui->updateLayerIfNeeded();
 			}
 
 			return updated;
@@ -50,10 +50,10 @@ namespace s3d::gui {
 			}
 		}
 
-		void control() override {
-			UIRect::control();
+		void updateMouseEvent() override {
+			UIRect::updateMouseEvent();
 			for (auto& ui : userInterfaces) {
-				ui->control();
+				ui->updateMouseEvent();
 			}
 		}
 	};

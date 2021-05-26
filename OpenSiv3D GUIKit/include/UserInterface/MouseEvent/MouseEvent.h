@@ -18,7 +18,7 @@ namespace s3d::gui {
 		const MouseEventType type;
 		const double wheel;
 		const Vec2 pos;
-		UIComponent* component;
+		UIComponent* component = nullptr;
 
 		MouseEvent(MouseEventType _type, UIComponent* _component) :
 			type(_type),

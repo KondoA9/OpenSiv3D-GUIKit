@@ -15,13 +15,22 @@ namespace s3d::gui {
 
 	public:
 		UIImage(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
-			UIRect(_backgroundColor) 
+			UIRect(_backgroundColor)
 		{}
 
 		void setImage(const Image& _image) {
 			image = _image;
 			m_texture = DynamicTexture(image, TextureDesc::Mipped);
-			shouldUpdateLayer = true;
+			m_scale = 1.0;
+			if (m_texture) {
+				if (m_texture.width() > m_rect.w) {
+					m_scale = static_cast<double>(m_rect.w) / static_cast<double>(m_texture.width());
+				}
+				if (const double h = m_scale * m_texture.height(); h > m_rect.h) {
+					m_scale *= m_rect.h / h;
+				}
+			}
+			requestToUpdateLayer();
 		}
 
 		void updateTexture() {
@@ -36,36 +45,13 @@ namespace s3d::gui {
 			m_scale *= magnification;
 		}
 
-		void updateShape() override {
-			UIRect::updateShape();
-			if (m_texture) {
-				m_scale = 1.0;
-				if (m_texture.width() > rect.w) {
-					m_scale = static_cast<double>(rect.w) / static_cast<double>(m_texture.width());
-				}
-				if (const double h = m_scale * m_texture.height(); h > rect.h) {
-					m_scale *= rect.h / h;
-				}
-			}
-		}
-
 		void draw() override {
 			UIRect::draw();
-			if (m_texture) {
-				m_texture.scaled(m_scale).drawAt(rect.center());
-				m_texture.scaled(m_scale).regionAt(rect.center()).drawFrame(2, Palette::Black);
-			}
 
-			
-			static int index = 1;
-			const int scroll = Sign(Mouse::Wheel());
-			if (scroll < 0 || scroll>0 && index > 1) {
-				index += -scroll;
+			if (m_texture) {
+				m_texture.scaled(m_scale).drawAt(m_rect.center());
+				m_texture.scaled(m_scale).regionAt(m_rect.center()).drawFrame(2, Palette::Black);
 			}
-			m_scale = Pow(2, index);
-			/*if (const double scale = m_scale + Math::Sign(-Mouse::Wheel()); scale > 0.0) {
-				m_scale = scale;
-			}*/
 		}
 
 		void paint(double thickness, const Color& color, bool antialiased = true) {
@@ -76,7 +62,7 @@ namespace s3d::gui {
 	protected:
 		bool hovering() override {
 			if (UIRect::hovering()) {
-				m_textureRegion = m_texture.scaled(m_scale).regionAt(rect.center());
+				m_textureRegion = m_texture.scaled(m_scale).regionAt(m_rect.center());
 				m_pixel = Point(static_cast<int>((Cursor::Pos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::Pos().y - m_textureRegion.y) / m_scale));
 				m_prePixel = Point(static_cast<int>((Cursor::PreviousPos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::PreviousPos().y - m_textureRegion.y) / m_scale));
 				if (m_pixel.x < 0) m_pixel.x = 0;
@@ -94,6 +80,17 @@ namespace s3d::gui {
 				return true;
 			}
 			return false;
+		}
+
+		void updateMouseEvent() override {
+			UIRect::updateMouseEvent();
+
+			if (const int scroll = static_cast<int>(Sign(Mouse::Wheel())); scroll < 0) {
+				m_scale *= 1.6;
+			}
+			else if (scroll > 0) {
+				m_scale *= 0.625;
+			}
 		}
 	};
 }

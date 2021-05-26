@@ -131,7 +131,7 @@ namespace s3d::gui {
 					else {
 						// Sync forwardPage.onAppeared & backwardPage.onDisappeared
 						m_forwardPage->onBeforeAppeared();
-						m_forwardPage->view.updateShape();
+						m_forwardPage->view.updateLayer();
 						m_backwardPage->onBeforeDisappeared();
 						synchronized = true;
 					}
@@ -175,14 +175,14 @@ namespace s3d::gui {
 			}
 			// Draw the page
 			else {
-				m_drawingPage->view.control();
+				m_drawingPage->view.updateMouseEvent();
 
 				if (WindowManager::didResized()) {
 					m_drawingPage->onWindowResized();
-					m_drawingPage->view.updateShape();
+					m_drawingPage->view.updateLayer();
 				}
 				else {
-					m_drawingPage->view.updateShapeIfNeeded();
+					m_drawingPage->view.updateLayerIfNeeded();
 				}
 
 				m_drawingPage->view.draw();

@@ -10,29 +10,14 @@ namespace s3d::gui {
 	class UIComponent {
 	private:
 		std::vector <MouseEventHandler> m_mouseEventHandlers;
+		bool m_needToUpdateLayer = true;
 
 	protected:
-		void callMouseEventHandler(const MouseEvent& e) {
-			for (auto& handler : m_mouseEventHandlers) {
-				if (handler.eventType == e.type) {
-					handler.handler(e);
-				}
-			}
-		}
-
-		// Run by loop
-		virtual bool clicked() = 0;
-		virtual bool hovered() = 0;
-		virtual bool hovering() = 0;
-		virtual bool unHovered() = 0;
-		virtual bool dragging() = 0;
+		Layer m_layer;
+		bool m_mouseOver = false, m_preMouseOver = false;
 
 	public:
 		ColorTheme backgroundColor;
-
-	protected:
-		Layer layer;
-		bool shouldUpdateLayer = true;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
@@ -41,14 +26,14 @@ namespace s3d::gui {
 
 		virtual ~UIComponent() = default;
 
-		virtual void updateShape() {
-			layer.updateConstraints();
+		virtual void updateLayer() {
+			m_layer.updateConstraints();
 		}
 
-		virtual bool updateShapeIfNeeded() {
-			if (shouldUpdateLayer) {
-				updateShape();
-				shouldUpdateLayer = false;
+		virtual bool updateLayerIfNeeded() {
+			if (m_needToUpdateLayer) {
+				updateLayer();
+				m_needToUpdateLayer = false;
 				return true;
 			}
 
@@ -57,7 +42,7 @@ namespace s3d::gui {
 
 		virtual void draw() {};
 
-		virtual void control() {
+		virtual void updateMouseEvent() {
 			clicked();
 			hovered();
 			hovering();
@@ -74,30 +59,50 @@ namespace s3d::gui {
 		}
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0) {
-			auto myConstraint = layer.constraintPtr(direction);
-			const auto opponentConstraint = component.layer.constraintPtr(toDirection);
+			auto myConstraint = m_layer.constraintPtr(direction);
+			const auto opponentConstraint = component.m_layer.constraintPtr(toDirection);
 
 			myConstraint->setConstraint(&opponentConstraint->value, constant, multiplier);
-			shouldUpdateLayer = true;
+			m_needToUpdateLayer = true;
 		}
 
 		void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0) {
-			auto myConstraint = layer.constraintPtr(direction);
+			auto myConstraint = m_layer.constraintPtr(direction);
 
 			myConstraint->setConstraint(constant, multiplier);
-			shouldUpdateLayer = true;
+			m_needToUpdateLayer = true;
 		}
 
 		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant = 0.0, double multiplier = 1.0) {
-			auto myConstraint = layer.constraintPtr(direction);
+			auto myConstraint = m_layer.constraintPtr(direction);
 
 			myConstraint->setConstraint(func, constant, multiplier);
-			shouldUpdateLayer = true;
+			m_needToUpdateLayer = true;
 		}
 
 		void removeConstraint(LayerDirection direction) {
-			auto constraint = layer.constraintPtr(direction);
+			auto constraint = m_layer.constraintPtr(direction);
 			constraint->removeConstraint();
 		}
+
+		void requestToUpdateLayer() {
+			m_needToUpdateLayer = true;
+		}
+
+	protected:
+		void callMouseEventHandler(const MouseEvent& e) {
+			for (auto& handler : m_mouseEventHandlers) {
+				if (handler.eventType == e.type) {
+					handler.handler(e);
+				}
+			}
+		}
+
+		// Run by loop
+		virtual bool clicked() = 0;
+		virtual bool hovered() = 0;
+		virtual bool hovering() = 0;
+		virtual bool unHovered() = 0;
+		virtual bool dragging() = 0;
 	};
 }

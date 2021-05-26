@@ -26,14 +26,14 @@ namespace s3d::gui {
 			
 			if (m_rowHeight == 0.0) {
 				cmp->setConstraint(LayerDirection::Top, [this, i]() {
-					return layer.top.value + i * layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
+					return m_layer.top.value + i * m_layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
 					});
 				cmp->setConstraint(LayerDirection::Height, [this]() {
-					return layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
+					return m_layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
 					});
 			}
 			else {
-				cmp->setConstraint(LayerDirection::Top, [this, i]() { return layer.top.value + i * m_rowHeight; });
+				cmp->setConstraint(LayerDirection::Top, [this, i]() { return m_layer.top.value + i * m_rowHeight; });
 				cmp->setConstraint(LayerDirection::Height, m_rowHeight);
 			}
 			cmp->setConstraint(LayerDirection::Left, *this, LayerDirection::Left);

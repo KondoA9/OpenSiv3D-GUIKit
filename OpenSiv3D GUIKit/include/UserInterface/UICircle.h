@@ -4,25 +4,25 @@
 
 namespace s3d::gui {
 	class UICircle : public UIComponent {
-	public:
-		Circle circle;
+	protected:
+		Circle m_circle;
 
 	public:
 		using UIComponent::UIComponent;
 
-		void updateShape() override {
-			UIComponent::updateShape();
-			circle = Circle(Arg::center(static_cast<int>(layer.centerX.value), static_cast<int>(layer.centerY.value)), (layer.height.value + layer.width.value) * 0.25);
+		void updateLayer() override {
+			UIComponent::updateLayer();
+			m_circle = Circle(Arg::center(static_cast<int>(m_layer.centerX.value), static_cast<int>(m_layer.centerY.value)), (m_layer.height.value + m_layer.width.value) * 0.25);
 		}
 
 		void draw() override {
 			UIComponent::draw();
-			circle.draw(backgroundColor);
+			m_circle.draw(backgroundColor);
 		}
 
 	private:
 		bool clicked() override {
-			if (circle.leftClicked()) {
+			if (m_circle.leftClicked()) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Clicked, this));
 				return true;
 			}
@@ -31,10 +31,10 @@ namespace s3d::gui {
 
 		bool hovered() override {
 			static bool hovered = false;
-			if (hovered && !circle.mouseOver()) {
+			if (hovered && !m_mouseOver) {
 				hovered = false;
 			}
-			else if (circle.mouseOver()) {
+			else if (m_mouseOver) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Hovered, this));
 				hovered = true;
 				return true;
@@ -43,7 +43,7 @@ namespace s3d::gui {
 		}
 
 		bool hovering() override {
-			if (circle.mouseOver()) {
+			if (m_mouseOver) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Hovering, this));
 				return true;
 			}
@@ -52,25 +52,30 @@ namespace s3d::gui {
 
 		bool unHovered() override {
 			static bool hovered = false;
-			if (hovered && !circle.mouseOver()) {
-				if (circle.mouseOver()) {
+			if (hovered && !m_mouseOver) {
+				if (m_mouseOver) {
 					callMouseEventHandler(MouseEvent(MouseEventType::UnHovered, this));
 					return true;
 				}
 				hovered = false;
 			}
-			else if (circle.mouseOver()) {
+			else if (m_mouseOver) {
 				hovered = true;
 			}
 			return false;
 		}
 
 		bool dragging() override {
-			if (circle.leftPressed()) {
+			if (m_circle.leftPressed()) {
 				callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 				return true;
 			}
 			return false;
+		}
+
+		void updateMouseEvent() override {
+			m_mouseOver = m_circle.mouseOver();
+			UIComponent::updateMouseEvent();
 		}
 	};
 }

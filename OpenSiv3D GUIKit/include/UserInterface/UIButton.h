@@ -51,10 +51,10 @@ namespace s3d::gui {
 		void draw() override {
 			UIRect::draw();
 
-			UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(rect.center(), textColor);
+			UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(m_rect.center(), textColor);
 
 			if (icon) {
-				icon.drawAt(rect.center());
+				icon.drawAt(m_rect.center());
 			}
 		}
 
