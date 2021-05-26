@@ -7,13 +7,13 @@
 #include "UserInterface/MouseEvent/MouseEvent.h"
 
 // UserInterface
-#include "UserInterface/UIView.h"
-#include "UserInterface/UIVStackView.h"
-#include "UserInterface/UIRect.h"
-#include "UserInterface/UICircle.h"
-#include "UserInterface/UIText.h"
-#include "UserInterface/UIImage.h"
-#include "UserInterface/UIButton.h"
+#include "UserInterface/Component/UIView/UIView.h"
+#include "UserInterface/Component/UIVStackView/UIVStackView.h"
+#include "UserInterface/Component/UIRect/UIRect.h"
+#include "UserInterface/Component/UICircle/UICircle.h"
+#include "UserInterface/Component/UIText/UIText.h"
+#include "UserInterface/Component/UIImage/UIImage.h"
+#include "UserInterface/Component/UIButton/UIButton.h"
 
 // Page
 #include "Page/Page.h"

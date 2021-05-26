@@ -27,6 +27,17 @@
     <ClCompile Include="include\ColorTheme\ColorTheme.cpp" />
     <ClCompile Include="include\Window\WindowManager.cpp" />
     <ClCompile Include="include\UserInterface\Font\UnifiedFont.cpp" />
+    <ClCompile Include="include\GUIKitCore\GUIKitCore.cpp" />
+    <ClCompile Include="include\UserInterface\Constraint\Constraint.cpp" />
+    <ClCompile Include="include\UserInterface\Layer\Layer.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIButton\UIButton.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UICircle\UICircle.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIImage\UIImage.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIRect\UIRect.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIText\UIText.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIView\UIView.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component\Component.h">
@@ -58,19 +69,19 @@
     <ClInclude Include="include\GUIKit.h" />
     <ClInclude Include="include\UserInterface\Constraint\Constraint.h" />
     <ClInclude Include="include\UserInterface\Layer\Layer.h" />
-    <ClInclude Include="include\UserInterface\UIComponent.h" />
-    <ClInclude Include="include\UserInterface\UIButton.h" />
-    <ClInclude Include="include\UserInterface\UICircle.h" />
-    <ClInclude Include="include\UserInterface\UIImage.h" />
-    <ClInclude Include="include\UserInterface\UIRect.h" />
-    <ClInclude Include="include\UserInterface\UIView.h" />
+    <ClInclude Include="include\UserInterface\Component\UIComponent.h" />
+    <ClInclude Include="include\UserInterface\Component\UIButton\UIButton.h" />
+    <ClInclude Include="include\UserInterface\Component\UICircle\UICircle.h" />
+    <ClInclude Include="include\UserInterface\Component\UIImage\UIImage.h" />
+    <ClInclude Include="include\UserInterface\Component\UIRect\UIRect.h" />
+    <ClInclude Include="include\UserInterface\Component\UIView\UIView.h" />
     <ClInclude Include="include\GUIKitCore\GUIKitCore.h" />
     <ClInclude Include="include\Page\Page.h" />
     <ClInclude Include="include\Window\WindowManager.h" />
     <ClInclude Include="include\ColorTheme\ColorTheme.h" />
     <ClInclude Include="include\ColorTheme\DynamicColor.h" />
-    <ClInclude Include="include\UserInterface\UIText.h" />
-    <ClInclude Include="include\UserInterface\UIVStackView.h" />
+    <ClInclude Include="include\UserInterface\Component\UIText\UIText.h" />
+    <ClInclude Include="include\UserInterface\Component\UIVStackView\UIVStackView.h" />
     <ClInclude Include="include\UserInterface\Font\UnifiedFont.h" />
     <ClInclude Include="include\UserInterface\MouseEvent\MouseEvent.h" />
   </ItemGroup>

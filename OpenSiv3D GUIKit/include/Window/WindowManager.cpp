@@ -7,19 +7,19 @@ namespace s3d::gui::WindowManager {
 	Size currentwindowSize = Size(0, 0);
 	bool resized = false;
 
-	void initialize() {
+	void Initialize() {
 		SetProcessDPIAware();
 		Window::Resize(baseWindowSize, WindowResizeOption::ResizeSceneSize);
 		Window::SetStyle(WindowStyle::Sizable);
 	}
 
-	void update() {
+	void Update() {
 		const auto size = Window::ClientSize();
 		resized = currentwindowSize != size;
 		currentwindowSize = size;
 	}
 
-	bool didResized() {
+	bool DidResized() {
 		return resized;
 	}
 }

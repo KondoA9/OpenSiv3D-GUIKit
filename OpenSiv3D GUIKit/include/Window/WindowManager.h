@@ -3,9 +3,9 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui::WindowManager {
-	void initialize();
+	void Initialize();
 
-	void update();
+	void Update();
 
-	bool didResized();
+	bool DidResized();
 }

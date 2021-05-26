@@ -1,6 +1,6 @@
 #pragma once
 
-#include "../UserInterface/UIView.h"
+#include "../UserInterface/Component/UIView/UIView.h"
 
 #include <Siv3D.hpp>
 
