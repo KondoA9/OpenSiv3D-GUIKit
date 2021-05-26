@@ -9,7 +9,8 @@
 namespace s3d::gui {
 	class UIComponent {
 	private:
-		std::vector <MouseEventHandler> m_mouseEventHandlers;
+		Array<Layer*> m_dependentLayer;
+		Array<MouseEventHandler> m_mouseEventHandlers;
 		bool m_needToUpdateLayer = true;
 
 	protected:
@@ -27,6 +28,9 @@ namespace s3d::gui {
 		virtual ~UIComponent() = default;
 
 		virtual void updateLayer() {
+			for (auto layer : m_dependentLayer) {
+				layer->updateConstraints();
+			}
 			m_layer.updateConstraints();
 		}
 
@@ -59,6 +63,7 @@ namespace s3d::gui {
 		}
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0) {
+			m_dependentLayer.push_back(&component.m_layer);
 			auto myConstraint = m_layer.constraintPtr(direction);
 			const auto opponentConstraint = component.m_layer.constraintPtr(toDirection);
 
