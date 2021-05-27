@@ -2,9 +2,11 @@
 
 using namespace s3d::gui;
 
+Array<UIComponent::CallableMouseEvent> UIComponent::m_callableMouseEvents;
+
 void UIComponent::updateLayer() {
-	for (auto layer : m_dependentLayer) {
-		layer->updateConstraints();
+	for (auto l : m_dependentLayer) {
+		l->updateConstraints();
 	}
 	layer.updateConstraints();
 }
@@ -18,7 +20,6 @@ bool UIComponent::updateLayerIfNeeded() {
 
 	return false;
 }
-
 
 void UIComponent::updateMouseEvent() {
 	mouseDown();
@@ -59,9 +60,35 @@ void UIComponent::removeConstraint(LayerDirection direction) {
 }
 
 void UIComponent::callMouseEventHandler(const MouseEvent& e) const {
-	for (auto& handler : m_mouseEventHandlers) {
-		if (handler.eventType == e.type) {
-			handler.handler(e);
+	const auto hendlers = m_mouseEventHandlers.removed_if([e](const MouseEventHandler& handler) {
+		return handler.eventType != e.type;
+		});
+
+	if (m_callableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
+		m_callableMouseEvents.push_back({ e, hendlers });
+	}
+	else {
+		for (size_t i : step(m_callableMouseEvents.size())) {
+			if (m_callableMouseEvents[i].mouseEvent.type == e.type) {
+				m_callableMouseEvents[i].mouseEvent = e;
+				m_callableMouseEvents[i].handlers = hendlers;
+				break;
+			}
+			else if (i == m_callableMouseEvents.size() - 1) {
+				m_callableMouseEvents.push_back({ e, hendlers });
+			}
+		}
+	}
+}
+
+void UIComponent::ResetMouseEvents() {
+	m_callableMouseEvents.release();
+}
+
+void UIComponent::CallMouseEvents() {
+	for (const auto& e : m_callableMouseEvents) {
+		for (const auto& handler : e.handlers) {
+			handler.handler(e.mouseEvent);
 		}
 	}
 }

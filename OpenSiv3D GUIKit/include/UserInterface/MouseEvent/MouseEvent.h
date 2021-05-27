@@ -16,9 +16,9 @@ namespace s3d::gui {
 	};
 
 	struct MouseEvent {
-		const MouseEventType type;
-		const double wheel;
-		const Vec2 pos;
+		MouseEventType type;
+		double wheel;
+		Vec2 pos;
 		UIComponent* component = nullptr;
 
 		MouseEvent(MouseEventType _type, UIComponent* _component) :

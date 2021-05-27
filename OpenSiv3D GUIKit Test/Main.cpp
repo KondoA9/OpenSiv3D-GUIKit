@@ -6,6 +6,7 @@ class StartPage : public gui::Page {
     gui::UIText title;
     gui::UIButton nextButton;
     gui::UIButton switchThemeButton;
+    gui::UIRect cover;
 
     void onLoaded() override {
         title = gui::UIText(U"GUIKit", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
@@ -37,9 +38,15 @@ class StartPage : public gui::Page {
             guikit->toggleColorMode();
             });
 
+        cover.setConstraint(gui::LayerDirection::Height, switchThemeButton, gui::LayerDirection::Height, 0.0, 0.5);
+        cover.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
+        cover.setConstraint(gui::LayerDirection::Left);
+        cover.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
+
         view.appendComponent(title);
         view.appendComponent(nextButton);
         view.appendComponent(switchThemeButton);
+        view.appendComponent(cover);
     }
 };
 

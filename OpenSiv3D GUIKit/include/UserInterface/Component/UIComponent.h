@@ -9,6 +9,12 @@
 namespace s3d::gui {
 	class UIComponent {
 	private:
+		struct CallableMouseEvent {
+			MouseEvent mouseEvent;
+			Array<MouseEventHandler> handlers;
+		};
+		static Array<CallableMouseEvent> m_callableMouseEvents;
+
 		Array<Layer*> m_dependentLayer;
 		Array<MouseEventHandler> m_mouseEventHandlers;
 		bool m_needToUpdateLayer = true;
@@ -20,6 +26,7 @@ namespace s3d::gui {
 	public:
 		ColorTheme backgroundColor;
 		Layer layer;
+		bool penetrateMouseEvent = false;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
@@ -56,6 +63,10 @@ namespace s3d::gui {
 
 		void removeConstraint(LayerDirection direction);
 
+		static void ResetMouseEvents();
+
+		static void CallMouseEvents();
+
 	protected:
 		virtual bool mouseDown() = 0;
 		virtual bool mouseUp() = 0;
@@ -66,6 +77,5 @@ namespace s3d::gui {
 		virtual bool mouseWheel() = 0;
 
 		void callMouseEventHandler(const MouseEvent& e) const;
-
 	};
 }

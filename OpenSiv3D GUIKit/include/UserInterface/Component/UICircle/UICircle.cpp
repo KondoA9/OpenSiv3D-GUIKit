@@ -13,7 +13,7 @@ void UICircle::draw() {
 }
 
 bool UICircle::mouseDown() {
-	if (m_circle.leftClicked()) {
+	if (m_circle.leftClicked() && m_circle.y >= 0) {
 		callMouseEventHandler(MouseEvent(MouseEventType::Down, this));
 		m_mouseDraggingEnable = true;
 		return true;
