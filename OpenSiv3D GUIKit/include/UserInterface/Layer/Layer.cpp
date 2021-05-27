@@ -44,6 +44,7 @@ void Layer::updateConstraints() {
 		bottom.value = top.value + height.value;
 	}
 	else {
+		Logger << U"Y-axis constraints are invalid ";
 	}
 
 	// x-axis constraints
@@ -87,5 +88,6 @@ void Layer::updateConstraints() {
 		right.value = left.value + width.value;
 	}
 	else {
+		Logger << U"X-axis constraints are invalid ";
 	}
 }

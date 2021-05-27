@@ -5,7 +5,7 @@ using namespace s3d::gui;
 Array<UIComponent::CallableMouseEvent> UIComponent::m_callableMouseEvents;
 
 void UIComponent::updateLayer() {
-	for (auto l : m_dependentLayer) {
+	for (auto l : m_dependentLayers) {
 		l->updateConstraints();
 	}
 	layer.updateConstraints();
@@ -32,7 +32,8 @@ void UIComponent::updateMouseEvent() {
 }
 
 void UIComponent::setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant, double multiplier) {
-	m_dependentLayer.push_back(&component.layer);
+	m_dependentLayers.push_back(&component.layer);
+
 	auto myConstraint = layer.constraintPtr(direction);
 	const auto opponentConstraint = component.layer.constraintPtr(toDirection);
 

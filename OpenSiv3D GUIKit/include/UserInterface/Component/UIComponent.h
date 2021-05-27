@@ -15,7 +15,7 @@ namespace s3d::gui {
 		};
 		static Array<CallableMouseEvent> m_callableMouseEvents;
 
-		Array<Layer*> m_dependentLayer;
+		Array<Layer*> m_dependentLayers;
 		Array<MouseEventHandler> m_mouseEventHandlers;
 		bool m_needToUpdateLayer = true;
 
