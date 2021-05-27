@@ -18,10 +18,10 @@ namespace s3d::gui {
 		Page(const String& _identifier) :
 			identifier(_identifier) {
 			view = gui::UIView();
-			view.layer.top.setConstraint();
-			view.layer.left.setConstraint();
-			view.layer.bottom.setConstraint([]() {return Window::ClientHeight(); });
-			view.layer.right.setConstraint([]() {return Window::ClientWidth(); });
+			view.setConstraint(LayerDirection::Top);
+			view.setConstraint(LayerDirection::Bottom, [] {return Window::ClientHeight(); });
+			view.setConstraint(LayerDirection::Left);
+			view.setConstraint(LayerDirection::Right, [] {return Window::ClientWidth(); });
 		}
 
 		virtual ~Page() = default;

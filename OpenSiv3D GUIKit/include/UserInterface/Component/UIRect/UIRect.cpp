@@ -5,10 +5,10 @@ using namespace s3d::gui;
 void UIRect::updateLayer() {
 	UIComponent::updateLayer();
 	m_rect = Rect(
-		static_cast<int>(layer.left.value),
-		static_cast<int>(layer.top.value),
-		static_cast<int>(layer.width.value),
-		static_cast<int>(layer.height.value)
+		static_cast<int>(m_layer.left.value),
+		static_cast<int>(m_layer.top.value),
+		static_cast<int>(m_layer.width.value),
+		static_cast<int>(m_layer.height.value)
 	);
 }
 

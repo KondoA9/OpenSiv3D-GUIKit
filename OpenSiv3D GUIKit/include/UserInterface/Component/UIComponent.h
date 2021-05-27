@@ -20,12 +20,12 @@ namespace s3d::gui {
 		bool m_needToUpdateLayer = true;
 
 	protected:
+		Layer m_layer;
 		bool m_mouseOver = false, m_preMouseOver = false;
 		bool m_mouseDraggingEnable = false;
 
 	public:
 		ColorTheme backgroundColor;
-		Layer layer;
 		bool penetrateMouseEvent = false;
 
 	public:
@@ -42,6 +42,10 @@ namespace s3d::gui {
 		virtual void draw() {};
 
 		virtual void updateMouseEvent();
+
+		const Layer& layer() {
+			return m_layer;
+		}
 
 		void addEventListener(MouseEventType e, const std::function<void(const MouseEvent& e)>& f) {
 			m_mouseEventHandlers.push_back(MouseEventHandler(e, f));
