@@ -15,15 +15,25 @@ void UIVStackView::release() {
 		ui = nullptr;
 	}
 	userInterfaces.release();
+	m_topPositionConstant = 0.0;
+	layer.top.setConstraint(0.0);
+}
+
+void UIVStackView::updateLayer() {
+	UIView::updateLayer();
+	calcCurrentRowHeight();
+	adjustRowsBottomToViewBottom();
 }
 
 bool UIVStackView::mouseWheel() {
-	if (UIView::mouseWheel()) {
-		m_topPositionConstant -= Mouse::Wheel() * 40;
-		m_topPositionConstant = Clamp(m_topPositionConstant, -m_layer.height.value, 0.0);
-		m_layer.top.setConstraint(m_topPositionConstant);
-		requestToUpdateLayer();
-		return true;
+	if (scrollingEnabled && UIView::mouseWheel()) {
+		if (m_currentRowsHeight >= layer.height.value) {
+			m_topPositionConstant -= Mouse::Wheel() * 40;
+			m_topPositionConstant = m_topPositionConstant > 0.0 ? 0.0 : m_topPositionConstant;
+			layer.top.setConstraint(m_topPositionConstant);
+			updateLayer();
+			return true;
+		}
 	}
 	return false;
 }
@@ -33,16 +43,34 @@ void UIVStackView::setChildConstraints(UIComponent* component) {
 
 	if (m_rowHeight == 0.0) {
 		component->setConstraint(LayerDirection::Top, [this, i]() {
-			return m_layer.top.value + i * m_layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
+			return layer.top.value + i * layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
 			});
 		component->setConstraint(LayerDirection::Height, [this]() {
-			return m_layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
+			return layer.height.value / (m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount);
 			});
 	}
 	else {
-		component->setConstraint(LayerDirection::Top, [this, i]() { return m_layer.top.value + i * m_rowHeight; });
+		component->setConstraint(LayerDirection::Top, [this, i]() { return layer.top.value + i * m_rowHeight; });
 		component->setConstraint(LayerDirection::Height, m_rowHeight);
 	}
 	component->setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 	component->setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+}
+
+void UIVStackView::calcCurrentRowHeight() {
+	const size_t rows = m_maxStackCount == 0 ? userInterfaces.size() : m_maxStackCount;
+	m_currentRowHeight = m_rowHeight == 0.0 ? layer.height.value / rows : m_rowHeight;
+	m_currentRowsHeight = m_currentRowHeight * rows;
+}
+
+void UIVStackView::adjustRowsBottomToViewBottom() {
+	if (m_currentRowsHeight < layer.height.value) {
+		const double tmp = layer.height.value - m_currentRowsHeight;
+		const double t = m_topPositionConstant + tmp;
+		if (t < 0.0) {
+			m_topPositionConstant = t;
+			layer.top.setConstraint(t);
+			updateLayer();
+		}
+	}
 }

@@ -6,7 +6,7 @@ void UIComponent::updateLayer() {
 	for (auto layer : m_dependentLayer) {
 		layer->updateConstraints();
 	}
-	m_layer.updateConstraints();
+	layer.updateConstraints();
 }
 
 bool UIComponent::updateLayerIfNeeded() {
@@ -31,30 +31,30 @@ void UIComponent::updateMouseEvent() {
 }
 
 void UIComponent::setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant, double multiplier) {
-	m_dependentLayer.push_back(&component.m_layer);
-	auto myConstraint = m_layer.constraintPtr(direction);
-	const auto opponentConstraint = component.m_layer.constraintPtr(toDirection);
+	m_dependentLayer.push_back(&component.layer);
+	auto myConstraint = layer.constraintPtr(direction);
+	const auto opponentConstraint = component.layer.constraintPtr(toDirection);
 
 	myConstraint->setConstraint(&opponentConstraint->value, constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 
 void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) {
-	auto myConstraint = m_layer.constraintPtr(direction);
+	auto myConstraint = layer.constraintPtr(direction);
 
 	myConstraint->setConstraint(constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 
 void UIComponent::setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier) {
-	auto myConstraint = m_layer.constraintPtr(direction);
+	auto myConstraint = layer.constraintPtr(direction);
 
 	myConstraint->setConstraint(func, constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 
 void UIComponent::removeConstraint(LayerDirection direction) {
-	auto constraint = m_layer.constraintPtr(direction);
+	auto constraint = layer.constraintPtr(direction);
 	constraint->removeConstraint();
 }
 

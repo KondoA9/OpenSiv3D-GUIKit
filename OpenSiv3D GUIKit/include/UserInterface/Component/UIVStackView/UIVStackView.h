@@ -4,9 +4,13 @@
 
 namespace s3d::gui {
 	class UIVStackView : public UIView {
+	public:
+		bool scrollingEnabled = true;
+
 	private:
 		size_t m_maxStackCount = 0;
 		double m_rowHeight = 0.0;
+		double m_currentRowHeight = 0.0, m_currentRowsHeight = 0.0;
 		double m_topPositionConstant = 0.0;
 
 	public:
@@ -29,6 +33,8 @@ namespace s3d::gui {
 			m_rowHeight = h;
 		}
 
+		void updateLayer() override;
+
 		void release();
 
 	protected:
@@ -36,5 +42,9 @@ namespace s3d::gui {
 
 	private:
 		void setChildConstraints(UIComponent* component);
+
+		void calcCurrentRowHeight();
+
+		void adjustRowsBottomToViewBottom();
 	};
 }

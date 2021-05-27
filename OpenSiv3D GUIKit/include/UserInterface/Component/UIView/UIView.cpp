@@ -6,10 +6,10 @@ using namespace s3d::gui;
 UIView::UIView(const ColorTheme& _backgroundColor) :
 	UIRect(_backgroundColor)
 {
-	m_layer.top.setConstraint();
-	m_layer.left.setConstraint();
-	m_layer.bottom.setConstraint([]() {return Window::ClientHeight(); });
-	m_layer.right.setConstraint([]() {return Window::ClientWidth(); });
+	layer.top.setConstraint();
+	layer.left.setConstraint();
+	layer.bottom.setConstraint([]() {return Window::ClientHeight(); });
+	layer.right.setConstraint([]() {return Window::ClientWidth(); });
 }
 
 void UIView::updateLayer() {

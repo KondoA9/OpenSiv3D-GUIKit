@@ -4,7 +4,7 @@ using namespace s3d::gui;
 
 void UICircle::updateLayer() {
 	UIComponent::updateLayer();
-	m_circle = Circle(Arg::center(static_cast<int>(m_layer.centerX.value), static_cast<int>(m_layer.centerY.value)), (m_layer.height.value + m_layer.width.value) * 0.25);
+	m_circle = Circle(Arg::center(static_cast<int>(layer.centerX.value), static_cast<int>(layer.centerY.value)), (layer.height.value + layer.width.value) * 0.25);
 }
 
 void UICircle::draw() {

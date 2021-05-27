@@ -14,12 +14,12 @@ namespace s3d::gui {
 		bool m_needToUpdateLayer = true;
 
 	protected:
-		Layer m_layer;
 		bool m_mouseOver = false, m_preMouseOver = false;
 		bool m_mouseDraggingEnable = false;
 
 	public:
 		ColorTheme backgroundColor;
+		Layer layer;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
