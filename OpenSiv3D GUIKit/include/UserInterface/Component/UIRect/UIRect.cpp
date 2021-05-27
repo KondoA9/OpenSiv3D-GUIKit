@@ -2,6 +2,14 @@
 
 using namespace s3d::gui;
 
+void UIRect::draw() {
+	if (!drawable()) {
+		return;
+	}
+
+	m_rect.draw(backgroundColor.color());
+}
+
 void UIRect::updateLayer() {
 	UIComponent::updateLayer();
 	m_rect = Rect(

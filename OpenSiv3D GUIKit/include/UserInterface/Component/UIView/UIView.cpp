@@ -21,6 +21,10 @@ bool UIView::updateLayerIfNeeded() {
 }
 
 void UIView::draw() {
+	if (!drawable()) {
+		return;
+	}
+
 	UIRect::draw();
 	for (auto& ui : userInterfaces) {
 		ui->draw();

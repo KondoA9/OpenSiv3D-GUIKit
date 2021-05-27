@@ -18,6 +18,10 @@ void UIImage::paint(double thickness, const Color& color, bool antialiased) {
 }
 
 void UIImage::draw() {
+	if (!drawable()) {
+		return;
+	}
+
 	UIRect::draw();
 
 	if (m_texture) {

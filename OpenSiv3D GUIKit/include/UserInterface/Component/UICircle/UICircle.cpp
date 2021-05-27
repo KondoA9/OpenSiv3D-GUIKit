@@ -10,6 +10,10 @@ void UICircle::updateLayer() {
 }
 
 void UICircle::draw() {
+	if (!drawable()) {
+		return;
+	}
+
 	UIComponent::draw();
 	m_circle.draw(backgroundColor);
 }

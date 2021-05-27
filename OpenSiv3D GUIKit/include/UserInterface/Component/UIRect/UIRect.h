@@ -12,9 +12,7 @@ namespace s3d::gui {
 	public:
 		using UIComponent::UIComponent;
 
-		void draw() override {
-			m_rect.draw(backgroundColor.color());
-		}
+		void draw() override;
 
 		void updateLayer() override;
 

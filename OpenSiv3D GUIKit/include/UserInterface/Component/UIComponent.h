@@ -72,6 +72,11 @@ namespace s3d::gui {
 		static void CallMouseEvents();
 
 	protected:
+		bool drawable() const {
+			return m_layer.top.value <= Window::ClientHeight() && m_layer.bottom.value >= 0
+				&& m_layer.left.value <= Window::ClientWidth() && m_layer.right.value >= 0;
+		}
+
 		virtual bool mouseDown() = 0;
 		virtual bool mouseUp() = 0;
 		virtual bool mouseHovered() = 0;

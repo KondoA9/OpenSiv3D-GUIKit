@@ -22,6 +22,9 @@ namespace s3d::gui {
 		UnifiedFontStyle style;
 		TextDirection direction;
 
+	protected:
+		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
+
 	public:
 		UIText():
 			UIRect()
@@ -34,6 +37,12 @@ namespace s3d::gui {
 			direction(_direction)
 		{}
 
+		UIText(UnifiedFontStyle _style, TextDirection _direction, const ColorTheme & _backgroundColor = DynamicColor::Clear) :
+			UIText(U"", _style, _direction, _backgroundColor)
+		{}
+
 		void draw() override;
+
+		void setPadding(double top, double bottom, double left, double right);
 	};
 }
