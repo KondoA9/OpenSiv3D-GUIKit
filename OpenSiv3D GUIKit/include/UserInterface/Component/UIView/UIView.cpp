@@ -10,6 +10,13 @@ void UIView::updateLayer() {
 	}
 }
 
+void UIView::updateLayerInvert() {
+	for (int i = static_cast<int>(userInterfaces.size()) - 1; i >= 0; i--) {
+		userInterfaces[i]->updateLayer();
+	}
+	UIRect::updateLayer();
+}
+
 bool UIView::updateLayerIfNeeded() {
 	bool updated = false;
 	updated |= UIRect::updateLayerIfNeeded();

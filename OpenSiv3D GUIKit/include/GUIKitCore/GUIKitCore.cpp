@@ -59,6 +59,7 @@ void GUIKit::update() {
 				m_forwardPage->loaded = true;
 			}
 			m_forwardPage->view.updateLayer();
+			m_forwardPage->view.updateLayerInvert();
 			m_forwardPage->onBeforeAppeared();
 			m_backwardPage->onBeforeDisappeared();
 			m_uiChanging = true;
@@ -109,6 +110,7 @@ void GUIKit::update() {
 		if (WindowManager::DidResized()) {
 			m_drawingPage->onWindowResized();
 			m_drawingPage->view.updateLayer();
+			m_drawingPage->view.updateLayerInvert();
 		}
 		else {
 			m_drawingPage->view.updateLayerIfNeeded();

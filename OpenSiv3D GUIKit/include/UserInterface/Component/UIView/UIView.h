@@ -27,5 +27,7 @@ namespace s3d::gui {
 		void draw() override;
 
 		void updateMouseEvent() override;
+
+		void updateLayerInvert();
 	};
 }
