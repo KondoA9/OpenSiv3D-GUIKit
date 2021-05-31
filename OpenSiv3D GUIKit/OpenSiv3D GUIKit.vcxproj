@@ -113,11 +113,12 @@
     <ClCompile Include="include\UserInterface\Component\UIButton\UIButton.cpp" />
     <ClCompile Include="include\UserInterface\Component\UICircle\UICircle.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
-    <ClCompile Include="include\UserInterface\Component\UIImage\UIImage.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIImageView\UIImageView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIRect\UIRect.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIText\UIText.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIView\UIView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.cpp" />
     <ClCompile Include="include\UserInterface\Constraint\Constraint.cpp" />
     <ClCompile Include="include\UserInterface\Font\UnifiedFont.cpp" />
     <ClCompile Include="include\UserInterface\Layer\Layer.cpp" />
@@ -126,13 +127,14 @@
   <ItemGroup>
     <ClInclude Include="include\ColorTheme\ColorTheme.h" />
     <ClInclude Include="include\ColorTheme\DynamicColor.h" />
+    <ClInclude Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.h" />
     <ClInclude Include="include\UserInterface\MouseEvent\MouseEvent.h" />
     <ClInclude Include="include\UserInterface\Component\UIComponent.h" />
     <ClInclude Include="include\UserInterface\Constraint\Constraint.h" />
     <ClInclude Include="include\UserInterface\Layer\Layer.h" />
     <ClInclude Include="include\UserInterface\Component\UIButton\UIButton.h" />
     <ClInclude Include="include\UserInterface\Component\UICircle\UICircle.h" />
-    <ClInclude Include="include\UserInterface\Component\UIImage\UIImage.h" />
+    <ClInclude Include="include\UserInterface\Component\UIImageView\UIImageView.h" />
     <ClInclude Include="include\UserInterface\Component\UIRect\UIRect.h" />
     <ClInclude Include="include\UserInterface\Component\UIText\UIText.h" />
     <ClInclude Include="include\UserInterface\Component\UIView\UIView.h" />

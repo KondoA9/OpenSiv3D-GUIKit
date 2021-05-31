@@ -12,7 +12,8 @@
 #include "UserInterface/Component/UIRect/UIRect.h"
 #include "UserInterface/Component/UICircle/UICircle.h"
 #include "UserInterface/Component/UIText/UIText.h"
-#include "UserInterface/Component/UIImage/UIImage.h"
+#include "UserInterface/Component/UIImageView/UIImageView.h"
+#include "UserInterface/Component/UIImageView/UIZStackedImageView.h"
 #include "UserInterface/Component/UIButton/UIButton.h"
 
 // Page
