@@ -5,14 +5,14 @@ using namespace s3d::gui;
 
 void UIView::updateLayer() {
 	UIRect::updateLayer();
-	for (auto& ui : userInterfaces) {
+	for (auto& ui : m_userInterfaces) {
 		ui->updateLayer();
 	}
 }
 
 void UIView::updateLayerInvert() {
-	for (int i = static_cast<int>(userInterfaces.size()) - 1; i >= 0; i--) {
-		userInterfaces[i]->updateLayer();
+	for (int i = static_cast<int>(m_userInterfaces.size()) - 1; i >= 0; i--) {
+		m_userInterfaces[i]->updateLayer();
 	}
 	UIRect::updateLayer();
 }
@@ -20,7 +20,7 @@ void UIView::updateLayerInvert() {
 bool UIView::updateLayerIfNeeded() {
 	bool updated = false;
 	updated |= UIRect::updateLayerIfNeeded();
-	for (auto& ui : userInterfaces) {
+	for (auto& ui : m_userInterfaces) {
 		updated |= ui->updateLayerIfNeeded();
 	}
 
@@ -33,14 +33,14 @@ void UIView::draw() {
 	}
 
 	UIRect::draw();
-	for (auto& ui : userInterfaces) {
+	for (auto& ui : m_userInterfaces) {
 		ui->draw();
 	}
 }
 
 void UIView::updateMouseEvent() {
 	UIRect::updateMouseEvent();
-	for (auto& ui : userInterfaces) {
+	for (auto& ui : m_userInterfaces) {
 		ui->updateMouseEvent();
 	}
 }

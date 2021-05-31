@@ -18,6 +18,8 @@ namespace s3d::gui {
 
 		~UIVStackView();
 
+		virtual void release();
+
 		template<class T>
 		void appendComponent(const T& component) {
 			T* cmp = new T(component);
@@ -33,9 +35,11 @@ namespace s3d::gui {
 			m_rowHeight = h;
 		}
 
-		void updateLayer() override;
+		Array<UIComponent*> components() const {
+			return m_userInterfaces;
+		}
 
-		void release();
+		void updateLayer() override;
 
 	protected:
 		bool mouseWheel() override;

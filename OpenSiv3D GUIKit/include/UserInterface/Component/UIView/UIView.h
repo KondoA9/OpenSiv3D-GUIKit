@@ -7,7 +7,7 @@
 namespace s3d::gui {
 	class UIView : public UIRect {
 	protected:
-		Array<UIComponent*> userInterfaces;
+		Array<UIComponent*> m_userInterfaces;
 
 	public:
 		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
@@ -17,7 +17,7 @@ namespace s3d::gui {
 		~UIView() {}
 
 		virtual void appendComponent(UIComponent& ui) {
-			userInterfaces.push_back(&ui);
+			m_userInterfaces.push_back(&ui);
 		}
 
 		void updateLayer() override;

@@ -15,7 +15,7 @@ namespace s3d::gui {
 		Point m_pixel, m_prePixel;
 
 	public:
-		UIImage(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
+		UIImage(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor)
 		{}
 
