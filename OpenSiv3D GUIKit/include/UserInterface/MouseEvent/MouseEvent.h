@@ -6,12 +6,15 @@ namespace s3d::gui {
 	class UIComponent;
 
 	enum class MouseEventType : size_t {
-		Down,
-		Up,
+		LeftDown,
+		LeftUp,
+		LeftDragging,
+		RightDown,
+		RightUp,
+		RightDragging,
 		Hovered,
 		Hovering,
 		UnHovered,
-		Dragging,
 		Wheel
 	};
 

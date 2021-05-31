@@ -20,18 +20,53 @@ void UIRect::updateLayer() {
 	);
 }
 
-bool UIRect::mouseDown() {
-	if (!m_mouseDraggingEnable && m_rect.leftClicked() && m_rect.y >= 0) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Down, this));
-		m_mouseDraggingEnable = true;
+bool UIRect::mouseLeftDown() {
+	if (!m_mouseLeftDraggingEnable && m_rect.leftClicked() && m_rect.y >= 0) {
+		callMouseEventHandler(MouseEvent(MouseEventType::LeftDown, this));
+		m_mouseLeftDraggingEnable = true;
 		return true;
 	}
 	return false;
 }
 
-bool UIRect::mouseUp() {
-	if (m_mouseDraggingEnable && (!m_mouseOver || m_rect.leftReleased())) {
-		m_mouseDraggingEnable = false;
+bool UIRect::mouseLeftUp() {
+	if (m_mouseLeftDraggingEnable && (!m_mouseOver || m_rect.leftReleased())) {
+		m_mouseLeftDraggingEnable = false;
+		callMouseEventHandler(MouseEvent(MouseEventType::LeftUp, this));
+		return true;
+	}
+	return false;
+}
+
+bool UIRect::mouseLeftDragging() {
+	if (m_mouseLeftDraggingEnable && m_rect.leftPressed()) {
+		callMouseEventHandler(MouseEvent(MouseEventType::LeftDragging, this));
+		return true;
+	}
+	return false;
+}
+
+bool UIRect::mouseRightDown() {
+	if (!m_mouseRightDraggingEnable && m_rect.rightClicked() && m_rect.y >= 0) {
+		callMouseEventHandler(MouseEvent(MouseEventType::RightDown, this));
+		m_mouseRightDraggingEnable = true;
+		return true;
+	}
+	return false;
+}
+
+bool UIRect::mouseRightUp() {
+	if (m_mouseRightDraggingEnable && (!m_mouseOver || m_rect.rightReleased())) {
+		m_mouseRightDraggingEnable = false;
+		callMouseEventHandler(MouseEvent(MouseEventType::RightUp, this));
+		return true;
+	}
+	return false;
+}
+
+bool UIRect::mouseRightDragging() {
+	if (m_mouseRightDraggingEnable && m_rect.rightPressed()) {
+		callMouseEventHandler(MouseEvent(MouseEventType::RightDragging, this));
 		return true;
 	}
 	return false;
@@ -56,14 +91,6 @@ bool UIRect::mouseHovering() {
 bool UIRect::mouseUnHovered() {
 	if (m_preMouseOver && !m_mouseOver) {
 		callMouseEventHandler(MouseEvent(MouseEventType::UnHovered, this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseDragging() {
-	if (m_mouseDraggingEnable && m_rect.leftPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
 		return true;
 	}
 	return false;

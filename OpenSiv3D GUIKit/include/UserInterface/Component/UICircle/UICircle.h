@@ -15,17 +15,23 @@ namespace s3d::gui {
 		void draw() override;
 
 	private:
-		bool mouseDown() override;
+		bool mouseLeftDown() override;
 
-		bool mouseUp() override;
+		bool mouseLeftUp() override;
+
+		bool mouseLeftDragging() override;
+
+		bool mouseRightDown() override;
+
+		bool mouseRightUp() override;
+
+		bool mouseRightDragging() override;
 
 		bool mouseHovered() override;
 
 		bool mouseHovering() override;
 
 		bool mouseUnHovered() override;
-
-		bool mouseDragging() override;
 
 		bool mouseWheel() override;
 

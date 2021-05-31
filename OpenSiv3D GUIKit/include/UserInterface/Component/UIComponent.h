@@ -22,7 +22,7 @@ namespace s3d::gui {
 	protected:
 		Layer m_layer;
 		bool m_mouseOver = false, m_preMouseOver = false;
-		bool m_mouseDraggingEnable = false;
+		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
 
 	public:
 		ColorTheme backgroundColor;
@@ -77,12 +77,15 @@ namespace s3d::gui {
 				&& m_layer.left.value <= Window::ClientWidth() && m_layer.right.value >= 0;
 		}
 
-		virtual bool mouseDown() = 0;
-		virtual bool mouseUp() = 0;
+		virtual bool mouseLeftDown() = 0;
+		virtual bool mouseLeftUp() = 0;
+		virtual bool mouseLeftDragging() = 0;
+		virtual bool mouseRightDown() = 0;
+		virtual bool mouseRightUp() = 0;
+		virtual bool mouseRightDragging() = 0;
 		virtual bool mouseHovered() = 0;
 		virtual bool mouseHovering() = 0;
 		virtual bool mouseUnHovered() = 0;
-		virtual bool mouseDragging() = 0;
 		virtual bool mouseWheel() = 0;
 
 		void callMouseEventHandler(const MouseEvent& e) const;

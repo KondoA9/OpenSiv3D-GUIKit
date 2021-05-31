@@ -14,6 +14,8 @@ namespace s3d::gui {
 		Rect m_textureRegion;
 		double m_scale = 1.0;
 		Point m_pixel, m_prePixel;
+		bool m_centerPosUpdated = false;
+		Vec2 m_drawingCenterPos;
 
 	public:
 		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
@@ -53,13 +55,17 @@ namespace s3d::gui {
 		void updateLayer() override;
 
 	protected:
-		bool mouseHovering() override;
+		bool mouseLeftDragging() override;
 
-		bool mouseDragging() override;
+		bool mouseRightDragging() override;
+
+		bool mouseHovering() override;
 
 		bool mouseWheel() override;
 
 	private:
 		double calcInitialScale();
+
+		void restrictImageMovement();
 	};
 }

@@ -44,9 +44,9 @@ namespace s3d::gui {
 		void updateLayer() override;
 
 	protected:
-		bool mouseHovering() override;
+		bool mouseLeftDragging() override;
 
-		bool mouseDragging() override;
+		bool mouseHovering() override;
 
 		bool mouseWheel() override;
 

@@ -43,6 +43,13 @@ void UIImageView::updateLayer() {
 	}
 }
 
+bool UIImageView::mouseLeftDragging() {
+	if (m_textureRegion.leftPressed()) {
+		return UIRect::mouseLeftDragging();
+	}
+	return false;
+}
+
 bool UIImageView::mouseHovering() {
 	if (UIRect::mouseHovering()) {
 		m_textureRegion = m_texture.scaled(m_scale).regionAt(m_rect.center());
@@ -53,13 +60,6 @@ bool UIImageView::mouseHovering() {
 		if (m_pixel.y < 0) m_pixel.y = 0;
 		if (m_pixel.y > m_texture.height()) m_pixel.y = m_texture.height() - 1;
 		return true;
-	}
-	return false;
-}
-
-bool UIImageView::mouseDragging() {
-	if (m_textureRegion.leftPressed()) {
-		return UIRect::mouseDragging();
 	}
 	return false;
 }

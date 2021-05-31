@@ -18,18 +18,52 @@ void UICircle::draw() {
 	m_circle.draw(backgroundColor);
 }
 
-bool UICircle::mouseDown() {
-	if (m_circle.leftClicked() && m_circle.y >= 0) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Down, this));
-		m_mouseDraggingEnable = true;
+bool UICircle::mouseLeftDown() {
+	if (!m_mouseRightDraggingEnable && m_circle.leftClicked() && m_circle.y >= 0) {
+		callMouseEventHandler(MouseEvent(MouseEventType::LeftDown, this));
+		m_mouseLeftDraggingEnable = true;
 		return true;
 	}
 	return false;
 }
 
-bool UICircle::mouseUp() {
-	if (m_mouseDraggingEnable && !m_mouseOver || m_circle.leftReleased()) {
-		m_mouseDraggingEnable = false;
+bool UICircle::mouseLeftUp() {
+	if (m_mouseLeftDraggingEnable && !m_mouseOver || m_circle.leftReleased()) {
+		m_mouseLeftDraggingEnable = false;
+		return true;
+	}
+	return false;
+}
+
+bool UICircle::mouseLeftDragging() {
+	if (m_circle.leftPressed()) {
+		callMouseEventHandler(MouseEvent(MouseEventType::LeftDragging, this));
+		return true;
+	}
+	return false;
+}
+
+bool UICircle::mouseRightDown() {
+	if (!m_mouseRightDraggingEnable && m_circle.rightClicked() && m_circle.y >= 0) {
+		callMouseEventHandler(MouseEvent(MouseEventType::RightDown, this));
+		m_mouseRightDraggingEnable = true;
+		return true;
+	}
+	return false;
+}
+
+bool UICircle::mouseRightUp() {
+	if (m_mouseRightDraggingEnable && (!m_mouseOver || m_circle.rightReleased())) {
+		m_mouseRightDraggingEnable = false;
+		callMouseEventHandler(MouseEvent(MouseEventType::RightUp, this));
+		return true;
+	}
+	return false;
+}
+
+bool UICircle::mouseRightDragging() {
+	if (m_mouseRightDraggingEnable && m_circle.rightPressed()) {
+		callMouseEventHandler(MouseEvent(MouseEventType::RightDragging, this));
 		return true;
 	}
 	return false;
@@ -67,14 +101,6 @@ bool UICircle::mouseUnHovered() {
 	}
 	else if (m_mouseOver) {
 		hovered = true;
-	}
-	return false;
-}
-
-bool UICircle::mouseDragging() {
-	if (m_circle.leftPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Dragging, this));
-		return true;
 	}
 	return false;
 }
