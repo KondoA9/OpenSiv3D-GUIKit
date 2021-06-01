@@ -3,6 +3,7 @@
 #include "../UIView/UIView.h"
 #include "../UIRect/UIRect.h"
 #include "../UICircle/UICircle.h"
+#include "../UIText/UIText.h"
 
 namespace s3d::gui {
 	class UISlider : public UIView {
@@ -13,10 +14,24 @@ namespace s3d::gui {
 
 		UIRect railLeft, railRight;
 		UICircle handle;
+		UIText m_text;
 
 	public:
+		UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
+			UIView(_backgroundColor),
+			m_text(UIText(label, style, direction))
+		{}
+
+		UISlider(const String & label, UnifiedFontStyle style, const ColorTheme & _backgroundColor = DynamicColor::Clear) :
+			UISlider(label, style, TextDirection::LeftBottom, _backgroundColor)
+		{}
+
+		UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
+			UISlider(label, UnifiedFontStyle::Small, _backgroundColor)
+		{}
+
 		UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
-			UIView(_backgroundColor)
+			UISlider(U"", _backgroundColor)
 		{}
 
 		void updateLayer() override;
@@ -42,6 +57,10 @@ namespace s3d::gui {
 			m_max = max;
 			restrictValue();
 			requestToUpdateLayer();
+		}
+
+		void setLabel(const String& label) {
+			m_text.text = label;
 		}
 
 	protected:

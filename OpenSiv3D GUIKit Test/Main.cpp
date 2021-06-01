@@ -45,6 +45,7 @@ class StartPage : public gui::Page {
         cover.setConstraint(gui::LayerDirection::Left);
         cover.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 
+        slider.setLabel(U"Slider");
         slider.setConstraint(gui::LayerDirection::Height, switchThemeButton, gui::LayerDirection::Height, 0.0, 0.5);
         slider.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
         slider.setConstraint(gui::LayerDirection::Left);

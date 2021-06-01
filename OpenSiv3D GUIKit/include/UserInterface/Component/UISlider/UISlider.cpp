@@ -63,14 +63,14 @@ void UISlider::initialize() {
 	const double h = 7.5;
 	railLeft.drawFrame = true;
 	railLeft.backgroundColor = DynamicColor::DefaultBlue;
-	railLeft.setConstraint(LayerDirection::CenterY, *this, LayerDirection::CenterY);
+	railLeft.setConstraint(LayerDirection::CenterY, handle, LayerDirection::CenterY);
 	railLeft.setConstraint(LayerDirection::Height, h);
 	railLeft.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 	railLeft.setConstraint(LayerDirection::Right, handle, LayerDirection::CenterX);
 
 	railRight.drawFrame = true;
 	railRight.backgroundColor = DynamicColor::BackgroundSecondary;
-	railRight.setConstraint(LayerDirection::CenterY, *this, LayerDirection::CenterY);
+	railRight.setConstraint(LayerDirection::CenterY, handle, LayerDirection::CenterY);
 	railRight.setConstraint(LayerDirection::Height, h);
 	railRight.setConstraint(LayerDirection::Left, handle, LayerDirection::CenterX);
 	railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
@@ -78,16 +78,22 @@ void UISlider::initialize() {
 	const double r = 20;
 	handle.drawFrame = true;
 	handle.backgroundColor = DynamicColor::Background;
-	handle.setConstraint(LayerDirection::CenterY, *this, LayerDirection::CenterY);
+	handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
 	handle.setConstraint(LayerDirection::Height, r);
 	handle.setConstraint(LayerDirection::CenterX, [this] {
 		return m_layer.left.value + m_layer.width.value * (m_value - m_min) / (m_max - m_min);
 		});
 	handle.setConstraint(LayerDirection::Width, r);
 
+	m_text.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
+	m_text.setConstraint(LayerDirection::Bottom, handle, LayerDirection::Top);
+	m_text.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
+	m_text.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+
 	appendComponent(railLeft);
 	appendComponent(railRight);
 	appendComponent(handle);
+	appendComponent(m_text);
 }
 
 void UISlider::restrictValue() {
