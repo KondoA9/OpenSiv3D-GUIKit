@@ -39,6 +39,7 @@
     <ClCompile Include="include\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UISlider\UISlider.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component\Component.h">

@@ -115,6 +115,7 @@
     <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIImageView\UIImageView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIRect\UIRect.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UISlider\UISlider.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIText\UIText.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIView\UIView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
