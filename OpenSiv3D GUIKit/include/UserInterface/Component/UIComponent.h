@@ -25,12 +25,15 @@ namespace s3d::gui {
 		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
 
 	public:
-		ColorTheme backgroundColor;
+		ColorTheme backgroundColor, frameColor;
+		double frameThickness = 1.0;
+		bool fillInner = true, drawFrame = false;
 		bool penetrateMouseEvent = false;
 
 	public:
-		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary) :
-			backgroundColor(_backgroundColor)
+		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) :
+			backgroundColor(_backgroundColor),
+			frameColor(_frameColor)
 		{}
 
 		virtual ~UIComponent() = default;

@@ -21,6 +21,7 @@ class StartPage : public gui::Page {
             });
 
         nextButton = gui::UIButton(U"Next");
+        nextButton.drawFrame = true;
         nextButton.setConstraint(gui::LayerDirection::Top, title, gui::LayerDirection::Bottom);
         nextButton.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
         nextButton.setConstraint(gui::LayerDirection::Left);

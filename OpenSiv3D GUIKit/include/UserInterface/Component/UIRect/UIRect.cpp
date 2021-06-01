@@ -7,7 +7,12 @@ void UIRect::draw() {
 		return;
 	}
 
-	m_rect.draw(backgroundColor.color());
+	if (fillInner) {
+		m_rect.draw(backgroundColor);
+	}
+	if (drawFrame) {
+		m_rect.drawFrame(0.0, frameThickness, frameColor);
+	}
 }
 
 void UIRect::updateLayer() {

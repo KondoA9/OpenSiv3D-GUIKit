@@ -15,7 +15,12 @@ void UICircle::draw() {
 	}
 
 	UIComponent::draw();
-	m_circle.draw(backgroundColor);
+	if (fillInner) {
+		m_circle.draw(backgroundColor);
+	}
+	if (drawFrame) {
+		m_circle.drawFrame(0.0, frameThickness, frameColor);
+	}
 }
 
 bool UICircle::mouseLeftDown() {

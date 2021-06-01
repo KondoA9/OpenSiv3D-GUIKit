@@ -26,7 +26,6 @@ void UIImageView::draw() {
 
 	if (m_texture) {
 		m_texture.scaled(m_scale).drawAt(m_rect.center());
-		m_texture.scaled(m_scale).regionAt(m_rect.center()).drawFrame(2, Palette::Black);
 	}
 }
 

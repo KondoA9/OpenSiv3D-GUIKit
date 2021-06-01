@@ -36,7 +36,6 @@ void UIZStackedImageView::draw() {
 
 	for (size_t i : step(m_textures.size())) {
 		m_textures[i].scaled(m_scale).drawAt(m_drawingCenterPos, Color(255, 255, 255, static_cast<uint32>(m_alphas[i])));
-		m_rect.drawFrame(2, Palette::Black);
 	}
 }
 
