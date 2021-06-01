@@ -4,7 +4,6 @@ C++ GUI framework using [OpenSiv3D](https://siv3d.github.io/ja-jp/).
 ## Features
  - Comfortable user interface
  - Light / Dark theme
- - Multiple resolutions (also for 4K displays)
  - Multi-platform (See OpenSiv3D documentation)
  - Automatic layout system
  - Event-driven programming
