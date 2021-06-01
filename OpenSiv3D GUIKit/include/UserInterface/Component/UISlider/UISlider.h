@@ -36,6 +36,8 @@ namespace s3d::gui {
 
 		bool mouseUnHovered() override;
 
+		bool mouseHovering() override;
+
 	private:
 		void initialize();
 	};

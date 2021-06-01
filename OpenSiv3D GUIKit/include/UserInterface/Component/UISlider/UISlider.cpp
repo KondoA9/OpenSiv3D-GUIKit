@@ -35,7 +35,7 @@ bool UISlider::mouseLeftDragging() {
 
 bool UISlider::mouseHovered() {
 	if (UIView::mouseHovered()) {
-		handle.backgroundColor = DynamicColor::ButtonPushed;
+		handle.backgroundColor = DynamicColor::DefaultBlue;
 		return true;
 	}
 	return false;
@@ -44,6 +44,14 @@ bool UISlider::mouseHovered() {
 bool UISlider::mouseUnHovered() {
 	if (UIView::mouseUnHovered()) {
 		handle.backgroundColor = DynamicColor::Background;
+		return true;
+	}
+	return false;
+}
+
+bool UISlider::mouseHovering() {
+	if (UIView::mouseHovering()) {
+		Cursor::RequestStyle(CursorStyle::Hand);
 		return true;
 	}
 	return false;
@@ -65,7 +73,7 @@ void UISlider::initialize() {
 	railRight.setConstraint(LayerDirection::Left, handle, LayerDirection::CenterX);
 	railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-	const double r = 15;
+	const double r = 20;
 	handle.drawFrame = true;
 	handle.backgroundColor = DynamicColor::Background;
 	handle.setConstraint(LayerDirection::CenterY, *this, LayerDirection::CenterY);
