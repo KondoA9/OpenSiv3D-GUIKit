@@ -9,7 +9,9 @@ void UIZStackedImageView::appendImage(const Image& _image, double alphaRate) {
 	m_scale = 1.0;
 	m_centerPosUpdated = false;
 	if (m_textures.size() > 0) {
-		m_scale = calcInitialScale();
+		m_minScale = calcMinimumScale();
+		m_maxScale = calcMaximumScale();
+		m_scale = m_minScale;
 	}
 }
 
@@ -40,15 +42,17 @@ void UIZStackedImageView::draw() {
 }
 
 void UIZStackedImageView::updateLayer() {
-	const double preLimit = calcInitialScale();
+	const double preMinScale = m_minScale;
 	const double preScale = m_scale;
 
 	UIRect::updateLayer();
 
-	const double limit = calcInitialScale();
-	m_scale = preScale * limit / preLimit;
-	if (m_scale < limit) {
-		m_scale = limit;
+	m_minScale = calcMinimumScale();
+	m_maxScale = calcMaximumScale();
+
+	m_scale = preScale * m_minScale / preMinScale;
+	if (m_scale < m_minScale) {
+		m_scale = m_minScale;
 	}
 
 	if (!m_centerPosUpdated) {
@@ -89,26 +93,27 @@ bool UIZStackedImageView::mouseHovering() {
 
 bool UIZStackedImageView::mouseWheel() {
 	if (UIRect::mouseWheel() && manualScalingEnabled) {
-		const double preScale = m_scale;
-		bool zoom = false;
+		double k = 0.0;
 		if (const int wheel = static_cast<int>(Sign(Mouse::Wheel())); wheel < 0) {
-			// Able to zoom in up to 20x20px
-			constexpr double limit = 1.0 / 20;
-			const double pxh = m_rect.h * limit, pxw = m_rect.w * limit;
-			if (m_textures[0].height() * pxh > m_textureRegion.h && m_textures[0].width() * pxw > m_textureRegion.w) {
+			if (m_scale < m_maxScale) {
 				m_scale *= 1.6;
-				zoom = true;
+				k = 1.0 - 1.6;
+				if (m_scale > m_maxScale) {
+					m_scale = m_maxScale;
+				}
 			}
 		}
 		else if (wheel > 0) {
-			m_scale *= 0.625;
-			if (const double limit = calcInitialScale(); m_scale < limit) {
-				m_scale = limit;
+			if (m_scale > m_minScale) {
+				m_scale *= 0.625;
+				k = 1.0 - 0.625;
+				if (m_scale < m_minScale) {
+					m_scale = m_minScale;
+				}
 			}
 		}
 
-		if (preScale != m_scale) {
-			const double k = zoom ? 1.0 - 1.6 : 0.625 - 1.0;
+		if (k != 0.0) {
 			const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
 			m_drawingCenterPos.moveBy(diff);
 		}
@@ -118,12 +123,19 @@ bool UIZStackedImageView::mouseWheel() {
 	return false;
 }
 
-double UIZStackedImageView::calcInitialScale() {
+double UIZStackedImageView::calcMinimumScale() {
 	double scale = static_cast<double>(m_rect.w) / static_cast<double>(m_textures[0].width());
 	if (const double h = scale * m_textures[0].height(); h > m_rect.h) {
 		scale *= m_rect.h / h;
 	}
 	return scale;
+}
+
+double UIZStackedImageView::calcMaximumScale() {
+	// Able to zoom in up to 20x20px
+	constexpr double limit = 1.0 / 20;
+	const double pxh = m_rect.h * limit, pxw = m_rect.w * limit;
+	return pxw > pxh ? pxh : pxw;
 }
 
 void UIZStackedImageView::restrictImageMovement() {

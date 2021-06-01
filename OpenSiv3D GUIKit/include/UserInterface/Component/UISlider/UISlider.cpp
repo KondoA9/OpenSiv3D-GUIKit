@@ -21,14 +21,16 @@ void UISlider::draw() {
 
 bool UISlider::mouseLeftDragging() {
 	if (UIView::mouseLeftDragging()) {
-		value = min + (max - min) * (Cursor::Pos().x - m_layer.left.value) / m_layer.width.value;
-		if (value < min)value = min;
-		if (value > max)value = max;
-		requestToUpdateLayer();
-		if (m_valueChangedHandler) {
-			m_valueChangedHandler();
+		const double pre = m_value;
+		m_value = m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left.value) / m_layer.width.value;
+		restrictValue();
+		if (pre != m_value) {
+			requestToUpdateLayer();
+			if (m_valueChangedHandler) {
+				m_valueChangedHandler(m_value);
+			}
+			return true;
 		}
-		return true;
 	}
 	return false;
 }
@@ -79,11 +81,16 @@ void UISlider::initialize() {
 	handle.setConstraint(LayerDirection::CenterY, *this, LayerDirection::CenterY);
 	handle.setConstraint(LayerDirection::Height, r);
 	handle.setConstraint(LayerDirection::CenterX, [this] {
-		return m_layer.left.value + m_layer.width.value * value / (max - min);
+		return m_layer.left.value + m_layer.width.value * (m_value - m_min) / (m_max - m_min);
 		});
 	handle.setConstraint(LayerDirection::Width, r);
 
 	appendComponent(railLeft);
 	appendComponent(railRight);
 	appendComponent(handle);
+}
+
+void UISlider::restrictValue() {
+	if (m_value < m_min)m_value = m_min;
+	if (m_value > m_max)m_value = m_max;
 }

@@ -12,7 +12,7 @@ namespace s3d::gui {
 		Array <DynamicTexture> m_textures;
 		Array <double> m_alphas;
 		Rect m_textureRegion;
-		double m_scale = 1.0;
+		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0;
 		Point m_pixel, m_prePixel;
 		bool m_centerPosUpdated = false;
 		Vec2 m_drawingCenterPos;
@@ -21,6 +21,14 @@ namespace s3d::gui {
 		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor)
 		{}
+
+		double minimumScale() const {
+			return m_minScale;
+		}
+
+		double maximumScale() const {
+			return m_maxScale;
+		}
 
 		void updateTexture() {
 			for (size_t i : step(m_textures.size())) {
@@ -37,11 +45,15 @@ namespace s3d::gui {
 		}
 
 		void resetScale() {
-			m_scale = calcInitialScale();
+			m_scale = m_minScale;
 		}
 
 		void setAlphaRate(size_t index, double rate) {
 			m_alphas[index] = 255 * rate;
+		}
+
+		void setBrightnessRate(size_t index, double rate) {
+			m_textures[index].fill(images[index].brightened(static_cast<int32>(rate * 255)));
 		}
 
 		void release();
@@ -64,7 +76,9 @@ namespace s3d::gui {
 		bool mouseWheel() override;
 
 	private:
-		double calcInitialScale();
+		double calcMinimumScale();
+
+		double calcMaximumScale();
 
 		void restrictImageMovement();
 	};

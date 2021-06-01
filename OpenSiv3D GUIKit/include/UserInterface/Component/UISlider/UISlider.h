@@ -6,18 +6,16 @@
 
 namespace s3d::gui {
 	class UISlider : public UIView {
-	public:
-		double value = 0.0, min = 0.0, max = 1.0;
-
 	private:
-		std::function<void()> m_valueChangedHandler;
+		double m_value = 0.0, m_min = 0.0, m_max = 1.0;
+		std::function<void(double value)> m_valueChangedHandler;
 		bool m_initialized = false;
 
 		UIRect railLeft, railRight;
 		UICircle handle;
 
 	public:
-		UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear):
+		UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
 			UIView(_backgroundColor)
 		{}
 
@@ -25,8 +23,25 @@ namespace s3d::gui {
 
 		void draw() override;
 
-		void setValueChangedHandler(const std::function<void()>& func) {
+		double value() const {
+			return m_value;
+		}
+
+		void setValueChangedHandler(const std::function<void(double value)>& func) {
 			m_valueChangedHandler = func;
+		}
+
+		void setValue(double value) {
+			m_value = value;
+			restrictValue();
+			requestToUpdateLayer();
+		}
+
+		void setRange(double min, double max) {
+			m_min = min;
+			m_max = max;
+			restrictValue();
+			requestToUpdateLayer();
 		}
 
 	protected:
@@ -40,5 +55,7 @@ namespace s3d::gui {
 
 	private:
 		void initialize();
+
+		void restrictValue();
 	};
 }
