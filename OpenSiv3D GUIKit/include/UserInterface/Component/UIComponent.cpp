@@ -2,7 +2,7 @@
 
 using namespace s3d::gui;
 
-Array<UIComponent::CallableMouseEvent> UIComponent::m_callableMouseEvents;
+Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
 
 void UIComponent::updateLayer() {
 	for (auto layer : m_dependentLayers) {
@@ -68,29 +68,29 @@ void UIComponent::callMouseEventHandler(const MouseEvent& e) const {
 		return handler.eventType != e.type;
 		});
 
-	if (m_callableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
-		m_callableMouseEvents.push_back({ e, hendlers });
+	if (m_CallableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
+		m_CallableMouseEvents.push_back({ e, hendlers });
 	}
 	else {
-		for (size_t i : step(m_callableMouseEvents.size())) {
-			if (m_callableMouseEvents[i].mouseEvent.type == e.type) {
-				m_callableMouseEvents[i].mouseEvent = e;
-				m_callableMouseEvents[i].handlers = hendlers;
+		for (size_t i : step(m_CallableMouseEvents.size())) {
+			if (m_CallableMouseEvents[i].mouseEvent.type == e.type) {
+				m_CallableMouseEvents[i].mouseEvent = e;
+				m_CallableMouseEvents[i].handlers = hendlers;
 				break;
 			}
-			else if (i == m_callableMouseEvents.size() - 1) {
-				m_callableMouseEvents.push_back({ e, hendlers });
+			else if (i == m_CallableMouseEvents.size() - 1) {
+				m_CallableMouseEvents.push_back({ e, hendlers });
 			}
 		}
 	}
 }
 
-void UIComponent::ResetMouseEvents() {
-	m_callableMouseEvents.release();
+void UIComponent::_ResetMouseEvents() {
+	m_CallableMouseEvents.release();
 }
 
-void UIComponent::CallMouseEvents() {
-	for (const auto& e : m_callableMouseEvents) {
+void UIComponent::_CallMouseEvents() {
+	for (const auto& e : m_CallableMouseEvents) {
 		for (const auto& handler : e.handlers) {
 			handler.handler(e.mouseEvent);
 		}

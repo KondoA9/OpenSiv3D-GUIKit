@@ -103,9 +103,9 @@ void GUIKit::update() {
 	}
 	// Draw the page
 	else {
-		UIComponent::ResetMouseEvents();
+		UIComponent::_ResetMouseEvents();
 		m_drawingPage->view.updateMouseEvent();
-		UIComponent::CallMouseEvents();
+		UIComponent::_CallMouseEvents();
 
 		if (WindowManager::DidResized()) {
 			m_drawingPage->onWindowResized();
@@ -164,3 +164,4 @@ void GUIKit::animateColor() {
 	}
 	ColorTheme::animate(t);
 }
+

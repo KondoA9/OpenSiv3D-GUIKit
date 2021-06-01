@@ -8,27 +8,28 @@
 
 namespace s3d::gui {
 	class UIComponent {
-	private:
 		struct CallableMouseEvent {
 			MouseEvent mouseEvent;
 			Array<MouseEventHandler> handlers;
 		};
-		static Array<CallableMouseEvent> m_callableMouseEvents;
-
-		Array<Layer*> m_dependentLayers;
-		Array<MouseEventHandler> m_mouseEventHandlers;
-		bool m_needToUpdateLayer = true;
-
-	protected:
-		Layer m_layer;
-		bool m_mouseOver = false, m_preMouseOver = false;
-		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
 
 	public:
 		ColorTheme backgroundColor, frameColor;
 		double frameThickness = 1.0;
 		bool fillInner = true, drawFrame = false;
 		bool penetrateMouseEvent = false;
+
+	protected:
+		Layer m_layer;
+		bool m_mouseOver = false, m_preMouseOver = false;
+		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
+
+	private:
+		static Array<CallableMouseEvent> m_CallableMouseEvents;
+
+		Array<Layer*> m_dependentLayers;
+		Array<MouseEventHandler> m_mouseEventHandlers;
+		bool m_needToUpdateLayer = true;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) :
@@ -70,9 +71,9 @@ namespace s3d::gui {
 
 		void removeConstraint(LayerDirection direction);
 
-		static void ResetMouseEvents();
+		static void _ResetMouseEvents();
 
-		static void CallMouseEvents();
+		static void _CallMouseEvents();
 
 	protected:
 		bool drawable() const {
