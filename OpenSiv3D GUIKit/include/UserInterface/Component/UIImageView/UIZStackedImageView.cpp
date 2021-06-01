@@ -47,12 +47,14 @@ void UIZStackedImageView::updateLayer() {
 
 	UIRect::updateLayer();
 
-	m_minScale = calcMinimumScale();
-	m_maxScale = calcMaximumScale();
+	if (m_textures.size() > 0) {
+		m_minScale = calcMinimumScale();
+		m_maxScale = calcMaximumScale();
 
-	m_scale = preScale * m_minScale / preMinScale;
-	if (m_scale < m_minScale) {
-		m_scale = m_minScale;
+		m_scale = preScale * m_minScale / preMinScale;
+		if (m_scale < m_minScale) {
+			m_scale = m_minScale;
+		}
 	}
 
 	if (!m_centerPosUpdated) {

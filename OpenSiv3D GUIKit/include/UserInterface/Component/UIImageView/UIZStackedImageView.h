@@ -22,6 +22,10 @@ namespace s3d::gui {
 			UIRect(_backgroundColor)
 		{}
 
+		double scale() const {
+			return m_scale;
+		}
+
 		double minimumScale() const {
 			return m_minScale;
 		}
