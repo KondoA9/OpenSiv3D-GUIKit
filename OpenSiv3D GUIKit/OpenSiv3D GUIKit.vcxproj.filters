@@ -86,5 +86,6 @@
     <ClInclude Include="include\UserInterface\Font\UnifiedFont.h" />
     <ClInclude Include="include\UserInterface\MouseEvent\MouseEvent.h" />
     <ClInclude Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.h" />
+    <ClInclude Include="include\UserInterface\Component\UISlider\UISlider.h" />
   </ItemGroup>
 </Project>
