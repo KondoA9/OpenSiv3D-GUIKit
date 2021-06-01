@@ -8,6 +8,7 @@ void UIZStackedImageView::appendImage(const Image& _image, double alphaRate) {
 	m_alphas.push_back(255 * alphaRate);
 	m_scale = 1.0;
 	m_centerPosUpdated = false;
+	requestToUpdateLayer();
 	if (m_textures.size() > 0) {
 		m_minScale = calcMinimumScale();
 		m_maxScale = calcMaximumScale();
