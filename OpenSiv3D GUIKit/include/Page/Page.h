@@ -32,6 +32,9 @@ namespace s3d::gui {
 		// Called before guikit core system draws the page
 		virtual void onBeforeAppeared() {}
 
+		// Called when all constraints updated
+		virtual void onLayoutCompleted() {}
+
 		// Called after guikit core system draws the page
 		virtual void onAfterAppeared() {}
 
