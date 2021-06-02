@@ -3,6 +3,11 @@
 #include "../UIView/UIView.h"
 
 namespace s3d::gui {
+	enum class LeadingDirection {
+		Top,
+		Bottom
+	};
+
 	class UIVStackView : public UIView {
 	public:
 		bool scrollingEnabled = true;
@@ -12,6 +17,8 @@ namespace s3d::gui {
 		double m_rowHeight = 0.0;
 		double m_currentRowHeight = 0.0, m_currentRowsHeight = 0.0;
 		double m_topPositionConstant = 0.0;
+		bool m_constraintsApplied = false;
+		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
 	public:
 		using UIView::UIView;
@@ -23,8 +30,8 @@ namespace s3d::gui {
 		template<class T>
 		void appendComponent(const T& component) {
 			T* cmp = new T(component);
-			setChildConstraints(cmp);
 			UIView::appendComponent(*cmp);
+			m_constraintsApplied = false;
 		}
 
 		void setMaxStackCount(size_t count) {
@@ -33,6 +40,10 @@ namespace s3d::gui {
 
 		void setRowHeight(double h) {
 			m_rowHeight = h;
+		}
+
+		void setLeadingDirection(LeadingDirection direction) {
+			m_leadingDirection = direction;
 		}
 
 		Array<UIComponent*> components() const {
@@ -45,7 +56,7 @@ namespace s3d::gui {
 		bool mouseWheel() override;
 
 	private:
-		void setChildConstraints(UIComponent* component);
+		void setChildConstraints(size_t index);
 
 		void calcCurrentRowHeight();
 

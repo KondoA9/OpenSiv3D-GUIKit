@@ -16,10 +16,16 @@ void UIVStackView::release() {
 	}
 	m_userInterfaces.release();
 	m_topPositionConstant = 0.0;
-	// m_layer.top.setConstraint(0.0);
 }
 
 void UIVStackView::updateLayer() {
+	if (!m_constraintsApplied) {
+		for (size_t i : step(m_userInterfaces.size())) {
+			setChildConstraints(i);
+		}
+		m_constraintsApplied = true;
+	}
+
 	UIView::updateLayer();
 	calcCurrentRowHeight();
 	adjustRowsBottomToViewBottom();
@@ -38,23 +44,27 @@ bool UIVStackView::mouseWheel() {
 	return false;
 }
 
-void UIVStackView::setChildConstraints(UIComponent* component) {
-	const size_t i = m_userInterfaces.size();
+void UIVStackView::setChildConstraints(size_t index) {
+	{
+		const auto d1 = m_leadingDirection == LeadingDirection::Top ? LayerDirection::Top : LayerDirection::Bottom;
+		const auto d2 = m_leadingDirection == LeadingDirection::Top ? LayerDirection::Bottom : LayerDirection::Top;
+		if (index == 0) {
+			m_userInterfaces[index]->setConstraint(d1, *this, d1);
+		}
+		else {
+			m_userInterfaces[index]->setConstraint(d1, *m_userInterfaces[index - 1], d2);
+		}
+	}
 
 	if (m_rowHeight == 0.0) {
-		component->setConstraint(LayerDirection::Top, [this, i]() {
-			return m_layer.top.value + i * m_layer.height.value / (m_maxStackCount == 0 ? m_userInterfaces.size() : m_maxStackCount);
-			});
-		component->setConstraint(LayerDirection::Height, [this]() {
-			return m_layer.height.value / (m_maxStackCount == 0 ? m_userInterfaces.size() : m_maxStackCount);
-			});
+		m_userInterfaces[index]->setConstraint(LayerDirection::Height, *this, LayerDirection::Height, 0.0, 1.0 / (m_maxStackCount == 0 ? m_userInterfaces.size() : m_maxStackCount));
 	}
 	else {
-		component->setConstraint(LayerDirection::Top, [this, i]() { return m_layer.top.value + i * m_rowHeight; });
-		component->setConstraint(LayerDirection::Height, m_rowHeight);
+		m_userInterfaces[index]->setConstraint(LayerDirection::Height, m_rowHeight);
 	}
-	component->setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
-	component->setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+
+	m_userInterfaces[index]->setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
+	m_userInterfaces[index]->setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 }
 
 void UIVStackView::calcCurrentRowHeight() {
