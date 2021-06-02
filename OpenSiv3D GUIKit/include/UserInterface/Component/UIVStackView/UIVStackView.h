@@ -32,6 +32,7 @@ namespace s3d::gui {
 			T* cmp = new T(component);
 			UIView::appendComponent(*cmp);
 			m_constraintsApplied = false;
+			requestToUpdateLayer();
 		}
 
 		void setMaxStackCount(size_t count) {
