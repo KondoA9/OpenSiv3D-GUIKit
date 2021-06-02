@@ -58,10 +58,10 @@ void GUIKit::update() {
 				m_forwardPage->onLoaded();
 				m_forwardPage->loaded = true;
 			}
-			m_forwardPage->view.updateLayer();
-			m_forwardPage->view.updateLayerInvert();
 			m_forwardPage->onBeforeAppeared();
 			m_backwardPage->onBeforeDisappeared();
+			m_forwardPage->view.updateLayer();
+			m_forwardPage->view.updateLayerInvert();
 			m_uiChanging = true;
 			forwardUILoaded = true;
 		}
