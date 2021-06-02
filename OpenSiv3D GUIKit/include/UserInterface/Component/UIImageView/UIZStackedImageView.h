@@ -34,10 +34,8 @@ namespace s3d::gui {
 			return m_maxScale;
 		}
 
-		void updateTexture() {
-			for (size_t i : step(m_textures.size())) {
-				m_textures[i].fill(images[i]);
-			}
+		void updateTexture(size_t index) {
+			m_textures[index].fillIfNotBusy(images[index]);
 		}
 
 		void setScale(double scale) {
@@ -57,7 +55,7 @@ namespace s3d::gui {
 		}
 
 		void setBrightnessRate(size_t index, double rate) {
-			m_textures[index].fill(images[index].brightened(static_cast<int32>(rate * 255)));
+			m_textures[index].fillIfNotBusy(images[index].brightened(static_cast<int32>(rate * 255)));
 		}
 
 		void release();

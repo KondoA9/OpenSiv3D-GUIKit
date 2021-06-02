@@ -19,7 +19,7 @@ void UIZStackedImageView::appendImage(const Image& _image, double alphaRate) {
 void UIZStackedImageView::paint(size_t index, double thickness, const Color& color, bool antialiased) {
 	const int32 t = static_cast<int32>(thickness / m_scale);
 	Line(m_prePixel, m_pixel).overwrite(images[index], t > 0 ? t : 1, color, antialiased);
-	updateTexture();
+	updateTexture(index);
 }
 
 void UIZStackedImageView::release() {
