@@ -35,6 +35,11 @@ namespace s3d::gui {
 			m_scale = calcInitialScale();
 		}
 
+		void release() {
+			image.release();
+			m_texture.release();
+		}
+
 		void setImage(const Image& _image);
 
 		void paint(double thickness, const Color& color, bool antialiased = true);
