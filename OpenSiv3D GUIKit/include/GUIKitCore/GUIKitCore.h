@@ -50,7 +50,7 @@ namespace s3d::gui {
 				}
 			}
 
-			Logger << U"Error(GUIKitCore): UserInterface identified as {} does not exist."_fmt(identifier);
+			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
 			return nullptr;
 		}
 
