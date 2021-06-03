@@ -118,6 +118,11 @@ void GUIKit::update() {
 		}
 
 		m_drawingPage->m_view.draw();
+
+		for (auto& f : m_drawingEvents) {
+			f();
+		}
+		m_drawingEvents.release();
 	}
 
 	Graphics::SkipClearScreen();

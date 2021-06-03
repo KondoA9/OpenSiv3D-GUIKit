@@ -10,14 +10,14 @@ namespace s3d::gui {
 		String m_title;
 
 		Array<std::shared_ptr<Page>> m_pages;
-
 		std::shared_ptr<Page> m_drawingPage;
-
 		// When the page changed, forwardPage will be appeared and backwardPage will be disappeared.
 		std::shared_ptr<Page> m_forwardPage, m_backwardPage;
 
 		bool m_animateColor = false;
 		bool m_uiChanging = false;
+
+		Array<std::function<void()>> m_drawingEvents;
 
 	public:
 		GUIKit() {
@@ -35,6 +35,10 @@ namespace s3d::gui {
 		void setColorMode(ColorMode mode);
 
 		void toggleColorMode();
+
+		void addDrawingEvent(const std::function<void()>& func) {
+			m_drawingEvents.push_back(func);
+		}
 
 		template<class T>
 		void appendPage(T page) {

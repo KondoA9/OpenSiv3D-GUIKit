@@ -34,6 +34,14 @@ namespace s3d::gui {
 			return m_maxScale;
 		}
 
+		Point currentPixel() const {
+			return m_pixel;
+		}
+
+		Point prePixel() const {
+			return m_prePixel;
+		}
+
 		void updateTexture(size_t index) {
 			m_textures[index].fillIfNotBusy(images[index]);
 		}
