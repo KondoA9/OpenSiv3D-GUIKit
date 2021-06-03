@@ -5,6 +5,10 @@ using namespace s3d::gui;
 Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
 
 void UIComponent::updateLayer() {
+	if (!m_exist) {
+		return;
+	}
+
 	for (auto layer : m_dependentLayers) {
 		layer->updateConstraints();
 	}
@@ -12,6 +16,10 @@ void UIComponent::updateLayer() {
 }
 
 bool UIComponent::updateLayerIfNeeded() {
+	if (!m_exist) {
+		return false;
+	}
+
 	if (m_needToUpdateLayer) {
 		updateLayer();
 		m_needToUpdateLayer = false;
@@ -22,6 +30,10 @@ bool UIComponent::updateLayerIfNeeded() {
 }
 
 void UIComponent::updateMouseEvent() {
+	if (!m_exist) {
+		return;
+	}
+
 	mouseLeftDown();
 	mouseLeftUp();
 	mouseLeftDragging();
