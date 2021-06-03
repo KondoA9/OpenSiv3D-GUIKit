@@ -5,7 +5,6 @@
 namespace s3d::gui {
 	class UIZStackedImageView : public UIRect {
 	public:
-		Array<Image> images;
 		bool manualScalingEnabled = true;
 
 	private:
@@ -42,8 +41,12 @@ namespace s3d::gui {
 			return m_prePixel;
 		}
 
-		void updateTexture(size_t index) {
-			m_textures[index].fillIfNotBusy(images[index]);
+		size_t texturesCount() const {
+			return m_textures.size();
+		}
+
+		void updateTexture(size_t index, const Image& image) {
+			m_textures[index].fillIfNotBusy(image);
 		}
 
 		void setScale(double scale) {
@@ -62,15 +65,9 @@ namespace s3d::gui {
 			m_alphas[index] = 255 * rate;
 		}
 
-		void setBrightnessRate(size_t index, double rate) {
-			m_textures[index].fillIfNotBusy(images[index].brightened(static_cast<int32>(rate * 255)));
-		}
-
 		void release();
 
-		void appendImage(const Image& _image, double alphaRate = 1.0);
-
-		void paint(size_t index, double thickness, const Color& color, bool antialiased = true);
+		void appendImage(const Image& image, double alphaRate = 1.0);
 
 		void draw() override;
 

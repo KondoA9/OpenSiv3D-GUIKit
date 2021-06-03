@@ -2,9 +2,8 @@
 
 using namespace s3d::gui;
 
-void UIZStackedImageView::appendImage(const Image& _image, double alphaRate) {
-	images.push_back(_image);
-	m_textures.push_back(DynamicTexture(_image, TextureDesc::Mipped));
+void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
+	m_textures.push_back(DynamicTexture(image, TextureDesc::Mipped));
 	m_alphas.push_back(255 * alphaRate);
 	m_scale = 1.0;
 	m_centerPosUpdated = false;
@@ -16,14 +15,7 @@ void UIZStackedImageView::appendImage(const Image& _image, double alphaRate) {
 	}
 }
 
-void UIZStackedImageView::paint(size_t index, double thickness, const Color& color, bool antialiased) {
-	const int32 t = static_cast<int32>(thickness / m_scale);
-	Line(m_prePixel, m_pixel).overwrite(images[index], t > 0 ? t : 1, color, antialiased);
-	updateTexture(index);
-}
-
 void UIZStackedImageView::release() {
-	images.release();
 	m_textures.release();
 	m_alphas.release();
 }
