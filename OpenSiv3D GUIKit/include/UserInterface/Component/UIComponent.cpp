@@ -5,7 +5,7 @@ using namespace s3d::gui;
 Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
 
 void UIComponent::updateLayer() {
-	if (!m_exist) {
+	if (!exist) {
 		return;
 	}
 
@@ -16,7 +16,7 @@ void UIComponent::updateLayer() {
 }
 
 bool UIComponent::updateLayerIfNeeded() {
-	if (!m_exist) {
+	if (!exist) {
 		return false;
 	}
 
@@ -30,7 +30,7 @@ bool UIComponent::updateLayerIfNeeded() {
 }
 
 void UIComponent::updateMouseEvent() {
-	if (!m_exist) {
+	if (!exist || !controllable) {
 		return;
 	}
 
