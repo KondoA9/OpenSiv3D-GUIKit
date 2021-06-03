@@ -60,7 +60,7 @@ bool UISlider::mouseHovering() {
 }
 
 void UISlider::initialize() {
-	const double h = 7.5;
+	const double h = 5.0;
 	railLeft.drawFrame = true;
 	railLeft.backgroundColor = DynamicColor::DefaultBlue;
 	railLeft.setConstraint(LayerDirection::CenterY, handle, LayerDirection::CenterY);
@@ -75,7 +75,7 @@ void UISlider::initialize() {
 	railRight.setConstraint(LayerDirection::Left, handle, LayerDirection::CenterX);
 	railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-	const double r = 20;
+	const double r = 12;
 	handle.drawFrame = true;
 	handle.backgroundColor = DynamicColor::Background;
 	handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
