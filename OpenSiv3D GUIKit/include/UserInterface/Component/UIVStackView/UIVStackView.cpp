@@ -3,19 +3,21 @@
 using namespace s3d::gui;
 
 UIVStackView::~UIVStackView() {
-	for (auto& ui : m_userInterfaces) {
-		delete ui;
-		ui = nullptr;
-	}
+	releaseDeletableComponents();
 }
 
 void UIVStackView::release() {
-	for (auto& ui : m_userInterfaces) {
-		delete ui;
-		ui = nullptr;
-	}
+	releaseDeletableComponents();
 	m_userInterfaces.release();
 	m_topPositionConstant = 0.0;
+}
+
+void UIVStackView::releaseDeletableComponents() {
+	for (auto component : m_deletableComponents) {
+		delete component;
+		component = nullptr;
+	}
+	m_deletableComponents.release();
 }
 
 void UIVStackView::updateLayer() {

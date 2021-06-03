@@ -14,7 +14,7 @@ namespace s3d::gui {
 			UIRect(_backgroundColor)
 		{}
 
-		~UIView() {}
+		virtual ~UIView() {}
 
 		virtual void appendComponent(UIComponent& ui) {
 			m_userInterfaces.push_back(&ui);
