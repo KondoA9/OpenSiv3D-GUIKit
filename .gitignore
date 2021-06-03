@@ -366,3 +366,4 @@ FodyWeavers.xsd
 AS_DEBUG/
 *.exe
 *.html
+*.lib
