@@ -34,6 +34,16 @@ namespace s3d::gui {
 			return m_enabled;
 		}
 
+		void setEnabled(bool enabled) {
+			if (!m_enabled && enabled) {
+				backgroundColor.highlight(hoveredColor);
+			}
+			else if (m_enabled && !enabled) {
+				backgroundColor.lowlight(defaultColor);
+			}
+			m_enabled = enabled;
+		}
+
 	protected:
 		bool mouseHovered() override;
 
