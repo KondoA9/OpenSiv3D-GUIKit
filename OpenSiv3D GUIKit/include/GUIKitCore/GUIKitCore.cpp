@@ -117,6 +117,11 @@ void GUIKit::update() {
 			m_drawingPage->m_view.updateLayerIfNeeded();
 		}
 
+		for (auto& f : m_eventsRequestedToRunInMainThread) {
+			f();
+		}
+		m_eventsRequestedToRunInMainThread.release();
+
 		m_drawingPage->m_view.draw();
 
 		for (auto& f : m_drawingEvents) {

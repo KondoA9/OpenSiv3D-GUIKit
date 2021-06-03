@@ -2,11 +2,15 @@
 
 #include <Siv3D.hpp>
 
+#include <mutex>
+
 namespace s3d::gui {
 	class Page;
 	enum class ColorMode;
 
 	class GUIKit {
+		std::mutex m_mtx;
+
 		String m_title;
 
 		Array<std::shared_ptr<Page>> m_pages;
@@ -17,7 +21,7 @@ namespace s3d::gui {
 		bool m_animateColor = false;
 		bool m_uiChanging = false;
 
-		Array<std::function<void()>> m_drawingEvents;
+		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 
 	public:
 		GUIKit() {
@@ -38,6 +42,11 @@ namespace s3d::gui {
 
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
+		}
+
+		void insertToMainThread(const std::function<void()>& func) {
+			std::lock_guard<std::mutex> lock(m_mtx);
+			m_eventsRequestedToRunInMainThread.push_back(func);
 		}
 
 		template<class T>
