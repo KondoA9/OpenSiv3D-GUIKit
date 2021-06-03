@@ -2,6 +2,7 @@
 
 #include <Siv3D.hpp>
 
+#include <thread>
 #include <mutex>
 
 namespace s3d::gui {
@@ -47,6 +48,14 @@ namespace s3d::gui {
 		void insertToMainThread(const std::function<void()>& func) {
 			std::lock_guard<std::mutex> lock(m_mtx);
 			m_eventsRequestedToRunInMainThread.push_back(func);
+		}
+
+		void insertAsyncProcess(const std::function<void()>& heavyFunc, const std::function<void()>& uiUpdatingFunc) {
+			std::thread thread([this, heavyFunc, uiUpdatingFunc]() {
+				heavyFunc();
+				insertToMainThread(uiUpdatingFunc);
+				});
+			thread.detach();
 		}
 
 		template<class T>
