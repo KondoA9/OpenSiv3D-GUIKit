@@ -15,6 +15,7 @@
 #include "UserInterface/Component/UIImageView/UIImageView.h"
 #include "UserInterface/Component/UIImageView/UIZStackedImageView.h"
 #include "UserInterface/Component/UIButton/UIButton.h"
+#include "UserInterface/Component/UIToggleButton/UIToggleButton.h"
 #include "UserInterface/Component/UISlider/UISlider.h"
 
 // Page
