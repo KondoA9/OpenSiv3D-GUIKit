@@ -38,14 +38,14 @@ namespace s3d::gui {
 
 		template<class T>
 		void appendPage(T page) {
-			page.guikit = this;
+			page.m_guikit = this;
 			m_pages.push_back(std::make_shared<T>(page));
 		}
 
 		template<class T>
 		std::shared_ptr<T> getUserInterface(const String& identifier) const {
 			for (const auto& page : m_pages) {
-				if (page->identifier == identifier) {
+				if (page->m_identifier == identifier) {
 					return std::dynamic_pointer_cast<T>(page);
 				}
 			}

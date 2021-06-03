@@ -37,7 +37,7 @@ void GUIKit::update() {
 		static bool appeared = false;
 		if (!appeared) {
 			m_forwardPage->onLoaded();
-			m_forwardPage->loaded = true;
+			m_forwardPage->m_loaded = true;
 			m_forwardPage->onBeforeAppeared();
 			m_drawingPage = m_forwardPage;
 			appeared = true;
@@ -54,14 +54,14 @@ void GUIKit::update() {
 	static double pageColorMultiplier = 1.0;
 	if (m_forwardPage && m_backwardPage) {
 		if (!forwardUILoaded) {
-			if (!m_forwardPage->loaded) {
+			if (!m_forwardPage->m_loaded) {
 				m_forwardPage->onLoaded();
-				m_forwardPage->loaded = true;
+				m_forwardPage->m_loaded = true;
 			}
 			m_forwardPage->onBeforeAppeared();
 			m_backwardPage->onBeforeDisappeared();
-			m_forwardPage->view.updateLayer();
-			m_forwardPage->view.updateLayerInvert();
+			m_forwardPage->m_view.updateLayer();
+			m_forwardPage->m_view.updateLayerInvert();
 			m_forwardPage->onLayoutCompleted();
 			m_uiChanging = true;
 			forwardUILoaded = true;
@@ -90,34 +90,34 @@ void GUIKit::update() {
 		pageColorMultiplier -= 5.0 * Scene::DeltaTime();
 		if (pageColorMultiplier < 0.0) {
 			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-			m_forwardPage->view.draw();
+			m_forwardPage->m_view.draw();
 			uiChanged = true;
 			m_uiChanging = false;
 			pageColorMultiplier = 1.0;
 		}
 		else {
 			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - pageColorMultiplier));
-			m_forwardPage->view.draw();
+			m_forwardPage->m_view.draw();
 			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, pageColorMultiplier));
-			m_backwardPage->view.draw();
+			m_backwardPage->m_view.draw();
 		}
 	}
 	// Draw the page
 	else {
 		UIComponent::_ResetMouseEvents();
-		m_drawingPage->view.updateMouseEvent();
+		m_drawingPage->m_view.updateMouseEvent();
 		UIComponent::_CallMouseEvents();
 
 		if (WindowManager::DidResized()) {
 			m_drawingPage->onWindowResized();
-			m_drawingPage->view.updateLayer();
-			m_drawingPage->view.updateLayerInvert();
+			m_drawingPage->m_view.updateLayer();
+			m_drawingPage->m_view.updateLayerInvert();
 		}
 		else {
-			m_drawingPage->view.updateLayerIfNeeded();
+			m_drawingPage->m_view.updateLayerIfNeeded();
 		}
 
-		m_drawingPage->view.draw();
+		m_drawingPage->m_view.draw();
 	}
 
 	Graphics::SkipClearScreen();

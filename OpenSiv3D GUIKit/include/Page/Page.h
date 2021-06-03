@@ -8,20 +8,23 @@ namespace s3d::gui {
 	class GUIKit;
 
 	class Page {
-	public:
-		const String identifier;
-		GUIKit* guikit;
-		UIView view;
-		bool loaded = false;
+		friend GUIKit;
+
+	protected:
+		const String m_identifier;
+		GUIKit* m_guikit = nullptr;
+		UIView m_view = UIView();
+
+	private:
+		bool m_loaded = false;
 
 	public:
-		Page(const String& _identifier) :
-			identifier(_identifier) {
-			view = gui::UIView();
-			view.setConstraint(LayerDirection::Top);
-			view.setConstraint(LayerDirection::Bottom, [] {return Window::ClientHeight(); });
-			view.setConstraint(LayerDirection::Left);
-			view.setConstraint(LayerDirection::Right, [] {return Window::ClientWidth(); });
+		Page(const String& identifier) :
+			m_identifier(identifier) {
+			m_view.setConstraint(LayerDirection::Top);
+			m_view.setConstraint(LayerDirection::Bottom, [] {return Window::ClientHeight(); });
+			m_view.setConstraint(LayerDirection::Left);
+			m_view.setConstraint(LayerDirection::Right, [] {return Window::ClientWidth(); });
 		}
 
 		virtual ~Page() = default;
@@ -46,5 +49,9 @@ namespace s3d::gui {
 
 		// Called when window resized
 		virtual void onWindowResized() {}
+
+		GUIKit& guikit() const {
+			return *m_guikit;
+		}
 	};
 }
