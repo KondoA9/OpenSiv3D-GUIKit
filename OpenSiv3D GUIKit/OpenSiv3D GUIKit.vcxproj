@@ -114,6 +114,7 @@
     <ClCompile Include="include\UserInterface\Component\UIButton\UIButton.cpp" />
     <ClCompile Include="include\UserInterface\Component\UICircle\UICircle.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIIcon\UIIcon.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIImageView\UIImageView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIRect\UIRect.cpp" />
     <ClCompile Include="include\UserInterface\Component\UISlider\UISlider.cpp" />
@@ -132,6 +133,7 @@
     <ClInclude Include="include\ColorTheme\DynamicColor.h" />
     <ClInclude Include="include\PixelUnit\PixelUnit.h" />
     <ClInclude Include="include\UserInterface\Component\UIComponentShared.h" />
+    <ClInclude Include="include\UserInterface\Component\UIIcon\UIIcon.h" />
     <ClInclude Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.h" />
     <ClInclude Include="include\UserInterface\Component\UISlider\UISlider.h" />
     <ClInclude Include="include\UserInterface\Component\UIToggleButton\UIToggleButton.h" />

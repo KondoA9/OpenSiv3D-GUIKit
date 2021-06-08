@@ -14,5 +14,8 @@ namespace s3d::gui::DynamicColor {
 	constexpr auto ButtonPushed = ColorTheme(Color(69, 57, 229));
 
 	constexpr auto DefaultBlue = ColorTheme(Color(40, 150, 255));
+	constexpr auto DefaultGreen = ColorTheme(Color(0, 212, 85));
+	constexpr auto DefaultRed = ColorTheme(Color(255, 25, 80));
+
 	constexpr auto Clear = ColorTheme(Color(0, 0, 0, 0));
 }
