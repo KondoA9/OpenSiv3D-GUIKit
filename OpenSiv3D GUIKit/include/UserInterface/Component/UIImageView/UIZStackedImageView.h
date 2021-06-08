@@ -46,7 +46,9 @@ namespace s3d::gui {
 		}
 
 		void updateTexture(size_t index, const Image& image) {
-			m_textures[index].fillIfNotBusy(image);
+			if (m_textures.size() > index) {
+				m_textures[index].fillIfNotBusy(image);
+			}
 		}
 
 		void setScale(double scale) {
