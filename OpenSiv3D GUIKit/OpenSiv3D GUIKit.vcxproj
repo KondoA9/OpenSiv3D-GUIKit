@@ -110,6 +110,7 @@
   <ItemGroup>
     <ClCompile Include="include\ColorTheme\ColorTheme.cpp" />
     <ClCompile Include="include\GUIKitCore\GUIKitCore.cpp" />
+    <ClCompile Include="include\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIButton\UIButton.cpp" />
     <ClCompile Include="include\UserInterface\Component\UICircle\UICircle.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
@@ -129,6 +130,7 @@
   <ItemGroup>
     <ClInclude Include="include\ColorTheme\ColorTheme.h" />
     <ClInclude Include="include\ColorTheme\DynamicColor.h" />
+    <ClInclude Include="include\PixelUnit\PixelUnit.h" />
     <ClInclude Include="include\UserInterface\Component\UIComponentShared.h" />
     <ClInclude Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.h" />
     <ClInclude Include="include\UserInterface\Component\UISlider\UISlider.h" />

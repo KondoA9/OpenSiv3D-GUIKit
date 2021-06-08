@@ -41,6 +41,7 @@
     <ClCompile Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.cpp" />
     <ClCompile Include="include\UserInterface\Component\UISlider\UISlider.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
+    <ClCompile Include="include\PixelUnit\PixelUnit.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component\Component.h">
@@ -91,5 +92,6 @@
     <ClInclude Include="include\UserInterface\Component\UISlider\UISlider.h" />
     <ClInclude Include="include\UserInterface\Component\UIComponentShared.h" />
     <ClInclude Include="include\UserInterface\Component\UIToggleButton\UIToggleButton.h" />
+    <ClInclude Include="include\PixelUnit\PixelUnit.h" />
   </ItemGroup>
 </Project>

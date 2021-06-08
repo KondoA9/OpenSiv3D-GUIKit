@@ -5,7 +5,8 @@
 namespace s3d::gui {
 	enum class UnifiedFontStyle {
 		Small,
-		Medium
+		Medium,
+		Large
 	};
 
 	namespace UnifiedFont {
