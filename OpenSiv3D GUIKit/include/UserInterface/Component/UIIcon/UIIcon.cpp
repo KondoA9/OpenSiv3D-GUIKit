@@ -3,10 +3,6 @@
 using namespace s3d::gui;
 
 void UIIcon::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	UIRect::draw();
 
 	if (rotate) {

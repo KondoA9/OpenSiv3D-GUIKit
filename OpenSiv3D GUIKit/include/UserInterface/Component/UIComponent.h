@@ -7,11 +7,17 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	class GUIKit;
+	class UIView;
+
 	class UIComponent {
 		struct CallableMouseEvent {
 			MouseEvent mouseEvent;
 			Array<MouseEventHandler> handlers;
 		};
+
+		friend GUIKit;
+		friend UIView;
 
 	public:
 		ColorTheme backgroundColor, frameColor;
@@ -40,14 +46,6 @@ namespace s3d::gui {
 
 		virtual ~UIComponent() = default;
 
-		virtual void updateLayer();
-
-		virtual bool updateLayerIfNeeded();
-
-		virtual void draw() {};
-
-		virtual void updateMouseEvent();
-
 		const Layer& layer() {
 			return m_layer;
 		}
@@ -72,16 +70,12 @@ namespace s3d::gui {
 
 		void removeConstraint(LayerDirection direction);
 
-		static void _ResetMouseEvents();
-
-		static void _CallMouseEvents();
-
 	protected:
-		bool drawable() const {
-			return !hidden && exist
-				&& m_layer.top.value <= Window::ClientHeight() && m_layer.bottom.value >= 0
-				&& m_layer.left.value <= Window::ClientWidth() && m_layer.right.value >= 0;
-		}
+		virtual void updateLayer();
+
+		virtual void draw() {};
+
+		virtual void update() = 0;
 
 		virtual bool mouseLeftDown() = 0;
 		virtual bool mouseLeftUp() = 0;
@@ -95,5 +89,20 @@ namespace s3d::gui {
 		virtual bool mouseWheel() = 0;
 
 		void callMouseEventHandler(const MouseEvent& e) const;
+
+	private:
+		static void ResetMouseEvents();
+
+		static void CallMouseEvents();
+
+		virtual bool updateLayerIfNeeded();
+
+		virtual void updateMouseEvent();
+
+		bool drawable() const {
+			return !hidden && exist
+				&& m_layer.top.value <= Window::ClientHeight() && m_layer.bottom.value >= 0
+				&& m_layer.left.value <= Window::ClientWidth() && m_layer.right.value >= 0;
+		}
 	};
 }

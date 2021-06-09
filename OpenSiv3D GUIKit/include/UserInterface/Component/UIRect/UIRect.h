@@ -12,11 +12,13 @@ namespace s3d::gui {
 	public:
 		using UIComponent::UIComponent;
 
+	protected:
 		void draw() override;
+
+		void update() final;
 
 		void updateLayer() override;
 
-	protected:
 		bool mouseLeftDown() override;
 
 		bool mouseLeftUp() override;
@@ -36,7 +38,5 @@ namespace s3d::gui {
 		bool mouseUnHovered() override;
 
 		bool mouseWheel() override;
-
-		void updateMouseEvent() override;
 	};
 }

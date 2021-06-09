@@ -13,12 +13,13 @@ namespace s3d::gui {
 	public:
 		using UIText::UIText;
 
-		void draw() override;
-
-		bool mouseLeftDown() override;
-
 		void setOnInputtedHandler(const std::function<void(const String&)>& func) {
 			m_onInputtedHandler = func;
 		}
+
+	protected:
+		void draw() override;
+
+		bool mouseLeftDown() override;
 	};
 }

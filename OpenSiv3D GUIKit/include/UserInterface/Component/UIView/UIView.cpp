@@ -46,7 +46,9 @@ void UIView::draw() {
 
 	UIRect::draw();
 	for (auto& ui : m_userInterfaces) {
-		ui->draw();
+		if (ui->drawable()) {
+			ui->draw();
+		}
 	}
 }
 
@@ -55,8 +57,11 @@ void UIView::updateMouseEvent() {
 		return;
 	}
 
+	UIRect::update();
 	UIRect::updateMouseEvent();
+
 	for (auto& ui : m_userInterfaces) {
+		ui->update();
 		ui->updateMouseEvent();
 	}
 }

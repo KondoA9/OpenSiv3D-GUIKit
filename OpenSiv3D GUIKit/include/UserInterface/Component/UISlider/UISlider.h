@@ -34,10 +34,6 @@ namespace s3d::gui {
 			UISlider(U"", _backgroundColor)
 		{}
 
-		void updateLayer() override;
-
-		void draw() override;
-
 		double value() const {
 			return m_value;
 		}
@@ -64,6 +60,10 @@ namespace s3d::gui {
 		}
 
 	protected:
+		void updateLayer() override;
+
+		void draw() override;
+
 		bool mouseLeftDragging() override;
 
 		bool mouseHovered() override;

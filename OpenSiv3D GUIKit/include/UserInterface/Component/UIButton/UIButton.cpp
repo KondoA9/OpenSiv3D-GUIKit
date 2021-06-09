@@ -39,10 +39,6 @@ UIButton::UIButton(
 {}
 
 void UIButton::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	UIRect::draw();
 
 	UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(m_rect.center(), textColor);

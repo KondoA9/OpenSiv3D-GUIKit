@@ -12,10 +12,6 @@ void UISlider::updateLayer() {
 }
 
 void UISlider::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	UIView::draw();
 }
 

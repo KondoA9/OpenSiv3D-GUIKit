@@ -3,10 +3,6 @@
 using namespace s3d::gui;
 
 void UIRect::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	if (fillInner) {
 		m_rect.draw(backgroundColor);
 	}
@@ -109,8 +105,7 @@ bool UIRect::mouseWheel() {
 	return false;
 }
 
-void UIRect::updateMouseEvent() {
+void UIRect::update() {
 	m_preMouseOver = m_mouseOver;
 	m_mouseOver = m_rect.mouseOver();
-	UIComponent::updateMouseEvent();
 }

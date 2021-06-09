@@ -61,9 +61,9 @@ namespace s3d::gui {
 			return m_userInterfaces;
 		}
 
+	protected:
 		void updateLayer() override;
 
-	protected:
 		bool mouseWheel() override;
 
 	private:

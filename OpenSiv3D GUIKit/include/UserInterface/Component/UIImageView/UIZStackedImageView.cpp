@@ -21,10 +21,6 @@ void UIZStackedImageView::release() {
 }
 
 void UIZStackedImageView::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	UIRect::draw();
 
 	restrictImageMovement();

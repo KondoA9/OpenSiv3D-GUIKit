@@ -71,11 +71,11 @@ namespace s3d::gui {
 
 		void appendImage(const Image& image, double alphaRate = 1.0);
 
+	protected:
 		void draw() override;
 
 		void updateLayer() override;
 
-	protected:
 		bool mouseLeftDragging() override;
 
 		bool mouseRightDragging() override;

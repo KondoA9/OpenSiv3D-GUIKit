@@ -44,11 +44,11 @@ namespace s3d::gui {
 
 		void paint(double thickness, const Color& color, bool antialiased = true);
 
+	protected:
 		void draw() override;
 
 		void updateLayer() override;
 
-	protected:
 		bool mouseLeftDragging() override;
 
 		bool mouseHovering() override;

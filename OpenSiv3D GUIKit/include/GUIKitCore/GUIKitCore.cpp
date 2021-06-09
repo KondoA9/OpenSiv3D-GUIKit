@@ -106,9 +106,9 @@ void GUIKit::update() {
 	}
 	// Draw the page
 	else {
-		UIComponent::_ResetMouseEvents();
+		UIComponent::ResetMouseEvents();
 		m_drawingPage->m_view.updateMouseEvent();
-		UIComponent::_CallMouseEvents();
+		UIComponent::CallMouseEvents();
 
 		if (WindowManager::DidResized()) {
 			m_drawingPage->onWindowResized();

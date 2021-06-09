@@ -5,7 +5,11 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	class GUIKit;
+
 	class UIView : public UIRect {
+		friend GUIKit;
+
 	protected:
 		Array<UIComponent*> m_userInterfaces;
 
@@ -20,6 +24,9 @@ namespace s3d::gui {
 			m_userInterfaces.push_back(&ui);
 		}
 
+		void updateLayerInvert();
+
+	protected:
 		void updateLayer() override;
 
 		bool updateLayerIfNeeded() override;
@@ -27,7 +34,5 @@ namespace s3d::gui {
 		void draw() override;
 
 		void updateMouseEvent() override;
-
-		void updateLayerInvert();
 	};
 }

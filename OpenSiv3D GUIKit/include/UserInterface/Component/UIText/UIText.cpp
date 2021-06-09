@@ -3,10 +3,6 @@
 using namespace s3d::gui;
 
 void UIText::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	UIRect::draw();
 
 	const double top = m_rect.y + paddingTop;

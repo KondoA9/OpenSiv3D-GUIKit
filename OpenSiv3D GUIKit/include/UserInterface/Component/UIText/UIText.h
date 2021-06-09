@@ -44,8 +44,9 @@ namespace s3d::gui {
 			UIText(U"", style, direction, backgroundColor, textColor)
 		{}
 
-		void draw() override;
-
 		void setPadding(double top, double bottom, double left, double right);
+
+	protected:
+		void draw() override;
 	};
 }

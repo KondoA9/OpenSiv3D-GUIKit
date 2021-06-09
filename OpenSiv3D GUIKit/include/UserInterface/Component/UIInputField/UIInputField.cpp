@@ -3,10 +3,6 @@
 using namespace s3d::gui;
 
 void UIInputField::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	if (m_focused) {
 		const String pre = text;
 		TextInput::UpdateText(text);

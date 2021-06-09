@@ -34,9 +34,9 @@ namespace s3d::gui {
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& textColor = Palette::White);
 
+	protected:
 		void draw() override;
 
-	protected:
 		bool mouseHovered() override;
 
 		bool mouseUnHovered() override;

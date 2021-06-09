@@ -21,8 +21,6 @@ namespace s3d::gui {
 			iconColor(iconColor)
 		{}
 
-		void draw() override;
-
 		void setAngle(double angle) {
 			m_angle = angle;
 		}
@@ -38,5 +36,8 @@ namespace s3d::gui {
 		void setIcon(const Texture& icon) {
 			m_icon = icon;
 		}
+
+	protected:
+		void draw() override;
 	};
 }

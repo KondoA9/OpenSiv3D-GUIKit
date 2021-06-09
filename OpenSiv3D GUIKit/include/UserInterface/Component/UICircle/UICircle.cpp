@@ -10,10 +10,6 @@ void UICircle::updateLayer() {
 }
 
 void UICircle::draw() {
-	if (!drawable()) {
-		return;
-	}
-
 	UIComponent::draw();
 	if (fillInner) {
 		m_circle.draw(backgroundColor);
@@ -118,7 +114,7 @@ bool UICircle::mouseWheel() {
 	return false;
 }
 
-void UICircle::updateMouseEvent() {
+void UICircle::update() {
+	m_preMouseOver = m_mouseOver;
 	m_mouseOver = m_circle.mouseOver();
-	UIComponent::updateMouseEvent();
 }

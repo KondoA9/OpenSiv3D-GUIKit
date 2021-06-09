@@ -97,11 +97,11 @@ void UIComponent::callMouseEventHandler(const MouseEvent& e) const {
 	}
 }
 
-void UIComponent::_ResetMouseEvents() {
+void UIComponent::ResetMouseEvents() {
 	m_CallableMouseEvents.release();
 }
 
-void UIComponent::_CallMouseEvents() {
+void UIComponent::CallMouseEvents() {
 	for (const auto& e : m_CallableMouseEvents) {
 		for (const auto& handler : e.handlers) {
 			handler.handler(e.mouseEvent);
