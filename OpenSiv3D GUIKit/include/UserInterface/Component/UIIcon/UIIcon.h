@@ -22,5 +22,13 @@ namespace s3d::gui {
 		{}
 
 		void draw() override;
+
+		void setIcon(const Icon& icon) {
+			m_icon = Texture(icon);
+		}
+
+		void setIcon(const Texture& icon) {
+			m_icon = icon;
+		}
 	};
 }
