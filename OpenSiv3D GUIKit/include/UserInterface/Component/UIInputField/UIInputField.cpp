@@ -5,7 +5,7 @@ using namespace s3d::gui;
 void UIInputField::draw() {
 	if (isFocused()) {
 		const String pre = text;
-		TextInput::UpdateText(text);
+		TextInput::UpdateText(text, TextInputMode::AllowBackSpaceDelete);
 		if (pre != text && m_onInputtedHandler) {
 			m_onInputtedHandler(text);
 		}
