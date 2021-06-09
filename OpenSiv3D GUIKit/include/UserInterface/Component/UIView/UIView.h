@@ -25,6 +25,8 @@ namespace s3d::gui {
 		}
 
 	protected:
+		void update() override;
+
 		void updateLayer() override;
 
 		bool updateLayerIfNeeded() override;

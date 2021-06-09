@@ -52,16 +52,26 @@ void UIView::draw() {
 	}
 }
 
-void UIView::updateMouseEvent() {
+void UIView::update() {
 	if (!exist || !controllable) {
 		return;
 	}
 
 	UIRect::update();
-	UIRect::updateMouseEvent();
 
 	for (auto& ui : m_userInterfaces) {
 		ui->update();
+	}
+}
+
+void UIView::updateMouseEvent() {
+	if (!exist || !controllable) {
+		return;
+	}
+
+	UIRect::updateMouseEvent();
+
+	for (auto& ui : m_userInterfaces) {
 		ui->updateMouseEvent();
 	}
 }

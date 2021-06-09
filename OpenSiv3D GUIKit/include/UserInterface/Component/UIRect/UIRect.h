@@ -13,7 +13,7 @@ namespace s3d::gui {
 		using UIComponent::UIComponent;
 
 	protected:
-		void update() final;
+		void update() override;
 
 		void draw() override;
 

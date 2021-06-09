@@ -107,6 +107,7 @@ void GUIKit::update() {
 	// Draw the page
 	else {
 		UIComponent::ResetMouseEvents();
+		m_drawingPage->m_view.update();
 		m_drawingPage->m_view.updateMouseEvent();
 		UIComponent::CallMouseEvents();
 
