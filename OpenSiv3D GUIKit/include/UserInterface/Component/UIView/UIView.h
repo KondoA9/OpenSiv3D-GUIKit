@@ -24,8 +24,6 @@ namespace s3d::gui {
 			m_userInterfaces.push_back(&ui);
 		}
 
-		void updateLayerInvert();
-
 	protected:
 		void updateLayer() override;
 
@@ -34,5 +32,8 @@ namespace s3d::gui {
 		void draw() override;
 
 		void updateMouseEvent() override;
+
+	private:
+		void updateLayerInvert();
 	};
 }

@@ -73,19 +73,28 @@ namespace s3d::gui {
 	protected:
 		virtual void updateLayer();
 
-		virtual void draw() {};
+		virtual void draw() = 0;
 
 		virtual void update() = 0;
 
 		virtual bool mouseLeftDown() = 0;
+
 		virtual bool mouseLeftUp() = 0;
+
 		virtual bool mouseLeftDragging() = 0;
+
 		virtual bool mouseRightDown() = 0;
+
 		virtual bool mouseRightUp() = 0;
+
 		virtual bool mouseRightDragging() = 0;
+
 		virtual bool mouseHovered() = 0;
+
 		virtual bool mouseHovering() = 0;
+
 		virtual bool mouseUnHovered() = 0;
+
 		virtual bool mouseWheel() = 0;
 
 		void callMouseEventHandler(const MouseEvent& e) const;
