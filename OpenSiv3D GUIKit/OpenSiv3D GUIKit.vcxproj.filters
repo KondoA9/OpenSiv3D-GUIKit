@@ -43,6 +43,7 @@
     <ClCompile Include="include\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
     <ClCompile Include="include\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIIcon\UIIcon.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIInputField\UIInputField.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Component\Component.h">
@@ -95,5 +96,6 @@
     <ClInclude Include="include\UserInterface\Component\UIToggleButton\UIToggleButton.h" />
     <ClInclude Include="include\PixelUnit\PixelUnit.h" />
     <ClInclude Include="include\UserInterface\Component\UIIcon\UIIcon.h" />
+    <ClInclude Include="include\UserInterface\Component\UIInputField\UIInputField.h" />
   </ItemGroup>
 </Project>

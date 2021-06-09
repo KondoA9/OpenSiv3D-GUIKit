@@ -116,6 +116,7 @@
     <ClCompile Include="include\UserInterface\Component\UIComponent.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIIcon\UIIcon.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIImageView\UIImageView.cpp" />
+    <ClCompile Include="include\UserInterface\Component\UIInputField\UIInputField.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIRect\UIRect.cpp" />
     <ClCompile Include="include\UserInterface\Component\UISlider\UISlider.cpp" />
     <ClCompile Include="include\UserInterface\Component\UIText\UIText.cpp" />
@@ -135,6 +136,7 @@
     <ClInclude Include="include\UserInterface\Component\UIComponentShared.h" />
     <ClInclude Include="include\UserInterface\Component\UIIcon\UIIcon.h" />
     <ClInclude Include="include\UserInterface\Component\UIImageView\UIZStackedImageView.h" />
+    <ClInclude Include="include\UserInterface\Component\UIInputField\UIInputField.h" />
     <ClInclude Include="include\UserInterface\Component\UISlider\UISlider.h" />
     <ClInclude Include="include\UserInterface\Component\UIToggleButton\UIToggleButton.h" />
     <ClInclude Include="include\UserInterface\MouseEvent\MouseEvent.h" />

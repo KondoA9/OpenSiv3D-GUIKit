@@ -9,9 +9,6 @@ void UIText::draw() {
 
 	UIRect::draw();
 
-	const Color color = DynamicColor::Text;
-	const auto t = UnifiedFont::Get(style)(text);
-
 	const double top = m_rect.y + paddingTop;
 	const double bottom = m_rect.y + m_rect.h - paddingBottom;
 	const double centerY = m_rect.y + m_rect.h * 0.5 + paddingTop - paddingBottom;
@@ -21,40 +18,40 @@ void UIText::draw() {
 
 	switch (direction)
 	{
-	case s3d::gui::TextDirection::LeftTop:
-		t.draw(Arg::topLeft(left, top), color);
+	case TextDirection::LeftTop:
+		m_drawingRect = m_font(text).draw(Arg::topLeft(left, top), textColor);
 		break;
 
-	case s3d::gui::TextDirection::LeftCenter:
-		t.draw(Arg::leftCenter(left, centerY), color);
+	case TextDirection::LeftCenter:
+		m_drawingRect = m_font(text).draw(Arg::leftCenter(left, centerY), textColor);
 		break;
 
-	case s3d::gui::TextDirection::LeftBottom:
-		t.draw(Arg::bottomLeft(left, bottom), color);
+	case TextDirection::LeftBottom:
+		m_drawingRect = m_font(text).draw(Arg::bottomLeft(left, bottom), textColor);
 		break;
 
-	case s3d::gui::TextDirection::CenterTop:
-		t.draw(Arg::topCenter(centerX, top), color);
+	case TextDirection::CenterTop:
+		m_drawingRect = m_font(text).draw(Arg::topCenter(centerX, top), textColor);
 		break;
 
-	case s3d::gui::TextDirection::Center:
-		t.draw(Arg::center(centerX, centerY), color);
+	case TextDirection::Center:
+		m_drawingRect = m_font(text).draw(Arg::center(centerX, centerY), textColor);
 		break;
 
-	case s3d::gui::TextDirection::CenterBottom:
-		t.draw(Arg::bottomCenter(centerX, bottom), color);
+	case TextDirection::CenterBottom:
+		m_drawingRect = m_font(text).draw(Arg::bottomCenter(centerX, bottom), textColor);
 		break;
 
-	case s3d::gui::TextDirection::RightTop:
-		t.draw(Arg::topRight(right, top), color);
+	case TextDirection::RightTop:
+		m_drawingRect = m_font(text).draw(Arg::topRight(right, top), textColor);
 		break;
 
-	case s3d::gui::TextDirection::RightCenter:
-		t.draw(Arg::rightCenter(right, centerY), color);
+	case TextDirection::RightCenter:
+		m_drawingRect = m_font(text).draw(Arg::rightCenter(right, centerY), textColor);
 		break;
 
-	case s3d::gui::TextDirection::RightBottom:
-		t.draw(Arg::bottomRight(right, bottom), color);
+	case TextDirection::RightBottom:
+		m_drawingRect = m_font(text).draw(Arg::bottomRight(right, bottom), textColor);
 		break;
 	}
 }

@@ -21,6 +21,7 @@
 #include "UserInterface/Component/UIToggleButton/UIToggleButton.h"
 #include "UserInterface/Component/UISlider/UISlider.h"
 #include "UserInterface/Component/UIIcon/UIIcon.h"
+#include "UserInterface/Component/UIInputField/UIInputField.h"
 
 // Page
 #include "Page/Page.h"

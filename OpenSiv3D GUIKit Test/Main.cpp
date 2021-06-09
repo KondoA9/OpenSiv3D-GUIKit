@@ -8,6 +8,7 @@ class StartPage : public gui::Page {
     gui::UIButton switchThemeButton;
     gui::UIRect cover;
     gui::UISlider slider;
+    gui::UIInputField inputField;
 
     void onLoaded() override {
         title = gui::UIText(U"GUIKit", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
@@ -51,11 +52,17 @@ class StartPage : public gui::Page {
         slider.setConstraint(gui::LayerDirection::Left);
         slider.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right, 0.0 , 0.5);
 
+        inputField.setConstraint(gui::LayerDirection::Height, switchThemeButton, gui::LayerDirection::Height, 0.0, 0.5);
+        inputField.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
+        inputField.setConstraint(gui::LayerDirection::Left, slider, gui::LayerDirection::Right);
+        inputField.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+
         m_view.appendComponent(title);
         m_view.appendComponent(nextButton);
         m_view.appendComponent(switchThemeButton);
         m_view.appendComponent(cover);
         m_view.appendComponent(slider);
+        m_view.appendComponent(inputField);
     }
 };
 
