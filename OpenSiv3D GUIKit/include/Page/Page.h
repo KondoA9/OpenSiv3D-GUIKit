@@ -50,6 +50,9 @@ namespace s3d::gui {
 		// Called when window resized
 		virtual void onWindowResized() {}
 
+		// Called when application terminated
+		virtual void onAppTerminated() {}
+
 		GUIKit& guikit() const {
 			return *m_guikit;
 		}

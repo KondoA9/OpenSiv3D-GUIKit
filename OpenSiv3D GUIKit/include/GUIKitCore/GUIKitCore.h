@@ -83,6 +83,8 @@ namespace s3d::gui {
 
 		void update();
 
+		void termination();
+
 		void animateColor();
 	};
 }

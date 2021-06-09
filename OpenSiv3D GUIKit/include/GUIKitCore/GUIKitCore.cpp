@@ -26,6 +26,8 @@ void GUIKit::run() {
 	while (System::Update()) {
 		update();
 	}
+
+	termination();
 }
 
 void GUIKit::update() {
@@ -131,6 +133,12 @@ void GUIKit::update() {
 	}
 
 	Graphics::SkipClearScreen();
+}
+
+void GUIKit::termination() {
+	for (auto& page : m_pages) {
+		page->onAppTerminated();
+	}
 }
 
 void GUIKit::setTitle(const String& title) {
