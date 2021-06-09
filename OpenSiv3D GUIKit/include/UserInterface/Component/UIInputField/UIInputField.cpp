@@ -8,7 +8,11 @@ void UIInputField::draw() {
 	}
 
 	if (m_focused) {
+		const String pre = text;
 		TextInput::UpdateText(text);
+		if (pre != text && m_onInputtedHandler) {
+			m_onInputtedHandler(text);
+		}
 	}
 
 	UIText::draw();

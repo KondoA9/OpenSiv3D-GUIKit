@@ -8,6 +8,7 @@ namespace s3d::gui {
 		bool m_focused = false; 
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
+		std::function<void(const String&)> m_onInputtedHandler;
 
 	public:
 		using UIText::UIText;
@@ -15,5 +16,9 @@ namespace s3d::gui {
 		void draw() override;
 
 		bool mouseLeftDown() override;
+
+		void setOnInputtedHandler(const std::function<void(const String&)>& func) {
+			m_onInputtedHandler = func;
+		}
 	};
 }
