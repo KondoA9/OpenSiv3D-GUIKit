@@ -12,7 +12,7 @@ namespace s3d::gui {
 
 	private:
 		Texture m_icon;
-		double angle = 0.0;
+		double m_angle = 0.0;
 
 	public:
 		UIIcon(Icon icon, const ColorTheme& iconColor = DynamicColor::Text, const ColorTheme& backgroundColor = DynamicColor::Clear):
@@ -22,6 +22,14 @@ namespace s3d::gui {
 		{}
 
 		void draw() override;
+
+		void setAngle(double angle) {
+			m_angle = angle;
+		}
+
+		void resetAngle() {
+			m_angle = 0.0;
+		}
 
 		void setIcon(const Icon& icon) {
 			m_icon = Texture(icon);
