@@ -71,6 +71,8 @@ namespace s3d::gui {
 
 		void appendImage(const Image& image, double alphaRate = 1.0);
 
+		void removeImage(size_t index);
+
 	protected:
 		void draw() override;
 

@@ -15,6 +15,11 @@ void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	}
 }
 
+void UIZStackedImageView::removeImage(size_t index) {
+	m_textures.remove_at(index);
+	m_alphas.remove_at(index);
+}
+
 void UIZStackedImageView::release() {
 	m_textures.release();
 	m_alphas.release();
