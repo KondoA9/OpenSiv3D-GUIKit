@@ -33,6 +33,7 @@ namespace s3d::gui {
 
 	private:
 		static Array<CallableMouseEvent> m_CallableMouseEvents;
+		static UIComponent* m_FocusedComponent;
 
 		Array<Layer*> m_dependentLayers;
 		Array<MouseEventHandler> m_mouseEventHandlers;
@@ -60,6 +61,14 @@ namespace s3d::gui {
 
 		void requestToUpdateLayer() {
 			m_needToUpdateLayer = true;
+		}
+
+		void focus() {
+			m_FocusedComponent = this;
+		}
+
+		bool isFocused()const {
+			return m_FocusedComponent == this;
 		}
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);

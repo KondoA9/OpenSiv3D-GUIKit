@@ -3,6 +3,7 @@
 using namespace s3d::gui;
 
 Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
+UIComponent* UIComponent::m_FocusedComponent = nullptr;
 
 void UIComponent::updateLayer() {
 	if (!exist) {

@@ -3,7 +3,7 @@
 using namespace s3d::gui;
 
 void UIInputField::draw() {
-	if (m_focused) {
+	if (isFocused()) {
 		const String pre = text;
 		TextInput::UpdateText(text);
 		if (pre != text && m_onInputtedHandler) {
@@ -13,7 +13,7 @@ void UIInputField::draw() {
 
 	UIText::draw();
 
-	if (m_focused) {
+	if (isFocused()) {
 		m_cursorVisibleTimer += Scene::DeltaTime();
 		if (m_cursorVisibleTimer > 0.5) {
 			m_cursorVisibleTimer = 0.0;
@@ -29,13 +29,4 @@ void UIInputField::draw() {
 			}
 		}
 	}
-}
-
-bool UIInputField::mouseLeftDown() {
-	if (UIRect::mouseLeftDown()) {
-		m_focused = true;
-		return true;
-	}
-
-	return false;
 }

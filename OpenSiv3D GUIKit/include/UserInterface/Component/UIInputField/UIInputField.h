@@ -5,7 +5,6 @@
 namespace s3d::gui {
 	class UIInputField : public UIText {
 	private:
-		bool m_focused = false; 
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
 		std::function<void(const String&)> m_onInputtedHandler;
@@ -19,7 +18,5 @@ namespace s3d::gui {
 
 	protected:
 		void draw() override;
-
-		bool mouseLeftDown() override;
 	};
 }

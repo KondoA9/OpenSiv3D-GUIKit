@@ -23,6 +23,7 @@ void UIRect::updateLayer() {
 
 bool UIRect::mouseLeftDown() {
 	if (!m_mouseLeftDraggingEnable && m_rect.leftClicked() && m_rect.y >= 0) {
+		focus();
 		callMouseEventHandler(MouseEvent(MouseEventType::LeftDown, this));
 		m_mouseLeftDraggingEnable = true;
 		return true;
