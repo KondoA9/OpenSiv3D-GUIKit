@@ -3,6 +3,9 @@
 // PixelUnit
 #include "PixelUnit/PixelUnit.h"
 
+// Util
+#include "Imaging/Imaging.h"
+
 // Color
 #include "ColorTheme/DynamicColor.h"
 
