@@ -12,6 +12,10 @@ namespace s3d::gui {
 	public:
 		using UIComponent::UIComponent;
 
+		Rect rect() const {
+			return m_rect;
+		}
+
 	protected:
 		void update() override;
 

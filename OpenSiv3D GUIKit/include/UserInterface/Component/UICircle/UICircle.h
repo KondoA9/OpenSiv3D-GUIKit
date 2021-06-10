@@ -10,6 +10,10 @@ namespace s3d::gui {
 	public:
 		using UIComponent::UIComponent;
 
+		Circle circle() const {
+			return m_circle;
+		}
+
 	protected:
 		void update() override;
 
