@@ -77,6 +77,8 @@ namespace s3d::gui {
 			m_alphas[index] = 255 * rate;
 		}
 
+		void setViewingCenterPixel(const Point& centerPixel);
+
 		void release();
 
 		void appendImage(const Image& image, double alphaRate = 1.0);
@@ -102,5 +104,7 @@ namespace s3d::gui {
 		double calcMaximumScale();
 
 		void restrictImageMovement();
+
+		void setDrawingCenterPos(const Vec2& pos);
 	};
 }

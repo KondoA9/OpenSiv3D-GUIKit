@@ -79,6 +79,8 @@ namespace s3d::gui {
 
 		void removeConstraint(LayerDirection direction);
 
+		void removeAllConstraints();
+
 	protected:
 		virtual void updateLayer();
 

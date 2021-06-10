@@ -76,6 +76,17 @@ void UIComponent::removeConstraint(LayerDirection direction) {
 	constraint->removeConstraint();
 }
 
+void UIComponent::removeAllConstraints() {
+	m_layer.top.removeConstraint();
+	m_layer.bottom.removeConstraint();
+	m_layer.left.removeConstraint();
+	m_layer.right.removeConstraint();
+	m_layer.centerX.removeConstraint();
+	m_layer.centerY.removeConstraint();
+	m_layer.height.removeConstraint();
+	m_layer.width.removeConstraint();
+}
+
 void UIComponent::callMouseEventHandler(const MouseEvent& e) const {
 	const auto hendlers = m_mouseEventHandlers.removed_if([e](const MouseEventHandler& handler) {
 		return handler.eventType != e.type;
