@@ -14,7 +14,6 @@ namespace s3d::gui {
 		Vec2 m_drawingCenterPos;
 		Point m_cursoredPixel, m_preCursoredPixel;
 		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0;
-		bool m_centerPosUpdated = false;
 
 	public:
 		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
@@ -43,6 +42,15 @@ namespace s3d::gui {
 
 		size_t texturesCount() const {
 			return m_textures.size();
+		}
+
+		Rect visibleTextureRect() const {
+			return Rect(
+				m_textureRegion.x < m_rect.x ? m_rect.x : m_textureRegion.x,
+				m_textureRegion.y < m_rect.y ? m_rect.y : m_textureRegion.y,
+				m_textureRegion.w < m_rect.w ? m_textureRegion.w : m_rect.w,
+				m_textureRegion.h < m_rect.h ? m_textureRegion.h : m_rect.h
+			);
 		}
 
 		void updateTexture(size_t index, const Image& image) {

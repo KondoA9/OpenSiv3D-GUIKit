@@ -112,9 +112,9 @@ void GUIKit::update() {
 		UIComponent::CallMouseEvents();
 
 		if (WindowManager::DidResized()) {
-			m_drawingPage->onWindowResized();
 			m_drawingPage->m_view.updateLayer();
 			m_drawingPage->m_view.updateLayerInvert();
+			m_drawingPage->onWindowResized();
 		}
 		else {
 			m_drawingPage->m_view.updateLayerIfNeeded();

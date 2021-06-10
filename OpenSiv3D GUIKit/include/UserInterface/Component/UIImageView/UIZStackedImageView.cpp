@@ -6,7 +6,6 @@ using namespace s3d::gui;
 void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	m_textures.push_back(DynamicTexture(image, TextureDesc::Mipped));
 	m_alphas.push_back(255 * alphaRate);
-	m_centerPosUpdated = false;
 
 	m_minScale = calcMinimumScale();
 	m_maxScale = calcMaximumScale();
@@ -23,6 +22,7 @@ void UIZStackedImageView::removeImage(size_t index) {
 void UIZStackedImageView::release() {
 	m_textures.release();
 	m_alphas.release();
+	m_drawingCenterPos = m_rect.center();
 }
 
 void UIZStackedImageView::draw() {
@@ -51,11 +51,6 @@ void UIZStackedImageView::updateLayer() {
 
 		m_scale = preScale * m_minScale / preMinScale;
 		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
-	}
-
-	if (!m_centerPosUpdated) {
-		m_drawingCenterPos = m_rect.center();
-		m_centerPosUpdated = true;
 	}
 }
 
