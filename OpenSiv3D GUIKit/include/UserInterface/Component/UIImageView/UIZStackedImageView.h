@@ -44,6 +44,10 @@ namespace s3d::gui {
 			return m_textures.size();
 		}
 
+		Rect textureRegion() const {
+			return m_textureRegion;
+		}
+
 		Rect visibleTextureRect() const {
 			return Rect(
 				m_textureRegion.x < m_rect.x ? m_rect.x : m_textureRegion.x,
