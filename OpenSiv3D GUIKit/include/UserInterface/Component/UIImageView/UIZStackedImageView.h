@@ -11,10 +11,10 @@ namespace s3d::gui {
 		Array <DynamicTexture> m_textures;
 		Array <double> m_alphas;
 		Rect m_textureRegion;
-		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0;
-		Point m_pixel, m_prePixel;
-		bool m_centerPosUpdated = false;
 		Vec2 m_drawingCenterPos;
+		Point m_cursoredPixel, m_preCursoredPixel;
+		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0;
+		bool m_centerPosUpdated = false;
 
 	public:
 		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
@@ -34,11 +34,11 @@ namespace s3d::gui {
 		}
 
 		Point currentPixel() const {
-			return m_pixel;
+			return m_cursoredPixel;
 		}
 
 		Point prePixel() const {
-			return m_prePixel;
+			return m_preCursoredPixel;
 		}
 
 		size_t texturesCount() const {
@@ -46,9 +46,7 @@ namespace s3d::gui {
 		}
 
 		void updateTexture(size_t index, const Image& image) {
-			if (m_textures.size() > index) {
-				m_textures[index].fillIfNotBusy(image);
-			}
+			m_textures[index].fillIfNotBusy(image);
 		}
 
 		void setScale(double scale) {

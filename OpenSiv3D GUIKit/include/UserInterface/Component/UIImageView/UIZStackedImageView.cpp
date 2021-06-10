@@ -1,18 +1,18 @@
 #include "UIZStackedImageView.h"
+#include "../../../Imaging/Imaging.h"
 
 using namespace s3d::gui;
 
 void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	m_textures.push_back(DynamicTexture(image, TextureDesc::Mipped));
 	m_alphas.push_back(255 * alphaRate);
-	m_scale = 1.0;
 	m_centerPosUpdated = false;
+
+	m_minScale = calcMinimumScale();
+	m_maxScale = calcMaximumScale();
+	m_scale = m_minScale;
+
 	requestToUpdateLayer();
-	if (m_textures.size() > 0) {
-		m_minScale = calcMinimumScale();
-		m_maxScale = calcMaximumScale();
-		m_scale = m_minScale;
-	}
 }
 
 void UIZStackedImageView::removeImage(size_t index) {
@@ -28,6 +28,10 @@ void UIZStackedImageView::release() {
 void UIZStackedImageView::draw() {
 	UIRect::draw();
 
+	if (m_textures) {
+		m_textureRegion = m_textures[0].scaled(m_scale).regionAt(m_drawingCenterPos);
+	}
+
 	restrictImageMovement();
 
 	for (size_t i : step(m_textures.size())) {
@@ -41,14 +45,12 @@ void UIZStackedImageView::updateLayer() {
 
 	UIRect::updateLayer();
 
-	if (m_textures.size() > 0) {
+	if (m_textures) {
 		m_minScale = calcMinimumScale();
 		m_maxScale = calcMaximumScale();
 
 		m_scale = preScale * m_minScale / preMinScale;
-		if (m_scale < m_minScale) {
-			m_scale = m_minScale;
-		}
+		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
 	}
 
 	if (!m_centerPosUpdated) {
@@ -74,14 +76,11 @@ bool UIZStackedImageView::mouseRightDragging() {
 }
 
 bool UIZStackedImageView::mouseHovering() {
-	if (UIRect::mouseHovering() && m_textures.size() > 0) {
-		m_textureRegion = m_textures[0].scaled(m_scale).regionAt(m_drawingCenterPos);
-		m_pixel = Point(static_cast<int>((Cursor::Pos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::Pos().y - m_textureRegion.y) / m_scale));
-		m_prePixel = Point(static_cast<int>((Cursor::PreviousPos().x - m_textureRegion.x) / m_scale), static_cast<int>((Cursor::PreviousPos().y - m_textureRegion.y) / m_scale));
-		if (m_pixel.x < 0) m_pixel.x = 0;
-		if (m_pixel.x > m_textures[0].width()) m_pixel.x = m_textures[0].width() - 1;
-		if (m_pixel.y < 0) m_pixel.y = 0;
-		if (m_pixel.y > m_textures[0].height()) m_pixel.y = m_textures[0].height() - 1;
+	if (UIRect::mouseHovering() && m_textures) {
+		m_cursoredPixel = Imaging::ScenePosToPixel(Cursor::Pos(), m_textureRegion, m_scale);
+		m_preCursoredPixel = Imaging::ScenePosToPixel(Cursor::PreviousPos(), m_textureRegion, m_scale);
+		m_cursoredPixel.x = Clamp(m_cursoredPixel.x, 0, m_textures[0].width() - 1);
+		m_cursoredPixel.y = Clamp(m_cursoredPixel.y, 0, m_textures[0].height() - 1);
 		return true;
 	}
 	return false;
@@ -89,30 +88,14 @@ bool UIZStackedImageView::mouseHovering() {
 
 bool UIZStackedImageView::mouseWheel() {
 	if (UIRect::mouseWheel() && manualScalingEnabled) {
-		double k = 0.0;
-		if (const int wheel = static_cast<int>(Sign(Mouse::Wheel())); wheel < 0) {
-			if (m_scale < m_maxScale) {
-				m_scale *= 1.6;
-				k = 1.0 - 1.6;
-				if (m_scale > m_maxScale) {
-					m_scale = m_maxScale;
-				}
-			}
-		}
-		else if (wheel > 0) {
-			if (m_scale > m_minScale) {
-				m_scale *= 0.625;
-				k = 1.0 - 0.625;
-				if (m_scale < m_minScale) {
-					m_scale = m_minScale;
-				}
-			}
-		}
+		const double scalingRate = static_cast<int>(Sign(Mouse::Wheel())) < 0 ? 1.6 : 0.625;
+		const double k = 1.0 - scalingRate;
 
-		if (k != 0.0) {
-			const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
-			m_drawingCenterPos.moveBy(diff);
-		}
+		m_scale *= scalingRate;
+		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
+
+		const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
+		m_drawingCenterPos.moveBy(diff);
 
 		return true;
 	}
@@ -143,8 +126,7 @@ void UIZStackedImageView::restrictImageMovement() {
 	else {
 		if (m_textureRegion.x > m_rect.x) {
 			m_drawingCenterPos.x = m_rect.x + m_textureRegion.w * 0.5;
-		}
-		if (m_textureRegion.x + m_textureRegion.w < m_rect.x + m_rect.w) {
+		} else if (m_textureRegion.x + m_textureRegion.w < m_rect.x + m_rect.w) {
 			m_drawingCenterPos.x = m_rect.x + m_rect.w - m_textureRegion.w * 0.5;
 		}
 	}
@@ -155,8 +137,7 @@ void UIZStackedImageView::restrictImageMovement() {
 	else {
 		if (m_textureRegion.y > m_rect.y) {
 			m_drawingCenterPos.y = m_rect.y + m_textureRegion.h * 0.5;
-		}
-		if (m_textureRegion.y + m_textureRegion.h < m_rect.y + m_rect.h) {
+		} else if (m_textureRegion.y + m_textureRegion.h < m_rect.y + m_rect.h) {
 			m_drawingCenterPos.y = m_rect.y + m_rect.h - m_textureRegion.h * 0.5;
 		}
 	}
