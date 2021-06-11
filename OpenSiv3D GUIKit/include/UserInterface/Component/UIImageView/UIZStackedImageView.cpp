@@ -53,6 +53,8 @@ void UIZStackedImageView::updateLayer() {
 
 		m_scale = preScale * m_minScale / preMinScale;
 		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
+
+		setDrawingCenterPos(m_drawingCenterPos);
 	}
 }
 
