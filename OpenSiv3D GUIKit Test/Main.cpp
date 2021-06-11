@@ -11,14 +11,15 @@ class StartPage : public gui::Page {
     gui::UIInputField inputField;
 
     void onLoaded() override {
-        title = gui::UIText(U"GUIKit", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
+        title = gui::UIText(U"GUIKit: ", U"LightMode", gui::UnifiedFontStyle::Medium, gui::TextDirection::Center);
         title.setConstraint(gui::LayerDirection::Top);
         title.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom, 0.0, 0.5);
         title.setConstraint(gui::LayerDirection::Left);
         title.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
-        title.addEventListener(gui::MouseEventType::LeftDown, [](gui::MouseEvent e) {
+        title.addEventListener(gui::MouseEventType::LeftDown, [this](gui::MouseEvent e) {
             static bool flag = true;
             e.component->backgroundColor.setColor(flag ? gui::DynamicColor::BackgroundSecondary : gui::DynamicColor::Background, 2.0);
+            title.text = U"Switched";
             flag = !flag;
             });
 

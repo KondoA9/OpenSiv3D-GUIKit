@@ -18,7 +18,7 @@ namespace s3d::gui {
 
 	class UIText : public UIRect {
 	public:
-		String text;
+		String label, text;
 		TextDirection direction;
 		ColorTheme textColor;
 
@@ -28,20 +28,31 @@ namespace s3d::gui {
 		RectF m_drawingRect;
 
 	public:
-		UIText(const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text)
-			:UIText(U"", UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
-		{}
-
-		UIText(const String& text, UnifiedFontStyle style, TextDirection direction, const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
+		UIText(const String& label, const String& text, 
+			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
+			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
 			UIRect(backgroundColor),
+			label(label),
 			text(text),
 			direction(direction),
 			textColor(textColor),
 			m_font(UnifiedFont::Get(style))
 		{}
 
+		UIText(const String & text, UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(U"", text, style, direction, backgroundColor, textColor)
+		{}
+
+		UIText(const String & text, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(U"", text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
+		{}
+
 		UIText(UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
-			UIText(U"", style, direction, backgroundColor, textColor)
+			UIText(U"", U"", style, direction, backgroundColor, textColor)
+		{}
+
+		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
+			:UIText(U"", backgroundColor, textColor)
 		{}
 
 		void setPadding(double top, double bottom, double left, double right);
