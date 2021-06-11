@@ -87,18 +87,8 @@ bool UIZStackedImageView::mouseHovering() {
 
 bool UIZStackedImageView::mouseWheel() {
 	if (UIRect::mouseWheel() && manualScalingEnabled) {
-		const double scalingRate = static_cast<int>(Sign(Mouse::Wheel())) < 0 ? 1.6 : 0.625;
-		const double k = 1.0 - scalingRate;
-
-		const double preScale = m_scale;
-		m_scale *= scalingRate;
-		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
-
-		if (m_scale != preScale) {
-			const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
-			setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
-			return true;
-		}
+		setScale(m_scale * (static_cast<int>(Sign(Mouse::Wheel())) < 0 ? 1.6 : 0.625));
+		return true;
 	}
 	return false;
 }

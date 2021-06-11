@@ -62,7 +62,18 @@ namespace s3d::gui {
 		}
 
 		void setScale(double scale) {
+			const double preScale = m_scale;
+
+			const double scalingRate = scale / preScale;
+			const double k = 1.0 - scalingRate;
+
 			m_scale = scale;
+			m_scale = Clamp(m_scale, m_minScale, m_maxScale);
+
+			if (m_scale != preScale) {
+				const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
+				setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
+			}
 		}
 
 		void setScaleBy(double magnification) {
