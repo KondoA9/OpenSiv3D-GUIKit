@@ -90,13 +90,15 @@ bool UIZStackedImageView::mouseWheel() {
 		const double scalingRate = static_cast<int>(Sign(Mouse::Wheel())) < 0 ? 1.6 : 0.625;
 		const double k = 1.0 - scalingRate;
 
+		const double preScale = m_scale;
 		m_scale *= scalingRate;
 		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
 
-		const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
-		setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
-
-		return true;
+		if (m_scale != preScale) {
+			const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
+			setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
+			return true;
+		}
 	}
 	return false;
 }

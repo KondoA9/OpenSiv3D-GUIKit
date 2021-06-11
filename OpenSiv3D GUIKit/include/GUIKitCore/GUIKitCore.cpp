@@ -127,8 +127,15 @@ void GUIKit::update() {
 		m_eventsRequestedToRunInMainThread.release();
 
 		// Run timeouts
-		for (auto& timeout : m_timeouts) {
-			timeout.update();
+		{
+			bool alive = false;
+			for (auto& timeout : m_timeouts) {
+				timeout.update();
+				alive |= timeout.isAlive();
+			}
+			if (!alive) {
+				m_timeouts.release();
+			}
 		}
 
 		// Draw
