@@ -43,6 +43,10 @@ namespace s3d::gui {
 			UIText(U"", text, style, direction, backgroundColor, textColor)
 		{}
 
+		UIText(const String & text, UnifiedFontStyle style,const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(U"", text, style, TextDirection::LeftCenter, backgroundColor, textColor)
+		{}
+
 		UIText(const String & text, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}

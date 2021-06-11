@@ -1,5 +1,7 @@
 #pragma once
 
+#include "../Timeout/Timeout.h"
+
 #include <Siv3D.hpp>
 
 #include <thread>
@@ -23,6 +25,7 @@ namespace s3d::gui {
 		bool m_uiChanging = false;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
+		Array<Timeout> m_timeouts;
 
 	public:
 		GUIKit() {
@@ -45,18 +48,17 @@ namespace s3d::gui {
 			m_drawingEvents.push_back(func);
 		}
 
-		void insertToMainThread(const std::function<void()>& func) {
-			std::lock_guard<std::mutex> lock(m_mtx);
-			m_eventsRequestedToRunInMainThread.push_back(func);
-		}
+		void insertToMainThread(const std::function<void()>& func);
 
-		void insertAsyncProcess(const std::function<void()>& heavyFunc, const std::function<void()>& uiUpdatingFunc) {
-			std::thread thread([this, heavyFunc, uiUpdatingFunc]() {
-				heavyFunc();
-				insertToMainThread(uiUpdatingFunc);
-				});
-			thread.detach();
-		}
+		void insertAsyncProcess(const std::function<void()>& heavyFunc, const std::function<void()>& uiUpdatingFunc);
+
+		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
+
+		bool stopTimeout(size_t id);
+
+		bool restartTimeout(size_t id);
+
+		bool isTimeoutAlive(size_t id);
 
 		template<class T>
 		void appendPage(T page) {

@@ -120,13 +120,21 @@ void GUIKit::update() {
 			m_drawingPage->m_view.updateLayerIfNeeded();
 		}
 
+		// Run inserted events
 		for (auto& f : m_eventsRequestedToRunInMainThread) {
 			f();
 		}
 		m_eventsRequestedToRunInMainThread.release();
 
+		// Run timeouts
+		for (auto& timeout : m_timeouts) {
+			timeout.update();
+		}
+
+		// Draw
 		m_drawingPage->m_view.draw();
 
+		// Additional drawing events
 		for (auto& f : m_drawingEvents) {
 			f();
 		}
@@ -185,3 +193,47 @@ void GUIKit::animateColor() {
 	ColorTheme::animate(t);
 }
 
+void GUIKit::insertToMainThread(const std::function<void()>& func) {
+	std::lock_guard<std::mutex> lock(m_mtx);
+	m_eventsRequestedToRunInMainThread.push_back(func);
+}
+
+void GUIKit::insertAsyncProcess(const std::function<void()>& heavyFunc, const std::function<void()>& uiUpdatingFunc) {
+	std::thread thread([this, heavyFunc, uiUpdatingFunc]() {
+		heavyFunc();
+		insertToMainThread(uiUpdatingFunc);
+		});
+	thread.detach();
+}
+
+size_t GUIKit::setTimeout(const std::function<void()>& func, double ms, bool threading) {
+	m_timeouts.push_back(Timeout(func, ms, threading));
+	return m_timeouts[m_timeouts.size() - 1].id();
+}
+
+bool GUIKit::stopTimeout(size_t id) {
+	for (auto& timeout : m_timeouts) {
+		if (timeout.id() == id) {
+			return timeout.stop();
+		}
+	}
+	return false;
+}
+
+bool GUIKit::restartTimeout(size_t id) {
+	for (auto& timeout : m_timeouts) {
+		if (timeout.id() == id) {
+			return timeout.restart();
+		}
+	}
+	return false;
+}
+
+bool GUIKit::isTimeoutAlive(size_t id) {
+	for (auto& timeout : m_timeouts) {
+		if (timeout.id() == id) {
+			return timeout.isAlive();
+		}
+	}
+	return false;
+}
