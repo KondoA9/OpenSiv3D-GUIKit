@@ -31,33 +31,7 @@ namespace s3d::gui {
 
 		Color color() const;
 
-		void setColor(const Color& lightColor, const Color& darkColor, double transitionTime = 0.0) {
-			if (m_isTransition) {
-				const auto c = color();
-				light = c;
-				dark = c;
-			}
-
-			if (transitionTime <= 0.0) {
-				light = lightColor;
-				dark = darkColor;
-			}
-
-			if (light.a == 0) {
-				light.setRGB(lightColor.r, lightColor.g, lightColor.b);
-			}
-
-			if (dark.a == 0) {
-				dark.setRGB(darkColor.r, darkColor.g, darkColor.b);
-			}
-
-			m_transitionLight = lightColor.a == 0 ? Color(light, 0) : lightColor;
-			m_transitionDark = darkColor.a == 0 ? Color(dark, 0) : darkColor;
-
-			m_transitionTime = transitionTime;
-			m_transitionTimer = 0.0;
-			m_isTransition = true;
-		}
+		void setColor(const Color& lightColor, const Color& darkColor, double transitionTime = 0.0);
 
 		void setColor(const Color& color, double transitionTime = 0.0) {
 			setColor(color, color, transitionTime);
@@ -98,9 +72,11 @@ namespace s3d::gui {
 		operator ColorF() const {
 			return static_cast<ColorF>(color());
 		}
+
+		static ColorMode CurrentColorMode();
 		
-		static void setColorMode(ColorMode mode);
-		static ColorMode colorMode();
-		static void animate(double _t);
+		static void SetColorMode(ColorMode mode);
+
+		static void Animate(double t);
 	};
 }

@@ -174,16 +174,16 @@ void GUIKit::switchPage(const String& identifier) {
 
 void GUIKit::setColorMode(ColorMode mode) {
 	m_animateColor = true;
-	ColorTheme::setColorMode(mode);
+	ColorTheme::SetColorMode(mode);
 }
 
 void GUIKit::toggleColorMode() {
-	setColorMode(ColorTheme::colorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
+	setColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
 }
 
 void GUIKit::animateColor() {
 	static double t = 0.0;
-	if (ColorTheme::colorMode() == ColorMode::Dark) {
+	if (ColorTheme::CurrentColorMode() == ColorMode::Dark) {
 		t += 5.0 * Scene::DeltaTime();
 		if (t > 1.0) {
 			t = 1.0;
@@ -197,7 +197,7 @@ void GUIKit::animateColor() {
 			m_animateColor = false;
 		}
 	}
-	ColorTheme::animate(t);
+	ColorTheme::Animate(t);
 }
 
 void GUIKit::insertToMainThread(const std::function<void()>& func) {

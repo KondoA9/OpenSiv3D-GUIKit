@@ -1,8 +1,8 @@
 #include "ColorTheme.h"
 
 namespace s3d::gui {
-	ColorMode currentMode;
-	double t = 0.0;
+	ColorMode CurrentMode;
+	double T = 0.0;
 
 	Color ColorTheme::color() const {
 		if (m_isTransition) {
@@ -12,34 +12,53 @@ namespace s3d::gui {
 				light = m_transitionLight;
 				dark = m_transitionDark;
 				m_isTransition = false;
-				return currentMode == ColorMode::Light ? light : dark;
+				return CurrentMode == ColorMode::Light ? light : dark;
 			}
-			const auto color = currentMode == ColorMode::Light ? light : dark;
-			const auto transitionColor = currentMode == ColorMode::Light ? m_transitionLight : m_transitionDark;
-			const auto r = (static_cast<double>(transitionColor.r) - static_cast<double>(color.r)) * k;
-			const auto g = (static_cast<double>(transitionColor.g) - static_cast<double>(color.g)) * k;
-			const auto b = (static_cast<double>(transitionColor.b) - static_cast<double>(color.b)) * k;
-			const auto a = (static_cast<double>(transitionColor.a) - static_cast<double>(color.a)) * k;
-			return Color(static_cast<uint32>(color.r + r), static_cast<uint32>(color.g + g), static_cast<uint32>(color.b + b), static_cast<uint32>(color.a + a));
+
+			return (CurrentMode == ColorMode::Light ? light : dark).lerp(CurrentMode == ColorMode::Light ? m_transitionLight : m_transitionDark, k);
 		}
 		else {
-			const auto r = (static_cast<double>(dark.r) - static_cast<double>(light.r)) * t;
-			const auto g = (static_cast<double>(dark.g) - static_cast<double>(light.g)) * t;
-			const auto b = (static_cast<double>(dark.b) - static_cast<double>(light.b)) * t;
-			const auto a = (static_cast<double>(dark.a) - static_cast<double>(light.a)) * t;
-			return Color(static_cast<uint32>(light.r + r), static_cast<uint32>(light.g + g), static_cast<uint32>(light.b + b), static_cast<uint32>(light.a + a));
+			return light.lerp(dark, T);
 		}
 	}
 
-	void ColorTheme::setColorMode(ColorMode mode) {
-		currentMode = mode;
+	void ColorTheme::setColor(const Color& lightColor, const Color& darkColor, double transitionTime) {
+		if (m_isTransition) {
+			const auto c = color();
+			light = c;
+			dark = c;
+		}
+
+		if (transitionTime <= 0.0) {
+			light = lightColor;
+			dark = darkColor;
+		}
+
+		if (light.a == 0) {
+			light.setRGB(lightColor.r, lightColor.g, lightColor.b);
+		}
+
+		if (dark.a == 0) {
+			dark.setRGB(darkColor.r, darkColor.g, darkColor.b);
+		}
+
+		m_transitionLight = lightColor.a == 0 ? Color(light, 0) : lightColor;
+		m_transitionDark = darkColor.a == 0 ? Color(dark, 0) : darkColor;
+
+		m_transitionTime = transitionTime;
+		m_transitionTimer = 0.0;
+		m_isTransition = true;
 	}
 
-	ColorMode ColorTheme::colorMode() {
-		return currentMode;
+	ColorMode ColorTheme::CurrentColorMode() {
+		return CurrentMode;
 	}
-	
-	void ColorTheme::animate(double _t) {
-		t = _t;
+
+	void ColorTheme::SetColorMode(ColorMode mode) {
+		CurrentMode = mode;
+	}
+
+	void ColorTheme::Animate(double t) {
+		T = t;
 	}
 }
