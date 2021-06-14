@@ -80,13 +80,11 @@ namespace s3d::gui {
 			m_scale *= magnification;
 		}
 
-		void resetScale() {
-			m_scale = m_minScale;
-		}
-
 		void setAlphaRate(size_t index, double rate) {
 			m_alphas[index] = 255 * rate;
 		}
+
+		void resetScale();
 
 		void setViewingCenterPixel(const Point& centerPixel);
 

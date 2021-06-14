@@ -7,10 +7,6 @@ void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	m_textures.push_back(DynamicTexture(image, TextureDesc::Mipped));
 	m_alphas.push_back(255 * alphaRate);
 
-	m_minScale = calcMinimumScale();
-	m_maxScale = calcMaximumScale();
-	m_scale = m_minScale;
-
 	setDrawingCenterPos(m_rect.center());
 
 	requestToUpdateLayer();
@@ -99,6 +95,12 @@ double UIZStackedImageView::calcMinimumScale() {
 		scale *= m_rect.h / h;
 	}
 	return scale;
+}
+
+void UIZStackedImageView::resetScale() {
+	m_minScale = calcMinimumScale();
+	m_maxScale = calcMaximumScale();
+	m_scale = m_minScale;
 }
 
 double UIZStackedImageView::calcMaximumScale() {
