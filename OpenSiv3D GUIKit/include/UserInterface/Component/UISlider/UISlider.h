@@ -43,15 +43,14 @@ namespace s3d::gui {
 		}
 
 		void setValue(double value) {
-			m_value = value;
-			restrictValue();
+			m_value = Clamp(value, m_min, m_max);
 			requestToUpdateLayer();
 		}
 
 		void setRange(double min, double max) {
 			m_min = min;
 			m_max = max;
-			restrictValue();
+			m_value = Clamp(m_value, m_min, m_max);
 			requestToUpdateLayer();
 		}
 
@@ -74,7 +73,5 @@ namespace s3d::gui {
 
 	private:
 		void initialize();
-
-		void restrictValue();
 	};
 }

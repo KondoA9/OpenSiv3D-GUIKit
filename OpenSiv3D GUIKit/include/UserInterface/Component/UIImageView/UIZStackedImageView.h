@@ -13,7 +13,7 @@ namespace s3d::gui {
 		Rect m_textureRegion;
 		Vec2 m_drawingCenterPos;
 		Point m_cursoredPixel, m_preCursoredPixel;
-		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0;
+		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
 
 	public:
 		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
@@ -30,6 +30,10 @@ namespace s3d::gui {
 
 		double maximumScale() const {
 			return m_maxScale;
+		}
+
+		double scaleRate() const {
+			return m_scaleRate;
 		}
 
 		Point currentPixel() const {
@@ -61,21 +65,6 @@ namespace s3d::gui {
 			m_textures[index].fillIfNotBusy(image);
 		}
 
-		void setScale(double scale) {
-			const double preScale = m_scale;
-
-			const double scalingRate = scale / preScale;
-			const double k = 1.0 - scalingRate;
-
-			m_scale = scale;
-			m_scale = Clamp(m_scale, m_minScale, m_maxScale);
-
-			if (m_scale != preScale) {
-				const auto diff = (m_rect.center() - m_drawingCenterPos) * k;
-				setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
-			}
-		}
-
 		void setScaleBy(double magnification) {
 			m_scale *= magnification;
 		}
@@ -83,6 +72,9 @@ namespace s3d::gui {
 		void setAlphaRate(size_t index, double rate) {
 			m_alphas[index] = 255 * rate;
 		}
+
+		// Set scale by rate from 0.0 to 1.0
+		void setScale(double rate);
 
 		void resetScale();
 

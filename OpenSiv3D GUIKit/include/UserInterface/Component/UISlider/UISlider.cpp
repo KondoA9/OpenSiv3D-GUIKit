@@ -18,8 +18,8 @@ void UISlider::draw() {
 bool UISlider::mouseLeftDragging() {
 	if (UIView::mouseLeftDragging()) {
 		const double pre = m_value;
-		m_value = m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left.value) / m_layer.width.value;
-		restrictValue();
+		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left.value) / m_layer.width.value, m_min, m_max);
+
 		if (pre != m_value) {
 			requestToUpdateLayer();
 			if (m_valueChangedHandler) {
@@ -90,9 +90,4 @@ void UISlider::initialize() {
 	appendComponent(railRight);
 	appendComponent(handle);
 	appendComponent(m_text);
-}
-
-void UISlider::restrictValue() {
-	if (m_value < m_min)m_value = m_min;
-	if (m_value > m_max)m_value = m_max;
 }

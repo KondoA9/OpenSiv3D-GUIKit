@@ -83,7 +83,7 @@ bool UIZStackedImageView::mouseHovering() {
 
 bool UIZStackedImageView::mouseWheel() {
 	if (UIRect::mouseWheel() && manualScalingEnabled) {
-		setScale(m_scale * (static_cast<int>(Sign(Mouse::Wheel())) < 0 ? 1.6 : 0.625));
+		setScale(m_scaleRate + (Sign(Mouse::Wheel()) < 0 ? 0.1 : -0.1));
 		return true;
 	}
 	return false;
@@ -101,11 +101,25 @@ void UIZStackedImageView::resetScale() {
 	m_minScale = calcMinimumScale();
 	m_maxScale = calcMaximumScale();
 	m_scale = m_minScale;
+	m_scaleRate = 0.0;
+}
+
+void UIZStackedImageView::setScale(double rate) {
+	m_scaleRate = Clamp(rate, 0.0, 1.0);
+
+	const double preScale = m_scale;
+
+	m_scale = m_minScale + (m_maxScale - m_minScale) * m_scaleRate * m_scaleRate;
+
+	if (m_scale != preScale) {
+		const auto diff = (m_rect.center() - m_drawingCenterPos) * (1.0 - m_scale / preScale);
+		setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
+	}
 }
 
 double UIZStackedImageView::calcMaximumScale() {
 	// Able to zoom in up to 20x20px
-	constexpr double limit = 1.0 / 20;
+	constexpr double limit = 1.0 / 40;
 	const double pxh = m_rect.h * limit, pxw = m_rect.w * limit;
 	return pxw > pxh ? pxh : pxw;
 }
