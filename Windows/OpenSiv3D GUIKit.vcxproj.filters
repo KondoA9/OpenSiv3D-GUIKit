@@ -1,0 +1,195 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="GUIKit">
+      <UniqueIdentifier>{d18ad27a-3448-423c-90bc-d9025cb8c6ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\ColorTheme">
+      <UniqueIdentifier>{763e9ae4-251a-4624-aaa8-21ba53c04535}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface">
+      <UniqueIdentifier>{29f96c91-8c0e-4b9f-a9d1-39203cf95980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface">
+      <UniqueIdentifier>{4faaad3a-684d-48df-8ce7-5621f734b1e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\Font">
+      <UniqueIdentifier>{2480c2de-8ad4-4ae0-bd1d-8e553f0472a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\Layer">
+      <UniqueIdentifier>{0c52fae9-ddd3-4ec7-9a25-ce4cd2614791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\Constraint">
+      <UniqueIdentifier>{c1aac708-f70f-429d-8896-0048554f2a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\Window">
+      <UniqueIdentifier>{249619ae-b99c-4922-ae0e-2dd4f07d8580}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\Timeout">
+      <UniqueIdentifier>{b9c0167d-3b26-444b-a408-0ce707d480c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\PixelUnit">
+      <UniqueIdentifier>{a0d0136b-6a55-4c46-9ce8-e929016f8675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\Page">
+      <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\GUIKitCore">
+      <UniqueIdentifier>{054a96f4-680e-475a-843d-cce404d55269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\MouseEvent">
+      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\Imaging">
+      <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
+      <Filter>GUIKit\ColorTheme</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICircle\UICircle.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp">
+      <Filter>GUIKit\UserInterface\Font</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Layer\Layer.cpp">
+      <Filter>GUIKit\UserInterface\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp">
+      <Filter>GUIKit\UserInterface\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\Window\WindowManager.cpp">
+      <Filter>GUIKit\Window</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\Timeout\Timeout.cpp">
+      <Filter>GUIKit\Timeout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp">
+      <Filter>GUIKit\UserInterface\PixelUnit</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp">
+      <Filter>GUIKit\GUIKitCore</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp">
+      <Filter>GUIKit\Imaging</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">
+      <Filter>GUIKit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.h">
+      <Filter>GUIKit\ColorTheme</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIButton.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UICircle.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIComponent.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIIcon.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIInputField.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIRect.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIText.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h">
+      <Filter>GUIKit\UserInterface\UserInterface</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UnifiedFont.h">
+      <Filter>GUIKit\UserInterface\Font</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h">
+      <Filter>GUIKit\UserInterface\Layer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\Constraint.h">
+      <Filter>GUIKit\UserInterface\Constraint</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\DynamicColor.h">
+      <Filter>GUIKit\ColorTheme</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\WindowManager.h">
+      <Filter>GUIKit\Window</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h">
+      <Filter>GUIKit\Timeout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\PixelUnit.h">
+      <Filter>GUIKit\UserInterface\PixelUnit</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\Page.h">
+      <Filter>GUIKit\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h">
+      <Filter>GUIKit\GUIKitCore</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEvent.h">
+      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h">
+      <Filter>GUIKit\Imaging</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp" />
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
+    <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp" />
+    <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp" />
+    <ClCompile Include="..\GUIKit\src\Timeout\Timeout.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICircle\UICircle.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Layer\Layer.cpp" />
+    <ClCompile Include="..\GUIKit\src\Window\WindowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\Constraint.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\DynamicColor.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEvent.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\Page.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\PixelUnit.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIButton.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UICircle.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIComponent.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIIcon.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIInputField.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIRect.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIText.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UnifiedFont.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\WindowManager.h" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>OpenSiv3D_GUIKit</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>$(SIV3D_0_4_3)\include;$(SIV3D_0_4_3)\include\ThirdParty;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SIV3D_0_4_3)\lib\Windows;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Intermediate\$(ProjectName)\Debug\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\Debug\Intermediate\</IntDir>
+    <TargetName>OpenSiv3D_GUIKit_d</TargetName>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)App</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>$(SIV3D_0_4_3)\include;$(SIV3D_0_4_3)\include\ThirdParty;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SIV3D_0_4_3)\lib\Windows;$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Intermediate\$(ProjectName)\Release\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\Release\Intermediate\</IntDir>
+    <TargetName>OpenSiv3D_GUIKit</TargetName>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)App</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\GUIKit\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)\lib"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_SILENCE_CXX17_RESULT_OF_DEPRECATION_WARNING;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\GUIKit\include</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)\lib"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
