@@ -100,8 +100,7 @@ double UIZStackedImageView::calcMinimumScale() {
 void UIZStackedImageView::resetScale() {
 	m_minScale = calcMinimumScale();
 	m_maxScale = calcMaximumScale();
-	m_scale = m_minScale;
-	m_scaleRate = 0.0;
+	setScale(0.0);
 }
 
 void UIZStackedImageView::setScale(double rate) {
