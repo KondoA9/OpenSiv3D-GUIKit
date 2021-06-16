@@ -9,30 +9,30 @@ namespace s3d::gui {
 	public:
 		String title;
 		Texture icon;
-		ColorTheme defaultColor, hoveredColor, textColor;
+		ColorTheme textColor, defaultColor, defaultTextColor, hoveredColor;
 
 	public:
 		UIButton(const String& title, const Texture& icon,
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& textColor = Palette::White);
+			const ColorTheme& defaultTextColor = Palette::White);
 
 		UIButton(
 			const String& title,
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& textColor = Palette::White);
+			const ColorTheme& defaultTextColor = Palette::White);
 
 		UIButton(
-			const Texture& _icon,
-			const ColorTheme& _defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& _hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& textColor = Palette::White);
+			const Texture& icon,
+			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
+			const ColorTheme& defaultTextColor = Palette::White);
 
 		UIButton(
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& textColor = Palette::White);
+			const ColorTheme& defaultTextColor = Palette::White);
 
 	protected:
 		void draw() override;

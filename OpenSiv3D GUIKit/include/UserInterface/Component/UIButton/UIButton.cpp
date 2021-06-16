@@ -6,36 +6,37 @@ using namespace s3d::gui;
 UIButton::UIButton(const String& title, const Texture& icon,
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
+	const ColorTheme& defaultTextColor) :
 	UIRect(defaultColor),
 	title(title),
 	icon(icon),
 	defaultColor(defaultColor),
+	textColor(defaultTextColor),
 	hoveredColor(hoveredColor),
-	textColor(textColor)
+	defaultTextColor(defaultTextColor)
 {}
 
 UIButton::UIButton(
 	const String& title,
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
-	UIButton(title, Texture(), defaultColor, hoveredColor, textColor)
+	const ColorTheme& defaultTextColor) :
+	UIButton(title, Texture(), defaultColor, hoveredColor, defaultTextColor)
 {}
 
 UIButton::UIButton(
-	const Texture& _icon,
-	const ColorTheme& _defaultColor,
-	const ColorTheme& _hoveredColor,
-	const ColorTheme& textColor) :
-	UIButton(U"", _icon, _defaultColor, _hoveredColor, textColor)
+	const Texture& icon,
+	const ColorTheme& defaultColor,
+	const ColorTheme& hoveredColor,
+	const ColorTheme& defaultTextColor) :
+	UIButton(U"", icon, defaultColor, hoveredColor, defaultTextColor)
 {}
 
 UIButton::UIButton(
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
-	UIButton(U"", defaultColor, hoveredColor, textColor)
+	const ColorTheme& defaultTextColor) :
+	UIButton(U"", defaultColor, hoveredColor, defaultTextColor)
 {}
 
 void UIButton::draw() {

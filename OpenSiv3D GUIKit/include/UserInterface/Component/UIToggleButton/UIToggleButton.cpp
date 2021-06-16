@@ -5,31 +5,41 @@ using namespace s3d::gui;
 UIToggleButton::UIToggleButton(const String& title, const Texture& icon,
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
-	UIButton(title, icon, defaultColor, hoveredColor, textColor)
+	const ColorTheme& textColor,
+	const ColorTheme& selectedColor,
+	const ColorTheme& selectedTextColor) :
+	UIButton(title, icon, defaultColor, hoveredColor, textColor),
+	selectedColor(selectedColor),
+	selectedTextColor(selectedTextColor)
 {}
 
 UIToggleButton::UIToggleButton(
 	const String& title,
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
-	UIToggleButton(title, Texture(), defaultColor, hoveredColor, textColor)
+	const ColorTheme& textColor,
+	const ColorTheme& selectedColor,
+	const ColorTheme& selectedTextColor) :
+	UIToggleButton(title, Texture(), defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
 {}
 
 UIToggleButton::UIToggleButton(
 	const Texture& icon,
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
-	UIToggleButton(U"", icon, defaultColor, hoveredColor, textColor)
+	const ColorTheme& textColor,
+	const ColorTheme& selectedColor,
+	const ColorTheme& selectedTextColor) :
+	UIToggleButton(U"", icon, defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
 {}
 
 UIToggleButton::UIToggleButton(
 	const ColorTheme& defaultColor,
 	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor) :
-	UIToggleButton(U"", defaultColor, hoveredColor, textColor)
+	const ColorTheme& textColor,
+	const ColorTheme& selectedColor,
+	const ColorTheme& selectedTextColor) :
+	UIToggleButton(U"", defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
 {}
 
 bool UIToggleButton::mouseHovered() {
@@ -59,6 +69,14 @@ bool UIToggleButton::mouseHovering() {
 bool UIToggleButton::mouseLeftDown() {
 	if (UIButton::mouseLeftDown()) {
 		m_enabled = !m_enabled;
+		if (m_enabled) {
+			backgroundColor.highlight(selectedColor);
+			textColor.highlight(selectedTextColor);
+		}
+		else {
+			backgroundColor.lowlight(hoveredColor);
+			textColor.lowlight (defaultTextColor);
+		}
 		return true;
 	}
 	return false;
