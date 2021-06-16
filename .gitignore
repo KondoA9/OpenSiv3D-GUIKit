@@ -362,6 +362,12 @@ MigrationBackup/
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
 
+# MacOS
+.DS_Store
+DerivedData/
+lib/
+*.app
+
 # OpenSiv3D GUIKit
 AS_DEBUG/
 *.exe

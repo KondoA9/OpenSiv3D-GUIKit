@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Timeout.h"
+#include "Page.h"
 
 #include <Siv3D.hpp>
 
@@ -8,7 +9,6 @@
 #include <mutex>
 
 namespace s3d::gui {
-	class Page;
 	enum class ColorMode;
 
 	class GUIKit {
