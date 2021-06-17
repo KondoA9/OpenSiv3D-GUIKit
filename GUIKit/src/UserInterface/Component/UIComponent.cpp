@@ -35,18 +35,16 @@ void UIComponent::updateMouseEvent() {
 		return;
 	}
 
-	bool result = false;
-
-	if (!result) result |= mouseLeftDown();
-	if (!result) result |= mouseLeftUp();
-	if (!result) result |= mouseLeftDragging();
-	if (!result) result |= mouseRightDown();
-	if (!result) result |= mouseRightUp();
-	if (!result) result |= mouseRightDragging();
-	if (!result) result |= mouseHovered();
-	if (!result) result |= mouseHovering();
-	if (!result) result |= mouseUnHovered();
-	if (!result) result |= mouseWheel();
+	mouseLeftDown();
+	mouseLeftUp();
+	mouseLeftDragging();
+	mouseRightDown();
+	mouseRightUp();
+	mouseRightDragging();
+	mouseHovered();
+	mouseHovering();
+	mouseUnHovered();
+	mouseWheel();
 }
 
 void UIComponent::setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant, double multiplier) {
