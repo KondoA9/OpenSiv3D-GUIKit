@@ -62,7 +62,19 @@ namespace s3d::gui {
 		}
 
 		void updateTexture(size_t index, const Image& image) {
+			m_textures[index].fill(image);
+		}
+
+		void updateTexture(size_t index, const Image& image, const Rect& rect) {
+			m_textures[index].fillRegion(image, rect);
+		}
+
+		void updateTextureIfNotBusy(size_t index, const Image& image) {
 			m_textures[index].fillIfNotBusy(image);
+		}
+
+		void updateTextureIfNotBusy(size_t index, const Image& image, const Rect& rect) {
+			m_textures[index].fillRegionIfNotBusy(image, rect);
 		}
 
 		void setScaleBy(double magnification) {
