@@ -103,6 +103,10 @@ namespace s3d::gui {
 
 		void updateLayer() override;
 
+		bool mouseLeftUp() override;
+
+		bool mouseLeftDown() override;
+
 		bool mouseLeftDragging() override;
 
 		bool mouseRightDragging() override;

@@ -54,6 +54,20 @@ void UIZStackedImageView::updateLayer() {
 	}
 }
 
+bool UIZStackedImageView::mouseLeftDown() {
+	if (m_textureRegion.leftClicked()) {
+		return UIRect::mouseLeftDown();
+	}
+	return false;
+}
+
+bool UIZStackedImageView::mouseLeftUp() {
+	if (m_textureRegion.leftReleased()) {
+		return UIRect::mouseLeftUp();
+	}
+	return false;
+}
+
 bool UIZStackedImageView::mouseLeftDragging() {
 	if (m_textureRegion.leftPressed()) {
 		return UIRect::mouseLeftDragging();
