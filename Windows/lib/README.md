@@ -1,0 +1,1 @@
+Static library will be output to this folder
