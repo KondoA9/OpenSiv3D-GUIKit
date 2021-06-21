@@ -81,8 +81,8 @@ void GUIKit::update() {
 		m_forwardPage->onAfterAppeared();
 		m_backwardPage->onAfterDisappeared();
 		m_drawingPage = m_forwardPage;
-		m_forwardPage.reset();
-		m_backwardPage.reset();
+		m_forwardPage = nullptr;
+		m_backwardPage = nullptr;
 		forwardUILoaded = false;
 		uiChanged = false;
 	}
@@ -152,7 +152,7 @@ void GUIKit::update() {
 }
 
 void GUIKit::termination() {
-	for (auto& page : m_pages) {
+	for (auto page : m_pages) {
 		page->onAppTerminated();
 	}
 }
@@ -163,8 +163,8 @@ void GUIKit::setTitle(const String& title) {
 }
 
 void GUIKit::switchPage(const String& identifier) {
-	if (const auto& ui = getUserInterface<Page>(identifier); !m_uiChanging && ui) {
-		m_forwardPage = ui;
+	if (const auto page = getPage<Page>(identifier); !m_uiChanging && page) {
+		m_forwardPage = page;
 		m_backwardPage = m_drawingPage;
 	}
 	else {

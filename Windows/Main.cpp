@@ -87,7 +87,7 @@ class NextPage : public gui::Page {
 
 void Main() {
     gui::GUIKit guikit;
-    guikit.appendPage(StartPage(U"StartPage"));
-    guikit.appendPage(NextPage(U"NextPage"));
+    guikit.appendPage(new StartPage(U"StartPage"));
+    guikit.appendPage(new NextPage(U"NextPage"));
     guikit.start();
 }

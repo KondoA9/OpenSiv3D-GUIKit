@@ -16,10 +16,10 @@ namespace s3d::gui {
 
 		String m_title;
 
-		Array<std::shared_ptr<Page>> m_pages;
-		std::shared_ptr<Page> m_drawingPage;
+		Array<Page*> m_pages;
+		Page* m_drawingPage;
 		// When the page changed, forwardPage will be appeared and backwardPage will be disappeared.
-		std::shared_ptr<Page> m_forwardPage, m_backwardPage;
+		Page* m_forwardPage, *m_backwardPage;
 
 		bool m_animateColor = false;
 		bool m_uiChanging = false;
@@ -32,7 +32,11 @@ namespace s3d::gui {
 			initialize();
 		}
 
-		~GUIKit() {}
+		~GUIKit() {
+			for (auto page : m_pages) {
+				delete page;
+			}
+		}
 
 		void start();
 
@@ -61,16 +65,16 @@ namespace s3d::gui {
 		bool isTimeoutAlive(size_t id);
 
 		template<class T>
-		void appendPage(T page) {
-			page.m_guikit = this;
-			m_pages.push_back(std::make_shared<T>(page));
+		void appendPage(T* page) {
+			page->m_guikit = this;
+			m_pages.push_back(page);
 		}
 
 		template<class T>
-		std::shared_ptr<T> getUserInterface(const String& identifier) const {
-			for (const auto& page : m_pages) {
+		T* getPage(const String& identifier) const {
+			for (const auto page : m_pages) {
 				if (page->m_identifier == identifier) {
-					return std::dynamic_pointer_cast<T>(page);
+					return static_cast<T*>(page);
 				}
 			}
 
