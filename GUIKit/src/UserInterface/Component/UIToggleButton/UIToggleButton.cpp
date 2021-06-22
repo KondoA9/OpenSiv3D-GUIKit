@@ -75,7 +75,7 @@ bool UIToggleButton::mouseLeftDown() {
 		}
 		else {
 			backgroundColor.lowlight(hoveredColor);
-			textColor.lowlight (defaultTextColor);
+			textColor.lowlight(defaultTextColor);
 		}
 		return true;
 	}

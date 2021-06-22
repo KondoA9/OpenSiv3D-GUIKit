@@ -47,10 +47,12 @@ namespace s3d::gui {
 
 		void setEnabled(bool enabled) {
 			if (!m_enabled && enabled) {
-				backgroundColor.highlight(hoveredColor);
+				backgroundColor.highlight(selectedColor);
+				textColor.highlight(selectedTextColor);
 			}
 			else if (m_enabled && !enabled) {
 				backgroundColor.lowlight(defaultColor);
+				textColor.highlight(defaultTextColor);
 			}
 			m_enabled = enabled;
 		}
