@@ -4,7 +4,7 @@
 using namespace s3d::gui;
 
 void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
-	m_textures.push_back(DynamicTexture(image, TextureDesc::Mipped));
+	m_textures.push_back(DynamicTexture(image, TextureDesc::Unmipped));
 	m_alphas.push_back(255 * alphaRate);
 
 	setDrawingCenterPos(m_rect.center());
