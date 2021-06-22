@@ -1,4 +1,5 @@
 #include <GUIKit/UISlider.h>
+#include <GUIKit/PixelUnit.h>
 
 using namespace s3d::gui;
 
@@ -16,7 +17,14 @@ void UISlider::draw() {
 }
 
 bool UISlider::mouseLeftDragging() {
-	if (UIView::mouseLeftDragging()) {
+	if (UIView::mouseLeftDragging() && !m_dragging) {
+		m_dragging = true;
+	}
+	if (MouseL.up() && m_dragging) {
+		m_dragging = false;
+	}
+
+	if (m_dragging) {
 		const double pre = m_value;
 		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left.value) / m_layer.width.value, m_min, m_max);
 
@@ -56,7 +64,7 @@ bool UISlider::mouseHovering() {
 }
 
 void UISlider::initialize() {
-	const double h = 5.0;
+	const double h = 5.0_px;
 	railLeft.drawFrame = true;
 	railLeft.backgroundColor = DynamicColor::DefaultBlue;
 	railLeft.setConstraint(LayerDirection::CenterY, handle, LayerDirection::CenterY);
@@ -71,7 +79,7 @@ void UISlider::initialize() {
 	railRight.setConstraint(LayerDirection::Left, handle, LayerDirection::CenterX);
 	railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-	const double r = 12;
+	const double r = 12_px;
 	handle.drawFrame = true;
 	handle.backgroundColor = DynamicColor::Background;
 	handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);

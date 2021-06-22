@@ -11,6 +11,7 @@ namespace s3d::gui {
 		double m_value = 0.0, m_min = 0.0, m_max = 1.0;
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_initialized = false;
+		bool m_dragging = false;
 
 		UIRect railLeft, railRight;
 		UICircle handle;
