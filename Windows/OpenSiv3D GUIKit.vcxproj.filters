@@ -111,6 +111,9 @@
     <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp">
       <Filter>GUIKit\Imaging</Filter>
     </ClCompile>
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp">
+      <Filter>GUIKit\GUIKitCore</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">

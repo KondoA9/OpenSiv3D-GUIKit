@@ -17,7 +17,7 @@ namespace s3d::gui {
 		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
 
 		bool m_animateColor = false;
-		bool m_uiChanging = false;
+		bool m_pageChanging = false, m_preparePageChanging = false;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;
@@ -49,6 +49,11 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
+		template<class T>
+		T* getPage(const String& identifier) const {
+			return getPagePtr<T>(identifier).get();
+		}
+
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
 		}
@@ -56,20 +61,8 @@ namespace s3d::gui {
 		template<class T>
 		void appendPage(const T& page) {
 			auto p = std::make_shared<T>(page);
-			m_pages.push_back(p);
 			p->m_guikit = this;
-		}
-
-		template<class T>
-		std::shared_ptr<T> getPage(const String& identifier) const {
-			for (const auto& page : m_pages) {
-				if (page->m_identifier == identifier) {
-					return std::dynamic_pointer_cast<T>(page);
-				}
-			}
-
-			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
-			return nullptr;
+			m_pages.push_back(p);
 		}
 
 	private:
@@ -79,10 +72,30 @@ namespace s3d::gui {
 
 		void update();
 
+		// Return true until the start up page appeared
+		bool updateOnStartUp();
+
+		// Return true until the page changed
+		bool updateOnPageChanging();
+
+		void updateOnStable();
+
+		void preparePageChanging();
+
 		void termination();
 
-		void animateColor();
+		bool animateColor();
 
-		
+		template<class T>
+		std::shared_ptr<T> getPagePtr(const String& identifier) const {
+			for (const auto& page : m_pages) {
+				if (page->m_identifier == identifier) {
+					return std::dynamic_pointer_cast<T>(page);
+				}
+			}
+
+			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
+			return nullptr;
+		}
 	};
 }
