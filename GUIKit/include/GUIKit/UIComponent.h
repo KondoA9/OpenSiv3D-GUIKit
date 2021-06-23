@@ -47,8 +47,22 @@ namespace s3d::gui {
 
 		virtual ~UIComponent() = default;
 
-		const Layer& layer() {
+		void setConstraint(LayerDirection direction, UIComponent & component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
+
+		void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
+
+		void setConstraint(LayerDirection direction, const std::function<double()>&func, double constant = 0.0, double multiplier = 1.0);
+
+		void removeConstraint(LayerDirection direction);
+
+		void removeAllConstraints();
+
+		const Layer& layer() const {
 			return m_layer;
+		}
+
+		bool isFocused() const {
+			return m_FocusedComponent == this;
 		}
 
 		void addEventListener(MouseEventType e, const std::function<void(const MouseEvent& e)>& f) {
@@ -66,20 +80,6 @@ namespace s3d::gui {
 		void focus() {
 			m_FocusedComponent = this;
 		}
-
-		bool isFocused()const {
-			return m_FocusedComponent == this;
-		}
-
-		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
-
-		void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
-
-		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant = 0.0, double multiplier = 1.0);
-
-		void removeConstraint(LayerDirection direction);
-
-		void removeAllConstraints();
 
 	protected:
 		virtual void updateLayer();
@@ -118,6 +118,10 @@ namespace s3d::gui {
 		virtual bool updateLayerIfNeeded();
 
 		virtual void updateMouseEvent();
+
+		bool updatable() const {
+			return exist && controllable;
+		}
 
 		bool drawable() const {
 			return !hidden && exist

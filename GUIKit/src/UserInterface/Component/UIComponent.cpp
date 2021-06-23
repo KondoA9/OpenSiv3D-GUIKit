@@ -6,10 +6,6 @@ Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
 UIComponent* UIComponent::m_FocusedComponent = nullptr;
 
 void UIComponent::updateLayer() {
-	if (!exist) {
-		return;
-	}
-
 	for (auto layer : m_dependentLayers) {
 		layer->updateConstraints();
 	}
@@ -17,10 +13,6 @@ void UIComponent::updateLayer() {
 }
 
 bool UIComponent::updateLayerIfNeeded() {
-	if (!exist) {
-		return false;
-	}
-
 	if (m_needToUpdateLayer) {
 		updateLayer();
 		m_needToUpdateLayer = false;
@@ -31,10 +23,6 @@ bool UIComponent::updateLayerIfNeeded() {
 }
 
 void UIComponent::updateMouseEvent() {
-	if (!exist || !controllable) {
-		return;
-	}
-
 	mouseLeftDown();
 	mouseLeftUp();
 	mouseLeftDragging();

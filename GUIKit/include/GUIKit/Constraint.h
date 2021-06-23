@@ -33,5 +33,9 @@ namespace s3d::gui {
 		void setConstraint(const std::function<double()>& func, double constant = 0.0, double multiplier = 1.0);
 
 		void removeConstraint();
+
+		/*operator double() const {
+			return value;
+		}*/
 	};
 }
