@@ -11,11 +11,11 @@ namespace s3d::gui {
 		friend GUIKit;
 
 	protected:
-		const String m_identifier;
-		GUIKit* m_guikit = nullptr;
 		UIView m_view = UIView();
 
 	private:
+		const String m_identifier;
+		GUIKit* m_guikit = nullptr;
 		bool m_loaded = false;
 
 	public:

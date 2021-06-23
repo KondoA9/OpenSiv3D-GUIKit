@@ -5,21 +5,16 @@
 
 #include <Siv3D.hpp>
 
-#include <thread>
 #include <mutex>
 
 namespace s3d::gui {
 	enum class ColorMode;
 
 	class GUIKit {
-		std::mutex m_mtx;
+		std::mutex m_mutex;
 
-		String m_title;
-
-		Array<Page*> m_pages;
-		Page* m_drawingPage;
-		// When the page changed, forwardPage will be appeared and backwardPage will be disappeared.
-		Page* m_forwardPage, *m_backwardPage;
+		Array<std::shared_ptr<Page>> m_pages;
+		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
 
 		bool m_animateColor = false;
 		bool m_uiChanging = false;
@@ -32,15 +27,9 @@ namespace s3d::gui {
 			initialize();
 		}
 
-		~GUIKit() {
-			for (auto page : m_pages) {
-				delete page;
-			}
-		}
+		~GUIKit() {}
 
 		void start();
-
-		void setTitle(const String& title);
 
 		void switchPage(const String& identifier);
 
@@ -48,13 +37,9 @@ namespace s3d::gui {
 
 		void toggleColorMode();
 
-		void addDrawingEvent(const std::function<void()>& func) {
-			m_drawingEvents.push_back(func);
-		}
-
 		void insertToMainThread(const std::function<void()>& func);
 
-		void insertAsyncProcess(const std::function<void()>& heavyFunc, const std::function<void()>& uiUpdatingFunc);
+		void insertAsyncProcess(const std::function<void()>& asyncFunc, const std::function<void()>& mainThreadFunc = std::function<void()>());
 
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 
@@ -64,17 +49,22 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
-		template<class T>
-		void appendPage(T* page) {
-			page->m_guikit = this;
-			m_pages.push_back(page);
+		void addDrawingEvent(const std::function<void()>& func) {
+			m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
-		T* getPage(const String& identifier) const {
-			for (const auto page : m_pages) {
+		void appendPage(const T& page) {
+			auto p = std::make_shared<T>(page);
+			m_pages.push_back(p);
+			p->m_guikit = this;
+		}
+
+		template<class T>
+		std::shared_ptr<T> getPage(const String& identifier) const {
+			for (const auto& page : m_pages) {
 				if (page->m_identifier == identifier) {
-					return static_cast<T*>(page);
+					return std::dynamic_pointer_cast<T>(page);
 				}
 			}
 
@@ -92,5 +82,7 @@ namespace s3d::gui {
 		void termination();
 
 		void animateColor();
+
+		
 	};
 }

@@ -30,7 +30,7 @@ class StartPage : public gui::Page {
         nextButton.setConstraint(gui::LayerDirection::Left);
         nextButton.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right, 0.0, 0.5);
         nextButton.addEventListener(gui::MouseEventType::LeftDown, [this]() {
-            m_guikit->switchPage(U"NextPage");
+            guikit().switchPage(U"NextPage");
             });
 
         switchThemeButton = gui::UIButton(U"Switch theme");
@@ -39,7 +39,7 @@ class StartPage : public gui::Page {
         switchThemeButton.setConstraint(gui::LayerDirection::Left, nextButton, gui::LayerDirection::Right);
         switchThemeButton.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
         switchThemeButton.addEventListener(gui::MouseEventType::LeftDown, [this]() {
-            m_guikit->toggleColorMode();
+            guikit().toggleColorMode();
             });
 
         cover.setConstraint(gui::LayerDirection::Height, switchThemeButton, gui::LayerDirection::Height, 0.0, 0.5);
@@ -78,7 +78,7 @@ class NextPage : public gui::Page {
         backButton.setConstraint(gui::LayerDirection::Left);
         backButton.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
         backButton.addEventListener(gui::MouseEventType::LeftDown, [this]() {
-            m_guikit->switchPage(U"StartPage");
+            guikit().switchPage(U"StartPage");
             });
 
         m_view.appendComponent(backButton);
@@ -87,7 +87,7 @@ class NextPage : public gui::Page {
 
 void Main() {
     gui::GUIKit guikit;
-    guikit.appendPage(new StartPage(U"StartPage"));
-    guikit.appendPage(new NextPage(U"NextPage"));
+    guikit.appendPage(StartPage(U"StartPage"));
+    guikit.appendPage(NextPage(U"NextPage"));
     guikit.start();
 }

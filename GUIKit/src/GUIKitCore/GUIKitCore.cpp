@@ -3,6 +3,8 @@
 #include <GUIKit/WindowManager.h>
 #include <GUIKit/UnifiedFont.h>
 
+#include <thread>
+
 using namespace s3d::gui;
 
 void GUIKit::initialize() {
@@ -81,8 +83,8 @@ void GUIKit::update() {
 		m_forwardPage->onAfterAppeared();
 		m_backwardPage->onAfterDisappeared();
 		m_drawingPage = m_forwardPage;
-		m_forwardPage = nullptr;
-		m_backwardPage = nullptr;
+		m_forwardPage.reset();
+		m_backwardPage.reset();
 		forwardUILoaded = false;
 		uiChanged = false;
 	}
@@ -152,18 +154,13 @@ void GUIKit::update() {
 }
 
 void GUIKit::termination() {
-	for (auto page : m_pages) {
+	for (auto& page : m_pages) {
 		page->onAppTerminated();
 	}
 }
 
-void GUIKit::setTitle(const String& title) {
-	m_title = title;
-	Window::SetTitle(title);
-}
-
 void GUIKit::switchPage(const String& identifier) {
-	if (const auto page = getPage<Page>(identifier); !m_uiChanging && page) {
+	if (const auto& page = getPage<Page>(identifier); !m_uiChanging && page) {
 		m_forwardPage = page;
 		m_backwardPage = m_drawingPage;
 	}
@@ -201,14 +198,16 @@ void GUIKit::animateColor() {
 }
 
 void GUIKit::insertToMainThread(const std::function<void()>& func) {
-	std::lock_guard<std::mutex> lock(m_mtx);
+	std::lock_guard<std::mutex> lock(m_mutex);
 	m_eventsRequestedToRunInMainThread.push_back(func);
 }
 
-void GUIKit::insertAsyncProcess(const std::function<void()>& heavyFunc, const std::function<void()>& uiUpdatingFunc) {
-	std::thread thread([this, heavyFunc, uiUpdatingFunc]() {
-		heavyFunc();
-		insertToMainThread(uiUpdatingFunc);
+void GUIKit::insertAsyncProcess(const std::function<void()>& asyncFunc, const std::function<void()>& mainThreadFunc) {
+	std::thread thread([this, asyncFunc, mainThreadFunc]() {
+		asyncFunc();
+		if (mainThreadFunc) {
+			insertToMainThread(mainThreadFunc);
+		}
 		});
 	thread.detach();
 }
