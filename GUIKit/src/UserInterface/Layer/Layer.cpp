@@ -5,43 +5,43 @@ using namespace s3d::gui;
 void Layer::updateConstraints() {
 	// y-axis constraints
 	// top & bottom
-	if (top.isConstraintExists() && bottom.isConstraintExists()) {
+	if (top.isExist() && bottom.isExist()) {
 		top.updateConstraint();
 		bottom.updateConstraint();
-		height.value = bottom.value - top.value;
-		centerY.value = top.value + height.value * 0.5;
+		height = bottom - top;
+		centerY = top + height * 0.5;
 	}
 	// top / bottom & height
-	else if (top.isConstraintExists() && height.isConstraintExists()) {
+	else if (top.isExist() && height.isExist()) {
 		top.updateConstraint();
 		height.updateConstraint();
-		bottom.value = top.value + height.value;
-		centerY.value = top.value + height.value * 0.5;
+		bottom = top + height;
+		centerY = top + height * 0.5;
 	}
-	else if (bottom.isConstraintExists() && height.isConstraintExists()) {
+	else if (bottom.isExist() && height.isExist()) {
 		bottom.updateConstraint();
 		height.updateConstraint();
-		top.value = bottom.value - height.value;
-		centerY.value = top.value + height.value * 0.5;
+		top = bottom - height;
+		centerY = top + height * 0.5;
 	}
 	// top / bottom / height & centerY
-	else if (top.isConstraintExists() && centerY.isConstraintExists()) {
+	else if (top.isExist() && centerY.isExist()) {
 		top.updateConstraint();
 		centerY.updateConstraint();
-		height.value = (centerY.value - top.value) * 2;
-		bottom.value = top.value + height.value;
+		height = (centerY - top) * 2;
+		bottom = top + height;
 	}
-	else if (bottom.isConstraintExists() && centerY.isConstraintExists()) {
+	else if (bottom.isExist() && centerY.isExist()) {
 		bottom.updateConstraint();
 		centerY.updateConstraint();
-		height.value = (bottom.value - centerY.value) * 2;
-		top.value = bottom.value - height.value;
+		height = (bottom - centerY) * 2;
+		top = bottom - height;
 	}
-	else if (height.isConstraintExists() && centerY.isConstraintExists()) {
+	else if (height.isExist() && centerY.isExist()) {
 		height.updateConstraint();
 		centerY.updateConstraint();
-		top.value = centerY.value - height.value * 0.5;
-		bottom.value = top.value + height.value;
+		top = centerY - height * 0.5;
+		bottom = top + height;
 	}
 	else {
 		Logger << U"Y-axis constraints are invalid ";
@@ -49,43 +49,43 @@ void Layer::updateConstraints() {
 
 	// x-axis constraints
 	// left & right
-	if (left.isConstraintExists() && right.isConstraintExists()) {
+	if (left.isExist() && right.isExist()) {
 		left.updateConstraint();
 		right.updateConstraint();
-		width.value = right.value - left.value;
-		centerX.value = left.value + width.value * 0.5;
+		width = right - left;
+		centerX = left + width * 0.5;
 	}
 	// left / right & width
-	else if (left.isConstraintExists() && width.isConstraintExists()) {
+	else if (left.isExist() && width.isExist()) {
 		left.updateConstraint();
 		width.updateConstraint();
-		right.value = left.value + width.value;
-		centerX.value = left.value + width.value * 0.5;
+		right = left + width;
+		centerX = left + width * 0.5;
 	}
-	else if (right.isConstraintExists() && width.isConstraintExists()) {
+	else if (right.isExist() && width.isExist()) {
 		right.updateConstraint();
 		width.updateConstraint();
-		left.value = right.value - width.value;
-		centerX.value = left.value + width.value * 0.5;
+		left = right - width;
+		centerX = left + width * 0.5;
 	}
 	// left / right / width & centerX
-	else if (left.isConstraintExists() && centerX.isConstraintExists()) {
+	else if (left.isExist() && centerX.isExist()) {
 		left.updateConstraint();
 		centerX.updateConstraint();
-		width.value = (centerX.value - left.value) * 2;
-		right.value = left.value + width.value;
+		width = (centerX - left) * 2;
+		right = left + width;
 	}
-	else if (right.isConstraintExists() && centerX.isConstraintExists()) {
+	else if (right.isExist() && centerX.isExist()) {
 		right.updateConstraint();
 		centerX.updateConstraint();
-		width.value = (right.value - centerX.value) * 2;
-		left.value = right.value - width.value;
+		width = (right - centerX) * 2;
+		left = right - width;
 	}
-	else if (width.isConstraintExists() && centerX.isConstraintExists()) {
+	else if (width.isExist() && centerX.isExist()) {
 		width.updateConstraint();
 		centerX.updateConstraint();
-		left.value = centerX.value - width.value * 0.5;
-		right.value = left.value + width.value;
+		left = centerX - width * 0.5;
+		right = left + width;
 	}
 	else {
 		Logger << U"X-axis constraints are invalid ";

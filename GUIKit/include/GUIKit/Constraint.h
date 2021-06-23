@@ -4,10 +4,8 @@
 
 namespace s3d::gui {
 	struct Constraint {
-	public:
-		double value;
-
 	private:
+		double m_value;
 		bool m_exists = false;
 		std::function<double()> m_func;
 		double* m_watchingValue = nullptr;
@@ -17,12 +15,17 @@ namespace s3d::gui {
 	public:
 		~Constraint() {}
 
-		bool isConstraintExists() const {
+		bool isExist() const {
 			return m_exists;
 		}
 
+		// Return the pointer of the value
+		double* data() {
+			return &m_value;
+		}
+
 		void updateConstraint() {
-			value = m_func ? m_func() * m_multiplier + m_constant
+			m_value = m_func ? m_func() * m_multiplier + m_constant
 				: m_watchingValue == nullptr ? m_constant : *m_watchingValue * m_multiplier + m_constant;
 		}
 
@@ -34,8 +37,13 @@ namespace s3d::gui {
 
 		void removeConstraint();
 
-		/*operator double() const {
-			return value;
-		}*/
+		operator double() const {
+			return m_value;
+		}
+
+		Constraint operator =(double value) {
+			m_value = value;
+			return *this;
+		}
 	};
 }

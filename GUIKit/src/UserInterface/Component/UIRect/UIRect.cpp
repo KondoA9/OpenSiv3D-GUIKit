@@ -14,10 +14,10 @@ void UIRect::draw() {
 void UIRect::updateLayer() {
 	UIComponent::updateLayer();
 	m_rect = Rect(
-		static_cast<int>(m_layer.left.value),
-		static_cast<int>(m_layer.top.value),
-		static_cast<int>(m_layer.width.value),
-		static_cast<int>(m_layer.height.value)
+		static_cast<int>(m_layer.left),
+		static_cast<int>(m_layer.top),
+		static_cast<int>(m_layer.width),
+		static_cast<int>(m_layer.height)
 	);
 }
 

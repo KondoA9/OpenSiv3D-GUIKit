@@ -125,8 +125,8 @@ namespace s3d::gui {
 
 		bool drawable() const {
 			return !hidden && exist
-				&& m_layer.top.value <= Window::ClientHeight() && m_layer.bottom.value >= 0
-				&& m_layer.left.value <= Window::ClientWidth() && m_layer.right.value >= 0;
+				&& m_layer.top <= Window::ClientHeight() && m_layer.bottom >= 0
+				&& m_layer.left <= Window::ClientWidth() && m_layer.right >= 0;
 		}
 	};
 }

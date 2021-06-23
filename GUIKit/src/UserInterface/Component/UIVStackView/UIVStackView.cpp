@@ -35,7 +35,7 @@ void UIVStackView::updateLayer() {
 
 bool UIVStackView::mouseWheel() {
 	if (scrollingEnabled && UIView::mouseWheel()) {
-		if (m_currentRowsHeight >= m_layer.height.value) {
+		if (m_currentRowsHeight >= m_layer.height) {
 			m_topPositionConstant -= Mouse::Wheel() * 40;
 			m_topPositionConstant = m_topPositionConstant > 0.0 ? 0.0 : m_topPositionConstant;
 			m_layer.top.setConstraint(m_topPositionConstant);
@@ -71,13 +71,13 @@ void UIVStackView::setChildConstraints(size_t index) {
 
 void UIVStackView::calcCurrentRowHeight() {
 	const size_t rows = m_maxStackCount == 0 ? m_userInterfaces.size() : m_maxStackCount;
-	m_currentRowHeight = m_rowHeight == 0.0 ? m_layer.height.value / rows : m_rowHeight;
+	m_currentRowHeight = m_rowHeight == 0.0 ? m_layer.height / rows : m_rowHeight;
 	m_currentRowsHeight = m_currentRowHeight * rows;
 }
 
 void UIVStackView::adjustRowsBottomToViewBottom() {
-	if (m_currentRowsHeight < m_layer.height.value) {
-		const double tmp = m_layer.height.value - m_currentRowsHeight;
+	if (m_currentRowsHeight < m_layer.height) {
+		const double tmp = m_layer.height - m_currentRowsHeight;
 		const double t = m_topPositionConstant + tmp;
 		if (t < 0.0) {
 			m_topPositionConstant = t;

@@ -41,7 +41,7 @@ void UIComponent::setConstraint(LayerDirection direction, UIComponent& component
 	auto myConstraint = m_layer.constraintPtr(direction);
 	const auto opponentConstraint = component.m_layer.constraintPtr(toDirection);
 
-	myConstraint->setConstraint(&opponentConstraint->value, constant, multiplier);
+	myConstraint->setConstraint(opponentConstraint->data(), constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 

@@ -26,7 +26,7 @@ bool UISlider::mouseLeftDragging() {
 
 	if (m_dragging) {
 		const double pre = m_value;
-		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left.value) / m_layer.width.value, m_min, m_max);
+		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left) / m_layer.width, m_min, m_max);
 
 		if (pre != m_value) {
 			requestToUpdateLayer();
@@ -85,7 +85,7 @@ void UISlider::initialize() {
 	handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
 	handle.setConstraint(LayerDirection::Height, r);
 	handle.setConstraint(LayerDirection::CenterX, [this] {
-		return m_layer.left.value + m_layer.width.value * (m_value - m_min) / (m_max - m_min);
+		return m_layer.left + m_layer.width * (m_value - m_min) / (m_max - m_min);
 		});
 	handle.setConstraint(LayerDirection::Width, r);
 
