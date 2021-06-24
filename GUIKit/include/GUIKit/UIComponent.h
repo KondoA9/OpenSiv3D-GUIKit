@@ -97,9 +97,9 @@ namespace s3d::gui {
 
 		virtual void draw() = 0;
 
-		virtual void update() = 0;
+		virtual void updateMouseIntersection() = 0;
 
-		virtual void updateMouseEvent();
+		virtual void updateMouseEvents();
 
 		template<class T>
 		void callMouseEventHandler(const T& e) const {

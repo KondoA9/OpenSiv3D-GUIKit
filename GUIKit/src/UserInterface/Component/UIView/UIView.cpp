@@ -46,15 +46,22 @@ void UIView::draw() {
 	}
 }
 
-void UIView::updateMouseEvent() {
-	update();
-
-	UIRect::updateMouseEvent();
+void UIView::updateMouseIntersection() {
+	UIRect::updateMouseIntersection();
 
 	for (auto& ui : m_userInterfaces) {
 		if (ui->updatable()) {
-			ui->update();
-			ui->updateMouseEvent();
+			ui->updateMouseIntersection();
+		}
+	}
+}
+
+void UIView::updateMouseEvents() {
+	UIRect::updateMouseEvents();
+
+	for (auto& ui : m_userInterfaces) {
+		if (ui->updatable()) {
+			ui->updateMouseEvents();
 		}
 	}
 }

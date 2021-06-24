@@ -87,7 +87,7 @@ bool UIComponent::mouseWheel() {
 	return false;
 }
 
-void UIComponent::updateMouseEvent() {
+void UIComponent::updateMouseEvents() {
 	mouseLeftDown();
 	mouseLeftUp();
 	mouseLeftDragging();

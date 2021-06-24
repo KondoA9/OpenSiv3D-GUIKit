@@ -18,7 +18,7 @@ void UICircle::draw() {
 	}
 }
 
-void UICircle::update() {
+void UICircle::updateMouseIntersection() {
 	m_mouseLeftDown = m_circle.leftClicked();
 	m_mouseLeftUp = m_circle.leftReleased();
 	m_mouseLeftPress = m_circle.leftPressed();

@@ -21,7 +21,7 @@ void UIRect::updateLayer() {
 	);
 }
 
-void UIRect::update() {
+void UIRect::updateMouseIntersection() {
 	m_mouseLeftDown = m_rect.leftClicked();
 	m_mouseLeftUp = m_rect.leftReleased();
 	m_mouseLeftPress = m_rect.leftPressed();
