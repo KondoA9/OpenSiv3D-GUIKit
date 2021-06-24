@@ -17,7 +17,7 @@ namespace s3d::gui {
 		}
 
 	protected:
-		void update() override;
+		void update() final;
 
 		void draw() override;
 

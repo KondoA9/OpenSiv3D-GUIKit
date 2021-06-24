@@ -25,15 +25,13 @@ namespace s3d::gui {
 		}
 
 	protected:
-		void update() override;
+		void updateMouseEvent() final;
 
 		void updateLayer() override;
 
 		bool updateLayerIfNeeded() override;
 
 		void draw() override;
-
-		void updateMouseEvent() override;
 
 	private:
 		void updateLayerInvert();

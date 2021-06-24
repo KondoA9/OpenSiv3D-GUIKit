@@ -115,7 +115,6 @@ bool GUIKit::updateOnPageChanging() {
 void GUIKit::updateOnStable() {
 	// Update mouse events
 	UIComponent::ResetMouseEvents();
-	m_drawingPage->m_view.update();
 	m_drawingPage->m_view.updateMouseEvent();
 	UIComponent::CallMouseEvents();
 

@@ -46,21 +46,14 @@ void UIView::draw() {
 	}
 }
 
-void UIView::update() {
-	UIRect::update();
-
-	for (auto& ui : m_userInterfaces) {
-		if (ui->updatable()) {
-			ui->update();
-		}
-	}
-}
-
 void UIView::updateMouseEvent() {
+	update();
+
 	UIRect::updateMouseEvent();
 
 	for (auto& ui : m_userInterfaces) {
 		if (ui->updatable()) {
+			ui->update();
 			ui->updateMouseEvent();
 		}
 	}
