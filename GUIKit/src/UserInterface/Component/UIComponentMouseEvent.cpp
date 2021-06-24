@@ -91,12 +91,15 @@ void UIComponent::updateMouseEvent() {
 	mouseLeftDown();
 	mouseLeftUp();
 	mouseLeftDragging();
+
 	mouseRightDown();
 	mouseRightUp();
 	mouseRightDragging();
+
 	mouseHovered();
 	mouseHovering();
 	mouseUnHovered();
+
 	mouseWheel();
 }
 

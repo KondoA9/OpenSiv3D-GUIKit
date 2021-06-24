@@ -25,22 +25,21 @@ UISlider::UISlider(const String& label, UnifiedFontStyle style, TextDirection di
 				if (self->m_valueChangedHandler) {
 					self->m_valueChangedHandler(self->m_value);
 				}
-				return true;
 			}
 		}
 		});
 
 	addEventListener<MouseEvent::Hovered>([](const auto& e) {
 		auto self = static_cast<UISlider*>(e.component);
-		self->handle.backgroundColor = DynamicColor::DefaultBlue;
+		self->handle.backgroundColor.highlight(DynamicColor::DefaultBlue);
 		});
 
 	addEventListener<MouseEvent::UnHovered>([](const auto& e) {
 		auto self = static_cast<UISlider*>(e.component);
-		self->handle.backgroundColor = DynamicColor::Background;
+		self->handle.backgroundColor.lowlight(DynamicColor::Background);
 		});
 
-	addEventListener<MouseEvent::UnHovered>([]() {
+	addEventListener<MouseEvent::Hovering>([] {
 		Cursor::RequestStyle(CursorStyle::Hand);
 		});
 }
@@ -62,6 +61,7 @@ void UISlider::initialize() {
 	const double h = 5.0_px;
 	railLeft.drawFrame = true;
 	railLeft.backgroundColor = DynamicColor::DefaultBlue;
+	railLeft.penetrateMouseEvent = true;
 	railLeft.setConstraint(LayerDirection::CenterY, handle, LayerDirection::CenterY);
 	railLeft.setConstraint(LayerDirection::Height, h);
 	railLeft.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
@@ -69,6 +69,7 @@ void UISlider::initialize() {
 
 	railRight.drawFrame = true;
 	railRight.backgroundColor = DynamicColor::BackgroundSecondary;
+	railRight.penetrateMouseEvent = true;
 	railRight.setConstraint(LayerDirection::CenterY, handle, LayerDirection::CenterY);
 	railRight.setConstraint(LayerDirection::Height, h);
 	railRight.setConstraint(LayerDirection::Left, handle, LayerDirection::CenterX);
@@ -77,6 +78,7 @@ void UISlider::initialize() {
 	const double r = 12_px;
 	handle.drawFrame = true;
 	handle.backgroundColor = DynamicColor::Background;
+	handle.penetrateMouseEvent = true;
 	handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
 	handle.setConstraint(LayerDirection::Height, r);
 	handle.setConstraint(LayerDirection::CenterX, [this] {
@@ -84,6 +86,7 @@ void UISlider::initialize() {
 		});
 	handle.setConstraint(LayerDirection::Width, r);
 
+	m_text.penetrateMouseEvent = true;
 	m_text.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
 	m_text.setConstraint(LayerDirection::Bottom, handle, LayerDirection::Top);
 	m_text.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);

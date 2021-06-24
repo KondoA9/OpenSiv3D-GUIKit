@@ -99,6 +99,41 @@ namespace s3d::gui {
 
 		virtual void update() = 0;
 
+		virtual void updateMouseEvent();
+
+		template<class T>
+		void callMouseEventHandler(const T& e) const {
+			// Get handlers that are matched to called event type
+			const auto handlers = m_mouseEventHandlers.removed_if([e](const MouseEventHandler& handler) {
+				return handler.eventTypeId != e.id;
+				});
+
+			// Append handlers if event stack is empty or the component penetrates a mouse event
+			if (m_CallableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
+				m_CallableMouseEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+			}
+			else {
+				for (size_t i : step(m_CallableMouseEvents.size())) {
+					if (m_CallableMouseEvents[i].mouseEvent.id == e.id) {
+						m_CallableMouseEvents[i].mouseEvent = e;
+						m_CallableMouseEvents[i].handlers = handlers;
+						break;
+					}
+					// Append handler if a event that is same type of the event does not exists 
+					else if (i == m_CallableMouseEvents.size() - 1) {
+						m_CallableMouseEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+					}
+				}
+			}
+		}
+
+	private:
+		static void ResetMouseEvents();
+
+		static void CallMouseEvents();
+
+		virtual bool updateLayerIfNeeded();
+
 		bool mouseLeftDown();
 
 		bool mouseLeftUp();
@@ -118,42 +153,6 @@ namespace s3d::gui {
 		bool mouseUnHovered();
 
 		bool mouseWheel();
-
-		template<class T>
-		void callMouseEventHandler(const T& e) const {
-			// Get handlers that are matched to called event type
-			const auto handlers = m_mouseEventHandlers.removed_if([e](const MouseEventHandler& handler) {
-				return handler.eventTypeId != e.id;
-				});
-
-			// Append handlers if event stack is empty or the component penetrates a mouse event
-			if (m_CallableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
-				m_CallableMouseEvents.push_back({ e, handlers });
-			}
-			else {
-				for (size_t i : step(m_CallableMouseEvents.size())) {
-					// Exchange handler if a event that is same type of the event already exists
-					if (m_CallableMouseEvents[i].mouseEvent.id == e.id) {
-						m_CallableMouseEvents[i].mouseEvent = e;
-						m_CallableMouseEvents[i].handlers = handlers;
-						break;
-					}
-					// Append handler if a event that is same type of the event does not exists 
-					else if (i == m_CallableMouseEvents.size() - 1) {
-						m_CallableMouseEvents.push_back({ e, handlers });
-					}
-				}
-			}
-		}
-
-	private:
-		static void ResetMouseEvents();
-
-		static void CallMouseEvents();
-
-		virtual bool updateLayerIfNeeded();
-
-		virtual void updateMouseEvent();
 
 		bool drawable() const {
 			return !hidden && exist
