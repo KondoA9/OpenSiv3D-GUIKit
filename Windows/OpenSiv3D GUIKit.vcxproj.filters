@@ -153,6 +153,9 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
     </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\MouseEvent\MouseEvent.cpp">
+      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">

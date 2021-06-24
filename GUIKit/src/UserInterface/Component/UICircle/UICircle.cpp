@@ -21,7 +21,7 @@ void UICircle::draw() {
 bool UICircle::mouseLeftDown() {
 	if (!m_mouseRightDraggingEnable && m_circle.leftClicked() && m_circle.y >= 0) {
 		focus();
-		callMouseEventHandler(MouseEvent(MouseEventType::LeftDown, this));
+		callMouseEventHandler(MouseEvent::LeftDown(this));
 		m_mouseLeftDraggingEnable = true;
 		return true;
 	}
@@ -31,6 +31,7 @@ bool UICircle::mouseLeftDown() {
 bool UICircle::mouseLeftUp() {
 	if (m_mouseLeftDraggingEnable && !m_mouseOver || m_circle.leftReleased()) {
 		m_mouseLeftDraggingEnable = false;
+		callMouseEventHandler(MouseEvent::LeftUp(this));
 		return true;
 	}
 	return false;
@@ -38,7 +39,7 @@ bool UICircle::mouseLeftUp() {
 
 bool UICircle::mouseLeftDragging() {
 	if (m_circle.leftPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::LeftDragging, this));
+		callMouseEventHandler(MouseEvent::LeftDragging(this));
 		return true;
 	}
 	return false;
@@ -46,7 +47,7 @@ bool UICircle::mouseLeftDragging() {
 
 bool UICircle::mouseRightDown() {
 	if (!m_mouseRightDraggingEnable && m_circle.rightClicked() && m_circle.y >= 0) {
-		callMouseEventHandler(MouseEvent(MouseEventType::RightDown, this));
+		callMouseEventHandler(MouseEvent::RightDown(this));
 		m_mouseRightDraggingEnable = true;
 		return true;
 	}
@@ -56,7 +57,7 @@ bool UICircle::mouseRightDown() {
 bool UICircle::mouseRightUp() {
 	if (m_mouseRightDraggingEnable && (!m_mouseOver || m_circle.rightReleased())) {
 		m_mouseRightDraggingEnable = false;
-		callMouseEventHandler(MouseEvent(MouseEventType::RightUp, this));
+		callMouseEventHandler(MouseEvent::RightUp(this));
 		return true;
 	}
 	return false;
@@ -64,7 +65,7 @@ bool UICircle::mouseRightUp() {
 
 bool UICircle::mouseRightDragging() {
 	if (m_mouseRightDraggingEnable && m_circle.rightPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::RightDragging, this));
+		callMouseEventHandler(MouseEvent::RightDragging(this));
 		return true;
 	}
 	return false;
@@ -76,7 +77,7 @@ bool UICircle::mouseHovered() {
 		hovered = false;
 	}
 	else if (m_mouseOver) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Hovered, this));
+		callMouseEventHandler(MouseEvent::Hovered(this));
 		hovered = true;
 		return true;
 	}
@@ -85,7 +86,7 @@ bool UICircle::mouseHovered() {
 
 bool UICircle::mouseHovering() {
 	if (m_mouseOver) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Hovering, this));
+		callMouseEventHandler(MouseEvent::Hovering(this));
 		return true;
 	}
 	return false;
@@ -95,7 +96,7 @@ bool UICircle::mouseUnHovered() {
 	static bool hovered = false;
 	if (hovered && !m_mouseOver) {
 		if (m_mouseOver) {
-			callMouseEventHandler(MouseEvent(MouseEventType::UnHovered, this));
+			callMouseEventHandler(MouseEvent::UnHovered(this));
 			return true;
 		}
 		hovered = false;
@@ -108,7 +109,7 @@ bool UICircle::mouseUnHovered() {
 
 bool UICircle::mouseWheel() {
 	if (const double wheel = Mouse::Wheel(); m_mouseOver && wheel != 0.0) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Wheel, this));
+		callMouseEventHandler(MouseEvent::Wheel(this));
 		return true;
 	}
 	return false;

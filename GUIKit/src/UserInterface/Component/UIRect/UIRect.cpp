@@ -24,7 +24,7 @@ void UIRect::updateLayer() {
 bool UIRect::mouseLeftDown() {
 	if (!m_mouseLeftDraggingEnable && m_rect.leftClicked() && m_rect.y >= 0) {
 		focus();
-		callMouseEventHandler(MouseEvent(MouseEventType::LeftDown, this));
+		callMouseEventHandler(MouseEvent::LeftDown(this));
 		m_mouseLeftDraggingEnable = true;
 		return true;
 	}
@@ -34,7 +34,7 @@ bool UIRect::mouseLeftDown() {
 bool UIRect::mouseLeftUp() {
 	if (m_mouseLeftDraggingEnable && (!m_mouseOver || m_rect.leftReleased())) {
 		m_mouseLeftDraggingEnable = false;
-		callMouseEventHandler(MouseEvent(MouseEventType::LeftUp, this));
+		callMouseEventHandler(MouseEvent::LeftUp(this));
 		return true;
 	}
 	return false;
@@ -42,7 +42,7 @@ bool UIRect::mouseLeftUp() {
 
 bool UIRect::mouseLeftDragging() {
 	if (m_mouseLeftDraggingEnable && m_rect.leftPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::LeftDragging, this));
+		callMouseEventHandler(MouseEvent::LeftDragging(this));
 		return true;
 	}
 	return false;
@@ -50,7 +50,7 @@ bool UIRect::mouseLeftDragging() {
 
 bool UIRect::mouseRightDown() {
 	if (!m_mouseRightDraggingEnable && m_rect.rightClicked() && m_rect.y >= 0) {
-		callMouseEventHandler(MouseEvent(MouseEventType::RightDown, this));
+		callMouseEventHandler(MouseEvent::RightDown(this));
 		m_mouseRightDraggingEnable = true;
 		return true;
 	}
@@ -60,7 +60,7 @@ bool UIRect::mouseRightDown() {
 bool UIRect::mouseRightUp() {
 	if (m_mouseRightDraggingEnable && (!m_mouseOver || m_rect.rightReleased())) {
 		m_mouseRightDraggingEnable = false;
-		callMouseEventHandler(MouseEvent(MouseEventType::RightUp, this));
+		callMouseEventHandler(MouseEvent::RightUp(this));
 		return true;
 	}
 	return false;
@@ -68,7 +68,7 @@ bool UIRect::mouseRightUp() {
 
 bool UIRect::mouseRightDragging() {
 	if (m_mouseRightDraggingEnable && m_rect.rightPressed()) {
-		callMouseEventHandler(MouseEvent(MouseEventType::RightDragging, this));
+		callMouseEventHandler(MouseEvent::RightDragging(this));
 		return true;
 	}
 	return false;
@@ -76,7 +76,7 @@ bool UIRect::mouseRightDragging() {
 
 bool UIRect::mouseHovered() {
 	if (!m_preMouseOver && m_mouseOver) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Hovered, this));
+		callMouseEventHandler(MouseEvent::Hovered(this));
 		return true;
 	}
 	return false;
@@ -84,7 +84,7 @@ bool UIRect::mouseHovered() {
 
 bool UIRect::mouseHovering() {
 	if (m_mouseOver) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Hovering, this));
+		callMouseEventHandler(MouseEvent::Hovering(this));
 		return true;
 	}
 	return false;
@@ -92,7 +92,7 @@ bool UIRect::mouseHovering() {
 
 bool UIRect::mouseUnHovered() {
 	if (m_preMouseOver && !m_mouseOver) {
-		callMouseEventHandler(MouseEvent(MouseEventType::UnHovered, this));
+		callMouseEventHandler(MouseEvent::UnHovered(this));
 		return true;
 	}
 	return false;
@@ -100,7 +100,7 @@ bool UIRect::mouseUnHovered() {
 
 bool UIRect::mouseWheel() {
 	if (const double wheel = Mouse::Wheel(); m_mouseOver && wheel != 0.0) {
-		callMouseEventHandler(MouseEvent(MouseEventType::Wheel, this));
+		callMouseEventHandler(MouseEvent::Wheel(this));
 		return true;
 	}
 	return false;

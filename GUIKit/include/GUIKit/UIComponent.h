@@ -12,7 +12,8 @@ namespace s3d::gui {
 
 	class UIComponent {
 		struct CallableMouseEvent {
-			MouseEvent mouseEvent;
+			size_t eventType;
+			IMouseEvent mouseEvent;
 			Array<MouseEventHandler> handlers;
 		};
 
@@ -65,12 +66,18 @@ namespace s3d::gui {
 			return m_FocusedComponent == this;
 		}
 
-		void addEventListener(MouseEventType e, const std::function<void(const MouseEvent& e)>& f) {
-			m_mouseEventHandlers.push_back(MouseEventHandler(e, f));
+		template<class T>
+		void addEventListener(const std::function<void(T)>& f) {
+			auto handler = MouseEventHandler([f](IMouseEvent e) { f(*static_cast<T*>(&e)); });
+			handler.setEvent<T>();
+			m_mouseEventHandlers.push_back(handler);
 		}
 
-		void addEventListener(MouseEventType e, const std::function<void()>& f) {
-			m_mouseEventHandlers.push_back(MouseEventHandler(e, [f](const MouseEvent&) {f(); }));
+		template<class T>
+		void addEventListener(const std::function<void()>& f) {
+			auto handler = MouseEventHandler([f](const IMouseEvent&) { f(); });
+			handler.setEvent<T>();
+			m_mouseEventHandlers.push_back(handler);
 		}
 
 		void requestToUpdateLayer() {
@@ -108,7 +115,35 @@ namespace s3d::gui {
 
 		virtual bool mouseWheel() = 0;
 
-		void callMouseEventHandler(const MouseEvent& e) const;
+		template<class T>
+		void callMouseEventHandler(const T& e) const {
+			const size_t type = typeid(T).hash_code();
+
+			// Get handlers that are matched to called event type
+			const auto handlers = m_mouseEventHandlers.removed_if([type](const MouseEventHandler& handler) {
+				return handler.eventType != type;
+				});
+
+			// Append handlers if event stack is empty or the component penetrates a mouse event
+			if (m_CallableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
+				m_CallableMouseEvents.push_back({ type, e, handlers });
+			}
+			else {
+				for (size_t i : step(m_CallableMouseEvents.size())) {
+					// Exchange handler if a event that is same type of the event already exists
+					if (m_CallableMouseEvents[i].eventType == type) {
+						m_CallableMouseEvents[i].eventType = type;
+						m_CallableMouseEvents[i].mouseEvent = e;
+						m_CallableMouseEvents[i].handlers = handlers;
+						break;
+					}
+					// Append handler if a event that is same type of the event does not exists 
+					else if (i == m_CallableMouseEvents.size() - 1) {
+						m_CallableMouseEvents.push_back({ type, e, handlers });
+					}
+				}
+			}
+		}
 
 	private:
 		static void ResetMouseEvents();
