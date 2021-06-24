@@ -14,7 +14,21 @@ UIButton::UIButton(const String& title, const Texture& icon,
 	textColor(defaultTextColor),
 	hoveredColor(hoveredColor),
 	defaultTextColor(defaultTextColor)
-{}
+{
+	addEventListener<MouseEvent::Hovered>([](const auto& e) {
+		auto self = static_cast<UIButton*>(e.component);
+		self->backgroundColor.highlight(self->hoveredColor);
+		});
+
+	addEventListener<MouseEvent::UnHovered>([](const auto& e) {
+		auto self = static_cast<UIButton*>(e.component);
+		self->backgroundColor.lowlight(self->defaultColor);
+		});
+
+	addEventListener<MouseEvent::Hovering>([]() {
+		Cursor::RequestStyle(CursorStyle::Hand);
+		});
+}
 
 UIButton::UIButton(
 	const String& title,
@@ -47,28 +61,4 @@ void UIButton::draw() {
 	if (icon) {
 		icon.drawAt(m_rect.center(), textColor);
 	}
-}
-
-bool UIButton::mouseHovered() {
-	if (UIRect::mouseHovered()) {
-		backgroundColor.highlight(hoveredColor);
-		return true;
-	}
-	return false;
-}
-
-bool UIButton::mouseUnHovered() {
-	if (UIRect::mouseUnHovered()) {
-		backgroundColor.lowlight(defaultColor);
-		return true;
-	}
-	return false;
-}
-
-bool UIButton::mouseHovering() {
-	if (UIRect::mouseHovering()) {
-		Cursor::RequestStyle(CursorStyle::Hand);
-		return true;
-	}
-	return false;
 }

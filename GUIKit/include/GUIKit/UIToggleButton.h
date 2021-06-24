@@ -56,14 +56,5 @@ namespace s3d::gui {
 			}
 			m_enabled = enabled;
 		}
-
-	protected:
-		bool mouseHovered() override;
-
-		bool mouseUnHovered() override;
-
-		bool mouseHovering() override;
-
-		bool mouseLeftDown() override;
 	};
 }

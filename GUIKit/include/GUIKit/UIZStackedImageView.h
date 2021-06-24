@@ -16,9 +16,7 @@ namespace s3d::gui {
 		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
 
 	public:
-		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
-		{}
+		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background);
 
 		double scale() const {
 			return m_scale;
@@ -102,18 +100,6 @@ namespace s3d::gui {
 		void draw() override;
 
 		void updateLayer() override;
-
-		bool mouseLeftUp() override;
-
-		bool mouseLeftDown() override;
-
-		bool mouseLeftDragging() override;
-
-		bool mouseRightDragging() override;
-
-		bool mouseHovering() override;
-
-		bool mouseWheel() override;
 
 	private:
 		double calcMinimumScale();

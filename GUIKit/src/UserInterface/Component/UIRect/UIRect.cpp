@@ -21,92 +21,15 @@ void UIRect::updateLayer() {
 	);
 }
 
-bool UIRect::mouseLeftDown() {
-	if (!m_mouseLeftDraggingEnable && m_rect.leftClicked() && m_rect.y >= 0) {
-		focus();
-		callMouseEventHandler(MouseEvent::LeftDown(this));
-		m_mouseLeftDraggingEnable = true;
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseLeftUp() {
-	if (m_mouseLeftDraggingEnable && (!m_mouseOver || m_rect.leftReleased())) {
-		m_mouseLeftDraggingEnable = false;
-		callMouseEventHandler(MouseEvent::LeftUp(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseLeftDragging() {
-	if (m_mouseLeftDraggingEnable && m_rect.leftPressed()) {
-		callMouseEventHandler(MouseEvent::LeftDragging(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseRightDown() {
-	if (!m_mouseRightDraggingEnable && m_rect.rightClicked() && m_rect.y >= 0) {
-		callMouseEventHandler(MouseEvent::RightDown(this));
-		m_mouseRightDraggingEnable = true;
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseRightUp() {
-	if (m_mouseRightDraggingEnable && (!m_mouseOver || m_rect.rightReleased())) {
-		m_mouseRightDraggingEnable = false;
-		callMouseEventHandler(MouseEvent::RightUp(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseRightDragging() {
-	if (m_mouseRightDraggingEnable && m_rect.rightPressed()) {
-		callMouseEventHandler(MouseEvent::RightDragging(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseHovered() {
-	if (!m_preMouseOver && m_mouseOver) {
-		callMouseEventHandler(MouseEvent::Hovered(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseHovering() {
-	if (m_mouseOver) {
-		callMouseEventHandler(MouseEvent::Hovering(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseUnHovered() {
-	if (m_preMouseOver && !m_mouseOver) {
-		callMouseEventHandler(MouseEvent::UnHovered(this));
-		return true;
-	}
-	return false;
-}
-
-bool UIRect::mouseWheel() {
-	if (const double wheel = Mouse::Wheel(); m_mouseOver && wheel != 0.0) {
-		callMouseEventHandler(MouseEvent::Wheel(this));
-		return true;
-	}
-	return false;
-}
-
 void UIRect::update() {
+	m_mouseLeftDown = m_rect.leftClicked();
+	m_mouseLeftUp = m_rect.leftReleased();
+	m_mouseLeftPress = m_rect.leftPressed();
+
+	m_mouseRightDown = m_rect.rightClicked();
+	m_mouseRightUp = m_rect.rightReleased();
+	m_mouseRightPress = m_rect.rightPressed();
+
 	m_preMouseOver = m_mouseOver;
 	m_mouseOver = m_rect.mouseOver();
 }

@@ -18,10 +18,7 @@ namespace s3d::gui {
 		UIText m_text;
 
 	public:
-		UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
-			UIView(_backgroundColor),
-			m_text(UIText(label, style, direction))
-		{}
+		UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor = DynamicColor::Clear);
 
 		UISlider(const String & label, UnifiedFontStyle style, const ColorTheme & _backgroundColor = DynamicColor::Clear) :
 			UISlider(label, style, TextDirection::LeftBottom, _backgroundColor)
@@ -63,14 +60,6 @@ namespace s3d::gui {
 		void updateLayer() override;
 
 		void draw() override;
-
-		bool mouseLeftDragging() override;
-
-		bool mouseHovered() override;
-
-		bool mouseUnHovered() override;
-
-		bool mouseHovering() override;
 
 	private:
 		void initialize();

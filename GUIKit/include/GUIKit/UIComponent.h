@@ -29,6 +29,10 @@ namespace s3d::gui {
 
 	protected:
 		Layer m_layer;
+
+		// Mouse event
+		bool m_mouseLeftDown = false, m_mouseLeftUp = false, m_mouseLeftPress = false;
+		bool m_mouseRightDown = false, m_mouseRightUp = false, m_mouseRightPress = false;
 		bool m_mouseOver = false, m_preMouseOver = false;
 		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
 
@@ -75,7 +79,7 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		void addEventListener(const std::function<void(T)>& f) {
+		void addEventListener(const std::function<void(const T&)>& f) {
 			auto handler = MouseEventHandler([f](IMouseEvent e) { f(*static_cast<T*>(&e)); });
 			handler.setEvent<T>();
 			m_mouseEventHandlers.push_back(handler);
@@ -95,25 +99,25 @@ namespace s3d::gui {
 
 		virtual void update() = 0;
 
-		virtual bool mouseLeftDown() = 0;
+		bool mouseLeftDown();
 
-		virtual bool mouseLeftUp() = 0;
+		bool mouseLeftUp();
 
-		virtual bool mouseLeftDragging() = 0;
+		bool mouseLeftDragging();
 
-		virtual bool mouseRightDown() = 0;
+		bool mouseRightDown();
 
-		virtual bool mouseRightUp() = 0;
+		bool mouseRightUp();
 
-		virtual bool mouseRightDragging() = 0;
+		bool mouseRightDragging();
 
-		virtual bool mouseHovered() = 0;
+		bool mouseHovered();
 
-		virtual bool mouseHovering() = 0;
+		bool mouseHovering();
 
-		virtual bool mouseUnHovered() = 0;
+		bool mouseUnHovered();
 
-		virtual bool mouseWheel() = 0;
+		bool mouseWheel();
 
 		template<class T>
 		void callMouseEventHandler(const T& e) const {
@@ -151,14 +155,14 @@ namespace s3d::gui {
 
 		virtual void updateMouseEvent();
 
-		bool updatable() const {
-			return exist && controllable;
-		}
-
 		bool drawable() const {
 			return !hidden && exist
 				&& m_layer.top <= Window::ClientHeight() && m_layer.bottom >= 0
 				&& m_layer.left <= Window::ClientWidth() && m_layer.right >= 0;
+		}
+
+		bool updatable() const {
+			return exist && controllable && drawable();
 		}
 	};
 }

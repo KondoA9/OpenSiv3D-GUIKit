@@ -5,7 +5,7 @@ class StartPage : public gui::Page {
 
     gui::UIText title;
     gui::UIButton nextButton;
-    gui::UIButton switchThemeButton;
+    gui::UIToggleButton switchThemeButton;
     gui::UIRect cover;
     gui::UISlider slider;
     gui::UIInputField inputField;
@@ -33,7 +33,7 @@ class StartPage : public gui::Page {
             guikit().switchPage(U"NextPage");
             });
 
-        switchThemeButton = gui::UIButton(U"Switch theme");
+        switchThemeButton = gui::UIToggleButton(U"Switch theme", Palette::White, Palette::Aqua, Palette::Black, Palette::Red);
         switchThemeButton.setConstraint(gui::LayerDirection::Top, nextButton, gui::LayerDirection::Top);
         switchThemeButton.setConstraint(gui::LayerDirection::Bottom, nextButton, gui::LayerDirection::Bottom);
         switchThemeButton.setConstraint(gui::LayerDirection::Left, nextButton, gui::LayerDirection::Right);

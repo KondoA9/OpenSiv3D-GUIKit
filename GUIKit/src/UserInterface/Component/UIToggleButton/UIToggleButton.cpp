@@ -11,7 +11,29 @@ UIToggleButton::UIToggleButton(const String& title, const Texture& icon,
 	UIButton(title, icon, defaultColor, hoveredColor, textColor),
 	selectedColor(selectedColor),
 	selectedTextColor(selectedTextColor)
-{}
+{
+	addEventListener<MouseEvent::LeftDown>([](const MouseEvent::LeftDown& e) {
+		auto self = static_cast<UIToggleButton*>(e.component);
+		self->setEnabled(!self->isEnabled());
+		if (!self->isEnabled()) {
+			self->backgroundColor.highlight(self->hoveredColor);
+		}
+		});
+
+	addEventListener<MouseEvent::Hovered>([](const MouseEvent::Hovered& e) {
+		auto self = static_cast<UIToggleButton*>(e.component);
+		if (!self->isEnabled()) {
+			self->backgroundColor.highlight(self->hoveredColor);
+		}
+		});
+
+	addEventListener<MouseEvent::UnHovered>([](const MouseEvent::UnHovered& e) {
+		auto self = static_cast<UIToggleButton*>(e.component);
+		if (!self->isEnabled()) {
+			self->backgroundColor.lowlight(self->defaultColor);
+		}
+		});
+}
 
 UIToggleButton::UIToggleButton(
 	const String& title,
@@ -41,43 +63,3 @@ UIToggleButton::UIToggleButton(
 	const ColorTheme& selectedTextColor) :
 	UIToggleButton(U"", defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
 {}
-
-bool UIToggleButton::mouseHovered() {
-	if (!m_enabled && UIRect::mouseHovered()) {
-		backgroundColor.highlight(hoveredColor);
-		return true;
-	}
-	return false;
-}
-
-bool UIToggleButton::mouseUnHovered() {
-	if (!m_enabled && UIRect::mouseUnHovered()) {
-		backgroundColor.lowlight(defaultColor);
-		return true;
-	}
-	return false;
-}
-
-bool UIToggleButton::mouseHovering() {
-	if (UIRect::mouseHovering()) {
-		Cursor::RequestStyle(CursorStyle::Hand);
-		return true;
-	}
-	return false;
-}
-
-bool UIToggleButton::mouseLeftDown() {
-	if (UIButton::mouseLeftDown()) {
-		m_enabled = !m_enabled;
-		if (m_enabled) {
-			backgroundColor.highlight(selectedColor);
-			textColor.highlight(selectedTextColor);
-		}
-		else {
-			backgroundColor.lowlight(hoveredColor);
-			textColor.lowlight(defaultTextColor);
-		}
-		return true;
-	}
-	return false;
-}

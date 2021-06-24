@@ -2,6 +2,22 @@
 
 using namespace s3d::gui;
 
+UIVStackView::UIVStackView() :
+	UIView()
+{
+	addEventListener<MouseEvent::Wheel>([](const auto& e) {
+		auto self = static_cast<UIVStackView*>(e.component);
+		if (self->scrollingEnabled) {
+			if (self->m_currentRowsHeight >= self->m_layer.height) {
+				self->m_topPositionConstant -= e.wheel * 40;
+				self->m_topPositionConstant = self->m_topPositionConstant > 0.0 ? 0.0 : self->m_topPositionConstant;
+				self->m_layer.top.setConstraint(self->m_topPositionConstant);
+				self->updateLayer();
+			}
+		}
+		});
+}
+
 UIVStackView::~UIVStackView() {
 	releaseDeletableComponents();
 }
@@ -31,19 +47,6 @@ void UIVStackView::updateLayer() {
 	UIView::updateLayer();
 	calcCurrentRowHeight();
 	adjustRowsBottomToViewBottom();
-}
-
-bool UIVStackView::mouseWheel() {
-	if (scrollingEnabled && UIView::mouseWheel()) {
-		if (m_currentRowsHeight >= m_layer.height) {
-			m_topPositionConstant -= Mouse::Wheel() * 40;
-			m_topPositionConstant = m_topPositionConstant > 0.0 ? 0.0 : m_topPositionConstant;
-			m_layer.top.setConstraint(m_topPositionConstant);
-			updateLayer();
-			return true;
-		}
-	}
-	return false;
 }
 
 void UIVStackView::setChildConstraints(size_t index) {

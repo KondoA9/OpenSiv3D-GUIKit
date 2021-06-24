@@ -36,11 +36,5 @@ namespace s3d::gui {
 
 	protected:
 		void draw() override;
-
-		bool mouseHovered() override;
-
-		bool mouseUnHovered() override;
-
-		bool mouseHovering() override;
 	};
 }

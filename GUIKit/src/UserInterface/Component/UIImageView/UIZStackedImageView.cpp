@@ -3,6 +3,33 @@
 
 using namespace s3d::gui;
 
+UIZStackedImageView::UIZStackedImageView(const ColorTheme& _backgroundColor) :
+	UIRect(_backgroundColor)
+{
+	addEventListener<MouseEvent::RightDragging>([](const auto& e) {
+		auto self = static_cast<UIZStackedImageView*>(e.component);
+		const auto movement = Cursor::Pos() - Cursor::PreviousPos();
+		self->setDrawingCenterPos(self->m_drawingCenterPos.movedBy(movement));
+		});
+
+	addEventListener<MouseEvent::Hovering>([](const auto& e) {
+		auto self = static_cast<UIZStackedImageView*>(e.component);
+		if (self->m_textures) {
+			self->m_cursoredPixel = Imaging::ScenePosToPixel(Cursor::Pos(), self->m_textureRegion, self->m_scale);
+			self->m_preCursoredPixel = Imaging::ScenePosToPixel(Cursor::PreviousPos(), self->m_textureRegion, self->m_scale);
+			self->m_cursoredPixel.x = Clamp(self->m_cursoredPixel.x, 0, self->m_textures[0].width() - 1);
+			self->m_cursoredPixel.y = Clamp(self->m_cursoredPixel.y, 0, self->m_textures[0].height() - 1);
+		}
+		});
+
+	addEventListener<MouseEvent::Wheel>([](const auto& e) {
+		auto self = static_cast<UIZStackedImageView*>(e.component);
+		if (self->manualScalingEnabled) {
+			self->setScale(self->m_scaleRate + (Sign(e.wheel) < 0 ? 0.1 : -0.1));
+		}
+		});
+}
+
 void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	m_textures.push_back(DynamicTexture(image, TextureDesc::Unmipped));
 	m_alphas.push_back(255 * alphaRate);
@@ -52,55 +79,6 @@ void UIZStackedImageView::updateLayer() {
 
 		setDrawingCenterPos(m_drawingCenterPos);
 	}
-}
-
-bool UIZStackedImageView::mouseLeftDown() {
-	if (m_textureRegion.leftClicked()) {
-		return UIRect::mouseLeftDown();
-	}
-	return false;
-}
-
-bool UIZStackedImageView::mouseLeftUp() {
-	if (m_textureRegion.leftReleased()) {
-		return UIRect::mouseLeftUp();
-	}
-	return false;
-}
-
-bool UIZStackedImageView::mouseLeftDragging() {
-	if (m_textureRegion.leftPressed()) {
-		return UIRect::mouseLeftDragging();
-	}
-	return false;
-}
-
-bool UIZStackedImageView::mouseRightDragging() {
-	if (m_textureRegion.rightPressed() && UIRect::mouseRightDragging()) {
-		const auto movement = Cursor::Pos() - Cursor::PreviousPos();
-		setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
-		return true;
-	}
-	return false;
-}
-
-bool UIZStackedImageView::mouseHovering() {
-	if (UIRect::mouseHovering() && m_textures) {
-		m_cursoredPixel = Imaging::ScenePosToPixel(Cursor::Pos(), m_textureRegion, m_scale);
-		m_preCursoredPixel = Imaging::ScenePosToPixel(Cursor::PreviousPos(), m_textureRegion, m_scale);
-		m_cursoredPixel.x = Clamp(m_cursoredPixel.x, 0, m_textures[0].width() - 1);
-		m_cursoredPixel.y = Clamp(m_cursoredPixel.y, 0, m_textures[0].height() - 1);
-		return true;
-	}
-	return false;
-}
-
-bool UIZStackedImageView::mouseWheel() {
-	if (UIRect::mouseWheel() && manualScalingEnabled) {
-		setScale(m_scaleRate + (Sign(Mouse::Wheel()) < 0 ? 0.1 : -0.1));
-		return true;
-	}
-	return false;
 }
 
 double UIZStackedImageView::calcMinimumScale() {

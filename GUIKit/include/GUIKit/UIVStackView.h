@@ -22,7 +22,7 @@ namespace s3d::gui {
 		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
 	public:
-		using UIView::UIView;
+		UIVStackView();
 
 		~UIVStackView();
 
@@ -63,8 +63,6 @@ namespace s3d::gui {
 
 	protected:
 		void updateLayer() override;
-
-		bool mouseWheel() override;
 
 	private:
 		void setChildConstraints(size_t index);

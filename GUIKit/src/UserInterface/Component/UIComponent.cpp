@@ -22,19 +22,6 @@ bool UIComponent::updateLayerIfNeeded() {
 	return false;
 }
 
-void UIComponent::updateMouseEvent() {
-	mouseLeftDown();
-	mouseLeftUp();
-	mouseLeftDragging();
-	mouseRightDown();
-	mouseRightUp();
-	mouseRightDragging();
-	mouseHovered();
-	mouseHovering();
-	mouseUnHovered();
-	mouseWheel();
-}
-
 void UIComponent::setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant, double multiplier) {
 	m_dependentLayers.push_back(&component.m_layer);
 
@@ -73,16 +60,4 @@ void UIComponent::removeAllConstraints() {
 	m_layer.centerY.removeConstraint();
 	m_layer.height.removeConstraint();
 	m_layer.width.removeConstraint();
-}
-
-void UIComponent::ResetMouseEvents() {
-	m_CallableMouseEvents.release();
-}
-
-void UIComponent::CallMouseEvents() {
-	for (const auto& e : m_CallableMouseEvents) {
-		for (const auto& handler : e.handlers) {
-			handler.handler(e.mouseEvent);
-		}
-	}
 }

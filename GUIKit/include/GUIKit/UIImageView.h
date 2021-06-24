@@ -49,12 +49,6 @@ namespace s3d::gui {
 
 		void updateLayer() override;
 
-		bool mouseLeftDragging() override;
-
-		bool mouseHovering() override;
-
-		bool mouseWheel() override;
-
 	private:
 		double calcInitialScale();
 	};
