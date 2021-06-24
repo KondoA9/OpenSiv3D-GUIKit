@@ -43,49 +43,49 @@
     <Filter Include="GUIKit\Imaging">
       <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIButton">
+      <UniqueIdentifier>{ec9674fd-ca43-473c-8de7-b35a1209b4e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UICircle">
+      <UniqueIdentifier>{b8611e17-9b49-4ee2-950b-76ae75203468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIComponent">
+      <UniqueIdentifier>{44534fc3-1547-47be-92c3-a8e104ad3d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIIcon">
+      <UniqueIdentifier>{023d1fce-2d31-40cc-bf2a-f6970a5b79b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIRect">
+      <UniqueIdentifier>{3472bbf6-3b46-4541-8eae-96fe44faddad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIText">
+      <UniqueIdentifier>{da191142-abfd-426e-84d2-407fcf81d993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIToggleButton">
+      <UniqueIdentifier>{bdab30ce-4e38-4b56-a2a7-a82dca310c5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIView">
+      <UniqueIdentifier>{f3ce28c6-f3d2-468a-9708-e861cd2fdad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIImageView">
+      <UniqueIdentifier>{68fe6c95-4be8-4e0f-af9e-ed9c9236db3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIZStackedImageView">
+      <UniqueIdentifier>{bcb243aa-12fc-41e6-bdb2-5635a9e43d6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UISlider">
+      <UniqueIdentifier>{17c85d4d-06f8-4e04-b3d5-7ffe649a2dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIInputField">
+      <UniqueIdentifier>{64100a12-4a02-48d0-bdc7-03822862222a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIVStackView">
+      <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
       <Filter>GUIKit\ColorTheme</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICircle\UICircle.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp">
       <Filter>GUIKit\UserInterface\Font</Filter>
@@ -114,6 +114,45 @@
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp">
       <Filter>GUIKit\GUIKitCore</Filter>
     </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICircle\UICircle.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UICircle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIRect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIToggleButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIZStackedImageView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UISlider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIInputField</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">
@@ -121,45 +160,6 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.h">
       <Filter>GUIKit\ColorTheme</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIButton.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UICircle.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIComponent.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIIcon.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIInputField.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIRect.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIText.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h">
-      <Filter>GUIKit\UserInterface\UserInterface</Filter>
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\UnifiedFont.h">
       <Filter>GUIKit\UserInterface\Font</Filter>
@@ -193,6 +193,45 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h">
       <Filter>GUIKit\Imaging</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIButton.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIButton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UICircle.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UICircle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIComponent.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIIcon.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIText.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIRect.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIRect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIToggleButton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIZStackedImageView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UISlider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIInputField.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIInputField</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
