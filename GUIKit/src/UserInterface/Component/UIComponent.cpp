@@ -76,20 +76,24 @@ void UIComponent::removeAllConstraints() {
 }
 
 void UIComponent::callMouseEventHandler(const MouseEvent& e) const {
+	// Get handlers that are matched to called event type
 	const auto hendlers = m_mouseEventHandlers.removed_if([e](const MouseEventHandler& handler) {
 		return handler.eventType != e.type;
 		});
 
+	// Append handlers if event stack is empty or the component penetrates a mouse event
 	if (m_CallableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
 		m_CallableMouseEvents.push_back({ e, hendlers });
 	}
 	else {
 		for (size_t i : step(m_CallableMouseEvents.size())) {
+			// Exchange handler if a event that is same type of the event already exists
 			if (m_CallableMouseEvents[i].mouseEvent.type == e.type) {
 				m_CallableMouseEvents[i].mouseEvent = e;
 				m_CallableMouseEvents[i].handlers = hendlers;
 				break;
 			}
+			// Append handler if a event that is same type of the event does not exists 
 			else if (i == m_CallableMouseEvents.size() - 1) {
 				m_CallableMouseEvents.push_back({ e, hendlers });
 			}
