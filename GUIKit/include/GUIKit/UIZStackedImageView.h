@@ -8,12 +8,19 @@ namespace s3d::gui {
 		bool manualScalingEnabled = true;
 
 	private:
+		// Textures
 		Array <DynamicTexture> m_textures;
 		Array <double> m_alphas;
 		Rect m_textureRegion;
+
+		// Position
 		Vec2 m_drawingCenterPos;
 		Point m_cursoredPixel, m_preCursoredPixel;
+
+		// Scaling
 		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
+		const uint32 m_minPixel = 50;
+		uint32 m_maxPixel = 0;
 
 	public:
 		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background);

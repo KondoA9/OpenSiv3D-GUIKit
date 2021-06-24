@@ -25,7 +25,7 @@ UIZStackedImageView::UIZStackedImageView(const ColorTheme& _backgroundColor) :
 	addEventListener<MouseEvent::Wheel>([](const auto& e) {
 		auto self = static_cast<UIZStackedImageView*>(e.component);
 		if (self->manualScalingEnabled) {
-			self->setScale(self->m_scaleRate + (Sign(e.wheel) < 0 ? 0.1 : -0.1));
+			self->setScale(self->m_scaleRate + (Sign(e.wheel) < 0 ? 0.05 : -0.05));
 		}
 		});
 }
@@ -37,6 +37,9 @@ void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	setDrawingCenterPos(m_rect.center());
 
 	requestToUpdateLayer();
+
+	m_maxPixel = Max(image.width(), image.height());
+	m_maxPixel = Clamp(m_maxPixel, m_maxPixel, m_maxPixel);
 }
 
 void UIZStackedImageView::removeImage(size_t index) {
@@ -89,10 +92,8 @@ double UIZStackedImageView::calcMinimumScale() {
 	return scale;
 }
 
-void UIZStackedImageView::resetScale() {
-	m_minScale = calcMinimumScale();
-	m_maxScale = calcMaximumScale();
-	setScale(0.0);
+double UIZStackedImageView::calcMaximumScale() {
+	return m_minScale * m_maxPixel / m_minPixel;
 }
 
 void UIZStackedImageView::setScale(double rate) {
@@ -100,7 +101,7 @@ void UIZStackedImageView::setScale(double rate) {
 
 	const double preScale = m_scale;
 
-	m_scale = m_minScale + (m_maxScale - m_minScale) * m_scaleRate * m_scaleRate;
+	m_scale = m_minScale * m_maxPixel / (m_maxPixel - (m_maxPixel - m_minPixel) * m_scaleRate);
 
 	if (m_scale != preScale) {
 		const auto diff = (m_rect.center() - m_drawingCenterPos) * (1.0 - m_scale / preScale);
@@ -108,11 +109,10 @@ void UIZStackedImageView::setScale(double rate) {
 	}
 }
 
-double UIZStackedImageView::calcMaximumScale() {
-	// Able to zoom in up to 20x20px
-	constexpr double limit = 1.0 / 40;
-	const double pxh = m_rect.h * limit, pxw = m_rect.w * limit;
-	return pxw > pxh ? pxh : pxw;
+void UIZStackedImageView::resetScale() {
+	m_minScale = calcMinimumScale();
+	m_maxScale = calcMaximumScale();
+	setScale(0.0);
 }
 
 void UIZStackedImageView::restrictImageMovement() {
