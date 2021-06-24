@@ -153,9 +153,6 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
     </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\MouseEvent\MouseEvent.cpp">
-      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">
@@ -235,6 +232,12 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h">
       <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\IMouseEvent.h">
+      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEventHandler.h">
+      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

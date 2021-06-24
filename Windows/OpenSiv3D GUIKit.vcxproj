@@ -33,7 +33,6 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Layer\Layer.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\MouseEvent\MouseEvent.cpp" />
     <ClCompile Include="..\GUIKit\src\Window\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -43,8 +42,10 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\IMouseEvent.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\MouseEvent.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEventHandler.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Page.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\PixelUnit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h" />
