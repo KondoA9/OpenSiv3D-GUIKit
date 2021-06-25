@@ -42,15 +42,15 @@ UIButton::UIButton(
 void UIButton::initialize() {
 	addEventListener<MouseEvent::Hovered>([this] {
 		backgroundColor.highlight(hoveredColor);
-		});
+		}, true);
 
 	addEventListener<MouseEvent::UnHovered>([this] {
 		backgroundColor.lowlight(defaultColor);
-		});
+		}, true);
 
 	addEventListener<MouseEvent::Hovering>([] {
 		Cursor::RequestStyle(CursorStyle::Hand);
-		});
+		}, true);
 
 	UIRect::initialize();
 }

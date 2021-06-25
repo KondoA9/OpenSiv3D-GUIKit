@@ -3,31 +3,26 @@
 
 using namespace s3d::gui;
 
-UIZStackedImageView::UIZStackedImageView(const ColorTheme& _backgroundColor) :
-	UIRect(_backgroundColor)
-{
-	addEventListener<MouseEvent::RightDragging>([](const auto& e) {
-		auto self = static_cast<UIZStackedImageView*>(e.component);
+void UIZStackedImageView::initialize() {
+	addEventListener<MouseEvent::RightDragging>([this] {
 		const auto movement = Cursor::Pos() - Cursor::PreviousPos();
-		self->setDrawingCenterPos(self->m_drawingCenterPos.movedBy(movement));
-		});
+		setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
+		}, true);
 
-	addEventListener<MouseEvent::Hovering>([](const auto& e) {
-		auto self = static_cast<UIZStackedImageView*>(e.component);
-		if (self->m_textures) {
-			self->m_cursoredPixel = Imaging::ScenePosToPixel(Cursor::Pos(), self->m_textureRegion, self->m_scale);
-			self->m_preCursoredPixel = Imaging::ScenePosToPixel(Cursor::PreviousPos(), self->m_textureRegion, self->m_scale);
-			self->m_cursoredPixel.x = Clamp(self->m_cursoredPixel.x, 0, self->m_textures[0].width() - 1);
-			self->m_cursoredPixel.y = Clamp(self->m_cursoredPixel.y, 0, self->m_textures[0].height() - 1);
+	addEventListener<MouseEvent::Hovering>([this](const MouseEvent::Hovering& e) {
+		if (m_textures) {
+			m_cursoredPixel = Imaging::ScenePosToPixel(e.pos, m_textureRegion, m_scale);
+			m_preCursoredPixel = Imaging::ScenePosToPixel(e.previousPos, m_textureRegion, m_scale);
+			m_cursoredPixel.x = Clamp(m_cursoredPixel.x, 0, m_textures[0].width() - 1);
+			m_cursoredPixel.y = Clamp(m_cursoredPixel.y, 0, m_textures[0].height() - 1);
 		}
-		});
+		}, true);
 
-	addEventListener<MouseEvent::Wheel>([](const auto& e) {
-		auto self = static_cast<UIZStackedImageView*>(e.component);
-		if (self->manualScalingEnabled) {
-			self->setScale(self->m_scaleRate + (Sign(e.wheel) < 0 ? 0.05 : -0.05));
+	addEventListener<MouseEvent::Wheel>([this](const MouseEvent::Wheel& e) {
+		if (manualScalingEnabled) {
+			setScale(m_scaleRate + (Sign(e.wheel) < 0 ? 0.05 : -0.05));
 		}
-		});
+		}, true);
 }
 
 void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {

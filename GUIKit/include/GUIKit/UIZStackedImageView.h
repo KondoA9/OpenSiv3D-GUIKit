@@ -23,7 +23,9 @@ namespace s3d::gui {
 		uint32 m_maxPixel = 0;
 
 	public:
-		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background);
+		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
+			UIRect(_backgroundColor)
+		{}
 
 		double scale() const {
 			return m_scale;
@@ -104,6 +106,8 @@ namespace s3d::gui {
 		void removeImage(size_t index);
 
 	protected:
+		void initialize() override;
+
 		void draw() override;
 
 		void updateLayer() override;

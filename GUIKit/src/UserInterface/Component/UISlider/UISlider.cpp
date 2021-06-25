@@ -28,19 +28,19 @@ void UISlider::initialize() {
 				}
 			}
 		}
-		});
+		}, true);
 
 	addEventListener<MouseEvent::Hovered>([this] {
 		handle.backgroundColor.highlight(DynamicColor::DefaultBlue);
-		});
+		}, true);
 
 	addEventListener<MouseEvent::UnHovered>([this] {
 		handle.backgroundColor.lowlight(DynamicColor::Background);
-		});
+		}, true);
 
 	addEventListener<MouseEvent::Hovering>([] {
 		Cursor::RequestStyle(CursorStyle::Hand);
-		});
+		}, true);
 
 	const double h = 5.0_px;
 	railLeft.drawFrame = true;

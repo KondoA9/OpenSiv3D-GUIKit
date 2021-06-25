@@ -80,17 +80,20 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		void addEventListener(const std::function<void(const T&)>& f) {
+		void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {
 			auto handler = MouseEventHandler([f](IMouseEvent e) { f(*static_cast<T*>(&e)); });
 			handler.setEvent<T>();
-			m_mouseEventHandlers.push_back(handler);
+			if (primary) {
+				m_mouseEventHandlers.push_front(handler);
+			}
+			else {
+				m_mouseEventHandlers.push_back(handler);
+			}
 		}
 
 		template<class T>
-		void addEventListener(const std::function<void()>& f) {
-			auto handler = MouseEventHandler([f](const IMouseEvent&) { f(); });
-			handler.setEvent<T>();
-			m_mouseEventHandlers.push_back(handler);
+		void addEventListener(const std::function<void()>& f, bool primary = false) {
+			addEventListener<T>([f](const IMouseEvent&) { f(); }, primary);
 		}
 
 	protected:

@@ -8,7 +8,7 @@ namespace s3d::gui {
 	struct IMouseEvent {
 		const size_t id;
 		const double wheel;
-		const Vec2 pos;
+		const Vec2 pos, previousPos;
 
 		UIComponent* component = nullptr;
 
@@ -16,7 +16,8 @@ namespace s3d::gui {
 			id(_id),
 			component(_component),
 			wheel(Mouse::Wheel()),
-			pos(Cursor::PosF())
+			pos(Cursor::PosF()),
+			previousPos(Cursor::PreviousPosF())
 		{}
 
 		virtual ~IMouseEvent() = default;

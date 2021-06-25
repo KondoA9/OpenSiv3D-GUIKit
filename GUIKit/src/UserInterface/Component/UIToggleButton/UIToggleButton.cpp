@@ -53,7 +53,7 @@ void UIToggleButton::initialize() {
 			backgroundColor.lowlight(hoveredColor);
 			textColor.lowlight(defaultTextColor);
 		}
-		});
+		}, true);
 
 	addEventListener<MouseEvent::Hovered>([this] {
 		if (!m_enabled) {
@@ -62,7 +62,7 @@ void UIToggleButton::initialize() {
 		else {
 			backgroundColor.highlight(selectedColor);
 		}
-		});
+		}, true);
 
 	addEventListener<MouseEvent::UnHovered>([this] {
 		if (!m_enabled) {
@@ -71,11 +71,11 @@ void UIToggleButton::initialize() {
 		else {
 			backgroundColor.highlight(selectedColor);
 		}
-		});
+		}, true);
 
 	addEventListener<MouseEvent::Hovering>([] {
 		Cursor::RequestStyle(CursorStyle::Hand);
-		});
+		}, true);
 
 	UIRect::initialize();
 }
