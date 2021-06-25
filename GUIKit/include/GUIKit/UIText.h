@@ -38,9 +38,7 @@ namespace s3d::gui {
 			direction(direction),
 			textColor(textColor),
 			m_font(UnifiedFont::Get(style))
-		{
-			m_textRegion = m_font(label + text).draw().size.asPoint();
-		}
+		{}
 
 		UIText(const String & text, UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", text, style, direction, backgroundColor, textColor)
@@ -62,7 +60,8 @@ namespace s3d::gui {
 			:UIText(U"", backgroundColor, textColor)
 		{}
 
-		Size textRegion() const {
+		Size textRegion() {
+			m_textRegion = m_font(label + text).draw().size.asPoint();
 			return m_textRegion;
 		}
 
