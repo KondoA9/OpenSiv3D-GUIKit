@@ -26,6 +26,7 @@ namespace s3d::gui {
 		Font m_font;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 		RectF m_drawingRect;
+		Size m_textRegion;
 
 	public:
 		UIText(const String& label, const String& text, 
@@ -37,7 +38,9 @@ namespace s3d::gui {
 			direction(direction),
 			textColor(textColor),
 			m_font(UnifiedFont::Get(style))
-		{}
+		{
+			m_textRegion = m_font(label + text).draw().size.asPoint();
+		}
 
 		UIText(const String & text, UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", text, style, direction, backgroundColor, textColor)
@@ -58,6 +61,10 @@ namespace s3d::gui {
 		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
 			:UIText(U"", backgroundColor, textColor)
 		{}
+
+		Size textRegion() const {
+			return m_textRegion;
+		}
 
 		void setPadding(double top, double bottom, double left, double right);
 

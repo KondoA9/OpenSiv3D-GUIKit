@@ -50,6 +50,8 @@ void UIText::draw() {
 		m_drawingRect = m_font(label + text).draw(Arg::bottomRight(right, bottom), textColor);
 		break;
 	}
+
+	m_textRegion = m_drawingRect.size.asPoint();
 }
 
 void UIText::setPadding(double top, double bottom, double left, double right) {
