@@ -7,14 +7,16 @@
 namespace s3d::gui {
 	class UIRect : public UIComponent {
 	protected:
-		Rect m_rect;
+		RoundRect m_rect;
 
 	public:
 		using UIComponent::UIComponent;
 
-		Rect rect() const {
+		RoundRect rect() const {
 			return m_rect;
 		}
+
+		void setCornerRadius(double r);
 
 	protected:
 		void updateMouseIntersection() override;

@@ -2,6 +2,16 @@
 
 using namespace s3d::gui;
 
+void UIRect::setCornerRadius(double r) {
+	m_rect = RoundRect(
+		static_cast<int>(m_layer.left),
+		static_cast<int>(m_layer.top),
+		static_cast<int>(m_layer.width),
+		static_cast<int>(m_layer.height),
+		static_cast<int>(r)
+	);
+}
+
 void UIRect::draw() {
 	if (fillInner) {
 		m_rect.draw(backgroundColor);
@@ -13,11 +23,13 @@ void UIRect::draw() {
 
 void UIRect::updateLayer() {
 	UIComponent::updateLayer();
-	m_rect = Rect(
+
+	m_rect = RoundRect(
 		static_cast<int>(m_layer.left),
 		static_cast<int>(m_layer.top),
 		static_cast<int>(m_layer.width),
-		static_cast<int>(m_layer.height)
+		static_cast<int>(m_layer.height),
+		static_cast<int>(m_rect.r)
 	);
 }
 
