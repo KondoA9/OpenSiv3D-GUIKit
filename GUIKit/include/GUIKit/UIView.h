@@ -21,9 +21,7 @@ namespace s3d::gui {
 
 		virtual ~UIView() {}
 
-		virtual void appendComponent(UIComponent& ui) {
-			m_userInterfaces.push_back(&ui);
-		}
+		virtual void appendComponent(UIComponent& ui);
 
 	protected:
 		void updateLayer() override;

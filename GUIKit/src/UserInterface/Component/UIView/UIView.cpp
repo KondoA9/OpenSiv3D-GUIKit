@@ -3,6 +3,12 @@
 
 using namespace s3d::gui;
 
+void UIView::appendComponent(UIComponent& ui) {
+	if (!m_userInterfaces.includes(&ui)) {
+		m_userInterfaces.push_back(&ui);
+	}
+}
+
 void UIView::updateLayer() {
 	UIRect::updateLayer();
 
