@@ -56,5 +56,8 @@ namespace s3d::gui {
 			}
 			m_enabled = enabled;
 		}
+
+	protected:
+		void initialize() override;
 	};
 }

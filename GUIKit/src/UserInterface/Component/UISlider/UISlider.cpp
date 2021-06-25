@@ -6,58 +6,42 @@ using namespace s3d::gui;
 UISlider::UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor) :
 	UIView(_backgroundColor),
 	m_text(UIText(label, style, direction))
-{
-	addEventListener<MouseEvent::LeftDragging>([] (const auto& e){
-		auto self = static_cast<UISlider*>(e.component);
-		if (!self->m_dragging) {
-			self->m_dragging = true;
+{}
+
+void UISlider::initialize() {
+	addEventListener<MouseEvent::LeftDragging>([this] {
+		if (!m_dragging) {
+			m_dragging = true;
 		}
-		if (MouseL.up() && self->m_dragging) {
-			self->m_dragging = false;
+		if (MouseL.up() && m_dragging) {
+			m_dragging = false;
 		}
 
-		if (self->m_dragging) {
-			const double pre = self->m_value;
-			self->m_value = Clamp(self->m_min + (self->m_max - self->m_min) * (Cursor::Pos().x - self->m_layer.left) / self->m_layer.width, self->m_min, self->m_max);
+		if (m_dragging) {
+			const double pre = m_value;
+			m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left) / m_layer.width, m_min, m_max);
 
-			if (pre != self->m_value) {
-				self->requestToUpdateLayer();
-				if (self->m_valueChangedHandler) {
-					self->m_valueChangedHandler(self->m_value);
+			if (pre != m_value) {
+				requestToUpdateLayer();
+				if (m_valueChangedHandler) {
+					m_valueChangedHandler(m_value);
 				}
 			}
 		}
 		});
 
-	addEventListener<MouseEvent::Hovered>([](const auto& e) {
-		auto self = static_cast<UISlider*>(e.component);
-		self->handle.backgroundColor.highlight(DynamicColor::DefaultBlue);
+	addEventListener<MouseEvent::Hovered>([this] {
+		handle.backgroundColor.highlight(DynamicColor::DefaultBlue);
 		});
 
-	addEventListener<MouseEvent::UnHovered>([](const auto& e) {
-		auto self = static_cast<UISlider*>(e.component);
-		self->handle.backgroundColor.lowlight(DynamicColor::Background);
+	addEventListener<MouseEvent::UnHovered>([this] {
+		handle.backgroundColor.lowlight(DynamicColor::Background);
 		});
 
 	addEventListener<MouseEvent::Hovering>([] {
 		Cursor::RequestStyle(CursorStyle::Hand);
 		});
-}
 
-void UISlider::updateLayer() {
-	if (!m_initialized) {
-		initialize();
-		m_initialized = true;
-	}
-
-	UIView::updateLayer();
-}
-
-void UISlider::draw() {
-	UIView::draw();
-}
-
-void UISlider::initialize() {
 	const double h = 5.0_px;
 	railLeft.drawFrame = true;
 	railLeft.backgroundColor = DynamicColor::DefaultBlue;
@@ -96,4 +80,6 @@ void UISlider::initialize() {
 	appendComponent(railRight);
 	appendComponent(handle);
 	appendComponent(m_text);
+
+	UIView::initialize();
 }

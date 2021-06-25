@@ -43,6 +43,7 @@ namespace s3d::gui {
 		Array<Layer*> m_dependentLayers;
 		Array<MouseEventHandler> m_mouseEventHandlers;
 		bool m_needToUpdateLayer = true;
+		bool m_initialized = false;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) :
@@ -93,6 +94,11 @@ namespace s3d::gui {
 		}
 
 	protected:
+		// Called once before layer updated.
+		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
+		// Do not forget to call super::initialize() unless you do not want to call it.
+		virtual void initialize() {};
+
 		virtual void updateLayer();
 
 		virtual void draw() = 0;

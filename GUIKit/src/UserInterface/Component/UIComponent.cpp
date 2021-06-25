@@ -6,6 +6,11 @@ Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
 UIComponent* UIComponent::m_FocusedComponent = nullptr;
 
 void UIComponent::updateLayer() {
+	if (!m_initialized) {
+		initialize();
+		m_initialized = true;
+	}
+
 	for (auto layer : m_dependentLayers) {
 		layer->updateConstraints();
 	}

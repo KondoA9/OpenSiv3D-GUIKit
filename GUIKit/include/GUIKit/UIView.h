@@ -15,7 +15,8 @@ namespace s3d::gui {
 
 	public:
 		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
+			UIRect(_backgroundColor),
+			m_userInterfaces(Array<UIComponent*>(0))
 		{}
 
 		virtual ~UIView() {}

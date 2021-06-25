@@ -35,6 +35,8 @@ namespace s3d::gui {
 			const ColorTheme& defaultTextColor = Palette::White);
 
 	protected:
+		void initialize() override;
+
 		void draw() override;
 	};
 }
