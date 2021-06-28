@@ -26,6 +26,8 @@ void UIVStackView::release() {
 	releaseDeletableComponents();
 	m_userInterfaces.release();
 	m_topPositionConstant = 0.0;
+	m_layer.top.setConstraint(0.0);
+	updateLayer();
 }
 
 void UIVStackView::releaseDeletableComponents() {

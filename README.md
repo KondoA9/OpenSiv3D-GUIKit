@@ -1,5 +1,5 @@
 # OpenSiv3D GUIKit
-C++ GUI framework using [OpenSiv3D](https://siv3d.github.io/ja-jp/).
+C++ GUI framework
 
 ## Features
  - Comfortable user interface
@@ -8,8 +8,8 @@ C++ GUI framework using [OpenSiv3D](https://siv3d.github.io/ja-jp/).
  - Event-driven programming
  
  ## Usage
-  - Include GUIKit (.cpp&.h) into your project.
-  - Build GUIKit and use a static library.
+  - Install [OpenSiv3D (v0.4.3)](https://siv3d.github.io/ja-jp/)
+  - Include GUIKit (.cpp & .h) into your project or build GUIKit and use a static library
 
  ## Example
  ```c++
