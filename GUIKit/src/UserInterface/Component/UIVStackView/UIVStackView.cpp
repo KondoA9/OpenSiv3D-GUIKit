@@ -2,19 +2,13 @@
 
 using namespace s3d::gui;
 
-UIVStackView::UIVStackView() :
-	UIView()
-{
-	addEventListener<MouseEvent::Wheel>([](const auto& e) {
-		auto self = static_cast<UIVStackView*>(e.component);
-		if (self->scrollingEnabled) {
-			if (self->m_currentRowsHeight >= self->m_layer.height) {
-				self->m_topPositionConstant -= e.wheel * 40;
-				self->m_topPositionConstant = self->m_topPositionConstant > 0.0 ? 0.0 : self->m_topPositionConstant;
-				self->m_layer.top.setConstraint(self->m_topPositionConstant);
-				self->updateLayer();
-			}
-		}
+void UIVStackView::initialize() {
+	addEventListener<MouseEvent::Wheel>([this](const MouseEvent::Wheel& e) {
+		scroll(e.wheel * 40);
+		});
+
+	addEventListener<MouseEvent::LeftDragging>([this](const MouseEvent::LeftDragging& e) {
+		scroll(e.previousPos.y - e.pos.y);
 		});
 }
 
@@ -89,5 +83,14 @@ void UIVStackView::adjustRowsBottomToViewBottom() {
 			m_layer.top.setConstraint(t);
 			updateLayer();
 		}
+	}
+}
+
+void UIVStackView::scroll(double dy) {
+	if (scrollingEnabled && m_currentRowsHeight >= m_layer.height) {
+		m_topPositionConstant -= dy;
+		m_topPositionConstant = m_topPositionConstant > 0.0 ? 0.0 : m_topPositionConstant;
+		m_layer.top.setConstraint(m_topPositionConstant);
+		updateLayer();
 	}
 }

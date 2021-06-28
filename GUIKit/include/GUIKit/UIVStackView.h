@@ -22,7 +22,7 @@ namespace s3d::gui {
 		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
 	public:
-		UIVStackView();
+		using UIView::UIView;
 
 		~UIVStackView();
 
@@ -62,6 +62,8 @@ namespace s3d::gui {
 		}
 
 	protected:
+		void initialize() override;
+
 		void updateLayer() override;
 
 	private:
@@ -70,5 +72,7 @@ namespace s3d::gui {
 		void calcCurrentRowHeight();
 
 		void adjustRowsBottomToViewBottom();
+
+		void scroll(double dy);
 	};
 }
