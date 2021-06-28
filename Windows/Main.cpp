@@ -57,7 +57,7 @@ class StartPage : public gui::Page {
         inputField.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
         inputField.setConstraint(gui::LayerDirection::Left, slider, gui::LayerDirection::Right);
         inputField.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
-        inputField.addEventListener<gui::KeyDown>([this] {
+        inputField.addEventListener<gui::UIInputField::KeyDown>([this] {
             guikit().toggleColorMode();
             });
 

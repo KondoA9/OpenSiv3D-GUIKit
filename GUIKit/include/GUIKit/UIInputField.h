@@ -3,9 +3,10 @@
 #include "UnifiedFont.h"
 
 namespace s3d::gui {
-	GUICreateInputEvent(KeyDown);
-
 	class UIInputField : public UIText {
+	public:
+		GUICreateInputEvent(KeyDown);
+
 	private:
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
