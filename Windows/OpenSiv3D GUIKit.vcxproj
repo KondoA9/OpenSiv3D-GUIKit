@@ -43,10 +43,10 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\IMouseEvent.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\InputEvent.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\MouseEvent.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEventHandler.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\InputEventHandler.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Page.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\PixelUnit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h" />

@@ -3,12 +3,12 @@
 #include "IMouseEvent.h"
 
 namespace s3d::gui {
-	class MouseEventHandler {
+	class InputEventHandler {
 	public:
 		size_t eventTypeId;
-		std::function<void(const IMouseEvent&)> handler;
+		std::function<void(const InputEvent&)> handler;
 
-		MouseEventHandler(const std::function<void(IMouseEvent)>& _handler) :
+		InputEventHandler(const std::function<void(InputEvent)>& _handler) :
 			handler(_handler)
 		{}
 

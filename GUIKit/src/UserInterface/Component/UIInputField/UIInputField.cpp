@@ -23,14 +23,14 @@ void UIInputField::draw() {
 	}
 }
 
-void UIInputField::updateMouseEvents() {
-	UIText::updateMouseEvents();
+void UIInputField::updateInputEvents() {
+	UIText::updateInputEvents();
 
 	if (isFocused()) {
 		const String pre = text;
 		TextInput::UpdateText(text, TextInputMode::AllowBackSpaceDelete);
 		if (pre != text) {
-			callMouseEventHandler(KeyDown(this));
+			callInputEventHandler(KeyDown(this));
 		}
 	}
 }

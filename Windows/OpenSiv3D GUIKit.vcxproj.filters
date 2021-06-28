@@ -37,9 +37,6 @@
     <Filter Include="GUIKit\GUIKitCore">
       <UniqueIdentifier>{054a96f4-680e-475a-843d-cce404d55269}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUIKit\UserInterface\MouseEvent">
-      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUIKit\Imaging">
       <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
     </Filter>
@@ -81,6 +78,9 @@
     </Filter>
     <Filter Include="GUIKit\UserInterface\UserInterface\UIVStackView">
       <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\InputEvent">
+      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,7 +192,7 @@
       <Filter>GUIKit\GUIKitCore</Filter>
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\MouseEvent.h">
-      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
+      <Filter>GUIKit\UserInterface\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h">
       <Filter>GUIKit\Imaging</Filter>
@@ -236,11 +236,11 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h">
       <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
     </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\IMouseEvent.h">
-      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
+    <ClInclude Include="..\GUIKit\include\GUIKit\InputEvent.h">
+      <Filter>GUIKit\UserInterface\InputEvent</Filter>
     </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEventHandler.h">
-      <Filter>GUIKit\UserInterface\MouseEvent</Filter>
+    <ClInclude Include="..\GUIKit\include\GUIKit\InputEventHandler.h">
+      <Filter>GUIKit\UserInterface\InputEvent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

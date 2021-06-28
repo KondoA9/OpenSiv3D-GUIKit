@@ -2,7 +2,7 @@
 
 using namespace s3d::gui;
 
-Array<UIComponent::CallableMouseEvent> UIComponent::m_CallableMouseEvents;
+Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 UIComponent* UIComponent::m_FocusedComponent = nullptr;
 
 void UIComponent::updateLayer() {

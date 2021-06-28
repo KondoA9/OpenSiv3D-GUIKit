@@ -12,9 +12,9 @@ namespace s3d::gui {
 	class UIView;
 
 	class UIComponent {
-		struct CallableMouseEvent {
-			IMouseEvent mouseEvent;
-			Array<MouseEventHandler> handlers;
+		struct CallableInputEvent {
+			InputEvent mouseEvent;
+			Array<InputEventHandler> handlers;
 		};
 
 		friend GUIKit;
@@ -37,11 +37,11 @@ namespace s3d::gui {
 		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
 
 	private:
-		static Array<CallableMouseEvent> m_CallableMouseEvents;
+		static Array<CallableInputEvent> m_CallableInputEvents;
 		static UIComponent* m_FocusedComponent;
 
 		Array<Layer*> m_dependentLayers;
-		Array<MouseEventHandler> m_mouseEventHandlers;
+		Array<InputEventHandler> m_inputEventHandlers;
 		bool m_needToUpdateLayer = true;
 		bool m_initialized = false;
 
@@ -81,19 +81,19 @@ namespace s3d::gui {
 
 		template<class T>
 		void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {
-			auto handler = MouseEventHandler([f](IMouseEvent e) { f(*static_cast<T*>(&e)); });
+			auto handler = InputEventHandler([f](InputEvent e) { f(*static_cast<T*>(&e)); });
 			handler.setEvent<T>();
 			if (primary) {
-				m_mouseEventHandlers.push_front(handler);
+				m_inputEventHandlers.push_front(handler);
 			}
 			else {
-				m_mouseEventHandlers.push_back(handler);
+				m_inputEventHandlers.push_back(handler);
 			}
 		}
 
 		template<class T>
 		void addEventListener(const std::function<void()>& f, bool primary = false) {
-			addEventListener<T>([f](const IMouseEvent&) { f(); }, primary);
+			addEventListener<T>([f](const InputEvent&) { f(); }, primary);
 		}
 
 	protected:
@@ -108,38 +108,38 @@ namespace s3d::gui {
 
 		virtual void updateMouseIntersection() = 0;
 
-		virtual void updateMouseEvents();
+		virtual void updateInputEvents();
 
 		template<class T>
-		void callMouseEventHandler(const T& e) const {
+		void callInputEventHandler(const T& e) const {
 			// Get handlers that are matched to called event type
-			const auto handlers = m_mouseEventHandlers.removed_if([e](const MouseEventHandler& handler) {
+			const auto handlers = m_inputEventHandlers.removed_if([e](const InputEventHandler& handler) {
 				return handler.eventTypeId != e.id;
 				});
 
 			// Append handlers if event stack is empty or the component penetrates a mouse event
-			if (m_CallableMouseEvents.size() == 0 || e.component->penetrateMouseEvent) {
-				m_CallableMouseEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+			if (m_CallableInputEvents.size() == 0 || e.component->penetrateMouseEvent) {
+				m_CallableInputEvents.push_back({ .mouseEvent = e, .handlers = handlers });
 			}
 			else {
-				for (size_t i : step(m_CallableMouseEvents.size())) {
-					if (m_CallableMouseEvents[i].mouseEvent.id == e.id) {
-						m_CallableMouseEvents[i].mouseEvent = e;
-						m_CallableMouseEvents[i].handlers = handlers;
+				for (size_t i : step(m_CallableInputEvents.size())) {
+					if (m_CallableInputEvents[i].mouseEvent.id == e.id) {
+						m_CallableInputEvents[i].mouseEvent = e;
+						m_CallableInputEvents[i].handlers = handlers;
 						break;
 					}
 					// Append handler if a event that is same type of the event does not exists 
-					else if (i == m_CallableMouseEvents.size() - 1) {
-						m_CallableMouseEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+					else if (i == m_CallableInputEvents.size() - 1) {
+						m_CallableInputEvents.push_back({ .mouseEvent = e, .handlers = handlers });
 					}
 				}
 			}
 		}
 
 	private:
-		static void ResetMouseEvents();
+		static void ResetInputEvents();
 
-		static void CallMouseEvents();
+		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded();
 

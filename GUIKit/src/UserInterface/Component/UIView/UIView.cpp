@@ -62,12 +62,12 @@ void UIView::updateMouseIntersection() {
 	}
 }
 
-void UIView::updateMouseEvents() {
-	UIRect::updateMouseEvents();
+void UIView::updateInputEvents() {
+	UIRect::updateInputEvents();
 
 	for (auto& ui : m_userInterfaces) {
 		if (ui->updatable()) {
-			ui->updateMouseEvents();
+			ui->updateInputEvents();
 		}
 	}
 }

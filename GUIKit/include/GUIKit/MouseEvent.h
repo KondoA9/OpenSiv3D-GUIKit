@@ -4,22 +4,22 @@
 
 #include <Siv3D.hpp>
 
-#define GUICreateMouseEvent(Event) struct Event : public IMouseEvent { Event(UIComponent* _component) : IMouseEvent(typeid(Event).hash_code(), _component) {} };
+#define GUICreateInputEvent(Event) struct Event : public InputEvent { Event(UIComponent* _component) : InputEvent(typeid(Event).hash_code(), _component) {} };
 
 namespace s3d::gui {
 	namespace MouseEvent {
-		GUICreateMouseEvent(LeftDown);
-		GUICreateMouseEvent(LeftUp);
-		GUICreateMouseEvent(LeftDragging);
+		GUICreateInputEvent(LeftDown);
+		GUICreateInputEvent(LeftUp);
+		GUICreateInputEvent(LeftDragging);
 
-		GUICreateMouseEvent(RightDown);
-		GUICreateMouseEvent(RightUp);
-		GUICreateMouseEvent(RightDragging);
+		GUICreateInputEvent(RightDown);
+		GUICreateInputEvent(RightUp);
+		GUICreateInputEvent(RightDragging);
 
-		GUICreateMouseEvent(Hovered);
-		GUICreateMouseEvent(UnHovered);
-		GUICreateMouseEvent(Hovering);
+		GUICreateInputEvent(Hovered);
+		GUICreateInputEvent(UnHovered);
+		GUICreateInputEvent(Hovering);
 
-		GUICreateMouseEvent(Wheel);
+		GUICreateInputEvent(Wheel);
 	}
 }

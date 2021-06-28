@@ -3,7 +3,7 @@
 #include "UnifiedFont.h"
 
 namespace s3d::gui {
-	GUICreateMouseEvent(KeyDown);
+	GUICreateInputEvent(KeyDown);
 
 	class UIInputField : public UIText {
 	private:
@@ -16,6 +16,6 @@ namespace s3d::gui {
 	protected:
 		void draw() override;
 
-		void updateMouseEvents() override;
+		void updateInputEvents() override;
 	};
 }

@@ -5,14 +5,14 @@
 namespace s3d::gui {
 	class UIComponent;
 
-	struct IMouseEvent {
+	struct InputEvent {
 		const size_t id;
 		const double wheel;
 		const Vec2 pos, previousPos;
 
 		UIComponent* component = nullptr;
 
-		IMouseEvent(size_t _id, UIComponent* _component) :
+		InputEvent(size_t _id, UIComponent* _component) :
 			id(_id),
 			component(_component),
 			wheel(Mouse::Wheel()),
@@ -20,9 +20,9 @@ namespace s3d::gui {
 			previousPos(Cursor::PreviousPosF())
 		{}
 
-		virtual ~IMouseEvent() = default;
+		virtual ~InputEvent() = default;
 
-		IMouseEvent operator =(const IMouseEvent& e) {
+		InputEvent operator =(const InputEvent& e) {
 			assert(id == e.id);
 
 			component = e.component;

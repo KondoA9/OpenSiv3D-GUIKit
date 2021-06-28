@@ -114,10 +114,10 @@ bool GUIKit::updateOnPageChanging() {
 
 void GUIKit::updateOnStable() {
 	// Update mouse events
-	UIComponent::ResetMouseEvents();
+	UIComponent::ResetInputEvents();
 	m_drawingPage->m_view.updateMouseIntersection();
-	m_drawingPage->m_view.updateMouseEvents();
-	UIComponent::CallMouseEvents();
+	m_drawingPage->m_view.updateInputEvents();
+	UIComponent::CallInputEvents();
 
 	// Window resized event
 	if (WindowManager::DidResized()) {

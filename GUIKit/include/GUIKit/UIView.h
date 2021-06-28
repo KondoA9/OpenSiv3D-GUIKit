@@ -33,7 +33,7 @@ namespace s3d::gui {
 	private:
 		void updateMouseIntersection() override;
 
-		void updateMouseEvents() override;
+		void updateInputEvents() override;
 
 		void updateLayerInvert();
 	};
