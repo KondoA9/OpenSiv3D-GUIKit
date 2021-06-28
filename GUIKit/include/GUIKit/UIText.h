@@ -44,16 +44,28 @@ namespace s3d::gui {
 			UIText(U"", text, style, direction, backgroundColor, textColor)
 		{}
 
-		UIText(const String & text, UnifiedFontStyle style,const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", text, style, TextDirection::LeftCenter, backgroundColor, textColor)
+		{}
+
+		UIText(const String & text, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(U"", text, UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
 		{}
 
 		UIText(const String & text, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
-		UIText(UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
+		UIText(UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", U"", style, direction, backgroundColor, textColor)
+		{}
+
+		UIText(UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(U"", U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
+		{}
+
+		UIText(TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(U"", U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
 		{}
 
 		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)

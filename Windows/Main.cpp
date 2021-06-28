@@ -38,7 +38,7 @@ class StartPage : public gui::Page {
         switchThemeButton.setConstraint(gui::LayerDirection::Bottom, nextButton, gui::LayerDirection::Bottom);
         switchThemeButton.setConstraint(gui::LayerDirection::Left, nextButton, gui::LayerDirection::Right);
         switchThemeButton.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
-        switchThemeButton.addEventListener<gui::MouseEvent::LeftDown>([this](gui::MouseEvent::LeftDown) {
+        switchThemeButton.addEventListener<gui::MouseEvent::LeftDown>([this] {
             guikit().toggleColorMode();
             });
 
@@ -57,6 +57,9 @@ class StartPage : public gui::Page {
         inputField.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
         inputField.setConstraint(gui::LayerDirection::Left, slider, gui::LayerDirection::Right);
         inputField.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+        inputField.addEventListener<gui::KeyDown>([this] {
+            guikit().toggleColorMode();
+            });
 
         m_view.appendComponent(title);
         m_view.appendComponent(nextButton);
@@ -77,7 +80,7 @@ class NextPage : public gui::Page {
         backButton.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
         backButton.setConstraint(gui::LayerDirection::Left);
         backButton.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
-        backButton.addEventListener<gui::MouseEvent::LeftDown>([this](auto) {
+        backButton.addEventListener<gui::MouseEvent::LeftDown>([this] {
             guikit().switchPage(U"StartPage");
             });
 

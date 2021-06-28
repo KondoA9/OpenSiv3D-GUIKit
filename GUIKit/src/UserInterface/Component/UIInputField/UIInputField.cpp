@@ -3,14 +3,6 @@
 using namespace s3d::gui;
 
 void UIInputField::draw() {
-	if (isFocused()) {
-		const String pre = text;
-		TextInput::UpdateText(text, TextInputMode::AllowBackSpaceDelete);
-		if (pre != text && m_onInputtedHandler) {
-			m_onInputtedHandler(text);
-		}
-	}
-
 	UIText::draw();
 
 	if (isFocused()) {
@@ -27,6 +19,18 @@ void UIInputField::draw() {
 			else {
 				m_drawingRect.right().draw(textColor);
 			}
+		}
+	}
+}
+
+void UIInputField::updateMouseEvents() {
+	UIText::updateMouseEvents();
+
+	if (isFocused()) {
+		const String pre = text;
+		TextInput::UpdateText(text, TextInputMode::AllowBackSpaceDelete);
+		if (pre != text) {
+			callMouseEventHandler(KeyDown(this));
 		}
 	}
 }
