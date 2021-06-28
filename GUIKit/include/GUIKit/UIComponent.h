@@ -2,7 +2,7 @@
 
 #include "DynamicColor.h"
 #include "MouseEvent.h"
-#include "MouseEventHandler.h"
+#include "InputEventHandler.h"
 #include "Layer.h"
 
 #include <Siv3D.hpp>

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IMouseEvent.h"
+#include "InputEvent.h"
 
 #include <Siv3D.hpp>
 

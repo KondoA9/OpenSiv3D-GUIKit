@@ -1,6 +1,6 @@
 #pragma once
 
-#include "IMouseEvent.h"
+#include "InputEvent.h"
 
 namespace s3d::gui {
 	class InputEventHandler {
