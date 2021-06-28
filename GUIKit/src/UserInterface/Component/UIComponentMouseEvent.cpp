@@ -28,7 +28,7 @@ void UIComponent::updateInputEvents() {
 	}
 
 	// Mouse dragging start
-	if (m_mouseLeftPress || m_mouseRightPress) {
+	if (!m_mouseDragging && (m_mouseLeftPress || m_mouseRightPress)) {
 		if (m_clickedPos.distanceFrom(Cursor::PosF()) > 10.0) {
 			if (m_mouseLeftPress) {
 				focus();
@@ -57,22 +57,18 @@ void UIComponent::updateInputEvents() {
 	// Mouse dragging and end dragging event
 	if (m_mouseDragging) {
 		if (m_mouseLeftPress) {
-			if (m_mouseLeftUp) {
-				callInputEventHandler(MouseEvent::LeftDraggingEnd(this));
-				m_mouseDragging = false;
-			}
-			else {
-				callInputEventHandler(MouseEvent::LeftDragging(this));
-			}
+			callInputEventHandler(MouseEvent::LeftDragging(this));
+		}
+		if (m_mouseLeftUp) {
+			callInputEventHandler(MouseEvent::LeftDraggingEnd(this));
+			m_mouseDragging = false;
 		}
 		if (m_mouseRightPress) {
-			if (m_mouseRightUp) {
-				callInputEventHandler(MouseEvent::RightDraggingEnd(this));
-				m_mouseDragging = false;
-			}
-			else {
-				callInputEventHandler(MouseEvent::RightDragging(this));
-			}
+			callInputEventHandler(MouseEvent::RightDragging(this));
+		}
+		if (m_mouseRightUp) {
+			callInputEventHandler(MouseEvent::RightDraggingEnd(this));
+			m_mouseDragging = false;
 		}
 	}
 
