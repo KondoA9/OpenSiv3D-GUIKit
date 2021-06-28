@@ -45,6 +45,12 @@ namespace s3d::gui {
 		bool m_needToUpdateLayer = true;
 		bool m_initialized = false;
 
+		// Mouse event
+		double m_clickIntervalTimer = 0.0;// If mouse released within 0.5s, mouseDown event will be called
+		bool m_mouseDownEnable = false;
+		bool m_mouseDragging = false;
+		Vec2 m_clickedPos;
+
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) :
 			backgroundColor(_backgroundColor),
@@ -142,26 +148,6 @@ namespace s3d::gui {
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded();
-
-		bool mouseLeftDown();
-
-		bool mouseLeftUp();
-
-		bool mouseLeftDragging();
-
-		bool mouseRightDown();
-
-		bool mouseRightUp();
-
-		bool mouseRightDragging();
-
-		bool mouseHovered();
-
-		bool mouseHovering();
-
-		bool mouseUnHovered();
-
-		bool mouseWheel();
 
 		bool drawable() const {
 			return !hidden && exist
