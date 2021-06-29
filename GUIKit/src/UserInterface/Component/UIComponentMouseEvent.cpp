@@ -38,7 +38,7 @@ void UIComponent::updateInputEvents() {
 	}
 
 	// Mouse dragging start
-	if (!m_mouseDragging && m_mouseDownRaw &&(m_mouseLeftPress || m_mouseRightPress)) {
+	if (!m_mouseDragging && m_mouseDownRaw && (m_mouseLeftPress || m_mouseRightPress)) {
 		if (m_clickedPos.distanceFrom(Cursor::PosF()) > 10.0) {
 			if (m_mouseLeftPress) {
 				focus();
