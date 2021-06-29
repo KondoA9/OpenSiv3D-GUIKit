@@ -30,10 +30,10 @@ namespace s3d::gui {
 
 		void draw() override;
 
+		void updateInputEvents() override;
+
 	private:
 		void updateMouseIntersection() override;
-
-		void updateInputEvents() override;
 
 		void updateLayerInvert();
 	};

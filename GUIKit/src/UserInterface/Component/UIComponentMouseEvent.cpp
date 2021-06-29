@@ -22,6 +22,10 @@ void UIComponent::updateInputEvents() {
 		m_clickedPos = Cursor::PosF();
 		m_clickIntervalTimer = 0.0;
 		m_mouseDownEnable = true;
+		m_mouseDownRaw = true;
+	}
+	if (m_mouseLeftUp || m_mouseRightUp) {
+		m_mouseDownRaw = false;
 	}
 
 	// Increase timer
@@ -34,7 +38,7 @@ void UIComponent::updateInputEvents() {
 	}
 
 	// Mouse dragging start
-	if (!m_mouseDragging && (m_mouseLeftPress || m_mouseRightPress)) {
+	if (!m_mouseDragging && m_mouseDownRaw &&(m_mouseLeftPress || m_mouseRightPress)) {
 		if (m_clickedPos.distanceFrom(Cursor::PosF()) > 10.0) {
 			if (m_mouseLeftPress) {
 				focus();
@@ -89,6 +93,7 @@ void UIComponent::updateInputEvents() {
 
 	if (m_preMouseOver && !m_mouseOver) {
 		callInputEventHandler(MouseEvent::UnHovered(this));
+		m_mouseDownRaw = false;
 	}
 
 	// Mouse wheel event

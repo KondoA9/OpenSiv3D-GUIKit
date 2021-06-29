@@ -47,7 +47,7 @@ namespace s3d::gui {
 
 		// Mouse event
 		double m_clickIntervalTimer = 0.0;// If mouse released within 0.5s, mouseDown event will be called
-		bool m_mouseDownEnable = false;
+		bool m_mouseDownEnable = false, m_mouseDownRaw = false;
 		bool m_mouseDragging = false;
 		Vec2 m_clickedPos;
 

@@ -10,7 +10,7 @@ namespace s3d::gui {
 	private:
 		double m_value = 0.0, m_min = 0.0, m_max = 1.0;
 		std::function<void(double value)> m_valueChangedHandler;
-		bool m_dragging = false;
+		bool m_sliding = false;
 
 		UIRect railLeft, railRight;
 		UICircle handle;
@@ -57,5 +57,7 @@ namespace s3d::gui {
 
 	protected:
 		void initialize() override;
+
+		void updateInputEvents() override;
 	};
 }

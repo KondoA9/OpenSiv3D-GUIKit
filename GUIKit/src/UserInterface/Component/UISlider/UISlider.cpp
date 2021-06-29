@@ -3,29 +3,22 @@
 
 using namespace s3d::gui;
 
+GUICreateInputEvent(Sliding);
+
 UISlider::UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor) :
 	UIView(_backgroundColor),
 	m_text(UIText(label, style, direction))
 {}
 
 void UISlider::initialize() {
-	addEventListener<MouseEvent::LeftDragging>([this] {
-		if (!m_dragging) {
-			m_dragging = true;
-		}
-		if (MouseL.up() && m_dragging) {
-			m_dragging = false;
-		}
+	addEventListener<Sliding>([this] {
+		const double pre = m_value;
+		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left) / m_layer.width, m_min, m_max);
 
-		if (m_dragging) {
-			const double pre = m_value;
-			m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left) / m_layer.width, m_min, m_max);
-
-			if (pre != m_value) {
-				requestToUpdateLayer();
-				if (m_valueChangedHandler) {
-					m_valueChangedHandler(m_value);
-				}
+		if (pre != m_value) {
+			requestToUpdateLayer();
+			if (m_valueChangedHandler) {
+				m_valueChangedHandler(m_value);
 			}
 		}
 		}, true);
@@ -82,4 +75,21 @@ void UISlider::initialize() {
 	appendComponent(m_text);
 
 	UIView::initialize();
+}
+
+void UISlider::updateInputEvents() {
+	if (m_mouseLeftDown) {
+		m_sliding = true;
+	}
+
+	if (m_sliding) {
+		if (MouseL.up()) {
+			m_sliding = false;
+		}
+		else {
+			callInputEventHandler(Sliding(this));
+		}
+	}
+
+	UIView::updateInputEvents();
 }
