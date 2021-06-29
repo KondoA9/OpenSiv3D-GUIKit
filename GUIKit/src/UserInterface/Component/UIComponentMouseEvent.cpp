@@ -10,6 +10,12 @@ void UIComponent::updateInputEvents() {
 	if (m_mouseRightDown) {
 		callInputEventHandler(MouseEvent::RightDownRaw(this));
 	}
+	if (m_mouseLeftUp) {
+		callInputEventHandler(MouseEvent::LeftUpRaw(this));
+	}
+	if (m_mouseRightUp) {
+		callInputEventHandler(MouseEvent::RightUpRaw(this));
+	}
 
 	// Prepare to call mouse event
 	if (m_mouseLeftDown || m_mouseRightDown) {
