@@ -12,7 +12,7 @@ void UIView::appendComponent(UIComponent& ui) {
 void UIView::updateLayer() {
 	UIRect::updateLayer();
 
-	for (auto& ui : m_userInterfaces) {
+	for (const auto ui : m_userInterfaces) {
 		if (ui->exist) {
 			ui->updateLayer();
 		}
@@ -30,22 +30,29 @@ void UIView::updateLayerInvert() {
 }
 
 bool UIView::updateLayerIfNeeded() {
-	bool updated = false;
-	updated |= UIRect::updateLayerIfNeeded();
-
-	for (auto& ui : m_userInterfaces) {
-		if (ui->exist) {
-			updated |= ui->updateLayerIfNeeded();
+	if (UIRect::updateLayerIfNeeded()) {
+		for (const auto ui : m_userInterfaces) {
+			if (ui->exist) {
+				ui->updateLayer();
+			}
 		}
+		return true;
 	}
-
-	return updated;
+	else {
+		bool updated = false;
+		for (const auto ui : m_userInterfaces) {
+			if (ui->exist) {
+				updated |= ui->updateLayerIfNeeded();
+			}
+		}
+		return updated;
+	}
 }
 
 void UIView::draw() {
 	UIRect::draw();
 
-	for (auto& ui : m_userInterfaces) {
+	for (const auto ui : m_userInterfaces) {
 		if (ui->drawable()) {
 			ui->draw();
 		}
@@ -55,7 +62,7 @@ void UIView::draw() {
 void UIView::updateMouseIntersection() {
 	UIRect::updateMouseIntersection();
 
-	for (auto& ui : m_userInterfaces) {
+	for (const auto ui : m_userInterfaces) {
 		if (ui->updatable()) {
 			ui->updateMouseIntersection();
 		}
@@ -65,7 +72,7 @@ void UIView::updateMouseIntersection() {
 void UIView::updateInputEvents() {
 	UIRect::updateInputEvents();
 
-	for (auto& ui : m_userInterfaces) {
+	for (const auto ui : m_userInterfaces) {
 		if (ui->updatable()) {
 			ui->updateInputEvents();
 		}

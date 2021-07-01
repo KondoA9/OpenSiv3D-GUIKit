@@ -24,7 +24,7 @@ namespace s3d::gui {
 	public:
 		using UIView::UIView;
 
-		~UIVStackView();
+		virtual ~UIVStackView();
 
 		virtual void release();
 
