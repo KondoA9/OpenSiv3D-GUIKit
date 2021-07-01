@@ -77,6 +77,16 @@ namespace s3d::gui {
 			return m_FocusedComponent == this;
 		}
 
+		bool drawable() const {
+			return !hidden && exist
+				&& m_layer.top <= Window::ClientHeight() && m_layer.bottom >= 0
+				&& m_layer.left <= Window::ClientWidth() && m_layer.right >= 0;
+		}
+
+		bool updatable() const {
+			return exist && controllable && drawable();
+		}
+
 		void requestToUpdateLayer() {
 			m_needToUpdateLayer = true;
 		}
@@ -148,15 +158,5 @@ namespace s3d::gui {
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded();
-
-		bool drawable() const {
-			return !hidden && exist
-				&& m_layer.top <= Window::ClientHeight() && m_layer.bottom >= 0
-				&& m_layer.left <= Window::ClientWidth() && m_layer.right >= 0;
-		}
-
-		bool updatable() const {
-			return exist && controllable && drawable();
-		}
 	};
 }

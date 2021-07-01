@@ -115,9 +115,11 @@ bool GUIKit::updateOnPageChanging() {
 void GUIKit::updateOnStable() {
 	// Update mouse events
 	UIComponent::ResetInputEvents();
-	m_drawingPage->m_view.updateMouseIntersection();
-	m_drawingPage->m_view.updateInputEvents();
-	UIComponent::CallInputEvents();
+	if (m_drawingPage->m_view.updatable()) {
+		m_drawingPage->m_view.updateMouseIntersection();
+		m_drawingPage->m_view.updateInputEvents();
+		UIComponent::CallInputEvents();
+	}
 
 	// Window resized event
 	if (WindowManager::DidResized()) {
@@ -130,7 +132,7 @@ void GUIKit::updateOnStable() {
 	}
 
 	// Run inserted events
-	for (auto& f : m_eventsRequestedToRunInMainThread) {
+	for (const auto& f : m_eventsRequestedToRunInMainThread) {
 		f();
 	}
 	m_eventsRequestedToRunInMainThread.release();
