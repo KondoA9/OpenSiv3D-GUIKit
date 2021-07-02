@@ -18,7 +18,7 @@ jobs:
 
       - name: Build
         if: runner.os == 'Windows'
-        run: msbuild "Windows/OpenSiv3D GUIKit.vcxproj"
+        run: msbuild "Windows/OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
 
   macOS:
     name: macOS
