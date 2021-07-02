@@ -16,8 +16,10 @@ jobs:
       - name: Add msbuild to PATH
         uses: microsoft/setup-msbuild@v1.0.2
 
+      - name: Extract libraries
+        run: Expand-Archive -Path Dependencies\lib\Windows.zip -DestinationPath Dependencies\lib\
+
       - name: Build
-        if: runner.os == 'Windows'
         run: msbuild "Windows/OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
 
   macOS:
