@@ -31,7 +31,7 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Extract libraries
-        run: unzip Dependencies\lib\macOS.zip
+        run: unzip Dependencies/lib/macOS.zip
 
       - name: Build
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/

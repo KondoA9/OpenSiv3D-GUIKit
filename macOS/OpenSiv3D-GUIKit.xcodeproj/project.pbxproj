@@ -671,7 +671,7 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = (
-					"include/**",
+					"../Dependencies/include/**",
 					../GUIKit/include,
 				);
 				OBJROOT = build;
@@ -691,7 +691,7 @@
 				GCC_ENABLE_CPP_EXCEPTIONS = YES;
 				GCC_ENABLE_CPP_RTTI = YES;
 				HEADER_SEARCH_PATHS = (
-					"include/**",
+					"../Dependencies/include/**",
 					../GUIKit/include,
 				);
 				OBJROOT = build;
