@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Extract libraries on macOS
+        if: runner.os == 'macOS'
+        run: unzip macOS/lib.zip
+
+      - name: Build for macOS
+        if: runner.os == 'macOS'
+        run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
