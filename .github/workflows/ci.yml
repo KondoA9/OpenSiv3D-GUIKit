@@ -7,28 +7,27 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest]
-
+  windows:
+    name: Windows
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
 
-      - name: Extract libraries on macOS
-        if: runner.os == 'macOS'
-        run: unzip macOS/lib.zip
-
-      - name: Build for macOS
-        if: runner.os == 'macOS'
-        run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
-
       - name: Add msbuild to PATH
-        if: runner.os == 'Windows'
         uses: microsoft/setup-msbuild@v1.0.2
 
-      - name: Build for Windows
+      - name: Build
         if: runner.os == 'Windows'
-        run: msbuild Windows/OpenSiv3D GUIKit.vcxproj
+        run: msbuild "Windows/OpenSiv3D GUIKit.vcxproj"
+
+  macOS:
+    name: macOS
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Extract libraries
+        run: unzip macOS/lib.zip
+
+      - name: Build
+        run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
