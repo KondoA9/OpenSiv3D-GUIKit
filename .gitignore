@@ -370,8 +370,9 @@ AS_DEBUG/
 
 # MacOS
 .DS_Store
-DerivedData/
-MacOS/lib/
 *.app
+macOS/lib/
+macOS/build/
+DerivedData/
 
 # Windows
