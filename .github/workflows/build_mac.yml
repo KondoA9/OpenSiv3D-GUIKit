@@ -1,0 +1,23 @@
+name: BuildForMac
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Change directory
+        run: cd macOS/
+        
+      - name: Unzip libraries
+        run: unzip lib.zip
+
+      - name: Build
+        run: xcodebuild -project OpenSiv3D-GUIKit.xcodeproj/
