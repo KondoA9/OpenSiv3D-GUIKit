@@ -17,7 +17,7 @@ jobs:
         run: cd macOS/
         
       - name: Unzip libraries
-        run: unzip lib.zip
+        run: unzip libSiv3D.a.zip
 
-      - name: Build
-        run: xcodebuild -project OpenSiv3D-GUIKit.xcodeproj/
+      # - name: Build
+      #   run: xcodebuild -project OpenSiv3D-GUIKit.xcodeproj/
