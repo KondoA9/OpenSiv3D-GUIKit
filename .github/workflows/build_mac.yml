@@ -12,12 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-
-      - name: Change directory
-        run: cd macOS/
         
       - name: Unzip libraries
-        run: unzip libSiv3D.a.zip
+        run: unzip macOS/lib.zip
 
-      # - name: Build
-      #   run: xcodebuild -project OpenSiv3D-GUIKit.xcodeproj/
+      - name: Build
+        run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
