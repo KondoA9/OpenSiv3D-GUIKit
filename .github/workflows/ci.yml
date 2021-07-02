@@ -24,6 +24,9 @@ jobs:
       - name: Build
         run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
 
+      - name: Run Test
+        run: msbuild "Windows\OpenSiv3D GUIKit Test.vcxproj" /p:Platform=x64
+
   macOS:
     name: macOS
     runs-on: macos-latest
@@ -35,3 +38,6 @@ jobs:
 
       - name: Build
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
+
+      - name: Run Test
+        run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
