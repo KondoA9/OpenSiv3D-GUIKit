@@ -373,6 +373,7 @@ AS_DEBUG/
 *.app
 *.dSYM
 *.a
+__MACOSX/
 macOS/lib/
 macOS/build/
 DerivedData/
