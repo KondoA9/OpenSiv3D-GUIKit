@@ -35,8 +35,8 @@ jobs:
 
       - name: Extract libraries
         run: |
-          cd Dependencies/
-          unzip Dependencies/lib/macOS.zip
+          cd Dependencies/lib/
+          unzip macOS.zip
 
       - name: Build
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
