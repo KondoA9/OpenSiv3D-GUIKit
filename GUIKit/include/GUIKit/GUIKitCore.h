@@ -12,6 +12,14 @@ namespace s3d::gui {
 	enum class ColorMode;
 
 	class GUIKit final {
+		enum class PageTransition {
+			StartUp,
+			Stable,
+			StartChanging,
+			Changing,
+			JustChanged
+		};
+
 	public:
 		static GUIKit guikit;
 
@@ -23,8 +31,10 @@ namespace s3d::gui {
 
 		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
+		PageTransition m_pageTransition = PageTransition::StartUp;
+
 		bool m_animateColor = false;
-		bool m_pageChanging = false, m_preparePageChanging = false;
+		double m_pageTransitionRate = 1.0;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;
@@ -93,7 +103,7 @@ namespace s3d::gui {
 
 		void run();
 
-		void update();
+		void updateGUIKit();
 
 		// Return true until the start up page appeared
 		bool updateOnStartUp();
@@ -105,7 +115,21 @@ namespace s3d::gui {
 
 		void preparePageChanging();
 
+		void finalizePageChanging();
+
+		void update();
+
+		void draw();
+
 		void termination();
+
+		void updateInputEventsStable();
+
+		void updateLayerStable();
+
+		void updateMainThreadEventsStable();
+
+		void updateTimeoutsStable();
 
 		bool animateColor();
 
