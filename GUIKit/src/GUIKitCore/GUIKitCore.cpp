@@ -9,7 +9,7 @@ void GUIKit::switchPage(const String& identifier) {
 	if (const auto& page = getPagePtr<Page>(identifier); m_pageTransition == PageTransition::Stable && page) {
 		m_forwardPage = page;
 		m_backwardPage = m_drawingPage;
-		m_preparePageChanging = true;
+		m_pageTransition = PageTransition::StartChanging;
 	}
 	else {
 		Logger << U"Error(GUIKitCore): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);

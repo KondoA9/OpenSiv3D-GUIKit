@@ -15,6 +15,7 @@ namespace s3d::gui {
 		enum class PageTransition {
 			StartUp,
 			Stable,
+			StartChanging,
 			Changing,
 			JustChanged
 		};
@@ -33,7 +34,7 @@ namespace s3d::gui {
 		PageTransition m_pageTransition = PageTransition::StartUp;
 
 		bool m_animateColor = false;
-		bool m_preparePageChanging = false;
+		double m_pageTransitionRate = 1.0;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;
@@ -102,7 +103,7 @@ namespace s3d::gui {
 
 		void run();
 
-		void update();
+		void updateGUIKit();
 
 		// Return true until the start up page appeared
 		bool updateOnStartUp();
@@ -114,7 +115,21 @@ namespace s3d::gui {
 
 		void preparePageChanging();
 
+		void finalizePageChanging();
+
+		void update();
+
+		void draw();
+
 		void termination();
+
+		void updateInputEventsStable();
+
+		void updateLayerStable();
+
+		void updateMainThreadEventsStable();
+
+		void updateTimeoutsStable();
 
 		bool animateColor();
 
