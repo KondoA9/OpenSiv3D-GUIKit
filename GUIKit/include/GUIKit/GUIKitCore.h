@@ -12,6 +12,13 @@ namespace s3d::gui {
 	enum class ColorMode;
 
 	class GUIKit final {
+		enum class PageTransition {
+			StartUp,
+			Stable,
+			Changing,
+			JustChanged
+		};
+
 	public:
 		static GUIKit guikit;
 
@@ -22,6 +29,8 @@ namespace s3d::gui {
 		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
 
 		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
+
+		PageTransition m_pageTransition = PageTransition::StartUp;
 
 		bool m_animateColor = false;
 		bool m_pageChanging = false, m_preparePageChanging = false;
