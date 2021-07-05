@@ -70,7 +70,21 @@ void GUIKit::update() {
 		updateOnStable();
 	}
 
-	Graphics::SkipClearScreen();
+	// Update isolated components
+	UIComponent::ResetInputEvents();
+	for (auto& component : m_isolatedComponents) {
+		if (!component->updateLayerIfNeeded() || component->updatable()) {
+			component->updateLayer();
+			component->updateMouseIntersection();
+			component->updateInputEvents();
+		}
+	}
+	UIComponent::CallInputEvents();
+	for (auto& component : m_isolatedComponents) {
+		if (component->drawable()) {
+			component->draw();
+		}
+	}
 }
 
 bool GUIKit::updateOnStartUp() {

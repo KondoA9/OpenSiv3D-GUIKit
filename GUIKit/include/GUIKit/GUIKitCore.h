@@ -2,6 +2,7 @@
 
 #include "Timeout.h"
 #include "Page.h"
+#include "UIComponent.h"
 
 #include <Siv3D.hpp>
 
@@ -19,6 +20,8 @@ namespace s3d::gui {
 
 		Array<std::shared_ptr<Page>> m_pages;
 		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
+
+		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
 		bool m_animateColor = false;
 		bool m_pageChanging = false, m_preparePageChanging = false;
@@ -68,6 +71,11 @@ namespace s3d::gui {
 		template<class T>
 		void appendPage(const T& page) {
 			m_pages.push_back(std::make_shared<T>(page));
+		}
+
+		template<class T>
+		void appendIsolatedComponent(const std::shared_ptr<T>& component) {
+			m_isolatedComponents.emplace_back(component);
 		}
 
 		GUIKit& operator=(const GUIKit&) = delete;

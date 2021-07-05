@@ -73,7 +73,7 @@ namespace s3d::gui {
 		{}
 
 		Size textRegion() {
-			m_textRegion = m_font(label + text).draw().size.asPoint();
+			m_textRegion = m_font(label + text).region(0, 0).size.asPoint();
 			return m_textRegion;
 		}
 
