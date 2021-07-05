@@ -1,4 +1,4 @@
-﻿#include <GUIKit/GUIKit.h>
+#include <GUIKit/GUIKit.h>
 
 class ToolBar final : public gui::UIView {
     std::function<void()> m_toggleColorModeHandler;
@@ -150,7 +150,7 @@ class StartPage : public gui::Page {
         ui_toolbar.setConstraint(gui::LayerDirection::Left);
         ui_toolbar.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
         ui_toolbar.setToggleColorModeHandler([this] {
-            guikit().toggleColorMode();
+			gui::GUIKit::Instance().toggleColorMode();
             });
         ui_toolbar.setFolderOpendHandler([this](const FilePath& path) {
             setup(path);
@@ -171,7 +171,7 @@ class StartPage : public gui::Page {
         ui_movePage.setConstraint(gui::LayerDirection::Left, m_view, gui::LayerDirection::Left);
         ui_movePage.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
         ui_movePage.addEventListener<gui::MouseEvent::LeftDown>([this] {
-            guikit().switchPage(U"start");
+			gui::GUIKit::Instance().switchPage(U"start");
             });
 
         m_view.appendComponent(ui_filesView);
@@ -213,7 +213,7 @@ class NextPage : public gui::Page {
         ui_button.setConstraint(gui::LayerDirection::Left);
         ui_button.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
         ui_button.addEventListener<gui::MouseEvent::LeftDown>([this] {
-            guikit().switchPage(U"explorer");
+			gui::GUIKit::Instance().switchPage(U"explorer");
             });
 
         m_view.appendComponent(ui_title);
@@ -222,7 +222,7 @@ class NextPage : public gui::Page {
 };
 
 void Main() {
-    gui::GUIKit guikit;
+	auto& guikit = gui::GUIKit::Instance();
     guikit.appendPage(NextPage(U"start"));
     guikit.appendPage(StartPage(U"explorer"));
     guikit.start();

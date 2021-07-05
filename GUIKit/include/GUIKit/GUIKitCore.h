@@ -10,7 +10,11 @@
 namespace s3d::gui {
 	enum class ColorMode;
 
-	class GUIKit {
+	class GUIKit final {
+	public:
+		static GUIKit guikit;
+
+	private:
 		std::mutex m_mutex;
 
 		Array<std::shared_ptr<Page>> m_pages;
@@ -23,11 +27,14 @@ namespace s3d::gui {
 		Array<Timeout> m_timeouts;
 
 	public:
-		GUIKit() {
-			initialize();
-		}
+		GUIKit(const GUIKit&) = delete;
 
-		~GUIKit() {}
+		GUIKit(GUIKit&&) = delete;
+
+		static GUIKit& Instance() {
+			static GUIKit instance;
+			return instance;
+		}
 
 		void start();
 
@@ -49,23 +56,31 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
-		template<class T>
-		T* getPage(const String& identifier) const {
-			return getPagePtr<T>(identifier).get();
-		}
-
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
-		void appendPage(const T& page) {
-			auto p = std::make_shared<T>(page);
-			p->m_guikit = this;
-			m_pages.push_back(p);
+		T* getPage(const String& identifier) {
+			return getPagePtr<T>(identifier).get();
 		}
 
+		template<class T>
+		void appendPage(const T& page) {
+			m_pages.push_back(std::make_shared<T>(page));
+		}
+
+		GUIKit& operator=(const GUIKit&) = delete;
+
+		GUIKit& operator=(GUIKit&&) = delete;
+
 	private:
+		GUIKit() {
+			initialize();
+		}
+
+		~GUIKit() {}
+
 		void initialize();
 
 		void run();
