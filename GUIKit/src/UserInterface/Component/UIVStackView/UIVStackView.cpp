@@ -5,11 +5,11 @@ using namespace s3d::gui;
 void UIVStackView::initialize() {
 	addEventListener<MouseEvent::Wheel>([this](const MouseEvent::Wheel& e) {
 		scroll(e.wheel * 40);
-		});
+		}, true);
 
 	addEventListener<MouseEvent::LeftDragging>([this](const MouseEvent::LeftDragging& e) {
 		scroll(e.previousPos.y - e.pos.y);
-		});
+		}, true);
 }
 
 UIVStackView::~UIVStackView() {
