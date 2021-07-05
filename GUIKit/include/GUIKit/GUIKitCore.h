@@ -33,7 +33,7 @@ namespace s3d::gui {
 		PageTransition m_pageTransition = PageTransition::StartUp;
 
 		bool m_animateColor = false;
-		bool m_pageChanging = false, m_preparePageChanging = false;
+		bool m_preparePageChanging = false;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;

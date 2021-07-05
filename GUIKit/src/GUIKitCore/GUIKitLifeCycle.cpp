@@ -32,42 +32,47 @@ void GUIKit::run() {
 void GUIKit::update() {
 	WindowManager::Update();
 
-	// Start up
-	if (static bool startup = true; startup) {
-		startup = updateOnStartUp();
+	switch (m_pageTransition)
+	{
+	case PageTransition::StartUp:
+		if (!updateOnStartUp()) {
+			m_pageTransition = PageTransition::Stable;
+		}
+		break;
+
+	case PageTransition::Stable:
+		updateOnStable();
+		break;
+
+	case PageTransition::Changing:
+		if (!updateOnPageChanging()) {
+			m_pageTransition = PageTransition::JustChanged;
+		}
+		break;
+
+	case PageTransition::JustChanged:
+		m_forwardPage->onAfterAppeared();
+		m_backwardPage->onAfterDisappeared();
+		m_drawingPage = m_forwardPage;
+		m_forwardPage.reset();
+		m_backwardPage.reset();
+		m_pageTransition = PageTransition::Stable;
+		break;
+
+	default:
+		break;
 	}
 
 	// Prepare for page changing
 	if (m_preparePageChanging) {
 		preparePageChanging();
 		m_preparePageChanging = false;
-		m_pageChanging = true;
+		m_pageTransition = PageTransition::Changing;
 	}
 
 	// Color theme
 	if (m_animateColor) {
 		m_animateColor = animateColor();
-	}
-
-	// Page changed
-	static bool pageJustChanged = false;
-	if (pageJustChanged) {
-		m_forwardPage->onAfterAppeared();
-		m_backwardPage->onAfterDisappeared();
-		m_drawingPage = m_forwardPage;
-		m_forwardPage.reset();
-		m_backwardPage.reset();
-		pageJustChanged = false;
-		m_pageChanging = false;
-	}
-
-	// Drawing pages while page changing
-	if (m_pageChanging) {
-		pageJustChanged = !updateOnPageChanging();
-	}
-	// Draw the page
-	else {
-		updateOnStable();
 	}
 
 	// Update isolated components
@@ -85,6 +90,8 @@ void GUIKit::update() {
 			component->draw();
 		}
 	}
+
+	Graphics::SkipClearScreen();
 }
 
 bool GUIKit::updateOnStartUp() {

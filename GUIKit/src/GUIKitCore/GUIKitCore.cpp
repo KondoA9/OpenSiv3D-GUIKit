@@ -6,7 +6,7 @@
 using namespace s3d::gui;
 
 void GUIKit::switchPage(const String& identifier) {
-	if (const auto& page = getPagePtr<Page>(identifier); !m_pageChanging && page) {
+	if (const auto& page = getPagePtr<Page>(identifier); m_pageTransition == PageTransition::Stable && page) {
 		m_forwardPage = page;
 		m_backwardPage = m_drawingPage;
 		m_preparePageChanging = true;
