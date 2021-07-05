@@ -4,14 +4,14 @@
 
 namespace s3d::gui::DynamicColor {
 	constexpr auto Background = ColorTheme(Color(250, 250, 250), Color(33, 33, 33));
-	constexpr auto BackgroundSecondary = ColorTheme(Color(245, 245, 245), Color(66, 66, 66));
+	constexpr auto BackgroundSecondary = ColorTheme(Color(236, 239, 241), Color(66, 66, 66));
 
 	constexpr auto Separator = ColorTheme(Color(189, 189, 189), Color(97, 97, 97));
 
 	constexpr auto Text = ColorTheme(Color(33, 33, 33), Color(250, 250, 250));
 
-	constexpr auto ButtonDefault = ColorTheme(Color(82, 70, 255));
-	constexpr auto ButtonPushed = ColorTheme(Color(69, 57, 229));
+	constexpr auto ButtonDefault = ColorTheme(Color(112, 100, 255), Color(82, 70, 255));
+	constexpr auto ButtonPushed = ColorTheme(Color(95, 80, 229), Color(69, 57, 229));
 
 	constexpr auto DefaultRed = ColorTheme(Color(244, 67, 54));
 	constexpr auto DefaultPink = ColorTheme(Color(233, 30, 99));
