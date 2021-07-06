@@ -120,7 +120,7 @@ namespace s3d::gui {
 
 		virtual void updateLayer();
 
-		virtual void draw() = 0;
+		virtual void draw(const Rect& scissor) = 0;
 
 		virtual void updateMouseIntersection() = 0;
 

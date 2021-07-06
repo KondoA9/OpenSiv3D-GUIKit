@@ -15,7 +15,6 @@ namespace s3d::gui {
 
 	private:
 		const String m_identifier;
-		GUIKit* m_guikit = nullptr;
 		bool m_loaded = false;
 
 	public:
@@ -52,9 +51,5 @@ namespace s3d::gui {
 
 		// Called when application terminated
 		virtual void onAppTerminated() {}
-
-		GUIKit& guikit() const {
-			return *m_guikit;
-		}
 	};
 }

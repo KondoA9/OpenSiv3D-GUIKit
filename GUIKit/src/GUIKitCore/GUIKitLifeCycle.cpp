@@ -6,6 +6,7 @@ using namespace s3d::gui;
 
 void GUIKit::initialize() {
 	WindowManager::Initialize();
+
 	UnifiedFont::Initialize();
 
 	Scene::SetScaleMode(ScaleMode::ResizeFill);
@@ -22,55 +23,112 @@ void GUIKit::start() {
 }
 
 void GUIKit::run() {
+	// Set scissor rect
+	{
+		RasterizerState rasterizer = RasterizerState::Default2D;
+		rasterizer.scissorEnable = true;
+		Graphics2D::Internal::SetRasterizerState(rasterizer);
+		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+	}
+
 	while (System::Update()) {
-		update();
+		updateGUIKit();
 	}
 
 	termination();
 }
 
-void GUIKit::update() {
+void GUIKit::updateGUIKit() {
+	// Update window state
 	WindowManager::Update();
 
-	// Start up
-	if (static bool startup = true; startup) {
-		startup = updateOnStartUp();
-	}
+	// Update pages
+	update();
 
-	// Prepare for page changing
-	if (m_preparePageChanging) {
-		preparePageChanging();
-		m_preparePageChanging = false;
-		m_pageChanging = true;
-	}
-
-	// Color theme
+	// Update color theme
 	if (m_animateColor) {
 		m_animateColor = animateColor();
 	}
 
-	// Page changed
-	static bool pageJustChanged = false;
-	if (pageJustChanged) {
-		m_forwardPage->onAfterAppeared();
-		m_backwardPage->onAfterDisappeared();
-		m_drawingPage = m_forwardPage;
-		m_forwardPage.reset();
-		m_backwardPage.reset();
-		pageJustChanged = false;
-		m_pageChanging = false;
-	}
+	// Draw pages, components and events
+	draw();
+}
 
-	// Drawing pages while page changing
-	if (m_pageChanging) {
-		pageJustChanged = !updateOnPageChanging();
+void GUIKit::termination() {
+	for (auto& page : m_pages) {
+		page->onAppTerminated();
 	}
-	// Draw the page
-	else {
+}
+
+void GUIKit::update() {
+	switch (m_pageTransition)
+	{
+	case PageTransition::StartUp:
+		if (!updateOnStartUp()) {
+			m_pageTransition = PageTransition::Stable;
+		}
+		break;
+
+	case PageTransition::Stable:
 		updateOnStable();
+		break;
+
+	case PageTransition::StartChanging:
+		preparePageChanging();
+		m_pageTransition = PageTransition::Changing;
+		break;
+
+	case PageTransition::Changing:
+		if (!updateOnPageChanging()) {
+			m_pageTransition = PageTransition::JustChanged;
+		}
+		break;
+
+	case PageTransition::JustChanged:
+		finalizePageChanging();
+		m_pageTransition = PageTransition::Stable;
+		break;
+
+	default:
+		break;
+	}
+}
+
+void GUIKit::draw() {
+	switch (m_pageTransition)
+	{
+	case s3d::gui::GUIKit::PageTransition::Changing:
+		// Draw previous and next page
+		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
+		m_forwardPage->m_view.draw(m_windowScissorRect);
+		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
+		m_backwardPage->m_view.draw(m_windowScissorRect);
+		break;
+
+	case s3d::gui::GUIKit::PageTransition::JustChanged:
+		// Initialize ColorMultipiler
+		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
+		m_forwardPage->m_view.draw(m_windowScissorRect);
+		break;
+
+	default:
+		// Draw current page
+		m_drawingPage->m_view.draw(m_windowScissorRect);
+
+		// Draw isolated components
+		for (auto& component : m_isolatedComponents) {
+			if (component->drawable()) {
+				component->draw(m_windowScissorRect);
+			}
+		}
+		break;
 	}
 
-	Graphics::SkipClearScreen();
+	// Additional drawing events
+	for (auto& f : m_drawingEvents) {
+		f();
+	}
+	m_drawingEvents.release();
 }
 
 bool GUIKit::updateOnStartUp() {
@@ -91,72 +149,15 @@ bool GUIKit::updateOnStartUp() {
 }
 
 bool GUIKit::updateOnPageChanging() {
-	static double pageColorMultiplier = 1.0;
-	pageColorMultiplier -= 5.0 * Scene::DeltaTime();
+	m_pageTransitionRate -= 5.0 * Scene::DeltaTime();
 
 	// The page changed
-	if (pageColorMultiplier < 0.0) {
-		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-		m_forwardPage->m_view.draw();
-		pageColorMultiplier = 1.0;
+	if (m_pageTransitionRate < 0.0) {
+		m_pageTransitionRate = 1.0;
 		return false;
-	}
-	// Pages are changing
-	else {
-		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - pageColorMultiplier));
-		m_forwardPage->m_view.draw();
-		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, pageColorMultiplier));
-		m_backwardPage->m_view.draw();
 	}
 
 	return true;
-}
-
-void GUIKit::updateOnStable() {
-	// Update mouse events
-	UIComponent::ResetInputEvents();
-	if (m_drawingPage->m_view.updatable()) {
-		m_drawingPage->m_view.updateMouseIntersection();
-		m_drawingPage->m_view.updateInputEvents();
-		UIComponent::CallInputEvents();
-	}
-
-	// Window resized event
-	if (WindowManager::DidResized()) {
-		m_drawingPage->m_view.updateLayer();
-		m_drawingPage->m_view.updateLayerInvert();
-		m_drawingPage->onWindowResized();
-	}
-	else {
-		m_drawingPage->m_view.updateLayerIfNeeded();
-	}
-
-	// Run inserted events
-	for (const auto& f : m_eventsRequestedToRunInMainThread) {
-		f();
-	}
-	m_eventsRequestedToRunInMainThread.release();
-
-	// Run timeouts
-	{
-		bool alive = false;
-		for (auto& timeout : m_timeouts) {
-			timeout.update();
-			alive |= timeout.isAlive();
-		}
-		if (!alive) {
-			m_timeouts.release();
-		}
-	}
-
-	// Draw
-	m_drawingPage->m_view.draw();
-
-	// Additional drawing events
-	for (auto& f : m_drawingEvents) {
-		f();
-	}
-	m_drawingEvents.release();
 }
 
 void GUIKit::preparePageChanging() {
@@ -168,13 +169,94 @@ void GUIKit::preparePageChanging() {
 
 	m_forwardPage->onBeforeAppeared();
 	m_backwardPage->onBeforeDisappeared();
+
 	m_forwardPage->m_view.updateLayer();
 	m_forwardPage->m_view.updateLayerInvert();
+
 	m_forwardPage->onLayoutCompleted();
 }
 
-void GUIKit::termination() {
-	for (auto& page : m_pages) {
-		page->onAppTerminated();
+void GUIKit::finalizePageChanging() {
+	m_forwardPage->onAfterAppeared();
+	m_backwardPage->onAfterDisappeared();
+
+	m_drawingPage = m_forwardPage;
+
+	m_forwardPage.reset();
+	m_backwardPage.reset();
+}
+
+void GUIKit::updateOnStable() {
+	assert(m_drawingPage);
+
+	updateInputEventsStable();
+
+	updateLayerStable();
+
+	updateMainThreadEventsStable();
+
+	updateTimeoutsStable();
+}
+
+void GUIKit::updateInputEventsStable() {
+	UIComponent::ResetInputEvents();
+	if (m_drawingPage->m_view.updatable()) {
+		m_drawingPage->m_view.updateMouseIntersection();
+		m_drawingPage->m_view.updateInputEvents();
+	}
+	for (auto& component : m_isolatedComponents) {
+		if (component->updatable()) {
+			component->updateMouseIntersection();
+			component->updateInputEvents();
+		}
+	}
+	UIComponent::CallInputEvents();
+}
+
+void GUIKit::updateLayerStable() {
+	if (WindowManager::DidResized()) {
+		// Update scissor rect
+		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+
+		// Update layer
+		m_drawingPage->m_view.updateLayer();
+		m_drawingPage->m_view.updateLayerInvert();
+
+		// Update isolated components
+		for (auto& component : m_isolatedComponents) {
+			component->updateLayer();
+		}
+
+		// Call window resized event
+		m_drawingPage->onWindowResized();
+	}
+	else {
+		m_drawingPage->m_view.updateLayerIfNeeded();
+
+		// Update isolated components
+		for (auto& component : m_isolatedComponents) {
+			component->updateLayerIfNeeded();
+		}
+	}
+}
+
+void GUIKit::updateMainThreadEventsStable() {
+	for (const auto& f : m_eventsRequestedToRunInMainThread) {
+		f();
+	}
+
+	m_eventsRequestedToRunInMainThread.release();
+}
+
+void GUIKit::updateTimeoutsStable() {
+	bool alive = false;
+
+	for (auto& timeout : m_timeouts) {
+		timeout.update();
+		alive |= timeout.isAlive();
+	}
+
+	if (!alive) {
+		m_timeouts.release();
 	}
 }

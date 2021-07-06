@@ -4,7 +4,7 @@
 
 #include <Siv3D.hpp>
 
-#define GUICreateInputEvent(Event) struct Event : public InputEvent { Event(UIComponent* _component) : InputEvent(typeid(Event).hash_code(), _component) {} };
+#define GUICreateInputEvent(Event) struct Event : public gui::InputEvent { Event(gui::UIComponent* _component) : gui::InputEvent(typeid(Event).hash_code(), _component) {} };
 
 namespace s3d::gui {
 	namespace MouseEvent {

@@ -2,6 +2,7 @@
 
 #include "Timeout.h"
 #include "Page.h"
+#include "UIComponent.h"
 
 #include <Siv3D.hpp>
 
@@ -10,24 +11,44 @@
 namespace s3d::gui {
 	enum class ColorMode;
 
-	class GUIKit {
+	class GUIKit final {
+		enum class PageTransition {
+			StartUp,
+			Stable,
+			StartChanging,
+			Changing,
+			JustChanged
+		};
+
+	public:
+		static GUIKit guikit;
+
+	private:
 		std::mutex m_mutex;
 
 		Array<std::shared_ptr<Page>> m_pages;
 		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
 
+		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
+
+		PageTransition m_pageTransition = PageTransition::StartUp;
+
 		bool m_animateColor = false;
-		bool m_pageChanging = false, m_preparePageChanging = false;
+		double m_pageTransitionRate = 1.0;
+		Rect m_windowScissorRect;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;
 
 	public:
-		GUIKit() {
-			initialize();
-		}
+		GUIKit(const GUIKit&) = delete;
 
-		~GUIKit() {}
+		GUIKit(GUIKit&&) = delete;
+
+		static GUIKit& Instance() {
+			static GUIKit instance;
+			return instance;
+		}
 
 		void start();
 
@@ -49,28 +70,41 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
-		template<class T>
-		T* getPage(const String& identifier) const {
-			return getPagePtr<T>(identifier).get();
-		}
-
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
-		void appendPage(const T& page) {
-			auto p = std::make_shared<T>(page);
-			p->m_guikit = this;
-			m_pages.push_back(p);
+		T* getPage(const String& identifier) {
+			return getPagePtr<T>(identifier).get();
 		}
 
+		template<class T>
+		void appendPage(const T& page) {
+			m_pages.push_back(std::make_shared<T>(page));
+		}
+
+		template<class T>
+		void appendIsolatedComponent(const std::shared_ptr<T>& component) {
+			m_isolatedComponents.emplace_back(component);
+		}
+
+		GUIKit& operator=(const GUIKit&) = delete;
+
+		GUIKit& operator=(GUIKit&&) = delete;
+
 	private:
+		GUIKit() {
+			initialize();
+		}
+
+		~GUIKit() {}
+
 		void initialize();
 
 		void run();
 
-		void update();
+		void updateGUIKit();
 
 		// Return true until the start up page appeared
 		bool updateOnStartUp();
@@ -82,7 +116,21 @@ namespace s3d::gui {
 
 		void preparePageChanging();
 
+		void finalizePageChanging();
+
+		void update();
+
+		void draw();
+
 		void termination();
+
+		void updateInputEventsStable();
+
+		void updateLayerStable();
+
+		void updateMainThreadEventsStable();
+
+		void updateTimeoutsStable();
 
 		bool animateColor();
 

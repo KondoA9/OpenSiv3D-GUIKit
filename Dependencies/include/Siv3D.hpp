@@ -32,6 +32,8 @@
 #	define SIV3D_INCLUDED
 # endif
 
+#define SIV3D_WINDOWS_HIGH_DPI
+
 //////////////////////////////////////////////////
 //
 // Utilities

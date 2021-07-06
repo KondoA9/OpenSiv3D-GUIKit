@@ -17,8 +17,8 @@ void UIImageView::paint(double thickness, const Color& color, bool antialiased) 
 	updateTexture();
 }
 
-void UIImageView::draw() {
-	UIRect::draw();
+void UIImageView::draw(const Rect& scissor) {
+	UIRect::draw(scissor);
 
 	if (m_texture) {
 		m_texture.scaled(m_scale).drawAt(m_rect.center());
