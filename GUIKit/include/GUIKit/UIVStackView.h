@@ -14,12 +14,16 @@ namespace s3d::gui {
 
 	private:
 		Array<UIComponent*> m_deletableComponents;
+
+		LeadingDirection m_leadingDirection = LeadingDirection::Top;
+
 		size_t m_maxStackCount = 0;
 		double m_rowHeight = 0.0;
+
 		double m_currentRowHeight = 0.0, m_currentRowsHeight = 0.0;
-		double m_topPositionConstant = 0.0;
+		double m_leadingPositionConstant = 0.0;
+
 		bool m_constraintsApplied = false;
-		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
 	public:
 		using UIView::UIView;
@@ -67,11 +71,11 @@ namespace s3d::gui {
 		void updateLayer() override;
 
 	private:
-		void setChildConstraints(size_t index);
+		void updateChildrenConstraints();
 
 		void calcCurrentRowHeight();
 
-		void adjustRowsBottomToViewBottom();
+		void adjustRowsTrailingToViewBottom();
 
 		void scroll(double dy);
 	};
