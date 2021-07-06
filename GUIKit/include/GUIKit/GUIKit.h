@@ -25,6 +25,7 @@
 #include "UISlider.h"
 #include "UIIcon.h"
 #include "UIInputField.h"
+#include "UICheckBox.h"
 
 // Page
 #include "Page.h"
