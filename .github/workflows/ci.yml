@@ -95,6 +95,7 @@ jobs:
 
       - name: Build OpenSiv3D
         run: |
+          cd Linux/Test/
           git clone https://github.com/Siv3D/OpenSiv3D.git
           cd OpenSiv3D/
           mkdir Linux/build

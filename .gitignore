@@ -382,4 +382,5 @@ DerivedData/
 
 # Linux
 Linux/build/
-Linux/build/Test/OpenSiv3D/
+Linux/Test/build/
+Linux/Test/OpenSiv3D/
