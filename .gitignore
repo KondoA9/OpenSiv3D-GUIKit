@@ -368,6 +368,8 @@ AS_DEBUG/
 *.html
 *.lib
 
+# Windows
+
 # MacOS
 .DS_Store
 *.app
@@ -378,4 +380,5 @@ macOS/lib/
 macOS/build/
 DerivedData/
 
-# Windows
+# Linux
+Build/

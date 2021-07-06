@@ -5,6 +5,7 @@ on:
     branches:
     - master
     - develop
+    - feature/platform-linux
   pull_request:
     branches:
     - master
@@ -45,3 +46,20 @@ jobs:
 
       - name: Run Test
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
+
+  Linux:
+    name: Linux
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure
+        working-directory: Linux
+        run: |
+          mkdir build
+          cd build
+          make ../
+
+      - name: Build
+        working-directory: Linux/build
+        run: make
