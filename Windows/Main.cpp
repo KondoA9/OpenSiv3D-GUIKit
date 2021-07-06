@@ -160,6 +160,7 @@ class StartPage : public gui::Page {
 			setup(path);
 			});
 
+		ui_filesView.setLeadingDirection(gui::LeadingDirection::Bottom);
 		ui_filesView.setRowHeight(30_px);
 		ui_filesView.setConstraint(gui::LayerDirection::Top, ui_toolbar, gui::LayerDirection::Bottom);
 		ui_filesView.setConstraint(gui::LayerDirection::Bottom, ui_movePage, gui::LayerDirection::Top);
