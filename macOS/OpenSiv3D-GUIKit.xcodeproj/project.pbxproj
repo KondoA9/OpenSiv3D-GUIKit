@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E116D7626948AC60045F4E3 /* UICheckBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E116D7526948AC60045F4E3 /* UICheckBox.h */; };
+		9E116D7A26948AF50045F4E3 /* UICheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E116D7926948AF50045F4E3 /* UICheckBox.cpp */; };
 		9E2A345E268F403500CEA725 /* Imaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E2A3442268F403400CEA725 /* Imaging.h */; };
 		9E2A345F268F403500CEA725 /* GUIKitCore.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E2A3443268F403400CEA725 /* GUIKitCore.h */; };
 		9E2A3460268F403500CEA725 /* PixelUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E2A3444268F403400CEA725 /* PixelUnit.h */; };
@@ -62,6 +64,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E116D7526948AC60045F4E3 /* UICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICheckBox.h; sourceTree = "<group>"; };
+		9E116D7926948AF50045F4E3 /* UICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICheckBox.cpp; sourceTree = "<group>"; };
 		9E2A3442268F403400CEA725 /* Imaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imaging.h; sourceTree = "<group>"; };
 		9E2A3443268F403400CEA725 /* GUIKitCore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GUIKitCore.h; sourceTree = "<group>"; };
 		9E2A3444268F403400CEA725 /* PixelUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelUnit.h; sourceTree = "<group>"; };
@@ -128,6 +132,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E116D7826948AF50045F4E3 /* UICheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				9E116D7926948AF50045F4E3 /* UICheckBox.cpp */,
+			);
+			path = UICheckBox;
+			sourceTree = "<group>";
+		};
 		9E83801A2679E3D50052AF7B = {
 			isa = PBXGroup;
 			children = (
@@ -180,6 +192,7 @@
 				9E2A3446268F403500CEA725 /* Timeout.h */,
 				9E2A3452268F403500CEA725 /* UIButton.h */,
 				9E2A345D268F403500CEA725 /* UICircle.h */,
+				9E116D7526948AC60045F4E3 /* UICheckBox.h */,
 				9E2A344E268F403500CEA725 /* UIComponent.h */,
 				9E2A3447268F403500CEA725 /* UIIcon.h */,
 				9E2A344F268F403500CEA725 /* UIImageView.h */,
@@ -274,6 +287,7 @@
 		9E8381902679FDEF0052AF7B /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				9E116D7826948AF50045F4E3 /* UICheckBox */,
 				9E8381912679FDEF0052AF7B /* UIButton */,
 				9E8381932679FDEF0052AF7B /* UIToggleButton */,
 				9E8381952679FDEF0052AF7B /* UIView */,
@@ -415,6 +429,7 @@
 				9E2A3474268F403500CEA725 /* UIToggleButton.h in Headers */,
 				9E2A346E268F403500CEA725 /* UIButton.h in Headers */,
 				9E2A346F268F403500CEA725 /* UIInputField.h in Headers */,
+				9E116D7626948AC60045F4E3 /* UICheckBox.h in Headers */,
 				9E2A3475268F403500CEA725 /* InputEvent.h in Headers */,
 				9E2A345F268F403500CEA725 /* GUIKitCore.h in Headers */,
 				9E2A346A268F403500CEA725 /* UIComponent.h in Headers */,
@@ -520,6 +535,7 @@
 				9E8381CD2679FDEF0052AF7B /* Imaging.cpp in Sources */,
 				9E8381CE2679FDEF0052AF7B /* WindowManager.cpp in Sources */,
 				9E8381D02679FDEF0052AF7B /* UIToggleButton.cpp in Sources */,
+				9E116D7A26948AF50045F4E3 /* UICheckBox.cpp in Sources */,
 				9E8381DA2679FDEF0052AF7B /* UIInputField.cpp in Sources */,
 				9E8381DC2679FDEF0052AF7B /* Layer.cpp in Sources */,
 			);
