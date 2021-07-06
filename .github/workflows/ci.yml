@@ -61,6 +61,9 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: Install package
+        run: sudo apt install ninja-build
+
       - name: Configure
         run: |
           cd Linux/
@@ -81,7 +84,6 @@ jobs:
 
       - name: Install packeages for OpenSiv3D
         run: |
-          sudo apt install ninja-build
           sudo apt install libasound2-dev
           sudo apt install libavcodec-dev
           sudo apt install libavformat-dev
