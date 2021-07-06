@@ -58,7 +58,7 @@ jobs:
           cd Linux/
           mkdir build
           cd build/
-          make ../
+          cmake ../
 
       - name: Build
         run: |
