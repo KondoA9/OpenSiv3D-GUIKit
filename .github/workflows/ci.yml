@@ -65,7 +65,7 @@ jobs:
           cd Linux/build/
           make
 
-      - name: Install packeages
+      - name: Install packeages for OpenSiv3D
         run: |
           sudo apt install ninja-build
           sudo apt install libasound2-dev
@@ -91,12 +91,21 @@ jobs:
           sudo apt install libxft-dev
           sudo apt install uuid-dev
           sudo apt install xorg-dev
+          sudo apt install libopenal-dev
 
       - name: Build OpenSiv3D
         run: |
           git clone https://github.com/Siv3D/OpenSiv3D.git
-          cd OpenSiv3D
+          cd OpenSiv3D/
           mkdir Linux/build
-          cd Linux/build
+          cd Linux/build/
+          cmake ../
+          make
+
+      - name: Build Test
+        run: |
+          cd Linux/Test/
+          mkdir build
+          cd build/
           cmake ../
           make
