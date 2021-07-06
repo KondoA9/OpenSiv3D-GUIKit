@@ -201,6 +201,7 @@ class NextPage : public gui::Page {
 
 	gui::UIText ui_title = gui::UIText(U"GUIKit explorer", gui::UnifiedFontStyle::Large, gui::TextDirection::Center);
 	gui::UIButton ui_button = gui::UIButton(U"Next");
+	gui::UICheckBox ui_checkBox = gui::UICheckBox();
 
 	void onLoaded() override {
 		ui_title.setConstraint(gui::LayerDirection::Top);
@@ -208,7 +209,12 @@ class NextPage : public gui::Page {
 		ui_title.setConstraint(gui::LayerDirection::Left);
 		ui_title.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
 
-		ui_button.setConstraint(gui::LayerDirection::Top, ui_title, gui::LayerDirection::Bottom);
+		ui_checkBox.setConstraint(gui::LayerDirection::Height, 100_px);
+		ui_checkBox.setConstraint(gui::LayerDirection::Bottom, ui_button, gui::LayerDirection::Top);
+		ui_checkBox.setConstraint(gui::LayerDirection::Left);
+		ui_checkBox.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+
+		ui_button.setConstraint(gui::LayerDirection::Height, 100_px);
 		ui_button.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
 		ui_button.setConstraint(gui::LayerDirection::Left);
 		ui_button.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
@@ -218,6 +224,7 @@ class NextPage : public gui::Page {
 
 		m_view.appendComponent(ui_title);
 		m_view.appendComponent(ui_button);
+		m_view.appendComponent(ui_checkBox);
 	}
 };
 

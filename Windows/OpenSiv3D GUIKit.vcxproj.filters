@@ -82,6 +82,9 @@
     <Filter Include="GUIKit\UserInterface\InputEvent">
       <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UICheckBox">
+      <UniqueIdentifier>{40771309-6547-4154-b832-db05add49ba5}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
@@ -155,6 +158,9 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponentMouseEvent.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICheckBox\UICheckBox.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UICheckBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -241,6 +247,9 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\InputEventHandler.h">
       <Filter>GUIKit\UserInterface\InputEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UICheckBox.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UICheckBox</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
