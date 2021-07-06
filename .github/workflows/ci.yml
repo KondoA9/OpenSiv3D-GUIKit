@@ -11,7 +11,7 @@ on:
     - develop
 
 jobs:
-  windows-build:
+  windows:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -27,16 +27,10 @@ jobs:
       - name: Build GUIKit for Windows
         run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
 
-  windows-test:
-    needs: windows-build
-    runs-on: windows-latest
-    steps:
-      - uses: actions/checkout@v2
-
       - name: Build Test
         run: msbuild "Windows\OpenSiv3D GUIKit Test.vcxproj" /p:Platform=x64
 
-  macOS-build:
+  macOS:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -47,16 +41,10 @@ jobs:
       - name: Build GUIKit for macOS
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
 
-  macOS-test:
-    needs: macOS-build
-    runs-on: macos-latest
-    steps:
-      - uses: actions/checkout@v2
-
       - name: Build Test
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
 
-  linux-build:
+  linux:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
@@ -75,12 +63,6 @@ jobs:
         run: |
           cd Linux/build/
           ninja
-
-  Linux-test:
-    needs: linux-build
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
 
       - name: Install packeages for OpenSiv3D
         run: |
