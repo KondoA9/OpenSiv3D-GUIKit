@@ -100,8 +100,8 @@ jobs:
           cd OpenSiv3D/
           mkdir Linux/build
           cd Linux/build/
-          cmake ../
-          make
+          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
+          ninja
 
       - name: Build Test
         run: |
