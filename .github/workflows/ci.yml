@@ -45,3 +45,21 @@ jobs:
 
       - name: Run Test
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
+
+  Linux:
+    name: Linux
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Configure
+        run: |
+          cd Linux/
+          mkdir build
+          cd build/
+          cmake ../
+
+      - name: Build
+        run: |
+          cd Linux/build/
+          make
