@@ -223,6 +223,9 @@ class NextPage : public gui::Page {
 
 void Main() {
 	auto& guikit = gui::GUIKit::Instance();
+
+	Window::Resize(1920, 1080);
+
 	guikit.appendPage(NextPage(U"start"));
 	guikit.appendPage(StartPage(U"explorer"));
 	guikit.start();

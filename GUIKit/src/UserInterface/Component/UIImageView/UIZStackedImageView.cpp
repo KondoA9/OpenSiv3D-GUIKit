@@ -48,8 +48,8 @@ void UIZStackedImageView::release() {
 	setDrawingCenterPos(m_rect.center());
 }
 
-void UIZStackedImageView::draw() {
-	UIRect::draw();
+void UIZStackedImageView::draw(const Rect& scissor) {
+	UIRect::draw(scissor);
 
 	if (m_textures) {
 		m_textureRegion = m_textures[0].scaled(m_scale).regionAt(m_drawingCenterPos);

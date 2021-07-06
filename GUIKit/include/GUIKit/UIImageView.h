@@ -45,7 +45,7 @@ namespace s3d::gui {
 		void paint(double thickness, const Color& color, bool antialiased = true);
 
 	protected:
-		void draw() override;
+		void draw(const Rect& scissor) override;
 
 		void updateLayer() override;
 

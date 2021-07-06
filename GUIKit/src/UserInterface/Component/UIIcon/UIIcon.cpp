@@ -2,8 +2,8 @@
 
 using namespace s3d::gui;
 
-void UIIcon::draw() {
-	UIRect::draw();
+void UIIcon::draw(const Rect& scissor) {
+	UIRect::draw(scissor);
 
 	if (rotate) {
 		m_icon.rotated(m_angle).drawAt(m_rect.center(), iconColor);

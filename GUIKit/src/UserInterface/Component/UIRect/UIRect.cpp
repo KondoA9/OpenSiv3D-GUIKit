@@ -12,7 +12,7 @@ void UIRect::setCornerRadius(double r) {
 	);
 }
 
-void UIRect::draw() {
+void UIRect::draw(const Rect&) {
 	if (fillInner) {
 		m_rect.draw(backgroundColor);
 	}

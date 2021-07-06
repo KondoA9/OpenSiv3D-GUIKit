@@ -108,7 +108,7 @@ namespace s3d::gui {
 	protected:
 		void initialize() override;
 
-		void draw() override;
+		void draw(const Rect& scissor) override;
 
 		void updateLayer() override;
 

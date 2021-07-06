@@ -9,7 +9,7 @@ void UICircle::updateLayer() {
 		(m_layer.height + m_layer.width) * 0.25);
 }
 
-void UICircle::draw() {
+void UICircle::draw(const Rect&) {
 	if (fillInner) {
 		m_circle.draw(backgroundColor);
 	}

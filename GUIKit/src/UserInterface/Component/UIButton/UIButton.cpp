@@ -55,8 +55,8 @@ void UIButton::initialize() {
 	UIRect::initialize();
 }
 
-void UIButton::draw() {
-	UIRect::draw();
+void UIButton::draw(const Rect& scissor) {
+	UIRect::draw(scissor);
 
 	UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(m_rect.center(), textColor);
 

@@ -13,6 +13,9 @@ namespace s3d::gui {
 	protected:
 		Array<UIComponent*> m_userInterfaces;
 
+	private:
+		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
+
 	public:
 		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor),
@@ -28,7 +31,7 @@ namespace s3d::gui {
 
 		bool updateLayerIfNeeded() override;
 
-		void draw() override;
+		void draw(const Rect& scissor) override;
 
 		void updateInputEvents() override;
 
@@ -36,5 +39,7 @@ namespace s3d::gui {
 		void updateMouseIntersection() override;
 
 		void updateLayerInvert();
+
+		void updateScissorRect(const Rect& parentScissorRect);
 	};
 }

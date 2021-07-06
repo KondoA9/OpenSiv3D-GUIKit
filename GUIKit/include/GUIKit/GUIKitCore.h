@@ -35,6 +35,7 @@ namespace s3d::gui {
 
 		bool m_animateColor = false;
 		double m_pageTransitionRate = 1.0;
+		Rect m_windowScissorRect;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;

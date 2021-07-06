@@ -2,8 +2,8 @@
 
 using namespace s3d::gui;
 
-void UIInputField::draw() {
-	UIText::draw();
+void UIInputField::draw(const Rect& scissor) {
+	UIText::draw(scissor);
 
 	if (isFocused()) {
 		m_cursorVisibleTimer += Scene::DeltaTime();

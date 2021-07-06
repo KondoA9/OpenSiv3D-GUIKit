@@ -10,11 +10,6 @@ void GUIKit::initialize() {
 	UnifiedFont::Initialize();
 
 	Scene::SetScaleMode(ScaleMode::ResizeFill);
-
-	RasterizerState rasterizer = RasterizerState::Default2D;
-	rasterizer.scissorEnable = true;
-
-	Graphics2D::Internal::SetRasterizerState(rasterizer);
 }
 
 void GUIKit::start() {
@@ -28,6 +23,14 @@ void GUIKit::start() {
 }
 
 void GUIKit::run() {
+	// Set scissor rect
+	{
+		RasterizerState rasterizer = RasterizerState::Default2D;
+		rasterizer.scissorEnable = true;
+		Graphics2D::Internal::SetRasterizerState(rasterizer);
+		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+	}
+
 	while (System::Update()) {
 		updateGUIKit();
 	}
@@ -92,32 +95,30 @@ void GUIKit::update() {
 }
 
 void GUIKit::draw() {
-	Graphics2D::SetScissorRect(Rect(0, 0, Window::ClientWidth(), Window::ClientHeight()));
-
 	switch (m_pageTransition)
 	{
 	case s3d::gui::GUIKit::PageTransition::Changing:
 		// Draw previous and next page
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-		m_forwardPage->m_view.draw();
+		m_forwardPage->m_view.draw(m_windowScissorRect);
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
-		m_backwardPage->m_view.draw();
+		m_backwardPage->m_view.draw(m_windowScissorRect);
 		break;
 
 	case s3d::gui::GUIKit::PageTransition::JustChanged:
 		// Initialize ColorMultipiler
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-		m_forwardPage->m_view.draw();
+		m_forwardPage->m_view.draw(m_windowScissorRect);
 		break;
 
 	default:
 		// Draw current page
-		m_drawingPage->m_view.draw();
+		m_drawingPage->m_view.draw(m_windowScissorRect);
 
 		// Draw isolated components
 		for (auto& component : m_isolatedComponents) {
 			if (component->drawable()) {
-				component->draw();
+				component->draw(m_windowScissorRect);
 			}
 		}
 		break;
@@ -214,6 +215,10 @@ void GUIKit::updateInputEventsStable() {
 
 void GUIKit::updateLayerStable() {
 	if (WindowManager::DidResized()) {
+		// Update scissor rect
+		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+
+		// Update layer
 		m_drawingPage->m_view.updateLayer();
 		m_drawingPage->m_view.updateLayerInvert();
 
