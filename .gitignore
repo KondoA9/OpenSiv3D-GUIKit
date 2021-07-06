@@ -381,4 +381,4 @@ macOS/build/
 DerivedData/
 
 # Linux
-Build/
+build/
