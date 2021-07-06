@@ -54,12 +54,13 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Configure
-        working-directory: Linux
         run: |
+          cd Linux/
           mkdir build
-          cd build
+          cd build/
           make ../
 
       - name: Build
-        working-directory: Linux/build
-        run: make
+        run: |
+          cd Linux/build/
+          make
