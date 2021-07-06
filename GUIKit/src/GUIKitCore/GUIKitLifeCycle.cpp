@@ -6,9 +6,15 @@ using namespace s3d::gui;
 
 void GUIKit::initialize() {
 	WindowManager::Initialize();
+
 	UnifiedFont::Initialize();
 
 	Scene::SetScaleMode(ScaleMode::ResizeFill);
+
+	RasterizerState rasterizer = RasterizerState::Default2D;
+	rasterizer.scissorEnable = true;
+
+	Graphics2D::Internal::SetRasterizerState(rasterizer);
 }
 
 void GUIKit::start() {
@@ -86,6 +92,8 @@ void GUIKit::update() {
 }
 
 void GUIKit::draw() {
+	Graphics2D::SetScissorRect(Rect(0, 0, Window::ClientWidth(), Window::ClientHeight()));
+
 	switch (m_pageTransition)
 	{
 	case s3d::gui::GUIKit::PageTransition::Changing:

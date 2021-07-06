@@ -52,6 +52,8 @@ bool UIView::updateLayerIfNeeded() {
 void UIView::draw() {
 	UIRect::draw();
 
+	Graphics2D::SetScissorRect(m_rect.rect);
+
 	for (const auto ui : m_userInterfaces) {
 		if (ui->drawable()) {
 			ui->draw();
