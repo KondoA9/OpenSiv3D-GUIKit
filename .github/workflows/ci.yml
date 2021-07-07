@@ -12,7 +12,6 @@ on:
 
 jobs:
   windows:
-    name: Windows
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
@@ -25,14 +24,13 @@ jobs:
           Expand-Archive -Path "Dependencies\lib\Windows\Siv3D.zip" -DestinationPath "Dependencies\lib\Windows\" -force
           Expand-Archive -Path "Dependencies\lib\Windows\ThirdParty.zip" -DestinationPath "Dependencies\lib\Windows\" -force
 
-      - name: Build
+      - name: Build GUIKit for Windows
         run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
 
-      - name: Run Test
+      - name: Build Test
         run: msbuild "Windows\OpenSiv3D GUIKit Test.vcxproj" /p:Platform=x64
 
   macOS:
-    name: macOS
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v2
@@ -40,26 +38,75 @@ jobs:
       - name: Extract libraries
         run: unzip -n Dependencies/lib/macOS.zip -d Dependencies/lib/
 
-      - name: Build
+      - name: Build GUIKit for macOS
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
 
-      - name: Run Test
+      - name: Build Test
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
 
-  Linux:
-    name: Linux
+  linux:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+
+      - name: Install package
+        run: sudo apt install ninja-build
 
       - name: Configure
         run: |
           cd Linux/
           mkdir build
           cd build/
-          cmake ../
+          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
 
-      - name: Build
+      - name: Build GUIKit for Linux
         run: |
           cd Linux/build/
-          make
+          ninja
+
+      - name: Install packeages for OpenSiv3D
+        run: |
+          sudo apt install libasound2-dev
+          sudo apt install libavcodec-dev
+          sudo apt install libavformat-dev
+          sudo apt install libavutil-dev
+          sudo apt install libboost-all-dev
+          sudo apt install libcurl4-openssl-dev
+          sudo apt install libgtk-3-dev
+          sudo apt install libgif-dev
+          sudo apt install libglew-dev
+          sudo apt install libglu1-mesa-dev
+          sudo apt install libharfbuzz-dev
+          sudo apt install libmpg123-dev
+          sudo apt install libopencv-dev
+          sudo apt install libopus-dev
+          sudo apt install libopusfile-dev
+          sudo apt install libsoundtouch-dev
+          sudo apt install libswresample-dev
+          sudo apt install libtiff-dev
+          sudo apt install libturbojpeg0-dev
+          sudo apt install libudev-dev
+          sudo apt install libvorbis-dev
+          sudo apt install libwebp-dev
+          sudo apt install libxft-dev
+          sudo apt install uuid-dev
+          sudo apt install xorg-dev
+          sudo apt install libopenal-dev
+
+      - name: Build OpenSiv3D
+        run: |
+          cd Linux/Test/
+          git clone https://github.com/Siv3D/OpenSiv3D.git
+          cd OpenSiv3D/
+          mkdir Linux/build
+          cd Linux/build/
+          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
+          ninja
+
+      - name: Build Test
+        run: |
+          cd Linux/Test/
+          mkdir build
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
+          ninja

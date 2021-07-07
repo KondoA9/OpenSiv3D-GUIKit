@@ -48,6 +48,7 @@ set(SOURCE_FILES
 "../GUIKit/src/UserInterface/Component/UIComponentMouseEvent.cpp"
 "../GUIKit/src/UserInterface/Component/UIButton/UIButton.cpp"
 "../GUIKit/src/UserInterface/Component/UICircle/UICircle.cpp"
+"../GUIKit/src/UserInterface/Component/UICheckBox/UICheckBox.cpp"
 "../GUIKit/src/UserInterface/Component/UIIcon/UIIcon.cpp"
 "../GUIKit/src/UserInterface/Component/UIImageView/UIImageView.cpp"
 "../GUIKit/src/UserInterface/Component/UIImageView/UIZStackedImageView.cpp"

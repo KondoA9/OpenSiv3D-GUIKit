@@ -381,4 +381,6 @@ macOS/build/
 DerivedData/
 
 # Linux
-build/
+Linux/build/
+Linux/Test/build/
+Linux/Test/OpenSiv3D/
