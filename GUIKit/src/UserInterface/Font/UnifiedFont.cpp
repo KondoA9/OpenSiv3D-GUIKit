@@ -2,27 +2,27 @@
 #include <GUIKit/PixelUnit.h>
 
 namespace s3d::gui::UnifiedFont {
-	std::shared_ptr<Font> Small, Medium, Large;
+	Array<std::shared_ptr<Font>> Fonts;
 
 	void Initialize() {
-		Small = std::make_shared<Font>(Font(16_px, Typeface::Light));
-		Medium = std::make_shared<Font>(Font(24_px, Typeface::Light));
-		Large = std::make_shared<Font>(Font(32_px, Typeface::Light));
+		Fonts = {
+			std::make_shared<Font>(Font(16_px, Typeface::Regular)),
+			std::make_shared<Font>(Font(16_px, Typeface::Light)),
+			std::make_shared<Font>(Font(16_px, Typeface::Bold)),
+
+			std::make_shared<Font>(Font(24_px, Typeface::Regular)),
+			std::make_shared<Font>(Font(24_px, Typeface::Light)),
+			std::make_shared<Font>(Font(24_px, Typeface::Bold)),
+
+			std::make_shared<Font>(Font(32_px, Typeface::Regular)),
+			std::make_shared<Font>(Font(32_px, Typeface::Light)),
+			std::make_shared<Font>(Font(32_px, Typeface::Bold))
+		};
 	}
 
-	Font& Get(UnifiedFontStyle style) {
-		switch (style)
-		{
-		case s3d::gui::UnifiedFontStyle::Small:
-			return *Small;
-			break;
-		case s3d::gui::UnifiedFontStyle::Medium:
-			return *Medium;
-			break;
-		case s3d::gui::UnifiedFontStyle::Large:
-			return *Large;
-			break;
-		}
-		return *Medium;
+	const Font& Get(UnifiedFontStyle style) {
+		const size_t index = static_cast<size_t>(style);
+		assert(index < Fonts.size());
+		return *Fonts[index].get();
 	}
 }

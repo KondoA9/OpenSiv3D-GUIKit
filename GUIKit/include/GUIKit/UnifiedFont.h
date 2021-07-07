@@ -3,15 +3,23 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	enum class UnifiedFontStyle {
+	enum class UnifiedFontStyle :size_t {
 		Small,
+		SmallLight,
+		SmallBold,
+
 		Medium,
-		Large
+		MediumLight,
+		MediumBold,
+
+		Large,
+		LargeLight,
+		LargeBold
 	};
 
 	namespace UnifiedFont {
 		void Initialize();
 
-		Font& Get(UnifiedFontStyle style);
+		const Font& Get(UnifiedFontStyle style);
 	}
 }
