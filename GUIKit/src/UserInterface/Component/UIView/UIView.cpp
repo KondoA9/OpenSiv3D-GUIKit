@@ -9,33 +9,37 @@ void UIView::appendComponent(UIComponent& ui) {
 	}
 }
 
-void UIView::updateLayer() {
-	UIRect::updateLayer();
+void UIView::updateLayer(const Rect& scissor) {
+	updateScissorRect(scissor);
+
+	UIRect::updateLayer(scissor);
 
 	for (const auto ui : m_userInterfaces) {
 		if (ui->exist) {
-			ui->updateLayer();
+			ui->updateLayer(m_scissorRect);
 		}
 	}
-
-	updateScissorRect(m_parentScissorRect);
 }
 
-void UIView::updateLayerInvert() {
+void UIView::updateLayerInvert(const Rect& scissor) {
+	updateScissorRect(scissor);
+
 	for (int i = static_cast<int>(m_userInterfaces.size()) - 1; i >= 0; i--) {
 		if (m_userInterfaces[i]->exist) {
-			m_userInterfaces[i]->updateLayer();
+			m_userInterfaces[i]->updateLayer(m_scissorRect);
 		}
 	}
 
-	UIRect::updateLayer();
+	UIRect::updateLayer(scissor);
 }
 
-bool UIView::updateLayerIfNeeded() {
-	if (UIRect::updateLayerIfNeeded()) {
+bool UIView::updateLayerIfNeeded(const Rect& scissor) {
+	updateScissorRect(scissor);
+
+	if (UIRect::updateLayerIfNeeded(scissor)) {
 		for (const auto ui : m_userInterfaces) {
 			if (ui->exist) {
-				ui->updateLayer();
+				ui->updateLayer(m_scissorRect);
 			}
 		}
 		return true;
@@ -44,27 +48,23 @@ bool UIView::updateLayerIfNeeded() {
 		bool updated = false;
 		for (const auto ui : m_userInterfaces) {
 			if (ui->exist) {
-				updated |= ui->updateLayerIfNeeded();
+				updated |= ui->updateLayerIfNeeded(m_scissorRect);
 			}
 		}
 		return updated;
 	}
 }
 
-void UIView::draw(const Rect& scissor) {
-	if (m_parentScissorRect != scissor) {
-		updateScissorRect(scissor);
-	}
-
+void UIView::draw() {
 	Graphics2D::SetScissorRect(m_parentScissorRect);
 
-	UIRect::draw(m_parentScissorRect);
+	UIRect::draw();
 
 	Graphics2D::SetScissorRect(m_scissorRect);
 
 	for (const auto ui : m_userInterfaces) {
 		if (ui->drawable()) {
-			ui->draw(m_scissorRect);
+			ui->draw();
 		}
 	}
 

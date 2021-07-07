@@ -3,28 +3,31 @@
 using namespace s3d::gui;
 
 void UIComponent::updateInputEvents() {
-	// Call raw event
-	if (m_mouseLeftDown) {
-		callInputEventHandler(MouseEvent::LeftDownRaw(this));
+	// Fix mouse status
+	m_mouseCondition &= m_drawableRegion.mouseOver();
+
+	// Call raw events
+	if (m_mouseCondition.left.down) {
+		registerInputEvent(MouseEvent::LeftDownRaw(this));
 	}
-	if (m_mouseRightDown) {
-		callInputEventHandler(MouseEvent::RightDownRaw(this));
+	if (m_mouseCondition.right.down) {
+		registerInputEvent(MouseEvent::RightDownRaw(this));
 	}
-	if (m_mouseLeftUp) {
-		callInputEventHandler(MouseEvent::LeftUpRaw(this));
+	if (m_mouseCondition.left.up) {
+		registerInputEvent(MouseEvent::LeftUpRaw(this));
 	}
-	if (m_mouseRightUp) {
-		callInputEventHandler(MouseEvent::RightUpRaw(this));
+	if (m_mouseCondition.right.up) {
+		registerInputEvent(MouseEvent::RightUpRaw(this));
 	}
 
 	// Prepare to call mouse event
-	if (m_mouseLeftDown || m_mouseRightDown) {
+	if (m_mouseCondition.left.down || m_mouseCondition.right.down) {
 		m_clickedPos = Cursor::PosF();
 		m_clickIntervalTimer = 0.0;
 		m_mouseDownEnable = true;
 		m_mouseDownRaw = true;
 	}
-	if (m_mouseLeftUp || m_mouseRightUp) {
+	if (m_mouseCondition.left.up || m_mouseCondition.right.up) {
 		m_mouseDownRaw = false;
 	}
 
@@ -38,14 +41,15 @@ void UIComponent::updateInputEvents() {
 	}
 
 	// Mouse dragging start
-	if (!m_mouseDragging && m_mouseDownRaw && (m_mouseLeftPress || m_mouseRightPress)) {
+	if (!m_mouseDragging && m_mouseDownRaw
+		&& (m_mouseCondition.left.press || m_mouseCondition.right.press)) {
 		if (m_clickedPos.distanceFrom(Cursor::PosF()) > 10.0) {
-			if (m_mouseLeftPress) {
+			if (m_mouseCondition.left.press) {
 				focus();
-				callInputEventHandler(MouseEvent::LeftDraggingStart(this));
+				registerInputEvent(MouseEvent::LeftDraggingStart(this));
 			}
 			else {
-				callInputEventHandler(MouseEvent::RightDraggingStart(this));
+				registerInputEvent(MouseEvent::RightDraggingStart(this));
 			}
 			m_mouseDownEnable = false;
 			m_mouseDragging = true;
@@ -53,52 +57,52 @@ void UIComponent::updateInputEvents() {
 	}
 
 	// Mouse down event
-	if (m_mouseDownEnable && (m_mouseLeftUp || m_mouseRightUp)) {
-		if (m_mouseLeftUp) {
+	if (m_mouseDownEnable && (m_mouseCondition.left.up || m_mouseCondition.right.up)) {
+		if (m_mouseCondition.left.up) {
 			focus();
-			callInputEventHandler(MouseEvent::LeftDown(this));
+			registerInputEvent(MouseEvent::LeftDown(this));
 		}
 		else {
-			callInputEventHandler(MouseEvent::RightDown(this));
+			registerInputEvent(MouseEvent::RightDown(this));
 		}
 		m_mouseDownEnable = false;
 	}
 
 	// Mouse dragging and end dragging event
 	if (m_mouseDragging) {
-		if (m_mouseLeftPress) {
-			callInputEventHandler(MouseEvent::LeftDragging(this));
+		if (m_mouseCondition.left.press) {
+			registerInputEvent(MouseEvent::LeftDragging(this));
 		}
-		if (m_mouseLeftUp) {
-			callInputEventHandler(MouseEvent::LeftDraggingEnd(this));
+		if (m_mouseCondition.left.up) {
+			registerInputEvent(MouseEvent::LeftDraggingEnd(this));
 			m_mouseDragging = false;
 		}
-		if (m_mouseRightPress) {
-			callInputEventHandler(MouseEvent::RightDragging(this));
+		if (m_mouseCondition.right.press) {
+			registerInputEvent(MouseEvent::RightDragging(this));
 		}
-		if (m_mouseRightUp) {
-			callInputEventHandler(MouseEvent::RightDraggingEnd(this));
+		if (m_mouseCondition.right.up) {
+			registerInputEvent(MouseEvent::RightDraggingEnd(this));
 			m_mouseDragging = false;
 		}
 	}
 
 	// Mouse hover event
-	if (!m_preMouseOver && m_mouseOver) {
-		callInputEventHandler(MouseEvent::Hovered(this));
+	if (!m_mouseCondition.preHover && m_mouseCondition.hover) {
+		registerInputEvent(MouseEvent::Hovered(this));
 	}
 
-	if (m_mouseOver) {
-		callInputEventHandler(MouseEvent::Hovering(this));
+	if (m_mouseCondition.hover) {
+		registerInputEvent(MouseEvent::Hovering(this));
 	}
 
-	if (m_preMouseOver && !m_mouseOver) {
-		callInputEventHandler(MouseEvent::UnHovered(this));
+	if (m_mouseCondition.preHover && !m_mouseCondition.hover) {
+		registerInputEvent(MouseEvent::UnHovered(this, false));
 		m_mouseDownRaw = false;
 	}
 
 	// Mouse wheel event
-	if (const double wheel = Mouse::Wheel(); m_mouseOver && wheel != 0.0) {
-		callInputEventHandler(MouseEvent::Wheel(this));
+	if (const double wheel = Mouse::Wheel(); m_mouseCondition.hover && wheel != 0.0) {
+		registerInputEvent(MouseEvent::Wheel(this));
 	}
 }
 
@@ -112,4 +116,21 @@ void UIComponent::CallInputEvents() {
 			handler.handler(e.mouseEvent);
 		}
 	}
+}
+
+void UIComponent::_updateMouseCondition(
+	bool leftDown, bool leftUp, bool leftPress,
+	bool rightDown, bool rightUp, bool rightPress,
+	bool hover
+) {
+	m_mouseCondition.left.down = leftDown;
+	m_mouseCondition.left.up = leftUp;
+	m_mouseCondition.left.press = leftPress;
+
+	m_mouseCondition.right.down = rightDown;
+	m_mouseCondition.right.up = rightUp;
+	m_mouseCondition.right.press = rightPress;
+
+	m_mouseCondition.preHover = m_mouseCondition.hover;
+	m_mouseCondition.hover = hover;
 }

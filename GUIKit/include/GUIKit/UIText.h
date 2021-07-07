@@ -80,6 +80,6 @@ namespace s3d::gui {
 		void setPadding(double top, double bottom, double left, double right);
 
 	protected:
-		void draw(const Rect& scissor) override;
+		void draw() override;
 	};
 }

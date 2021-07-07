@@ -17,6 +17,29 @@ namespace s3d::gui {
 			Array<InputEventHandler> handlers;
 		};
 
+		struct MouseClickCondition {
+			bool down = false, up = false, press = false;
+
+			constexpr MouseClickCondition& operator &=(bool condition) {
+				down &= condition;
+				up &= condition;
+				press &= condition;
+				return *this;
+			}
+		};
+
+		struct MouseCondition {
+			MouseClickCondition left, right;
+			bool hover = false, preHover = false;
+
+			constexpr MouseCondition& operator &=(bool condition) {
+				left &= condition;
+				right &= condition;
+				hover &= condition;
+				return *this;
+			}
+		};
+
 		friend GUIKit;
 		friend UIView;
 
@@ -30,12 +53,6 @@ namespace s3d::gui {
 	protected:
 		Layer m_layer;
 
-		// Mouse event
-		bool m_mouseLeftDown = false, m_mouseLeftUp = false, m_mouseLeftPress = false;
-		bool m_mouseRightDown = false, m_mouseRightUp = false, m_mouseRightPress = false;
-		bool m_mouseOver = false, m_preMouseOver = false;
-		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
-
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
 		static UIComponent* m_FocusedComponent;
@@ -44,8 +61,10 @@ namespace s3d::gui {
 		Array<InputEventHandler> m_inputEventHandlers;
 		bool m_needToUpdateLayer = true;
 		bool m_initialized = false;
+		Rect m_drawableRegion;
 
 		// Mouse event
+		MouseCondition m_mouseCondition;
 		double m_clickIntervalTimer = 0.0;// If mouse released within 0.5s, mouseDown event will be called
 		bool m_mouseDownEnable = false, m_mouseDownRaw = false;
 		bool m_mouseDragging = false;
@@ -79,8 +98,8 @@ namespace s3d::gui {
 
 		bool drawable() const {
 			return !hidden && exist
-				&& m_layer.top <= Window::ClientHeight() && m_layer.bottom >= 0
-				&& m_layer.left <= Window::ClientWidth() && m_layer.right >= 0;
+				&& m_layer.top <= m_drawableRegion.y + m_drawableRegion.h && m_layer.bottom >= m_drawableRegion.y
+				&& m_layer.left <= m_drawableRegion.x + m_drawableRegion.w && m_layer.right >= m_drawableRegion.x ;
 		}
 
 		bool updatable() const {
@@ -118,35 +137,56 @@ namespace s3d::gui {
 		// Do not forget to call super::initialize() unless you do not want to call it.
 		virtual void initialize() {};
 
-		virtual void updateLayer();
+		virtual void updateLayer(const Rect& scissor);
 
-		virtual void draw(const Rect& scissor) = 0;
+		virtual void draw() = 0;
 
 		virtual void updateMouseIntersection() = 0;
 
 		virtual void updateInputEvents();
 
+		const MouseCondition& mouseCondition() const {
+			return m_mouseCondition;
+		}
+
+		// Do not call this function if the component is not UIRect or UICircle
+		void _updateMouseCondition(
+			bool leftDown, bool leftUp, bool leftPress,
+			bool rightDown, bool rightUp, bool rightPress,
+			bool hover
+		);
+
 		template<class T>
-		void callInputEventHandler(const T& e) const {
+		void registerInputEvent(const T& e) const {
 			// Get handlers that are matched to called event type
 			const auto handlers = m_inputEventHandlers.removed_if([e](const InputEventHandler& handler) {
 				return handler.eventTypeId != e.id;
 				});
 
-			// Append handlers if event stack is empty or the component penetrates a mouse event
-			if (m_CallableInputEvents.size() == 0 || e.component->penetrateMouseEvent) {
+			if (e.callIfComponentInFront && !e.component->penetrateMouseEvent) {
+				if (m_CallableInputEvents && m_CallableInputEvents[m_CallableInputEvents.size() - 1].mouseEvent.component != e.component) {
+					m_CallableInputEvents = m_CallableInputEvents.removed_if([](const CallableInputEvent& e) {
+						return e.mouseEvent.callIfComponentInFront;
+						});
+				}
 				m_CallableInputEvents.push_back({ .mouseEvent = e, .handlers = handlers });
 			}
 			else {
-				for (size_t i : step(m_CallableInputEvents.size())) {
-					if (m_CallableInputEvents[i].mouseEvent.id == e.id) {
-						m_CallableInputEvents[i].mouseEvent = e;
-						m_CallableInputEvents[i].handlers = handlers;
-						break;
-					}
-					// Append handler if a event that is same type of the event does not exists 
-					else if (i == m_CallableInputEvents.size() - 1) {
-						m_CallableInputEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+				// Append handlers if event stack is empty or the component penetrates a mouse event
+				if (!m_CallableInputEvents || e.component->penetrateMouseEvent) {
+					m_CallableInputEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+				}
+				else {
+					for (size_t i : step(m_CallableInputEvents.size())) {
+						if (m_CallableInputEvents[i].mouseEvent.id == e.id) {
+							m_CallableInputEvents[i].mouseEvent = e;
+							m_CallableInputEvents[i].handlers = handlers;
+							break;
+						}
+						// Append handler if a event that is same type of the event does not exists 
+						else if (i == m_CallableInputEvents.size() - 1) {
+							m_CallableInputEvents.push_back({ .mouseEvent = e, .handlers = handlers });
+						}
 					}
 				}
 			}
@@ -157,6 +197,6 @@ namespace s3d::gui {
 
 		static void CallInputEvents();
 
-		virtual bool updateLayerIfNeeded();
+		virtual bool updateLayerIfNeeded(const Rect& scissor);
 	};
 }

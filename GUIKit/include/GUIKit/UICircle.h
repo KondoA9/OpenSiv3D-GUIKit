@@ -17,8 +17,8 @@ namespace s3d::gui {
 	protected:
 		void updateMouseIntersection() final;
 
-		void draw(const Rect&) override;
+		void updateLayer(const Rect& scissor) override;
 
-		void updateLayer() override;
+		void draw() override;
 	};
 }

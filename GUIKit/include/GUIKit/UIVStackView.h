@@ -68,7 +68,7 @@ namespace s3d::gui {
 	protected:
 		void initialize() override;
 
-		void updateLayer() override;
+		void updateLayer(const Rect& scissor) override;
 
 	private:
 		void updateChildrenConstraints();

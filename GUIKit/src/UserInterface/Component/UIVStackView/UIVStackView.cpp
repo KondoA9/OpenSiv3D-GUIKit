@@ -34,13 +34,13 @@ void UIVStackView::releaseDeletableComponents() {
 	m_deletableComponents.release();
 }
 
-void UIVStackView::updateLayer() {
+void UIVStackView::updateLayer(const Rect& scissor) {
 	if (!m_constraintsApplied) {
 		updateChildrenConstraints();
 		m_constraintsApplied = true;
 	}
 
-	UIView::updateLayer();
+	UIView::updateLayer(scissor);
 
 	calcCurrentRowHeight();
 

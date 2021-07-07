@@ -27,18 +27,18 @@ namespace s3d::gui {
 		virtual void appendComponent(UIComponent& ui);
 
 	protected:
-		void updateLayer() override;
+		void updateLayer(const Rect& scissor) override;
 
-		bool updateLayerIfNeeded() override;
+		bool updateLayerIfNeeded(const Rect& scissor) override;
 
-		void draw(const Rect& scissor) override;
+		void draw() override;
 
 		void updateInputEvents() override;
 
 	private:
-		void updateMouseIntersection() override;
+		void updateMouseIntersection() final;
 
-		void updateLayerInvert();
+		void updateLayerInvert(const Rect& scissor);
 
 		void updateScissorRect(const Rect& parentScissorRect);
 	};
