@@ -78,7 +78,7 @@ void UISlider::initialize() {
 }
 
 void UISlider::updateInputEvents() {
-	if (m_mouseLeftDown) {
+	if (mouseCondition().left.down) {
 		m_sliding = true;
 	}
 

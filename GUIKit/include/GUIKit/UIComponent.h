@@ -17,6 +17,29 @@ namespace s3d::gui {
 			Array<InputEventHandler> handlers;
 		};
 
+		struct MouseClickCondition {
+			bool down = false, up = false, press = false;
+
+			constexpr MouseClickCondition& operator &=(bool condition) {
+				down &= condition;
+				up &= condition;
+				press &= condition;
+				return *this;
+			}
+		};
+
+		struct MouseCondition {
+			MouseClickCondition left, right;
+			bool hover = false, preHover = false;
+
+			constexpr MouseCondition& operator &=(bool condition) {
+				left &= condition;
+				right &= condition;
+				hover &= condition;
+				return *this;
+			}
+		};
+
 		friend GUIKit;
 		friend UIView;
 
@@ -30,12 +53,6 @@ namespace s3d::gui {
 	protected:
 		Layer m_layer;
 
-		// Mouse event
-		bool m_mouseLeftDown = false, m_mouseLeftUp = false, m_mouseLeftPress = false;
-		bool m_mouseRightDown = false, m_mouseRightUp = false, m_mouseRightPress = false;
-		bool m_mouseOver = false, m_preMouseOver = false;
-		bool m_mouseLeftDraggingEnable = false, m_mouseRightDraggingEnable = false;
-
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
 		static UIComponent* m_FocusedComponent;
@@ -47,6 +64,7 @@ namespace s3d::gui {
 		Rect m_drawableRegion;
 
 		// Mouse event
+		MouseCondition m_mouseCondition;
 		double m_clickIntervalTimer = 0.0;// If mouse released within 0.5s, mouseDown event will be called
 		bool m_mouseDownEnable = false, m_mouseDownRaw = false;
 		bool m_mouseDragging = false;
@@ -126,6 +144,17 @@ namespace s3d::gui {
 		virtual void updateMouseIntersection() = 0;
 
 		virtual void updateInputEvents();
+
+		const MouseCondition& mouseCondition() const {
+			return m_mouseCondition;
+		}
+
+		// Do not call this function if the component is not UIRect or UICircle
+		void _updateMouseCondition(
+			bool leftDown, bool leftUp, bool leftPress,
+			bool rightDown, bool rightUp, bool rightPress,
+			bool hover
+		);
 
 		template<class T>
 		void registerInputEvent(const T& e) const {

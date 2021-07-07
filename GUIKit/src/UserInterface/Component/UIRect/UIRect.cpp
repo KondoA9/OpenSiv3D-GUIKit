@@ -34,14 +34,9 @@ void UIRect::updateLayer(const Rect& scissor) {
 }
 
 void UIRect::updateMouseIntersection() {
-	m_mouseLeftDown = m_rect.leftClicked();
-	m_mouseLeftUp = m_rect.leftReleased();
-	m_mouseLeftPress = m_rect.leftPressed();
-
-	m_mouseRightDown = m_rect.rightClicked();
-	m_mouseRightUp = m_rect.rightReleased();
-	m_mouseRightPress = m_rect.rightPressed();
-
-	m_preMouseOver = m_mouseOver;
-	m_mouseOver = m_rect.mouseOver();
+	_updateMouseCondition(
+		m_rect.leftClicked(), m_rect.leftReleased(), m_rect.leftPressed(),
+		m_rect.rightClicked(), m_rect.rightReleased(), m_rect.rightPressed(),
+		m_rect.mouseOver()
+	);
 }

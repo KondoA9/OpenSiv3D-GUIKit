@@ -36,7 +36,7 @@ namespace s3d::gui {
 		void updateInputEvents() override;
 
 	private:
-		void updateMouseIntersection() override;
+		void updateMouseIntersection() final;
 
 		void updateLayerInvert(const Rect& scissor);
 

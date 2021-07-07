@@ -19,14 +19,9 @@ void UICircle::draw() {
 }
 
 void UICircle::updateMouseIntersection() {
-	m_mouseLeftDown = m_circle.leftClicked();
-	m_mouseLeftUp = m_circle.leftReleased();
-	m_mouseLeftPress = m_circle.leftPressed();
-
-	m_mouseRightDown = m_circle.rightClicked();
-	m_mouseRightUp = m_circle.rightReleased();
-	m_mouseRightPress = m_circle.rightPressed();
-
-	m_preMouseOver = m_mouseOver;
-	m_mouseOver = m_circle.mouseOver();
+	_updateMouseCondition(
+		m_circle.leftClicked(), m_circle.leftReleased(), m_circle.leftPressed(),
+		m_circle.rightClicked(), m_circle.rightReleased(), m_circle.rightPressed(),
+		m_circle.mouseOver()
+	);
 }
