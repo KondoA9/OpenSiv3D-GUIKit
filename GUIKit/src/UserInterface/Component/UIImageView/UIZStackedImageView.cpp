@@ -48,8 +48,8 @@ void UIZStackedImageView::release() {
 	setDrawingCenterPos(m_rect.center());
 }
 
-void UIZStackedImageView::draw(const Rect& scissor) {
-	UIRect::draw(scissor);
+void UIZStackedImageView::draw() {
+	UIRect::draw();
 
 	if (m_textures) {
 		m_textureRegion = m_textures[0].scaled(m_scale).regionAt(m_drawingCenterPos);
@@ -62,11 +62,11 @@ void UIZStackedImageView::draw(const Rect& scissor) {
 	}
 }
 
-void UIZStackedImageView::updateLayer() {
+void UIZStackedImageView::updateLayer(const Rect& scissor) {
 	const double preMinScale = m_minScale;
 	const double preScale = m_scale;
 
-	UIRect::updateLayer();
+	UIRect::updateLayer(scissor);
 
 	if (m_textures) {
 		m_minScale = calcMinimumScale();

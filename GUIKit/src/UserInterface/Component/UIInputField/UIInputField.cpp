@@ -2,8 +2,8 @@
 
 using namespace s3d::gui;
 
-void UIInputField::draw(const Rect& scissor) {
-	UIText::draw(scissor);
+void UIInputField::draw() {
+	UIText::draw();
 
 	if (isFocused()) {
 		m_cursorVisibleTimer += Scene::DeltaTime();
@@ -30,7 +30,7 @@ void UIInputField::updateInputEvents() {
 		const String pre = text;
 		TextInput::UpdateText(text, TextInputMode::AllowBackSpaceDelete);
 		if (pre != text) {
-			callInputEventHandler(KeyDown(this));
+			registerInputEvent(KeyDown(this));
 		}
 	}
 }

@@ -15,7 +15,7 @@ namespace s3d::gui {
 		using UIText::UIText;
 
 	protected:
-		void draw(const Rect& scissor) override;
+		void draw() override;
 
 		void updateInputEvents() override;
 	};

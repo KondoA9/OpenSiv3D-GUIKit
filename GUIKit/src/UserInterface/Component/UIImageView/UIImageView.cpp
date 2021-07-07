@@ -17,19 +17,19 @@ void UIImageView::paint(double thickness, const Color& color, bool antialiased) 
 	updateTexture();
 }
 
-void UIImageView::draw(const Rect& scissor) {
-	UIRect::draw(scissor);
+void UIImageView::draw() {
+	UIRect::draw();
 
 	if (m_texture) {
 		m_texture.scaled(m_scale).drawAt(m_rect.center());
 	}
 }
 
-void UIImageView::updateLayer() {
+void UIImageView::updateLayer(const Rect& scissor) {
 	const double preLimit = calcInitialScale();
 	const double preScale = m_scale;
 
-	UIRect::updateLayer();
+	UIRect::updateLayer(scissor);
 
 	const double limit = calcInitialScale();
 	m_scale = preScale * limit / preLimit;

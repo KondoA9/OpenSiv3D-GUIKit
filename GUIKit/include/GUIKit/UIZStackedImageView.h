@@ -108,9 +108,9 @@ namespace s3d::gui {
 	protected:
 		void initialize() override;
 
-		void draw(const Rect& scissor) override;
+		void draw() override;
 
-		void updateLayer() override;
+		void updateLayer(const Rect& scissor) override;
 
 	private:
 		double calcMinimumScale();

@@ -37,6 +37,6 @@ namespace s3d::gui {
 	protected:
 		void initialize() override;
 
-		void draw(const Rect& scissor) override;
+		void draw() override;
 	};
 }

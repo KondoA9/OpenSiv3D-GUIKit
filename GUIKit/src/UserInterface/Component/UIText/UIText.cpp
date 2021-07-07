@@ -2,8 +2,8 @@
 
 using namespace s3d::gui;
 
-void UIText::draw(const Rect& scissor) {
-	UIRect::draw(scissor);
+void UIText::draw() {
+	UIRect::draw();
 
 	const double top = m_rect.y + paddingTop;
 	const double bottom = m_rect.y + m_rect.h - paddingBottom;

@@ -12,7 +12,7 @@ void UIRect::setCornerRadius(double r) {
 	);
 }
 
-void UIRect::draw(const Rect&) {
+void UIRect::draw() {
 	if (fillInner) {
 		m_rect.draw(backgroundColor);
 	}
@@ -21,8 +21,8 @@ void UIRect::draw(const Rect&) {
 	}
 }
 
-void UIRect::updateLayer() {
-	UIComponent::updateLayer();
+void UIRect::updateLayer(const Rect& scissor) {
+	UIComponent::updateLayer(scissor);
 
 	m_rect = RoundRect(
 		static_cast<int>(m_layer.left),
