@@ -5,6 +5,7 @@ using namespace s3d::gui;
 
 void UIText::updateLayer(const Rect& scissor) {
 	UIRect::updateLayer(scissor);
+
 	updateDrawableText();
 }
 

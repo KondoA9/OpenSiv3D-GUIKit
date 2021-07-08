@@ -109,5 +109,6 @@ void UIVStackView::scroll(double dy) {
 
 		updateChildrenConstraints();
 		adjustRowsTrailingToViewBottom();
+		requestToUpdateLayer();
 	}
 }
