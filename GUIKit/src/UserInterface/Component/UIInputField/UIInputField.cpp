@@ -25,10 +25,10 @@ void UIInputField::draw() {
 
 		if (m_isCursorVisible) {
 			if (text() == U"") {
-				Line(textRegion().x, textRegion().y - textRegion().h * 0.5, textRegion().x, textRegion().y + textRegion().h * 0.5).draw(textColor);
+				Line(textRegion().x + 2_px, m_fieldRect.y, textRegion().x + 2_px, m_fieldRect.y + m_fieldRect.h).draw(textColor);
 			}
 			else {
-				textRegion().right().draw(textColor);
+				textRegion().right().moveBy(2_px, 0.0).draw(textColor);
 			}
 		}
 
@@ -40,7 +40,7 @@ void UIInputField::updateInputEvents() {
 	UIText::updateInputEvents();
 
 	if (isFocused()) {
-		const String pre =  text();
+		const String pre = text();
 		String txt = text();
 		TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
 		setText(txt);
@@ -53,5 +53,11 @@ void UIInputField::updateInputEvents() {
 void UIInputField::updateDrawableText() {
 	UIText::updateDrawableText();
 
-	m_fieldRect = RectF(m_rect.x, textRegion().y - 3_px, m_rect.w, textRegion().h + 6_px);
+	if (textRegion().h == 0) {
+		const auto h = font().fontSize() + 6_px;
+		m_fieldRect = RectF(m_rect.x, textRegion().y - h * 0.5, m_rect.w, h);
+	}
+	else {
+		m_fieldRect = RectF(m_rect.x, textRegion().y - 3_px, m_rect.w, textRegion().h + 6_px);
+	}
 }

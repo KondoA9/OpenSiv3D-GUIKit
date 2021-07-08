@@ -67,6 +67,10 @@ namespace s3d::gui {
 			:UIText(U"", backgroundColor, textColor)
 		{}
 
+		const Font& font() const {
+			return m_font;
+		}
+
 		String text() const {
 			return m_text;
 		}
