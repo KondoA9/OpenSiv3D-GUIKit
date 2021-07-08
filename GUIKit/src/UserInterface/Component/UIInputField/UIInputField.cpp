@@ -2,6 +2,14 @@
 
 using namespace s3d::gui;
 
+void UIInputField::initialize() {
+	UIText::initialize();
+
+	addEventListener<MouseEvent::Hovering>([] {
+		Cursor::RequestStyle(CursorStyle::IBeam);
+		});
+}
+
 void UIInputField::draw() {
 	UIText::draw();
 

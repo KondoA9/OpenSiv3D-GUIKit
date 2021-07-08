@@ -15,6 +15,8 @@ namespace s3d::gui {
 		using UIText::UIText;
 
 	protected:
+		void initialize() override;
+
 		void draw() override;
 
 		void updateInputEvents() override;
