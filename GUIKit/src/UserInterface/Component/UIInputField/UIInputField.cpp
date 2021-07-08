@@ -1,8 +1,19 @@
 #include <GUIKit/UIInputField.h>
+#include <GUIKit/PixelUnit.h>
 
 using namespace s3d::gui;
 
+void UIInputField::initialize() {
+	UIText::initialize();
+
+	addEventListener<MouseEvent::Hovering>([] {
+		Cursor::RequestStyle(CursorStyle::IBeam);
+		});
+}
+
 void UIInputField::draw() {
+	m_fieldRect.draw(DynamicColor::BackgroundSecondary);
+
 	UIText::draw();
 
 	if (isFocused()) {
@@ -13,13 +24,15 @@ void UIInputField::draw() {
 		}
 
 		if (m_isCursorVisible) {
-			if (label == U"" && text == U"") {
-				Line(m_drawingRect.x, m_drawingRect.y - m_font.fontSize() * 0.5, m_drawingRect.x, m_drawingRect.y + m_font.fontSize() * 0.5).draw(textColor);
+			if (text() == U"") {
+				Line(textRegion().x, textRegion().y - textRegion().h * 0.5, textRegion().x, textRegion().y + textRegion().h * 0.5).draw(textColor);
 			}
 			else {
-				m_drawingRect.right().draw(textColor);
+				textRegion().right().draw(textColor);
 			}
 		}
+
+		m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
 	}
 }
 
@@ -27,10 +40,18 @@ void UIInputField::updateInputEvents() {
 	UIText::updateInputEvents();
 
 	if (isFocused()) {
-		const String pre = text;
-		TextInput::UpdateText(text, TextInputMode::AllowBackSpaceDelete);
-		if (pre != text) {
+		const String pre =  text();
+		String txt = text();
+		TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
+		setText(txt);
+		if (pre != text()) {
 			registerInputEvent(KeyDown(this));
 		}
 	}
+}
+
+void UIInputField::updateDrawableText() {
+	UIText::updateDrawableText();
+
+	m_fieldRect = RectF(m_rect.x, textRegion().y - 3_px, m_rect.w, textRegion().h + 6_px);
 }

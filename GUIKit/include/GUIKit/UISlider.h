@@ -52,7 +52,7 @@ namespace s3d::gui {
 		}
 
 		void setLabel(const String& label) {
-			m_text.text = label;
+			m_text.setText(label);
 		}
 
 	protected:

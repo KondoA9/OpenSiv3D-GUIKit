@@ -18,68 +18,76 @@ namespace s3d::gui {
 
 	class UIText : public UIRect {
 	public:
-		String label, text;
-		TextDirection direction;
 		ColorTheme textColor;
 
-	protected:
+	private:
+		String m_text;
 		Font m_font;
+		TextDirection m_direction;
+		DrawableText m_drawableText;
+		RectF m_textRegion;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
-		RectF m_drawingRect;
-		Size m_textRegion;
 
 	public:
-		UIText(const String& label, const String& text, 
+		UIText(const String& text, 
 			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
 			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
 			UIRect(backgroundColor),
-			label(label),
-			text(text),
-			direction(direction),
+			m_text(text),
+			m_direction(direction),
 			textColor(textColor),
 			m_font(UnifiedFont::Get(style))
 		{}
 
-		UIText(const String & text, UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, style, direction, backgroundColor, textColor)
-		{}
-
-		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, style, TextDirection::LeftCenter, backgroundColor, textColor)
+		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(text, style, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
 		UIText(const String & text, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
+			UIText(text, UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
 		{}
 
-		UIText(const String & text, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
+		UIText(const String & text, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
 		UIText(UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", U"", style, direction, backgroundColor, textColor)
+			UIText(U"", style, direction, backgroundColor, textColor)
 		{}
 
 		UIText(UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
+			UIText(U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
 		UIText(TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
+			UIText(U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
 		{}
 
 		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
 			:UIText(U"", backgroundColor, textColor)
 		{}
 
-		Size textRegion() {
-			m_textRegion = m_font(label + text).region(0, 0).size.asPoint();
+		String text() const {
+			return m_text;
+		}
+
+		RectF textRegion() const {
 			return m_textRegion;
 		}
 
 		void setPadding(double top, double bottom, double left, double right);
 
+		void setFont(UnifiedFontStyle style);
+
+		void setText(const String& text);
+
+		void setDirection(TextDirection direction);
+
 	protected:
+		void updateLayer(const Rect& scissor) override;
+
 		void draw() override;
+
+		virtual void updateDrawableText();
 	};
 }
