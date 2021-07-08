@@ -79,7 +79,7 @@ public:
 	{
 		const auto time = FileSystem::WriteTime(path);
 		if (time.has_value()) {
-			ui_updatedDate.text = time.value().format();
+			ui_updatedDate.setText(time.value().format());
 		}
 	}
 

@@ -18,23 +18,26 @@ namespace s3d::gui {
 
 	class UIText : public UIRect {
 	public:
-		String text;
-		TextDirection direction;
 		ColorTheme textColor;
 
 	protected:
+		String m_text;
 		Font m_font;
+		TextDirection m_direction;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 		RectF m_drawingRect;
 		Size m_textRegion;
+
+	private:
+		DrawableText m_drawableText;
 
 	public:
 		UIText(const String& text, 
 			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
 			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
 			UIRect(backgroundColor),
-			text(text),
-			direction(direction),
+			m_text(text),
+			m_direction(direction),
 			textColor(textColor),
 			m_font(UnifiedFont::Get(style))
 		{}
@@ -67,14 +70,28 @@ namespace s3d::gui {
 			:UIText(U"", backgroundColor, textColor)
 		{}
 
-		Size textRegion() {
-			m_textRegion = m_font(text).region(0, 0).size.asPoint();
+		String text() const {
+			return m_text;
+		}
+
+		Size textRegion() const {
 			return m_textRegion;
 		}
 
 		void setPadding(double top, double bottom, double left, double right);
 
+		void setFont(UnifiedFontStyle style);
+
+		void setText(const String& text);
+
+		void setDirection(TextDirection direction);
+
 	protected:
+		void updateLayer(const Rect& scissor) override;
+
 		void draw() override;
+
+	private:
+		void updateDrawableText();
 	};
 }
