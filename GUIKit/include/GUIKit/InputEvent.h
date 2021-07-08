@@ -18,7 +18,7 @@ namespace s3d::gui {
 		const Vec2 pos, previousPos;
 		const bool callIfComponentInFront;
 
-		UIComponent* component = nullptr;
+		UIComponent* component;
 
 		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) :
 			id(_id),
@@ -31,7 +31,7 @@ namespace s3d::gui {
 
 		virtual ~InputEvent() = default;
 
-		InputEvent operator =(const InputEvent& e) {
+		const InputEvent& operator =(const InputEvent& e) {
 			assert(id == e.id);
 
 			component = e.component;

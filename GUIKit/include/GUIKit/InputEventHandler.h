@@ -9,7 +9,7 @@ namespace s3d::gui {
 		const std::function<void(const InputEvent&)> handler;
 
 		template<class T>
-		static InputEventHandler Create(const std::function<void(InputEvent)>& _handler) {
+		static InputEventHandler Create(const std::function<void(InputEvent)>& _handler) noexcept {
 			return InputEventHandler(_handler, typeid(T).hash_code());
 		}
 
@@ -19,7 +19,7 @@ namespace s3d::gui {
 		}
 
 	private:
-		InputEventHandler(const std::function<void(InputEvent)>& _handler, size_t _eventTypeId) :
+		InputEventHandler(const std::function<void(InputEvent)>& _handler, size_t _eventTypeId) noexcept :
 			handler(_handler),
 			eventTypeId(_eventTypeId)
 		{}

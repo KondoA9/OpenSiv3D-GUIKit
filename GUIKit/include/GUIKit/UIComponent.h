@@ -20,7 +20,7 @@ namespace s3d::gui {
 		struct MouseClickCondition {
 			bool down = false, up = false, press = false;
 
-			constexpr MouseClickCondition& operator &=(bool condition) {
+			constexpr const MouseClickCondition& operator &=(bool condition) noexcept {
 				down &= condition;
 				up &= condition;
 				press &= condition;
@@ -32,7 +32,7 @@ namespace s3d::gui {
 			MouseClickCondition left, right;
 			bool hover = false, preHover = false;
 
-			constexpr MouseCondition& operator &=(bool condition) {
+			constexpr const MouseCondition& operator &=(bool condition) noexcept {
 				left &= condition;
 				right &= condition;
 				hover &= condition;
@@ -71,18 +71,18 @@ namespace s3d::gui {
 		Vec2 m_clickedPos;
 
 	public:
-		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) :
+		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept :
 			backgroundColor(_backgroundColor),
 			frameColor(_frameColor)
 		{}
 
 		virtual ~UIComponent() = default;
 
-		void setConstraint(LayerDirection direction, UIComponent & component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
+		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
 
 		void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
 
-		void setConstraint(LayerDirection direction, const std::function<double()>&func, double constant = 0.0, double multiplier = 1.0);
+		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant = 0.0, double multiplier = 1.0);
 
 		void removeConstraint(LayerDirection direction);
 
@@ -99,7 +99,7 @@ namespace s3d::gui {
 		bool drawable() const {
 			return !hidden && exist
 				&& m_layer.top <= m_drawableRegion.y + m_drawableRegion.h && m_layer.bottom >= m_drawableRegion.y
-				&& m_layer.left <= m_drawableRegion.x + m_drawableRegion.w && m_layer.right >= m_drawableRegion.x ;
+				&& m_layer.left <= m_drawableRegion.x + m_drawableRegion.w && m_layer.right >= m_drawableRegion.x;
 		}
 
 		bool updatable() const {
