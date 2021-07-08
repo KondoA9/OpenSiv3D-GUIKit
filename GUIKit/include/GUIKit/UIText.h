@@ -18,7 +18,7 @@ namespace s3d::gui {
 
 	class UIText : public UIRect {
 	public:
-		String label, text;
+		String text;
 		TextDirection direction;
 		ColorTheme textColor;
 
@@ -29,43 +29,38 @@ namespace s3d::gui {
 		Size m_textRegion;
 
 	public:
-		UIText(const String& label, const String& text, 
+		UIText(const String& text, 
 			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
 			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
 			UIRect(backgroundColor),
-			label(label),
 			text(text),
 			direction(direction),
 			textColor(textColor),
 			m_font(UnifiedFont::Get(style))
 		{}
 
-		UIText(const String & text, UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, style, direction, backgroundColor, textColor)
-		{}
-
-		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, style, TextDirection::LeftCenter, backgroundColor, textColor)
+		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(text, style, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
 		UIText(const String & text, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
+			UIText(text, UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
 		{}
 
-		UIText(const String & text, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
+		UIText(const String & text, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :
+			UIText(text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
 		UIText(UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", U"", style, direction, backgroundColor, textColor)
+			UIText(U"", style, direction, backgroundColor, textColor)
 		{}
 
 		UIText(UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
+			UIText(U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
 		UIText(TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
+			UIText(U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
 		{}
 
 		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
@@ -73,7 +68,7 @@ namespace s3d::gui {
 		{}
 
 		Size textRegion() {
-			m_textRegion = m_font(label + text).region(0, 0).size.asPoint();
+			m_textRegion = m_font(text).region(0, 0).size.asPoint();
 			return m_textRegion;
 		}
 

@@ -15,39 +15,39 @@ void UIText::draw() {
 	switch (direction)
 	{
 	case TextDirection::LeftTop:
-		m_drawingRect = m_font(label + text).draw(Arg::topLeft(left, top), textColor);
+		m_drawingRect = m_font(text).draw(Arg::topLeft(left, top), textColor);
 		break;
 
 	case TextDirection::LeftCenter:
-		m_drawingRect = m_font(label + text).draw(Arg::leftCenter(left, centerY), textColor);
+		m_drawingRect = m_font(text).draw(Arg::leftCenter(left, centerY), textColor);
 		break;
 
 	case TextDirection::LeftBottom:
-		m_drawingRect = m_font(label + text).draw(Arg::bottomLeft(left, bottom), textColor);
+		m_drawingRect = m_font(text).draw(Arg::bottomLeft(left, bottom), textColor);
 		break;
 
 	case TextDirection::CenterTop:
-		m_drawingRect = m_font(label + text).draw(Arg::topCenter(centerX, top), textColor);
+		m_drawingRect = m_font(text).draw(Arg::topCenter(centerX, top), textColor);
 		break;
 
 	case TextDirection::Center:
-		m_drawingRect = m_font(label + text).draw(Arg::center(centerX, centerY), textColor);
+		m_drawingRect = m_font(text).draw(Arg::center(centerX, centerY), textColor);
 		break;
 
 	case TextDirection::CenterBottom:
-		m_drawingRect = m_font(label + text).draw(Arg::bottomCenter(centerX, bottom), textColor);
+		m_drawingRect = m_font(text).draw(Arg::bottomCenter(centerX, bottom), textColor);
 		break;
 
 	case TextDirection::RightTop:
-		m_drawingRect = m_font(label + text).draw(Arg::topRight(right, top), textColor);
+		m_drawingRect = m_font(text).draw(Arg::topRight(right, top), textColor);
 		break;
 
 	case TextDirection::RightCenter:
-		m_drawingRect = m_font(label + text).draw(Arg::rightCenter(right, centerY), textColor);
+		m_drawingRect = m_font(text).draw(Arg::rightCenter(right, centerY), textColor);
 		break;
 
 	case TextDirection::RightBottom:
-		m_drawingRect = m_font(label + text).draw(Arg::bottomRight(right, bottom), textColor);
+		m_drawingRect = m_font(text).draw(Arg::bottomRight(right, bottom), textColor);
 		break;
 	}
 

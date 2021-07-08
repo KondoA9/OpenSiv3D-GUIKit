@@ -39,12 +39,13 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		void appendTemporaryComponent(const T& component) {
+		T& appendTemporaryComponent(const T& component) {
 			T* cmp = new T(component);
 			UIView::appendComponent(*cmp);
 			m_deletableComponents.push_back(cmp);
 			m_constraintsApplied = false;
 			requestToUpdateLayer();
+			return *cmp;
 		}
 
 		void releaseDeletableComponents();
