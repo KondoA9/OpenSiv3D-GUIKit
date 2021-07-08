@@ -22,10 +22,10 @@ void UIInputField::draw() {
 
 		if (m_isCursorVisible) {
 			if (text() == U"") {
-				Line(m_drawingRect.x, m_drawingRect.y - m_font.fontSize() * 0.5, m_drawingRect.x, m_drawingRect.y + m_font.fontSize() * 0.5).draw(textColor);
+				Line(textRegion().x, textRegion().y - textRegion().h * 0.5, textRegion().x, textRegion().y + textRegion().h * 0.5).draw(textColor);
 			}
 			else {
-				m_drawingRect.right().draw(textColor);
+				textRegion().right().draw(textColor);
 			}
 		}
 	}

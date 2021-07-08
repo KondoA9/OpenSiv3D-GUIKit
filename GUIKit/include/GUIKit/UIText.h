@@ -20,16 +20,13 @@ namespace s3d::gui {
 	public:
 		ColorTheme textColor;
 
-	protected:
+	private:
 		String m_text;
 		Font m_font;
 		TextDirection m_direction;
-		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
-		RectF m_drawingRect;
-		Size m_textRegion;
-
-	private:
 		DrawableText m_drawableText;
+		RectF m_textRegion;
+		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
 		UIText(const String& text, 
@@ -74,7 +71,7 @@ namespace s3d::gui {
 			return m_text;
 		}
 
-		Size textRegion() const {
+		RectF textRegion() const {
 			return m_textRegion;
 		}
 

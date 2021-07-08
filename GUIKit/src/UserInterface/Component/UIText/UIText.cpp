@@ -10,9 +10,7 @@ void UIText::updateLayer(const Rect& scissor) {
 void UIText::draw() {
 	UIRect::draw();
 
-	m_drawableText.draw(m_drawingRect, textColor);
-
-	m_textRegion = m_drawingRect.size.asPoint();
+	m_drawableText.draw(m_textRegion, textColor);
 }
 
 void UIText::setPadding(double top, double bottom, double left, double right) {
@@ -51,39 +49,39 @@ void UIText::updateDrawableText() {
 	switch (m_direction)
 	{
 	case TextDirection::LeftTop:
-		m_drawingRect = m_drawableText.region(Arg::topLeft(left, top));
+		m_textRegion = m_drawableText.region(Arg::topLeft(left, top));
 		break;
 
 	case TextDirection::LeftCenter:
-		m_drawingRect = m_drawableText.region(Arg::leftCenter(left, centerY));
+		m_textRegion = m_drawableText.region(Arg::leftCenter(left, centerY));
 		break;
 
 	case TextDirection::LeftBottom:
-		m_drawingRect = m_drawableText.region(Arg::bottomLeft(left, bottom));
+		m_textRegion = m_drawableText.region(Arg::bottomLeft(left, bottom));
 		break;
 
 	case TextDirection::CenterTop:
-		m_drawingRect = m_drawableText.region(Arg::topCenter(centerX, top));
+		m_textRegion = m_drawableText.region(Arg::topCenter(centerX, top));
 		break;
 
 	case TextDirection::Center:
-		m_drawingRect = m_drawableText.region(Arg::center(centerX, centerY));
+		m_textRegion = m_drawableText.region(Arg::center(centerX, centerY));
 		break;
 
 	case TextDirection::CenterBottom:
-		m_drawingRect = m_drawableText.region(Arg::bottomCenter(centerX, bottom));
+		m_textRegion = m_drawableText.region(Arg::bottomCenter(centerX, bottom));
 		break;
 
 	case TextDirection::RightTop:
-		m_drawingRect = m_drawableText.region(Arg::topRight(right, top));
+		m_textRegion = m_drawableText.region(Arg::topRight(right, top));
 		break;
 
 	case TextDirection::RightCenter:
-		m_drawingRect = m_drawableText.region(Arg::rightCenter(right, centerY));
+		m_textRegion = m_drawableText.region(Arg::rightCenter(right, centerY));
 		break;
 
 	case TextDirection::RightBottom:
-		m_drawingRect = m_drawableText.region(Arg::bottomRight(right, bottom));
+		m_textRegion = m_drawableText.region(Arg::bottomRight(right, bottom));
 		break;
 	}
 }
