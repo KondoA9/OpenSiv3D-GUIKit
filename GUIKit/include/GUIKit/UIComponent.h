@@ -116,8 +116,8 @@ namespace s3d::gui {
 
 		template<class T>
 		void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {
-			auto handler = InputEventHandler([f](InputEvent e) { f(*static_cast<T*>(&e)); });
-			handler.setEvent<T>();
+			const auto handler = InputEventHandler::Create<T>(([f](InputEvent e) { f(*static_cast<T*>(&e)); }));
+
 			if (primary) {
 				m_inputEventHandlers.push_front(handler);
 			}
