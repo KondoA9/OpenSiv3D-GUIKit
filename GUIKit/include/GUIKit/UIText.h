@@ -75,6 +75,8 @@ namespace s3d::gui {
 			return m_text;
 		}
 
+		// Text region is depend on layer.
+		// Be careful when use this func in constraint.
 		RectF textRegion() const {
 			return m_textRegion;
 		}
