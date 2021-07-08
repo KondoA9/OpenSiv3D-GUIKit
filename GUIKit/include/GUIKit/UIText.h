@@ -88,7 +88,6 @@ namespace s3d::gui {
 
 		void draw() override;
 
-	private:
-		void updateDrawableText();
+		virtual void updateDrawableText();
 	};
 }

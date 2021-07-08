@@ -1,4 +1,5 @@
 #include <GUIKit/UIInputField.h>
+#include <GUIKit/PixelUnit.h>
 
 using namespace s3d::gui;
 
@@ -11,6 +12,8 @@ void UIInputField::initialize() {
 }
 
 void UIInputField::draw() {
+	m_fieldRect.draw(DynamicColor::BackgroundSecondary);
+
 	UIText::draw();
 
 	if (isFocused()) {
@@ -28,6 +31,8 @@ void UIInputField::draw() {
 				textRegion().right().draw(textColor);
 			}
 		}
+
+		m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
 	}
 }
 
@@ -43,4 +48,10 @@ void UIInputField::updateInputEvents() {
 			registerInputEvent(KeyDown(this));
 		}
 	}
+}
+
+void UIInputField::updateDrawableText() {
+	UIText::updateDrawableText();
+
+	m_fieldRect = RectF(m_rect.x, textRegion().y - 3_px, m_rect.w, textRegion().h + 6_px);
 }

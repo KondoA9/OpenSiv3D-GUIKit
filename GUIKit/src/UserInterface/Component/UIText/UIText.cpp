@@ -1,4 +1,5 @@
 #include <GUIKit/UIText.h>
+#include <GUIKit/PixelUnit.h>
 
 using namespace s3d::gui;
 
@@ -42,8 +43,8 @@ void UIText::updateDrawableText() {
 	const double top = m_rect.y + paddingTop;
 	const double bottom = m_rect.y + m_rect.h - paddingBottom;
 	const double centerY = m_rect.y + m_rect.h * 0.5 + paddingTop - paddingBottom;
-	const double left = m_rect.x + paddingLeft;
-	const double right = m_rect.x + m_rect.w - paddingRight;
+	const double left = m_rect.x + paddingLeft + 3.0_px;
+	const double right = m_rect.x + m_rect.w - paddingRight - 3.0_px;
 	const double centerX = m_rect.x + m_rect.w * 0.5 + paddingLeft - paddingRight;
 
 	switch (m_direction)
