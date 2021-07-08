@@ -39,7 +39,7 @@ set(SOURCE_FILES
 
 "../GUIKit/src/Timeout/Timeout.cpp"
 
-"../GUIKit/src/Window/WindowManager.cpp"
+"../GUIKit/src/WindowManager/WindowManager.cpp"
 
 "../GUIKit/src/UserInterface/Font/UnifiedFont.cpp"
 "../GUIKit/src/UserInterface/Constraint/Constraint.cpp"

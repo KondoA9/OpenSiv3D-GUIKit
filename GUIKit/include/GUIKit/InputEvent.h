@@ -2,6 +2,13 @@
 
 #include <Siv3D.hpp>
 
+#define GUICreateInputEvent(Event) \
+struct Event : public s3d::gui::InputEvent { \
+	Event(s3d::gui::UIComponent* _component, bool callIfComponentInFront = true) : \
+		s3d::gui::InputEvent(typeid(Event).hash_code(), _component, callIfComponentInFront) \
+	{} \
+};
+
 namespace s3d::gui {
 	class UIComponent;
 
@@ -11,7 +18,7 @@ namespace s3d::gui {
 		const Vec2 pos, previousPos;
 		const bool callIfComponentInFront;
 
-		UIComponent* component = nullptr;
+		UIComponent* component;
 
 		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) :
 			id(_id),
@@ -24,7 +31,7 @@ namespace s3d::gui {
 
 		virtual ~InputEvent() = default;
 
-		InputEvent operator =(const InputEvent& e) {
+		const InputEvent& operator =(const InputEvent& e) {
 			assert(id == e.id);
 
 			component = e.component;

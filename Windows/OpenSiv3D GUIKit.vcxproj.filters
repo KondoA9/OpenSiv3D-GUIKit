@@ -22,9 +22,6 @@
     <Filter Include="GUIKit\UserInterface\Constraint">
       <UniqueIdentifier>{c1aac708-f70f-429d-8896-0048554f2a48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUIKit\Window">
-      <UniqueIdentifier>{249619ae-b99c-4922-ae0e-2dd4f07d8580}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUIKit\Timeout">
       <UniqueIdentifier>{b9c0167d-3b26-444b-a408-0ce707d480c6}</UniqueIdentifier>
     </Filter>
@@ -85,6 +82,9 @@
     <Filter Include="GUIKit\UserInterface\UserInterface\UICheckBox">
       <UniqueIdentifier>{40771309-6547-4154-b832-db05add49ba5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\WindowManager">
+      <UniqueIdentifier>{249619ae-b99c-4922-ae0e-2dd4f07d8580}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
@@ -98,9 +98,6 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp">
       <Filter>GUIKit\UserInterface\Constraint</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\Window\WindowManager.cpp">
-      <Filter>GUIKit\Window</Filter>
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\Timeout\Timeout.cpp">
       <Filter>GUIKit\Timeout</Filter>
@@ -162,6 +159,9 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICheckBox\UICheckBox.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UICheckBox</Filter>
     </ClCompile>
+    <ClCompile Include="..\GUIKit\src\WindowManager\WindowManager.cpp">
+      <Filter>GUIKit\WindowManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">
@@ -183,7 +183,7 @@
       <Filter>GUIKit\ColorTheme</Filter>
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\WindowManager.h">
-      <Filter>GUIKit\Window</Filter>
+      <Filter>GUIKit\WindowManager</Filter>
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h">
       <Filter>GUIKit\Timeout</Filter>

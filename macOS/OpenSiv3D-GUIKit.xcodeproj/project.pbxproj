@@ -218,7 +218,7 @@
 				9E8381872679FDEF0052AF7B /* Timeout */,
 				9E8381892679FDEF0052AF7B /* ColorTheme */,
 				9E83818B2679FDEF0052AF7B /* Imaging */,
-				9E83818D2679FDEF0052AF7B /* Window */,
+				9E83818D2679FDEF0052AF7B /* WindowManager */,
 				9E83818F2679FDEF0052AF7B /* UserInterface */,
 			);
 			path = src;
@@ -265,12 +265,12 @@
 			path = Imaging;
 			sourceTree = "<group>";
 		};
-		9E83818D2679FDEF0052AF7B /* Window */ = {
+		9E83818D2679FDEF0052AF7B /* WindowManager */ = {
 			isa = PBXGroup;
 			children = (
 				9E83818E2679FDEF0052AF7B /* WindowManager.cpp */,
 			);
-			path = Window;
+			path = WindowManager;
 			sourceTree = "<group>";
 		};
 		9E83818F2679FDEF0052AF7B /* UserInterface */ = {

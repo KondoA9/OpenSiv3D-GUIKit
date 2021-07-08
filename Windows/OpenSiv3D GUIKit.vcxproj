@@ -35,7 +35,7 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Layer\Layer.cpp" />
-    <ClCompile Include="..\GUIKit\src\Window\WindowManager.cpp" />
+    <ClCompile Include="..\GUIKit\src\WindowManager\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.h" />
