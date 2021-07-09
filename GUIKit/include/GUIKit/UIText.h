@@ -25,7 +25,7 @@ namespace s3d::gui {
 		Font m_font;
 		TextDirection m_direction;
 		DrawableText m_drawableText;
-		RectF m_textRegion;
+		RectF m_textRegion, m_drawableRegion;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
@@ -81,6 +81,10 @@ namespace s3d::gui {
 			return m_textRegion;
 		}
 
+		Rect drawableRegion() const {
+			return m_drawableRegion;
+		}
+
 		void setPadding(double top, double bottom, double left, double right);
 
 		void setFont(UnifiedFontStyle style);
@@ -95,5 +99,12 @@ namespace s3d::gui {
 		void draw() override;
 
 		virtual void updateDrawableText();
+
+	private:
+		void updateTextRegion();
+
+		void fitTextRegionToRect();
+
+		void updateDrawableRegion();
 	};
 }

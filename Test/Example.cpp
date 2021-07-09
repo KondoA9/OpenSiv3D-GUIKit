@@ -200,7 +200,7 @@ class StartPage : public gui::Page {
 class NextPage : public gui::Page {
 	using Page::Page;
 
-	gui::UIText ui_title = gui::UIText(U"GUIKit explorer", gui::UnifiedFontStyle::Large, gui::TextDirection::Center);
+	gui::UIText ui_title = gui::UIText(U"This is the example application of OpenSiv3D GUIKit.", gui::UnifiedFontStyle::Large, gui::TextDirection::Center);
 	gui::UIButton ui_button = gui::UIButton(U"Next");
 	gui::UICheckBox ui_checkBox = gui::UICheckBox();
 
@@ -233,7 +233,7 @@ void Main() {
 	auto& guikit = gui::GUIKit::Instance();
 
 #if !SIV3D_PLATFORM(LINUX)
-	Window::Resize(1920, 1080);
+	Window::Resize(1280, 720);
 #endif
 
 	guikit.appendPage(NextPage(U"start"));

@@ -7,12 +7,16 @@ void UIText::updateLayer(const Rect& scissor) {
 	UIRect::updateLayer(scissor);
 
 	updateDrawableText();
+
+	fitTextRegionToRect();
+
+	updateDrawableRegion();
 }
 
 void UIText::draw() {
 	UIRect::draw();
 
-	m_drawableText.draw(m_textRegion, textColor);
+	m_drawableText.draw(m_drawableRegion, textColor);
 }
 
 void UIText::setPadding(double top, double bottom, double left, double right) {
@@ -41,6 +45,10 @@ void UIText::setDirection(TextDirection direction) {
 void UIText::updateDrawableText() {
 	m_drawableText = m_font(m_text);
 
+	updateTextRegion();
+}
+
+void UIText::updateTextRegion() {
 	const double top = m_rect.y + paddingTop;
 	const double bottom = m_rect.y + m_rect.h - paddingBottom;
 	const double centerY = m_rect.y + m_rect.h * 0.5 + paddingTop - paddingBottom;
@@ -86,4 +94,36 @@ void UIText::updateDrawableText() {
 		m_textRegion = m_drawableText.region(Arg::bottomRight(right, bottom));
 		break;
 	}
+}
+
+void::UIText::fitTextRegionToRect() {
+	if (m_textRegion.w > m_rect.w) {
+		m_textRegion.h *= static_cast<int>(m_textRegion.w / m_rect.w) + 1;
+	}
+
+	if (m_textRegion.x < m_rect.x) {
+		m_textRegion.x = m_rect.x;
+	}
+
+	if (m_textRegion.y < m_rect.y) {
+		m_textRegion.y = m_rect.y;
+	}
+
+	if (const auto right = m_rect.x + m_rect.w; m_textRegion.x + m_textRegion.w > right) {
+		m_textRegion.w = right - m_textRegion.x;
+	}
+
+	if (const auto bottom = m_rect.y + m_rect.h; m_textRegion.y + m_textRegion.h > bottom) {
+		m_textRegion.h = bottom - m_textRegion.y;
+	}
+}
+
+void UIText::updateDrawableRegion() {
+	const auto right = m_rect.x + m_rect.w - (m_textRegion.x - m_rect.x);
+	const auto w = right - m_textRegion.x;
+
+	const auto bottom = m_rect.y + m_rect.h - (m_textRegion.y - m_rect.y);
+	const auto h = m_rect.h - (m_textRegion.y - m_rect.y);
+
+	m_drawableRegion = RectF(m_textRegion.x, m_textRegion.y, w, h + 4_px);
 }
