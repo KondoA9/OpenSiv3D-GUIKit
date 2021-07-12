@@ -24,12 +24,7 @@ void UIInputField::draw() {
 		}
 
 		if (m_isCursorVisible) {
-			if (text() == U"") {
-				Line(textRegion().x + 2_px, m_fieldRect.y, textRegion().x + 2_px, m_fieldRect.y + m_fieldRect.h).draw(textColor);
-			}
-			else {
-				textRegion().right().moveBy(2_px, 0.0).draw(textColor);
-			}
+			textRegion().right().moveBy(2_px, 0.0).draw(textColor);
 		}
 
 		m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
@@ -45,6 +40,7 @@ void UIInputField::updateInputEvents() {
 		TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
 		setText(txt);
 		if (pre != text()) {
+			updateDrawableText();
 			registerInputEvent(KeyDown(this));
 		}
 	}
