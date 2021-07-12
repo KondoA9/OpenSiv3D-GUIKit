@@ -40,7 +40,7 @@ bool GUIKit::animateColor() {
 }
 
 void GUIKit::insertToMainThread(const std::function<void()>& func) {
-	std::lock_guard<std::mutex> lock(m_mutex);
+	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 	m_eventsRequestedToRunInMainThread.push_back(func);
 }
 
