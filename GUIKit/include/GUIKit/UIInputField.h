@@ -22,6 +22,6 @@ namespace s3d::gui {
 
 		void updateInputEvents() override;
 
-		void updateDrawableText() override;
+		void updateDrawableText(bool updateField = false) override;
 	};
 }

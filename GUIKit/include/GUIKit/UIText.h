@@ -98,7 +98,7 @@ namespace s3d::gui {
 
 		void draw() override;
 
-		virtual void updateDrawableText();
+		virtual void updateDrawableText(bool updateField = false);
 
 	private:
 		void updateTextRegion();

@@ -40,14 +40,13 @@ void UIInputField::updateInputEvents() {
 		TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
 		setText(txt);
 		if (pre != text()) {
-			updateDrawableText();
 			registerInputEvent(KeyDown(this));
 		}
 	}
 }
 
-void UIInputField::updateDrawableText() {
-	UIText::updateDrawableText();
+void UIInputField::updateDrawableText(bool updateField) {
+	UIText::updateDrawableText(updateField);
 
 	if (textRegion().h == 0) {
 		const auto h = font().fontSize() + 6_px;
