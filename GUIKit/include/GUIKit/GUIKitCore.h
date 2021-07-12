@@ -24,7 +24,7 @@ namespace s3d::gui {
 		static GUIKit guikit;
 
 	private:
-		std::mutex m_mutex;
+		std::mutex m_mainThreadInserterMutex;
 
 		Array<std::shared_ptr<Page>> m_pages;
 		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;

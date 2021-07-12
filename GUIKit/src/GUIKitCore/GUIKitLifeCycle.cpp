@@ -242,6 +242,8 @@ void GUIKit::updateLayerStable() {
 }
 
 void GUIKit::updateMainThreadEventsStable() {
+	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
+
 	for (const auto& f : m_eventsRequestedToRunInMainThread) {
 		f();
 	}
