@@ -383,3 +383,4 @@ DerivedData/
 Linux/build/
 Linux/Test/build/
 Linux/Test/OpenSiv3D/
+*.xcuserdatad
