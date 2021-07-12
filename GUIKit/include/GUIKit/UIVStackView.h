@@ -13,7 +13,6 @@ namespace s3d::gui {
 		bool scrollingEnabled = true;
 
 	private:
-		Array<UIComponent*> m_deletableComponents;
 
 		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
@@ -28,8 +27,6 @@ namespace s3d::gui {
 	public:
 		using UIView::UIView;
 
-		virtual ~UIVStackView();
-
 		virtual void release();
 
 		void appendComponent(UIComponent& component) override {
@@ -40,15 +37,10 @@ namespace s3d::gui {
 
 		template<class T>
 		T& appendTemporaryComponent(const T& component) {
-			T* cmp = new T(component);
-			UIView::appendComponent(*cmp);
-			m_deletableComponents.push_back(cmp);
 			m_constraintsApplied = false;
 			requestToUpdateLayer();
-			return *cmp;
+			return UIView::appendTemporaryComponent(component);
 		}
-
-		void releaseDeletableComponents();
 
 		void setMaxStackCount(size_t count) {
 			m_maxStackCount = count;

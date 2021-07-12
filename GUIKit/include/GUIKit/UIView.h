@@ -14,6 +14,7 @@ namespace s3d::gui {
 		Array<UIComponent*> m_userInterfaces;
 
 	private:
+		Array<UIComponent*> m_deletableComponents;
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
@@ -22,11 +23,23 @@ namespace s3d::gui {
 			m_userInterfaces(Array<UIComponent*>(0))
 		{}
 
-		virtual ~UIView() {}
+		virtual ~UIView() {
+			releaseDeletableComponents();
+		}
 
 		virtual void appendComponent(UIComponent& ui);
 
+		template<class T>
+		T& appendTemporaryComponent(const T& component) {
+			T* cmp = new T(component);
+			UIView::appendComponent(*cmp);
+			m_deletableComponents.push_back(cmp);
+			return *cmp;
+		}
+
 	protected:
+		void releaseDeletableComponents();
+
 		void updateLayer(const Rect& scissor) override;
 
 		bool updateLayerIfNeeded(const Rect& scissor) override;

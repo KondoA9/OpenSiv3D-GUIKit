@@ -9,6 +9,15 @@ void UIView::appendComponent(UIComponent& ui) {
 	}
 }
 
+void UIView::releaseDeletableComponents() {
+	for (auto component : m_deletableComponents) {
+		delete component;
+		component = nullptr;
+	}
+
+	m_deletableComponents.release();
+}
+
 void UIView::updateLayer(const Rect& scissor) {
 	updateScissorRect(scissor);
 
