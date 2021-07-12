@@ -93,16 +93,6 @@ jobs:
           sudo apt install xorg-dev
           sudo apt install libopenal-dev
 
-      - name: Build OpenSiv3D
-        run: |
-          cd Linux/Test/
-          git clone https://github.com/Siv3D/OpenSiv3D.git
-          cd OpenSiv3D/
-          mkdir Linux/build
-          cd Linux/build/
-          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
-          ninja
-
       - name: Build Test
         run: |
           cd Linux/Test/
