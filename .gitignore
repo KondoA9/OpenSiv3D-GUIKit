@@ -364,18 +364,18 @@ FodyWeavers.xsd
 
 # OpenSiv3D GUIKit
 AS_DEBUG/
-*.exe
 *.html
-*.lib
 
 # Windows
+*.exe
+*.lib
 
 # MacOS
 .DS_Store
 *.app
 *.dSYM
 __MACOSX/
-macOS/lib/
+Dependencies/lib/macOS/
 macOS/build/
 DerivedData/
 
