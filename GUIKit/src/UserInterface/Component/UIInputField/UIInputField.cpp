@@ -24,7 +24,8 @@ void UIInputField::draw() {
 		}
 
 		if (m_isCursorVisible) {
-			textRegion().right().moveBy(2_px, 0.0).draw(textColor);
+			const auto x = textRegion().right().begin.x + 2_px;
+			Line(x, m_fieldRect.y + 4_px, x, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);
 		}
 
 		m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
@@ -49,7 +50,7 @@ void UIInputField::updateDrawableText(bool updateField) {
 	UIText::updateDrawableText(updateField);
 
 	if (textRegion().h == 0) {
-		const auto h = font().fontSize() + 6_px;
+		const auto h = font().fontSize() * 1.416 + 6_px;
 		m_fieldRect = RectF(m_rect.x, textRegion().y - h * 0.5, m_rect.w, h);
 	}
 	else {
