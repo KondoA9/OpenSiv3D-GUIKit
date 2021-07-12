@@ -34,7 +34,7 @@ set(SOURCE_FILES
 add_executable(GUIKit_Example ${SOURCE_FILES})
 
 target_link_libraries(GUIKit_Example
-	${PROJECT_SOURCE_DIR}/OpenSiv3D/Linux/build/libSiv3D.a
+	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${PROJECT_SOURCE_DIR}/../build/libSiv3DGUIKit.a
 	${OPENCV4_LIBRARIES}
 	-lOpenGL

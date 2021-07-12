@@ -374,7 +374,6 @@ AS_DEBUG/
 .DS_Store
 *.app
 *.dSYM
-*.a
 __MACOSX/
 macOS/lib/
 macOS/build/
