@@ -12,10 +12,6 @@ void UIVStackView::initialize() {
 		}, true);
 }
 
-UIVStackView::~UIVStackView() {
-	releaseDeletableComponents();
-}
-
 void UIVStackView::release() {
 	releaseDeletableComponents();
 	m_userInterfaces.release();
@@ -23,15 +19,6 @@ void UIVStackView::release() {
 	m_leadingPositionConstant = 0.0;
 
 	calcCurrentRowHeight();
-}
-
-void UIVStackView::releaseDeletableComponents() {
-	for (auto component : m_deletableComponents) {
-		delete component;
-		component = nullptr;
-	}
-
-	m_deletableComponents.release();
 }
 
 void UIVStackView::updateLayer(const Rect& scissor) {
