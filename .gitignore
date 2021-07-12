@@ -378,9 +378,9 @@ __MACOSX/
 Dependencies/lib/macOS/
 macOS/build/
 DerivedData/
+xcuserdata/
 
 # Linux
 Linux/build/
 Linux/Test/build/
 Linux/Test/OpenSiv3D/
-*.xcuserdatad
