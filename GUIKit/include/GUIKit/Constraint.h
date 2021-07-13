@@ -13,7 +13,9 @@ namespace s3d::gui {
 		double m_multiplier = 1.0;
 
 	public:
-		~Constraint() {}
+		Constraint() = default;
+
+		~Constraint() = default;
 
 		bool isExist() const {
 			return m_exists;
@@ -41,7 +43,7 @@ namespace s3d::gui {
 			return m_value;
 		}
 
-		Constraint operator =(double value) {
+		Constraint& operator =(double value) {
 			m_value = value;
 			return *this;
 		}
