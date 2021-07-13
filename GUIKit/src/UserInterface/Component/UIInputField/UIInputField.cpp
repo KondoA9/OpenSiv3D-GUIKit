@@ -40,8 +40,8 @@ void UIInputField::updateInputEvents() {
 		String txt = text();
 		TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
 		setText(txt);
-		if (pre != text()) {
-			registerInputEvent(KeyDown(this));
+		if (pre != txt) {
+			registerInputEvent(KeyDown(this, false));
 		}
 	}
 }
