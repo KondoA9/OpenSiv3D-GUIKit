@@ -20,9 +20,6 @@ namespace s3d::gui {
 			JustChanged
 		};
 
-	public:
-		static GUIKit guikit;
-
 	private:
 		std::mutex m_mainThreadInserterMutex;
 
@@ -53,10 +50,27 @@ namespace s3d::gui {
 
 		void toggleColorMode();
 
-		void insertToMainThread(const std::function<void()>& func);
+		/// <summary>
+		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
+		/// </summary>
+		/// <param name="func">The process that runs on main thread.</param>
+		void insertProcessToMainThread(const std::function<void()>& func);
 
-		void insertAsyncProcess(const std::function<void()>& asyncFunc, const std::function<void()>& mainThreadFunc = std::function<void()>());
+		/// <summary>
+		/// Request to run a process asynchronously, and if need, a completion process will runs on main thread.
+		/// 
+		/// </summary>
+		/// <param name="func">The process that runs asynchronously. Do not set a process that changes user interfaces.</param>
+		/// <param name="completion">The process that runs on main thread after func() ended.</param>
+		void insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
+		/// <summary>
+		/// Set an event with timeout. Do not set a process that changes user interfaces.
+		/// </summary>
+		/// <param name="func">A function that runs when timed out.</param>
+		/// <param name="ms">The time to time out.</param>
+		/// <param name="threading">If true, the function runs asynchronously.</param>
+		/// <returns>The ID of the Timeout.</returns>
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 
 		bool stopTimeout(size_t id);
@@ -106,10 +120,10 @@ namespace s3d::gui {
 
 		void updateGUIKit();
 
-		// Return true until the start up page appeared
+		// Return true until the start up page appeared.
 		bool updateOnStartUp();
 
-		// Return true until the page changed
+		// Return true until the page changed.
 		bool updateOnPageChanging();
 
 		void updateOnStable();
@@ -143,6 +157,9 @@ namespace s3d::gui {
 			}
 
 			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
+
+			assert(false);
+
 			return nullptr;
 		}
 	};
