@@ -69,8 +69,8 @@ void UIVStackView::calcCurrentRowHeight() {
 
 void UIVStackView::adjustRowsTrailingToViewBottom() {
 	if (m_components && m_layer.height < m_currentRowsHeight && (
-		m_leadingDirection == LeadingDirection::Top && m_layer.top + m_leadingPositionConstant + m_currentRowsHeight < m_layer.bottom ||
-		m_leadingDirection == LeadingDirection::Bottom && m_layer.bottom + m_leadingPositionConstant - m_currentRowsHeight > m_layer.top))
+		(m_leadingDirection == LeadingDirection::Top && m_layer.top + m_leadingPositionConstant + m_currentRowsHeight < m_layer.bottom) ||
+		(m_leadingDirection == LeadingDirection::Bottom && m_layer.bottom + m_leadingPositionConstant - m_currentRowsHeight > m_layer.top)))
 	{
 		if (m_leadingDirection == LeadingDirection::Top) {
 			m_leadingPositionConstant = m_layer.height - m_currentRowsHeight;

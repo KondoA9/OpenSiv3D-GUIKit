@@ -10,10 +10,10 @@ UIButton::UIButton(const String& title, const Texture& icon,
 	UIRect(defaultColor),
 	title(title),
 	icon(icon),
-	defaultColor(defaultColor),
 	textColor(defaultTextColor),
-	hoveredColor(hoveredColor),
-	defaultTextColor(defaultTextColor)
+	defaultColor(defaultColor),
+	defaultTextColor(defaultTextColor),
+	hoveredColor(hoveredColor)
 {}
 
 UIButton::UIButton(
