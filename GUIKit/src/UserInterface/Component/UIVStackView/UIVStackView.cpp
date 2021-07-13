@@ -14,7 +14,7 @@ void UIVStackView::initialize() {
 
 void UIVStackView::release() {
 	releaseDeletableComponents();
-	m_userInterfaces.release();
+	m_components.release();
 
 	m_leadingPositionConstant = 0.0;
 
@@ -35,8 +35,8 @@ void UIVStackView::updateLayer(const Rect& scissor) {
 }
 
 void UIVStackView::updateChildrenConstraints() {
-	for (size_t i : step(m_userInterfaces.size())) {
-		const auto component = m_userInterfaces[i];
+	for (size_t i : step(m_components.size())) {
+		const auto component = m_components[i];
 
 		{
 			const auto d1 = m_leadingDirection == LeadingDirection::Top ? LayerDirection::Top : LayerDirection::Bottom;
@@ -45,12 +45,12 @@ void UIVStackView::updateChildrenConstraints() {
 				component->setConstraint(d1, *this, d1, m_leadingPositionConstant);
 			}
 			else {
-				component->setConstraint(d1, *m_userInterfaces[i - 1], d2);
+				component->setConstraint(d1, *m_components[i - 1], d2);
 			}
 		}
 
 		if (m_rowHeight == 0.0) {
-			component->setConstraint(LayerDirection::Height, *this, LayerDirection::Height, 0.0, 1.0 / (m_maxStackCount == 0 ? m_userInterfaces.size() : m_maxStackCount));
+			component->setConstraint(LayerDirection::Height, *this, LayerDirection::Height, 0.0, 1.0 / (m_maxStackCount == 0 ? m_components.size() : m_maxStackCount));
 		}
 		else {
 			component->setConstraint(LayerDirection::Height, m_rowHeight);
@@ -62,13 +62,13 @@ void UIVStackView::updateChildrenConstraints() {
 }
 
 void UIVStackView::calcCurrentRowHeight() {
-	const size_t rows = m_maxStackCount == 0 ? m_userInterfaces.size() : m_maxStackCount;
+	const size_t rows = m_maxStackCount == 0 ? m_components.size() : m_maxStackCount;
 	m_currentRowHeight = m_rowHeight == 0.0 ? m_layer.height / rows : m_rowHeight;
 	m_currentRowsHeight = m_currentRowHeight * rows;
 }
 
 void UIVStackView::adjustRowsTrailingToViewBottom() {
-	if (m_userInterfaces&& m_layer.height < m_currentRowsHeight && (
+	if (m_components && m_layer.height < m_currentRowsHeight && (
 		m_leadingDirection == LeadingDirection::Top && m_layer.top + m_leadingPositionConstant + m_currentRowsHeight < m_layer.bottom ||
 		m_leadingDirection == LeadingDirection::Bottom && m_layer.bottom + m_leadingPositionConstant - m_currentRowsHeight > m_layer.top))
 	{

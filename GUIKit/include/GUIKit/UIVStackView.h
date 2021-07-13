@@ -13,7 +13,6 @@ namespace s3d::gui {
 		bool scrollingEnabled = true;
 
 	private:
-
 		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
 		size_t m_maxStackCount = 0;
@@ -30,7 +29,7 @@ namespace s3d::gui {
 		virtual void release();
 
 		void appendComponent(UIComponent& component) override {
-			m_userInterfaces.push_back(&component);
+			m_components.push_back(&component);
 			m_constraintsApplied = false;
 			requestToUpdateLayer();
 		}
@@ -55,7 +54,7 @@ namespace s3d::gui {
 		}
 
 		Array<UIComponent*> components() const {
-			return m_userInterfaces;
+			return m_components;
 		}
 
 	protected:
