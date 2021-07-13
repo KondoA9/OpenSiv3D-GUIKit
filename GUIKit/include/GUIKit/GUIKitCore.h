@@ -45,11 +45,6 @@ namespace s3d::gui {
 
 		GUIKit(GUIKit&&) = delete;
 
-		static GUIKit& Instance() {
-			static GUIKit instance;
-			return instance;
-		}
-
 		void start();
 
 		void switchPage(const String& identifier);
@@ -70,18 +65,23 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
+		static GUIKit& Instance() {
+			static GUIKit instance;
+			return instance;
+		}
+
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
-		T* getPage(const String& identifier) {
-			return getPagePtr<T>(identifier).get();
+		T& getPage(const String& identifier) const noexcept {
+			return *getPagePtr<T>(identifier).get();
 		}
 
 		template<class T>
-		void appendPage(const T& page) {
-			m_pages.push_back(std::make_shared<T>(page));
+		void appendPage(const String& identifier) {
+			m_pages.push_back(std::shared_ptr<T>(new T(identifier)));
 		}
 
 		template<class T>

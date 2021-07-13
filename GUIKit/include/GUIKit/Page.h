@@ -10,22 +10,13 @@ namespace s3d::gui {
 	class Page {
 		friend GUIKit;
 
-	protected:
-		UIView m_view = UIView();
-
 	private:
 		const String m_identifier;
+
+		UIView m_view = UIView();
 		bool m_loaded = false;
 
 	public:
-		Page(const String& identifier) :
-			m_identifier(identifier) {
-			m_view.setConstraint(LayerDirection::Top);
-			m_view.setConstraint(LayerDirection::Bottom, [] {return Window::ClientHeight(); });
-			m_view.setConstraint(LayerDirection::Left);
-			m_view.setConstraint(LayerDirection::Right, [] {return Window::ClientWidth(); });
-		}
-
 		virtual ~Page() = default;
 
 		// Called when guikit core system loaded the page
@@ -51,5 +42,18 @@ namespace s3d::gui {
 
 		// Called when application terminated
 		virtual void onAppTerminated() {}
+
+		UIView& view() {
+			return m_view;
+		}
+
+	private:
+		Page(const String& identifier) :
+			m_identifier(identifier) {
+			m_view.setConstraint(LayerDirection::Top);
+			m_view.setConstraint(LayerDirection::Bottom, [] {return Window::ClientHeight(); });
+			m_view.setConstraint(LayerDirection::Left);
+			m_view.setConstraint(LayerDirection::Right, [] {return Window::ClientWidth(); });
+		}
 	};
 }
