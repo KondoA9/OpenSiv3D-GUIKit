@@ -4,7 +4,7 @@
 
 using namespace s3d::gui;
 
-size_t Timeout::m_Id = 0;
+std::atomic<size_t> Timeout::m_Id = 0;
 
 Timeout::Timeout(const std::function<void()>& func, double ms, bool threading) :
 	m_id(m_Id),
