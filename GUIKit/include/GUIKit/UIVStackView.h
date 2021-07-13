@@ -13,18 +13,19 @@ namespace s3d::gui {
 		bool scrollingEnabled = true;
 
 	private:
-		Array<UIComponent*> m_deletableComponents;
+
+		LeadingDirection m_leadingDirection = LeadingDirection::Top;
+
 		size_t m_maxStackCount = 0;
 		double m_rowHeight = 0.0;
+
 		double m_currentRowHeight = 0.0, m_currentRowsHeight = 0.0;
-		double m_topPositionConstant = 0.0;
+		double m_leadingPositionConstant = 0.0;
+
 		bool m_constraintsApplied = false;
-		LeadingDirection m_leadingDirection = LeadingDirection::Top;
 
 	public:
 		using UIView::UIView;
-
-		virtual ~UIVStackView();
 
 		virtual void release();
 
@@ -35,15 +36,11 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		void appendTemporaryComponent(const T& component) {
-			T* cmp = new T(component);
-			UIView::appendComponent(*cmp);
-			m_deletableComponents.push_back(cmp);
+		T& appendTemporaryComponent(const T& component) {
 			m_constraintsApplied = false;
 			requestToUpdateLayer();
+			return UIView::appendTemporaryComponent(component);
 		}
-
-		void releaseDeletableComponents();
 
 		void setMaxStackCount(size_t count) {
 			m_maxStackCount = count;
@@ -64,14 +61,14 @@ namespace s3d::gui {
 	protected:
 		void initialize() override;
 
-		void updateLayer() override;
+		void updateLayer(const Rect& scissor) override;
 
 	private:
-		void setChildConstraints(size_t index);
+		void updateChildrenConstraints();
 
 		void calcCurrentRowHeight();
 
-		void adjustRowsBottomToViewBottom();
+		void adjustRowsTrailingToViewBottom();
 
 		void scroll(double dy);
 	};

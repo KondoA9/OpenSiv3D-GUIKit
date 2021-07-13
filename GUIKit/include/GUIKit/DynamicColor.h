@@ -7,6 +7,8 @@ namespace s3d::gui::DynamicColor {
 	constexpr auto BackgroundSecondary = ColorTheme(Color(236, 239, 241), Color(66, 66, 66));
 	constexpr auto BackgroundTertiary = ColorTheme(Color(207, 216, 220), Color(97, 97, 97));
 
+	constexpr auto BackgroundHovered = ColorTheme(Color(243, 245, 246), Color(48, 48, 48));
+
 	constexpr auto Separator = ColorTheme(Color(189, 189, 189), Color(97, 97, 97));
 
 	constexpr auto Text = ColorTheme(Color(33, 33, 33), Color(250, 250, 250));

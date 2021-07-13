@@ -41,6 +41,10 @@ void GUIKit::run() {
 void GUIKit::updateGUIKit() {
 	// Update window state
 	WindowManager::Update();
+	if (WindowManager::DidResized()) {
+		// Update scissor rect
+		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+	}
 
 	// Update pages
 	update();
@@ -100,25 +104,25 @@ void GUIKit::draw() {
 	case s3d::gui::GUIKit::PageTransition::Changing:
 		// Draw previous and next page
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-		m_forwardPage->m_view.draw(m_windowScissorRect);
+		m_forwardPage->m_view.draw();
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
-		m_backwardPage->m_view.draw(m_windowScissorRect);
+		m_backwardPage->m_view.draw();
 		break;
 
 	case s3d::gui::GUIKit::PageTransition::JustChanged:
 		// Initialize ColorMultipiler
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-		m_forwardPage->m_view.draw(m_windowScissorRect);
+		m_forwardPage->m_view.draw();
 		break;
 
 	default:
 		// Draw current page
-		m_drawingPage->m_view.draw(m_windowScissorRect);
+		m_drawingPage->m_view.draw();
 
 		// Draw isolated components
 		for (auto& component : m_isolatedComponents) {
 			if (component->drawable()) {
-				component->draw(m_windowScissorRect);
+				component->draw();
 			}
 		}
 		break;
@@ -170,8 +174,8 @@ void GUIKit::preparePageChanging() {
 	m_forwardPage->onBeforeAppeared();
 	m_backwardPage->onBeforeDisappeared();
 
-	m_forwardPage->m_view.updateLayer();
-	m_forwardPage->m_view.updateLayerInvert();
+	m_forwardPage->m_view.updateLayer(m_windowScissorRect);
+	m_forwardPage->m_view.updateLayerInvert(m_windowScissorRect);
 
 	m_forwardPage->onLayoutCompleted();
 }
@@ -215,32 +219,31 @@ void GUIKit::updateInputEventsStable() {
 
 void GUIKit::updateLayerStable() {
 	if (WindowManager::DidResized()) {
-		// Update scissor rect
-		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
-
 		// Update layer
-		m_drawingPage->m_view.updateLayer();
-		m_drawingPage->m_view.updateLayerInvert();
+		m_drawingPage->m_view.updateLayer(m_windowScissorRect);
+		m_drawingPage->m_view.updateLayerInvert(m_windowScissorRect);
 
 		// Update isolated components
 		for (auto& component : m_isolatedComponents) {
-			component->updateLayer();
+			component->updateLayer(m_windowScissorRect);
 		}
 
 		// Call window resized event
 		m_drawingPage->onWindowResized();
 	}
 	else {
-		m_drawingPage->m_view.updateLayerIfNeeded();
+		m_drawingPage->m_view.updateLayerIfNeeded(m_windowScissorRect);
 
 		// Update isolated components
 		for (auto& component : m_isolatedComponents) {
-			component->updateLayerIfNeeded();
+			component->updateLayerIfNeeded(m_windowScissorRect);
 		}
 	}
 }
 
 void GUIKit::updateMainThreadEventsStable() {
+	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
+
 	for (const auto& f : m_eventsRequestedToRunInMainThread) {
 		f();
 	}

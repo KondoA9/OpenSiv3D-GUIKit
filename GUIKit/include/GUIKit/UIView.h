@@ -14,6 +14,7 @@ namespace s3d::gui {
 		Array<UIComponent*> m_userInterfaces;
 
 	private:
+		Array<UIComponent*> m_deletableComponents;
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
@@ -22,23 +23,35 @@ namespace s3d::gui {
 			m_userInterfaces(Array<UIComponent*>(0))
 		{}
 
-		virtual ~UIView() {}
+		virtual ~UIView() {
+			releaseDeletableComponents();
+		}
 
 		virtual void appendComponent(UIComponent& ui);
 
+		template<class T>
+		T& appendTemporaryComponent(const T& component) {
+			T* cmp = new T(component);
+			UIView::appendComponent(*cmp);
+			m_deletableComponents.push_back(cmp);
+			return *cmp;
+		}
+
 	protected:
-		void updateLayer() override;
+		void releaseDeletableComponents();
 
-		bool updateLayerIfNeeded() override;
+		void updateLayer(const Rect& scissor) override;
 
-		void draw(const Rect& scissor) override;
+		bool updateLayerIfNeeded(const Rect& scissor) override;
+
+		void draw() override;
 
 		void updateInputEvents() override;
 
 	private:
-		void updateMouseIntersection() override;
+		void updateMouseIntersection() final;
 
-		void updateLayerInvert();
+		void updateLayerInvert(const Rect& scissor);
 
 		void updateScissorRect(const Rect& parentScissorRect);
 	};

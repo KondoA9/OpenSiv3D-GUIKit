@@ -18,6 +18,7 @@
     <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="..\GUIKit\src\Timeout\Timeout.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICheckBox\UICheckBox.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICircle\UICircle.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponentMouseEvent.cpp" />
@@ -34,7 +35,7 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Layer\Layer.cpp" />
-    <ClCompile Include="..\GUIKit\src\Window\WindowManager.cpp" />
+    <ClCompile Include="..\GUIKit\src\WindowManager\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.h" />
@@ -51,6 +52,7 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\PixelUnit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIButton.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UICheckBox.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UICircle.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIComponent.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIIcon.h" />

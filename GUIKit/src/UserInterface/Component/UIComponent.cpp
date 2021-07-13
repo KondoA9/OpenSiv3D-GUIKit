@@ -5,7 +5,9 @@ using namespace s3d::gui;
 Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 UIComponent* UIComponent::m_FocusedComponent = nullptr;
 
-void UIComponent::updateLayer() {
+void UIComponent::updateLayer(const Rect& scissor) {
+	m_drawableRegion = scissor;
+
 	if (!m_initialized) {
 		initialize();
 		m_initialized = true;
@@ -17,9 +19,9 @@ void UIComponent::updateLayer() {
 	m_layer.updateConstraints();
 }
 
-bool UIComponent::updateLayerIfNeeded() {
+bool UIComponent::updateLayerIfNeeded(const Rect& scissor) {
 	if (m_needToUpdateLayer) {
-		updateLayer();
+		updateLayer(scissor);
 		m_needToUpdateLayer = false;
 		return true;
 	}

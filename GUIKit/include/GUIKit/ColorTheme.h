@@ -15,7 +15,7 @@ namespace s3d::gui {
 	private:
 		Color m_transitionLight, m_transitionDark;
 		double mutable m_transitionTimer = 0.0, m_transitionTime = 0.0;
-		bool  mutable m_isTransition = false;
+		bool mutable m_isTransition = false;
 
 	public:
 		constexpr ColorTheme(const Color& lightColor, const Color& darkColor) :
@@ -50,7 +50,7 @@ namespace s3d::gui {
 		}
 
 		void highlight(const ColorTheme& color) {
-			setColor(color,  0.25);
+			setColor(color, 0.25);
 		}
 
 		void lowlight(const Color& lightColor, const Color& darkColor) {
@@ -74,7 +74,7 @@ namespace s3d::gui {
 		}
 
 		static ColorMode CurrentColorMode();
-		
+
 		static void SetColorMode(ColorMode mode);
 
 		static void Animate(double t);
