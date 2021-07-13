@@ -124,7 +124,6 @@ void UIText::updateDrawableRegion() {
 	const auto right = m_rect.x + m_rect.w - (m_textRegion.x - m_rect.x);
 	const auto w = right - m_textRegion.x;
 
-	const auto bottom = m_rect.y + m_rect.h - (m_textRegion.y - m_rect.y);
 	const auto h = m_rect.h - (m_textRegion.y - m_rect.y);
 
 	m_drawableRegion = RectF(m_textRegion.x, m_textRegion.y, w, h + 4_px);

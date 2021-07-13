@@ -33,10 +33,10 @@ namespace s3d::gui {
 			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
 			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
 			UIRect(backgroundColor),
-			m_text(text),
-			m_direction(direction),
 			textColor(textColor),
-			m_font(UnifiedFont::Get(style))
+			m_text(text),
+			m_font(UnifiedFont::Get(style)),
+			m_direction(direction)
 		{}
 
 		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :

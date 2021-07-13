@@ -11,7 +11,7 @@ namespace s3d::gui {
 		friend GUIKit;
 
 	protected:
-		Array<UIComponent*> m_userInterfaces;
+		Array<UIComponent*> m_components;
 
 	private:
 		Array<UIComponent*> m_deletableComponents;
@@ -20,7 +20,7 @@ namespace s3d::gui {
 	public:
 		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor),
-			m_userInterfaces(Array<UIComponent*>(0))
+			m_components(Array<UIComponent*>(0))
 		{}
 
 		virtual ~UIView() {

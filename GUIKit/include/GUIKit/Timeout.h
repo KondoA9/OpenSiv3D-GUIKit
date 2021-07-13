@@ -2,11 +2,9 @@
 
 #include <Siv3D.hpp>
 
-#include <mutex>
-
 namespace s3d::gui {
 	class Timeout {
-		static size_t m_Id;
+		static std::atomic<size_t> m_Id;
 
 		const size_t m_id;
 		const double m_ms;
@@ -18,6 +16,10 @@ namespace s3d::gui {
 
 	public:
 		Timeout(const std::function<void()>& func, double ms, bool threading);
+
+		Timeout(const Timeout&) = delete;
+
+		Timeout(Timeout&&) = default;
 
 		size_t id() const {
 			return m_id;
@@ -32,5 +34,9 @@ namespace s3d::gui {
 		bool restart();
 
 		bool stop();
+
+		Timeout& operator=(const Timeout&) = delete;
+
+		Timeout& operator=(Timeout&&) = default;
 	};
 }
