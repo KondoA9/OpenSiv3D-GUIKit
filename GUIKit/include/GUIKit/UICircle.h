@@ -4,13 +4,13 @@
 
 namespace s3d::gui {
 	class UICircle : public UIComponent {
-	protected:
+	private:
 		Circle m_circle;
 
 	public:
 		using UIComponent::UIComponent;
 
-		Circle circle() const {
+		const Circle& circle() const {
 			return m_circle;
 		}
 
