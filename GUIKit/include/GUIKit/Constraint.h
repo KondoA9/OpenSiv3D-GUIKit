@@ -3,7 +3,13 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	struct Layer;
+	class UIComponent;
+
 	struct Constraint {
+		friend Layer;
+		friend UIComponent;
+
 	private:
 		double m_value;
 		bool m_exists = false;
@@ -21,11 +27,6 @@ namespace s3d::gui {
 			return m_exists;
 		}
 
-		// Return the pointer of the value
-		double* data() {
-			return &m_value;
-		}
-
 		void updateConstraint() {
 			m_value = m_func ? m_func() * m_multiplier + m_constant
 				: m_watchingValue == nullptr ? m_constant : *m_watchingValue * m_multiplier + m_constant;
@@ -41,6 +42,12 @@ namespace s3d::gui {
 
 		operator double() const {
 			return m_value;
+		}
+
+	private:
+		// Return the pointer of the value
+		double* data() {
+			return &m_value;
 		}
 
 		Constraint& operator =(double value) {
