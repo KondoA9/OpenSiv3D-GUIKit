@@ -5,8 +5,8 @@ using namespace s3d::gui;
 void UICircle::updateLayer(const Rect& scissor) {
 	UIComponent::updateLayer(scissor);
 	m_circle = Circle(
-		Arg::center(static_cast<int>(m_layer.centerX), static_cast<int>(m_layer.centerY)),
-		(m_layer.height + m_layer.width) * 0.25);
+		Arg::center(static_cast<int>(layer().centerX), static_cast<int>(layer().centerY)),
+		(layer().height + layer().width) * 0.25);
 }
 
 void UICircle::draw() {

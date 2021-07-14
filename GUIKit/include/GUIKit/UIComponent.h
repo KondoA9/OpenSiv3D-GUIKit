@@ -50,18 +50,15 @@ namespace s3d::gui {
 		bool penetrateMouseEvent = false;
 		bool hidden = false, exist = true, controllable = true;
 
-	protected:
-		Layer m_layer;
-
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
 		static UIComponent* m_FocusedComponent;
 
+		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
-		Array<InputEventHandler> m_inputEventHandlers;
+		Rect m_drawableRegion;
 		bool m_needToUpdateLayer = true;
 		bool m_initialized = false;
-		Rect m_drawableRegion;
 
 		// Mouse event
 		MouseCondition m_mouseCondition;
@@ -69,6 +66,7 @@ namespace s3d::gui {
 		bool m_mouseDownEnable = false, m_mouseDownRaw = false;
 		bool m_mouseDragging = false;
 		Vec2 m_clickedPos;
+		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept :

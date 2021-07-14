@@ -63,20 +63,20 @@ void UIVStackView::updateChildrenConstraints() {
 
 void UIVStackView::calcCurrentRowHeight() {
 	const size_t rows = m_maxStackCount == 0 ? m_components.size() : m_maxStackCount;
-	m_currentRowHeight = m_rowHeight == 0.0 ? m_layer.height / rows : m_rowHeight;
+	m_currentRowHeight = m_rowHeight == 0.0 ? layer().height / rows : m_rowHeight;
 	m_currentRowsHeight = m_currentRowHeight * rows;
 }
 
 void UIVStackView::adjustRowsTrailingToViewBottom() {
-	if (m_components && m_layer.height < m_currentRowsHeight && (
-		(m_leadingDirection == LeadingDirection::Top && m_layer.top + m_leadingPositionConstant + m_currentRowsHeight < m_layer.bottom) ||
-		(m_leadingDirection == LeadingDirection::Bottom && m_layer.bottom + m_leadingPositionConstant - m_currentRowsHeight > m_layer.top)))
+	if (m_components && layer().height < m_currentRowsHeight && (
+		(m_leadingDirection == LeadingDirection::Top && layer().top + m_leadingPositionConstant + m_currentRowsHeight < layer().bottom) ||
+		(m_leadingDirection == LeadingDirection::Bottom && layer().bottom + m_leadingPositionConstant - m_currentRowsHeight > layer().top)))
 	{
 		if (m_leadingDirection == LeadingDirection::Top) {
-			m_leadingPositionConstant = m_layer.height - m_currentRowsHeight;
+			m_leadingPositionConstant = layer().height - m_currentRowsHeight;
 		}
 		else {
-			m_leadingPositionConstant = -m_layer.height + m_currentRowsHeight;
+			m_leadingPositionConstant = -layer().height + m_currentRowsHeight;
 		}
 
 		updateChildrenConstraints();
@@ -84,7 +84,7 @@ void UIVStackView::adjustRowsTrailingToViewBottom() {
 }
 
 void UIVStackView::scroll(double dy) {
-	if (scrollingEnabled && m_currentRowsHeight >= m_layer.height) {
+	if (scrollingEnabled && m_currentRowsHeight >= layer().height) {
 		m_leadingPositionConstant -= dy;
 
 		if (m_leadingDirection == LeadingDirection::Top) {

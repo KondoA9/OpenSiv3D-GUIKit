@@ -15,7 +15,7 @@ void UISlider::initialize() {
 
 	addEventListener<Sliding>([this, handleRadius] {
 		const double pre = m_value;
-		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - (m_layer.left + handleRadius)) / (m_layer.width - handleRadius * 2), m_min, m_max);
+		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - (layer().left + handleRadius)) / (layer().width - handleRadius * 2), m_min, m_max);
 
 		if (pre != m_value) {
 			requestToUpdateLayer();
@@ -60,7 +60,7 @@ void UISlider::initialize() {
 	ui_handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
 	ui_handle.setConstraint(LayerDirection::Height, handleRadius * 2);
 	ui_handle.setConstraint(LayerDirection::CenterX, [this, handleRadius] {
-		return m_layer.left + handleRadius + (m_layer.width - handleRadius * 2) * (m_value - m_min) / (m_max - m_min);
+		return layer().left + handleRadius + (layer().width - handleRadius * 2) * (m_value - m_min) / (m_max - m_min);
 		});
 	ui_handle.setConstraint(LayerDirection::Width, handleRadius * 2);
 
