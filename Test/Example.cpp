@@ -145,10 +145,10 @@ class StartPage : public gui::Page {
 
 	void onLoaded() override {
 		ui_toolbar.drawFrame = true;
-		ui_toolbar.setConstraint(gui::LayerDirection::Top, m_view, gui::LayerDirection::Top);
+		ui_toolbar.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
 		ui_toolbar.setConstraint(gui::LayerDirection::Height, 30_px);
 		ui_toolbar.setConstraint(gui::LayerDirection::Left);
-		ui_toolbar.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+		ui_toolbar.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 		ui_toolbar.setToggleColorModeHandler([this] {
 			gui::GUIKit::Instance().toggleColorMode();
 			});
@@ -164,20 +164,20 @@ class StartPage : public gui::Page {
 		ui_filesView.setRowHeight(30_px);
 		ui_filesView.setConstraint(gui::LayerDirection::Top, ui_toolbar, gui::LayerDirection::Bottom);
 		ui_filesView.setConstraint(gui::LayerDirection::Bottom, ui_movePage, gui::LayerDirection::Top);
-		ui_filesView.setConstraint(gui::LayerDirection::Left, m_view, gui::LayerDirection::Left);
-		ui_filesView.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+		ui_filesView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
+		ui_filesView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 
 		ui_movePage.setConstraint(gui::LayerDirection::Height, 40_px);
-		ui_movePage.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
-		ui_movePage.setConstraint(gui::LayerDirection::Left, m_view, gui::LayerDirection::Left);
-		ui_movePage.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+		ui_movePage.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+		ui_movePage.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
+		ui_movePage.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 		ui_movePage.addEventListener<gui::MouseEvent::LeftDown>([this] {
 			gui::GUIKit::Instance().switchPage(U"start");
 			});
 
-		m_view.appendComponent(ui_filesView);
-		m_view.appendComponent(ui_movePage);
-		m_view.appendComponent(ui_toolbar);
+		view().appendComponent(ui_filesView);
+		view().appendComponent(ui_movePage);
+		view().appendComponent(ui_toolbar);
 	}
 
 	void setup(const FilePath& dir) {
@@ -206,26 +206,26 @@ class NextPage : public gui::Page {
 
 	void onLoaded() override {
 		ui_title.setConstraint(gui::LayerDirection::Top);
-		ui_title.setConstraint(gui::LayerDirection::Height, m_view, gui::LayerDirection::Height, 0.0, 0.5);
+		ui_title.setConstraint(gui::LayerDirection::Height, view(), gui::LayerDirection::Height, 0.0, 0.5);
 		ui_title.setConstraint(gui::LayerDirection::Left);
-		ui_title.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+		ui_title.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 
 		ui_checkBox.setConstraint(gui::LayerDirection::Height, 100_px);
 		ui_checkBox.setConstraint(gui::LayerDirection::Bottom, ui_button, gui::LayerDirection::Top);
 		ui_checkBox.setConstraint(gui::LayerDirection::Left);
-		ui_checkBox.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+		ui_checkBox.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 
 		ui_button.setConstraint(gui::LayerDirection::Height, 100_px);
-		ui_button.setConstraint(gui::LayerDirection::Bottom, m_view, gui::LayerDirection::Bottom);
+		ui_button.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
 		ui_button.setConstraint(gui::LayerDirection::Left);
-		ui_button.setConstraint(gui::LayerDirection::Right, m_view, gui::LayerDirection::Right);
+		ui_button.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 		ui_button.addEventListener<gui::MouseEvent::LeftDown>([this] {
 			gui::GUIKit::Instance().switchPage(U"explorer");
 			});
 
-		m_view.appendComponent(ui_title);
-		m_view.appendComponent(ui_button);
-		m_view.appendComponent(ui_checkBox);
+		view().appendComponent(ui_title);
+		view().appendComponent(ui_button);
+		view().appendComponent(ui_checkBox);
 	}
 };
 
@@ -236,7 +236,7 @@ void Main() {
 	Window::Resize(1280, 720);
 #endif
 
-	guikit.appendPage(NextPage(U"start"));
-	guikit.appendPage(StartPage(U"explorer"));
+	guikit.appendPage<NextPage>(U"start");
+	guikit.appendPage<StartPage>(U"explorer");
 	guikit.start();
 }

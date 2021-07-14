@@ -17,8 +17,8 @@ namespace s3d::gui {
 	public:
 		UIIcon(Icon icon, const ColorTheme& iconColor = DynamicColor::Text, const ColorTheme& backgroundColor = DynamicColor::Clear):
 			UIRect(backgroundColor),
-			m_icon(icon),
-			iconColor(iconColor)
+			iconColor(iconColor),
+			m_icon(icon)
 		{}
 
 		void setAngle(double angle) {

@@ -39,16 +39,16 @@ bool GUIKit::animateColor() {
 	return true;
 }
 
-void GUIKit::insertToMainThread(const std::function<void()>& func) {
+void GUIKit::insertProcessToMainThread(const std::function<void()>& func) {
 	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 	m_eventsRequestedToRunInMainThread.push_back(func);
 }
 
-void GUIKit::insertAsyncProcess(const std::function<void()>& asyncFunc, const std::function<void()>& mainThreadFunc) {
-	std::thread thread([this, asyncFunc, mainThreadFunc]() {
-		asyncFunc();
-		if (mainThreadFunc) {
-			insertToMainThread(mainThreadFunc);
+void GUIKit::insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
+	std::thread thread([this, func, completion]() {
+		func();
+		if (completion) {
+			insertProcessToMainThread(completion);
 		}
 		});
 	thread.detach();

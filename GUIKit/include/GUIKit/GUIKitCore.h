@@ -20,9 +20,6 @@ namespace s3d::gui {
 			JustChanged
 		};
 
-	public:
-		static GUIKit guikit;
-
 	private:
 		std::mutex m_mainThreadInserterMutex;
 
@@ -45,11 +42,6 @@ namespace s3d::gui {
 
 		GUIKit(GUIKit&&) = delete;
 
-		static GUIKit& Instance() {
-			static GUIKit instance;
-			return instance;
-		}
-
 		void start();
 
 		void switchPage(const String& identifier);
@@ -58,10 +50,27 @@ namespace s3d::gui {
 
 		void toggleColorMode();
 
-		void insertToMainThread(const std::function<void()>& func);
+		/// <summary>
+		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
+		/// </summary>
+		/// <param name="func">The process that runs on main thread.</param>
+		void insertProcessToMainThread(const std::function<void()>& func);
 
-		void insertAsyncProcess(const std::function<void()>& asyncFunc, const std::function<void()>& mainThreadFunc = std::function<void()>());
+		/// <summary>
+		/// Request to run a process asynchronously, and if need, a completion process will runs on main thread.
+		/// 
+		/// </summary>
+		/// <param name="func">The process that runs asynchronously. Do not set a process that changes user interfaces.</param>
+		/// <param name="completion">The process that runs on main thread after func() ended.</param>
+		void insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
+		/// <summary>
+		/// Set an event with timeout. Do not set a process that changes user interfaces.
+		/// </summary>
+		/// <param name="func">A function that runs when timed out.</param>
+		/// <param name="ms">The time to time out.</param>
+		/// <param name="threading">If true, the function runs asynchronously.</param>
+		/// <returns>The ID of the Timeout.</returns>
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 
 		bool stopTimeout(size_t id);
@@ -70,18 +79,23 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
+		static GUIKit& Instance() {
+			static GUIKit instance;
+			return instance;
+		}
+
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
-		T* getPage(const String& identifier) {
-			return getPagePtr<T>(identifier).get();
+		T& getPage(const String& identifier) const noexcept {
+			return *getPagePtr<T>(identifier).get();
 		}
 
 		template<class T>
-		void appendPage(const T& page) {
-			m_pages.push_back(std::make_shared<T>(page));
+		void appendPage(const String& identifier) {
+			m_pages.push_back(std::shared_ptr<T>(new T(identifier)));
 		}
 
 		template<class T>
@@ -106,10 +120,10 @@ namespace s3d::gui {
 
 		void updateGUIKit();
 
-		// Return true until the start up page appeared
+		// Return true until the start up page appeared.
 		bool updateOnStartUp();
 
-		// Return true until the page changed
+		// Return true until the page changed.
 		bool updateOnPageChanging();
 
 		void updateOnStable();
@@ -143,6 +157,9 @@ namespace s3d::gui {
 			}
 
 			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
+
+			assert(false);
+
 			return nullptr;
 		}
 	};

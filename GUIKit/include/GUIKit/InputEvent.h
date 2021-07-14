@@ -20,13 +20,22 @@ namespace s3d::gui {
 
 		UIComponent* component;
 
+		constexpr InputEvent(const InputEvent& e):
+			id(e.id),
+			wheel(e.wheel),
+			pos(e.pos),
+			previousPos(e.previousPos),
+			callIfComponentInFront(e.callIfComponentInFront),
+			component(e.component)
+		{}
+
 		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) :
 			id(_id),
-			component(_component),
 			wheel(Mouse::Wheel()),
 			pos(Cursor::PosF()),
 			previousPos(Cursor::PreviousPosF()),
-			callIfComponentInFront(_callIfComponentInFront)
+			callIfComponentInFront(_callIfComponentInFront),
+			component(_component)
 		{}
 
 		virtual ~InputEvent() = default;

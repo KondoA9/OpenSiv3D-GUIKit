@@ -3,9 +3,9 @@
 
 using namespace s3d::gui;
 
-void UIView::appendComponent(UIComponent& ui) {
-	if (!m_userInterfaces.includes(&ui)) {
-		m_userInterfaces.push_back(&ui);
+void UIView::appendComponent(UIComponent& component) {
+	if (!m_components.includes(&component)) {
+		m_components.push_back(&component);
 	}
 }
 
@@ -23,9 +23,9 @@ void UIView::updateLayer(const Rect& scissor) {
 
 	UIRect::updateLayer(scissor);
 
-	for (const auto ui : m_userInterfaces) {
-		if (ui->exist) {
-			ui->updateLayer(m_scissorRect);
+	for (const auto component : m_components) {
+		if (component->exist) {
+			component->updateLayer(m_scissorRect);
 		}
 	}
 }
@@ -33,9 +33,9 @@ void UIView::updateLayer(const Rect& scissor) {
 void UIView::updateLayerInvert(const Rect& scissor) {
 	updateScissorRect(scissor);
 
-	for (int i = static_cast<int>(m_userInterfaces.size()) - 1; i >= 0; i--) {
-		if (m_userInterfaces[i]->exist) {
-			m_userInterfaces[i]->updateLayer(m_scissorRect);
+	for (int i = static_cast<int>(m_components.size()) - 1; i >= 0; i--) {
+		if (m_components[i]->exist) {
+			m_components[i]->updateLayer(m_scissorRect);
 		}
 	}
 
@@ -46,7 +46,7 @@ bool UIView::updateLayerIfNeeded(const Rect& scissor) {
 	updateScissorRect(scissor);
 
 	if (UIRect::updateLayerIfNeeded(scissor)) {
-		for (const auto ui : m_userInterfaces) {
+		for (const auto ui : m_components) {
 			if (ui->exist) {
 				ui->updateLayer(m_scissorRect);
 			}
@@ -55,9 +55,9 @@ bool UIView::updateLayerIfNeeded(const Rect& scissor) {
 	}
 	else {
 		bool updated = false;
-		for (const auto ui : m_userInterfaces) {
-			if (ui->exist) {
-				updated |= ui->updateLayerIfNeeded(m_scissorRect);
+		for (const auto component : m_components) {
+			if (component->exist) {
+				updated |= component->updateLayerIfNeeded(m_scissorRect);
 			}
 		}
 		return updated;
@@ -71,9 +71,9 @@ void UIView::draw() {
 
 	Graphics2D::SetScissorRect(m_scissorRect);
 
-	for (const auto ui : m_userInterfaces) {
-		if (ui->drawable()) {
-			ui->draw();
+	for (const auto component : m_components) {
+		if (component->drawable()) {
+			component->draw();
 		}
 	}
 
@@ -83,9 +83,9 @@ void UIView::draw() {
 void UIView::updateMouseIntersection() {
 	UIRect::updateMouseIntersection();
 
-	for (const auto ui : m_userInterfaces) {
-		if (ui->updatable()) {
-			ui->updateMouseIntersection();
+	for (const auto component : m_components) {
+		if (component->updatable()) {
+			component->updateMouseIntersection();
 		}
 	}
 }
@@ -93,9 +93,9 @@ void UIView::updateMouseIntersection() {
 void UIView::updateInputEvents() {
 	UIRect::updateInputEvents();
 
-	for (const auto ui : m_userInterfaces) {
-		if (ui->updatable()) {
-			ui->updateInputEvents();
+	for (const auto component : m_components) {
+		if (component->updatable()) {
+			component->updateInputEvents();
 		}
 	}
 }

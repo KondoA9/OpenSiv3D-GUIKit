@@ -1,16 +1,17 @@
 #include <GUIKit/Timeout.h>
 
 #include <thread>
+#include <atomic>
 
 using namespace s3d::gui;
 
-size_t Timeout::m_Id = 0;
+std::atomic<size_t> Timeout::m_Id = 0;
 
 Timeout::Timeout(const std::function<void()>& func, double ms, bool threading) :
 	m_id(m_Id),
-	m_func(func),
 	m_ms(ms),
-	m_threading(threading)
+	m_threading(threading),
+	m_func(func)
 {
 	m_Id++;
 	m_stopwatch.start();
