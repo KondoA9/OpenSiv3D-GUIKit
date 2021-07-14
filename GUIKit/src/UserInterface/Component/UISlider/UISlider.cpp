@@ -11,9 +11,11 @@ UISlider::UISlider(const String& label, UnifiedFontStyle style, TextDirection di
 {}
 
 void UISlider::initialize() {
-	addEventListener<Sliding>([this] {
+	const double handleRadius = 6_px;
+
+	addEventListener<Sliding>([this, handleRadius] {
 		const double pre = m_value;
-		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - m_layer.left) / m_layer.width, m_min, m_max);
+		m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - (m_layer.left + handleRadius)) / (m_layer.width - handleRadius * 2), m_min, m_max);
 
 		if (pre != m_value) {
 			requestToUpdateLayer();
@@ -41,7 +43,7 @@ void UISlider::initialize() {
 	ui_railLeft.penetrateMouseEvent = true;
 	ui_railLeft.setConstraint(LayerDirection::CenterY, ui_handle, LayerDirection::CenterY);
 	ui_railLeft.setConstraint(LayerDirection::Height, h);
-	ui_railLeft.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
+	ui_railLeft.setConstraint(LayerDirection::Left, *this, LayerDirection::Left, handleRadius);
 	ui_railLeft.setConstraint(LayerDirection::Right, ui_handle, LayerDirection::CenterX);
 
 	ui_railRight.drawFrame = true;
@@ -50,18 +52,17 @@ void UISlider::initialize() {
 	ui_railRight.setConstraint(LayerDirection::CenterY, ui_handle, LayerDirection::CenterY);
 	ui_railRight.setConstraint(LayerDirection::Height, h);
 	ui_railRight.setConstraint(LayerDirection::Left, ui_handle, LayerDirection::CenterX);
-	ui_railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+	ui_railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right, -handleRadius);
 
-	const double r = 12_px;
 	ui_handle.drawFrame = true;
 	ui_handle.backgroundColor = DynamicColor::Background;
 	ui_handle.penetrateMouseEvent = true;
 	ui_handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
-	ui_handle.setConstraint(LayerDirection::Height, r);
-	ui_handle.setConstraint(LayerDirection::CenterX, [this] {
-		return m_layer.left + m_layer.width * (m_value - m_min) / (m_max - m_min);
+	ui_handle.setConstraint(LayerDirection::Height, handleRadius * 2);
+	ui_handle.setConstraint(LayerDirection::CenterX, [this, handleRadius] {
+		return m_layer.left + handleRadius + (m_layer.width - handleRadius * 2) * (m_value - m_min) / (m_max - m_min);
 		});
-	ui_handle.setConstraint(LayerDirection::Width, r);
+	ui_handle.setConstraint(LayerDirection::Width, handleRadius * 2);
 
 	ui_text.penetrateMouseEvent = true;
 	ui_text.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
