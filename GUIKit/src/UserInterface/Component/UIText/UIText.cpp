@@ -51,12 +51,12 @@ void UIText::updateDrawableText(bool updateField) {
 }
 
 void UIText::updateTextRegion() {
-	const double top = m_rect.y + paddingTop;
-	const double bottom = m_rect.y + m_rect.h - paddingBottom;
-	const double centerY = m_rect.y + m_rect.h * 0.5 + paddingTop - paddingBottom;
-	const double left = m_rect.x + paddingLeft + 3.0_px;
-	const double right = m_rect.x + m_rect.w - paddingRight - 3.0_px;
-	const double centerX = m_rect.x + m_rect.w * 0.5 + paddingLeft - paddingRight;
+	const double top = rect().y + paddingTop;
+	const double bottom = rect().y + rect().h - paddingBottom;
+	const double centerY = rect().y + rect().h * 0.5 + paddingTop - paddingBottom;
+	const double left = rect().x + paddingLeft + 3.0_px;
+	const double right = rect().x + rect().w - paddingRight - 3.0_px;
+	const double centerX = rect().x + rect().w * 0.5 + paddingLeft - paddingRight;
 
 	switch (m_direction)
 	{
@@ -99,32 +99,32 @@ void UIText::updateTextRegion() {
 }
 
 void::UIText::fitTextRegionToRect() {
-	if (m_textRegion.w > m_rect.w) {
-		m_textRegion.h *= static_cast<int>(m_textRegion.w / m_rect.w) + 1;
+	if (m_textRegion.w > rect().w) {
+		m_textRegion.h *= static_cast<int>(m_textRegion.w / rect().w) + 1;
 	}
 
-	if (m_textRegion.x < m_rect.x) {
-		m_textRegion.x = m_rect.x;
+	if (m_textRegion.x < rect().x) {
+		m_textRegion.x = rect().x;
 	}
 
-	if (m_textRegion.y < m_rect.y) {
-		m_textRegion.y = m_rect.y;
+	if (m_textRegion.y < rect().y) {
+		m_textRegion.y = rect().y;
 	}
 
-	if (const auto right = m_rect.x + m_rect.w; m_textRegion.x + m_textRegion.w > right) {
+	if (const auto right = rect().x + rect().w; m_textRegion.x + m_textRegion.w > right) {
 		m_textRegion.w = right - m_textRegion.x;
 	}
 
-	if (const auto bottom = m_rect.y + m_rect.h; m_textRegion.y + m_textRegion.h > bottom) {
+	if (const auto bottom = rect().y + rect().h; m_textRegion.y + m_textRegion.h > bottom) {
 		m_textRegion.h = bottom - m_textRegion.y;
 	}
 }
 
 void UIText::updateDrawableRegion() {
-	const auto right = m_rect.x + m_rect.w - (m_textRegion.x - m_rect.x);
+	const auto right = rect().x + rect().w - (m_textRegion.x - rect().x);
 	const auto w = right - m_textRegion.x;
 
-	const auto h = m_rect.h - (m_textRegion.y - m_rect.y);
+	const auto h = rect().h - (m_textRegion.y - rect().y);
 
 	m_drawableRegion = RectF(m_textRegion.x, m_textRegion.y, w, h + 4_px);
 }

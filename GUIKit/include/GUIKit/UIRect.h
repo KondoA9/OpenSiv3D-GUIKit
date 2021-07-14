@@ -6,13 +6,13 @@
 
 namespace s3d::gui {
 	class UIRect : public UIComponent {
-	protected:
+	private:
 		RoundRect m_rect;
 
 	public:
 		using UIComponent::UIComponent;
 
-		RoundRect rect() const {
+		const RoundRect& rect() const {
 			return m_rect;
 		}
 

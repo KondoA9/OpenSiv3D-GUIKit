@@ -61,10 +61,10 @@ namespace s3d::gui {
 
 		Rect visibleTextureRect() const {
 			return Rect(
-				m_textureRegion.x < static_cast<int>(m_rect.x) ? static_cast<int>(m_rect.x) : m_textureRegion.x,
-				m_textureRegion.y < static_cast<int>(m_rect.y) ? static_cast<int>(m_rect.y) : m_textureRegion.y,
-				m_textureRegion.w < static_cast<int>(m_rect.w) ? m_textureRegion.w : static_cast<int>(m_rect.w),
-				m_textureRegion.h < static_cast<int>(m_rect.h) ? m_textureRegion.h : static_cast<int>(m_rect.h)
+				m_textureRegion.x < static_cast<int>(rect().x) ? static_cast<int>(rect().x) : m_textureRegion.x,
+				m_textureRegion.y < static_cast<int>(rect().y) ? static_cast<int>(rect().y) : m_textureRegion.y,
+				m_textureRegion.w < static_cast<int>(rect().w) ? m_textureRegion.w : static_cast<int>(rect().w),
+				m_textureRegion.h < static_cast<int>(rect().h) ? m_textureRegion.h : static_cast<int>(rect().h)
 			);
 		}
 
