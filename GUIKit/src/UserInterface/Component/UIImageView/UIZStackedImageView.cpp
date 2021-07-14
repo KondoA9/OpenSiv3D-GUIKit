@@ -29,7 +29,7 @@ void UIZStackedImageView::appendImage(const Image& image, double alphaRate) {
 	m_textures.push_back(DynamicTexture(image, TextureDesc::Unmipped));
 	m_alphas.push_back(255 * alphaRate);
 
-	setDrawingCenterPos(m_rect.center());
+	setDrawingCenterPos(rect().center());
 
 	requestToUpdateLayer();
 
@@ -45,7 +45,7 @@ void UIZStackedImageView::removeImage(size_t index) {
 void UIZStackedImageView::release() {
 	m_textures.release();
 	m_alphas.release();
-	setDrawingCenterPos(m_rect.center());
+	setDrawingCenterPos(rect().center());
 }
 
 void UIZStackedImageView::draw() {
@@ -80,9 +80,9 @@ void UIZStackedImageView::updateLayer(const Rect& scissor) {
 }
 
 double UIZStackedImageView::calcMinimumScale() {
-	double scale = static_cast<double>(m_rect.w) / static_cast<double>(m_textures[0].width());
-	if (const double h = scale * m_textures[0].height(); h > m_rect.h) {
-		scale *= m_rect.h / h;
+	double scale = static_cast<double>(rect().w) / static_cast<double>(m_textures[0].width());
+	if (const double h = scale * m_textures[0].height(); h > rect().h) {
+		scale *= rect().h / h;
 	}
 	return scale;
 }
@@ -99,7 +99,7 @@ void UIZStackedImageView::setScale(double rate) {
 	m_scale = m_minScale * m_maxPixel / (m_maxPixel - (m_maxPixel - m_minPixel) * m_scaleRate);
 
 	if (m_scale != preScale) {
-		const auto diff = (m_rect.center() - m_drawingCenterPos) * (1.0 - m_scale / preScale);
+		const auto diff = (rect().center() - m_drawingCenterPos) * (1.0 - m_scale / preScale);
 		setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
 	}
 }
@@ -111,27 +111,27 @@ void UIZStackedImageView::resetScale() {
 }
 
 void UIZStackedImageView::restrictImageMovement() {
-	const auto center = m_rect.center();
+	const auto center = rect().center();
 
-	if (m_textureRegion.w <= m_rect.w) {
+	if (m_textureRegion.w <= rect().w) {
 		m_drawingCenterPos.x = center.x;
 	}
 	else {
-		if (m_textureRegion.x > m_rect.x) {
-			m_drawingCenterPos.x = m_rect.x + m_textureRegion.w * 0.5;
-		} else if (m_textureRegion.x + m_textureRegion.w < m_rect.x + m_rect.w) {
-			m_drawingCenterPos.x = m_rect.x + m_rect.w - m_textureRegion.w * 0.5;
+		if (m_textureRegion.x > rect().x) {
+			m_drawingCenterPos.x = rect().x + m_textureRegion.w * 0.5;
+		} else if (m_textureRegion.x + m_textureRegion.w < rect().x + rect().w) {
+			m_drawingCenterPos.x = rect().x + rect().w - m_textureRegion.w * 0.5;
 		}
 	}
 
-	if (m_textureRegion.h <= m_rect.h) {
+	if (m_textureRegion.h <= rect().h) {
 		m_drawingCenterPos.y = center.y;
 	}
 	else {
-		if (m_textureRegion.y > m_rect.y) {
-			m_drawingCenterPos.y = m_rect.y + m_textureRegion.h * 0.5;
-		} else if (m_textureRegion.y + m_textureRegion.h < m_rect.y + m_rect.h) {
-			m_drawingCenterPos.y = m_rect.y + m_rect.h - m_textureRegion.h * 0.5;
+		if (m_textureRegion.y > rect().y) {
+			m_drawingCenterPos.y = rect().y + m_textureRegion.h * 0.5;
+		} else if (m_textureRegion.y + m_textureRegion.h < rect().y + rect().h) {
+			m_drawingCenterPos.y = rect().y + rect().h - m_textureRegion.h * 0.5;
 		}
 	}
 }
@@ -139,7 +139,7 @@ void UIZStackedImageView::restrictImageMovement() {
 void UIZStackedImageView::setViewingCenterPixel(const Point& centerPixel) {
 	// Current scene position of the pixel that will be centered
 	const auto pos = Imaging::PixelToScenePos(centerPixel, m_textureRegion, m_scale);
-	const auto movement = m_rect.center() - pos;
+	const auto movement = rect().center() - pos;
 	setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
 }
 

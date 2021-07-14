@@ -23,9 +23,21 @@ namespace s3d::gui {
 		uint32 m_maxPixel = 0;
 
 	public:
-		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
+		explicit UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor)
 		{}
+
+		const Point& currentPixel() const {
+			return m_cursoredPixel;
+		}
+
+		const Point& prePixel() const {
+			return m_preCursoredPixel;
+		}
+
+		const Rect& textureRegion() const {
+			return m_textureRegion;
+		}
 
 		double scale() const {
 			return m_scale;
@@ -43,28 +55,16 @@ namespace s3d::gui {
 			return m_scaleRate;
 		}
 
-		Point currentPixel() const {
-			return m_cursoredPixel;
-		}
-
-		Point prePixel() const {
-			return m_preCursoredPixel;
-		}
-
 		size_t texturesCount() const {
 			return m_textures.size();
 		}
 
-		Rect textureRegion() const {
-			return m_textureRegion;
-		}
-
 		Rect visibleTextureRect() const {
 			return Rect(
-				m_textureRegion.x < static_cast<int>(m_rect.x) ? static_cast<int>(m_rect.x) : m_textureRegion.x,
-				m_textureRegion.y < static_cast<int>(m_rect.y) ? static_cast<int>(m_rect.y) : m_textureRegion.y,
-				m_textureRegion.w < static_cast<int>(m_rect.w) ? m_textureRegion.w : static_cast<int>(m_rect.w),
-				m_textureRegion.h < static_cast<int>(m_rect.h) ? m_textureRegion.h : static_cast<int>(m_rect.h)
+				m_textureRegion.x < static_cast<int>(rect().x) ? static_cast<int>(rect().x) : m_textureRegion.x,
+				m_textureRegion.y < static_cast<int>(rect().y) ? static_cast<int>(rect().y) : m_textureRegion.y,
+				m_textureRegion.w < static_cast<int>(rect().w) ? m_textureRegion.w : static_cast<int>(rect().w),
+				m_textureRegion.h < static_cast<int>(rect().h) ? m_textureRegion.h : static_cast<int>(rect().h)
 			);
 		}
 

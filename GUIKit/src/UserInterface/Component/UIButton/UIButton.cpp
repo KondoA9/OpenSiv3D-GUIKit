@@ -58,9 +58,9 @@ void UIButton::initialize() {
 void UIButton::draw() {
 	UIRect::draw();
 
-	UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(m_rect.center(), textColor);
+	UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(rect().center(), textColor);
 
 	if (icon) {
-		icon.drawAt(m_rect.center(), textColor);
+		icon.drawAt(rect().center(), textColor);
 	}
 }

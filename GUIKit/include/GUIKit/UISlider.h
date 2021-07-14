@@ -23,11 +23,11 @@ namespace s3d::gui {
 			UISlider(label, style, TextDirection::LeftBottom, _backgroundColor)
 		{}
 
-		UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
+		explicit UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
 			UISlider(label, UnifiedFontStyle::Small, _backgroundColor)
 		{}
 
-		UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
+		explicit UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
 			UISlider(U"", _backgroundColor)
 		{}
 

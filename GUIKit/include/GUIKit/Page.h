@@ -56,6 +56,6 @@ namespace s3d::gui {
 		}
 
 	private:
-		Page(const String& identifier);
+		explicit Page(const String& identifier);
 	};
 }

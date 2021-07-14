@@ -21,7 +21,7 @@ void UIImageView::draw() {
 	UIRect::draw();
 
 	if (m_texture) {
-		m_texture.scaled(m_scale).drawAt(m_rect.center());
+		m_texture.scaled(m_scale).drawAt(rect().center());
 	}
 }
 
@@ -39,9 +39,9 @@ void UIImageView::updateLayer(const Rect& scissor) {
 }
 
 double UIImageView::calcInitialScale() {
-	double scale = static_cast<double>(m_rect.w) / static_cast<double>(m_texture.width());
-	if (const double h = scale * m_texture.height(); h > m_rect.h) {
-		scale *= m_rect.h / h;
+	double scale = static_cast<double>(rect().w) / static_cast<double>(m_texture.width());
+	if (const double h = scale * m_texture.height(); h > rect().h) {
+		scale *= rect().h / h;
 	}
 	return scale;
 }

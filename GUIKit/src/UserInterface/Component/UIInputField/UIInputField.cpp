@@ -51,9 +51,9 @@ void UIInputField::updateDrawableText(bool updateField) {
 
 	if (textRegion().h == 0) {
 		const auto h = font().fontSize() * 1.416 + 6_px;
-		m_fieldRect = RectF(m_rect.x, textRegion().y - h * 0.5, m_rect.w, h);
+		m_fieldRect = RectF(rect().x, textRegion().y - h * 0.5, rect().w, h);
 	}
 	else {
-		m_fieldRect = RectF(m_rect.x, textRegion().y - 3_px, m_rect.w, textRegion().h + 6_px);
+		m_fieldRect = RectF(rect().x, textRegion().y - 3_px, rect().w, textRegion().h + 6_px);
 	}
 }

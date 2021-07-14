@@ -3,6 +3,11 @@
 
 using namespace s3d::gui;
 
+void UIView::release() {
+	releaseDeletableComponents();
+	m_components.release();
+}
+
 void UIView::appendComponent(UIComponent& component) {
 	if (!m_components.includes(&component)) {
 		m_components.push_back(&component);
@@ -43,9 +48,8 @@ void UIView::updateLayerInvert(const Rect& scissor) {
 }
 
 bool UIView::updateLayerIfNeeded(const Rect& scissor) {
-	updateScissorRect(scissor);
-
 	if (UIRect::updateLayerIfNeeded(scissor)) {
+		updateScissorRect(scissor);
 		for (const auto ui : m_components) {
 			if (ui->exist) {
 				ui->updateLayer(m_scissorRect);
@@ -101,10 +105,10 @@ void UIView::updateInputEvents() {
 }
 
 void UIView::updateScissorRect(const Rect& parentScissorRect) {
-	const auto left = Max(parentScissorRect.x, static_cast<int>(m_rect.rect.x));
-	const auto top = Max(parentScissorRect.y, static_cast<int>(m_rect.rect.y));
-	const auto right = Min(parentScissorRect.x + parentScissorRect.w, static_cast<int>(m_rect.rect.x + m_rect.rect.w));
-	const auto bottom = Min(parentScissorRect.y + parentScissorRect.h, static_cast<int>(m_rect.rect.y + m_rect.rect.h));
+	const auto left = Max(parentScissorRect.x, static_cast<int>(rect().rect.x));
+	const auto top = Max(parentScissorRect.y, static_cast<int>(rect().rect.y));
+	const auto right = Min(parentScissorRect.x + parentScissorRect.w, static_cast<int>(rect().rect.x + rect().rect.w));
+	const auto bottom = Min(parentScissorRect.y + parentScissorRect.h, static_cast<int>(rect().rect.y + rect().rect.h));
 	m_parentScissorRect = parentScissorRect;
 	m_scissorRect = Rect(left, top, right - left, bottom - top);
 }

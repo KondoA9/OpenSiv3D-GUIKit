@@ -18,18 +18,18 @@ namespace s3d::gui {
 			const ColorTheme& defaultTextColor = Palette::White);
 
 		UIButton(
+			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
+			const ColorTheme& defaultTextColor = Palette::White);
+
+		explicit UIButton(
 			const String& title,
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& defaultTextColor = Palette::White);
 
-		UIButton(
+		explicit UIButton(
 			const Texture& icon,
-			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& defaultTextColor = Palette::White);
-
-		UIButton(
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& defaultTextColor = Palette::White);
