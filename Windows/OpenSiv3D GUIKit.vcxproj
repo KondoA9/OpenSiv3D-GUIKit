@@ -15,6 +15,7 @@
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp" />
     <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp" />
+    <ClCompile Include="..\GUIKit\src\Page\Page.cpp" />
     <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="..\GUIKit\src\Timeout\Timeout.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp" />

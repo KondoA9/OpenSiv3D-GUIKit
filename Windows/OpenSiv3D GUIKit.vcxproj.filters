@@ -162,6 +162,9 @@
     <ClCompile Include="..\GUIKit\src\WindowManager\WindowManager.cpp">
       <Filter>GUIKit\WindowManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\GUIKit\src\Page\Page.cpp">
+      <Filter>GUIKit\Page</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">
