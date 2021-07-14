@@ -3,6 +3,11 @@
 
 using namespace s3d::gui;
 
+void UIView::release() {
+	releaseDeletableComponents();
+	m_components.release();
+}
+
 void UIView::appendComponent(UIComponent& component) {
 	if (!m_components.includes(&component)) {
 		m_components.push_back(&component);
@@ -43,9 +48,8 @@ void UIView::updateLayerInvert(const Rect& scissor) {
 }
 
 bool UIView::updateLayerIfNeeded(const Rect& scissor) {
-	updateScissorRect(scissor);
-
 	if (UIRect::updateLayerIfNeeded(scissor)) {
+		updateScissorRect(scissor);
 		for (const auto ui : m_components) {
 			if (ui->exist) {
 				ui->updateLayer(m_scissorRect);

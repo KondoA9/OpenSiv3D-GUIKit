@@ -16,6 +16,10 @@ namespace s3d::gui {
 	public:
 		using UIText::UIText;
 
+		const RectF& fieldRect() const {
+			return m_fieldRect;
+		}
+
 	protected:
 		void initialize() override;
 

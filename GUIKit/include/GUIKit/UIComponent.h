@@ -69,7 +69,7 @@ namespace s3d::gui {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept :
+		explicit UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept :
 			backgroundColor(_backgroundColor),
 			frameColor(_frameColor)
 		{}

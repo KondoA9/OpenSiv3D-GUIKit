@@ -11,7 +11,7 @@ namespace s3d::gui {
 		friend UIComponent;
 
 	private:
-		double m_value;
+		double m_value = 0;
 		bool m_exists = false;
 		std::function<double()> m_func;
 		double* m_watchingValue = nullptr;

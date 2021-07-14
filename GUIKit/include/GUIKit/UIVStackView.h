@@ -26,10 +26,10 @@ namespace s3d::gui {
 	public:
 		using UIView::UIView;
 
-		virtual void release();
+		void release() override;
 
 		void appendComponent(UIComponent& component) override {
-			m_components.push_back(&component);
+			UIView::appendComponent(component);
 			m_constraintsApplied = false;
 			requestToUpdateLayer();
 		}
@@ -51,10 +51,6 @@ namespace s3d::gui {
 
 		void setLeadingDirection(LeadingDirection direction) {
 			m_leadingDirection = direction;
-		}
-
-		Array<UIComponent*> components() const {
-			return m_components;
 		}
 
 	protected:

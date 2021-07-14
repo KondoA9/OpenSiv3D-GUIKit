@@ -23,9 +23,21 @@ namespace s3d::gui {
 		uint32 m_maxPixel = 0;
 
 	public:
-		UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
+		explicit UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
 			UIRect(_backgroundColor)
 		{}
+
+		const Point& currentPixel() const {
+			return m_cursoredPixel;
+		}
+
+		const Point& prePixel() const {
+			return m_preCursoredPixel;
+		}
+
+		const Rect& textureRegion() const {
+			return m_textureRegion;
+		}
 
 		double scale() const {
 			return m_scale;
@@ -43,20 +55,8 @@ namespace s3d::gui {
 			return m_scaleRate;
 		}
 
-		Point currentPixel() const {
-			return m_cursoredPixel;
-		}
-
-		Point prePixel() const {
-			return m_preCursoredPixel;
-		}
-
 		size_t texturesCount() const {
 			return m_textures.size();
-		}
-
-		Rect textureRegion() const {
-			return m_textureRegion;
 		}
 
 		Rect visibleTextureRect() const {
