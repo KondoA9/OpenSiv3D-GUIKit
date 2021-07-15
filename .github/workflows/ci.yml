@@ -44,8 +44,11 @@ jobs:
       - name: Build GUIKit for macOS
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
 
-      - name: Build Test
-        run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
+      - name: Build LaunchTest
+        run: xcodebuild -project macOS/GUIKit-LaunchTest.xcodeproj/
+
+      - name: Test Launch
+        run: open ./App/GUIKit-LaunchTest.app
 
   linux:
     runs-on: ubuntu-20.04
