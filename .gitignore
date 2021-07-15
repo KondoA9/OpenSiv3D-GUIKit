@@ -10,12 +10,10 @@ App/GUIKit*
 Intermediate/
 *.user
 *.aps
-*.exe
 *.lib
 
 # MacOS
 .DS_Store
-*.app
 *.dSYM
 __MACOSX/
 Dependencies/lib/macOS/
