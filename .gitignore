@@ -1,8 +1,8 @@
-# OpenSiv3D GUIKit
+# OpenSiv3D
 AS_DEBUG/
 *.html
 
-# Application
+# GUIKit
 App/GUIKit*
 
 # Windows
@@ -25,6 +25,3 @@ xcuserdata/
 
 # Linux
 Linux/**/build/
-Linux/Test/build/
-Linux/Test/OpenSiv3D/
-Linux/Test/GUIKit_Example
