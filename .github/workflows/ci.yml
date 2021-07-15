@@ -48,7 +48,9 @@ jobs:
         run: xcodebuild -project macOS/GUIKit-LaunchTest.xcodeproj/
 
       - name: Test Launch
-        run: open ./App/GUIKit-LaunchTest.app
+        run: |
+          brew install xquartz
+          open ./App/GUIKit-LaunchTest.app
 
   linux:
     runs-on: ubuntu-20.04
