@@ -47,12 +47,12 @@ jobs:
       - name: Build LaunchTest
         run: xcodebuild -project macOS/GUIKit-LaunchTest.xcodeproj/
 
-      - name: Test Launch
-        run: |
-          brew install --cask xquartz
-          brew install xterm
-          open /Applications/Utilities/XQuartz.app
-          xterm -e zsh -c "open ./App/GUIKit-LaunchTest.app"
+      #- name: Test Launch
+      #  run: |
+      #    brew install --cask xquartz
+      #    brew install xterm
+      #    open /Applications/Utilities/XQuartz.app
+      #    xterm -e zsh -c "open ./App/GUIKit-LaunchTest.app"
 
   linux:
     runs-on: ubuntu-20.04
