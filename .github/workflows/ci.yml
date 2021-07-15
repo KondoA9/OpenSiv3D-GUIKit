@@ -49,7 +49,7 @@ jobs:
 
       - name: Test Launch
         run: |
-          brew install xquartz
+          brew install xquartz --cask
           open ./App/GUIKit-LaunchTest.app
 
   linux:
