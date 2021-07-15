@@ -2,6 +2,9 @@
 AS_DEBUG/
 *.html
 
+# Application
+App/GUIKit*
+
 # Windows
 .vs/
 Intermediate/
@@ -21,7 +24,7 @@ DerivedData/
 xcuserdata/
 
 # Linux
-Linux/build/
+Linux/**/build/
 Linux/Test/build/
 Linux/Test/OpenSiv3D/
 Linux/Test/GUIKit_Example

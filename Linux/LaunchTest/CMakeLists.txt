@@ -31,9 +31,11 @@ set(SOURCE_FILES
 	"../../Test/LaunchTest.cpp"
 )
 
-add_executable(GUIKit_Example ${SOURCE_FILES})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../App)
 
-target_link_libraries(GUIKit_Example
+add_executable(GUIKit-LaunchTest ${SOURCE_FILES})
+
+target_link_libraries(GUIKit-LaunchTest
 	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${PROJECT_SOURCE_DIR}/../build/libSiv3DGUIKit.a
 	${OPENCV4_LIBRARIES}
