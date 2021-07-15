@@ -98,7 +98,7 @@ jobs:
 
       - name: Build LaunchTest
         run: |
-          cd Linux/Test/
+          cd Linux/LaunchTest/
           mkdir build
           cd build/
           cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
