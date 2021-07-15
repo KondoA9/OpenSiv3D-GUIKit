@@ -134,7 +134,7 @@ protected:
 	}
 };
 
-class StartPage : public gui::Page {
+class ExplorerPage : public gui::Page {
 	using Page::Page;
 
 	FilePath m_path;
@@ -197,7 +197,7 @@ class StartPage : public gui::Page {
 	}
 };
 
-class NextPage : public gui::Page {
+class StartPage : public gui::Page {
 	using Page::Page;
 
 	gui::UIText ui_title = gui::UIText(U"This is the example application of OpenSiv3D GUIKit.", gui::UnifiedFontStyle::Large, gui::TextDirection::Center);
@@ -231,12 +231,10 @@ class NextPage : public gui::Page {
 
 void Main() {
 	auto& guikit = gui::GUIKit::Instance();
-
-#if !SIV3D_PLATFORM(LINUX)
+	
 	Window::Resize(1280, 720);
-#endif
 
-	guikit.appendPage<NextPage>(U"start");
-	guikit.appendPage<StartPage>(U"explorer");
+	guikit.appendPage<StartPage>(U"start");
+	guikit.appendPage<ExplorerPage>(U"explorer");
 	guikit.start();
 }
