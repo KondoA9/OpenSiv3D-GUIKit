@@ -107,4 +107,6 @@ jobs:
           ninja
 
       - name: Test Launch
-        run: ./App/GUIKit-LaunchTest
+        run: |
+          cd App/
+          ./GUIKit-LaunchTest
