@@ -25,10 +25,10 @@ jobs:
           Expand-Archive -Path "Dependencies\lib\Windows\ThirdParty.zip" -DestinationPath "Dependencies\lib\Windows\" -force
 
       - name: Build GUIKit for Windows
-        run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
+        run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Configuration=Release;Platform="x64"
 
       - name: Build LaunchTest
-        run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Platform=x64
+        run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Configuration=Release;Platform="x64"
 
       - name: Test Launch
         run: .\App\GUIKit-LaunchTest.exe
