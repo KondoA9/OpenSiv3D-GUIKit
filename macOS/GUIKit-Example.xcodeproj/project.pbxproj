@@ -41,7 +41,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		2C1778841CE0A9EA00BB8AD0 /* OpenSiv3D GUIKit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OpenSiv3D GUIKit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		2C1778841CE0A9EA00BB8AD0 /* GUIKit-Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "GUIKit-Example.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778921CE0A9EA00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2C6906B12298123200A427D0 /* OpenAL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenAL.framework; path = System/Library/Frameworks/OpenAL.framework; sourceTree = SDKROOT; };
 		2C6906B32298123A00A427D0 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -130,7 +130,7 @@
 		2C1778851CE0A9EA00BB8AD0 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				2C1778841CE0A9EA00BB8AD0 /* OpenSiv3D GUIKit Test.app */,
+				2C1778841CE0A9EA00BB8AD0 /* GUIKit-Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -173,9 +173,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		2C1778831CE0A9EA00BB8AD0 /* OpenSiv3D GUIKit Test */ = {
+		2C1778831CE0A9EA00BB8AD0 /* GUIKit-Example */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "OpenSiv3D GUIKit Test" */;
+			buildConfigurationList = 2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "GUIKit-Example" */;
 			buildPhases = (
 				2C1778801CE0A9EA00BB8AD0 /* Sources */,
 				2C1778811CE0A9EA00BB8AD0 /* Frameworks */,
@@ -185,9 +185,9 @@
 			);
 			dependencies = (
 			);
-			name = "OpenSiv3D GUIKit Test";
+			name = "GUIKit-Example";
 			productName = empty;
-			productReference = 2C1778841CE0A9EA00BB8AD0 /* OpenSiv3D GUIKit Test.app */;
+			productReference = 2C1778841CE0A9EA00BB8AD0 /* GUIKit-Example.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -203,7 +203,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "OpenSiv3D-GUIKit-Test" */;
+			buildConfigurationList = 2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "GUIKit-Example" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -216,7 +216,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				2C1778831CE0A9EA00BB8AD0 /* OpenSiv3D GUIKit Test */,
+				2C1778831CE0A9EA00BB8AD0 /* GUIKit-Example */,
 			);
 		};
 /* End PBXProject section */
@@ -385,7 +385,7 @@
 					"$(OTHER_CFLAGS)",
 					"-fvisibility=hidden",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.guikit.opensiv3d;
+				PRODUCT_BUNDLE_IDENTIFIER = example.guikit.opensiv3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -445,7 +445,7 @@
 					"$(OTHER_CFLAGS)",
 					"-fvisibility=hidden",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = test.guikit.opensiv3d;
+				PRODUCT_BUNDLE_IDENTIFIER = example.guikit.opensiv3d;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SUPPORTED_PLATFORMS = macosx;
@@ -455,7 +455,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "OpenSiv3D-GUIKit-Test" */ = {
+		2C17787D1CE0A9D800BB8AD0 /* Build configuration list for PBXProject "GUIKit-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C17787E1CE0A9D800BB8AD0 /* Debug */,
@@ -464,7 +464,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "OpenSiv3D GUIKit Test" */ = {
+		2C1778931CE0A9EA00BB8AD0 /* Build configuration list for PBXNativeTarget "GUIKit-Example" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				2C1778941CE0A9EA00BB8AD0 /* Debug */,
