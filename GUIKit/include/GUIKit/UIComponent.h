@@ -112,6 +112,10 @@ namespace s3d::gui {
 			m_FocusedComponent = this;
 		}
 
+		void unFocus() {
+			m_FocusedComponent = nullptr;
+		}
+
 		template<class T>
 		void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {
 			const auto handler = InputEventHandler::Create<T>(([f](InputEvent e) { f(*static_cast<T*>(&e)); }));

@@ -43,6 +43,10 @@ void UIInputField::updateInputEvents() {
 		if (pre != txt) {
 			registerInputEvent(KeyDown(this, false));
 		}
+
+		if (KeyEnter.down()) {
+			registerInputEvent(KeyEnterDown(this, false));
+		}
 	}
 }
 
