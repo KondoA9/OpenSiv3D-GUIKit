@@ -11,9 +11,9 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{3e2991c1-3a79-474a-88ad-9bfae8201618}</ProjectGuid>
+    <ProjectGuid>{5DAC4870-3BA7-4222-85A9-DE41345FF544}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>OpenSiv3D_GUIKit_Test</RootNamespace>
+    <RootNamespace>GUIKit-LaunchTest</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -82,7 +82,7 @@
       <AdditionalDependencies>OpenSiv3D_GUIKit_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)App"</Command>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\App"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -110,7 +110,7 @@
       <AdditionalDependencies>OpenSiv3D_GUIKit.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)App"</Command>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\App"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -162,10 +162,10 @@
     <Text Include="..\App\engine\font\noto\LICENSE_OFL.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Test\Example.cpp" />
+    <ResourceCompile Include="..\App\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ResourceCompile Include="..\App\Resource.rc" />
+    <ClCompile Include="..\Test\LaunchTest.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -5,14 +5,16 @@ VisualStudioVersion = 16.0.31321.278
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenSiv3D GUIKit", "OpenSiv3D GUIKit.vcxproj", "{7D81DE8F-EA0C-4B54-9153-4C7424206620}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "OpenSiv3D GUIKit Test", "OpenSiv3D GUIKit Test.vcxproj", "{3E2991C1-3A79-474A-88AD-9BFAE8201618}"
-	ProjectSection(ProjectDependencies) = postProject
-		{7D81DE8F-EA0C-4B54-9153-4C7424206620} = {7D81DE8F-EA0C-4B54-9153-4C7424206620}
-	EndProjectSection
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{3B6702F5-066A-495B-A1F7-2366CE32CC0E}"
 	ProjectSection(SolutionItems) = preProject
 		..\.editorconfig = ..\.editorconfig
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUIKit-LaunchTest", "GUIKit-LaunchTest.vcxproj", "{5DAC4870-3BA7-4222-85A9-DE41345FF544}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GUIKit-Example", "GUIKit-Example.vcxproj", "{D808F5E3-F8F6-463D-927D-EE7EFBDDCE33}"
+	ProjectSection(ProjectDependencies) = postProject
+		{7D81DE8F-EA0C-4B54-9153-4C7424206620} = {7D81DE8F-EA0C-4B54-9153-4C7424206620}
 	EndProjectSection
 EndProject
 Global
@@ -25,10 +27,14 @@ Global
 		{7D81DE8F-EA0C-4B54-9153-4C7424206620}.Debug|x64.Build.0 = Debug|x64
 		{7D81DE8F-EA0C-4B54-9153-4C7424206620}.Release|x64.ActiveCfg = Release|x64
 		{7D81DE8F-EA0C-4B54-9153-4C7424206620}.Release|x64.Build.0 = Release|x64
-		{3E2991C1-3A79-474A-88AD-9BFAE8201618}.Debug|x64.ActiveCfg = Debug|x64
-		{3E2991C1-3A79-474A-88AD-9BFAE8201618}.Debug|x64.Build.0 = Debug|x64
-		{3E2991C1-3A79-474A-88AD-9BFAE8201618}.Release|x64.ActiveCfg = Release|x64
-		{3E2991C1-3A79-474A-88AD-9BFAE8201618}.Release|x64.Build.0 = Release|x64
+		{5DAC4870-3BA7-4222-85A9-DE41345FF544}.Debug|x64.ActiveCfg = Debug|x64
+		{5DAC4870-3BA7-4222-85A9-DE41345FF544}.Debug|x64.Build.0 = Debug|x64
+		{5DAC4870-3BA7-4222-85A9-DE41345FF544}.Release|x64.ActiveCfg = Release|x64
+		{5DAC4870-3BA7-4222-85A9-DE41345FF544}.Release|x64.Build.0 = Release|x64
+		{D808F5E3-F8F6-463D-927D-EE7EFBDDCE33}.Debug|x64.ActiveCfg = Debug|x64
+		{D808F5E3-F8F6-463D-927D-EE7EFBDDCE33}.Debug|x64.Build.0 = Debug|x64
+		{D808F5E3-F8F6-463D-927D-EE7EFBDDCE33}.Release|x64.ActiveCfg = Release|x64
+		{D808F5E3-F8F6-463D-927D-EE7EFBDDCE33}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
