@@ -4,6 +4,9 @@ AS_DEBUG/
 
 # Windows
 .vs/
+Intermediate/
+*.user
+*.aps
 *.exe
 *.lib
 
