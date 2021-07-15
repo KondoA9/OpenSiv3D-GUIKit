@@ -27,8 +27,11 @@ jobs:
       - name: Build GUIKit for Windows
         run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
 
-      - name: Build Test
-        run: msbuild "Windows\OpenSiv3D GUIKit Test.vcxproj" /p:Platform=x64
+      - name: Build LaunchTest
+        run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Platform=x64
+
+      - name: Test Launch
+        run: & ".\App\GUIKit-LaunchTest.exe"
 
   macOS:
     runs-on: macos-latest
