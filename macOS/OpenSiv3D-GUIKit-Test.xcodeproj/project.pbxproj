@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2C1778A31CE0B65500BB8AD0 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 2C1778A21CE0B65500BB8AD0 /* icon.icns */; };
 		2C34116722D8ACA4002ADA30 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C34116622D8ACA4002ADA30 /* libogg.a */; };
 		2C34116B22D8ACAF002ADA30 /* libvorbisenc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C34116822D8ACAF002ADA30 /* libvorbisenc.a */; };
 		2C34116C22D8ACAF002ADA30 /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C34116922D8ACAF002ADA30 /* libvorbisfile.a */; };
@@ -37,14 +36,14 @@
 		2CEACB67233A61C900C6EE98 /* libgif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEACB65233A61C900C6EE98 /* libgif.a */; };
 		2CEACB68233A61C900C6EE98 /* libutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEACB66233A61C900C6EE98 /* libutil.a */; };
 		9E0A9A65269C3BD7001A95DA /* libOpenSiv3D-GUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0A9A64269C3BD7001A95DA /* libOpenSiv3D-GUIKit.a */; };
-		9E116D7426948A800045F4E3 /* Example.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E116D7326948A800045F4E3 /* Example.cpp */; };
+		9E1AB8DB26A00ADE00235A6A /* Example.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E1AB8DA26A00ADE00235A6A /* Example.cpp */; };
+		9E1AB8DD26A00BB200235A6A /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 9E1AB8DC26A00BB200235A6A /* icon.icns */; };
 		9E8380D22679EEF50052AF7B /* libOpenSiv3D-GUIKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E8380D12679EEF50052AF7B /* libOpenSiv3D-GUIKit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		2C1778841CE0A9EA00BB8AD0 /* OpenSiv3D GUIKit Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "OpenSiv3D GUIKit Test.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2C1778921CE0A9EA00BB8AD0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2C1778A21CE0B65500BB8AD0 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		2C34116622D8ACA4002ADA30 /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = ../../lib/macOS/libogg/libogg.a; sourceTree = "<group>"; };
 		2C34116822D8ACAF002ADA30 /* libvorbisenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisenc.a; path = ../../lib/macOS/libvorbis/libvorbisenc.a; sourceTree = "<group>"; };
 		2C34116922D8ACAF002ADA30 /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = ../../lib/macOS/libvorbis/libvorbisfile.a; sourceTree = "<group>"; };
@@ -75,7 +74,8 @@
 		2CEACB65233A61C900C6EE98 /* libgif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgif.a; path = ../../lib/macOS/libgif/libgif.a; sourceTree = "<group>"; };
 		2CEACB66233A61C900C6EE98 /* libutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libutil.a; path = ../../lib/macOS/libgif/libutil.a; sourceTree = "<group>"; };
 		9E0A9A64269C3BD7001A95DA /* libOpenSiv3D-GUIKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libOpenSiv3D-GUIKit.a"; path = "build/Release/libOpenSiv3D-GUIKit.a"; sourceTree = "<group>"; };
-		9E116D7326948A800045F4E3 /* Example.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Example.cpp; path = ../../Test/Example.cpp; sourceTree = "<group>"; };
+		9E1AB8DA26A00ADE00235A6A /* Example.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = Example.cpp; path = ../Test/Example.cpp; sourceTree = "<group>"; };
+		9E1AB8DC26A00BB200235A6A /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../App/icon.icns; sourceTree = "<group>"; };
 		9E8380D12679EEF50052AF7B /* libOpenSiv3D-GUIKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libOpenSiv3D-GUIKit.a"; path = "../../lib/macOS/libOpenSiv3D-GUIKit.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -122,10 +122,10 @@
 		2C1778791CE0A9D800BB8AD0 = {
 			isa = PBXGroup;
 			children = (
-				9E116D7226948A740045F4E3 /* Test */,
+				9E1AB8DA26A00ADE00235A6A /* Example.cpp */,
 				2C6906D72298140F00A427D0 /* engine */,
 				2C1778921CE0A9EA00BB8AD0 /* Info.plist */,
-				2C1778A21CE0B65500BB8AD0 /* icon.icns */,
+				9E1AB8DC26A00BB200235A6A /* icon.icns */,
 				2C1778851CE0A9EA00BB8AD0 /* Products */,
 				2CC7F9861F45930A0071A239 /* Frameworks */,
 			);
@@ -174,14 +174,6 @@
 				2C6906B12298123200A427D0 /* OpenAL.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		9E116D7226948A740045F4E3 /* Test */ = {
-			isa = PBXGroup;
-			children = (
-				9E116D7326948A800045F4E3 /* Example.cpp */,
-			);
-			path = Test;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,7 +233,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2C6906D82298140F00A427D0 /* engine in Resources */,
-				2C1778A31CE0B65500BB8AD0 /* icon.icns in Resources */,
+				9E1AB8DD26A00BB200235A6A /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -252,7 +244,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E116D7426948A800045F4E3 /* Example.cpp in Sources */,
+				9E1AB8DB26A00ADE00235A6A /* Example.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -360,7 +352,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/App/";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../App/";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -427,7 +419,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/App/";
+				CONFIGURATION_BUILD_DIR = "$(SRCROOT)/../App/";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
