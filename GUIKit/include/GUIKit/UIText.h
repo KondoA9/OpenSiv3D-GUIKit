@@ -25,7 +25,8 @@ namespace s3d::gui {
 		Font m_font;
 		TextDirection m_direction;
 		DrawableText m_drawableText;
-		RectF m_textRegion, m_drawableRegion;
+		RectF m_textRegion;
+		RectF m_drawableRegion;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:

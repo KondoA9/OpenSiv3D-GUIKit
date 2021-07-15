@@ -88,7 +88,7 @@ void UISlider::updateInputEvents() {
 			m_sliding = false;
 		}
 		else {
-			registerInputEvent(Sliding(this));
+			registerInputEvent(Sliding(this, false));
 		}
 	}
 
