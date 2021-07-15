@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:">
+      location = "self:/Users/kondo/Desktop/DermAnnotation/OpenSiv3D-GUIKit/macOS/GUIKit-Example.xcodeproj">
    </FileRef>
 </Workspace>

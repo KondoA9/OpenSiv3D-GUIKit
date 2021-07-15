@@ -10,80 +10,21 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp" />
-    <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
-    <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp" />
-    <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp" />
-    <ClCompile Include="..\GUIKit\src\Page\Page.cpp" />
-    <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp" />
-    <ClCompile Include="..\GUIKit\src\Timeout\Timeout.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIButton\UIButton.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICheckBox\UICheckBox.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICircle\UICircle.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponentMouseEvent.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Constraint\Constraint.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Font\UnifiedFont.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Layer\Layer.cpp" />
-    <ClCompile Include="..\GUIKit\src\WindowManager\WindowManager.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\Constraint.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\DynamicColor.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\InputEvent.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\MouseEvent.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\InputEventHandler.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\Page.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\PixelUnit.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\Timeout.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIButton.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UICheckBox.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UICircle.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIComponent.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIIcon.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIInputField.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIRect.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIText.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UnifiedFont.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\WindowManager.h" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>
+    <ProjectGuid>{D808F5E3-F8F6-463D-927D-EE7EFBDDCE33}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>OpenSiv3D_GUIKit</RootNamespace>
+    <RootNamespace>GUIKit-Example</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -104,19 +45,19 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>../Dependencies/include;../Dependencies/include/ThirdParty;$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>../Dependencies/lib/Windows;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Intermediate\$(ProjectName)\Debug\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\Debug\Intermediate\</IntDir>
-    <TargetName>OpenSiv3D_GUIKit_d</TargetName>
+    <TargetName>$(ProjectName)(debug)</TargetName>
     <LocalDebuggerWorkingDirectory>$(ProjectDir)App</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>../Dependencies/include;../Dependencies/include/ThirdParty;$(IncludePath)</IncludePath>
-    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <LibraryPath>../Dependencies/lib/Windows;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Intermediate\$(ProjectName)\Release\</OutDir>
     <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\Release\Intermediate\</IntDir>
-    <TargetName>OpenSiv3D_GUIKit</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
     <LocalDebuggerWorkingDirectory>$(ProjectDir)App</LocalDebuggerWorkingDirectory>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -132,14 +73,16 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MinimalRebuild>false</MinimalRebuild>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\GUIKit\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GUIKit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenSiv3D_GUIKit_d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)\lib"</Command>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\App"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -156,18 +99,74 @@
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\GUIKit\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\GUIKit\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>OpenSiv3D_GUIKit.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)\lib"</Command>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)..\App"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <Image Include="..\App\engine\texture\box-shadow\128.png" />
+    <Image Include="..\App\engine\texture\box-shadow\16.png" />
+    <Image Include="..\App\engine\texture\box-shadow\256.png" />
+    <Image Include="..\App\engine\texture\box-shadow\32.png" />
+    <Image Include="..\App\engine\texture\box-shadow\64.png" />
+    <Image Include="..\App\engine\texture\box-shadow\8.png" />
+    <Image Include="..\App\icon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\App\engine\emoji\noto7_dictionary.dat" />
+    <None Include="..\App\engine\font\fontawesome\fontawesome-brands.otf.zstdcmp" />
+    <None Include="..\App\engine\font\fontawesome\fontawesome-solid.otf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\LICENSE_E" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-black.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-bold.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-heavy.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-light.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-medium.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-regular.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\mplus\mplus-1p-thin.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\noto\NotoColorEmoji.ttf.zstdcmp" />
+    <None Include="..\App\engine\font\noto\NotoEmoji-Regular.ttf.zstdcmp" />
+    <None Include="..\App\engine\objdetect\haarcascade\eye.xml.zstdcmp" />
+    <None Include="..\App\engine\objdetect\haarcascade\eye_eyeglasses.xml.zstdcmp" />
+    <None Include="..\App\engine\objdetect\haarcascade\face_anime.xml.zstdcmp" />
+    <None Include="..\App\engine\objdetect\haarcascade\frontal_catface.xml.zstdcmp" />
+    <None Include="..\App\engine\objdetect\haarcascade\frontal_face_alt2.xml.zstdcmp" />
+    <None Include="..\App\engine\shader\copy.ps" />
+    <None Include="..\App\engine\shader\fullscreen_triangle_draw.ps" />
+    <None Include="..\App\engine\shader\fullscreen_triangle_draw.vs" />
+    <None Include="..\App\engine\shader\fullscreen_triangle_resolve.ps" />
+    <None Include="..\App\engine\shader\fullscreen_triangle_resolve.vs" />
+    <None Include="..\App\engine\shader\gaussian_blur_9.ps" />
+    <None Include="..\App\engine\shader\round_dot.ps" />
+    <None Include="..\App\engine\shader\sdf.ps" />
+    <None Include="..\App\engine\shader\shape.ps" />
+    <None Include="..\App\engine\shader\sprite.vs" />
+    <None Include="..\App\engine\shader\square_dot.ps" />
+    <None Include="..\App\engine\shader\texture.ps" />
+    <None Include="..\App\engine\soundfont\GMGSx.sf2.zstdcmp" />
+    <None Include="..\App\nlp\japanese\jumanpp\LICENSE" />
+    <None Include="..\App\nlp\japanese\jumanpp\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\App\engine\font\fontawesome\LICENSE.txt" />
+    <Text Include="..\App\engine\font\noto\LICENSE_OFL.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\App\Resource.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Test\Example.cpp" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

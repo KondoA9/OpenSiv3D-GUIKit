@@ -10,24 +10,26 @@ namespace s3d::gui {
 	class UIView : public UIRect {
 		friend GUIKit;
 
-	protected:
-		Array<UIComponent*> m_components;
-
 	private:
-		Array<UIComponent*> m_deletableComponents;
+		Array<UIComponent*> m_components, m_deletableComponents;
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
-		UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor),
-			m_components(Array<UIComponent*>(0))
+		explicit UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
+			UIRect(_backgroundColor)
 		{}
 
-		virtual ~UIView() {
-			releaseDeletableComponents();
-		}
+		virtual void release();
 
 		virtual void appendComponent(UIComponent& ui);
+
+		virtual ~UIView() {
+			release();
+		}
+
+		Array<UIComponent*> components() const {
+			return m_components;
+		}
 
 		template<class T>
 		T& appendTemporaryComponent(const T& component) {

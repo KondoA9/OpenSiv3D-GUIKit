@@ -25,10 +25,13 @@ jobs:
           Expand-Archive -Path "Dependencies\lib\Windows\ThirdParty.zip" -DestinationPath "Dependencies\lib\Windows\" -force
 
       - name: Build GUIKit for Windows
-        run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Platform=x64
+        run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Configuration=Release /p:Platform=x64
 
-      - name: Build Test
-        run: msbuild "Windows\OpenSiv3D GUIKit Test.vcxproj" /p:Platform=x64
+      - name: Build LaunchTest
+        run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Configuration=Release /p:Platform=x64
+
+      - name: Test Launch
+        run: .\App\GUIKit-LaunchTest.exe
 
   macOS:
     runs-on: macos-latest
@@ -41,16 +44,25 @@ jobs:
       - name: Build GUIKit for macOS
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
 
-      - name: Build Test
-        run: xcodebuild -project macOS/OpenSiv3D-GUIKit-Test.xcodeproj/
+      - name: Build LaunchTest
+        run: xcodebuild -project macOS/GUIKit-LaunchTest.xcodeproj/
+
+      #- name: Test Launch
+      #  run: |
+      #    brew install --cask xquartz
+      #    brew install xterm
+      #    open /Applications/Utilities/XQuartz.app
+      #    xterm -e zsh -c "open ./App/GUIKit-LaunchTest.app"
 
   linux:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
 
-      - name: Install package
-        run: sudo apt install ninja-build
+      - name: Install ninja
+        run: |
+          sudo apt update
+          sudo apt install ninja-build
 
       - name: Configure
         run: |
@@ -64,7 +76,7 @@ jobs:
           cd Linux/build/
           ninja
 
-      - name: Install packeages for OpenSiv3D
+      - name: Install packeages
         run: |
           sudo apt install libasound2-dev
           sudo apt install libavcodec-dev
@@ -93,10 +105,15 @@ jobs:
           sudo apt install xorg-dev
           sudo apt install libopenal-dev
 
-      - name: Build Test
+      - name: Build LaunchTest
         run: |
-          cd Linux/Test/
+          cd Linux/LaunchTest/
           mkdir build
           cd build/
           cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
           ninja
+
+      - name: Test Launch
+        run: |
+          sudo apt install xvfb
+          xvfb-run ./App/GUIKit-LaunchTest

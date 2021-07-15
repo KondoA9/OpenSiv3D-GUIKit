@@ -7,6 +7,7 @@ namespace s3d::gui {
 	class UIInputField : public UIText {
 	public:
 		GUICreateInputEvent(KeyDown);
+		GUICreateInputEvent(KeyEnterDown);
 
 	private:
 		double m_cursorVisibleTimer = 0.0;
@@ -15,6 +16,10 @@ namespace s3d::gui {
 
 	public:
 		using UIText::UIText;
+
+		const RectF& fieldRect() const {
+			return m_fieldRect;
+		}
 
 	protected:
 		void initialize() override;

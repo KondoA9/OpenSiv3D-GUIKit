@@ -25,11 +25,12 @@ namespace s3d::gui {
 		Font m_font;
 		TextDirection m_direction;
 		DrawableText m_drawableText;
-		RectF m_textRegion, m_drawableRegion;
+		RectF m_textRegion;
+		RectF m_drawableRegion;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
-		UIText(const String& text, 
+		explicit UIText(const String& text,
 			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
 			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
 			UIRect(backgroundColor),
@@ -55,33 +56,33 @@ namespace s3d::gui {
 			UIText(U"", style, direction, backgroundColor, textColor)
 		{}
 
-		UIText(UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
+			:UIText(U"", backgroundColor, textColor)
+		{}
+
+		explicit UIText(UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
 		{}
 
-		UIText(TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
+		explicit UIText(TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
 			UIText(U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
-		{}
-
-		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
-			:UIText(U"", backgroundColor, textColor)
 		{}
 
 		const Font& font() const {
 			return m_font;
 		}
 
-		String text() const {
+		const String& text() const {
 			return m_text;
 		}
 
 		// Text region is depend on layer.
 		// Be careful when use this func in constraint.
-		RectF textRegion() const {
+		const RectF& textRegion() const {
 			return m_textRegion;
 		}
 
-		Rect drawableRegion() const {
+		const Rect& drawableRegion() const {
 			return m_drawableRegion;
 		}
 

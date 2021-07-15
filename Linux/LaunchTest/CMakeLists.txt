@@ -2,7 +2,7 @@ cmake_minimum_required (VERSION 3.0)
 
 find_package(PkgConfig)
 
-project(OpenSiv3D_GUIKit_Linux_Test)
+project(GUIKit-LaunchTest)
 enable_language(C)
 
 set(CMAKE_CXX_FLAGS "-std=c++17 -Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1")
@@ -28,12 +28,14 @@ include_directories(
 )
 
 set(SOURCE_FILES
-	"../../Test/Example.cpp"
+	"../../Test/LaunchTest.cpp"
 )
 
-add_executable(GUIKit_Example ${SOURCE_FILES})
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../App)
 
-target_link_libraries(GUIKit_Example
+add_executable(GUIKit-LaunchTest ${SOURCE_FILES})
+
+target_link_libraries(GUIKit-LaunchTest
 	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${PROJECT_SOURCE_DIR}/../build/libSiv3DGUIKit.a
 	${OPENCV4_LIBRARIES}

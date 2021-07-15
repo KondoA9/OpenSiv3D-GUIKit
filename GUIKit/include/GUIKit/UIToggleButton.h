@@ -19,6 +19,13 @@ namespace s3d::gui {
 			const ColorTheme& selectedTextColor = Palette::White);
 
 		UIToggleButton(
+			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
+			const ColorTheme& textColor = Palette::White,
+			const ColorTheme& selectedColor = DynamicColor::ButtonPushed,
+			const ColorTheme& selectedTextColor = Palette::White);
+
+		explicit UIToggleButton(
 			const String& title,
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
@@ -26,15 +33,8 @@ namespace s3d::gui {
 			const ColorTheme& selectedColor = DynamicColor::ButtonPushed,
 			const ColorTheme& selectedTextColor = Palette::White);
 
-		UIToggleButton(
+		explicit UIToggleButton(
 			const Texture& icon,
-			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& textColor = Palette::White,
-			const ColorTheme& selectedColor = DynamicColor::ButtonPushed,
-			const ColorTheme& selectedTextColor = Palette::White);
-
-		UIToggleButton(
 			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
 			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
 			const ColorTheme& textColor = Palette::White,

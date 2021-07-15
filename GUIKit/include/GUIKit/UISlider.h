@@ -12,9 +12,9 @@ namespace s3d::gui {
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect railLeft, railRight;
-		UICircle handle;
-		UIText m_text;
+		UIRect ui_railLeft, ui_railRight;
+		UICircle ui_handle;
+		UIText ui_text;
 
 	public:
 		UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor = DynamicColor::Clear);
@@ -23,11 +23,11 @@ namespace s3d::gui {
 			UISlider(label, style, TextDirection::LeftBottom, _backgroundColor)
 		{}
 
-		UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
+		explicit UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
 			UISlider(label, UnifiedFontStyle::Small, _backgroundColor)
 		{}
 
-		UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
+		explicit UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
 			UISlider(U"", _backgroundColor)
 		{}
 
@@ -52,7 +52,7 @@ namespace s3d::gui {
 		}
 
 		void setLabel(const String& label) {
-			m_text.setText(label);
+			ui_text.setText(label);
 		}
 
 	protected:

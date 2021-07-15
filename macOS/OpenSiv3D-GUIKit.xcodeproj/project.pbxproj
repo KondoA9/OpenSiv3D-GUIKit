@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E0FC612269EDCBE0097CC64 /* Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E0FC611269EDCBE0097CC64 /* Page.cpp */; };
 		9E116D7626948AC60045F4E3 /* UICheckBox.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E116D7526948AC60045F4E3 /* UICheckBox.h */; };
 		9E116D7A26948AF50045F4E3 /* UICheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E116D7926948AF50045F4E3 /* UICheckBox.cpp */; };
 		9E2A345E268F403500CEA725 /* Imaging.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E2A3442268F403400CEA725 /* Imaging.h */; };
@@ -64,6 +65,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E0FC611269EDCBE0097CC64 /* Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Page.cpp; sourceTree = "<group>"; };
 		9E116D7526948AC60045F4E3 /* UICheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICheckBox.h; sourceTree = "<group>"; };
 		9E116D7926948AF50045F4E3 /* UICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICheckBox.cpp; sourceTree = "<group>"; };
 		9E2A3442268F403400CEA725 /* Imaging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Imaging.h; sourceTree = "<group>"; };
@@ -132,6 +134,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E0FC610269EDCBE0097CC64 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				9E0FC611269EDCBE0097CC64 /* Page.cpp */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
 		9E116D7826948AF50045F4E3 /* UICheckBox */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,8 +223,9 @@
 		9E8381822679FDEF0052AF7B /* src */ = {
 			isa = PBXGroup;
 			children = (
-				9E8381832679FDEF0052AF7B /* PixelUnit */,
 				9E8381852679FDEF0052AF7B /* GUIKitCore */,
+				9E0FC610269EDCBE0097CC64 /* Page */,
+				9E8381832679FDEF0052AF7B /* PixelUnit */,
 				9E8381872679FDEF0052AF7B /* Timeout */,
 				9E8381892679FDEF0052AF7B /* ColorTheme */,
 				9E83818B2679FDEF0052AF7B /* Imaging */,
@@ -513,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E0FC612269EDCBE0097CC64 /* Page.cpp in Sources */,
 				9E8381DD2679FDEF0052AF7B /* UnifiedFont.cpp in Sources */,
 				9E8381CB2679FDEF0052AF7B /* Timeout.cpp in Sources */,
 				9E8381DE2679FDEF0052AF7B /* Constraint.cpp in Sources */,
@@ -670,6 +682,7 @@
 					"../Dependencies/include/**",
 					../GUIKit/include,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OBJROOT = build;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -690,6 +703,7 @@
 					"../Dependencies/include/**",
 					../GUIKit/include,
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				OBJROOT = build;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

@@ -31,6 +31,8 @@ set(SOURCE_FILES
 "../GUIKit/src/GUIKitCore/GUIKitCore.cpp"
 "../GUIKit/src/GUIKitCore/GUIKitLifeCycle.cpp"
 
+"../GUIKit/src/Page/Page.cpp"
+
 "../GUIKit/src/ColorTheme/ColorTheme.cpp"
 
 "../GUIKit/src/Imaging/Imaging.cpp"
