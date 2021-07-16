@@ -28,7 +28,7 @@ namespace s3d::gui {
 
 			m_Id++;
 			instance.m_components.push_back(std::shared_ptr<T>(new T()));
-			return *std::dynamic_pointer_cast<T>(instance.m_components[instance.m_components.size() - 1]);
+			return *static_cast<T*>(instance.m_components[instance.m_components.size() - 1].get());
 		}
 
 		GUIFactory& operator =(const GUIFactory&) = delete;
