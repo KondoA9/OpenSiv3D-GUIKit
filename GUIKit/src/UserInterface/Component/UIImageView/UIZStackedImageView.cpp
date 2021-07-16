@@ -4,6 +4,8 @@
 using namespace s3d::gui;
 
 void UIZStackedImageView::initialize() {
+	UIRect::initialize();
+
 	addEventListener<MouseEvent::RightDragging>([this] {
 		const auto movement = Cursor::Pos() - Cursor::PreviousPos();
 		setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));

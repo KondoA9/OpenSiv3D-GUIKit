@@ -3,6 +3,8 @@
 using namespace s3d::gui;
 
 void UIVStackView::initialize() {
+	UIView::initialize();
+
 	addEventListener<MouseEvent::Wheel>([this](const MouseEvent::Wheel& e) {
 		scroll(e.wheel * 40);
 		}, true);

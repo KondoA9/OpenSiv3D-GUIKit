@@ -16,6 +16,10 @@ UIComponent::~UIComponent() {
 	GUIFactory::RequestReleaseComponent(m_id);
 }
 
+void UIComponent::initialize() {
+	FMT_ASSERT(m_valid, "Make sure you instantiated through GUIFactory::Create()");
+}
+
 void UIComponent::updateLayer(const Rect& scissor) {
 	m_drawableRegion = scissor;
 

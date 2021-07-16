@@ -1,10 +1,11 @@
 #pragma once
 
+#include "UIComponent.h"
+
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
 	class GUIKit;
-	class UIComponent;
 	class UIView;
 
 	class GUIFactory {
@@ -13,7 +14,7 @@ namespace s3d::gui {
 		friend UIView;
 
 	private:
-		static size_t m_Id;
+		static size_t m_Id, m_PreviousId;
 		static GUIFactory instance;
 
 		size_t m_releaseCounter = 0;
@@ -37,8 +38,13 @@ namespace s3d::gui {
 			}
 
 			m_Id++;
-			instance.m_components.push_back(std::shared_ptr<T>(new T()));
-			return *static_cast<T*>(instance.m_components[instance.m_components.size() - 1].get());
+
+			auto component = std::shared_ptr<T>(new T());
+			component->validate();
+
+			instance.m_components.push_back(component);
+
+			return *static_cast<T*>(component.get());
 		}
 
 		GUIFactory& operator =(const GUIFactory&) = delete;

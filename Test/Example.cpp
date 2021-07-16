@@ -26,6 +26,8 @@ public:
 
 protected:
 	void initialize() override {
+		UIView::initialize();
+
 		ui_openDirectoryButton.setTitle(U"Open");
 		ui_parentDirButton.setIcon(Texture(Icon(0xf062, 20)));
 		ui_toggleColorModeButton.setIcon(Texture(Icon(0xf186, 20)));
@@ -106,6 +108,8 @@ public:
 
 protected:
 	void initialize() override {
+		UIView::initialize();
+
 		addEventListener<gui::MouseEvent::Hovered>([this] {
 			backgroundColor.highlight(gui::DynamicColor::BackgroundSecondary);
 			});

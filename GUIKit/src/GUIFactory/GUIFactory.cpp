@@ -5,10 +5,14 @@
 
 using namespace s3d::gui;
 
-size_t GUIFactory::m_Id = 0;
+size_t GUIFactory::m_Id = 0, GUIFactory::m_PreviousId = 0;
 GUIFactory GUIFactory::instance;
 
 size_t GUIFactory::GetId() {
+	FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through GUIFactory::Create()");
+
+	m_PreviousId = m_Id;
+
 	return m_Id;
 }
 
@@ -19,9 +23,7 @@ std::shared_ptr<UIComponent>& GUIFactory::GetComponent(size_t id) {
 		}
 	}
 
-	assert(false);
-
-	return instance.m_components[0];
+	FMT_ASSERT(false, "Unknown exception. This exception might be due to any components not being instantiated through GUIFactory::Create()");
 }
 
 void GUIFactory::RequestReleaseComponent(size_t id) {
