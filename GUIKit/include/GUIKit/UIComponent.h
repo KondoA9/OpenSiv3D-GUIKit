@@ -72,6 +72,8 @@ namespace s3d::gui {
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept;
 
+		UIComponent(const UIComponent&) = delete;
+
 		virtual ~UIComponent();
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
@@ -134,6 +136,8 @@ namespace s3d::gui {
 		void addEventListener(const std::function<void()>& f, bool primary = false) {
 			addEventListener<T>([f](const InputEvent&) { f(); }, primary);
 		}
+
+		UIComponent& operator =(const UIComponent&) = delete;
 
 	protected:
 		// Called once before layer updated.
