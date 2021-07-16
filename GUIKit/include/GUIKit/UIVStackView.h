@@ -30,13 +30,6 @@ namespace s3d::gui {
 
 		void appendComponent(const UIComponent& component) override;
 
-		template<class T>
-		T& appendTemporaryComponent(const T& component) {
-			m_constraintsApplied = false;
-			requestToUpdateLayer();
-			return UIView::appendTemporaryComponent(component);
-		}
-
 		void setMaxStackCount(size_t count) {
 			m_maxStackCount = count;
 		}
