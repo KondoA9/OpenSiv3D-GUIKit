@@ -27,8 +27,17 @@ namespace s3d::gui {
 
 		virtual void appendComponent(const UIComponent& component);
 
-		const Array<std::shared_ptr<UIComponent>>& components() const {
-			return m_components;
+		size_t componentsCount() const {
+			return m_components.size();
+		}
+
+		UIComponent& getComponent(size_t index) {
+			return *m_components[index].get();
+		}
+
+		template<class T>
+		T& getComponent(size_t index) {
+			return *static_cast<T*>(m_components[index].get());
 		}
 
 	protected:
