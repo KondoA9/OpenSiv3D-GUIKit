@@ -6,7 +6,7 @@
 namespace s3d::gui {
 	class UIIcon :public UIRect {
 	public:
-		ColorTheme iconColor = DynamicColor::Text;
+		ColorTheme iconColor;
 		bool rotate = false;
 		double rotationAnglerVelocity = 0.0;
 
@@ -15,11 +15,10 @@ namespace s3d::gui {
 		double m_angle = 0.0;
 
 	public:
-		UIIcon() noexcept :
-			UIRect()
-		{
-			backgroundColor = DynamicColor::Clear;
-		}
+		UIIcon(const ColorTheme& _backgroundColor = DynamicColor::Clear, const ColorTheme& _iconColor = DynamicColor::Text) noexcept :
+			UIRect(_backgroundColor),
+			iconColor(_iconColor)
+		{}
 
 		void setAngle(double angle) {
 			m_angle = angle;

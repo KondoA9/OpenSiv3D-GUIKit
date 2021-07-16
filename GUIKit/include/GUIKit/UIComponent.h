@@ -44,7 +44,7 @@ namespace s3d::gui {
 		friend UIView;
 
 	public:
-		ColorTheme backgroundColor = DynamicColor::BackgroundSecondary, frameColor = DynamicColor::Separator;
+		ColorTheme backgroundColor, frameColor;
 		double frameThickness = 1.0;
 		bool fillInner = true, drawFrame = false;
 		bool penetrateMouseEvent = false;
@@ -53,7 +53,6 @@ namespace s3d::gui {
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
 		static UIComponent* m_FocusedComponent;
-
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
 		Rect m_drawableRegion;
@@ -69,7 +68,10 @@ namespace s3d::gui {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		UIComponent() = default;
+		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator):
+			backgroundColor(_backgroundColor),
+			frameColor(_frameColor)
+		{}
 
 		virtual ~UIComponent() = default;
 

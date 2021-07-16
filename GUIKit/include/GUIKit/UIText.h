@@ -21,22 +21,19 @@ namespace s3d::gui {
 		ColorTheme textColor = DynamicColor::Text;
 
 	private:
-		String m_text;
-		Font m_font;
-		TextDirection m_direction;
+		String m_text = U"";
+		Font m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
+		TextDirection m_direction = TextDirection::LeftCenter;
 		DrawableText m_drawableText;
 		RectF m_textRegion;
 		RectF m_drawableRegion;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
-		UIText() noexcept :
-			UIRect()
+		UIText(const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& _textColor = DynamicColor::Text) noexcept :
+			UIRect(backgroundColor)
 		{
-			backgroundColor = DynamicColor::Clear;
-			m_text = U"";
-			m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
-			m_direction = TextDirection::LeftCenter;
+			textColor = _textColor;
 		}
 
 		const Font& font() const {

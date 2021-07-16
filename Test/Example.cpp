@@ -67,28 +67,26 @@ class FileView final : public gui::UIView {
 	FilePath m_path;
 	std::function<void(const FilePath& path)> m_folderSelectedHandler;
 
-	gui::UIIcon& ui_icon;
-	gui::UIText& ui_fileName;
-	gui::UIText& ui_updatedDate;
-	gui::UIText& ui_kind;
+	gui::UIIcon& ui_icon = gui::GUIFactory::Create<gui::UIIcon>();
+	gui::UIText& ui_fileName = gui::GUIFactory::Create<gui::UIText>();
+	gui::UIText& ui_updatedDate = gui::GUIFactory::Create<gui::UIText>();
+	gui::UIText& ui_kind = gui::GUIFactory::Create<gui::UIText>();
 
 public:
 	FileView()
-		:UIView(),
-		ui_icon(gui::GUIFactory::Create<gui::UIIcon>()),
-		ui_fileName(gui::GUIFactory::Create<gui::UIText>()),
-		ui_updatedDate(gui::GUIFactory::Create<gui::UIText>()),
-		ui_kind(gui::GUIFactory::Create<gui::UIText>())
+		:UIView()
 	{
 		ui_fileName.setFont(gui::UnifiedFontStyle::Small);
 		ui_updatedDate.setFont(gui::UnifiedFontStyle::Small);
+		ui_kind.setFont(gui::UnifiedFontStyle::Small);
+
 		ui_updatedDate.backgroundColor = gui::DynamicColor::Background;
 		ui_kind.backgroundColor = gui::DynamicColor::Background;
 	}
 
 	void setPath(const FilePath& path) {
 		ui_icon.setIcon(FileSystem::IsDirectory(path) ? Icon(0xf07b, 20) : Icon(0xf15b, 20));
-		ui_icon.backgroundColor = FileSystem::IsDirectory(path) ? gui::ColorTheme(Color(246, 218, 75)) : gui::DynamicColor::Text;
+		ui_icon.iconColor = FileSystem::IsDirectory(path) ? gui::ColorTheme(Color(246, 218, 75)) : gui::DynamicColor::Text;
 
 		ui_fileName.setText(FileSystem::FileName(path));
 

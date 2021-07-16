@@ -16,10 +16,8 @@ namespace s3d::gui {
 
 	public:
 		UIImageView() noexcept :
-			UIRect()
-		{
-			backgroundColor = DynamicColor::Background;
-		}
+			UIRect(DynamicColor::Background)
+		{}
 
 		void updateTexture() {
 			m_texture.fill(image);

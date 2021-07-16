@@ -11,9 +11,7 @@ namespace s3d::gui {
 		bool m_enabled = false;
 
 	public:
-		UIToggleButton():
-			UIButton()
-		{}
+		using UIButton::UIButton;
 
 		bool isEnabled() const {
 			return m_enabled;

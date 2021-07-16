@@ -16,10 +16,8 @@ namespace s3d::gui {
 
 	public:
 		UIView() noexcept :
-			UIRect()
-		{
-			backgroundColor = DynamicColor::Background;
-		}
+			UIRect(DynamicColor::Background)
+		{}
 
 		virtual void release();
 

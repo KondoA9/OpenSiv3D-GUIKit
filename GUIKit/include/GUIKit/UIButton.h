@@ -9,13 +9,22 @@ namespace s3d::gui {
 	public:
 		String title = U"";
 		Texture icon;
-		ColorTheme textColor = Palette::White, defaultColor = DynamicColor::ButtonDefault, defaultTextColor = Palette::White, hoveredColor = DynamicColor::ButtonPushed;
+		ColorTheme defaultColor, defaultTextColor, hoveredColor, textColor = Palette::White;
 
 	public:
-		UIButton() noexcept :
-			UIRect()
-		{
-			backgroundColor = defaultColor;
+		UIButton(
+			const ColorTheme& _defaultColor = DynamicColor::ButtonDefault,
+			const ColorTheme& _defaultTextColor = Palette::White,
+			const ColorTheme& _hoveredColor = DynamicColor::ButtonPushed) noexcept :
+			UIRect(_defaultColor),
+			defaultColor(_defaultColor),
+			defaultTextColor(_defaultTextColor),
+			hoveredColor(_hoveredColor),
+			textColor(_defaultTextColor)
+		{}
+
+		void setTextColor(const ColorTheme& color) {
+			textColor = color;
 		}
 
 		void setTitle(const String& _title) {
