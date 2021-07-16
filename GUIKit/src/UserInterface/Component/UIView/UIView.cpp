@@ -9,13 +9,10 @@ void UIView::release() {
 
 	for (auto& component : m_components) {
 		component->release();
-		GUIFactory::RequestReleaseComponent(component->id());
 		component.reset();
 	}
 
 	m_components.release();
-
-	GUIFactory::ReleaseInvalidComponents();
 }
 
 void UIView::appendComponent(const UIComponent& component) {

@@ -12,9 +12,9 @@ size_t GUIFactory::GetId() {
 	return m_Id;
 }
 
-const std::shared_ptr<UIComponent>& GUIFactory::GetComponent(size_t id) {
-	for (const auto& component : instance.m_components) {
-		if (component->id() == id) {
+std::shared_ptr<UIComponent>& GUIFactory::GetComponent(size_t id) {
+	for (auto& component : instance.m_components) {
+		if (component && component->id() == id) {
 			return component;
 		}
 	}

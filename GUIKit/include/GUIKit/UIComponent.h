@@ -72,7 +72,7 @@ namespace s3d::gui {
 	public:
 		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept;
 
-		virtual ~UIComponent() = default;
+		virtual ~UIComponent();
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
 

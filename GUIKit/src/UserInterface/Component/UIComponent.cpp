@@ -12,6 +12,10 @@ UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _
 	frameColor(_frameColor)
 {}
 
+UIComponent::~UIComponent() {
+	GUIFactory::RequestReleaseComponent(m_id);
+}
+
 void UIComponent::updateLayer(const Rect& scissor) {
 	m_drawableRegion = scissor;
 

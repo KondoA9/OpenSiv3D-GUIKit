@@ -13,6 +13,8 @@ namespace s3d::gui {
 	private:
 		static size_t m_Id;
 		static GUIFactory instance;
+
+		size_t m_releaseCounter = 0;
 		Array<std::shared_ptr<UIComponent>> m_components;
 
 	public:
@@ -22,8 +24,14 @@ namespace s3d::gui {
 
 		template<class T>
 		static T& Create() {
-			if (instance.m_components.capacity() != instance.m_components.size()) {
-				instance.m_components.shrink_to_fit();
+			if (instance.m_releaseCounter++; instance.m_releaseCounter == 100) {
+				ReleaseInvalidComponents();
+
+				if (instance.m_components.capacity() != instance.m_components.size()) {
+					instance.m_components.shrink_to_fit();
+				}
+
+				instance.m_releaseCounter = 0;
 			}
 
 			m_Id++;
@@ -40,7 +48,7 @@ namespace s3d::gui {
 
 		static size_t GetId();
 
-		static const std::shared_ptr<UIComponent>& GetComponent(size_t id);
+		static std::shared_ptr<UIComponent>& GetComponent(size_t id);
 
 		static void RequestReleaseComponent(size_t id);
 
