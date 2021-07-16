@@ -11,7 +11,7 @@ namespace s3d::gui {
 		friend GUIKit;
 
 	private:
-		Array<UIComponent*> m_components;
+		Array<std::shared_ptr<UIComponent>> m_components;
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
@@ -19,15 +19,15 @@ namespace s3d::gui {
 			UIRect(DynamicColor::Background)
 		{}
 
-		virtual void release();
-
-		virtual void appendComponent(UIComponent& component);
-
 		virtual ~UIView() {
 			release();
-		}
+		};
 
-		Array<UIComponent*> components() const {
+		virtual void release();
+
+		virtual void appendComponent(const UIComponent& component);
+
+		const Array<std::shared_ptr<UIComponent>>& components() const {
 			return m_components;
 		}
 

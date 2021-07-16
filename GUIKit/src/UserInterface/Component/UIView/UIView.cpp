@@ -1,15 +1,26 @@
 #include <GUIKit/UIView.h>
 #include <GUIKit/WindowManager.h>
+#include <GUIKit/GUIFactory.h>
 
 using namespace s3d::gui;
 
 void UIView::release() {
+	for (auto& component : m_components) {
+		GUIFactory::RequestReleaseComponent(component->id());
+		component.reset();
+	}
+
 	m_components.release();
+
+	GUIFactory::ReleaseInvalidComponents();
 }
 
-void UIView::appendComponent(UIComponent& component) {
-	if (!m_components.includes(&component)) {
-		m_components.push_back(&component);
+void UIView::appendComponent(const UIComponent& component) {
+	if (!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
+		return component.id() == component2->id();
+		})) {
+
+		m_components.push_back(std::move(GUIFactory::GetComponent(component.id())));
 	}
 }
 
@@ -18,7 +29,7 @@ void UIView::updateLayer(const Rect& scissor) {
 
 	UIRect::updateLayer(scissor);
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->exist) {
 			component->updateLayer(m_scissorRect);
 		}
@@ -49,7 +60,7 @@ bool UIView::updateLayerIfNeeded(const Rect& scissor) {
 	}
 	else {
 		bool updated = false;
-		for (const auto component : m_components) {
+		for (const auto& component : m_components) {
 			if (component->exist) {
 				updated |= component->updateLayerIfNeeded(m_scissorRect);
 			}
@@ -65,7 +76,7 @@ void UIView::draw() {
 
 	Graphics2D::SetScissorRect(m_scissorRect);
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->drawable()) {
 			component->draw();
 		}
@@ -77,7 +88,7 @@ void UIView::draw() {
 void UIView::updateMouseIntersection() {
 	UIRect::updateMouseIntersection();
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->updatable()) {
 			component->updateMouseIntersection();
 		}
@@ -87,7 +98,7 @@ void UIView::updateMouseIntersection() {
 void UIView::updateInputEvents() {
 	UIRect::updateInputEvents();
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->updatable()) {
 			component->updateInputEvents();
 		}

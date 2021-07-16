@@ -1,9 +1,16 @@
 #include <GUIKit/UIComponent.h>
+#include <GUIKit/GUIFactory.h>
 
 using namespace s3d::gui;
 
 Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 UIComponent* UIComponent::m_FocusedComponent = nullptr;
+
+UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
+	m_id(GUIFactory::GetId()),
+	backgroundColor(_backgroundColor),
+	frameColor(_frameColor)
+{}
 
 void UIComponent::updateLayer(const Rect& scissor) {
 	m_drawableRegion = scissor;

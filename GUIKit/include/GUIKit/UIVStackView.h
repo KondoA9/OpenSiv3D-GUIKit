@@ -28,11 +28,7 @@ namespace s3d::gui {
 
 		void release() override;
 
-		void appendComponent(UIComponent& component) override {
-			UIView::appendComponent(component);
-			m_constraintsApplied = false;
-			requestToUpdateLayer();
-		}
+		void appendComponent(const UIComponent& component) override;
 
 		template<class T>
 		T& appendTemporaryComponent(const T& component) {

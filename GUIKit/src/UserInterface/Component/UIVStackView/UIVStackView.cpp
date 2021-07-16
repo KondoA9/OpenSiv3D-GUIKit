@@ -20,6 +20,12 @@ void UIVStackView::release() {
 	calcCurrentRowHeight();
 }
 
+void UIVStackView::appendComponent(const UIComponent& component) {
+	UIView::appendComponent(component);
+	m_constraintsApplied = false;
+	requestToUpdateLayer();
+}
+
 void UIVStackView::updateLayer(const Rect& scissor) {
 	if (!m_constraintsApplied) {
 		updateChildrenConstraints();
@@ -35,7 +41,7 @@ void UIVStackView::updateLayer(const Rect& scissor) {
 
 void UIVStackView::updateChildrenConstraints() {
 	for (size_t i : step(components().size())) {
-		const auto component = components()[i];
+		const auto& component = components()[i];
 
 		{
 			const auto d1 = m_leadingDirection == LeadingDirection::Top ? LayerDirection::Top : LayerDirection::Bottom;

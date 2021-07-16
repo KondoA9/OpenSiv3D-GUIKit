@@ -53,6 +53,8 @@ namespace s3d::gui {
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
 		static UIComponent* m_FocusedComponent;
+
+		const size_t m_id;
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
 		Rect m_drawableRegion;
@@ -68,10 +70,7 @@ namespace s3d::gui {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator):
-			backgroundColor(_backgroundColor),
-			frameColor(_frameColor)
-		{}
+		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept;
 
 		virtual ~UIComponent() = default;
 
@@ -87,6 +86,10 @@ namespace s3d::gui {
 
 		const Layer& layer() const {
 			return m_layer;
+		}
+
+		size_t id() const {
+			return m_id;
 		}
 
 		bool isFocused() const {
