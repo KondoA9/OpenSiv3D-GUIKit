@@ -4,7 +4,6 @@
 using namespace s3d::gui;
 
 void UIView::release() {
-	releaseDeletableComponents();
 	m_components.release();
 }
 
@@ -12,15 +11,6 @@ void UIView::appendComponent(UIComponent& component) {
 	if (!m_components.includes(&component)) {
 		m_components.push_back(&component);
 	}
-}
-
-void UIView::releaseDeletableComponents() {
-	for (auto component : m_deletableComponents) {
-		delete component;
-		component = nullptr;
-	}
-
-	m_deletableComponents.release();
 }
 
 void UIView::updateLayer(const Rect& scissor) {
