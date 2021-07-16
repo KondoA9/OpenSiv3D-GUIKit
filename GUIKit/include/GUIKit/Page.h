@@ -17,6 +17,15 @@ namespace s3d::gui {
 		bool m_loaded = false;
 
 	public:
+		const String& identifier() const {
+			return m_identifier;
+		}
+
+		bool didLoaded() const {
+			return m_loaded;
+		}
+
+	protected:
 		virtual ~Page() = default;
 
 		// Called when guikit core system loaded the page
@@ -42,14 +51,6 @@ namespace s3d::gui {
 
 		// Called when application terminated
 		virtual void onAppTerminated() {}
-
-		String identifier() const {
-			return m_identifier;
-		}
-
-		bool didLoaded() const {
-			return m_loaded;
-		}
 
 		UIView& view() {
 			return m_view;
