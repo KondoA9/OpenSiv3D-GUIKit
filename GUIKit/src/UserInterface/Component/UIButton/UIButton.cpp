@@ -22,9 +22,9 @@ void UIButton::initialize() {
 void UIButton::draw() {
 	UIRect::draw();
 
-	UnifiedFont::Get(UnifiedFontStyle::Medium)(title).drawAt(rect().center(), textColor);
+	UnifiedFont::Get(UnifiedFontStyle::Medium)(m_title).drawAt(rect().center(), textColor);
 
-	if (icon) {
-		icon.drawAt(rect().center(), textColor);
+	if (m_icon) {
+		m_icon.drawAt(rect().center(), textColor);
 	}
 }
