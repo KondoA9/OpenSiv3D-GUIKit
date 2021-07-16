@@ -31,6 +31,15 @@ namespace s3d::gui {
 			return m_components.size();
 		}
 
+		const UIComponent& getComponent(size_t index) const {
+			return *m_components[index].get();
+		}
+
+		template<class T>
+		const T& getComponent(size_t index) const {
+			return *static_cast<T*>(m_components[index].get());
+		}
+
 		UIComponent& getComponent(size_t index) {
 			return *m_components[index].get();
 		}
