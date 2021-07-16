@@ -31,7 +31,7 @@ set(SOURCE_FILES
 "../GUIKit/src/GUIKitCore/GUIKitCore.cpp"
 "../GUIKit/src/GUIKitCore/GUIKitLifeCycle.cpp"
 
-"../GUIKit/src/GUIKitFactory/GUIKitFactory.cpp"
+"../GUIKit/src/GUIFactory/GUIFactory.cpp"
 
 "../GUIKit/src/Page/Page.cpp"
 
