@@ -41,8 +41,12 @@ namespace s3d::gui {
 			m_title = _title;
 		}
 
-		void setIcon(const Texture& _icon) {
-			m_icon = _icon;
+		void setIcon(const Icon& icon) {
+			m_icon = Texture(icon);
+		}
+
+		void setIcon(const Texture& icon) {
+			m_icon = icon;
 		}
 
 	protected:
