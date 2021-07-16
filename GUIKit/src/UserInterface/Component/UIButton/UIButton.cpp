@@ -4,6 +4,8 @@
 using namespace s3d::gui;
 
 void UIButton::initialize() {
+	backgroundColor = defaultColor;
+
 	addEventListener<MouseEvent::Hovered>([this] {
 		backgroundColor.highlight(hoveredColor);
 		}, true);

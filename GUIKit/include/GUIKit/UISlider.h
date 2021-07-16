@@ -13,16 +13,12 @@ namespace s3d::gui {
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect ui_railLeft, ui_railRight;
-		UICircle ui_handle;
-		UIText ui_text;
+		UIRect& ui_railLeft = GUIFactory::Create<UIRect>(), & ui_railRight = GUIFactory::Create<UIRect>();
+		UICircle& ui_handle = GUIFactory::Create<UICircle>();
+		UIText& ui_text = GUIFactory::Create<UIText>();
 
 	public:
-		UISlider() noexcept :
-			UIView(),
-			ui_text(GUIFactory::Create<UIText>())
-		{
-		}
+		using UIView::UIView;
 
 		double value() const {
 			return m_value;
