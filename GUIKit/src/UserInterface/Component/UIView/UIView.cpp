@@ -5,7 +5,10 @@
 using namespace s3d::gui;
 
 void UIView::release() {
+	UIRect::release();
+
 	for (auto& component : m_components) {
+		component->release();
 		GUIFactory::RequestReleaseComponent(component->id());
 		component.reset();
 	}

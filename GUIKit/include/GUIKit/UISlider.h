@@ -44,6 +44,10 @@ namespace s3d::gui {
 			ui_text.setText(label);
 		}
 
+		void setFont(UnifiedFontStyle style) {
+			ui_text.setFont(style);
+		}
+
 	protected:
 		void initialize() override;
 

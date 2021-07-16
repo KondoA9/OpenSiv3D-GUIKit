@@ -139,7 +139,9 @@ namespace s3d::gui {
 		// Called once before layer updated.
 		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
 		// Do not forget to call super::initialize() unless you do not want to call it.
-		virtual void initialize() {};
+		virtual void initialize() {}
+
+		virtual void release() {}
 
 		virtual void updateLayer(const Rect& scissor);
 

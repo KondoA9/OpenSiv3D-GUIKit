@@ -35,7 +35,8 @@ namespace s3d::gui {
 			m_scale = calcInitialScale();
 		}
 
-		void release() {
+		void release() override {
+			UIRect::release();
 			image.release();
 			m_texture.release();
 		}

@@ -23,7 +23,7 @@ namespace s3d::gui {
 			release();
 		};
 
-		virtual void release();
+		void release() override;
 
 		virtual void appendComponent(const UIComponent& component);
 

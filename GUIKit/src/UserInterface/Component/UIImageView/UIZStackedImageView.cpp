@@ -43,6 +43,8 @@ void UIZStackedImageView::removeImage(size_t index) {
 }
 
 void UIZStackedImageView::release() {
+	UIRect::release();
+
 	m_textures.release();
 	m_alphas.release();
 	setDrawingCenterPos(rect().center());
