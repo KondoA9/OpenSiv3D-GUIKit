@@ -3,10 +3,12 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	class GUIKit;
 	class UIComponent;
 	class UIView;
 
 	class GUIFactory {
+		friend GUIKit;
 		friend UIComponent;
 		friend UIView;
 
