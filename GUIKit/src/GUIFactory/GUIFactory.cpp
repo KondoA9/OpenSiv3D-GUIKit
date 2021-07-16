@@ -2,4 +2,4 @@
 
 using namespace s3d::gui;
 
-size_t GUIFactory::m_ComponentId = 0;
+GUIFactory GUIFactory::instance;
