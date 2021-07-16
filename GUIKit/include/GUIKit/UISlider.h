@@ -4,6 +4,7 @@
 #include "UIRect.h"
 #include "UICircle.h"
 #include "UIText.h"
+#include "GUIFactory.h"
 
 namespace s3d::gui {
 	class UISlider : public UIView {
@@ -17,19 +18,11 @@ namespace s3d::gui {
 		UIText ui_text;
 
 	public:
-		UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor = DynamicColor::Clear);
-
-		UISlider(const String & label, UnifiedFontStyle style, const ColorTheme & _backgroundColor = DynamicColor::Clear) :
-			UISlider(label, style, TextDirection::LeftBottom, _backgroundColor)
-		{}
-
-		explicit UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
-			UISlider(label, UnifiedFontStyle::Small, _backgroundColor)
-		{}
-
-		explicit UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
-			UISlider(U"", _backgroundColor)
-		{}
+		UISlider() noexcept :
+			UIView(),
+			ui_text(GUIFactory::Create<UIText>())
+		{
+		}
 
 		double value() const {
 			return m_value;

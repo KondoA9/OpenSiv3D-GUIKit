@@ -14,7 +14,7 @@ namespace s3d::gui {
 	private:
 		const String m_identifier;
 
-		UIView& m_view = GUIFactory::Create(UIView());
+		UIView& m_view = GUIFactory::Create<UIView>();
 		bool m_loaded = false;
 
 	public:

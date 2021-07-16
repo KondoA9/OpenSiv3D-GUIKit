@@ -23,8 +23,8 @@ namespace s3d::gui {
 		uint32 m_maxPixel = 0;
 
 	public:
-		explicit UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
+		UIZStackedImageView() noexcept :
+			UIRect()
 		{}
 
 		const Point& currentPixel() const {

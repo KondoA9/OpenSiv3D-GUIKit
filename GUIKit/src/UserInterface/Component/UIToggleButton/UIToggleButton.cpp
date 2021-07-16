@@ -2,46 +2,6 @@
 
 using namespace s3d::gui;
 
-UIToggleButton::UIToggleButton(const String& title, const Texture& icon,
-	const ColorTheme& defaultColor,
-	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor,
-	const ColorTheme& selectedColor,
-	const ColorTheme& selectedTextColor) :
-	UIButton(title, icon, defaultColor, hoveredColor, textColor),
-	selectedColor(selectedColor),
-	selectedTextColor(selectedTextColor)
-{}
-
-UIToggleButton::UIToggleButton(
-	const String& title,
-	const ColorTheme& defaultColor,
-	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor,
-	const ColorTheme& selectedColor,
-	const ColorTheme& selectedTextColor) :
-	UIToggleButton(title, Texture(), defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
-{}
-
-UIToggleButton::UIToggleButton(
-	const Texture& icon,
-	const ColorTheme& defaultColor,
-	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor,
-	const ColorTheme& selectedColor,
-	const ColorTheme& selectedTextColor) :
-	UIToggleButton(U"", icon, defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
-{}
-
-UIToggleButton::UIToggleButton(
-	const ColorTheme& defaultColor,
-	const ColorTheme& hoveredColor,
-	const ColorTheme& textColor,
-	const ColorTheme& selectedColor,
-	const ColorTheme& selectedTextColor) :
-	UIToggleButton(U"", defaultColor, hoveredColor, textColor, selectedColor, selectedTextColor)
-{}
-
 void UIToggleButton::initialize() {
 	addEventListener<MouseEvent::LeftDown>([this] {
 		m_enabled = !m_enabled;

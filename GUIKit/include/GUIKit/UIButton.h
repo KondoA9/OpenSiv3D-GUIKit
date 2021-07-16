@@ -7,32 +7,24 @@
 namespace s3d::gui {
 	class UIButton : public UIRect {
 	public:
-		String title;
+		String title = U"";
 		Texture icon;
-		ColorTheme textColor, defaultColor, defaultTextColor, hoveredColor;
+		ColorTheme textColor = Palette::White, defaultColor = DynamicColor::ButtonDefault, defaultTextColor = Palette::White, hoveredColor = DynamicColor::ButtonPushed;
 
 	public:
-		UIButton(const String& title, const Texture& icon,
-			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& defaultTextColor = Palette::White);
+		UIButton() noexcept :
+			UIRect()
+		{
+			backgroundColor = defaultColor;
+		}
 
-		UIButton(
-			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& defaultTextColor = Palette::White);
+		void setTitle(const String& _title) {
+			title = _title;
+		}
 
-		explicit UIButton(
-			const String& title,
-			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& defaultTextColor = Palette::White);
-
-		explicit UIButton(
-			const Texture& icon,
-			const ColorTheme& defaultColor = DynamicColor::ButtonDefault,
-			const ColorTheme& hoveredColor = DynamicColor::ButtonPushed,
-			const ColorTheme& defaultTextColor = Palette::White);
+		void setIcon(const Texture& _icon) {
+			icon = _icon;
+		}
 
 	protected:
 		void initialize() override;

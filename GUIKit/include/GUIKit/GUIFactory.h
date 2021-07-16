@@ -18,10 +18,8 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		static T& Create(const T& component) {
-
-			Instance().m_components.push_back(std::make_shared<T>(component));
-			
+		static T& Create() {
+			Instance().m_components.push_back(std::shared_ptr<T>(new T()));
 			return *std::dynamic_pointer_cast<T>(Instance().m_components[Instance().m_components.size() - 1]);
 		}
 

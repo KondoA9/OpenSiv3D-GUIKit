@@ -15,9 +15,11 @@ namespace s3d::gui {
 		Point m_pixel, m_prePixel;
 
 	public:
-		explicit UIImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
-		{}
+		UIImageView() noexcept :
+			UIRect()
+		{
+			backgroundColor = DynamicColor::Background;
+		}
 
 		void updateTexture() {
 			m_texture.fill(image);

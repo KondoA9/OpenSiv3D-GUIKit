@@ -18,7 +18,7 @@ namespace s3d::gui {
 
 	class UIText : public UIRect {
 	public:
-		ColorTheme textColor;
+		ColorTheme textColor = DynamicColor::Text;
 
 	private:
 		String m_text;
@@ -30,43 +30,14 @@ namespace s3d::gui {
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
-		explicit UIText(const String& text,
-			UnifiedFontStyle style = UnifiedFontStyle::Medium, TextDirection direction = TextDirection::LeftCenter,
-			const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& textColor = DynamicColor::Text) :
-			UIRect(backgroundColor),
-			textColor(textColor),
-			m_text(text),
-			m_font(UnifiedFont::Get(style)),
-			m_direction(direction)
-		{}
-
-		UIText(const String & text, UnifiedFontStyle style, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(text, style, TextDirection::LeftCenter, backgroundColor, textColor)
-		{}
-
-		UIText(const String & text, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(text, UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
-		{}
-
-		UIText(const String & text, const ColorTheme & backgroundColor, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(text, UnifiedFontStyle::Medium, TextDirection::LeftCenter, backgroundColor, textColor)
-		{}
-
-		UIText(UnifiedFontStyle style, TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", style, direction, backgroundColor, textColor)
-		{}
-
-		UIText(const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text)
-			:UIText(U"", backgroundColor, textColor)
-		{}
-
-		explicit UIText(UnifiedFontStyle style, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", style, TextDirection::LeftCenter, backgroundColor, textColor)
-		{}
-
-		explicit UIText(TextDirection direction, const ColorTheme & backgroundColor = DynamicColor::Clear, const ColorTheme & textColor = DynamicColor::Text) :
-			UIText(U"", UnifiedFontStyle::Medium, direction, backgroundColor, textColor)
-		{}
+		UIText() noexcept :
+			UIRect()
+		{
+			backgroundColor = DynamicColor::Clear;
+			m_text = U"";
+			m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
+			m_direction = TextDirection::LeftCenter;
+		}
 
 		const Font& font() const {
 			return m_font;
@@ -86,13 +57,13 @@ namespace s3d::gui {
 			return m_drawableRegion;
 		}
 
-		void setPadding(double top, double bottom, double left, double right);
+		const UIText& setPadding(double top, double bottom, double left, double right);
 
-		void setFont(UnifiedFontStyle style);
+		const UIText& setFont(UnifiedFontStyle style);
 
-		void setText(const String& text);
+		const UIText& setText(const String& text);
 
-		void setDirection(TextDirection direction);
+		const UIText& setDirection(TextDirection direction);
 
 	protected:
 		void updateLayer(const Rect& scissor) override;

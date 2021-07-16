@@ -15,9 +15,11 @@ namespace s3d::gui {
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
-		explicit UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
-		{}
+		UIView() noexcept :
+			UIRect()
+		{
+			backgroundColor = DynamicColor::Background;
+		}
 
 		virtual void release();
 

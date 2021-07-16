@@ -44,7 +44,7 @@ namespace s3d::gui {
 		friend UIView;
 
 	public:
-		ColorTheme backgroundColor, frameColor;
+		ColorTheme backgroundColor = DynamicColor::BackgroundSecondary, frameColor = DynamicColor::Separator;
 		double frameThickness = 1.0;
 		bool fillInner = true, drawFrame = false;
 		bool penetrateMouseEvent = false;
@@ -69,10 +69,7 @@ namespace s3d::gui {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		explicit UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept :
-			backgroundColor(_backgroundColor),
-			frameColor(_frameColor)
-		{}
+		UIComponent() = default;
 
 		virtual ~UIComponent() = default;
 
