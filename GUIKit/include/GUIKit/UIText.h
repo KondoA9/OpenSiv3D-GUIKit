@@ -25,8 +25,7 @@ namespace s3d::gui {
 		Font m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
 		TextDirection m_direction = TextDirection::LeftCenter;
 		DrawableText m_drawableText;
-		RectF m_textRegion;
-		RectF m_drawableRegion;
+		RectF m_textRegion, m_drawableRegion;
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
@@ -50,7 +49,7 @@ namespace s3d::gui {
 			return m_textRegion;
 		}
 
-		const Rect& drawableRegion() const {
+		const RectF& drawableRegion() const {
 			return m_drawableRegion;
 		}
 
