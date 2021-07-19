@@ -16,11 +16,15 @@ on:
     branches: 
     - master
     - develop
+    paths-ignore:
+    - 'Dependencies/**'
   pull_request:
     # The branches below must be a subset of the branches above
     branches: 
     - master
     - develop
+    paths-ignore:
+    - 'Dependencies/**'
   schedule:
     - cron: '24 17 * * 0'
 
