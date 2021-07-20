@@ -4,7 +4,7 @@
 
 #define GUICreateInputEvent(Event) \
 struct Event : public s3d::gui::InputEvent { \
-	Event(s3d::gui::UIComponent* _component, bool callIfComponentInFront = true) : \
+	explicit Event(s3d::gui::UIComponent* _component, bool callIfComponentInFront = true) : \
 		s3d::gui::InputEvent(typeid(Event).hash_code(), _component, callIfComponentInFront) \
 	{} \
 };

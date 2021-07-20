@@ -79,12 +79,22 @@ void UIComponent::removeAllConstraints() {
 
 void UIComponent::focus() {
 	try {
-		m_FocusedComponent = GUIFactory::GetComponent(m_id);
-		m_FocusedComponent->registerInputEvent<Focused>(this);
+		// Throwable
+		// Get shared_ptr of this
+		const std::shared_ptr<UIComponent> this_ptr = GUIFactory::GetComponent(m_id);
+
+		// Unfocus previous focused component
+		if (m_FocusedComponent) {
+			m_FocusedComponent->unFocus();
+		}
+
+		// Now, focused component is this
+		m_FocusedComponent = this_ptr;
+		registerInputEvent(Focused(this));
 	}
 	catch (...) {
 		if (m_FocusedComponent) {
-			m_FocusedComponent->registerInputEvent<Focused>(m_FocusedComponent.get());
+			m_FocusedComponent->registerInputEvent(UnFocused(m_FocusedComponent.get()));
 			m_FocusedComponent.reset();
 		}
 	}
@@ -92,7 +102,7 @@ void UIComponent::focus() {
 
 void UIComponent::unFocus() {
 	if (isFocused()) {
-		registerInputEvent<UnFocused>(this);
+		registerInputEvent(UnFocused(this, false));
 		m_FocusedComponent.reset();
 	}
 }
