@@ -1,5 +1,7 @@
 #include <GUIKit/GUIKit.h>
 
+#define ASSERT_MSG(condition, message) assert((condition) && message)
+
 bool loaded = false;
 bool beforeAppeared = false;
 bool afterAppeared = false;
@@ -22,7 +24,7 @@ protected:
 			}, 2500, false);
 
 		gui::GUIKit::Instance().setTimeout([this] {
-			FMT_ASSERT(
+			ASSERT_MSG(
 				view().backgroundColor == gui::DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
 			);
@@ -34,7 +36,7 @@ protected:
 		// This test will ended within 5sec
 		{
 			size_t focusError = gui::GUIKit::Instance().setTimeout([] {
-				FMT_ASSERT(false, "Focused the component, but it is not focused");
+				ASSERT_MSG(false, "Focused the component, but it is not focused");
 				}, 5000, false);
 
 			focustest.addEventListener<gui::Focused>([focusError] {
@@ -43,7 +45,7 @@ protected:
 
 			gui::GUIKit::Instance().setTimeout([&focustest] {
 				focustest.focus();
-				FMT_ASSERT(focustest.isFocused(), "Focused a component, but it is not focused");
+				ASSERT_MSG(focustest.isFocused(), "Focused a component, but it is not focused");
 				}, 2500, false);
 		}
 
@@ -104,5 +106,5 @@ void Main() {
 
 	guikit.start();
 
-	FMT_ASSERT(loaded && beforeAppeared && afterAppeared && beforeDisappeared && afterDisappeared && terminated, "Any paging events were not called.");
+	ASSERT_MSG(loaded && beforeAppeared && afterAppeared && beforeDisappeared && afterDisappeared && terminated, "Any paging events were not called.");
 }
