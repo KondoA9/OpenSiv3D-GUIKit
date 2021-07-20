@@ -12,6 +12,9 @@ namespace s3d::gui {
 	class UIView;
 	class GUIFactory;
 
+	GUICreateInputEvent(UnFocused);
+	GUICreateInputEvent(Focused);
+
 	class UIComponent {
 		struct CallableInputEvent {
 			InputEvent mouseEvent;
