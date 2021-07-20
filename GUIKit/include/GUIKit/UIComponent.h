@@ -54,7 +54,7 @@ namespace s3d::gui {
 
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
-		static UIComponent* m_FocusedComponent;
+		static std::shared_ptr<UIComponent> m_FocusedComponent;
 
 		const size_t m_id;
 		bool m_valid = false;
@@ -101,7 +101,7 @@ namespace s3d::gui {
 		}
 
 		bool isFocused() const {
-			return m_FocusedComponent == this;
+			return m_FocusedComponent && m_FocusedComponent->id() == m_id;
 		}
 
 		bool drawable() const {
@@ -118,13 +118,9 @@ namespace s3d::gui {
 			m_needToUpdateLayer = true;
 		}
 
-		void focus() {
-			m_FocusedComponent = this;
-		}
+		void focus();
 
-		void unFocus() {
-			m_FocusedComponent = nullptr;
-		}
+		void unFocus();
 
 		template<class T>
 		void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {

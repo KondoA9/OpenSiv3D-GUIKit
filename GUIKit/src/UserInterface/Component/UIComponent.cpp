@@ -4,7 +4,7 @@
 using namespace s3d::gui;
 
 Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
-UIComponent* UIComponent::m_FocusedComponent = nullptr;
+std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr;
 
 UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
 	m_id(GUIFactory::GetId()),
@@ -47,25 +47,17 @@ bool UIComponent::updateLayerIfNeeded(const Rect& scissor) {
 
 void UIComponent::setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant, double multiplier) {
 	m_dependentLayers.push_back(&component.m_layer);
-
-	auto myConstraint = m_layer.constraintPtr(direction);
-	const auto opponentConstraint = component.m_layer.constraintPtr(toDirection);
-
-	myConstraint->setConstraint(opponentConstraint->data(), constant, multiplier);
+	m_layer.constraintPtr(direction)->setConstraint(component.m_layer.constraintPtr(toDirection)->data(), constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 
 void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) {
-	auto myConstraint = m_layer.constraintPtr(direction);
-
-	myConstraint->setConstraint(constant, multiplier);
+	m_layer.constraintPtr(direction)->setConstraint(constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 
 void UIComponent::setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier) {
-	auto myConstraint = m_layer.constraintPtr(direction);
-
-	myConstraint->setConstraint(func, constant, multiplier);
+	m_layer.constraintPtr(direction)->setConstraint(func, constant, multiplier);
 	m_needToUpdateLayer = true;
 }
 
@@ -83,4 +75,19 @@ void UIComponent::removeAllConstraints() {
 	m_layer.centerY.removeConstraint();
 	m_layer.height.removeConstraint();
 	m_layer.width.removeConstraint();
+}
+
+void UIComponent::focus() {
+	try {
+		m_FocusedComponent = GUIFactory::GetComponent(m_id);
+	}
+	catch (...) {
+		m_FocusedComponent.reset();
+	}
+}
+
+void UIComponent::unFocus() {
+	if (isFocused()) {
+		m_FocusedComponent.reset();
+	}
 }

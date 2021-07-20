@@ -23,9 +23,7 @@ std::shared_ptr<UIComponent>& GUIFactory::GetComponent(size_t id) {
 		}
 	}
 
-	FMT_ASSERT(false, "Unknown exception. This exception might be due to any components not being instantiated through GUIFactory::Create()");
-
-	return instance.m_components[0];
+	throw "";
 }
 
 void GUIFactory::RequestReleaseComponent(size_t id) {
