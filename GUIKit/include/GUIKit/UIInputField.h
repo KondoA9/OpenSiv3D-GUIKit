@@ -9,6 +9,9 @@ namespace s3d::gui {
 		GUICreateInputEvent(KeyDown);
 		GUICreateInputEvent(KeyEnterDown);
 
+		bool completeInputWhenEnter = true;
+		String prefix = U"", suffix = U"";
+
 	private:
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
