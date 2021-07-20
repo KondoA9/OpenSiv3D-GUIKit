@@ -31,7 +31,7 @@ jobs:
         run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Configuration=Debug /p:Platform=x64
 
       - name: Test Launch
-        run: .\App\GUIKit-LaunchTest(debug).exe
+        run: .\App\GUIKit-LaunchTest_debug.exe
 
   macOS:
     runs-on: macos-latest
