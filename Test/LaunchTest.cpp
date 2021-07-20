@@ -33,26 +33,39 @@ protected:
 		// Focus component test
 		auto& focustest = gui::GUIFactory::Create<gui::UIRect>();
 		view().appendComponent(focustest);
-		// This test will ended within 5sec
+		// This test will ended within 10sec
 		{
-			size_t focusError = gui::GUIKit::Instance().setTimeout([] {
-				ASSERT_MSG(false, "Focused the component, but it is not focused");
+			const size_t focusError = gui::GUIKit::Instance().setTimeout([] {
+				ASSERT_MSG(false, "Focused the component, but event was not triggered");
 				}, 5000, false);
-
-			focustest.addEventListener<gui::Focused>([focusError] {
-				gui::GUIKit::Instance().stopTimeout(focusError);
-				});
 
 			gui::GUIKit::Instance().setTimeout([&focustest] {
 				focustest.focus();
 				ASSERT_MSG(focustest.isFocused(), "Focused a component, but it is not focused");
 				}, 2500, false);
+
+			focustest.addEventListener<gui::Focused>([&focustest, focusError] {
+				gui::GUIKit::Instance().stopTimeout(focusError);
+
+				const size_t unfocusError = gui::GUIKit::Instance().setTimeout([] {
+					ASSERT_MSG(false, "UnFocused the component, but event was not triggered");
+					}, 5000, false);
+
+				gui::GUIKit::Instance().setTimeout([&focustest] {
+					focustest.unFocus();
+					ASSERT_MSG(!focustest.isFocused(), "UnFocused a component, but it is focused");
+					}, 2500, false);
+
+				focustest.addEventListener<gui::UnFocused>([unfocusError] {
+					gui::GUIKit::Instance().stopTimeout(unfocusError);
+					});
+				});
 		}
 
-		// 10sec later, switch page to TestPage2
+		// 15sec later, switch page to TestPage2
 		gui::GUIKit::Instance().setTimeout([] {
 			gui::GUIKit::Instance().switchPage(U"TestPage2");
-			}, 10000, true);
+			}, 15000, true);
 
 		loaded = true;
 		std::cout << "[GUIKit Info] Page loaded" << std::endl;
