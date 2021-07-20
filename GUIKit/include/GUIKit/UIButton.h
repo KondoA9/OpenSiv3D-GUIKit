@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UIRect.h"
+#include "UnifiedFont.h"
 
 #include <Siv3D.hpp>
 
@@ -12,6 +13,7 @@ namespace s3d::gui {
 	private:
 		String m_title = U"";
 		Texture m_icon;
+		Font m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
 
 	public:
 		UIButton(
@@ -34,6 +36,10 @@ namespace s3d::gui {
 
 		void setTitle(const String& _title) {
 			m_title = _title;
+		}
+
+		void setFont(UnifiedFontStyle style) {
+			m_font = UnifiedFont::Get(style);
 		}
 
 		void setIcon(const Icon& icon) {
