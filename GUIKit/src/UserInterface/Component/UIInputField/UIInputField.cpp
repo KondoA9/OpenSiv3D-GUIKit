@@ -9,6 +9,10 @@ void UIInputField::initialize() {
 	addEventListener<MouseEvent::Hovering>([] {
 		Cursor::RequestStyle(CursorStyle::IBeam);
 		});
+
+	addEventListener<UnFocused>([this] {
+		setText(prefix + text() + suffix);
+		}, true);
 }
 
 void UIInputField::draw() {
@@ -46,6 +50,9 @@ void UIInputField::updateInputEvents() {
 
 		if (KeyEnter.down()) {
 			registerInputEvent(KeyEnterDown(this, false));
+			if (completeInputWhenEnter) {
+				unFocus();
+			}
 		}
 	}
 }
