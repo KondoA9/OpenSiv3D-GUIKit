@@ -11,7 +11,12 @@ void UIInputField::initialize() {
 		});
 
 	addEventListener<UnFocused>([this] {
-		setText(prefix + text() + suffix);
+		if (!prefix.empty() && !text().starts_with(prefix)) {
+			setText(prefix + text());
+		}
+		if (!suffix.empty() && !text().ends_with(suffix)) {
+			setText(text() + suffix);
+		}
 		}, true);
 }
 
