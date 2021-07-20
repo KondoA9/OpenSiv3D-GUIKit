@@ -14,6 +14,7 @@ UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _
 
 UIComponent::~UIComponent() {
 	GUIFactory::RequestReleaseComponent(m_id);
+	release();
 }
 
 void UIComponent::initialize() {

@@ -80,6 +80,8 @@ namespace s3d::gui {
 
 		virtual ~UIComponent();
 
+		virtual void release() {}
+
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
 
 		void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
@@ -148,8 +150,6 @@ namespace s3d::gui {
 		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
 		// Do not forget to call super::initialize().
 		virtual void initialize();
-
-		virtual void release() {}
 
 		virtual void updateLayer(const Rect& scissor);
 

@@ -19,9 +19,7 @@ namespace s3d::gui {
 			UIRect(DynamicColor::Background)
 		{}
 
-		virtual ~UIView() {
-			release();
-		};
+		virtual ~UIView() {}
 
 		void release() override;
 

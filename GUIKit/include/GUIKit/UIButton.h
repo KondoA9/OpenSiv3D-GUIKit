@@ -32,10 +32,6 @@ namespace s3d::gui {
 			return m_icon;
 		}
 
-		void setTextColor(const ColorTheme& color) {
-			textColor = color;
-		}
-
 		void setTitle(const String& _title) {
 			m_title = _title;
 		}
