@@ -7,7 +7,7 @@
 namespace s3d::gui {
 	class UIButton : public UIRect {
 	public:
-		ColorTheme defaultColor, defaultTextColor, hoveredColor, textColor = Palette::White;
+		ColorTheme defaultColor, hoveredColor, textColor;
 
 	private:
 		String m_title = U"";
@@ -16,13 +16,12 @@ namespace s3d::gui {
 	public:
 		UIButton(
 			const ColorTheme& _defaultColor = DynamicColor::Background,
-			const ColorTheme& _defaultTextColor = DynamicColor::Text,
+			const ColorTheme& _textColor = DynamicColor::Text,
 			const ColorTheme& _hoveredColor = DynamicColor::BackgroundSecondary) noexcept :
 			UIRect(_defaultColor),
 			defaultColor(_defaultColor),
-			defaultTextColor(_defaultTextColor),
 			hoveredColor(_hoveredColor),
-			textColor(_defaultTextColor)
+			textColor(_textColor)
 		{}
 
 		const String& title() const {
