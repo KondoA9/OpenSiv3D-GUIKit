@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UIView.h"
+#include "GUIFactory.h"
 
 #include <Siv3D.hpp>
 
@@ -13,7 +14,7 @@ namespace s3d::gui {
 	private:
 		const String m_identifier;
 
-		UIView m_view = UIView();
+		UIView& m_view = GUIFactory::Create<UIView>();
 		bool m_loaded = false;
 
 	public:

@@ -10,6 +10,10 @@
 namespace s3d::gui {
 	class GUIKit;
 	class UIView;
+	class GUIFactory;
+
+	GUICreateInputEvent(UnFocused);
+	GUICreateInputEvent(Focused);
 
 	class UIComponent {
 		struct CallableInputEvent {
@@ -41,6 +45,7 @@ namespace s3d::gui {
 		};
 
 		friend GUIKit;
+		friend GUIFactory;
 		friend UIView;
 
 	public:
@@ -52,7 +57,10 @@ namespace s3d::gui {
 
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
-		static UIComponent* m_FocusedComponent;
+		static std::shared_ptr<UIComponent> m_FocusedComponent;
+
+		const size_t m_id;
+		bool m_valid = false;
 
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
@@ -69,12 +77,13 @@ namespace s3d::gui {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		explicit UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept :
-			backgroundColor(_backgroundColor),
-			frameColor(_frameColor)
-		{}
+		UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept;
 
-		virtual ~UIComponent() = default;
+		UIComponent(const UIComponent&) = delete;
+
+		virtual ~UIComponent();
+
+		virtual void release() {}
 
 		void setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant = 0.0, double multiplier = 1.0);
 
@@ -90,8 +99,12 @@ namespace s3d::gui {
 			return m_layer;
 		}
 
+		size_t id() const {
+			return m_id;
+		}
+
 		bool isFocused() const {
-			return m_FocusedComponent == this;
+			return m_FocusedComponent && m_FocusedComponent->id() == m_id;
 		}
 
 		bool drawable() const {
@@ -108,13 +121,9 @@ namespace s3d::gui {
 			m_needToUpdateLayer = true;
 		}
 
-		void focus() {
-			m_FocusedComponent = this;
-		}
+		void focus();
 
-		void unFocus() {
-			m_FocusedComponent = nullptr;
-		}
+		void unFocus();
 
 		template<class T>
 		void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {
@@ -133,11 +142,13 @@ namespace s3d::gui {
 			addEventListener<T>([f](const InputEvent&) { f(); }, primary);
 		}
 
+		UIComponent& operator =(const UIComponent&) = delete;
+
 	protected:
 		// Called once before layer updated.
 		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
-		// Do not forget to call super::initialize() unless you do not want to call it.
-		virtual void initialize() {};
+		// Do not forget to call super::initialize().
+		virtual void initialize();
 
 		virtual void updateLayer(const Rect& scissor);
 
@@ -195,10 +206,12 @@ namespace s3d::gui {
 		}
 
 	private:
-		static void ResetInputEvents();
-
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);
+
+		void validate() {
+			m_valid = true;
+		}
 	};
 }

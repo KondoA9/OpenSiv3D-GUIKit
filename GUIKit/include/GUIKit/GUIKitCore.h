@@ -3,6 +3,7 @@
 #include "Timeout.h"
 #include "Page.h"
 #include "UIComponent.h"
+#include "GUIFactory.h"
 
 #include <Siv3D.hpp>
 
@@ -99,8 +100,8 @@ namespace s3d::gui {
 		}
 
 		template<class T>
-		void appendIsolatedComponent(const std::shared_ptr<T>& component) {
-			m_isolatedComponents.emplace_back(component);
+		void appendIsolatedComponent(const T& component) {
+			m_isolatedComponents.emplace_back(std::move(GUIFactory::GetComponent(component.id())));
 		}
 
 		GUIKit& operator=(const GUIKit&) = delete;

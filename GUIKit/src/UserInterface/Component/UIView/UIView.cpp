@@ -1,26 +1,27 @@
 #include <GUIKit/UIView.h>
 #include <GUIKit/WindowManager.h>
+#include <GUIKit/GUIFactory.h>
 
 using namespace s3d::gui;
 
 void UIView::release() {
-	releaseDeletableComponents();
+	UIRect::release();
+
+	for (auto& component : m_components) {
+		component->release();
+		component.reset();
+	}
+
 	m_components.release();
 }
 
-void UIView::appendComponent(UIComponent& component) {
-	if (!m_components.includes(&component)) {
-		m_components.push_back(&component);
-	}
-}
+void UIView::appendComponent(const UIComponent& component) {
+	if (!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
+		return component.id() == component2->id();
+		})) {
 
-void UIView::releaseDeletableComponents() {
-	for (auto component : m_deletableComponents) {
-		delete component;
-		component = nullptr;
+		m_components.push_back(GUIFactory::GetComponent(component.id()));
 	}
-
-	m_deletableComponents.release();
 }
 
 void UIView::updateLayer(const Rect& scissor) {
@@ -28,7 +29,7 @@ void UIView::updateLayer(const Rect& scissor) {
 
 	UIRect::updateLayer(scissor);
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->exist) {
 			component->updateLayer(m_scissorRect);
 		}
@@ -59,7 +60,7 @@ bool UIView::updateLayerIfNeeded(const Rect& scissor) {
 	}
 	else {
 		bool updated = false;
-		for (const auto component : m_components) {
+		for (const auto& component : m_components) {
 			if (component->exist) {
 				updated |= component->updateLayerIfNeeded(m_scissorRect);
 			}
@@ -75,7 +76,7 @@ void UIView::draw() {
 
 	Graphics2D::SetScissorRect(m_scissorRect);
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->drawable()) {
 			component->draw();
 		}
@@ -87,7 +88,7 @@ void UIView::draw() {
 void UIView::updateMouseIntersection() {
 	UIRect::updateMouseIntersection();
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->updatable()) {
 			component->updateMouseIntersection();
 		}
@@ -97,7 +98,7 @@ void UIView::updateMouseIntersection() {
 void UIView::updateInputEvents() {
 	UIRect::updateInputEvents();
 
-	for (const auto component : m_components) {
+	for (const auto& component : m_components) {
 		if (component->updatable()) {
 			component->updateInputEvents();
 		}

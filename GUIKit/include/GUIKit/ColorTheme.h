@@ -73,6 +73,10 @@ namespace s3d::gui {
 			return static_cast<ColorF>(color());
 		}
 
+		bool operator ==(const Color& color) const {
+			return this->color() == color;
+		}
+
 		static ColorMode CurrentColorMode();
 
 		static void SetColorMode(ColorMode mode);

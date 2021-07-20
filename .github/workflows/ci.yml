@@ -25,13 +25,13 @@ jobs:
           Expand-Archive -Path "Dependencies\lib\Windows\ThirdParty.zip" -DestinationPath "Dependencies\lib\Windows\" -force
 
       - name: Build GUIKit for Windows
-        run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Configuration=Release /p:Platform=x64
+        run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Configuration=Debug /p:Platform=x64
 
       - name: Build LaunchTest
-        run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Configuration=Release /p:Platform=x64
+        run: msbuild "Windows\GUIKit-LaunchTest.vcxproj" /p:Configuration=Debug /p:Platform=x64
 
       - name: Test Launch
-        run: .\App\GUIKit-LaunchTest.exe
+        run: .\App\GUIKit-LaunchTest_debug.exe
 
   macOS:
     runs-on: macos-latest
@@ -42,10 +42,10 @@ jobs:
         run: unzip -n Dependencies/lib/macOS.zip -d Dependencies/lib/
 
       - name: Build GUIKit for macOS
-        run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/
+        run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/ -configuration Debug
 
       - name: Build LaunchTest
-        run: xcodebuild -project macOS/GUIKit-LaunchTest.xcodeproj/
+        run: xcodebuild -project macOS/GUIKit-LaunchTest.xcodeproj/ -configuration Debug
 
       #- name: Test Launch
       #  run: |
@@ -69,7 +69,7 @@ jobs:
           cd Linux/
           mkdir build
           cd build/
-          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
+          cmake -DCMAKE_BUILD_TYPE=Debug -GNinja ..
 
       - name: Build GUIKit for Linux
         run: |
@@ -110,7 +110,7 @@ jobs:
           cd Linux/LaunchTest/
           mkdir build
           cd build/
-          cmake -DCMAKE_BUILD_TYPE=Release -GNinja ..
+          cmake -DCMAKE_BUILD_TYPE=Debug -GNinja ..
           ninja
 
       - name: Test Launch

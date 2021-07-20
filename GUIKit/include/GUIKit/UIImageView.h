@@ -15,8 +15,8 @@ namespace s3d::gui {
 		Point m_pixel, m_prePixel;
 
 	public:
-		explicit UIImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
+		UIImageView() noexcept :
+			UIRect(DynamicColor::Background)
 		{}
 
 		void updateTexture() {
@@ -35,7 +35,8 @@ namespace s3d::gui {
 			m_scale = calcInitialScale();
 		}
 
-		void release() {
+		void release() override {
+			UIRect::release();
 			image.release();
 			m_texture.release();
 		}

@@ -5,9 +5,9 @@ class ToolBar final : public gui::UIView {
 	std::function<void(const FilePath&)> m_folderOpenedHandler;
 	std::function<void()> m_openParentDirHandler;
 
-	gui::UIButton ui_openDirectoryButton = gui::UIButton(U"Open");
-	gui::UIButton ui_parentDirButton = gui::UIButton(Texture(Icon(0xf062, 20)));
-	gui::UIToggleButton ui_toggleColorModeButton = gui::UIToggleButton(Texture(Icon(0xf186, 20)));
+	gui::UIButton& ui_openDirectoryButton = gui::GUIFactory::Create<gui::UIButton>();
+	gui::UIButton& ui_parentDirButton = gui::GUIFactory::Create<gui::UIButton>();
+	gui::UIToggleButton& ui_toggleColorModeButton = gui::GUIFactory::Create<gui::UIToggleButton>();
 
 public:
 	using UIView::UIView;
@@ -26,6 +26,12 @@ public:
 
 protected:
 	void initialize() override {
+		UIView::initialize();
+
+		ui_openDirectoryButton.setTitle(U"Open");
+		ui_parentDirButton.setIcon(Texture(Icon(0xf062, 20)));
+		ui_toggleColorModeButton.setIcon(Texture(Icon(0xf186, 20)));
+
 		ui_toggleColorModeButton.setConstraint(gui::LayerDirection::Top, *this, gui::LayerDirection::Top);
 		ui_toggleColorModeButton.setConstraint(gui::LayerDirection::Bottom, *this, gui::LayerDirection::Bottom);
 		ui_toggleColorModeButton.setConstraint(gui::LayerDirection::Left);
@@ -63,20 +69,33 @@ class FileView final : public gui::UIView {
 	FilePath m_path;
 	std::function<void(const FilePath& path)> m_folderSelectedHandler;
 
-	gui::UIIcon ui_icon;
-	gui::UIText ui_fileName;
-	gui::UIText ui_updatedDate;
-	gui::UIText ui_kind;
+	gui::UIIcon& ui_icon = gui::GUIFactory::Create<gui::UIIcon>();
+	gui::UIText& ui_fileName = gui::GUIFactory::Create<gui::UIText>();
+	gui::UIText& ui_updatedDate = gui::GUIFactory::Create<gui::UIText>();
+	gui::UIText& ui_kind = gui::GUIFactory::Create<gui::UIText>();
 
 public:
-	FileView(const FilePath& path)
-		:UIView(),
-		m_path(path),
-		ui_icon(FileSystem::IsDirectory(path) ? Icon(0xf07b, 20) : Icon(0xf15b, 20), FileSystem::IsDirectory(path) ? gui::ColorTheme(Color(246, 218, 75)) : gui::DynamicColor::Text),
-		ui_fileName(gui::UIText(FileSystem::FileName(path), gui::UnifiedFontStyle::Small)),
-		ui_updatedDate(gui::UIText(gui::UnifiedFontStyle::Small, gui::DynamicColor::Background)),
-		ui_kind(gui::UIText(FileSystem::IsDirectory(path) ? U"フォルダ" : U"ファイル", gui::UnifiedFontStyle::Small, gui::DynamicColor::Background))
+	FileView()
+		:UIView()
 	{
+		ui_fileName.setFont(gui::UnifiedFontStyle::Small);
+		ui_updatedDate.setFont(gui::UnifiedFontStyle::Small);
+		ui_kind.setFont(gui::UnifiedFontStyle::Small);
+
+		ui_updatedDate.backgroundColor = gui::DynamicColor::Background;
+		ui_kind.backgroundColor = gui::DynamicColor::Background;
+	}
+
+	void setPath(const FilePath& path) {
+		ui_icon.setIcon(FileSystem::IsDirectory(path) ? Icon(0xf07b, 20) : Icon(0xf15b, 20));
+		ui_icon.iconColor = FileSystem::IsDirectory(path) ? gui::ColorTheme(Color(246, 218, 75)) : gui::DynamicColor::Text;
+
+		ui_fileName.setText(FileSystem::FileName(path));
+
+		ui_kind.setText(FileSystem::IsDirectory(path) ? U"フォルダ" : U"ファイル");
+
+		m_path = path;
+
 		const auto time = FileSystem::WriteTime(path);
 		if (time.has_value()) {
 			ui_updatedDate.setText(time.value().format());
@@ -89,6 +108,8 @@ public:
 
 protected:
 	void initialize() override {
+		UIView::initialize();
+
 		addEventListener<gui::MouseEvent::Hovered>([this] {
 			backgroundColor.highlight(gui::DynamicColor::BackgroundSecondary);
 			});
@@ -139,11 +160,14 @@ class ExplorerPage : public gui::Page {
 
 	FilePath m_path;
 
-	ToolBar ui_toolbar = ToolBar(gui::DynamicColor::BackgroundSecondary);
-	gui::UIVStackView ui_filesView = gui::UIVStackView();
-	gui::UIButton ui_movePage = gui::UIButton(U"Move page");
+	ToolBar& ui_toolbar = gui::GUIFactory::Create<ToolBar>();
+	gui::UIVStackView& ui_filesView = gui::GUIFactory::Create<gui::UIVStackView>();
+	gui::UIButton& ui_movePage = gui::GUIFactory::Create<gui::UIButton>();
 
 	void onLoaded() override {
+		ui_toolbar.backgroundColor = gui::DynamicColor::BackgroundSecondary;
+		ui_movePage.setTitle(U"Move page");
+
 		ui_toolbar.drawFrame = true;
 		ui_toolbar.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
 		ui_toolbar.setConstraint(gui::LayerDirection::Height, 30_px);
@@ -186,13 +210,14 @@ class ExplorerPage : public gui::Page {
 		ui_filesView.release();
 
 		const auto contents = FileSystem::DirectoryContents(dir, false);
-		for (const auto& c : contents) {
-			auto row = FileView(c);
+		for (const auto& path : contents) {
+			auto& row = gui::GUIFactory::Create<FileView>();
+			row.setPath(path);
 			row.penetrateMouseEvent = true;
 			row.setFolderSelectedHandler([this](FilePath path) {
 				setup(path);
 				});
-			ui_filesView.appendTemporaryComponent(row);
+			ui_filesView.appendComponent(row);
 		}
 	}
 };
@@ -200,11 +225,17 @@ class ExplorerPage : public gui::Page {
 class StartPage : public gui::Page {
 	using Page::Page;
 
-	gui::UIText ui_title = gui::UIText(U"This is the example application of OpenSiv3D GUIKit.", gui::UnifiedFontStyle::Large, gui::TextDirection::Center);
-	gui::UIButton ui_button = gui::UIButton(U"Next");
-	gui::UICheckBox ui_checkBox = gui::UICheckBox();
+	gui::UIText& ui_title = gui::GUIFactory::Create<gui::UIText>();
+	gui::UIButton& ui_button = gui::GUIFactory::Create<gui::UIButton>();
+	gui::UICheckBox& ui_checkBox = gui::GUIFactory::Create<gui::UICheckBox>();
 
 	void onLoaded() override {
+		ui_title.setText(U"This is the example application of OpenSiv3D GUIKit.");
+		ui_title.setFont(gui::UnifiedFontStyle::Large);
+		ui_title.setDirection(gui::TextDirection::Center);
+
+		ui_button.setTitle(U"Next");
+
 		ui_title.setConstraint(gui::LayerDirection::Top);
 		ui_title.setConstraint(gui::LayerDirection::Height, view(), gui::LayerDirection::Height, 0.0, 0.5);
 		ui_title.setConstraint(gui::LayerDirection::Left);
@@ -231,7 +262,7 @@ class StartPage : public gui::Page {
 
 void Main() {
 	auto& guikit = gui::GUIKit::Instance();
-	
+
 	Window::Resize(1280, 720);
 
 	guikit.appendPage<StartPage>(U"start");
