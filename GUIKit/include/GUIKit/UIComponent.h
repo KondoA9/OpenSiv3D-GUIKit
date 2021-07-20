@@ -191,9 +191,11 @@ namespace s3d::gui {
 				}
 				else {
 					for (size_t i : step(m_CallableInputEvents.size())) {
-						if (m_CallableInputEvents[i].mouseEvent.id == e.id) {
-							m_CallableInputEvents[i].mouseEvent = e;
-							m_CallableInputEvents[i].handlers = handlers;
+						auto& behindComponentEvents = m_CallableInputEvents[i];
+						if (behindComponentEvents.mouseEvent.id == e.id
+							&& behindComponentEvents.mouseEvent.callIfComponentInFront) {
+							behindComponentEvents.mouseEvent = e;
+							behindComponentEvents.handlers = handlers;
 							break;
 						}
 						// Append handler if a event that is same type of the event does not exists 
