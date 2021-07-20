@@ -206,8 +206,6 @@ namespace s3d::gui {
 		}
 
 	private:
-		static void ResetInputEvents();
-
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);

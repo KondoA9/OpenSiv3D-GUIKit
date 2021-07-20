@@ -80,17 +80,19 @@ void UIComponent::removeAllConstraints() {
 void UIComponent::focus() {
 	try {
 		m_FocusedComponent = GUIFactory::GetComponent(m_id);
-		m_FocusedComponent->registerInputEvent<Focused>(m_FocusedComponent.get());
+		m_FocusedComponent->registerInputEvent<Focused>(this);
 	}
 	catch (...) {
-		m_FocusedComponent->registerInputEvent<UnFocused>(m_FocusedComponent.get());
-		m_FocusedComponent.reset();
+		if (m_FocusedComponent) {
+			m_FocusedComponent->registerInputEvent<Focused>(m_FocusedComponent.get());
+			m_FocusedComponent.reset();
+		}
 	}
 }
 
 void UIComponent::unFocus() {
 	if (isFocused()) {
-		m_FocusedComponent->registerInputEvent<UnFocused>(m_FocusedComponent.get());
+		registerInputEvent<UnFocused>(this);
 		m_FocusedComponent.reset();
 	}
 }

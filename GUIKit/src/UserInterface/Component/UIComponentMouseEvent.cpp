@@ -106,12 +106,12 @@ void UIComponent::updateInputEvents() {
 	}
 }
 
-void UIComponent::ResetInputEvents() {
-	m_CallableInputEvents.release();
-}
-
 void UIComponent::CallInputEvents() {
-	for (const auto& e : m_CallableInputEvents) {
+	// Copy events to prevent outbreak of incompatible vector caused by calling events within events
+	const Array<CallableInputEvent> events = m_CallableInputEvents;
+	m_CallableInputEvents.release();
+
+	for (const auto& e : events) {
 		for (const auto& handler : e.handlers) {
 			handler.handler(e.mouseEvent);
 		}

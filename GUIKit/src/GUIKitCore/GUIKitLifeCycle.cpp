@@ -203,17 +203,18 @@ void GUIKit::updateOnStable() {
 }
 
 void GUIKit::updateInputEventsStable() {
-	UIComponent::ResetInputEvents();
 	if (m_drawingPage->m_view.updatable()) {
 		m_drawingPage->m_view.updateMouseIntersection();
 		m_drawingPage->m_view.updateInputEvents();
 	}
+
 	for (auto& component : m_isolatedComponents) {
 		if (component->updatable()) {
 			component->updateMouseIntersection();
 			component->updateInputEvents();
 		}
 	}
+
 	UIComponent::CallInputEvents();
 }
 

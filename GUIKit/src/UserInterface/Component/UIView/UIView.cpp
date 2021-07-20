@@ -20,7 +20,7 @@ void UIView::appendComponent(const UIComponent& component) {
 		return component.id() == component2->id();
 		})) {
 
-		m_components.push_back(std::move(GUIFactory::GetComponent(component.id())));
+		m_components.push_back(GUIFactory::GetComponent(component.id()));
 	}
 }
 
