@@ -51,9 +51,9 @@ void UIView::updateLayerInvert(const Rect& scissor) {
 bool UIView::updateLayerIfNeeded(const Rect& scissor) {
 	if (UIRect::updateLayerIfNeeded(scissor)) {
 		updateScissorRect(scissor);
-		for (const auto ui : m_components) {
-			if (ui->exist) {
-				ui->updateLayer(m_scissorRect);
+		for (const auto& component : m_components) {
+			if (component->exist) {
+                component->updateLayer(m_scissorRect);
 			}
 		}
 		return true;
