@@ -4,6 +4,8 @@
 using namespace s3d::gui;
 
 void UIZStackedImageView::initialize() {
+	UIRect::initialize();
+
 	addEventListener<MouseEvent::RightDragging>([this] {
 		const auto movement = Cursor::Pos() - Cursor::PreviousPos();
 		setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
@@ -43,6 +45,8 @@ void UIZStackedImageView::removeImage(size_t index) {
 }
 
 void UIZStackedImageView::release() {
+	UIRect::release();
+
 	m_textures.release();
 	m_alphas.release();
 	setDrawingCenterPos(rect().center());

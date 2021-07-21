@@ -15,5 +15,5 @@ void UICheckBox::initialize() {
 
 void UICheckBox::setChecked(bool checked) {
 	m_checked = checked;
-	icon = m_checked ? m_checkdIcon : Texture();
+	setIcon(m_checked ? m_checkdIcon : Texture());
 }

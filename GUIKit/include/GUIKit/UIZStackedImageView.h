@@ -23,8 +23,8 @@ namespace s3d::gui {
 		uint32 m_maxPixel = 0;
 
 	public:
-		explicit UIZStackedImageView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
+		UIZStackedImageView() noexcept :
+			UIRect()
 		{}
 
 		const Point& currentPixel() const {
@@ -68,6 +68,8 @@ namespace s3d::gui {
 			);
 		}
 
+		void release() override;
+
 		void updateTexture(size_t index, const Image& image) {
 			m_textures[index].fill(image);
 		}
@@ -98,8 +100,6 @@ namespace s3d::gui {
 		void resetScale();
 
 		void setViewingCenterPixel(const Point& centerPixel);
-
-		void release();
 
 		void appendImage(const Image& image, double alphaRate = 1.0);
 

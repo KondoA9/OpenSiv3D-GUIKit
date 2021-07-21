@@ -4,6 +4,7 @@
 #include "UIRect.h"
 #include "UICircle.h"
 #include "UIText.h"
+#include "GUIFactory.h"
 
 namespace s3d::gui {
 	class UISlider : public UIView {
@@ -12,24 +13,12 @@ namespace s3d::gui {
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect ui_railLeft, ui_railRight;
-		UICircle ui_handle;
-		UIText ui_text;
+		UIRect& ui_railLeft = GUIFactory::Create<UIRect>(), & ui_railRight = GUIFactory::Create<UIRect>();
+		UICircle& ui_handle = GUIFactory::Create<UICircle>();
+		UIText& ui_text = GUIFactory::Create<UIText>();
 
 	public:
-		UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor = DynamicColor::Clear);
-
-		UISlider(const String & label, UnifiedFontStyle style, const ColorTheme & _backgroundColor = DynamicColor::Clear) :
-			UISlider(label, style, TextDirection::LeftBottom, _backgroundColor)
-		{}
-
-		explicit UISlider(const String& label, const ColorTheme& _backgroundColor = DynamicColor::Clear) :
-			UISlider(label, UnifiedFontStyle::Small, _backgroundColor)
-		{}
-
-		explicit UISlider(const ColorTheme& _backgroundColor = DynamicColor::Clear) :
-			UISlider(U"", _backgroundColor)
-		{}
+		using UIView::UIView;
 
 		double value() const {
 			return m_value;
@@ -53,6 +42,10 @@ namespace s3d::gui {
 
 		void setLabel(const String& label) {
 			ui_text.setText(label);
+		}
+
+		void setFont(UnifiedFontStyle style) {
+			ui_text.setFont(style);
 		}
 
 	protected:

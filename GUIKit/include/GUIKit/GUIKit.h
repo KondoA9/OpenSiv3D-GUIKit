@@ -33,5 +33,7 @@
 // GUIKitCore
 #include "GUIKitCore.h"
 
+#include "GUIFactory.h"
+
 // Siv3D v0.4.3
 #include <Siv3D.hpp>

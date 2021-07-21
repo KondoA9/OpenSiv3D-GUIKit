@@ -5,11 +5,6 @@ using namespace s3d::gui;
 
 GUICreateInputEvent(Sliding);
 
-UISlider::UISlider(const String& label, UnifiedFontStyle style, TextDirection direction, const ColorTheme& _backgroundColor) :
-	UIView(_backgroundColor),
-	ui_text(UIText(label, style, direction))
-{}
-
 void UISlider::initialize() {
 	const double handleRadius = 6_px;
 

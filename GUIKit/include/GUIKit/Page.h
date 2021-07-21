@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UIView.h"
+#include "GUIFactory.h"
 
 #include <Siv3D.hpp>
 
@@ -13,10 +14,19 @@ namespace s3d::gui {
 	private:
 		const String m_identifier;
 
-		UIView m_view = UIView();
+		UIView& m_view = GUIFactory::Create<UIView>();
 		bool m_loaded = false;
 
 	public:
+		const String& identifier() const {
+			return m_identifier;
+		}
+
+		bool didLoaded() const {
+			return m_loaded;
+		}
+
+	protected:
 		virtual ~Page() = default;
 
 		// Called when guikit core system loaded the page
@@ -42,14 +52,6 @@ namespace s3d::gui {
 
 		// Called when application terminated
 		virtual void onAppTerminated() {}
-
-		String identifier() const {
-			return m_identifier;
-		}
-
-		bool didLoaded() const {
-			return m_loaded;
-		}
 
 		UIView& view() {
 			return m_view;

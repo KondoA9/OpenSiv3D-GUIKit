@@ -12,11 +12,12 @@ namespace s3d::gui {
 		const Texture m_checkdIcon = Texture(Icon(0xf00c, 15_px));
 
 	public:
-		explicit UICheckBox(bool checked = false) :
-			UIButton(DynamicColor::BackgroundSecondary, DynamicColor::BackgroundSecondary, DynamicColor::Text)
-		{
-			setChecked(checked);
-		}
+		UICheckBox(
+			const ColorTheme& _defaultColor = DynamicColor::BackgroundSecondary,
+			const ColorTheme& _defaultTextColor = DynamicColor::Text,
+			const ColorTheme& _hoveredColor = DynamicColor::BackgroundSecondary) noexcept :
+			UIButton(_defaultColor, _defaultTextColor, _hoveredColor)
+		{}
 
 		bool isChecked() const {
 			return m_checked;

@@ -11,37 +11,43 @@ namespace s3d::gui {
 		friend GUIKit;
 
 	private:
-		Array<UIComponent*> m_components, m_deletableComponents;
+		Array<std::shared_ptr<UIComponent>> m_components;
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
-		explicit UIView(const ColorTheme& _backgroundColor = DynamicColor::Background) :
-			UIRect(_backgroundColor)
+		UIView() noexcept :
+			UIRect(DynamicColor::Background)
 		{}
 
-		virtual void release();
+		virtual ~UIView() {}
 
-		virtual void appendComponent(UIComponent& ui);
+		void release() override;
 
-		virtual ~UIView() {
-			release();
+		virtual void appendComponent(const UIComponent& component);
+
+		size_t componentsCount() const {
+			return m_components.size();
 		}
 
-		Array<UIComponent*> components() const {
-			return m_components;
+		const UIComponent& getComponent(size_t index) const {
+			return *m_components[index].get();
 		}
 
 		template<class T>
-		T& appendTemporaryComponent(const T& component) {
-			T* cmp = new T(component);
-			UIView::appendComponent(*cmp);
-			m_deletableComponents.push_back(cmp);
-			return *cmp;
+		const T& getComponent(size_t index) const {
+			return *static_cast<T*>(m_components[index].get());
+		}
+
+		UIComponent& getComponent(size_t index) {
+			return *m_components[index].get();
+		}
+
+		template<class T>
+		T& getComponent(size_t index) {
+			return *static_cast<T*>(m_components[index].get());
 		}
 
 	protected:
-		void releaseDeletableComponents();
-
 		void updateLayer(const Rect& scissor) override;
 
 		bool updateLayerIfNeeded(const Rect& scissor) override;

@@ -85,6 +85,9 @@
     <Filter Include="GUIKit\WindowManager">
       <UniqueIdentifier>{249619ae-b99c-4922-ae0e-2dd4f07d8580}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\GUIFactory">
+      <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
@@ -164,6 +167,9 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\Page\Page.cpp">
       <Filter>GUIKit\Page</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\GUIFactory\GUIFactory.cpp">
+      <Filter>GUIKit\GUIFactory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +259,9 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\UICheckBox.h">
       <Filter>GUIKit\UserInterface\UserInterface\UICheckBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIFactory.h">
+      <Filter>GUIKit\GUIFactory</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -15,27 +15,35 @@ void UIText::draw() {
 	m_drawableText.draw(m_drawableRegion, textColor);
 }
 
-void UIText::setPadding(double top, double bottom, double left, double right) {
+const UIText& UIText::setPadding(double top, double bottom, double left, double right) {
 	paddingTop = top;
 	paddingBottom = bottom;
 	paddingLeft = left;
 	paddingRight = right;
 	updateDrawableText();
+
+	return *this;
 }
 
-void UIText::setFont(UnifiedFontStyle style) {
+const UIText& UIText::setFont(UnifiedFontStyle style) {
 	m_font = UnifiedFont::Get(style);
 	updateDrawableText(true);
+
+	return *this;
 }
 
-void UIText::setText(const String& text) {
+const UIText& UIText::setText(const String& text) {
 	m_text = text;
 	updateDrawableText(true);
+
+	return *this;
 }
 
-void UIText::setDirection(TextDirection direction) {
+const UIText& UIText::setDirection(TextDirection direction) {
 	m_direction = direction;
 	updateDrawableText();
+
+	return *this;
 }
 
 void UIText::updateDrawableText(bool updateField) {
