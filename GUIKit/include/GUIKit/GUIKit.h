@@ -30,5 +30,3 @@
 
 // Siv3D v0.4.3
 #include <Siv3D.hpp>
-
-using namespace s3d::gui;
