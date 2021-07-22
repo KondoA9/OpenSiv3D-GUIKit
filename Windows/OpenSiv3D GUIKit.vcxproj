@@ -15,6 +15,7 @@
     <ClCompile Include="..\GUIKit\src\GUIFactory\GUIFactory.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp" />
+    <ClCompile Include="..\GUIKit\src\GUIKitInterface\GUIKitInterface.cpp" />
     <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\GUIKit\src\Page\Page.cpp" />
     <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp" />
@@ -46,6 +47,7 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIFactory.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitInterface.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\InputEvent.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h" />

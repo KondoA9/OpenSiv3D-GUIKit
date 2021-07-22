@@ -8,7 +8,7 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKit;
+	class GUIKitCore;
 	class UIView;
 	class GUIFactory;
 
@@ -44,7 +44,7 @@ namespace s3d::gui {
 			}
 		};
 
-		friend GUIKit;
+		friend GUIKitCore;
 		friend GUIFactory;
 		friend UIView;
 

@@ -101,12 +101,12 @@ protected:
 	void onLoaded() override {
 		// Toggle color mode test
 		// This test will ended within 5sec
-		gui::GUIKit::Instance().setTimeout([] {
-			gui::GUIKit::Instance().setColorMode(gui::ColorMode::Light);
-			gui::GUIKit::Instance().toggleColorMode();
+		gui::GUIKit::SetTimeout([] {
+			gui::GUIKit::SetColorMode(gui::ColorMode::Light);
+			gui::GUIKit::ToggleColorMode();
 			}, 2500, false);
 
-		gui::GUIKit::Instance().setTimeout([this] {
+		gui::GUIKit::SetTimeout([this] {
 			Assert(
 				view().backgroundColor == gui::DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
@@ -118,36 +118,36 @@ protected:
 		view().appendComponent(focustest);
 		// This test will ended within 10sec
 		{
-			const size_t focusError = gui::GUIKit::Instance().setTimeout([] {
+			const size_t focusError = gui::GUIKit::SetTimeout([] {
 				Assert(false, "Focused the component, but event was not triggered");
 				}, 5000, false);
 
-			gui::GUIKit::Instance().setTimeout([&focustest] {
+			gui::GUIKit::SetTimeout([&focustest] {
 				focustest.focus();
 				Assert(focustest.isFocused(), "Focused a component, but it is not focused");
 				}, 2500, false);
 
 			focustest.addEventListener<gui::Focused>([&focustest, focusError] {
-				gui::GUIKit::Instance().stopTimeout(focusError);
+				gui::GUIKit::StopTimeout(focusError);
 
-				const size_t unfocusError = gui::GUIKit::Instance().setTimeout([] {
+				const size_t unfocusError = gui::GUIKit::SetTimeout([] {
 					Assert(false, "UnFocused the component, but event was not triggered");
 					}, 5000, false);
 
-				gui::GUIKit::Instance().setTimeout([&focustest] {
+				gui::GUIKit::SetTimeout([&focustest] {
 					focustest.unFocus();
 					Assert(!focustest.isFocused(), "UnFocused a component, but it is focused");
 					}, 2500, false);
 
 				focustest.addEventListener<gui::UnFocused>([unfocusError] {
-					gui::GUIKit::Instance().stopTimeout(unfocusError);
+					gui::GUIKit::StopTimeout(unfocusError);
 					});
 				});
 		}
 
 		// 15sec later, switch page to TestPage2
-		gui::GUIKit::Instance().setTimeout([] {
-			gui::GUIKit::Instance().switchPage(U"TestPage2");
+		gui::GUIKit::SetTimeout([] {
+			gui::GUIKit::SwitchPage(U"TestPage2");
 			}, 15000, true);
 
 
@@ -186,20 +186,18 @@ class TestPage2 : public gui::Page {
 };
 
 void TestPage2::onLoaded() {
-	gui::GUIKit::Instance().setTimeout([] {
-		gui::GUIKit::Instance().terminate();
+	gui::GUIKit::SetTimeout([] {
+		gui::GUIKit::Terminate();
 		}, 10000, true);
 }
 
 void Main() {
-	auto& guikit = gui::GUIKit::Instance();
-
 	Window::Resize(1280, 720);
 
-	guikit.appendPage<TestPage1>(U"TestPage1");
-	guikit.appendPage<TestPage2>(U"TestPage2");
+	gui::GUIKit::AppendPage<TestPage1>(U"TestPage1");
+	gui::GUIKit::AppendPage<TestPage2>(U"TestPage2");
 
-	guikit.start();
+	gui::GUIKit::Start();
 
 	pagingTest.validate();
 }

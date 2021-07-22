@@ -6,10 +6,10 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKit;
+	class GUIKitCore;
 
 	class Page {
-		friend GUIKit;
+		friend GUIKitCore;
 
 	private:
 		const String m_identifier;

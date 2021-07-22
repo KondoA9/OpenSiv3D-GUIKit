@@ -88,6 +88,9 @@
     <Filter Include="GUIKit\GUIFactory">
       <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\GUIKitInterface">
+      <UniqueIdentifier>{a8d020f5-ab08-4c3b-9974-1b93aa667e0c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
@@ -170,6 +173,9 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\GUIFactory\GUIFactory.cpp">
       <Filter>GUIKit\GUIFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\GUIKitInterface\GUIKitInterface.cpp">
+      <Filter>GUIKit\GUIKitInterface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -262,6 +268,9 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIFactory.h">
       <Filter>GUIKit\GUIFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitInterface.h">
+      <Filter>GUIKit\GUIKitInterface</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

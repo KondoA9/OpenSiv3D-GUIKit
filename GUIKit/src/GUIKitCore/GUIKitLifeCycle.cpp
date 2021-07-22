@@ -4,7 +4,7 @@
 
 using namespace s3d::gui;
 
-void GUIKit::initialize() {
+void GUIKitCore::initialize() {
 	WindowManager::Initialize();
 
 	UnifiedFont::Initialize();
@@ -14,7 +14,7 @@ void GUIKit::initialize() {
 	System::SetTerminationTriggers(UserAction::None);
 }
 
-void GUIKit::start() {
+void GUIKitCore::start() {
 	if (m_pages.size() > 0) {
 		m_forwardPage = m_pages[0];
 		run();
@@ -24,7 +24,7 @@ void GUIKit::start() {
 	}
 }
 
-void GUIKit::run() {
+void GUIKitCore::run() {
 	// Set scissor rect
 	{
 		RasterizerState rasterizer = RasterizerState::Default2D;
@@ -42,7 +42,7 @@ void GUIKit::run() {
 	}
 }
 
-void GUIKit::updateGUIKit() {
+void GUIKitCore::updateGUIKit() {
 	// Update window state
 	WindowManager::Update();
 	if (WindowManager::DidResized()) {
@@ -62,7 +62,7 @@ void GUIKit::updateGUIKit() {
 	draw();
 }
 
-void GUIKit::update() {
+void GUIKitCore::update() {
 	switch (m_pageTransition)
 	{
 	case PageTransition::StartUp:
@@ -104,10 +104,10 @@ void GUIKit::update() {
 	updateTimeouts();
 }
 
-void GUIKit::draw() {
+void GUIKitCore::draw() {
 	switch (m_pageTransition)
 	{
-	case s3d::gui::GUIKit::PageTransition::Changing:
+	case s3d::gui::GUIKitCore::PageTransition::Changing:
 		// Draw previous and next page
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
 		m_forwardPage->m_view.draw();
@@ -115,7 +115,7 @@ void GUIKit::draw() {
 		m_backwardPage->m_view.draw();
 		break;
 
-	case s3d::gui::GUIKit::PageTransition::JustChanged:
+	case s3d::gui::GUIKitCore::PageTransition::JustChanged:
 		// Initialize ColorMultipiler
 		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
 		m_forwardPage->m_view.draw();
@@ -141,7 +141,7 @@ void GUIKit::draw() {
 	m_drawingEvents.release();
 }
 
-bool GUIKit::updateOnStartUp() {
+bool GUIKitCore::updateOnStartUp() {
 	static bool appeared = false;
 	if (!appeared) {
 		m_forwardPage->onLoaded();
@@ -158,7 +158,7 @@ bool GUIKit::updateOnStartUp() {
 	return true;
 }
 
-bool GUIKit::updateOnPageChanging() {
+bool GUIKitCore::updateOnPageChanging() {
 	m_pageTransitionRate -= 5.0 * Scene::DeltaTime();
 
 	// The page changed
@@ -170,7 +170,7 @@ bool GUIKit::updateOnPageChanging() {
 	return true;
 }
 
-void GUIKit::updateOnTermination() {
+void GUIKitCore::updateOnTermination() {
 	static bool once = true;
 
 	if (once) {
@@ -194,7 +194,7 @@ void GUIKit::updateOnTermination() {
 	}
 }
 
-void GUIKit::preparePageChanging() {
+void GUIKitCore::preparePageChanging() {
 	// Load a page once
 	if (!m_forwardPage->m_loaded) {
 		m_forwardPage->onLoaded();
@@ -210,7 +210,7 @@ void GUIKit::preparePageChanging() {
 	m_forwardPage->onLayoutCompleted();
 }
 
-void GUIKit::finalizePageChanging() {
+void GUIKitCore::finalizePageChanging() {
 	m_forwardPage->onAfterAppeared();
 	m_backwardPage->onAfterDisappeared();
 
@@ -220,7 +220,7 @@ void GUIKit::finalizePageChanging() {
 	m_backwardPage.reset();
 }
 
-void GUIKit::updateOnStable() {
+void GUIKitCore::updateOnStable() {
 	assert(m_drawingPage);
 
 	updateInputEvents();
@@ -228,7 +228,7 @@ void GUIKit::updateOnStable() {
 	updateLayers();
 }
 
-void GUIKit::updateInputEvents() {
+void GUIKitCore::updateInputEvents() {
 	if (m_drawingPage->m_view.updatable()) {
 		m_drawingPage->m_view.updateMouseIntersection();
 		m_drawingPage->m_view.updateInputEvents();
@@ -244,7 +244,7 @@ void GUIKit::updateInputEvents() {
 	UIComponent::CallInputEvents();
 }
 
-void GUIKit::updateLayers() {
+void GUIKitCore::updateLayers() {
 	if (WindowManager::DidResized()) {
 		// Update layer
 		m_drawingPage->m_view.updateLayer(m_windowScissorRect);
@@ -268,7 +268,7 @@ void GUIKit::updateLayers() {
 	}
 }
 
-void GUIKit::updateMainThreadEvents() {
+void GUIKitCore::updateMainThreadEvents() {
 	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 
 	for (const auto& f : m_eventsRequestedToRunInMainThread) {
@@ -278,7 +278,7 @@ void GUIKit::updateMainThreadEvents() {
 	m_eventsRequestedToRunInMainThread.release();
 }
 
-void GUIKit::updateTimeouts() {
+void GUIKitCore::updateTimeouts() {
 	bool alive = false;
 
 	for (auto& timeout : m_timeouts) {

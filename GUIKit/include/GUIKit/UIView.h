@@ -5,10 +5,10 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKit;
+	class GUIKitCore;
 
 	class UIView : public UIRect {
-		friend GUIKit;
+		friend GUIKitCore;
 
 	private:
 		Array<std::shared_ptr<UIComponent>> m_components;

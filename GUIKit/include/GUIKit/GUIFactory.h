@@ -5,11 +5,11 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKit;
+	class GUIKitCore;
 	class UIView;
 
 	class GUIFactory {
-		friend GUIKit;
+		friend GUIKitCore;
 		friend UIComponent;
 		friend UIView;
 
@@ -24,6 +24,10 @@ namespace s3d::gui {
 		GUIFactory(const GUIFactory&) = delete;
 
 		GUIFactory(GUIFactory&&) = delete;
+
+		GUIFactory& operator =(const GUIFactory&) = delete;
+
+		GUIFactory& operator =(GUIFactory&&) = delete;
 
 		template<class T>
 		static T& Create() {
@@ -46,10 +50,6 @@ namespace s3d::gui {
 
 			return *static_cast<T*>(component.get());
 		}
-
-		GUIFactory& operator =(const GUIFactory&) = delete;
-
-		GUIFactory& operator =(GUIFactory&&) = delete;
 
 	private:
 		GUIFactory() = default;

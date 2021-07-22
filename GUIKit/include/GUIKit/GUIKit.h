@@ -30,8 +30,8 @@
 // Page
 #include "Page.h"
 
-// GUIKitCore
-#include "GUIKitCore.h"
+// GUIKit
+#include "GUIKitInterface.h"
 
 #include "GUIFactory.h"
 
