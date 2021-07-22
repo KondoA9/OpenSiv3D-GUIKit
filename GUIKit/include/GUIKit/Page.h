@@ -50,6 +50,9 @@ namespace s3d::gui {
 		// Called when window resized
 		virtual void onWindowResized() {}
 
+		// Called before when application terminated
+		virtual void onBeforeAppTerminated() {}
+
 		// Called when application terminated
 		virtual void onAppTerminated() {}
 
