@@ -18,7 +18,8 @@ namespace s3d::gui {
 			Stable,
 			StartChanging,
 			Changing,
-			JustChanged
+			JustChanged,
+			Termination
 		};
 
 	private:
@@ -31,6 +32,7 @@ namespace s3d::gui {
 
 		PageTransition m_pageTransition = PageTransition::StartUp;
 
+		bool m_terminationPrevented = false;
 		bool m_animateColor = false;
 		double m_pageTransitionRate = 1.0;
 		Rect m_windowScissorRect;
@@ -50,6 +52,15 @@ namespace s3d::gui {
 		void setColorMode(ColorMode mode);
 
 		void toggleColorMode();
+
+		// If you call this, you should call continueTermination() to terminate app
+		void preventTermination() {
+			m_terminationPrevented = true;
+		}
+
+		void continueTermination() {
+			m_terminationPrevented = false;
+		}
 
 		/// <summary>
 		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
@@ -133,19 +144,19 @@ namespace s3d::gui {
 
 		void finalizePageChanging();
 
+		void updateOnTermination();
+
 		void update();
 
 		void draw();
 
-		void termination();
+		void updateInputEvents();
 
-		void updateInputEventsStable();
+		void updateLayers();
 
-		void updateLayerStable();
+		void updateMainThreadEvents();
 
-		void updateMainThreadEventsStable();
-
-		void updateTimeoutsStable();
+		void updateTimeouts();
 
 		bool animateColor();
 

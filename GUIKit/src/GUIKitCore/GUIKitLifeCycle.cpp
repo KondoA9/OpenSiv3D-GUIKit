@@ -10,6 +10,8 @@ void GUIKit::initialize() {
 	UnifiedFont::Initialize();
 
 	Scene::SetScaleMode(ScaleMode::ResizeFill);
+
+	System::SetTerminationTriggers(UserAction::None);
 }
 
 void GUIKit::start() {
@@ -32,10 +34,12 @@ void GUIKit::run() {
 	}
 
 	while (System::Update()) {
+		if (System::GetUserActions() == UserAction::CloseButtonClicked) {
+			m_pageTransition = PageTransition::Termination;
+		}
+
 		updateGUIKit();
 	}
-
-	termination();
 }
 
 void GUIKit::updateGUIKit() {
@@ -56,12 +60,6 @@ void GUIKit::updateGUIKit() {
 
 	// Draw pages, components and events
 	draw();
-}
-
-void GUIKit::termination() {
-	for (auto& page : m_pages) {
-		page->onAppTerminated();
-	}
 }
 
 void GUIKit::update() {
@@ -93,9 +91,17 @@ void GUIKit::update() {
 		m_pageTransition = PageTransition::Stable;
 		break;
 
+	case PageTransition::Termination:
+		updateOnTermination();
+		break;
+
 	default:
 		break;
 	}
+
+	updateMainThreadEvents();
+
+	updateTimeouts();
 }
 
 void GUIKit::draw() {
@@ -164,6 +170,34 @@ bool GUIKit::updateOnPageChanging() {
 	return true;
 }
 
+void GUIKit::updateOnTermination() {
+	static bool once = true;
+
+	if (once) {
+		for (auto& page : m_pages) {
+			if (page->didLoaded()) {
+				page->onBeforeAppTerminated();
+			}
+		}
+
+		once = false;
+	}
+
+	if (m_terminationPrevented) {
+		updateLayers();
+	}
+	else {
+		m_drawingPage->onBeforeDisappeared();
+		for (auto& page : m_pages) {
+			if (page->didLoaded()) {
+				page->onAppTerminated();
+			}
+		}
+
+		System::Exit();
+	}
+}
+
 void GUIKit::preparePageChanging() {
 	// Load a page once
 	if (!m_forwardPage->m_loaded) {
@@ -193,16 +227,12 @@ void GUIKit::finalizePageChanging() {
 void GUIKit::updateOnStable() {
 	assert(m_drawingPage);
 
-	updateInputEventsStable();
+	updateInputEvents();
 
-	updateLayerStable();
-
-	updateMainThreadEventsStable();
-
-	updateTimeoutsStable();
+	updateLayers();
 }
 
-void GUIKit::updateInputEventsStable() {
+void GUIKit::updateInputEvents() {
 	if (m_drawingPage->m_view.updatable()) {
 		m_drawingPage->m_view.updateMouseIntersection();
 		m_drawingPage->m_view.updateInputEvents();
@@ -218,7 +248,7 @@ void GUIKit::updateInputEventsStable() {
 	UIComponent::CallInputEvents();
 }
 
-void GUIKit::updateLayerStable() {
+void GUIKit::updateLayers() {
 	if (WindowManager::DidResized()) {
 		// Update layer
 		m_drawingPage->m_view.updateLayer(m_windowScissorRect);
@@ -242,7 +272,7 @@ void GUIKit::updateLayerStable() {
 	}
 }
 
-void GUIKit::updateMainThreadEventsStable() {
+void GUIKit::updateMainThreadEvents() {
 	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 
 	for (const auto& f : m_eventsRequestedToRunInMainThread) {
@@ -252,7 +282,7 @@ void GUIKit::updateMainThreadEventsStable() {
 	m_eventsRequestedToRunInMainThread.release();
 }
 
-void GUIKit::updateTimeoutsStable() {
+void GUIKit::updateTimeouts() {
 	bool alive = false;
 
 	for (auto& timeout : m_timeouts) {
