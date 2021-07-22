@@ -197,7 +197,7 @@
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Test\Example.cpp">
+    <ClCompile Include="..\Test\Example\Example.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

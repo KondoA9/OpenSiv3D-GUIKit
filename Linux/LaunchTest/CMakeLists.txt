@@ -28,7 +28,7 @@ include_directories(
 )
 
 set(SOURCE_FILES
-	"../../Test/LaunchTest.cpp"
+	"../../Test/LaunchTest/LaunchTest.cpp"
 )
 
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../App)

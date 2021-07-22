@@ -165,7 +165,13 @@
     <ResourceCompile Include="..\App\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Test\LaunchTest.cpp" />
+    <ClCompile Include="..\Test\LaunchTest\LaunchTest.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Test\LaunchTest\ComponentsTest.h" />
+    <ClInclude Include="..\Test\LaunchTest\FocusTest.h" />
+    <ClInclude Include="..\Test\LaunchTest\PagingTest.h" />
+    <ClInclude Include="..\Test\LaunchTest\Test.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
