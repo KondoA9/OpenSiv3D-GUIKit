@@ -22,22 +22,22 @@ void UIText::setPadding(double top, double bottom, double left, double right) {
 	paddingBottom = bottom;
 	paddingLeft = left;
 	paddingRight = right;
-	updateDrawableText();
+	requestToUpdateLayer();
 }
 
 void UIText::setFont(UnifiedFontStyle style) {
 	m_font = UnifiedFont::Get(style);
-	updateDrawableText(true);
+	requestToUpdateLayer();
 }
 
 void UIText::setText(const String& text) {
 	m_text = text;
-	updateDrawableText(true);
+	requestToUpdateLayer();
 }
 
 void UIText::setDirection(TextDirection direction) {
 	m_direction = direction;
-	updateDrawableText();
+	requestToUpdateLayer();
 }
 
 void UIText::updateDrawableText(bool updateField) {
