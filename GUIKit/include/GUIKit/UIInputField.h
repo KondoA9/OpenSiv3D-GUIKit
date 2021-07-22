@@ -6,13 +6,14 @@
 namespace s3d::gui {
 	class UIInputField : public UIText {
 	public:
-		GUICreateInputEvent(KeyDown);
+		GUICreateInputEvent(Inputted);
 		GUICreateInputEvent(KeyEnterDown);
 
 		bool completeInputWhenEnter = true;
 		String prefix = U"", suffix = U"";
 
 	private:
+		Array<String> m_forbiddenWords;
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect;
@@ -22,6 +23,10 @@ namespace s3d::gui {
 
 		const RectF& fieldRect() const {
 			return m_fieldRect;
+		}
+
+		void setForbiddenWords(const Array<String>& words) {
+			m_forbiddenWords = words;
 		}
 
 	protected:

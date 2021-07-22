@@ -48,9 +48,20 @@ void UIInputField::updateInputEvents() {
 		const String pre = text();
 		String txt = text();
 		TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
-		setText(txt);
-		if (pre != txt) {
-			registerInputEvent(KeyDown(this, false));
+
+		bool valid = true;
+		for (const auto& word : m_forbiddenWords) {
+			if (txt.includes(word)) {
+				valid = false;
+				break;
+			}
+		}
+
+		if (valid) {
+			setText(txt);
+			if (pre != txt) {
+				registerInputEvent(Inputted(this, false));
+			}
 		}
 
 		if (KeyEnter.down()) {
