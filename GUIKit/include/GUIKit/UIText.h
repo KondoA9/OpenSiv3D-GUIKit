@@ -53,13 +53,13 @@ namespace s3d::gui {
 			return m_drawableRegion;
 		}
 
-		const UIText& setPadding(double top, double bottom, double left, double right);
+		void setPadding(double top, double bottom, double left, double right);
 
-		const UIText& setFont(UnifiedFontStyle style);
+		void setFont(UnifiedFontStyle style);
 
-		const UIText& setText(const String& text);
+		void setText(const String& text);
 
-		const UIText& setDirection(TextDirection direction);
+		void setDirection(TextDirection direction);
 
 	protected:
 		void updateLayer(const Rect& scissor) override;
