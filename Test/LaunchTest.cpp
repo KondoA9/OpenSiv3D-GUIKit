@@ -92,7 +92,7 @@ public:
 
 PagingTest pagingTest;
 
-class TestPage1 : public gui::Page{
+class LifeCycleTest : public gui::Page {
 public:
 
 protected:
@@ -100,56 +100,22 @@ protected:
 
 	void onLoaded() override {
 		// Toggle color mode test
-		// This test will ended within 5sec
 		gui::GUIKit::SetTimeout([] {
 			gui::GUIKit::SetColorMode(gui::ColorMode::Light);
 			gui::GUIKit::ToggleColorMode();
-			}, 2500, false);
+			}, 2000, false);
 
 		gui::GUIKit::SetTimeout([this] {
 			Assert(
 				view().backgroundColor == gui::DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
 			);
-			}, 5000, false);
+			}, 4000, false);
 
-		// Focus component test
-		auto& focustest = gui::GUIFactory::Create<gui::UIRect>();
-		view().appendComponent(focustest);
-		// This test will ended within 10sec
-		{
-			const size_t focusError = gui::GUIKit::SetTimeout([] {
-				Assert(false, "Focused the component, but event was not triggered");
-				}, 5000, false);
-
-			gui::GUIKit::SetTimeout([&focustest] {
-				focustest.focus();
-				Assert(focustest.isFocused(), "Focused a component, but it is not focused");
-				}, 2500, false);
-
-			focustest.addEventListener<gui::Focused>([&focustest, focusError] {
-				gui::GUIKit::StopTimeout(focusError);
-
-				const size_t unfocusError = gui::GUIKit::SetTimeout([] {
-					Assert(false, "UnFocused the component, but event was not triggered");
-					}, 5000, false);
-
-				gui::GUIKit::SetTimeout([&focustest] {
-					focustest.unFocus();
-					Assert(!focustest.isFocused(), "UnFocused a component, but it is focused");
-					}, 2500, false);
-
-				focustest.addEventListener<gui::UnFocused>([unfocusError] {
-					gui::GUIKit::StopTimeout(unfocusError);
-					});
-				});
-		}
-
-		// 15sec later, switch page to TestPage2
+		// 5sec later, switch page
 		gui::GUIKit::SetTimeout([] {
-			gui::GUIKit::SwitchPage(U"TestPage2");
-			}, 15000, true);
-
+			gui::GUIKit::SwitchPage(U"ComponentsTest");
+			}, 5000, true);
 
 		pagingTest.loaded();
 	}
@@ -179,13 +145,113 @@ protected:
 	}
 };
 
-class TestPage2 : public gui::Page {
+class ComponentsTest : public gui::Page {
 	using Page::Page;
 
 	void onLoaded() override;
 };
 
-void TestPage2::onLoaded() {
+void ComponentsTest::onLoaded() {
+	auto& rect = gui::GUIFactory::Create<gui::UIRect>();
+	rect.backgroundColor = gui::DynamicColor::DefaultAmber;
+
+	auto& circle = gui::GUIFactory::Create<gui::UICircle>();
+	circle.backgroundColor = gui::DynamicColor::DefaultBlue;
+
+	auto& button = gui::GUIFactory::Create<gui::UIButton>();
+	button.backgroundColor = gui::DynamicColor::DefaultBlueGray;
+	button.setTitle(U"UIButton");
+
+	auto& toggleButton = gui::GUIFactory::Create<gui::UIToggleButton>();
+	toggleButton.backgroundColor = gui::DynamicColor::DefaultBrown;
+	toggleButton.setTitle(U"UIToggleButton");
+
+	auto& text = gui::GUIFactory::Create<gui::UIText>();
+	text.backgroundColor = gui::DynamicColor::DefaultCyan;
+	text.setText(U"UIText");
+
+	auto& inputField = gui::GUIFactory::Create<gui::UIInputField>();
+	inputField.backgroundColor = gui::DynamicColor::DefaultDeepOrange;
+	inputField.setText(U"UIInputField");
+
+	auto& checkBox = gui::GUIFactory::Create<gui::UICheckBox>();
+	checkBox.backgroundColor = gui::DynamicColor::DefaultDeepPurple;
+
+	auto& slider = gui::GUIFactory::Create<gui::UISlider>();
+	slider.backgroundColor = gui::DynamicColor::DefaultGray;
+
+	auto& icon = gui::GUIFactory::Create<gui::UIIcon>();
+	icon.backgroundColor = gui::DynamicColor::DefaultGreen;
+
+	auto& imageView = gui::GUIFactory::Create<gui::UIImageView>();
+	imageView.backgroundColor = gui::DynamicColor::DefaultIndigo;
+
+	auto& stackedImageView = gui::GUIFactory::Create<gui::UIZStackedImageView>();
+	stackedImageView.backgroundColor = gui::DynamicColor::DefaultLightBlue;
+
+	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>();
+	stackView.appendComponent(rect);
+	stackView.appendComponent(circle);
+	stackView.appendComponent(button);
+	stackView.appendComponent(toggleButton);
+	stackView.appendComponent(text);
+	stackView.appendComponent(inputField);
+	stackView.appendComponent(checkBox);
+	stackView.appendComponent(slider);
+	stackView.appendComponent(icon);
+	stackView.appendComponent(imageView);
+	stackView.appendComponent(stackedImageView);
+
+	stackView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
+	stackView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
+	stackView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+	stackView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+
+	view().appendComponent(stackView);
+
+	// 5sec later, switch page
+	gui::GUIKit::SetTimeout([] {
+		gui::GUIKit::SwitchPage(U"FocusTest");
+		}, 5000, true);
+}
+
+class FocusTest : public gui::Page {
+	using Page::Page;
+
+	void onLoaded() override;
+};
+
+void FocusTest::onLoaded() {
+	auto& rect = gui::GUIFactory::Create<gui::UIRect>();
+	view().appendComponent(rect);
+
+	const size_t focusTimeout = gui::GUIKit::SetTimeout([] {
+		Assert(false, "Focused the component, but event was not triggered");
+		}, 5000, false);
+
+	gui::GUIKit::SetTimeout([&rect] {
+		rect.focus();
+		Assert(rect.isFocused(), "Focused a component, but it is not focused");
+		}, 2500, false);
+
+	rect.addEventListener<gui::Focused>([&rect, focusTimeout] {
+		gui::GUIKit::StopTimeout(focusTimeout);
+
+		const size_t unfocusTimeout = gui::GUIKit::SetTimeout([] {
+			Assert(false, "UnFocused the component, but event was not triggered");
+			}, 5000, false);
+
+		gui::GUIKit::SetTimeout([&rect] {
+			rect.unFocus();
+			Assert(!rect.isFocused(), "UnFocused a component, but it is focused");
+			}, 2500, false);
+
+		rect.addEventListener<gui::UnFocused>([unfocusTimeout] {
+			gui::GUIKit::StopTimeout(unfocusTimeout);
+			});
+		});
+
+	// 10sec later, terminate app
 	gui::GUIKit::SetTimeout([] {
 		gui::GUIKit::Terminate();
 		}, 10000, true);
@@ -194,8 +260,9 @@ void TestPage2::onLoaded() {
 void Main() {
 	Window::Resize(1280, 720);
 
-	gui::GUIKit::AppendPage<TestPage1>(U"TestPage1");
-	gui::GUIKit::AppendPage<TestPage2>(U"TestPage2");
+	gui::GUIKit::AppendPage<LifeCycleTest>(U"LifeCycleTest");
+	gui::GUIKit::AppendPage<ComponentsTest>(U"ComponentsTest");
+	gui::GUIKit::AppendPage<FocusTest>(U"FocusTest");
 
 	gui::GUIKit::Start();
 
