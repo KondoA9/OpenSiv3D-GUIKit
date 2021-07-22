@@ -23,7 +23,7 @@ namespace s3d::gui {
 		uint32 m_maxPixel = 0;
 
 	public:
-		UIZStackedImageView() noexcept :
+		explicit UIZStackedImageView() noexcept :
 			UIRect()
 		{}
 
