@@ -45,6 +45,13 @@ namespace s3d::gui {
 		default:
 			break;
 		}
+
+		for (auto& component : m_isolatedComponents) {
+			if (component->updatable()) {
+				component->updateMouseIntersection();
+				component->updateInputEvents();
+			}
+		}
 	}
 
 	void PageManager::draw() {
@@ -68,6 +75,13 @@ namespace s3d::gui {
 			// Draw current page
 			m_drawingPage->m_view.draw();
 			break;
+		}
+
+		// Draw isolated components
+		for (auto& component : m_isolatedComponents) {
+			if (component->drawable()) {
+				component->draw();
+			}
 		}
 	}
 
@@ -172,9 +186,9 @@ namespace s3d::gui {
 			m_drawingPage->m_view.updateLayerInvert(m_windowScissorRect);
 
 			// Update isolated components
-			/*for (auto& component : m_isolatedComponents) {
+			for (auto& component : m_isolatedComponents) {
 				component->updateLayer(m_windowScissorRect);
-			}*/
+			}
 
 			// Call window resized event
 			m_drawingPage->onWindowResized();
@@ -183,9 +197,9 @@ namespace s3d::gui {
 			m_drawingPage->m_view.updateLayerIfNeeded(m_windowScissorRect);
 
 			// Update isolated components
-			/*for (auto& component : m_isolatedComponents) {
+			for (auto& component : m_isolatedComponents) {
 				component->updateLayerIfNeeded(m_windowScissorRect);
-			}*/
+			}
 		}
 	}
 }

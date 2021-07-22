@@ -2,7 +2,6 @@
 
 #include "Timeout.h"
 #include "Page.h"
-#include "UIComponent.h"
 #include "GUIFactory.h"
 
 #include <Siv3D.hpp>
@@ -19,8 +18,6 @@ namespace s3d::gui {
 		std::mutex m_mainThreadInserterMutex;
 
 		PageManager* m_pageManager;
-
-		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
 		bool m_terminationPrevented = false;
 		bool m_animateColor = false;
@@ -82,7 +79,7 @@ namespace s3d::gui {
 
 		template<class T>
 		T& getPage(const String& identifier) const noexcept {
-			return getPage(identifier);
+			return static_cast<T&>(getPage(identifier));
 		}
 
 		template<class T>
@@ -92,7 +89,7 @@ namespace s3d::gui {
 
 		template<class T>
 		void appendIsolatedComponent(const T& component) {
-			m_isolatedComponents.emplace_back(std::move(GUIFactory::GetComponent(component.id())));
+			appendIsolatedComponent(GUIFactory::GetComponent(component.id()));
 		}
 
 	private:
@@ -105,6 +102,8 @@ namespace s3d::gui {
 		Page& getPage(const String& identifier) const noexcept;
 
 		void appendPage(const std::shared_ptr<Page>& page);
+
+		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
 		void initialize();
 

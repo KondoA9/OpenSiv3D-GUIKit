@@ -87,3 +87,7 @@ Page& GUIKitCore::getPage(const String& identifier) const noexcept {
 void GUIKitCore::appendPage(const std::shared_ptr<Page>& page) {
 	m_pageManager->appendPage(page);
 }
+
+void GUIKitCore::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+	m_pageManager->appendIsolatedComponent(component);
+}

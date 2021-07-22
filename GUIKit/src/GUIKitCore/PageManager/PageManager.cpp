@@ -19,10 +19,6 @@ namespace s3d::gui {
 		return false;
 	}
 
-	void PageManager::appendPage(const std::shared_ptr<Page>& page) {
-		m_pages.push_back(page);
-	}
-
 	Page& PageManager::getPage(const String& identifier) const noexcept {
 		const auto ptr = getPagePtr(identifier);
 		auto& p = *ptr;

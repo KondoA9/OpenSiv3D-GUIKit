@@ -1,4 +1,5 @@
 #include <Siv3D.hpp>
+#include <GUIKit/UIComponent.h>
 
 namespace s3d::gui {
 	class Page;
@@ -18,6 +19,8 @@ namespace s3d::gui {
 
 		Array<std::shared_ptr<Page>> m_pages;
 		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
+
+		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
 		double m_pageTransitionRate = 1.0;
 
@@ -42,9 +45,15 @@ namespace s3d::gui {
 
 		void draw();
 
-		void appendPage(const std::shared_ptr<Page>& page);
-
 		void switchPage(const String& identifier);
+
+		void appendPage(const std::shared_ptr<Page>& page) {
+			m_pages.push_back(page);
+		}
+
+		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+			m_isolatedComponents.push_back(component);
+		}
 
 		void setPageTransition(PageTransition transition) {
 			m_pageTransition = transition;

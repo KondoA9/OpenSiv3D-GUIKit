@@ -46,13 +46,6 @@ void GUIKitCore::updateGUIKit() {
 	// Update pages
 	m_pageManager->update();
 
-	for (auto& component : m_isolatedComponents) {
-		if (component->updatable()) {
-			component->updateMouseIntersection();
-			component->updateInputEvents();
-		}
-	}
-
 	UIComponent::CallInputEvents();
 
 	updateMainThreadEvents();
@@ -66,13 +59,6 @@ void GUIKitCore::updateGUIKit() {
 
 	// Draw pages, components and events
 	m_pageManager->draw();
-
-	// Draw isolated components
-	for (auto& component : m_isolatedComponents) {
-		if (component->drawable()) {
-			component->draw();
-		}
-	}
 
 	// Additional drawing events
 	for (auto& f : m_drawingEvents) {

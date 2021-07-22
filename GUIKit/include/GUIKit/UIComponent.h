@@ -11,6 +11,7 @@ namespace s3d::gui {
 	class GUIKitCore;
 	class UIView;
 	class GUIFactory;
+	class PageManager;
 
 	GUICreateInputEvent(UnFocused);
 	GUICreateInputEvent(Focused);
@@ -47,6 +48,7 @@ namespace s3d::gui {
 		friend GUIKitCore;
 		friend GUIFactory;
 		friend UIView;
+		friend PageManager;
 
 	public:
 		ColorTheme backgroundColor, frameColor;
