@@ -32,7 +32,7 @@ void GUIKitCore::start() {
 void GUIKitCore::run() {
 	while (System::Update()) {
 		if (System::GetUserActions() == UserAction::CloseButtonClicked) {
-			m_pageManager->setPageTransition(PageTransition::Termination);
+			m_pageManager->terminate();
 		}
 
 		updateGUIKit();
@@ -90,5 +90,5 @@ void GUIKitCore::updateTimeouts() {
 }
 
 void GUIKitCore::terminate() {
-	m_pageManager->setPageTransition(PageTransition::Termination);
+	m_pageManager->terminate();
 }

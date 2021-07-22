@@ -20,24 +20,24 @@ namespace s3d::gui {
 	}
 
 	Page& PageManager::getPage(const String& identifier) const noexcept {
-		const auto ptr = getPagePtr(identifier);
+		const auto& ptr = getPagePtr(identifier);
 		auto& p = *ptr;
 		return p;
 	}
 
-	std::shared_ptr<Page> PageManager::getPagePtr(const String& identifier) const {
+#pragma warning(disable: 4715)
+	const std::shared_ptr<Page>& PageManager::getPagePtr(const String& identifier) const {
 		for (const auto& page : m_pages) {
 			if (page->identifier() == identifier) {
 				return page;
 			}
 		}
 
-		Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
+		Logger << U"Error(PageManager): A page identified as {} does not exist."_fmt(identifier);
 
 		assert(false);
-
-		return nullptr;
 	}
+#pragma warning(default: 4715)
 
 	void PageManager::switchPage(const String& identifier) {
 		if (const auto& page = getPagePtr(identifier); m_pageTransition == PageTransition::Stable && page) {
@@ -46,7 +46,7 @@ namespace s3d::gui {
 			m_pageTransition = PageTransition::StartChanging;
 		}
 		else {
-			Logger << U"Error(GUIKitCore): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);
+			Logger << U"Error(PageManager): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);
 		}
 	}
 }

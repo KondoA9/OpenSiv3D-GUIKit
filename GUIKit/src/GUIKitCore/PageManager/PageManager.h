@@ -4,16 +4,16 @@
 namespace s3d::gui {
 	class Page;
 
-	enum class PageTransition {
-		StartUp,
-		Stable,
-		StartChanging,
-		Changing,
-		JustChanged,
-		Termination
-	};
-
 	class PageManager final {
+		enum class PageTransition {
+			StartUp,
+			Stable,
+			StartChanging,
+			Changing,
+			JustChanged,
+			Termination
+		};
+
 	private:
 		PageTransition m_pageTransition = PageTransition::StartUp;
 
@@ -31,7 +31,7 @@ namespace s3d::gui {
 
 		PageManager(const PageManager&) = delete;
 
-		PageManager(PageManager&&) = default;
+		PageManager(PageManager&&) = delete;
 
 		PageManager& operator =(const PageManager&) = delete;
 
@@ -55,12 +55,12 @@ namespace s3d::gui {
 			m_isolatedComponents.push_back(component);
 		}
 
-		void setPageTransition(PageTransition transition) {
-			m_pageTransition = transition;
+		void terminate() {
+			m_pageTransition = PageTransition::Termination;
 		}
 
 	private:
-		std::shared_ptr<Page> getPagePtr(const String& identifier) const;
+		const std::shared_ptr<Page>& getPagePtr(const String& identifier) const;
 
 		// Return true until the start up page appeared.
 		bool updateOnStartUp();
