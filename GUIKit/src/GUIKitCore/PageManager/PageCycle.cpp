@@ -177,6 +177,8 @@ namespace s3d::gui {
 			m_drawingPage->m_view.updateMouseIntersection();
 			m_drawingPage->m_view.updateInputEvents();
 		}
+
+		UIComponent::CallInputEvents();
 	}
 
 	void PageManager::updateLayers() {

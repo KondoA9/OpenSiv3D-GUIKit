@@ -19,7 +19,8 @@ namespace s3d::gui {
 
 		PageManager* m_pageManager;
 
-		bool m_terminationPrevented = false;
+		std::atomic<bool> m_terminationPrevented = false;
+
 		bool m_animateColor = false;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;

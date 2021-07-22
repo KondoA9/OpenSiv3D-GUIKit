@@ -46,12 +46,6 @@ void GUIKitCore::updateGUIKit() {
 	// Update pages
 	m_pageManager->update();
 
-	UIComponent::CallInputEvents();
-
-	updateMainThreadEvents();
-
-	updateTimeouts();
-
 	// Update color theme
 	if (m_animateColor) {
 		m_animateColor = animateColor();
@@ -65,6 +59,11 @@ void GUIKitCore::updateGUIKit() {
 		f();
 	}
 	m_drawingEvents.release();
+
+	// Update
+	updateMainThreadEvents();
+
+	updateTimeouts();
 }
 
 void GUIKitCore::updateMainThreadEvents() {
