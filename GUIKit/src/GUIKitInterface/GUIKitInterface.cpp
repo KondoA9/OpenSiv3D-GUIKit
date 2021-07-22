@@ -29,6 +29,10 @@ namespace s3d::gui::GUIKit {
 		GUIKitCore::Instance().continueTermination();
 	}
 
+	bool IsTerminationPrevented() {
+		return GUIKitCore::Instance().isTerminationPrevented();
+	}
+
 	void InsertProcessToMainThread(const std::function<void()>& func) {
 		GUIKitCore::Instance().insertProcessToMainThread(func);
 	}

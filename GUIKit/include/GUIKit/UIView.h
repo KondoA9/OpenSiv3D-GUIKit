@@ -6,9 +6,11 @@
 
 namespace s3d::gui {
 	class GUIKitCore;
+	class PageManager;
 
 	class UIView : public UIRect {
 		friend GUIKitCore;
+		friend PageManager;
 
 	private:
 		Array<std::shared_ptr<UIComponent>> m_components;

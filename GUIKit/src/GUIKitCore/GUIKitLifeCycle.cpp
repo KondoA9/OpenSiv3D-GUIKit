@@ -2,9 +2,13 @@
 #include <GUIKit/WindowManager.h>
 #include <GUIKit/UnifiedFont.h>
 
+#include "PageManager/PageManager.h"
+
 using namespace s3d::gui;
 
 void GUIKitCore::initialize() {
+	m_pageManager = new PageManager();
+
 	UnifiedFont::Initialize();
 
 	WindowManager::Initialize();
@@ -15,13 +19,14 @@ void GUIKitCore::initialize() {
 }
 
 void GUIKitCore::start() {
-	if (m_pages.size() > 0) {
-		m_forwardPage = m_pages[0];
+	if (m_pageManager->initialize()) {
 		run();
 	}
 	else {
 		Logger << U"Error(GUIKitCore): No pages are registered.";
 	}
+
+	delete m_pageManager;
 }
 
 void GUIKitCore::run() {
@@ -30,12 +35,11 @@ void GUIKitCore::run() {
 		RasterizerState rasterizer = RasterizerState::Default2D;
 		rasterizer.scissorEnable = true;
 		Graphics2D::Internal::SetRasterizerState(rasterizer);
-		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
 	}
 
 	while (System::Update()) {
 		if (System::GetUserActions() == UserAction::CloseButtonClicked) {
-			m_pageTransition = PageTransition::Termination;
+			m_pageManager->setPageTransition(PageTransition::Termination);
 		}
 
 		updateGUIKit();
@@ -45,194 +49,9 @@ void GUIKitCore::run() {
 void GUIKitCore::updateGUIKit() {
 	// Update window state
 	WindowManager::Update();
-	if (WindowManager::DidResized()) {
-		// Update scissor rect
-		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
-	}
 
 	// Update pages
-	update();
-
-	// Update color theme
-	if (m_animateColor) {
-		m_animateColor = animateColor();
-	}
-
-	// Draw pages, components and events
-	draw();
-}
-
-void GUIKitCore::update() {
-	switch (m_pageTransition)
-	{
-	case PageTransition::StartUp:
-		if (!updateOnStartUp()) {
-			m_pageTransition = PageTransition::Stable;
-		}
-		break;
-
-	case PageTransition::Stable:
-		updateOnStable();
-		break;
-
-	case PageTransition::StartChanging:
-		preparePageChanging();
-		m_pageTransition = PageTransition::Changing;
-		break;
-
-	case PageTransition::Changing:
-		if (!updateOnPageChanging()) {
-			m_pageTransition = PageTransition::JustChanged;
-		}
-		break;
-
-	case PageTransition::JustChanged:
-		finalizePageChanging();
-		m_pageTransition = PageTransition::Stable;
-		break;
-
-	case PageTransition::Termination:
-		updateOnTermination();
-		break;
-
-	default:
-		break;
-	}
-
-	updateMainThreadEvents();
-
-	updateTimeouts();
-}
-
-void GUIKitCore::draw() {
-	switch (m_pageTransition)
-	{
-	case s3d::gui::GUIKitCore::PageTransition::Changing:
-		// Draw previous and next page
-		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-		m_forwardPage->m_view.draw();
-		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
-		m_backwardPage->m_view.draw();
-		break;
-
-	case s3d::gui::GUIKitCore::PageTransition::JustChanged:
-		// Initialize ColorMultipiler
-		Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-		m_forwardPage->m_view.draw();
-		break;
-
-	default:
-		// Draw current page
-		m_drawingPage->m_view.draw();
-
-		// Draw isolated components
-		for (auto& component : m_isolatedComponents) {
-			if (component->drawable()) {
-				component->draw();
-			}
-		}
-		break;
-	}
-
-	// Additional drawing events
-	for (auto& f : m_drawingEvents) {
-		f();
-	}
-	m_drawingEvents.release();
-}
-
-bool GUIKitCore::updateOnStartUp() {
-	static bool appeared = false;
-	if (!appeared) {
-		m_forwardPage->onLoaded();
-		m_forwardPage->m_loaded = true;
-		m_forwardPage->onBeforeAppeared();
-		m_drawingPage = m_forwardPage;
-		appeared = true;
-	}
-	else {
-		m_forwardPage->onAfterAppeared();
-		m_forwardPage.reset();
-		return false;
-	}
-	return true;
-}
-
-bool GUIKitCore::updateOnPageChanging() {
-	m_pageTransitionRate -= 5.0 * Scene::DeltaTime();
-
-	// The page changed
-	if (m_pageTransitionRate < 0.0) {
-		m_pageTransitionRate = 1.0;
-		return false;
-	}
-
-	return true;
-}
-
-void GUIKitCore::updateOnTermination() {
-	static bool once = true;
-
-	if (once) {
-		for (auto& page : m_pages) {
-			page->onBeforeAppTerminated();
-		}
-
-		once = false;
-	}
-
-	if (m_terminationPrevented) {
-		updateLayers();
-	}
-	else {
-		m_drawingPage->onBeforeDisappeared();
-		for (auto& page : m_pages) {
-			page->onAppTerminated();
-		}
-
-		System::Exit();
-	}
-}
-
-void GUIKitCore::preparePageChanging() {
-	// Load a page once
-	if (!m_forwardPage->m_loaded) {
-		m_forwardPage->onLoaded();
-		m_forwardPage->m_loaded = true;
-	}
-
-	m_forwardPage->onBeforeAppeared();
-	m_backwardPage->onBeforeDisappeared();
-
-	m_forwardPage->m_view.updateLayer(m_windowScissorRect);
-	m_forwardPage->m_view.updateLayerInvert(m_windowScissorRect);
-
-	m_forwardPage->onLayoutCompleted();
-}
-
-void GUIKitCore::finalizePageChanging() {
-	m_forwardPage->onAfterAppeared();
-	m_backwardPage->onAfterDisappeared();
-
-	m_drawingPage = m_forwardPage;
-
-	m_forwardPage.reset();
-	m_backwardPage.reset();
-}
-
-void GUIKitCore::updateOnStable() {
-	assert(m_drawingPage);
-
-	updateInputEvents();
-
-	updateLayers();
-}
-
-void GUIKitCore::updateInputEvents() {
-	if (m_drawingPage->m_view.updatable()) {
-		m_drawingPage->m_view.updateMouseIntersection();
-		m_drawingPage->m_view.updateInputEvents();
-	}
+	m_pageManager->update();
 
 	for (auto& component : m_isolatedComponents) {
 		if (component->updatable()) {
@@ -242,30 +61,31 @@ void GUIKitCore::updateInputEvents() {
 	}
 
 	UIComponent::CallInputEvents();
-}
 
-void GUIKitCore::updateLayers() {
-	if (WindowManager::DidResized()) {
-		// Update layer
-		m_drawingPage->m_view.updateLayer(m_windowScissorRect);
-		m_drawingPage->m_view.updateLayerInvert(m_windowScissorRect);
+	updateMainThreadEvents();
 
-		// Update isolated components
-		for (auto& component : m_isolatedComponents) {
-			component->updateLayer(m_windowScissorRect);
-		}
+	updateTimeouts();
 
-		// Call window resized event
-		m_drawingPage->onWindowResized();
+	// Update color theme
+	if (m_animateColor) {
+		m_animateColor = animateColor();
 	}
-	else {
-		m_drawingPage->m_view.updateLayerIfNeeded(m_windowScissorRect);
 
-		// Update isolated components
-		for (auto& component : m_isolatedComponents) {
-			component->updateLayerIfNeeded(m_windowScissorRect);
+	// Draw pages, components and events
+	m_pageManager->draw();
+
+	// Draw isolated components
+	for (auto& component : m_isolatedComponents) {
+		if (component->drawable()) {
+			component->draw();
 		}
 	}
+
+	// Additional drawing events
+	for (auto& f : m_drawingEvents) {
+		f();
+	}
+	m_drawingEvents.release();
 }
 
 void GUIKitCore::updateMainThreadEvents() {
@@ -289,4 +109,8 @@ void GUIKitCore::updateTimeouts() {
 	if (!alive) {
 		m_timeouts.release();
 	}
+}
+
+void GUIKitCore::terminate() {
+	m_pageManager->setPageTransition(PageTransition::Termination);
 }

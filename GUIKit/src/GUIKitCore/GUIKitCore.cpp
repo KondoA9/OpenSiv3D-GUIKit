@@ -1,19 +1,13 @@
 #include <GUIKit/GUIKitCore.h>
 #include <GUIKit/Page.h>
+#include "PageManager/PageManager.h"
 
 #include <thread>
 
 using namespace s3d::gui;
 
 void GUIKitCore::switchPage(const String& identifier) {
-	if (const auto& page = getPagePtr<Page>(identifier); m_pageTransition == PageTransition::Stable && page) {
-		m_forwardPage = page;
-		m_backwardPage = m_drawingPage;
-		m_pageTransition = PageTransition::StartChanging;
-	}
-	else {
-		Logger << U"Error(GUIKitCore): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);
-	}
+	m_pageManager->switchPage(identifier);
 }
 
 void GUIKitCore::setColorMode(ColorMode mode) {
@@ -84,4 +78,12 @@ bool GUIKitCore::isTimeoutAlive(size_t id) {
 		}
 	}
 	return false;
+}
+
+Page& GUIKitCore::getPage(const String& identifier) const noexcept {
+	return m_pageManager->getPage(identifier);
+}
+
+void GUIKitCore::appendPage(const std::shared_ptr<Page>& page) {
+	m_pageManager->appendPage(page);
 }

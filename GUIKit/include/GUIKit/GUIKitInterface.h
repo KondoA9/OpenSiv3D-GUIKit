@@ -16,6 +16,8 @@ namespace s3d::gui::GUIKit {
 
 	void ContinueTermination();
 
+	bool IsTerminationPrevented();
+
 	/// <summary>
 	/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
 	/// </summary>

@@ -10,32 +10,20 @@
 #include <mutex>
 
 namespace s3d::gui {
+	class PageManager;
+
 	enum class ColorMode;
 
 	class GUIKitCore final {
-		enum class PageTransition {
-			StartUp,
-			Stable,
-			StartChanging,
-			Changing,
-			JustChanged,
-			Termination
-		};
-
 	private:
 		std::mutex m_mainThreadInserterMutex;
 
-		Array<std::shared_ptr<Page>> m_pages;
-		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
+		PageManager* m_pageManager;
 
 		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
-		PageTransition m_pageTransition = PageTransition::StartUp;
-
 		bool m_terminationPrevented = false;
 		bool m_animateColor = false;
-		double m_pageTransitionRate = 1.0;
-		Rect m_windowScissorRect;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;
@@ -54,6 +42,10 @@ namespace s3d::gui {
 			return instance;
 		}
 
+		bool isTerminationPrevented() const {
+			return m_terminationPrevented;
+		}
+
 		void start();
 
 		void switchPage(const String& identifier);
@@ -62,9 +54,7 @@ namespace s3d::gui {
 
 		void toggleColorMode();
 
-		void terminate() {
-			m_pageTransition = PageTransition::Termination;
-		}
+		void terminate();
 
 		void preventTermination() {
 			m_terminationPrevented = true;
@@ -92,12 +82,12 @@ namespace s3d::gui {
 
 		template<class T>
 		T& getPage(const String& identifier) const noexcept {
-			return *getPagePtr<T>(identifier).get();
+			return getPage(identifier);
 		}
 
 		template<class T>
 		void appendPage(const String& identifier) {
-			m_pages.push_back(std::shared_ptr<T>(new T(identifier)));
+			appendPage(std::shared_ptr<T>(new T(identifier)));
 		}
 
 		template<class T>
@@ -112,53 +102,20 @@ namespace s3d::gui {
 
 		~GUIKitCore() = default;
 
+		Page& getPage(const String& identifier) const noexcept;
+
+		void appendPage(const std::shared_ptr<Page>& page);
+
 		void initialize();
 
 		void run();
 
 		void updateGUIKit();
 
-		// Return true until the start up page appeared.
-		bool updateOnStartUp();
-
-		// Return true until the page changed.
-		bool updateOnPageChanging();
-
-		void updateOnStable();
-
-		void preparePageChanging();
-
-		void finalizePageChanging();
-
-		void updateOnTermination();
-
-		void update();
-
-		void draw();
-
-		void updateInputEvents();
-
-		void updateLayers();
-
 		void updateMainThreadEvents();
 
 		void updateTimeouts();
 
 		bool animateColor();
-
-		template<class T>
-		std::shared_ptr<T> getPagePtr(const String& identifier) const {
-			for (const auto& page : m_pages) {
-				if (page->m_identifier == identifier) {
-					return std::dynamic_pointer_cast<T>(page);
-				}
-			}
-
-			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
-
-			assert(false);
-
-			return nullptr;
-		}
 	};
 }

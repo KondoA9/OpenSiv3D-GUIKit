@@ -7,9 +7,11 @@
 
 namespace s3d::gui {
 	class GUIKitCore;
+	class PageManager;
 
 	class Page {
 		friend GUIKitCore;
+		friend PageManager;
 
 	private:
 		const String m_identifier;
