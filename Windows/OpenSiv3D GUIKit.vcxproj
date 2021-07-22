@@ -15,6 +15,9 @@
     <ClCompile Include="..\GUIKit\src\GUIFactory\GUIFactory.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp" />
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageCycle.cpp" />
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageManager.cpp" />
+    <ClCompile Include="..\GUIKit\src\GUIKitInterface\GUIKitInterface.cpp" />
     <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\GUIKit\src\Page\Page.cpp" />
     <ClCompile Include="..\GUIKit\src\PixelUnit\PixelUnit.cpp" />
@@ -46,6 +49,7 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIFactory.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitCore.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\GUIKitInterface.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Imaging.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\InputEvent.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Layer.h" />
@@ -70,6 +74,7 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UnifiedFont.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\WindowManager.h" />
+    <ClInclude Include="..\GUIKit\src\GUIKitCore\PageManager\PageManager.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>

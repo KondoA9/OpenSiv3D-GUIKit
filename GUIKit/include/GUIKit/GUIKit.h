@@ -1,18 +1,13 @@
 #pragma once
 
-// PixelUnit
 #include "PixelUnit.h"
 
-// Util
 #include "Imaging.h"
 
-// Color
 #include "DynamicColor.h"
 
-// Event
 #include "MouseEvent.h"
 
-// UserInterface
 #include "UIView.h"
 #include "UIVStackView.h"
 #include "UIRect.h"
@@ -27,11 +22,9 @@
 #include "UIInputField.h"
 #include "UICheckBox.h"
 
-// Page
 #include "Page.h"
 
-// GUIKitCore
-#include "GUIKitCore.h"
+#include "GUIKitInterface.h"
 
 #include "GUIFactory.h"
 

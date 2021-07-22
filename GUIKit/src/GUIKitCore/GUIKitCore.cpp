@@ -1,31 +1,25 @@
 #include <GUIKit/GUIKitCore.h>
 #include <GUIKit/Page.h>
+#include "PageManager/PageManager.h"
 
 #include <thread>
 
 using namespace s3d::gui;
 
-void GUIKit::switchPage(const String& identifier) {
-	if (const auto& page = getPagePtr<Page>(identifier); m_pageTransition == PageTransition::Stable && page) {
-		m_forwardPage = page;
-		m_backwardPage = m_drawingPage;
-		m_pageTransition = PageTransition::StartChanging;
-	}
-	else {
-		Logger << U"Error(GUIKitCore): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);
-	}
+void GUIKitCore::switchPage(const String& identifier) {
+	m_pageManager->switchPage(identifier);
 }
 
-void GUIKit::setColorMode(ColorMode mode) {
+void GUIKitCore::setColorMode(ColorMode mode) {
 	m_animateColor = true;
 	ColorTheme::SetColorMode(mode);
 }
 
-void GUIKit::toggleColorMode() {
+void GUIKitCore::toggleColorMode() {
 	setColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
 }
 
-bool GUIKit::animateColor() {
+bool GUIKitCore::animateColor() {
 	static double t = 0.0;
 	t += 5.0 * Scene::DeltaTime();
 
@@ -39,12 +33,12 @@ bool GUIKit::animateColor() {
 	return true;
 }
 
-void GUIKit::insertProcessToMainThread(const std::function<void()>& func) {
+void GUIKitCore::insertProcessToMainThread(const std::function<void()>& func) {
 	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 	m_eventsRequestedToRunInMainThread.push_back(func);
 }
 
-void GUIKit::insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
+void GUIKitCore::insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
 	std::thread thread([this, func, completion]() {
 		func();
 		if (completion) {
@@ -54,12 +48,12 @@ void GUIKit::insertAsyncProcess(const std::function<void()>& func, const std::fu
 	thread.detach();
 }
 
-size_t GUIKit::setTimeout(const std::function<void()>& func, double ms, bool threading) {
+size_t GUIKitCore::setTimeout(const std::function<void()>& func, double ms, bool threading) {
 	m_timeouts.push_back(Timeout(func, ms, threading));
 	return m_timeouts[m_timeouts.size() - 1].id();
 }
 
-bool GUIKit::stopTimeout(size_t id) {
+bool GUIKitCore::stopTimeout(size_t id) {
 	for (auto& timeout : m_timeouts) {
 		if (timeout.id() == id) {
 			return timeout.stop();
@@ -68,7 +62,7 @@ bool GUIKit::stopTimeout(size_t id) {
 	return false;
 }
 
-bool GUIKit::restartTimeout(size_t id) {
+bool GUIKitCore::restartTimeout(size_t id) {
 	for (auto& timeout : m_timeouts) {
 		if (timeout.id() == id) {
 			return timeout.restart();
@@ -77,11 +71,23 @@ bool GUIKit::restartTimeout(size_t id) {
 	return false;
 }
 
-bool GUIKit::isTimeoutAlive(size_t id) {
+bool GUIKitCore::isTimeoutAlive(size_t id) {
 	for (auto& timeout : m_timeouts) {
 		if (timeout.id() == id) {
 			return timeout.isAlive();
 		}
 	}
 	return false;
+}
+
+Page& GUIKitCore::getPage(const String& identifier) const noexcept {
+	return m_pageManager->getPage(identifier);
+}
+
+void GUIKitCore::appendPage(const std::shared_ptr<Page>& page) {
+	m_pageManager->appendPage(page);
+}
+
+void GUIKitCore::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+	m_pageManager->appendIsolatedComponent(component);
 }

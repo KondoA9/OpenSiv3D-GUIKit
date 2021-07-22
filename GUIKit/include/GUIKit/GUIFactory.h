@@ -5,17 +5,17 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKit;
+	class GUIKitCore;
 	class UIView;
 
 	class GUIFactory {
-		friend GUIKit;
+		friend GUIKitCore;
 		friend UIComponent;
 		friend UIView;
 
 	private:
 		static size_t m_Id, m_PreviousId;
-		static GUIFactory instance;
+		static GUIFactory m_Instance;
 
 		size_t m_releaseCounter = 0;
 		Array<std::shared_ptr<UIComponent>> m_components;
@@ -25,31 +25,33 @@ namespace s3d::gui {
 
 		GUIFactory(GUIFactory&&) = delete;
 
+		GUIFactory& operator =(const GUIFactory&) = delete;
+
+		GUIFactory& operator =(GUIFactory&&) = delete;
+
 		template<class T>
 		static T& Create() {
-			if (instance.m_releaseCounter++; instance.m_releaseCounter == 100) {
+			if (m_Instance.m_releaseCounter++; m_Instance.m_releaseCounter == 100) {
 				ReleaseInvalidComponents();
 
-				if (instance.m_components.capacity() != instance.m_components.size()) {
-					instance.m_components.shrink_to_fit();
+				if (m_Instance.m_components.capacity() != m_Instance.m_components.size()) {
+					m_Instance.m_components.shrink_to_fit();
 				}
 
-				instance.m_releaseCounter = 0;
+				m_Instance.m_releaseCounter = 0;
 			}
 
 			m_Id++;
 
-			auto component = std::shared_ptr<T>(new T());
-			component->validate();
+			{
+				auto component = std::shared_ptr<T>(new T());
+				component->validate();
 
-			instance.m_components.push_back(component);
+				m_Instance.m_components.push_back(component);
+			}
 
-			return *static_cast<T*>(component.get());
+			return *static_cast<T*>(m_Instance.m_components.back().get());
 		}
-
-		GUIFactory& operator =(const GUIFactory&) = delete;
-
-		GUIFactory& operator =(GUIFactory&&) = delete;
 
 	private:
 		GUIFactory() = default;

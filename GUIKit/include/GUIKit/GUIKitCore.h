@@ -2,48 +2,48 @@
 
 #include "Timeout.h"
 #include "Page.h"
-#include "UIComponent.h"
 #include "GUIFactory.h"
 
 #include <Siv3D.hpp>
 
 #include <mutex>
+#include <atomic>
 
 namespace s3d::gui {
+	class PageManager;
+
 	enum class ColorMode;
 
-	class GUIKit final {
-		enum class PageTransition {
-			StartUp,
-			Stable,
-			StartChanging,
-			Changing,
-			JustChanged,
-			Termination
-		};
-
+	class GUIKitCore final {
 	private:
 		std::mutex m_mainThreadInserterMutex;
 
-		Array<std::shared_ptr<Page>> m_pages;
-		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
+		PageManager* m_pageManager;
 
-		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
+		std::atomic<bool> m_terminationPrevented = false;
 
-		PageTransition m_pageTransition = PageTransition::StartUp;
-
-		bool m_terminationPrevented = false;
 		bool m_animateColor = false;
-		double m_pageTransitionRate = 1.0;
-		Rect m_windowScissorRect;
 
 		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
 		Array<Timeout> m_timeouts;
 
 	public:
-		GUIKit(const GUIKit&) = delete;
+		GUIKitCore(const GUIKitCore&) = delete;
 
-		GUIKit(GUIKit&&) = delete;
+		GUIKitCore(GUIKitCore&&) = delete;
+
+		GUIKitCore& operator=(const GUIKitCore&) = delete;
+
+		GUIKitCore& operator=(GUIKitCore&&) = delete;
+
+		static GUIKitCore& Instance() {
+			static GUIKitCore instance;
+			return instance;
+		}
+
+		bool isTerminationPrevented() const {
+			return m_terminationPrevented;
+		}
 
 		void start();
 
@@ -53,11 +53,8 @@ namespace s3d::gui {
 
 		void toggleColorMode();
 
-		void terminate() {
-			m_pageTransition = PageTransition::Termination;
-		}
+		void terminate();
 
-		// If you call this, you should call continueTermination() to terminate app
 		void preventTermination() {
 			m_terminationPrevented = true;
 		}
@@ -66,27 +63,10 @@ namespace s3d::gui {
 			m_terminationPrevented = false;
 		}
 
-		/// <summary>
-		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
-		/// </summary>
-		/// <param name="func">The process that runs on main thread.</param>
 		void insertProcessToMainThread(const std::function<void()>& func);
 
-		/// <summary>
-		/// Request to run a process asynchronously, and if need, a completion process will runs on main thread.
-		/// 
-		/// </summary>
-		/// <param name="func">The process that runs asynchronously. Do not set a process that changes user interfaces.</param>
-		/// <param name="completion">The process that runs on main thread after func() ended.</param>
 		void insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
-		/// <summary>
-		/// Set an event with timeout. Do not set a process that changes user interfaces.
-		/// </summary>
-		/// <param name="func">A function that runs when timed out.</param>
-		/// <param name="ms">The time to time out.</param>
-		/// <param name="threading">If true, the function runs asynchronously.</param>
-		/// <returns>The ID of the Timeout.</returns>
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 
 		bool stopTimeout(size_t id);
@@ -95,40 +75,37 @@ namespace s3d::gui {
 
 		bool isTimeoutAlive(size_t id);
 
-		static GUIKit& Instance() {
-			static GUIKit instance;
-			return instance;
-		}
-
 		void addDrawingEvent(const std::function<void()>& func) {
 			m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
 		T& getPage(const String& identifier) const noexcept {
-			return *getPagePtr<T>(identifier).get();
+			return static_cast<T&>(getPage(identifier));
 		}
 
 		template<class T>
 		void appendPage(const String& identifier) {
-			m_pages.push_back(std::shared_ptr<T>(new T(identifier)));
+			appendPage(std::shared_ptr<T>(new T(identifier)));
 		}
 
 		template<class T>
 		void appendIsolatedComponent(const T& component) {
-			m_isolatedComponents.emplace_back(std::move(GUIFactory::GetComponent(component.id())));
+			appendIsolatedComponent(GUIFactory::GetComponent(component.id()));
 		}
 
-		GUIKit& operator=(const GUIKit&) = delete;
-
-		GUIKit& operator=(GUIKit&&) = delete;
-
 	private:
-		GUIKit() {
+		GUIKitCore() {
 			initialize();
 		}
 
-		~GUIKit() {}
+		~GUIKitCore() = default;
+
+		Page& getPage(const String& identifier) const noexcept;
+
+		void appendPage(const std::shared_ptr<Page>& page);
+
+		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
 		void initialize();
 
@@ -136,47 +113,10 @@ namespace s3d::gui {
 
 		void updateGUIKit();
 
-		// Return true until the start up page appeared.
-		bool updateOnStartUp();
-
-		// Return true until the page changed.
-		bool updateOnPageChanging();
-
-		void updateOnStable();
-
-		void preparePageChanging();
-
-		void finalizePageChanging();
-
-		void updateOnTermination();
-
-		void update();
-
-		void draw();
-
-		void updateInputEvents();
-
-		void updateLayers();
-
 		void updateMainThreadEvents();
 
 		void updateTimeouts();
 
 		bool animateColor();
-
-		template<class T>
-		std::shared_ptr<T> getPagePtr(const String& identifier) const {
-			for (const auto& page : m_pages) {
-				if (page->m_identifier == identifier) {
-					return std::dynamic_pointer_cast<T>(page);
-				}
-			}
-
-			Logger << U"Error(GUIKitCore): A page identified as {} does not exist."_fmt(identifier);
-
-			assert(false);
-
-			return nullptr;
-		}
 	};
 }
