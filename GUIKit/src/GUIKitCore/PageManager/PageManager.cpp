@@ -12,6 +12,15 @@ namespace s3d::gui {
 		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
 	}
 
+	bool PageManager::initialize() {
+		if (m_pages) {
+			m_forwardPage = m_pages[0];
+			return true;
+		}
+
+		return false;
+	}
+
 	void PageManager::update() {
 		if (WindowManager::DidResized()) {
 			// Update scissor rect
@@ -53,6 +62,47 @@ namespace s3d::gui {
 		default:
 			break;
 		}
+	}
+
+	void PageManager::draw() {
+		switch (m_pageTransition)
+		{
+		case PageTransition::Changing:
+			// Draw previous and next page
+			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
+			m_forwardPage->m_view.draw();
+			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
+			m_backwardPage->m_view.draw();
+			break;
+
+		case PageTransition::JustChanged:
+			// Initialize ColorMultipiler
+			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
+			m_forwardPage->m_view.draw();
+			break;
+
+		default:
+			// Draw current page
+			m_drawingPage->m_view.draw();
+			break;
+		}
+	}
+
+	bool PageManager::updateOnStartUp() {
+		static bool appeared = false;
+		if (!appeared) {
+			m_forwardPage->onLoaded();
+			m_forwardPage->m_loaded = true;
+			m_forwardPage->onBeforeAppeared();
+			m_drawingPage = m_forwardPage;
+			appeared = true;
+		}
+		else {
+			m_forwardPage->onAfterAppeared();
+			m_forwardPage.reset();
+			return false;
+		}
+		return true;
 	}
 
 	bool PageManager::updateOnPageChanging() {
@@ -154,67 +204,6 @@ namespace s3d::gui {
 				component->updateLayerIfNeeded(m_windowScissorRect);
 			}*/
 		}
-	}
-
-
-
-
-
-
-
-
-
-
-
-
-	bool PageManager::initialize() {
-		if (m_pages) {
-			m_forwardPage = m_pages[0];
-			return true;
-		}
-
-		return false;
-	}
-
-	void PageManager::draw() {
-		switch (m_pageTransition)
-		{
-		case PageTransition::Changing:
-			// Draw previous and next page
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-			m_forwardPage->m_view.draw();
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
-			m_backwardPage->m_view.draw();
-			break;
-
-		case PageTransition::JustChanged:
-			// Initialize ColorMultipiler
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-			m_forwardPage->m_view.draw();
-			break;
-
-		default:
-			// Draw current page
-			m_drawingPage->m_view.draw();
-			break;
-		}
-	}
-
-	bool PageManager::updateOnStartUp() {
-		static bool appeared = false;
-		if (!appeared) {
-			m_forwardPage->onLoaded();
-			m_forwardPage->m_loaded = true;
-			m_forwardPage->onBeforeAppeared();
-			m_drawingPage = m_forwardPage;
-			appeared = true;
-		}
-		else {
-			m_forwardPage->onAfterAppeared();
-			m_forwardPage.reset();
-			return false;
-		}
-		return true;
 	}
 
 	void PageManager::appendPage(const std::shared_ptr<Page>& page) {

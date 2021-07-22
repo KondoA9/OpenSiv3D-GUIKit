@@ -26,25 +26,29 @@ namespace s3d::gui {
 	public:
 		PageManager();
 
+		PageManager(const PageManager&) = delete;
+
+		PageManager(PageManager&&) = default;
+
+		PageManager& operator =(const PageManager&) = delete;
+
+		PageManager& operator =(PageManager&&) = delete;
+
 		Page& getPage(const String& identifier) const noexcept;
 
 		bool initialize();
-
-		void setPageTransition(PageTransition transition) {
-			m_pageTransition = transition;
-		}
 
 		void update();
 
 		void draw();
 
-		void updateInputEvents();
-
-		void updateLayers();
-
 		void appendPage(const std::shared_ptr<Page>& page);
 
 		void switchPage(const String& identifier);
+
+		void setPageTransition(PageTransition transition) {
+			m_pageTransition = transition;
+		}
 
 	private:
 		std::shared_ptr<Page> getPagePtr(const String& identifier) const;
@@ -62,5 +66,9 @@ namespace s3d::gui {
 		void finalizePageChanging();
 
 		void updateOnTermination();
+
+		void updateInputEvents();
+
+		void updateLayers();
 	};
 }
