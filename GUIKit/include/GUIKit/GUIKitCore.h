@@ -7,6 +7,7 @@
 #include <Siv3D.hpp>
 
 #include <mutex>
+#include <atomic>
 
 namespace s3d::gui {
 	class PageManager;
