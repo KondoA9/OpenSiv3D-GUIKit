@@ -15,7 +15,7 @@ namespace s3d::gui {
 		Point m_pixel, m_prePixel;
 
 	public:
-		UIImageView() noexcept :
+		explicit UIImageView() noexcept :
 			UIRect(DynamicColor::Background)
 		{}
 

@@ -16,7 +16,7 @@ namespace s3d::gui {
 		Font m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
 
 	public:
-		UIButton(
+		explicit UIButton(
 			const ColorTheme& _defaultColor = DynamicColor::Background,
 			const ColorTheme& _textColor = DynamicColor::Text,
 			const ColorTheme& _hoveredColor = DynamicColor::BackgroundSecondary) noexcept :

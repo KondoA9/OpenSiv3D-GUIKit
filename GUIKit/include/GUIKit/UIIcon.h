@@ -15,7 +15,7 @@ namespace s3d::gui {
 		double m_angle = 0.0;
 
 	public:
-		UIIcon(const ColorTheme& _backgroundColor = DynamicColor::Clear, const ColorTheme& _iconColor = DynamicColor::Text) noexcept :
+		explicit UIIcon(const ColorTheme& _backgroundColor = DynamicColor::Clear, const ColorTheme& _iconColor = DynamicColor::Text) noexcept :
 			UIRect(_backgroundColor),
 			iconColor(_iconColor)
 		{}
