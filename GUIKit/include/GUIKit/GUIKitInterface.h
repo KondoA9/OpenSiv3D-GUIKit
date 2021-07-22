@@ -1,8 +1,6 @@
 #include "GUIKitCore.h"
 
 namespace s3d::gui::GUIKit {
-	GUIKitCore& GUIKit();
-
 	void Start();
 
 	void SwitchPage(const String& identifier);

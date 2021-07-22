@@ -1,18 +1,13 @@
 #pragma once
 
-// PixelUnit
 #include "PixelUnit.h"
 
-// Util
 #include "Imaging.h"
 
-// Color
 #include "DynamicColor.h"
 
-// Event
 #include "MouseEvent.h"
 
-// UserInterface
 #include "UIView.h"
 #include "UIVStackView.h"
 #include "UIRect.h"
@@ -27,13 +22,13 @@
 #include "UIInputField.h"
 #include "UICheckBox.h"
 
-// Page
 #include "Page.h"
 
-// GUIKit
 #include "GUIKitInterface.h"
 
 #include "GUIFactory.h"
 
 // Siv3D v0.4.3
 #include <Siv3D.hpp>
+
+using namespace s3d::gui;

@@ -92,7 +92,7 @@ public:
 
 PagingTest pagingTest;
 
-class TestPage1 : public gui::Page {
+class TestPage1 : public Page {
 public:
 
 protected:
@@ -101,53 +101,53 @@ protected:
 	void onLoaded() override {
 		// Toggle color mode test
 		// This test will ended within 5sec
-		gui::GUIKit::SetTimeout([] {
-			gui::GUIKit::SetColorMode(gui::ColorMode::Light);
-			gui::GUIKit::ToggleColorMode();
+		GUIKit::SetTimeout([] {
+			GUIKit::SetColorMode(ColorMode::Light);
+			GUIKit::ToggleColorMode();
 			}, 2500, false);
 
-		gui::GUIKit::SetTimeout([this] {
+		GUIKit::SetTimeout([this] {
 			Assert(
-				view().backgroundColor == gui::DynamicColor::Background.dark,
+				view().backgroundColor == DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
 			);
 			}, 5000, false);
 
 		// Focus component test
-		auto& focustest = gui::GUIFactory::Create<gui::UIRect>();
+		auto& focustest = GUIFactory::Create<UIRect>();
 		view().appendComponent(focustest);
 		// This test will ended within 10sec
 		{
-			const size_t focusError = gui::GUIKit::SetTimeout([] {
+			const size_t focusError = GUIKit::SetTimeout([] {
 				Assert(false, "Focused the component, but event was not triggered");
 				}, 5000, false);
 
-			gui::GUIKit::SetTimeout([&focustest] {
+			GUIKit::SetTimeout([&focustest] {
 				focustest.focus();
 				Assert(focustest.isFocused(), "Focused a component, but it is not focused");
 				}, 2500, false);
 
-			focustest.addEventListener<gui::Focused>([&focustest, focusError] {
-				gui::GUIKit::StopTimeout(focusError);
+			focustest.addEventListener<Focused>([&focustest, focusError] {
+				GUIKit::StopTimeout(focusError);
 
-				const size_t unfocusError = gui::GUIKit::SetTimeout([] {
+				const size_t unfocusError = GUIKit::SetTimeout([] {
 					Assert(false, "UnFocused the component, but event was not triggered");
 					}, 5000, false);
 
-				gui::GUIKit::SetTimeout([&focustest] {
+				GUIKit::SetTimeout([&focustest] {
 					focustest.unFocus();
 					Assert(!focustest.isFocused(), "UnFocused a component, but it is focused");
 					}, 2500, false);
 
-				focustest.addEventListener<gui::UnFocused>([unfocusError] {
-					gui::GUIKit::StopTimeout(unfocusError);
+				focustest.addEventListener<UnFocused>([unfocusError] {
+					GUIKit::StopTimeout(unfocusError);
 					});
 				});
 		}
 
 		// 15sec later, switch page to TestPage2
-		gui::GUIKit::SetTimeout([] {
-			gui::GUIKit::SwitchPage(U"TestPage2");
+		GUIKit::SetTimeout([] {
+			GUIKit::SwitchPage(U"TestPage2");
 			}, 15000, true);
 
 
@@ -179,25 +179,25 @@ protected:
 	}
 };
 
-class TestPage2 : public gui::Page {
+class TestPage2 : public Page {
 	using Page::Page;
 
 	void onLoaded() override;
 };
 
 void TestPage2::onLoaded() {
-	gui::GUIKit::SetTimeout([] {
-		gui::GUIKit::Terminate();
+	GUIKit::SetTimeout([] {
+		GUIKit::Terminate();
 		}, 10000, true);
 }
 
 void Main() {
 	Window::Resize(1280, 720);
 
-	gui::GUIKit::AppendPage<TestPage1>(U"TestPage1");
-	gui::GUIKit::AppendPage<TestPage2>(U"TestPage2");
+	GUIKit::AppendPage<TestPage1>(U"TestPage1");
+	GUIKit::AppendPage<TestPage2>(U"TestPage2");
 
-	gui::GUIKit::Start();
+	GUIKit::Start();
 
 	pagingTest.validate();
 }
