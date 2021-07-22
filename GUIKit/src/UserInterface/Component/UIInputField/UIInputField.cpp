@@ -57,11 +57,9 @@ void UIInputField::updateInputEvents() {
 			}
 		}
 
-		if (valid) {
+		if (valid && pre != txt) {
 			setText(txt);
-			if (pre != txt) {
-				registerInputEvent(Inputted(this, false));
-			}
+			registerInputEvent(Inputted(this, false));
 		}
 
 		if (KeyEnter.down()) {
