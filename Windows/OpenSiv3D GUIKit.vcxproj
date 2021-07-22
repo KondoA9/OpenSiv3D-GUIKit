@@ -15,6 +15,7 @@
     <ClCompile Include="..\GUIKit\src\GUIFactory\GUIFactory.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp" />
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageCycle.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageManager.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitInterface\GUIKitInterface.cpp" />
     <ClCompile Include="..\GUIKit\src\Imaging\Imaging.cpp" />

@@ -183,6 +183,9 @@
     <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageManager.cpp">
       <Filter>GUIKit\GUIKitCore\PageManager</Filter>
     </ClCompile>
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageCycle.cpp">
+      <Filter>GUIKit\GUIKitCore\PageManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIKit.h">
