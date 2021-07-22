@@ -106,7 +106,9 @@ namespace s3d::gui {
 		}
 
 	private:
-		GUIKitCore() = default;
+		GUIKitCore() {
+			initialize();
+		}
 
 		~GUIKitCore() = default;
 

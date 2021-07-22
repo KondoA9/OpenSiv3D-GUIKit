@@ -174,7 +174,7 @@ class ExplorerPage : public gui::Page {
 		ui_toolbar.setConstraint(gui::LayerDirection::Left);
 		ui_toolbar.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 		ui_toolbar.setToggleColorModeHandler([this] {
-			gui::GUIKit::Instance().toggleColorMode();
+			gui::GUIKit::ToggleColorMode();
 			});
 		ui_toolbar.setFolderOpendHandler([this](const FilePath& path) {
 			setup(path);
@@ -196,7 +196,7 @@ class ExplorerPage : public gui::Page {
 		ui_movePage.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
 		ui_movePage.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 		ui_movePage.addEventListener<gui::MouseEvent::LeftDown>([this] {
-			gui::GUIKit::Instance().switchPage(U"start");
+			gui::GUIKit::SwitchPage(U"start");
 			});
 
 		view().appendComponent(ui_filesView);
@@ -251,7 +251,7 @@ class StartPage : public gui::Page {
 		ui_button.setConstraint(gui::LayerDirection::Left);
 		ui_button.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
 		ui_button.addEventListener<gui::MouseEvent::LeftDown>([this] {
-			gui::GUIKit::Instance().switchPage(U"explorer");
+			gui::GUIKit::SwitchPage(U"explorer");
 			});
 
 		view().appendComponent(ui_title);
@@ -261,11 +261,10 @@ class StartPage : public gui::Page {
 };
 
 void Main() {
-	auto& guikit = gui::GUIKit::Instance();
-
 	Window::Resize(1280, 720);
 
-	guikit.appendPage<StartPage>(U"start");
-	guikit.appendPage<ExplorerPage>(U"explorer");
-	guikit.start();
+	gui::GUIKit::AppendPage<StartPage>(U"start");
+	gui::GUIKit::AppendPage<ExplorerPage>(U"explorer");
+
+	gui::GUIKit::Start();
 }

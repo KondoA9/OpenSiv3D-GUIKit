@@ -5,9 +5,9 @@
 using namespace s3d::gui;
 
 void GUIKitCore::initialize() {
-	WindowManager::Initialize();
-
 	UnifiedFont::Initialize();
+
+	WindowManager::Initialize();
 
 	Scene::SetScaleMode(ScaleMode::ResizeFill);
 
