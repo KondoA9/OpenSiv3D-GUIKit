@@ -30,8 +30,8 @@ include_directories(
 set(SOURCE_FILES
 "../GUIKit/src/GUIKitCore/GUIKitCore.cpp"
 "../GUIKit/src/GUIKitCore/GUIKitLifeCycle.cpp"
-
 "../GUIKit/src/GUIFactory/GUIFactory.cpp"
+"../GUIKit/src/GUIKitInterface/GUIKitInterface.cpp"
 
 "../GUIKit/src/Page/Page.cpp"
 
