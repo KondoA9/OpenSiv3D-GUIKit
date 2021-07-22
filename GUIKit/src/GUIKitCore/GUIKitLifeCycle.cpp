@@ -175,9 +175,7 @@ void GUIKit::updateOnTermination() {
 
 	if (once) {
 		for (auto& page : m_pages) {
-			if (page->didLoaded()) {
-				page->onBeforeAppTerminated();
-			}
+			page->onBeforeAppTerminated();
 		}
 
 		once = false;
@@ -189,9 +187,7 @@ void GUIKit::updateOnTermination() {
 	else {
 		m_drawingPage->onBeforeDisappeared();
 		for (auto& page : m_pages) {
-			if (page->didLoaded()) {
-				page->onAppTerminated();
-			}
+			page->onAppTerminated();
 		}
 
 		System::Exit();

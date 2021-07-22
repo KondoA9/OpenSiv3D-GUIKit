@@ -9,6 +9,11 @@ bool beforeDisappeared = false;
 bool afterDisappeared = false;
 bool terminated = false;
 
+template<class T>
+void LogWithMsg(T* arg, const std::string& msg) {
+	std::cout << "[" << __FILE__ << "] " << typeid(*arg).name() << ": " << msg << std::endl;
+}
+
 class TestPage1 : public gui::Page {
 public:
 
@@ -68,32 +73,42 @@ protected:
 			}, 15000, true);
 
 		loaded = true;
-		std::cout << "[GUIKit Info] Page loaded" << std::endl;
+
+		LogWithMsg(this, "onLoaded");
 	}
 
 	void onBeforeAppeared() override {
 		beforeAppeared = true;
-		std::cout << "[GUIKit Info] Page beforeAppeared" << std::endl;
+
+		LogWithMsg(this, "onBeforeAppeared");
 	}
 
 	void onAfterAppeared() override {
 		afterAppeared = true;
-		std::cout << "[GUIKit Info] Page afterAppeared" << std::endl;
+
+		LogWithMsg(this, "onAfterAppeared");
 	}
 
 	void onBeforeDisappeared() override {
 		beforeDisappeared = true;
-		std::cout << "[GUIKit Info] Page beforeDisappeared" << std::endl;
+
+		LogWithMsg(this, "onBeforeDisappeared");
 	}
 
 	void onAfterDisappeared() override {
 		afterDisappeared = true;
-		std::cout << "[GUIKit Info] Page afterDisappeared" << std::endl;
+
+		LogWithMsg(this, "onAfterDisappeared");
+	}
+
+	void onBeforeAppTerminated() override {
+		LogWithMsg(this, "onAppTerminated");
 	}
 
 	void onAppTerminated() override {
 		terminated = true;
-		std::cout << "[GUIKit Info] Page onAppTerminated" << std::endl;
+
+		LogWithMsg(this, "onAppTerminated");
 	}
 };
 
