@@ -19,7 +19,7 @@ namespace s3d::gui {
 
 		Timeout(const Timeout&) = delete;
 
-		Timeout(Timeout&&) noexcept = default;
+		Timeout(Timeout&&) = default;
 
 		size_t id() const {
 			return m_id;
