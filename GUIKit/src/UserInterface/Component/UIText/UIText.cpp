@@ -4,6 +4,8 @@
 using namespace s3d::gui;
 
 void UIText::updateLayer(const Rect& scissor) {
+	updateDrawableText();
+
 	UIRect::updateLayer(scissor);
 
 	updateDrawableText(true);
@@ -15,35 +17,27 @@ void UIText::draw() {
 	m_drawableText.draw(m_drawableRegion, textColor);
 }
 
-const UIText& UIText::setPadding(double top, double bottom, double left, double right) {
+void UIText::setPadding(double top, double bottom, double left, double right) {
 	paddingTop = top;
 	paddingBottom = bottom;
 	paddingLeft = left;
 	paddingRight = right;
 	updateDrawableText();
-
-	return *this;
 }
 
-const UIText& UIText::setFont(UnifiedFontStyle style) {
+void UIText::setFont(UnifiedFontStyle style) {
 	m_font = UnifiedFont::Get(style);
 	updateDrawableText(true);
-
-	return *this;
 }
 
-const UIText& UIText::setText(const String& text) {
+void UIText::setText(const String& text) {
 	m_text = text;
 	updateDrawableText(true);
-
-	return *this;
 }
 
-const UIText& UIText::setDirection(TextDirection direction) {
+void UIText::setDirection(TextDirection direction) {
 	m_direction = direction;
 	updateDrawableText();
-
-	return *this;
 }
 
 void UIText::updateDrawableText(bool updateField) {
