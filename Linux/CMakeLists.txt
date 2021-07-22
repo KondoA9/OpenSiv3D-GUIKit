@@ -30,7 +30,10 @@ include_directories(
 set(SOURCE_FILES
 "../GUIKit/src/GUIKitCore/GUIKitCore.cpp"
 "../GUIKit/src/GUIKitCore/GUIKitLifeCycle.cpp"
+"../GUIKit/src/GUIKitCore/PageManager/PageManager.cpp"
+
 "../GUIKit/src/GUIFactory/GUIFactory.cpp"
+
 "../GUIKit/src/GUIKitInterface/GUIKitInterface.cpp"
 
 "../GUIKit/src/Page/Page.cpp"
@@ -48,6 +51,7 @@ set(SOURCE_FILES
 "../GUIKit/src/UserInterface/Font/UnifiedFont.cpp"
 "../GUIKit/src/UserInterface/Constraint/Constraint.cpp"
 "../GUIKit/src/UserInterface/Layer/Layer.cpp"
+
 "../GUIKit/src/UserInterface/Component/UIComponent.cpp"
 "../GUIKit/src/UserInterface/Component/UIComponentMouseEvent.cpp"
 "../GUIKit/src/UserInterface/Component/UIButton/UIButton.cpp"

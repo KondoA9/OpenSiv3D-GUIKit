@@ -5,6 +5,10 @@
 
 namespace s3d::gui {
 	PageManager::PageManager() {
+		// Set scissor rect
+		RasterizerState rasterizer = RasterizerState::Default2D;
+		rasterizer.scissorEnable = true;
+		Graphics2D::Internal::SetRasterizerState(rasterizer);
 		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
 	}
 
@@ -218,7 +222,7 @@ namespace s3d::gui {
 	}
 
 	Page& PageManager::getPage(const String& identifier) const noexcept {
-		const auto ptr= getPagePtr(identifier);
+		const auto ptr = getPagePtr(identifier);
 		auto& p = *ptr;
 		return p;
 	}

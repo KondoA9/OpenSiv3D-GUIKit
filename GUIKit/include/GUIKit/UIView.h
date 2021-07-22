@@ -5,11 +5,9 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKitCore;
 	class PageManager;
 
 	class UIView : public UIRect {
-		friend GUIKitCore;
 		friend PageManager;
 
 	private:

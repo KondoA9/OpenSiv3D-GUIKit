@@ -30,13 +30,6 @@ void GUIKitCore::start() {
 }
 
 void GUIKitCore::run() {
-	// Set scissor rect
-	{
-		RasterizerState rasterizer = RasterizerState::Default2D;
-		rasterizer.scissorEnable = true;
-		Graphics2D::Internal::SetRasterizerState(rasterizer);
-	}
-
 	while (System::Update()) {
 		if (System::GetUserActions() == UserAction::CloseButtonClicked) {
 			m_pageManager->setPageTransition(PageTransition::Termination);
