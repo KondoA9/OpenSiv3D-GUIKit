@@ -152,6 +152,8 @@ class ComponentsTest : public gui::Page {
 };
 
 void ComponentsTest::onLoaded() {
+	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>();
+
 	auto& rect = gui::GUIFactory::Create<gui::UIRect>();
 	rect.backgroundColor = gui::DynamicColor::DefaultAmber;
 
@@ -170,9 +172,12 @@ void ComponentsTest::onLoaded() {
 	text.backgroundColor = gui::DynamicColor::DefaultCyan;
 	text.setText(U"UIText");
 
+#if !SIV3D_PLATFORM(LINUX)
 	auto& inputField = gui::GUIFactory::Create<gui::UIInputField>();
 	inputField.backgroundColor = gui::DynamicColor::DefaultDeepOrange;
 	inputField.setText(U"UIInputField");
+	stackView.appendComponent(inputField);
+#endif
 
 	auto& checkBox = gui::GUIFactory::Create<gui::UICheckBox>();
 	checkBox.backgroundColor = gui::DynamicColor::DefaultDeepPurple;
@@ -189,13 +194,11 @@ void ComponentsTest::onLoaded() {
 	auto& stackedImageView = gui::GUIFactory::Create<gui::UIZStackedImageView>();
 	stackedImageView.backgroundColor = gui::DynamicColor::DefaultLightBlue;
 
-	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>();
 	stackView.appendComponent(rect);
 	stackView.appendComponent(circle);
 	stackView.appendComponent(button);
 	stackView.appendComponent(toggleButton);
 	stackView.appendComponent(text);
-	stackView.appendComponent(inputField);
 	stackView.appendComponent(checkBox);
 	stackView.appendComponent(slider);
 	stackView.appendComponent(icon);
