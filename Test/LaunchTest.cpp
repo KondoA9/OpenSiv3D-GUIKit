@@ -1,18 +1,96 @@
 #include <GUIKit/GUIKit.h>
 
-#define ASSERT_MSG(condition, message) assert((condition) && message)
+void Terminate(const std::string& msg) {
+	std::cerr << msg << std::endl;
+	std::terminate();
+}
 
-bool loaded = false;
-bool beforeAppeared = false;
-bool afterAppeared = false;
-bool beforeDisappeared = false;
-bool afterDisappeared = false;
-bool terminated = false;
+void Assert(bool expression, const std::string& msg) {
+	if (!expression) {
+		Terminate(msg);
+	}
+}
+
+std::string LogMessageTemplate() {
+	return "[Log]: ";
+}
+
+void LogWithMsg(const std::string& msg) {
+	std::cout << LogMessageTemplate() << msg << std::endl;
+}
 
 template<class T>
 void LogWithMsg(T* arg, const std::string& msg) {
-	std::cout << "[" << __FILE__ << "] " << typeid(*arg).name() << ": " << msg << std::endl;
+	std::cout << LogMessageTemplate() << typeid(*arg).name() << ": " << msg << std::endl;
 }
+
+class PageEvent {
+	const std::string m_name;
+	bool m_value = false;
+
+public:
+	PageEvent(const std::string& name) :
+		m_name(name)
+	{}
+
+	void call() {
+		m_value = true;
+		LogWithMsg(m_name);
+	}
+
+	void validate() const {
+		Assert(m_value, LogMessageTemplate() + "Failed: " + m_name);
+	}
+};
+
+class PagingTest {
+	Array<PageEvent> m_events = {
+		PageEvent("onLoaded"),
+		PageEvent("onBeforeAppeared"),
+		PageEvent("onAfterAppeared"),
+		PageEvent("onBeforeDisappeared"),
+		PageEvent("onAfterDisappeared"),
+		PageEvent("onBeforeAppTerminated"),
+		PageEvent("onAppTerminated")
+	};
+
+public:
+	void loaded() {
+		m_events[0].call();
+	}
+
+	void beforeAppeared() {
+		m_events[1].call();
+	}
+
+	void afterAppeared() {
+		m_events[2].call();
+	}
+
+	void beforeDisappeared() {
+		m_events[3].call();
+	}
+
+	void afterDisappeared() {
+		m_events[4].call();
+	}
+
+	void beforeAppTerminated() {
+		m_events[5].call();
+	}
+
+	void appTerminated() {
+		m_events[6].call();
+	}
+
+	void validate() {
+		for (const auto& e : m_events) {
+			e.validate();
+		}
+	}
+};
+
+PagingTest pagingTest;
 
 class TestPage1 : public gui::Page {
 public:
@@ -29,7 +107,7 @@ protected:
 			}, 2500, false);
 
 		gui::GUIKit::Instance().setTimeout([this] {
-			ASSERT_MSG(
+			Assert(
 				view().backgroundColor == gui::DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
 			);
@@ -41,24 +119,24 @@ protected:
 		// This test will ended within 10sec
 		{
 			const size_t focusError = gui::GUIKit::Instance().setTimeout([] {
-				ASSERT_MSG(false, "Focused the component, but event was not triggered");
+				Assert(false, "Focused the component, but event was not triggered");
 				}, 5000, false);
 
 			gui::GUIKit::Instance().setTimeout([&focustest] {
 				focustest.focus();
-				ASSERT_MSG(focustest.isFocused(), "Focused a component, but it is not focused");
+				Assert(focustest.isFocused(), "Focused a component, but it is not focused");
 				}, 2500, false);
 
 			focustest.addEventListener<gui::Focused>([&focustest, focusError] {
 				gui::GUIKit::Instance().stopTimeout(focusError);
 
 				const size_t unfocusError = gui::GUIKit::Instance().setTimeout([] {
-					ASSERT_MSG(false, "UnFocused the component, but event was not triggered");
+					Assert(false, "UnFocused the component, but event was not triggered");
 					}, 5000, false);
 
 				gui::GUIKit::Instance().setTimeout([&focustest] {
 					focustest.unFocus();
-					ASSERT_MSG(!focustest.isFocused(), "UnFocused a component, but it is focused");
+					Assert(!focustest.isFocused(), "UnFocused a component, but it is focused");
 					}, 2500, false);
 
 				focustest.addEventListener<gui::UnFocused>([unfocusError] {
@@ -72,43 +150,32 @@ protected:
 			gui::GUIKit::Instance().switchPage(U"TestPage2");
 			}, 15000, true);
 
-		loaded = true;
 
-		LogWithMsg(this, "onLoaded");
+		pagingTest.loaded();
 	}
 
 	void onBeforeAppeared() override {
-		beforeAppeared = true;
-
-		LogWithMsg(this, "onBeforeAppeared");
+		pagingTest.beforeAppeared();
 	}
 
 	void onAfterAppeared() override {
-		afterAppeared = true;
-
-		LogWithMsg(this, "onAfterAppeared");
+		pagingTest.afterAppeared();
 	}
 
 	void onBeforeDisappeared() override {
-		beforeDisappeared = true;
-
-		LogWithMsg(this, "onBeforeDisappeared");
+		pagingTest.beforeDisappeared();
 	}
 
 	void onAfterDisappeared() override {
-		afterDisappeared = true;
-
-		LogWithMsg(this, "onAfterDisappeared");
+		pagingTest.afterDisappeared();
 	}
 
 	void onBeforeAppTerminated() override {
-		LogWithMsg(this, "onAppTerminated");
+		pagingTest.beforeAppTerminated();
 	}
 
 	void onAppTerminated() override {
-		terminated = true;
-
-		LogWithMsg(this, "onAppTerminated");
+		pagingTest.appTerminated();
 	}
 };
 
@@ -120,7 +187,7 @@ class TestPage2 : public gui::Page {
 
 void TestPage2::onLoaded() {
 	gui::GUIKit::Instance().setTimeout([] {
-		System::Exit();
+		gui::GUIKit::Instance().terminate();
 		}, 10000, true);
 }
 
@@ -134,5 +201,5 @@ void Main() {
 
 	guikit.start();
 
-	ASSERT_MSG(loaded && beforeAppeared && afterAppeared && beforeDisappeared && afterDisappeared && terminated, "Any paging events were not called.");
+	pagingTest.validate();
 }

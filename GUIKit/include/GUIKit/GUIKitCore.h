@@ -53,6 +53,10 @@ namespace s3d::gui {
 
 		void toggleColorMode();
 
+		void terminate() {
+			m_pageTransition = PageTransition::Termination;
+		}
+
 		// If you call this, you should call continueTermination() to terminate app
 		void preventTermination() {
 			m_terminationPrevented = true;
