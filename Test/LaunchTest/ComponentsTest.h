@@ -43,9 +43,11 @@ void ComponentsTest::onLoaded() {
 
 	auto& imageView = gui::GUIFactory::Create<gui::UIImageView>();
 	imageView.backgroundColor = gui::DynamicColor::DefaultIndigo;
+	imageView.setImage(Image(U"asset/image1.png"));
 
 	auto& stackedImageView = gui::GUIFactory::Create<gui::UIZStackedImageView>();
 	stackedImageView.backgroundColor = gui::DynamicColor::DefaultLightBlue;
+	stackedImageView.appendImage(Image(U"asset/image1.png"));
 
 	stackView.appendComponent(rect);
 	stackView.appendComponent(circle);
