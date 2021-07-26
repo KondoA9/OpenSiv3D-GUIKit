@@ -60,7 +60,6 @@ set(SOURCE_FILES
 "../GUIKit/src/UserInterface/Component/UICheckBox/UICheckBox.cpp"
 "../GUIKit/src/UserInterface/Component/UIIcon/UIIcon.cpp"
 "../GUIKit/src/UserInterface/Component/UIImageView/UIImageView.cpp"
-"../GUIKit/src/UserInterface/Component/UIImageView/UIZStackedImageView.cpp"
 "../GUIKit/src/UserInterface/Component/UIInputField/UIInputField.cpp"
 "../GUIKit/src/UserInterface/Component/UIRect/UIRect.cpp"
 "../GUIKit/src/UserInterface/Component/UISlider/UISlider.cpp"

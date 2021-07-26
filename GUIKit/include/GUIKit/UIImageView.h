@@ -5,52 +5,122 @@
 namespace s3d::gui {
 	class UIImageView : public UIRect {
 	public:
-		Image image;
 		bool manualScalingEnabled = true;
 
 	private:
-		DynamicTexture m_texture;
+		// Textures
+		Array <DynamicTexture> m_textures;
+		Array <double> m_alphas;
 		Rect m_textureRegion;
-		double m_scale = 1.0;
-		Point m_pixel, m_prePixel;
+
+		// Position
+		Vec2 m_drawingCenterPos;
+		Point m_cursoredPixel, m_preCursoredPixel;
+
+		// Scaling
+		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
+		const uint32 m_minPixel = 50;
+		uint32 m_maxPixel = 0;
 
 	public:
 		explicit UIImageView() noexcept :
-			UIRect(DynamicColor::Background)
+			UIRect()
 		{}
 
-		void updateTexture() {
-			m_texture.fill(image);
+		const Point& currentPixel() const {
+			return m_cursoredPixel;
 		}
 
-		void setScale(double scale) {
-			m_scale = scale;
+		const Point& prePixel() const {
+			return m_preCursoredPixel;
+		}
+
+		const Rect& textureRegion() const {
+			return m_textureRegion;
+		}
+
+		double scale() const {
+			return m_scale;
+		}
+
+		double minimumScale() const {
+			return m_minScale;
+		}
+
+		double maximumScale() const {
+			return m_maxScale;
+		}
+
+		double scaleRate() const {
+			return m_scaleRate;
+		}
+
+		size_t texturesCount() const {
+			return m_textures.size();
+		}
+
+		Rect visibleTextureRect() const {
+			return Rect(
+				m_textureRegion.x < static_cast<int>(rect().x) ? static_cast<int>(rect().x) : m_textureRegion.x,
+				m_textureRegion.y < static_cast<int>(rect().y) ? static_cast<int>(rect().y) : m_textureRegion.y,
+				m_textureRegion.w < static_cast<int>(rect().w) ? m_textureRegion.w : static_cast<int>(rect().w),
+				m_textureRegion.h < static_cast<int>(rect().h) ? m_textureRegion.h : static_cast<int>(rect().h)
+			);
+		}
+
+		void release() override;
+
+		void releaseImages();
+
+		void updateTexture(size_t index, const Image& image) {
+			m_textures[index].fill(image);
+		}
+
+		void updateTexture(size_t index, const Image& image, const Rect& rect) {
+			m_textures[index].fillRegion(image, rect);
+		}
+
+		void updateTextureIfNotBusy(size_t index, const Image& image) {
+			m_textures[index].fillIfNotBusy(image);
+		}
+
+		void updateTextureIfNotBusy(size_t index, const Image& image, const Rect& rect) {
+			m_textures[index].fillRegionIfNotBusy(image, rect);
 		}
 
 		void setScaleBy(double magnification) {
 			m_scale *= magnification;
 		}
 
-		void resetScale() {
-			m_scale = calcInitialScale();
+		void setAlphaRate(size_t index, double rate) {
+			m_alphas[index] = 255 * rate;
 		}
 
-		void release() override {
-			UIRect::release();
-			image.release();
-			m_texture.release();
-		}
+		// Set scale by rate from 0.0 to 1.0
+		void setScale(double rate);
 
-		void setImage(const Image& _image);
+		void resetScale();
 
-		void paint(double thickness, const Color& color, bool antialiased = true);
+		void setViewingCenterPixel(const Point& centerPixel);
+
+		void appendImage(const Image& image, double alphaRate = 1.0);
+
+		void removeImage(size_t index);
 
 	protected:
+		void initialize() override;
+
 		void draw() override;
 
 		void updateLayer(const Rect& scissor) override;
 
 	private:
-		double calcInitialScale();
+		double calcMinimumScale();
+
+		double calcMaximumScale();
+
+		void restrictImageMovement();
+
+		void setDrawingCenterPos(const Vec2& pos);
 	};
 }

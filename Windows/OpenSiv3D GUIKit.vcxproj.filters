@@ -61,12 +61,6 @@
     <Filter Include="GUIKit\UserInterface\UserInterface\UIView">
       <UniqueIdentifier>{f3ce28c6-f3d2-468a-9708-e861cd2fdad1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUIKit\UserInterface\UserInterface\UIImageView">
-      <UniqueIdentifier>{68fe6c95-4be8-4e0f-af9e-ed9c9236db3b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="GUIKit\UserInterface\UserInterface\UIZStackedImageView">
-      <UniqueIdentifier>{bcb243aa-12fc-41e6-bdb2-5635a9e43d6b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUIKit\UserInterface\UserInterface\UISlider">
       <UniqueIdentifier>{17c85d4d-06f8-4e04-b3d5-7ffe649a2dab}</UniqueIdentifier>
     </Filter>
@@ -93,6 +87,9 @@
     </Filter>
     <Filter Include="GUIKit\GUIKitCore\PageManager">
       <UniqueIdentifier>{3232ea50-e972-4532-82ba-40f75cd65b71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIImageView">
+      <UniqueIdentifier>{cf997c9c-d86b-463c-bb4a-51a2778f1432}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -147,12 +144,6 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIView</Filter>
     </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface\UIZStackedImageView</Filter>
-    </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UISlider</Filter>
     </ClCompile>
@@ -185,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\GUIKitCore\PageManager\PageCycle.cpp">
       <Filter>GUIKit\GUIKitCore\PageManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -251,12 +245,6 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h">
       <Filter>GUIKit\UserInterface\UserInterface\UIView</Filter>
     </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h">
-      <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h">
-      <Filter>GUIKit\UserInterface\UserInterface\UIZStackedImageView</Filter>
-    </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h">
       <Filter>GUIKit\UserInterface\UserInterface\UISlider</Filter>
     </ClInclude>
@@ -283,6 +271,9 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\src\GUIKitCore\PageManager\PageManager.h">
       <Filter>GUIKit\GUIKitCore\PageManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
