@@ -5,12 +5,12 @@
 namespace s3d::gui {
 	class UICircle : public UIComponent {
 	private:
-		Circle m_circle;
+		Ellipse m_circle;
 
 	public:
 		using UIComponent::UIComponent;
 
-		const Circle& circle() const {
+		const Ellipse& circle() const {
 			return m_circle;
 		}
 

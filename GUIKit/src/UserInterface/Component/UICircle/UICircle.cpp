@@ -4,9 +4,7 @@ using namespace s3d::gui;
 
 void UICircle::updateLayer(const Rect& scissor) {
 	UIComponent::updateLayer(scissor);
-	m_circle = Circle(
-		Arg::center(static_cast<int>(layer().centerX), static_cast<int>(layer().centerY)),
-		(layer().height + layer().width) * 0.25);
+	m_circle = Ellipse(layer().centerX, layer().centerY, layer().width * 0.5, layer().height * 0.5);
 }
 
 void UICircle::draw() {
