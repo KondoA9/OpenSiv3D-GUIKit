@@ -5,13 +5,18 @@
 namespace s3d::gui {
 	class UIToggleButton : public UIButton {
 	public:
-		ColorTheme selectedColor = DynamicColor::ButtonPushed, defaultTextColor = DynamicColor::Text, selectedTextColor = Palette::White;
+		ColorTheme selectedColor, selectedTextColor;
 
 	private:
 		bool m_enabled = false;
 
 	public:
-		using UIButton::UIButton;
+		explicit UIToggleButton(const ColorTheme& _selectedColor = DynamicColor::ButtonPushed, const ColorTheme& _selectedTextColor = Palette::White) :
+			UIButton(DynamicColor::Background, DynamicColor::Text, DynamicColor::BackgroundSecondary, Palette::White),
+			selectedColor(_selectedColor),
+			selectedTextColor(_selectedTextColor)
+		{}
+
 
 		bool isEnabled() const {
 			return m_enabled;
