@@ -27,7 +27,6 @@
 		9E411A2B26A96A910038FE65 /* PixelUnit.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D026A96A910038FE65 /* PixelUnit.h */; };
 		9E411A2C26A96A910038FE65 /* UIImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D126A96A910038FE65 /* UIImageView.h */; };
 		9E411A2D26A96A910038FE65 /* MouseEvent.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D226A96A910038FE65 /* MouseEvent.h */; };
-		9E411A2E26A96A910038FE65 /* UIZStackedImageView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D326A96A910038FE65 /* UIZStackedImageView.h */; };
 		9E411A2F26A96A910038FE65 /* UIButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D426A96A910038FE65 /* UIButton.h */; };
 		9E411A3026A96A910038FE65 /* UIView.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D526A96A910038FE65 /* UIView.h */; };
 		9E411A3126A96A910038FE65 /* DynamicColor.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E4119D626A96A910038FE65 /* DynamicColor.h */; };
@@ -60,7 +59,6 @@
 		9E411A4C26A96A910038FE65 /* UIVStackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0426A96A910038FE65 /* UIVStackView.cpp */; };
 		9E411A4D26A96A910038FE65 /* UIIcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0626A96A910038FE65 /* UIIcon.cpp */; };
 		9E411A4E26A96A910038FE65 /* UICircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0826A96A910038FE65 /* UICircle.cpp */; };
-		9E411A4F26A96A910038FE65 /* UIZStackedImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0A26A96A910038FE65 /* UIZStackedImageView.cpp */; };
 		9E411A5026A96A910038FE65 /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0B26A96A910038FE65 /* UIImageView.cpp */; };
 		9E411A5126A96A910038FE65 /* UIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0D26A96A910038FE65 /* UIRect.cpp */; };
 		9E411A5226A96A910038FE65 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E411A0F26A96A910038FE65 /* UIComponent.cpp */; };
@@ -92,7 +90,6 @@
 		9E4119D026A96A910038FE65 /* PixelUnit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PixelUnit.h; sourceTree = "<group>"; };
 		9E4119D126A96A910038FE65 /* UIImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIImageView.h; sourceTree = "<group>"; };
 		9E4119D226A96A910038FE65 /* MouseEvent.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MouseEvent.h; sourceTree = "<group>"; };
-		9E4119D326A96A910038FE65 /* UIZStackedImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIZStackedImageView.h; sourceTree = "<group>"; };
 		9E4119D426A96A910038FE65 /* UIButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIButton.h; sourceTree = "<group>"; };
 		9E4119D526A96A910038FE65 /* UIView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIView.h; sourceTree = "<group>"; };
 		9E4119D626A96A910038FE65 /* DynamicColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicColor.h; sourceTree = "<group>"; };
@@ -125,7 +122,6 @@
 		9E411A0426A96A910038FE65 /* UIVStackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIVStackView.cpp; sourceTree = "<group>"; };
 		9E411A0626A96A910038FE65 /* UIIcon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIIcon.cpp; sourceTree = "<group>"; };
 		9E411A0826A96A910038FE65 /* UICircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICircle.cpp; sourceTree = "<group>"; };
-		9E411A0A26A96A910038FE65 /* UIZStackedImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIZStackedImageView.cpp; sourceTree = "<group>"; };
 		9E411A0B26A96A910038FE65 /* UIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImageView.cpp; sourceTree = "<group>"; };
 		9E411A0D26A96A910038FE65 /* UIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIRect.cpp; sourceTree = "<group>"; };
 		9E411A0F26A96A910038FE65 /* UIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponent.cpp; sourceTree = "<group>"; };
@@ -179,7 +175,6 @@
 				9E4119D026A96A910038FE65 /* PixelUnit.h */,
 				9E4119D126A96A910038FE65 /* UIImageView.h */,
 				9E4119D226A96A910038FE65 /* MouseEvent.h */,
-				9E4119D326A96A910038FE65 /* UIZStackedImageView.h */,
 				9E4119D426A96A910038FE65 /* UIButton.h */,
 				9E4119D526A96A910038FE65 /* UIView.h */,
 				9E4119D626A96A910038FE65 /* DynamicColor.h */,
@@ -309,8 +304,9 @@
 		9E4119F726A96A910038FE65 /* Component */ = {
 			isa = PBXGroup;
 			children = (
-				9E4119F826A96A910038FE65 /* UICheckBox */,
+				9E411A0F26A96A910038FE65 /* UIComponent.cpp */,
 				9E4119FA26A96A910038FE65 /* UIComponentMouseEvent.cpp */,
+				9E4119F826A96A910038FE65 /* UICheckBox */,
 				9E4119FB26A96A910038FE65 /* UIButton */,
 				9E4119FD26A96A910038FE65 /* UIToggleButton */,
 				9E4119FF26A96A910038FE65 /* UIView */,
@@ -320,8 +316,6 @@
 				9E411A0726A96A910038FE65 /* UICircle */,
 				9E411A0926A96A910038FE65 /* UIImageView */,
 				9E411A0C26A96A910038FE65 /* UIRect */,
-				9E411A0E26A96A910038FE65 /* New Group */,
-				9E411A0F26A96A910038FE65 /* UIComponent.cpp */,
 				9E411A1026A96A910038FE65 /* UIInputField */,
 				9E411A1226A96A910038FE65 /* UISlider */,
 			);
@@ -395,7 +389,6 @@
 		9E411A0926A96A910038FE65 /* UIImageView */ = {
 			isa = PBXGroup;
 			children = (
-				9E411A0A26A96A910038FE65 /* UIZStackedImageView.cpp */,
 				9E411A0B26A96A910038FE65 /* UIImageView.cpp */,
 			);
 			path = UIImageView;
@@ -407,13 +400,6 @@
 				9E411A0D26A96A910038FE65 /* UIRect.cpp */,
 			);
 			path = UIRect;
-			sourceTree = "<group>";
-		};
-		9E411A0E26A96A910038FE65 /* New Group */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "New Group";
 			sourceTree = "<group>";
 		};
 		9E411A1026A96A910038FE65 /* UIInputField */ = {
@@ -503,7 +489,6 @@
 				9E411A2626A96A910038FE65 /* UIVStackView.h in Headers */,
 				9E411A2A26A96A910038FE65 /* Constraint.h in Headers */,
 				9E411A1A26A96A910038FE65 /* Page.h in Headers */,
-				9E411A2E26A96A910038FE65 /* UIZStackedImageView.h in Headers */,
 				9E411A2026A96A910038FE65 /* Layer.h in Headers */,
 				9E411A3326A96A910038FE65 /* GUIFactory.h in Headers */,
 				9E411A1D26A96A910038FE65 /* UIRect.h in Headers */,
@@ -582,7 +567,6 @@
 			files = (
 				9E411A4B26A96A910038FE65 /* UIText.cpp in Sources */,
 				9E411A5226A96A910038FE65 /* UIComponent.cpp in Sources */,
-				9E411A4F26A96A910038FE65 /* UIZStackedImageView.cpp in Sources */,
 				9E411A4726A96A910038FE65 /* UIComponentMouseEvent.cpp in Sources */,
 				9E411A5726A96A910038FE65 /* Constraint.cpp in Sources */,
 				9E411A5426A96A910038FE65 /* UISlider.cpp in Sources */,

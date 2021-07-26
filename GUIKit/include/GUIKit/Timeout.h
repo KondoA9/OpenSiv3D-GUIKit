@@ -37,6 +37,6 @@ namespace s3d::gui {
 
 		Timeout& operator=(const Timeout&) = delete;
 
-		Timeout& operator=(Timeout&&) = default;
+		Timeout& operator=(Timeout&&) = delete;
 	};
 }
