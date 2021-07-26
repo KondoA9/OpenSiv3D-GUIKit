@@ -29,7 +29,6 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponentMouseEvent.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIZStackedImageView.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp" />
@@ -71,7 +70,6 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIVStackView.h" />
-    <ClInclude Include="..\GUIKit\include\GUIKit\UIZStackedImageView.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UnifiedFont.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\WindowManager.h" />
     <ClInclude Include="..\GUIKit\src\GUIKitCore\PageManager\PageManager.h" />

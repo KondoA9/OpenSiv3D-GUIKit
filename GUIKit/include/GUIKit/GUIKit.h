@@ -14,7 +14,6 @@
 #include "UICircle.h"
 #include "UIText.h"
 #include "UIImageView.h"
-#include "UIZStackedImageView.h"
 #include "UIButton.h"
 #include "UIToggleButton.h"
 #include "UISlider.h"

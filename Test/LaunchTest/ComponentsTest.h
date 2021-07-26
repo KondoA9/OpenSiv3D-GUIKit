@@ -44,9 +44,6 @@ void ComponentsTest::onLoaded() {
 	auto& imageView = gui::GUIFactory::Create<gui::UIImageView>();
 	imageView.backgroundColor = gui::DynamicColor::DefaultIndigo;
 
-	auto& stackedImageView = gui::GUIFactory::Create<gui::UIZStackedImageView>();
-	stackedImageView.backgroundColor = gui::DynamicColor::DefaultLightBlue;
-
 	stackView.appendComponent(rect);
 	stackView.appendComponent(circle);
 	stackView.appendComponent(button);
@@ -56,7 +53,6 @@ void ComponentsTest::onLoaded() {
 	stackView.appendComponent(slider);
 	stackView.appendComponent(icon);
 	stackView.appendComponent(imageView);
-	stackView.appendComponent(stackedImageView);
 
 	stackView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
 	stackView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
