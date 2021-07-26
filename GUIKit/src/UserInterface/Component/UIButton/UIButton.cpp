@@ -8,10 +8,12 @@ void UIButton::initialize() {
 
 	addEventListener<MouseEvent::Hovered>([this] {
 		backgroundColor.highlight(hoveredColor);
+		textColor.highlight(hoveredTextColor);
 		}, true);
 
 	addEventListener<MouseEvent::UnHovered>([this] {
 		backgroundColor.lowlight(defaultColor);
+		textColor.lowlight(defaultTextColor);
 		}, true);
 
 	addEventListener<MouseEvent::Hovering>([] {
