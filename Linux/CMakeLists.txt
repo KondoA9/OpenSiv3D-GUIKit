@@ -53,8 +53,8 @@ set(SOURCE_FILES
 "../GUIKit/src/UserInterface/Constraint/Constraint.cpp"
 "../GUIKit/src/UserInterface/Layer/Layer.cpp"
 
-"../GUIKit/src/UserInterface/Component/UIComponent.cpp"
-"../GUIKit/src/UserInterface/Component/UIComponentMouseEvent.cpp"
+"../GUIKit/src/UserInterface/Component/UIComponent/UIComponent.cpp"
+"../GUIKit/src/UserInterface/Component/UIComponent/UIComponentMouseEvent.cpp"
 "../GUIKit/src/UserInterface/Component/UIButton/UIButton.cpp"
 "../GUIKit/src/UserInterface/Component/UICircle/UICircle.cpp"
 "../GUIKit/src/UserInterface/Component/UICheckBox/UICheckBox.cpp"

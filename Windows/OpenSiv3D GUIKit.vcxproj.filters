@@ -129,9 +129,6 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIIcon\UIIcon.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIIcon</Filter>
     </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
-    </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIText</Filter>
     </ClCompile>
@@ -152,9 +149,6 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIVStackView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponentMouseEvent.cpp">
-      <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UICheckBox\UICheckBox.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UICheckBox</Filter>
@@ -179,6 +173,12 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIImageView\UIImageView.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent\UIComponentMouseEvent.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent\UIComponent.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
