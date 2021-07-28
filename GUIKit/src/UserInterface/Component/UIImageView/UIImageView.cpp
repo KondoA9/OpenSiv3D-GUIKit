@@ -13,8 +13,8 @@ void UIImageView::initialize() {
 
 	addEventListener<MouseEvent::Hovering>([this](const MouseEvent::Hovering& e) {
 		if (m_textures) {
-			m_cursoredPixel = Imaging::ScenePosToPixel(e.pos, m_textureRegion, m_scale);
-			m_preCursoredPixel = Imaging::ScenePosToPixel(e.previousPos, m_textureRegion, m_scale);
+			m_cursoredPixel = Imaging::ScenePosToPixel(e.pos, m_textureRegion, m_scale, angle());
+			m_preCursoredPixel = Imaging::ScenePosToPixel(e.previousPos, m_textureRegion, m_scale, angle());
 			m_cursoredPixel.x = Clamp(m_cursoredPixel.x, 0, m_textures[0].width() - 1);
 			m_cursoredPixel.y = Clamp(m_cursoredPixel.y, 0, m_textures[0].height() - 1);
 		}
@@ -65,7 +65,7 @@ void UIImageView::draw() {
 	restrictImageMovement();
 
 	for (size_t i : step(m_textures.size())) {
-		m_textures[i].scaled(m_scale).drawAt(m_drawingCenterPos, Color(255, 255, 255, static_cast<uint32>(m_alphas[i])));
+		m_textures[i].scaled(m_scale).rotated(m_angle).drawAt(m_drawingCenterPos, Color(255, 255, 255, static_cast<uint32>(m_alphas[i])));
 	}
 }
 
@@ -145,7 +145,7 @@ void UIImageView::restrictImageMovement() {
 
 void UIImageView::setViewingCenterPixel(const Point& centerPixel) {
 	// Current scene position of the pixel that will be centered
-	const auto pos = Imaging::PixelToScenePos(centerPixel, m_textureRegion, m_scale);
+	const auto pos = Imaging::PixelToScenePos(centerPixel, m_textureRegion, m_scale, angle());
 	const auto movement = rect().center() - pos;
 	setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
 }

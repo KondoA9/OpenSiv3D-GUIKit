@@ -12,6 +12,7 @@ namespace s3d::gui {
 		Array <DynamicTexture> m_textures;
 		Array <double> m_alphas;
 		Rect m_textureRegion;
+		double m_angle = 0.0;
 
 		// Position
 		Vec2 m_drawingCenterPos;
@@ -55,6 +56,11 @@ namespace s3d::gui {
 			return m_scaleRate;
 		}
 
+		/// <returns>degrees</returns>
+		double angle() const {
+			return m_angle * 180.0 / Math::Pi;
+		}
+
 		size_t texturesCount() const {
 			return m_textures.size();
 		}
@@ -71,6 +77,10 @@ namespace s3d::gui {
 		void release() override;
 
 		void releaseImages();
+
+		void rotate(double degrees) {
+			m_angle = degrees * Math::Pi / 180.0;
+		}
 
 		void updateTexture(size_t index, const Image& image) {
 			m_textures[index].fill(image);
