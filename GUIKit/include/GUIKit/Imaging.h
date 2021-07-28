@@ -6,4 +6,6 @@ namespace s3d::gui::Imaging {
 	Point ScenePosToPixel(const Vec2& pos, const RectF& textureRegion, double scale, double degrees);
 
 	Vec2 PixelToScenePos(const Point& pixel, const RectF& textureRegion, double scale, double degrees);
+
+	Size GetSizeFitsTexture(const Size& textureSize, double degrees);
 }

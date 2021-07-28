@@ -80,6 +80,7 @@ namespace s3d::gui {
 
 		void rotate(double degrees) {
 			m_angle = degrees * Math::Pi / 180.0;
+			requestToUpdateLayer();
 		}
 
 		void updateTexture(size_t index, const Image& image) {

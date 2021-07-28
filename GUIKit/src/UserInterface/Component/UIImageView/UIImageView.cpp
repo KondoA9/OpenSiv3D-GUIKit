@@ -79,7 +79,7 @@ void UIImageView::updateLayer(const Rect& scissor) {
 		m_minScale = calcMinimumScale();
 		m_maxScale = calcMaximumScale();
 
-		m_scale = preScale * m_minScale / preMinScale;
+		// m_scale = preScale * m_minScale / preMinScale;
 		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
 
 		setDrawingCenterPos(m_drawingCenterPos);
@@ -87,8 +87,9 @@ void UIImageView::updateLayer(const Rect& scissor) {
 }
 
 double UIImageView::calcMinimumScale() {
-	double scale = static_cast<double>(rect().w) / static_cast<double>(m_textures[0].width());
-	if (const double h = scale * m_textures[0].height(); h > rect().h) {
+	const auto size = Imaging::GetSizeFitsTexture(m_textures[0].size(), angle());
+	double scale = static_cast<double>(rect().w) / static_cast<double>(size.x);
+	if (const double h = scale * size.y; h > rect().h) {
 		scale *= rect().h / h;
 	}
 	return scale;
