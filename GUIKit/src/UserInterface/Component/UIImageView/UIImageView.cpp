@@ -133,28 +133,42 @@ void UIImageView::rotate(double degrees) {
 void UIImageView::restrictImageMovement() {
 	const auto center = rect().center();
 
+	bool updated = false;
+
+	// Centering
 	if (m_rotatedTextureRegion.w <= rect().w) {
 		m_drawingCenterPos.x = center.x;
 	}
+	// Correct the overhang
 	else {
 		if (m_rotatedTextureRegion.x > rect().x) {
 			m_drawingCenterPos.x = rect().x + m_rotatedTextureRegion.w * 0.5;
+			updated = true;
 		}
 		else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < rect().x + rect().w) {
 			m_drawingCenterPos.x = rect().x + rect().w - m_rotatedTextureRegion.w * 0.5;
+			updated = true;
 		}
 	}
 
+	// Centering
 	if (m_rotatedTextureRegion.h <= rect().h) {
 		m_drawingCenterPos.y = center.y;
 	}
+	// Correct the overhang
 	else {
 		if (m_rotatedTextureRegion.y > rect().y) {
 			m_drawingCenterPos.y = rect().y + m_rotatedTextureRegion.h * 0.5;
+			updated = true;
 		}
 		else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < rect().y + rect().h) {
 			m_drawingCenterPos.y = rect().y + rect().h - m_rotatedTextureRegion.h * 0.5;
+			updated = true;
 		}
+	}
+
+	if (updated) {
+		updateTextureRegion();
 	}
 }
 
