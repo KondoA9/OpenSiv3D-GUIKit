@@ -131,9 +131,9 @@ namespace s3d::gui {
 
 		double calcMaximumScale();
 
-		void restrictImageMovement();
+		void restrictImageMovement(bool safeRerecursion = false);
 
-		void updateTextureRegion();
+		void updateTextureRegion(bool safeRerecursion = false);
 
 		void setDrawingCenterPos(const Vec2& pos);
 	};
