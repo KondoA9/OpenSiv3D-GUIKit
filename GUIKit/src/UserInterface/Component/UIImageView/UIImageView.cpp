@@ -67,10 +67,10 @@ void UIImageView::draw() {
 }
 
 void UIImageView::updateLayer(const Rect& scissor) {
+	UIRect::updateLayer(scissor);
+
 	const double preMinScale = m_minScale;
 	const double preScale = m_scale;
-
-	UIRect::updateLayer(scissor);
 
 	if (m_textures) {
 		m_minScale = calcMinimumScale();
@@ -80,6 +80,8 @@ void UIImageView::updateLayer(const Rect& scissor) {
 
 		m_scale = Clamp(m_scale, m_minScale, m_maxScale);
 
+		// Need to update twice
+		updateTextureRegion();
 		updateTextureRegion();
 	}
 }
@@ -130,45 +132,43 @@ void UIImageView::rotate(double degrees) {
 	updateTextureRegion();
 }
 
-void UIImageView::restrictImageMovement() {
+void UIImageView::restrictImageMovement(bool safeRerecursion) {
 	const auto center = rect().center();
 
 	bool updated = false;
+
+	// Correct the overhang
+	if (m_rotatedTextureRegion.x > rect().x) {
+		m_drawingCenterPos.x = rect().x + m_rotatedTextureRegion.w * 0.5;
+		updated = true;
+	}
+	else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < rect().x + rect().w) {
+		m_drawingCenterPos.x = rect().x + rect().w - m_rotatedTextureRegion.w * 0.5;
+		updated = true;
+	}
 
 	// Centering
 	if (m_rotatedTextureRegion.w <= rect().w) {
 		m_drawingCenterPos.x = center.x;
 	}
+
 	// Correct the overhang
-	else {
-		if (m_rotatedTextureRegion.x > rect().x) {
-			m_drawingCenterPos.x = rect().x + m_rotatedTextureRegion.w * 0.5;
-			updated = true;
-		}
-		else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < rect().x + rect().w) {
-			m_drawingCenterPos.x = rect().x + rect().w - m_rotatedTextureRegion.w * 0.5;
-			updated = true;
-		}
+	if (m_rotatedTextureRegion.y > rect().y) {
+		m_drawingCenterPos.y = rect().y + m_rotatedTextureRegion.h * 0.5;
+		updated = true;
+	}
+	else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < rect().y + rect().h) {
+		m_drawingCenterPos.y = rect().y + rect().h - m_rotatedTextureRegion.h * 0.5;
+		updated = true;
 	}
 
 	// Centering
 	if (m_rotatedTextureRegion.h <= rect().h) {
 		m_drawingCenterPos.y = center.y;
 	}
-	// Correct the overhang
-	else {
-		if (m_rotatedTextureRegion.y > rect().y) {
-			m_drawingCenterPos.y = rect().y + m_rotatedTextureRegion.h * 0.5;
-			updated = true;
-		}
-		else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < rect().y + rect().h) {
-			m_drawingCenterPos.y = rect().y + rect().h - m_rotatedTextureRegion.h * 0.5;
-			updated = true;
-		}
-	}
 
-	if (updated) {
-		updateTextureRegion();
+	if (!safeRerecursion && updated) {
+		updateTextureRegion(true);
 	}
 }
 
@@ -179,7 +179,7 @@ void UIImageView::setViewingCenterPixel(const Point& centerPixel) {
 	setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
 }
 
-void UIImageView::updateTextureRegion() {
+void UIImageView::updateTextureRegion(bool safeRerecursion) {
 	if (m_textures) {
 		m_textureRegion = m_textures[0].scaled(m_scale).regionAt(m_drawingCenterPos);
 		m_rotatedTextureRegion = m_textureRegion;
@@ -189,7 +189,7 @@ void UIImageView::updateTextureRegion() {
 		m_rotatedTextureRegion.setSize(m_rotatedTextureSize);
 		m_rotatedTextureRegion.setCenter(center);
 
-		restrictImageMovement();
+		restrictImageMovement(safeRerecursion);
 	}
 }
 
