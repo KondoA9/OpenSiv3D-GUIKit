@@ -11,16 +11,21 @@ namespace s3d::gui {
 		// Textures
 		Array <DynamicTexture> m_textures;
 		Array <double> m_alphas;
-		Rect m_textureRegion;
+		RectF m_textureRegion;
 
 		// Position
 		Vec2 m_drawingCenterPos;
 		Point m_cursoredPixel, m_preCursoredPixel;
 
 		// Scaling
-		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
 		const uint32 m_minPixel = 50;
 		uint32 m_maxPixel = 0;
+		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
+
+		// Rotation
+		RectF m_rotatedTextureRegion;
+		Vec2 m_baseRotatedTextureSize, m_rotatedTextureSize;
+		double m_angle = 0.0;
 
 	public:
 		explicit UIImageView() noexcept :
@@ -35,8 +40,12 @@ namespace s3d::gui {
 			return m_preCursoredPixel;
 		}
 
-		const Rect& textureRegion() const {
+		const RectF& textureRegion() const {
 			return m_textureRegion;
+		}
+
+		const RectF& rotatedTextureRegion() const {
+			return m_rotatedTextureRegion;
 		}
 
 		double scale() const {
@@ -55,22 +64,29 @@ namespace s3d::gui {
 			return m_scaleRate;
 		}
 
+		/// <returns>degrees</returns>
+		double angle() const {
+			return m_angle * 180.0 / Math::Pi;
+		}
+
 		size_t texturesCount() const {
 			return m_textures.size();
 		}
 
-		Rect visibleTextureRect() const {
-			return Rect(
-				m_textureRegion.x < static_cast<int>(rect().x) ? static_cast<int>(rect().x) : m_textureRegion.x,
-				m_textureRegion.y < static_cast<int>(rect().y) ? static_cast<int>(rect().y) : m_textureRegion.y,
-				m_textureRegion.w < static_cast<int>(rect().w) ? m_textureRegion.w : static_cast<int>(rect().w),
-				m_textureRegion.h < static_cast<int>(rect().h) ? m_textureRegion.h : static_cast<int>(rect().h)
+		RectF visibleTextureRect() const {
+			return RectF(
+				m_rotatedTextureRegion.x < rect().x ? rect().x : m_rotatedTextureRegion.x,
+				m_rotatedTextureRegion.y < rect().y ? rect().y : m_rotatedTextureRegion.y,
+				m_rotatedTextureRegion.w < rect().w ? m_rotatedTextureRegion.w : rect().w,
+				m_rotatedTextureRegion.h < rect().h ? m_rotatedTextureRegion.h : rect().h
 			);
 		}
 
 		void release() override;
 
 		void releaseImages();
+
+		void rotate(double degrees);
 
 		void updateTexture(size_t index, const Image& image) {
 			m_textures[index].fill(image);
@@ -88,15 +104,11 @@ namespace s3d::gui {
 			m_textures[index].fillRegionIfNotBusy(image, rect);
 		}
 
-		void setScaleBy(double magnification) {
-			m_scale *= magnification;
-		}
-
 		void setAlphaRate(size_t index, double rate) {
 			m_alphas[index] = 255 * rate;
 		}
 
-		// Set scale by rate from 0.0 to 1.0
+		/// <param name="rate">From 0.0 to 1.0</param>
 		void setScale(double rate);
 
 		void resetScale();
@@ -120,6 +132,8 @@ namespace s3d::gui {
 		double calcMaximumScale();
 
 		void restrictImageMovement();
+
+		void updateTextureRegion();
 
 		void setDrawingCenterPos(const Vec2& pos);
 	};
