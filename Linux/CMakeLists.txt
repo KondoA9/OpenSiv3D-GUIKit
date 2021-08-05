@@ -66,6 +66,7 @@ set(SOURCE_FILES
 "../GUIKit/src/UserInterface/Component/UIText/UIText.cpp"
 "../GUIKit/src/UserInterface/Component/UIToggleButton/UIToggleButton.cpp"
 "../GUIKit/src/UserInterface/Component/UIView/UIView.cpp"
+"../GUIKit/src/UserInterface/Component/UITabView/UITabView.cpp"
 "../GUIKit/src/UserInterface/Component/UIVStackView/UIVStackView.cpp"
 )
 

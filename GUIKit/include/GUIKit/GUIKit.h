@@ -9,6 +9,7 @@
 #include "MouseEvent.h"
 
 #include "UIView.h"
+#include "UITabView.h"
 #include "UIVStackView.h"
 #include "UIRect.h"
 #include "UICircle.h"
