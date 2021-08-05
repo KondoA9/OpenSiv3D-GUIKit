@@ -91,6 +91,9 @@
     <Filter Include="GUIKit\UserInterface\UserInterface\UIImageView">
       <UniqueIdentifier>{cf997c9c-d86b-463c-bb4a-51a2778f1432}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UITabView">
+      <UniqueIdentifier>{5b4fabaf-7b4b-4aee-a4bb-59c438009da0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
@@ -179,6 +182,9 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIComponent\UIComponent.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UITabView\UITabView.cpp">
+      <Filter>GUIKit\UserInterface\UserInterface\UITabView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -274,6 +280,9 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\UIImageView.h">
       <Filter>GUIKit\UserInterface\UserInterface\UIImageView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\UITabView.h">
+      <Filter>GUIKit\UserInterface\UserInterface\UITabView</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

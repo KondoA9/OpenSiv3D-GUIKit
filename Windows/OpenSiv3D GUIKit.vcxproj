@@ -32,6 +32,7 @@
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIRect\UIRect.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UISlider\UISlider.cpp" />
+    <ClCompile Include="..\GUIKit\src\UserInterface\Component\UITabView\UITabView.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIText\UIText.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UIView\UIView.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\UIInputField.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIRect.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UISlider.h" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\UITabView.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIText.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIToggleButton.h" />
     <ClInclude Include="..\GUIKit\include\GUIKit\UIView.h" />
