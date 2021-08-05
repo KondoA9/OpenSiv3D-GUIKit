@@ -53,9 +53,8 @@ namespace s3d::gui {
 	UITabView::Tab UITabView::createTab(const String& name, UIView& view) {
 		const size_t index = m_tabs.size();
 
-		auto& selector = GUIFactory::Create<UIToggleButton>();
+		auto& selector = GUIFactory::Create<UIButton>();
 		selector.setTitle(name);
-		selector.setFont(UnifiedFontStyle::Small);
 
 		selector.setConstraint(LayerDirection::Top, ui_tabSelectorView, LayerDirection::Top);
 		selector.setConstraint(LayerDirection::Bottom, ui_tabSelectorView, LayerDirection::Bottom);

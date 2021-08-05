@@ -11,18 +11,18 @@ namespace s3d::gui {
 	class UITabView : public UIView {
 		struct Tab {
 			size_t index;
-			UIToggleButton& selector;
+			UIButton& selector;
 			UIView& view;
 
 			bool enabled = true;
 
 			void show() {
-				selector.setEnabled(true);
+				selector.setFont(UnifiedFontStyle::SmallBold);
 				view.hidden = false;
 			}
 
 			void hide() {
-				selector.setEnabled(false);
+				selector.setFont(UnifiedFontStyle::SmallLight);
 				view.hidden = true;
 			}
 		};
