@@ -6,6 +6,7 @@ namespace s3d::gui {
 	void UITabView::initialize() {
 		UIView::initialize();
 
+		ui_tabSelectorView.drawFrame = true;
 		ui_tabSelectorView.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
 		ui_tabSelectorView.setConstraint(LayerDirection::Height, 40_px);
 		ui_tabSelectorView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
@@ -16,8 +17,8 @@ namespace s3d::gui {
 		ui_tabView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		ui_tabView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-		appendComponent(ui_tabSelectorView);
 		appendComponent(ui_tabView);
+		appendComponent(ui_tabSelectorView);
 	}
 
 	void UITabView::appendTab(const String& name, UIView& view) {
