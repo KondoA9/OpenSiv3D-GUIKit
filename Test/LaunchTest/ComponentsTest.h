@@ -6,6 +6,18 @@ class ComponentsTest : public gui::Page {
 
 void ComponentsTest::onLoaded() {
 	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>();
+	stackView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
+	stackView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+	stackView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
+	stackView.setConstraint(gui::LayerDirection::Width, view(), gui::LayerDirection::Width, 0.0, 0.5);
+	view().appendComponent(stackView);
+
+	auto& tabView = gui::GUIFactory::Create<gui::UITabView>();
+	tabView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
+	tabView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+	tabView.setConstraint(gui::LayerDirection::Left, stackView, gui::LayerDirection::Right);
+	tabView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+	view().appendComponent(tabView);
 
 	auto& rect = gui::GUIFactory::Create<gui::UIRect>();
 	rect.backgroundColor = gui::DynamicColor::DefaultAmber;
@@ -56,12 +68,13 @@ void ComponentsTest::onLoaded() {
 	imageView.appendImage(Image(U"asset/image1.png"));
 	stackView.appendComponent(imageView);
 
-	stackView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
-	stackView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
-	stackView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
-	stackView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+	auto& tab1 = gui::GUIFactory::Create<gui::UIView>();
+	tab1.backgroundColor = gui::DynamicColor::DefaultBlue;
+	tabView.appendTab(U"Tab1", tab1);
 
-	view().appendComponent(stackView);
+	auto& tab2 = gui::GUIFactory::Create<gui::UIView>();
+	tab2.backgroundColor = gui::DynamicColor::DefaultGreen;
+	tabView.appendTab(U"Tab2", tab2);
 
 	// 5sec later, switch page
 	gui::GUIKit::SetTimeout([] {
