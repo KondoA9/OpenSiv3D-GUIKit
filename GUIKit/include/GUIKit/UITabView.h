@@ -14,6 +14,8 @@ namespace s3d::gui {
 			UIToggleButton& selector;
 			UIView& view;
 
+			bool enabled = true;
+
 			void show() {
 				selector.setEnabled(true);
 				view.hidden = false;
@@ -40,6 +42,10 @@ namespace s3d::gui {
 		virtual ~UITabView() {}
 
 		void appendTab(const String& name, UIView& view);
+
+		void setTab(size_t index);
+
+		void setTabEnabled(size_t index, bool enabled);
 
 	protected:
 		void initialize() override;

@@ -6,8 +6,9 @@ namespace s3d::gui {
 	void UITabView::initialize() {
 		UIView::initialize();
 
+		ui_tabSelectorView.drawFrame = true;
 		ui_tabSelectorView.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
-		ui_tabSelectorView.setConstraint(LayerDirection::Height, 30_px);
+		ui_tabSelectorView.setConstraint(LayerDirection::Height, 35_px);
 		ui_tabSelectorView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		ui_tabSelectorView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
@@ -35,6 +36,20 @@ namespace s3d::gui {
 		ui_tabView.appendComponent(tab.view);
 	}
 
+	void UITabView::setTab(size_t index) {
+		for (auto& tab : m_tabs) {
+			tab.hide();
+		}
+
+		if (m_tabs.size() > index) {
+			m_tabs[index].show();
+		}
+	}
+
+	void UITabView::setTabEnabled(size_t index, bool enabled) {
+		m_tabs[index].enabled = enabled;
+	}
+
 	UITabView::Tab UITabView::createTab(const String& name, UIView& view) {
 		const size_t index = m_tabs.size();
 
@@ -52,10 +67,9 @@ namespace s3d::gui {
 			});
 
 		selector.addEventListener<MouseEvent::LeftDown>([this, index] {
-			for (auto& tab : m_tabs) {
-				tab.hide();
+			if (m_tabs[index].enabled) {
+				setTab(index);
 			}
-			m_tabs[index].show();
 			});
 
 		view.setConstraint(LayerDirection::Top, ui_tabView, LayerDirection::Top);
