@@ -4,32 +4,58 @@
 
 namespace s3d::gui {
 	void UITabView::initialize() {
-		UIRect::initialize();
+		UIView::initialize();
 
-		ui_tabChipsView.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
-		ui_tabChipsView.setConstraint(LayerDirection::Height, 40_px);
-		ui_tabChipsView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
-		ui_tabChipsView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+		ui_tabSelectorView.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
+		ui_tabSelectorView.setConstraint(LayerDirection::Height, 30_px);
+		ui_tabSelectorView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
+		ui_tabSelectorView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-		ui_tabView.setConstraint(LayerDirection::Top, ui_tabChipsView, LayerDirection::Bottom);
+		ui_tabView.setConstraint(LayerDirection::Top, ui_tabSelectorView, LayerDirection::Bottom);
 		ui_tabView.setConstraint(LayerDirection::Bottom, *this, LayerDirection::Bottom);
 		ui_tabView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		ui_tabView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+
+		appendComponent(ui_tabSelectorView);
+		appendComponent(ui_tabView);
 	}
 
 	void UITabView::appendTab(const String& name, UIView& view) {
-		auto& chip = GUIFactory::Create<UIToggleButton>();
-		chip.setTitle(name);
-		chip.setFont(UnifiedFontStyle::Small);
+		auto tab = createTab(name, view);
+		if (tab.index == m_tabIndex) {
+			tab.show();
+		}
+		else {
+			tab.hide();
+		}
 
-		const size_t index = ui_tabChipsView.componentsCount();
-		chip.setConstraint(LayerDirection::Top, ui_tabChipsView, LayerDirection::Top);
-		chip.setConstraint(LayerDirection::Bottom, ui_tabChipsView, LayerDirection::Bottom);
-		chip.setConstraint(LayerDirection::Left, [this, index] {
-			return ui_tabChipsView.layer().left + index * ui_tabChipsView.layer().width / ui_tabChipsView.componentsCount();
+		m_tabs.push_back(tab);
+
+		ui_tabSelectorView.appendComponent(tab.selector);
+		ui_tabView.appendComponent(tab.view);
+	}
+
+	UITabView::Tab UITabView::createTab(const String& name, UIView& view) {
+		const size_t index = m_tabs.size();
+
+		auto& selector = GUIFactory::Create<UIToggleButton>();
+		selector.setTitle(name);
+		selector.setFont(UnifiedFontStyle::Small);
+
+		selector.setConstraint(LayerDirection::Top, ui_tabSelectorView, LayerDirection::Top);
+		selector.setConstraint(LayerDirection::Bottom, ui_tabSelectorView, LayerDirection::Bottom);
+		selector.setConstraint(LayerDirection::Left, [this, index] {
+			return ui_tabSelectorView.layer().left + index * ui_tabSelectorView.layer().width / ui_tabSelectorView.componentsCount();
 			});
-		chip.setConstraint(LayerDirection::Width, [this] {
-			return ui_tabChipsView.layer().width / ui_tabChipsView.componentsCount();
+		selector.setConstraint(LayerDirection::Width, [this] {
+			return ui_tabSelectorView.layer().width / ui_tabSelectorView.componentsCount();
+			});
+
+		selector.addEventListener<MouseEvent::LeftDown>([this, index] {
+			for (auto& tab : m_tabs) {
+				tab.hide();
+			}
+			m_tabs[index].show();
 			});
 
 		view.setConstraint(LayerDirection::Top, ui_tabView, LayerDirection::Top);
@@ -37,7 +63,10 @@ namespace s3d::gui {
 		view.setConstraint(LayerDirection::Left, ui_tabView, LayerDirection::Left);
 		view.setConstraint(LayerDirection::Right, ui_tabView, LayerDirection::Right);
 
-		ui_tabChipsView.appendComponent(chip);
-		ui_tabView.appendComponent(view);
+		return {
+			.index = index,
+			.selector = selector,
+			.view = view
+		};
 	}
 }
