@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIButton.h"
+#include "UIButton.hpp"
 
 namespace s3d::gui {
 	class UIToggleButton : public UIButton {

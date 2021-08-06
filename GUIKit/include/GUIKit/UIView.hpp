@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIRect.h"
+#include "UIRect.hpp"
 
 #include <Siv3D.hpp>
 

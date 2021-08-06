@@ -1,6 +1,6 @@
 #include "Test.h"
 
-#include <GUIKit/GUIKit.h>
+#include <GUIKit/GUIKit.hpp>
 
 #include "PagingTest.h"
 #include "ComponentsTest.h"

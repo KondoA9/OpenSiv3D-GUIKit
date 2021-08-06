@@ -1,10 +1,10 @@
 #pragma once
 
-#include "UIView.h"
-#include "UIRect.h"
-#include "UICircle.h"
-#include "UIText.h"
-#include "GUIFactory.h"
+#include "UIView.hpp"
+#include "UIRect.hpp"
+#include "UICircle.hpp"
+#include "UIText.hpp"
+#include "GUIFactory.hpp"
 
 namespace s3d::gui {
 	class UISlider : public UIView {

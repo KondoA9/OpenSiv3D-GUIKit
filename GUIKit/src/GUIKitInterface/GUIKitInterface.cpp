@@ -1,4 +1,4 @@
-#include <GUIKit/GUIKitInterface.h>
+#include <GUIKit/GUIKitInterface.hpp>
 
 namespace s3d::gui::GUIKit {
 	void Start() {

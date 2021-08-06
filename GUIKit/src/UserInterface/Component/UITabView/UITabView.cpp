@@ -1,6 +1,6 @@
-#include <GUIKit/UITabView.h>
-#include <GUIKit/GUIFactory.h>
-#include <GUIKit/PixelUnit.h>
+#include <GUIKit/UITabView.hpp>
+#include <GUIKit/GUIFactory.hpp>
+#include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui {
 	void UITabView::initialize() {

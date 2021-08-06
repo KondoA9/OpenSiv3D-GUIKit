@@ -1,7 +1,7 @@
 #pragma once
 
-#include "UnifiedFont.h"
-#include "UIRect.h"
+#include "UnifiedFont.hpp"
+#include "UIRect.hpp"
 
 namespace s3d::gui {
 	enum class TextDirection {

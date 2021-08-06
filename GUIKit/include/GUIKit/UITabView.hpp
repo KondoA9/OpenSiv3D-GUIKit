@@ -1,9 +1,9 @@
 #pragma once
 
-#include "UIRect.h"
-#include "UIView.h"
-#include "UIToggleButton.h"
-#include "GUIFactory.h"
+#include "UIRect.hpp"
+#include "UIView.hpp"
+#include "UIToggleButton.hpp"
+#include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
 

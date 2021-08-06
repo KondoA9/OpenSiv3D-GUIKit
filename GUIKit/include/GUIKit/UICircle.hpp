@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIComponent.h"
+#include "UIComponent.hpp"
 
 namespace s3d::gui {
 	class UICircle : public UIComponent {

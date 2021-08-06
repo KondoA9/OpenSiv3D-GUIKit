@@ -1,7 +1,7 @@
 #pragma once
 
-#include "UIComponent.h"
-#include "UIRect.h"
+#include "UIComponent.hpp"
+#include "UIRect.hpp"
 
 namespace s3d::gui {
 	class UIIcon :public UIRect {

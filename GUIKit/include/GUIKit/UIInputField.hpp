@@ -1,7 +1,7 @@
 #pragma once
 
-#include "UIText.h"
-#include "UnifiedFont.h"
+#include "UIText.hpp"
+#include "UnifiedFont.hpp"
 
 namespace s3d::gui {
 	class UIInputField : public UIText {

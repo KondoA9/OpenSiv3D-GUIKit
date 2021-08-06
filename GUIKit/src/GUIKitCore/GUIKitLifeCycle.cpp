@@ -1,94 +1,94 @@
-#include <GUIKit/GUIKitCore.h>
-#include <GUIKit/WindowManager.h>
-#include <GUIKit/UnifiedFont.h>
+#include <GUIKit/GUIKitCore.hpp>
+#include <GUIKit/WindowManager.hpp>
+#include <GUIKit/UnifiedFont.hpp>
 
-#include "PageManager/PageManager.h"
+#include "PageManager/PageManager.hpp"
 
-using namespace s3d::gui;
+namespace s3d::gui {
+	void GUIKitCore::initialize() {
+		m_pageManager = new PageManager();
 
-void GUIKitCore::initialize() {
-	m_pageManager = new PageManager();
+		UnifiedFont::Initialize();
 
-	UnifiedFont::Initialize();
+		WindowManager::Initialize();
 
-	WindowManager::Initialize();
+		Scene::SetScaleMode(ScaleMode::ResizeFill);
 
-	Scene::SetScaleMode(ScaleMode::ResizeFill);
-
-	System::SetTerminationTriggers(UserAction::None);
-}
-
-void GUIKitCore::start() {
-	if (m_pageManager->initialize()) {
-		run();
-	}
-	else {
-		Logger << U"Error(GUIKitCore): No pages are registered.";
+		System::SetTerminationTriggers(UserAction::None);
 	}
 
-	delete m_pageManager;
-}
-
-void GUIKitCore::run() {
-	while (System::Update()) {
-		if (System::GetUserActions() == UserAction::CloseButtonClicked) {
-			m_pageManager->terminate();
+	void GUIKitCore::start() {
+		if (m_pageManager->initialize()) {
+			run();
+		}
+		else {
+			Logger << U"Error(GUIKitCore): No pages are registered.";
 		}
 
-		updateGUIKit();
-	}
-}
-
-void GUIKitCore::updateGUIKit() {
-	// Update window state
-	WindowManager::Update();
-
-	// Update pages
-	m_pageManager->update();
-
-	// Update color theme
-	if (m_animateColor) {
-		m_animateColor = animateColor();
+		delete m_pageManager;
 	}
 
-	// Draw pages, components and events
-	m_pageManager->draw();
+	void GUIKitCore::run() {
+		while (System::Update()) {
+			if (System::GetUserActions() == UserAction::CloseButtonClicked) {
+				m_pageManager->terminate();
+			}
 
-	// Additional drawing events
-	for (auto& f : m_drawingEvents) {
-		f();
-	}
-	m_drawingEvents.release();
-
-	// Update
-	updateMainThreadEvents();
-
-	updateTimeouts();
-}
-
-void GUIKitCore::updateMainThreadEvents() {
-	std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
-
-	for (const auto& f : m_eventsRequestedToRunInMainThread) {
-		f();
+			updateGUIKit();
+		}
 	}
 
-	m_eventsRequestedToRunInMainThread.release();
-}
+	void GUIKitCore::updateGUIKit() {
+		// Update window state
+		WindowManager::Update();
 
-void GUIKitCore::updateTimeouts() {
-	bool alive = false;
+		// Update pages
+		m_pageManager->update();
 
-	for (auto& timeout : m_timeouts) {
-		timeout.update();
-		alive |= timeout.isAlive();
+		// Update color theme
+		if (m_animateColor) {
+			m_animateColor = animateColor();
+		}
+
+		// Draw pages, components and events
+		m_pageManager->draw();
+
+		// Additional drawing events
+		for (auto& f : m_drawingEvents) {
+			f();
+		}
+		m_drawingEvents.release();
+
+		// Update
+		updateMainThreadEvents();
+
+		updateTimeouts();
 	}
 
-	if (!alive) {
-		m_timeouts.release();
-	}
-}
+	void GUIKitCore::updateMainThreadEvents() {
+		std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 
-void GUIKitCore::terminate() {
-	m_pageManager->terminate();
+		for (const auto& f : m_eventsRequestedToRunInMainThread) {
+			f();
+		}
+
+		m_eventsRequestedToRunInMainThread.release();
+	}
+
+	void GUIKitCore::updateTimeouts() {
+		bool alive = false;
+
+		for (auto& timeout : m_timeouts) {
+			timeout.update();
+			alive |= timeout.isAlive();
+		}
+
+		if (!alive) {
+			m_timeouts.release();
+		}
+	}
+
+	void GUIKitCore::terminate() {
+		m_pageManager->terminate();
+	}
 }
