@@ -1,7 +1,7 @@
-#include "PageManager.h"
-#include <GUIKit/Page.h>
-#include <GUIKit/WindowManager.h>
-#include <GUIKit/GUIKitInterface.h>
+#include "PageManager.hpp"
+#include <GUIKit/Page.hpp>
+#include <GUIKit/WindowManager.hpp>
+#include <GUIKit/GUIKitInterface.hpp>
 
 namespace s3d::gui {
 	void PageManager::update() {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "InputEvent.h"
+#include "InputEvent.hpp"
 
 namespace s3d::gui {
 	class InputEventHandler {

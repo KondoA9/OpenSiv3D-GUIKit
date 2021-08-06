@@ -1,4 +1,4 @@
-#include <GUIKit/GUIKit.h>
+#include <GUIKit/GUIKit.hpp>
 
 class ToolBar final : public gui::UIView {
 	std::function<void()> m_toggleColorModeHandler;

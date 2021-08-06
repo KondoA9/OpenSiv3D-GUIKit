@@ -1,8 +1,8 @@
 #pragma once
 
-#include "UIButton.h"
-#include "UIText.h"
-#include "PixelUnit.h"
+#include "UIButton.hpp"
+#include "UIText.hpp"
+#include "PixelUnit.hpp"
 
 namespace s3d::gui {
 	class UICheckBox : public UIButton {

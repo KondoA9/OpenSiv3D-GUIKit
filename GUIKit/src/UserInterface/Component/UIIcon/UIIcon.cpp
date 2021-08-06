@@ -1,4 +1,4 @@
-#include <GUIKit/UIIcon.h>
+#include <GUIKit/UIIcon.hpp>
 
 namespace s3d::gui {
 	void UIIcon::draw() {

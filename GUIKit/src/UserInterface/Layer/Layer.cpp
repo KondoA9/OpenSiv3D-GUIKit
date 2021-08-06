@@ -1,4 +1,4 @@
-#include <GUIKit/Layer.h>
+#include <GUIKit/Layer.hpp>
 
 namespace s3d::gui {
 	void Layer::updateConstraints() {

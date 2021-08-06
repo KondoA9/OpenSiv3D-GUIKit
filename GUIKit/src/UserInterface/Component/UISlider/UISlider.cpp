@@ -1,5 +1,5 @@
-#include <GUIKit/UISlider.h>
-#include <GUIKit/PixelUnit.h>
+#include <GUIKit/UISlider.hpp>
+#include <GUIKit/PixelUnit.hpp>
 
 GUICreateInputEvent(Sliding);
 

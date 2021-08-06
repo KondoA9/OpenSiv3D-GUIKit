@@ -1,5 +1,5 @@
-#include <GUIKit/UIImageView.h>
-#include <GUIKit/Imaging.h>
+#include <GUIKit/UIImageView.hpp>
+#include <GUIKit/Imaging.hpp>
 
 namespace s3d::gui {
 	void UIImageView::initialize() {

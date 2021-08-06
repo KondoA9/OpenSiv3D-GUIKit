@@ -1,9 +1,9 @@
 #pragma once
 
-#include "DynamicColor.h"
-#include "MouseEvent.h"
-#include "InputEventHandler.h"
-#include "Layer.h"
+#include "DynamicColor.hpp"
+#include "MouseEvent.hpp"
+#include "InputEventHandler.hpp"
+#include "Layer.hpp"
 
 #include <Siv3D.hpp>
 

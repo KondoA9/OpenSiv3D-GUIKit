@@ -1,6 +1,6 @@
-#include <GUIKit/GUIKitCore.h>
-#include <GUIKit/Page.h>
-#include "PageManager/PageManager.h"
+#include <GUIKit/GUIKitCore.hpp>
+#include <GUIKit/Page.hpp>
+#include "PageManager/PageManager.hpp"
 
 #include <thread>
 

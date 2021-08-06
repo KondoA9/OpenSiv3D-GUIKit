@@ -1,5 +1,5 @@
 #include <Siv3D.hpp>
-#include <GUIKit/UIComponent.h>
+#include <GUIKit/UIComponent.hpp>
 
 namespace s3d::gui {
 	class Page;

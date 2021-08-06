@@ -1,6 +1,6 @@
-#include <GUIKit/UIView.h>
-#include <GUIKit/WindowManager.h>
-#include <GUIKit/GUIFactory.h>
+#include <GUIKit/UIView.hpp>
+#include <GUIKit/WindowManager.hpp>
+#include <GUIKit/GUIFactory.hpp>
 
 namespace s3d::gui {
 	void UIView::release() {

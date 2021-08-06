@@ -1,8 +1,8 @@
-#include <GUIKit/GUIKitCore.h>
-#include <GUIKit/WindowManager.h>
-#include <GUIKit/UnifiedFont.h>
+#include <GUIKit/GUIKitCore.hpp>
+#include <GUIKit/WindowManager.hpp>
+#include <GUIKit/UnifiedFont.hpp>
 
-#include "PageManager/PageManager.h"
+#include "PageManager/PageManager.hpp"
 
 namespace s3d::gui {
 	void GUIKitCore::initialize() {

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIView.h"
+#include "UIView.hpp"
 
 namespace s3d::gui {
 	enum class LeadingDirection {

@@ -1,4 +1,4 @@
-#include <GUIKit/Page.h>
+#include <GUIKit/Page.hpp>
 
 namespace s3d::gui {
 	Page::Page(const String& identifier) :

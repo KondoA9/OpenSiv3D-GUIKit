@@ -1,5 +1,5 @@
-#include <GUIKit/UIInputField.h>
-#include <GUIKit/PixelUnit.h>
+#include <GUIKit/UIInputField.hpp>
+#include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui {
 	void UIInputField::initialize() {

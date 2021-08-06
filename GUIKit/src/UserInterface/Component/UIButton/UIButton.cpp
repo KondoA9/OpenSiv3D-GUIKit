@@ -1,5 +1,5 @@
-#include <GUIKit/UIButton.h>
-#include <GUIKit/UnifiedFont.h>
+#include <GUIKit/UIButton.hpp>
+#include <GUIKit/UnifiedFont.hpp>
 
 namespace s3d::gui {
 	void UIButton::initialize() {

@@ -1,4 +1,4 @@
-#include <GUIKit/GUIFactory.h>
+#include <GUIKit/GUIFactory.hpp>
 
 namespace s3d::gui {
 	size_t GUIFactory::m_Id = 0, GUIFactory::m_PreviousId = 0;

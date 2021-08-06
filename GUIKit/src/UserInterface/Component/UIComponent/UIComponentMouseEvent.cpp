@@ -1,4 +1,4 @@
-#include <GUIKit/UIComponent.h>
+#include <GUIKit/UIComponent.hpp>
 
 namespace s3d::gui {
 	void UIComponent::updateInputEvents() {

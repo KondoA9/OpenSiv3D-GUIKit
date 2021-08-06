@@ -1,5 +1,5 @@
-#include "PageManager.h"
-#include <GUIKit/Page.h>
+#include "PageManager.hpp"
+#include <GUIKit/Page.hpp>
 
 namespace s3d::gui {
 	PageManager::PageManager() {

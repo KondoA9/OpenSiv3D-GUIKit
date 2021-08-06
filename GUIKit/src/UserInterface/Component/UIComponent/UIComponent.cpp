@@ -1,5 +1,5 @@
-#include <GUIKit/UIComponent.h>
-#include <GUIKit/GUIFactory.h>
+#include <GUIKit/UIComponent.hpp>
+#include <GUIKit/GUIFactory.hpp>
 
 namespace s3d::gui {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;

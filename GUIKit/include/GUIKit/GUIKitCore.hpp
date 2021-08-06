@@ -1,8 +1,8 @@
 #pragma once
 
-#include "Timeout.h"
-#include "Page.h"
-#include "GUIFactory.h"
+#include "Timeout.hpp"
+#include "Page.hpp"
+#include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
 

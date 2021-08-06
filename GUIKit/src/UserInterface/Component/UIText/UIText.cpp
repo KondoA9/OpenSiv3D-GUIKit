@@ -1,5 +1,5 @@
-#include <GUIKit/UIText.h>
-#include <GUIKit/PixelUnit.h>
+#include <GUIKit/UIText.hpp>
+#include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui {
 	void UIText::updateLayer(const Rect& scissor) {

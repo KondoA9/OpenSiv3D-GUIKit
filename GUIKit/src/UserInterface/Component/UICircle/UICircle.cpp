@@ -1,4 +1,4 @@
-#include <GUIKit/UICircle.h>
+#include <GUIKit/UICircle.hpp>
 
 namespace s3d::gui {
 	void UICircle::updateLayer(const Rect& scissor) {

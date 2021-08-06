@@ -1,7 +1,7 @@
 #pragma once
 
-#include "UIView.h"
-#include "GUIFactory.h"
+#include "UIView.hpp"
+#include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
 

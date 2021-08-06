@@ -1,6 +1,6 @@
 #pragma once
 
-#include "ColorTheme.h"
+#include "ColorTheme.hpp"
 
 namespace s3d::gui::DynamicColor {
 	constexpr auto Background = ColorTheme(Color(250, 250, 250), Color(33, 33, 33));

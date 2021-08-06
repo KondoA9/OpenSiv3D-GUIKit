@@ -1,6 +1,6 @@
 #pragma once
 
-#include "UIRect.h"
+#include "UIRect.hpp"
 
 namespace s3d::gui {
 	class UIImageView : public UIRect {

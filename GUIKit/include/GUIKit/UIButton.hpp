@@ -1,7 +1,7 @@
 #pragma once
 
-#include "UIRect.h"
-#include "UnifiedFont.h"
+#include "UIRect.hpp"
+#include "UnifiedFont.hpp"
 
 #include <Siv3D.hpp>
 

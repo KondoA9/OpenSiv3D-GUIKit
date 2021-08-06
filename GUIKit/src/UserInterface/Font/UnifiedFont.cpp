@@ -1,5 +1,5 @@
-#include <GUIKit/UnifiedFont.h>
-#include <GUIKit/PixelUnit.h>
+#include <GUIKit/UnifiedFont.hpp>
+#include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui::UnifiedFont {
 	Array<std::shared_ptr<Font>> Fonts;
