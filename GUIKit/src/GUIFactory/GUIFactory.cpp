@@ -1,42 +1,39 @@
-#include <GUIKit/GUIFactory.h>
+#include <GUIKit/GUIFactory.hpp>
 
-#include <GUIKit/UIComponent.h>
-#include <GUIKit/UIView.h>
+namespace s3d::gui {
+	size_t GUIFactory::m_Id = 0, GUIFactory::m_PreviousId = 0;
+	GUIFactory GUIFactory::m_Instance;
 
-using namespace s3d::gui;
+	size_t GUIFactory::GetId() {
+		FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through GUIFactory::Create()");
 
-size_t GUIFactory::m_Id = 0, GUIFactory::m_PreviousId = 0;
-GUIFactory GUIFactory::instance;
+		m_PreviousId = m_Id;
 
-size_t GUIFactory::GetId() {
-	FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through GUIFactory::Create()");
+		return m_Id;
+	}
 
-	m_PreviousId = m_Id;
+	std::shared_ptr<UIComponent>& GUIFactory::GetComponent(size_t id) {
+		for (auto& component : m_Instance.m_components) {
+			if (component && component->id() == id) {
+				return component;
+			}
+		}
 
-	return m_Id;
-}
+		throw "";
+	}
 
-std::shared_ptr<UIComponent>& GUIFactory::GetComponent(size_t id) {
-	for (auto& component : instance.m_components) {
-		if (component && component->id() == id) {
-			return component;
+	void GUIFactory::RequestReleaseComponent(size_t id) {
+		for (auto& component : m_Instance.m_components) {
+			if (component && component->id() == id) {
+				component.reset();
+				break;
+			}
 		}
 	}
 
-	throw "";
-}
-
-void GUIFactory::RequestReleaseComponent(size_t id) {
-	for (auto& component : instance.m_components) {
-		if (component && component->id() == id) {
-			component.reset();
-			break;
-		}
+	void GUIFactory::ReleaseInvalidComponents() {
+		m_Instance.m_components.remove_if([](const std::shared_ptr<UIComponent>& component) {
+			return !component;
+			});
 	}
-}
-
-void GUIFactory::ReleaseInvalidComponents() {
-	instance.m_components.remove_if([](const std::shared_ptr<UIComponent>& component) {
-		return !component;
-		});
 }

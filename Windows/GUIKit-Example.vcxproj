@@ -165,7 +165,7 @@
     <ResourceCompile Include="..\App\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Test\Example.cpp" />
+    <ClCompile Include="..\Test\Example\Example.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

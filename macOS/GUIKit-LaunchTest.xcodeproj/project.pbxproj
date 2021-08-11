@@ -37,7 +37,7 @@
 		9E1AB98626A00ECA00235A6A /* libopencv_photo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB98026A00ECA00235A6A /* libopencv_photo.a */; };
 		9E1AB98726A00ECA00235A6A /* libopencv_videoio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB98126A00ECA00235A6A /* libopencv_videoio.a */; };
 		9E1AB98926A00ED000235A6A /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB98826A00ED000235A6A /* libz.a */; };
-		9E1AB98B26A00FF800235A6A /* LaunchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E1AB98A26A00FF800235A6A /* LaunchTest.cpp */; };
+		9E41CB7026A97BB300F739A9 /* LaunchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -73,7 +73,11 @@
 		9E1AB98026A00ECA00235A6A /* libopencv_photo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_photo.a; path = ../Dependencies/lib/macOS/opencv/libopencv_photo.a; sourceTree = "<group>"; };
 		9E1AB98126A00ECA00235A6A /* libopencv_videoio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_videoio.a; path = ../Dependencies/lib/macOS/opencv/libopencv_videoio.a; sourceTree = "<group>"; };
 		9E1AB98826A00ED000235A6A /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../Dependencies/lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
-		9E1AB98A26A00FF800235A6A /* LaunchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = LaunchTest.cpp; path = ../Test/LaunchTest.cpp; sourceTree = "<group>"; };
+		9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaunchTest.cpp; sourceTree = "<group>"; };
+		9E41CB6C26A97BB300F739A9 /* PagingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingTest.h; sourceTree = "<group>"; };
+		9E41CB6D26A97BB300F739A9 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
+		9E41CB6E26A97BB300F739A9 /* ComponentsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentsTest.h; sourceTree = "<group>"; };
+		9E41CB6F26A97BB300F739A9 /* FocusTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusTest.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,7 +122,7 @@
 		2C1778791CE0A9D800BB8AD0 = {
 			isa = PBXGroup;
 			children = (
-				9E1AB98A26A00FF800235A6A /* LaunchTest.cpp */,
+				9E41CB6A26A97BB300F739A9 /* LaunchTest */,
 				9E1AB94126A00DCF00235A6A /* engine */,
 				2C1778921CE0A9EA00BB8AD0 /* Info.plist */,
 				9E1AB8DC26A00BB200235A6A /* icon.icns */,
@@ -168,6 +172,19 @@
 				9E1AB98826A00ED000235A6A /* libz.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9E41CB6A26A97BB300F739A9 /* LaunchTest */ = {
+			isa = PBXGroup;
+			children = (
+				9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */,
+				9E41CB6C26A97BB300F739A9 /* PagingTest.h */,
+				9E41CB6D26A97BB300F739A9 /* Test.h */,
+				9E41CB6E26A97BB300F739A9 /* ComponentsTest.h */,
+				9E41CB6F26A97BB300F739A9 /* FocusTest.h */,
+			);
+			name = LaunchTest;
+			path = ../Test/LaunchTest;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -238,7 +255,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E1AB98B26A00FF800235A6A /* LaunchTest.cpp in Sources */,
+				9E41CB7026A97BB300F739A9 /* LaunchTest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

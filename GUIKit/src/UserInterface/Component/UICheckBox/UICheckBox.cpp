@@ -1,19 +1,19 @@
-#include <GUIKit/UICheckBox.h>
+#include <GUIKit/UICheckBox.hpp>
 
-using namespace s3d::gui;
+namespace s3d::gui {
+	void UICheckBox::initialize() {
+		addEventListener<MouseEvent::LeftDown>([this] {
+			setChecked(!m_checked);
+			}, true);
 
-void UICheckBox::initialize() {
-	addEventListener<MouseEvent::LeftDown>([this] {
-		setChecked(!m_checked);
-		}, true);
+		drawFrame = true;
+		setCornerRadius(5_px);
 
-	drawFrame = true;
-	setCornerRadius(5_px);
+		UIButton::initialize();
+	}
 
-	UIButton::initialize();
-}
-
-void UICheckBox::setChecked(bool checked) {
-	m_checked = checked;
-	setIcon(m_checked ? m_checkdIcon : Texture());
+	void UICheckBox::setChecked(bool checked) {
+		m_checked = checked;
+		setIcon(m_checked ? m_checkdIcon : Texture());
+	}
 }

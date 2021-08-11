@@ -30,8 +30,12 @@ include_directories(
 set(SOURCE_FILES
 "../GUIKit/src/GUIKitCore/GUIKitCore.cpp"
 "../GUIKit/src/GUIKitCore/GUIKitLifeCycle.cpp"
+"../GUIKit/src/GUIKitCore/PageManager/PageManager.cpp"
+"../GUIKit/src/GUIKitCore/PageManager/PageCycle.cpp"
 
 "../GUIKit/src/GUIFactory/GUIFactory.cpp"
+
+"../GUIKit/src/GUIKitInterface/GUIKitInterface.cpp"
 
 "../GUIKit/src/Page/Page.cpp"
 
@@ -45,23 +49,26 @@ set(SOURCE_FILES
 
 "../GUIKit/src/WindowManager/WindowManager.cpp"
 
+"../GUIKit/src/CommandLine/CommandLine.cpp"
+
 "../GUIKit/src/UserInterface/Font/UnifiedFont.cpp"
 "../GUIKit/src/UserInterface/Constraint/Constraint.cpp"
 "../GUIKit/src/UserInterface/Layer/Layer.cpp"
-"../GUIKit/src/UserInterface/Component/UIComponent.cpp"
-"../GUIKit/src/UserInterface/Component/UIComponentMouseEvent.cpp"
+
+"../GUIKit/src/UserInterface/Component/UIComponent/UIComponent.cpp"
+"../GUIKit/src/UserInterface/Component/UIComponent/UIComponentMouseEvent.cpp"
 "../GUIKit/src/UserInterface/Component/UIButton/UIButton.cpp"
 "../GUIKit/src/UserInterface/Component/UICircle/UICircle.cpp"
 "../GUIKit/src/UserInterface/Component/UICheckBox/UICheckBox.cpp"
 "../GUIKit/src/UserInterface/Component/UIIcon/UIIcon.cpp"
 "../GUIKit/src/UserInterface/Component/UIImageView/UIImageView.cpp"
-"../GUIKit/src/UserInterface/Component/UIImageView/UIZStackedImageView.cpp"
 "../GUIKit/src/UserInterface/Component/UIInputField/UIInputField.cpp"
 "../GUIKit/src/UserInterface/Component/UIRect/UIRect.cpp"
 "../GUIKit/src/UserInterface/Component/UISlider/UISlider.cpp"
 "../GUIKit/src/UserInterface/Component/UIText/UIText.cpp"
 "../GUIKit/src/UserInterface/Component/UIToggleButton/UIToggleButton.cpp"
 "../GUIKit/src/UserInterface/Component/UIView/UIView.cpp"
+"../GUIKit/src/UserInterface/Component/UITabView/UITabView.cpp"
 "../GUIKit/src/UserInterface/Component/UIVStackView/UIVStackView.cpp"
 )
 

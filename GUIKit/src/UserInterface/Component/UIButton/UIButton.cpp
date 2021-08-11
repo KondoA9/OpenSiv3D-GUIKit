@@ -1,32 +1,33 @@
-#include <GUIKit/UIButton.h>
-#include <GUIKit/UnifiedFont.h>
+#include <GUIKit/UIButton.hpp>
+#include <GUIKit/UnifiedFont.hpp>
 
-using namespace s3d::gui;
+namespace s3d::gui {
+	void UIButton::initialize() {
+		backgroundColor = defaultColor;
+		textColor = defaultTextColor;
 
-void UIButton::initialize() {
-	backgroundColor = defaultColor;
+		addEventListener<MouseEvent::Hovered>([this] {
+			backgroundColor.highlight(hoveredColor);
+			textColor.highlight(hoveredTextColor);
+			}, true);
 
-	addEventListener<MouseEvent::Hovered>([this] {
-		backgroundColor.highlight(hoveredColor);
-		}, true);
+		addEventListener<MouseEvent::UnHovered>([this] {
+			backgroundColor.lowlight(defaultColor);
+			textColor.lowlight(defaultTextColor);
+			}, true);
 
-	addEventListener<MouseEvent::UnHovered>([this] {
-		backgroundColor.lowlight(defaultColor);
-		}, true);
+		addEventListener<MouseEvent::Hovering>([] {
+			Cursor::RequestStyle(CursorStyle::Hand);
+			}, true);
 
-	addEventListener<MouseEvent::Hovering>([] {
-		Cursor::RequestStyle(CursorStyle::Hand);
-		}, true);
+		UIText::initialize();
+	}
 
-	UIRect::initialize();
-}
+	void UIButton::draw() {
+		UIText::draw();
 
-void UIButton::draw() {
-	UIRect::draw();
-
-	m_font(m_title).drawAt(rect().center(), textColor);
-
-	if (m_icon) {
-		m_icon.drawAt(rect().center(), textColor);
+		if (m_icon) {
+			m_icon.drawAt(rect().center(), textColor);
+		}
 	}
 }
