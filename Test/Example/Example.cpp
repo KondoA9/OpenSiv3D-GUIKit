@@ -28,7 +28,7 @@ protected:
 	void initialize() override {
 		UIView::initialize();
 
-		ui_openDirectoryButton.setTitle(U"Open");
+		ui_openDirectoryButton.setText(U"Open");
 		ui_parentDirButton.setIcon(Texture(Icon(0xf062, 20)));
 		ui_toggleColorModeButton.setIcon(Texture(Icon(0xf186, 20)));
 
@@ -166,7 +166,7 @@ class ExplorerPage : public gui::Page {
 
 	void onLoaded() override {
 		ui_toolbar.backgroundColor = gui::DynamicColor::BackgroundSecondary;
-		ui_movePage.setTitle(U"Move page");
+		ui_movePage.setText(U"Move page");
 
 		ui_toolbar.drawFrame = true;
 		ui_toolbar.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
@@ -234,7 +234,7 @@ class StartPage : public gui::Page {
 		ui_title.setFont(gui::UnifiedFontStyle::Large);
 		ui_title.setDirection(gui::TextDirection::Center);
 
-		ui_button.setTitle(U"Next");
+		ui_button.setText(U"Next");
 
 		ui_title.setConstraint(gui::LayerDirection::Top);
 		ui_title.setConstraint(gui::LayerDirection::Height, view(), gui::LayerDirection::Height, 0.0, 0.5);

@@ -54,7 +54,7 @@ namespace s3d::gui {
 		const size_t index = m_tabs.size();
 
 		auto& selector = GUIFactory::Create<UIButton>();
-		selector.setTitle(name);
+		selector.setText(name);
 
 		selector.setConstraint(LayerDirection::Top, ui_tabSelectorView, LayerDirection::Top);
 		selector.setConstraint(LayerDirection::Bottom, ui_tabSelectorView, LayerDirection::Bottom);
