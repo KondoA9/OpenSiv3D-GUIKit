@@ -27,6 +27,8 @@
 //
 //----------------------------------------------------------------------------------------
 
+#pragma warning(push)
+
 # pragma once
 # ifndef SIV3D_INCLUDED
 #	define SIV3D_INCLUDED
@@ -1376,3 +1378,5 @@ using namespace s3d;
 using namespace std::literals;
 
 # endif
+
+#pragma warning(pop)
