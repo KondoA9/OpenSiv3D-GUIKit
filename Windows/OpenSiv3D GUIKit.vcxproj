@@ -12,6 +12,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp" />
+    <ClCompile Include="..\GUIKit\src\CommandLine\CommandLine.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIFactory\GUIFactory.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitCore.cpp" />
     <ClCompile Include="..\GUIKit\src\GUIKitCore\GUIKitLifeCycle.cpp" />
@@ -44,6 +45,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\GUIKit\include\GUIKit\ColorTheme.hpp" />
+    <ClInclude Include="..\GUIKit\include\GUIKit\CommandLine.hpp" />
     <ClInclude Include="..\GUIKit\include\GUIKit\Constraint.hpp" />
     <ClInclude Include="..\GUIKit\include\GUIKit\DynamicColor.hpp" />
     <ClInclude Include="..\GUIKit\include\GUIKit\GUIFactory.hpp" />

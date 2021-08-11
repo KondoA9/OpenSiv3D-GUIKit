@@ -94,6 +94,9 @@
     <Filter Include="GUIKit\UserInterface\UserInterface\UITabView">
       <UniqueIdentifier>{5b4fabaf-7b4b-4aee-a4bb-59c438009da0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GUIKit\CommandLine">
+      <UniqueIdentifier>{6d0d160c-5188-43c8-b5db-ec94219256aa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUIKit\src\ColorTheme\ColorTheme.cpp">
@@ -185,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="..\GUIKit\src\UserInterface\Component\UITabView\UITabView.cpp">
       <Filter>GUIKit\UserInterface\UserInterface\UITabView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GUIKit\src\CommandLine\CommandLine.cpp">
+      <Filter>GUIKit\CommandLine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +289,9 @@
     </ClInclude>
     <ClInclude Include="..\GUIKit\include\GUIKit\UITabView.hpp">
       <Filter>GUIKit\UserInterface\UserInterface\UITabView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GUIKit\include\GUIKit\CommandLine.hpp">
+      <Filter>GUIKit\CommandLine</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
