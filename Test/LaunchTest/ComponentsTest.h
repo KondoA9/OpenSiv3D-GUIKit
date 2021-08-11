@@ -29,12 +29,12 @@ void ComponentsTest::onLoaded() {
 
 	auto& button = gui::GUIFactory::Create<gui::UIButton>();
 	button.backgroundColor = gui::DynamicColor::DefaultBlueGray;
-	button.setTitle(U"UIButton");
+	button.setText(U"UIButton");
 	stackView.appendComponent(button);
 
 	auto& toggleButton = gui::GUIFactory::Create<gui::UIToggleButton>();
 	toggleButton.backgroundColor = gui::DynamicColor::DefaultBrown;
-	toggleButton.setTitle(U"UIToggleButton");
+	toggleButton.setText(U"UIToggleButton");
 	stackView.appendComponent(toggleButton);
 
 	auto& text = gui::GUIFactory::Create<gui::UIText>();

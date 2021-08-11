@@ -20,13 +20,11 @@ namespace s3d::gui {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
 
-		UIRect::initialize();
+		UIText::initialize();
 	}
 
 	void UIButton::draw() {
-		UIRect::draw();
-
-		m_font(m_title).drawAt(rect().center(), textColor);
+		UIText::draw();
 
 		if (m_icon) {
 			m_icon.drawAt(rect().center(), textColor);
