@@ -28,5 +28,7 @@
 
 #include "GUIFactory.hpp"
 
+#include "CommandLine.hpp"
+
 // Siv3D v0.4.3
 #include <Siv3D.hpp>
