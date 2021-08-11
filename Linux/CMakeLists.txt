@@ -49,6 +49,8 @@ set(SOURCE_FILES
 
 "../GUIKit/src/WindowManager/WindowManager.cpp"
 
+"../GUIKit/src/CommandLine/CommandLine.cpp"
+
 "../GUIKit/src/UserInterface/Font/UnifiedFont.cpp"
 "../GUIKit/src/UserInterface/Constraint/Constraint.cpp"
 "../GUIKit/src/UserInterface/Layer/Layer.cpp"
