@@ -32,6 +32,7 @@ set(SOURCE_FILES
 "../GUIKit/src/GUIKitCore/GUIKitLifeCycle.cpp"
 "../GUIKit/src/GUIKitCore/PageManager/PageManager.cpp"
 "../GUIKit/src/GUIKitCore/PageManager/PageCycle.cpp"
+"../GUIKit/src/GUIKitCore/ParallelTaskManager/ParallelTaskManager.cpp"
 
 "../GUIKit/src/GUIFactory/GUIFactory.cpp"
 
