@@ -1,6 +1,7 @@
 #include <GUIKit/GUIKitCore.hpp>
 #include <GUIKit/Page.hpp>
 #include "PageManager/PageManager.hpp"
+#include "AsyncProcessManager/AsyncProcessManager.hpp"
 
 #include <thread>
 
@@ -38,13 +39,14 @@ namespace s3d::gui {
 	}
 
 	void GUIKitCore::insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
-		std::thread thread([this, func, completion]() {
-			func();
-			if (completion) {
+		if (completion) {
+			m_asyncProcessManager->create(func, [this, &completion] {
 				insertProcessToMainThread(completion);
-			}
-			});
-		thread.detach();
+				});
+		}
+		else {
+			m_asyncProcessManager->create(func);
+		}
 	}
 
 	size_t GUIKitCore::setTimeout(const std::function<void()>& func, double ms, bool threading) {

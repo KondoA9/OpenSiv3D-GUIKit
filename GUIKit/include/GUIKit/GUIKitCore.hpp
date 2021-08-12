@@ -11,6 +11,7 @@
 
 namespace s3d::gui {
 	class PageManager;
+	class AsyncProcessManager;
 
 	enum class ColorMode;
 
@@ -19,6 +20,7 @@ namespace s3d::gui {
 		std::mutex m_mainThreadInserterMutex;
 
 		PageManager* m_pageManager;
+		AsyncProcessManager* m_asyncProcessManager;
 
 		std::atomic<bool> m_terminationPrevented = false;
 
