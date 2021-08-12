@@ -41,6 +41,10 @@ namespace s3d::gui::GUIKit {
 		GUIKitCore::Instance().insertAsyncProcess(func, completion);
 	}
 
+	bool IsAsyncProcessAlive() {
+		return GUIKitCore::Instance().isAsyncProcessAlive();
+	}
+
 	size_t SetTimeout(const std::function<void()>& func, double ms, bool threading) {
 		return GUIKitCore::Instance().setTimeout(func, ms, threading);
 	}

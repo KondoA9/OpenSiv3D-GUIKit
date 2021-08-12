@@ -10,7 +10,7 @@ namespace s3d::gui {
 
 	public:
 		bool isAlive() const {
-			return m_counter == 0;
+			return m_counter != 0;
 		}
 
 		void create(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());

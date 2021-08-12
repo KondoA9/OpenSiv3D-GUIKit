@@ -6,7 +6,7 @@
 #include "AsyncProcessManager/AsyncProcessManager.hpp"
 
 namespace s3d::gui {
-	void GUIKitCore::initialize() {
+	GUIKitCore::GUIKitCore() {
 		m_pageManager = new PageManager();
 		m_asyncProcessManager = new AsyncProcessManager();
 

@@ -10,17 +10,14 @@
 #include <atomic>
 
 namespace s3d::gui {
-	class PageManager;
-	class AsyncProcessManager;
-
 	enum class ColorMode;
 
 	class GUIKitCore final {
 	private:
-		std::mutex m_mainThreadInserterMutex;
+		class PageManager* m_pageManager;
+		class AsyncProcessManager* m_asyncProcessManager;
 
-		PageManager* m_pageManager;
-		AsyncProcessManager* m_asyncProcessManager;
+		std::mutex m_mainThreadInserterMutex;
 
 		std::atomic<bool> m_terminationPrevented = false;
 
@@ -46,6 +43,8 @@ namespace s3d::gui {
 		bool isTerminationPrevented() const {
 			return m_terminationPrevented;
 		}
+
+		bool isAsyncProcessAlive() const;
 
 		void start();
 
@@ -97,9 +96,7 @@ namespace s3d::gui {
 		}
 
 	private:
-		GUIKitCore() {
-			initialize();
-		}
+		GUIKitCore();
 
 		~GUIKitCore() = default;
 
@@ -108,8 +105,6 @@ namespace s3d::gui {
 		void appendPage(const std::shared_ptr<Page>& page);
 
 		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
-
-		void initialize();
 
 		void run();
 

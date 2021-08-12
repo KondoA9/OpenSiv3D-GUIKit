@@ -10,7 +10,7 @@ namespace s3d::gui {
 			func();
 
 			if (completion) {
-				completion;
+				completion();
 			}
 
 			m_counter--;

@@ -32,6 +32,8 @@ namespace s3d::gui::GUIKit {
 	/// <param name="completion">The process that runs on main thread after func() ended.</param>
 	void InsertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
+	bool IsAsyncProcessAlive();
+
 	/// <summary>
 	/// Set an event with timeout. Do not set a process that changes user interfaces.
 	/// </summary>

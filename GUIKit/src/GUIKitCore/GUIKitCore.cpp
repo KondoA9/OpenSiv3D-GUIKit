@@ -6,6 +6,10 @@
 #include <thread>
 
 namespace s3d::gui {
+	bool GUIKitCore::isAsyncProcessAlive() const {
+		return m_asyncProcessManager != nullptr && m_asyncProcessManager->isAlive();
+	}
+
 	void GUIKitCore::switchPage(const String& identifier) {
 		m_pageManager->switchPage(identifier);
 	}
@@ -40,7 +44,7 @@ namespace s3d::gui {
 
 	void GUIKitCore::insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
 		if (completion) {
-			m_asyncProcessManager->create(func, [this, &completion] {
+			m_asyncProcessManager->create(func, [this, completion] {
 				insertProcessToMainThread(completion);
 				});
 		}
