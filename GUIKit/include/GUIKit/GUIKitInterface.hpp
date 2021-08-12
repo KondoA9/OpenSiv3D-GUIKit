@@ -25,14 +25,14 @@ namespace s3d::gui::GUIKit {
 	void InsertProcessToMainThread(const std::function<void()>& func);
 
 	/// <summary>
-	/// Request to run a process asynchronously, and if need, a completion process will runs on main thread.
+	/// Request to run a task parallelly, and if need, a completion process will runs on main thread.
 	/// 
 	/// </summary>
-	/// <param name="func">The process that runs asynchronously. Do not set a process that changes user interfaces.</param>
+	/// <param name="func">The process that runs parallelly. Do not set a process that changes user interfaces.</param>
 	/// <param name="completion">The process that runs on main thread after func() ended.</param>
-	void InsertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
+	void CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
-	bool IsAsyncProcessAlive();
+	bool IsParallelTaskAlive();
 
 	/// <summary>
 	/// Set an event with timeout. Do not set a process that changes user interfaces.

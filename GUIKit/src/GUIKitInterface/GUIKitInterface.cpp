@@ -37,12 +37,12 @@ namespace s3d::gui::GUIKit {
 		GUIKitCore::Instance().insertProcessToMainThread(func);
 	}
 
-	void InsertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
-		GUIKitCore::Instance().insertAsyncProcess(func, completion);
+	void CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
+		GUIKitCore::Instance().createParallelTask(func, completion);
 	}
 
-	bool IsAsyncProcessAlive() {
-		return GUIKitCore::Instance().isAsyncProcessAlive();
+	bool IsParallelTaskAlive() {
+		return GUIKitCore::Instance().isParalellTaskAlive();
 	}
 
 	size_t SetTimeout(const std::function<void()>& func, double ms, bool threading) {

@@ -3,12 +3,12 @@
 #include <GUIKit/UnifiedFont.hpp>
 
 #include "PageManager/PageManager.hpp"
-#include "AsyncProcessManager/AsyncProcessManager.hpp"
+#include "ParallelTaskManager/ParallelTaskManager.hpp"
 
 namespace s3d::gui {
 	GUIKitCore::GUIKitCore() {
 		m_pageManager = new PageManager();
-		m_asyncProcessManager = new AsyncProcessManager();
+		m_parallelTaskManager = new ParallelTaskManager();
 
 		UnifiedFont::Initialize();
 
@@ -28,7 +28,7 @@ namespace s3d::gui {
 		}
 
 		delete m_pageManager;
-		delete m_asyncProcessManager;
+		delete m_parallelTaskManager;
 	}
 
 	void GUIKitCore::run() {

@@ -4,7 +4,7 @@
 #include <atomic>
 
 namespace s3d::gui {
-	class AsyncProcessManager final {
+	class ParallelTaskManager final {
 	private:
 		std::atomic<size_t> m_counter = 0;
 
@@ -13,6 +13,6 @@ namespace s3d::gui {
 			return m_counter != 0;
 		}
 
-		void create(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
+		void createTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 	};
 }

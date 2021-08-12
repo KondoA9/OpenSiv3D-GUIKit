@@ -97,7 +97,7 @@
     <Filter Include="GUIKit\CommandLine">
       <UniqueIdentifier>{6d0d160c-5188-43c8-b5db-ec94219256aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUIKit\GUIKitCore\AsyncProcessManager">
+    <Filter Include="GUIKit\GUIKitCore\ParallelTaskManager">
       <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -195,8 +195,8 @@
     <ClCompile Include="..\GUIKit\src\CommandLine\CommandLine.cpp">
       <Filter>GUIKit\CommandLine</Filter>
     </ClCompile>
-    <ClCompile Include="..\GUIKit\src\GUIKitCore\AsyncProcessManager\AsyncProcessManager.cpp">
-      <Filter>GUIKit\GUIKitCore\AsyncProcessManager</Filter>
+    <ClCompile Include="..\GUIKit\src\GUIKitCore\ParallelTaskManager\ParallelTaskManager.cpp">
+      <Filter>GUIKit\GUIKitCore\ParallelTaskManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -299,8 +299,8 @@
     <ClInclude Include="..\GUIKit\include\GUIKit\CommandLine.hpp">
       <Filter>GUIKit\CommandLine</Filter>
     </ClInclude>
-    <ClInclude Include="..\GUIKit\src\GUIKitCore\AsyncProcessManager\AsyncProcessManager.hpp">
-      <Filter>GUIKit\GUIKitCore\AsyncProcessManager</Filter>
+    <ClInclude Include="..\GUIKit\src\GUIKitCore\ParallelTaskManager\ParallelTaskManager.hpp">
+      <Filter>GUIKit\GUIKitCore\ParallelTaskManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

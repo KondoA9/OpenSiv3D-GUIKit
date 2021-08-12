@@ -125,7 +125,7 @@ namespace s3d::gui {
 			once = false;
 		}
 
-		if (GUIKit::IsTerminationPrevented() || GUIKit::IsAsyncProcessAlive()) {
+		if (GUIKit::IsTerminationPrevented() || GUIKit::IsParallelTaskAlive()) {
 			updateLayers();
 		}
 		else {

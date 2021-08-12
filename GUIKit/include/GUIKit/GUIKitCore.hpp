@@ -15,7 +15,7 @@ namespace s3d::gui {
 	class GUIKitCore final {
 	private:
 		class PageManager* m_pageManager;
-		class AsyncProcessManager* m_asyncProcessManager;
+		class ParallelTaskManager* m_parallelTaskManager;
 
 		std::mutex m_mainThreadInserterMutex;
 
@@ -44,7 +44,7 @@ namespace s3d::gui {
 			return m_terminationPrevented;
 		}
 
-		bool isAsyncProcessAlive() const;
+		bool isParalellTaskAlive() const;
 
 		void start();
 
@@ -66,7 +66,7 @@ namespace s3d::gui {
 
 		void insertProcessToMainThread(const std::function<void()>& func);
 
-		void insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
+		void createParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 

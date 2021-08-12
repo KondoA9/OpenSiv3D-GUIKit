@@ -1,13 +1,13 @@
 #include <GUIKit/GUIKitCore.hpp>
 #include <GUIKit/Page.hpp>
 #include "PageManager/PageManager.hpp"
-#include "AsyncProcessManager/AsyncProcessManager.hpp"
+#include "ParallelTaskManager/ParallelTaskManager.hpp"
 
 #include <thread>
 
 namespace s3d::gui {
-	bool GUIKitCore::isAsyncProcessAlive() const {
-		return m_asyncProcessManager != nullptr && m_asyncProcessManager->isAlive();
+	bool GUIKitCore::isParalellTaskAlive() const {
+		return m_parallelTaskManager->isAlive();
 	}
 
 	void GUIKitCore::switchPage(const String& identifier) {
@@ -42,14 +42,14 @@ namespace s3d::gui {
 		m_eventsRequestedToRunInMainThread.push_back(func);
 	}
 
-	void GUIKitCore::insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion) {
+	void GUIKitCore::createParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
 		if (completion) {
-			m_asyncProcessManager->create(func, [this, completion] {
+			m_parallelTaskManager->createTask(func, [this, completion] {
 				insertProcessToMainThread(completion);
 				});
 		}
 		else {
-			m_asyncProcessManager->create(func);
+			m_parallelTaskManager->createTask(func);
 		}
 	}
 
