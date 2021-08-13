@@ -59,7 +59,7 @@ namespace s3d::gui {
 
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
-		static std::shared_ptr<UIComponent> m_FocusedComponent;
+		static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
 
 		const size_t m_id;
 		bool m_valid = false;
@@ -210,6 +210,8 @@ namespace s3d::gui {
 		}
 
 	private:
+		static void UpdateFocusEvent();
+
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);
