@@ -11,11 +11,11 @@ namespace s3d::gui {
 		// Textures
 		Array <DynamicTexture> m_textures;
 		Array <double> m_alphas;
-		RectF m_textureRegion;
+		RectF m_textureRegion = RectF();
 
 		// Position
-		Vec2 m_drawingCenterPos;
-		Point m_cursoredPixel, m_preCursoredPixel;
+		Vec2 m_drawingCenterPos = Vec2();
+		Point m_cursoredPixel = Point(), m_preCursoredPixel = Point();
 
 		// Scaling
 		const uint32 m_minPixel = 50;
@@ -23,8 +23,8 @@ namespace s3d::gui {
 		double m_scale = 1.0, m_minScale = 1.0, m_maxScale = 1.0, m_scaleRate = 0.0;
 
 		// Rotation
-		RectF m_rotatedTextureRegion;
-		Vec2 m_baseRotatedTextureSize, m_rotatedTextureSize;
+		RectF m_rotatedTextureRegion = RectF();
+		Vec2 m_baseRotatedTextureSize = Vec2(), m_rotatedTextureSize = Vec2();
 		double m_angle = 0.0;
 
 	public:
