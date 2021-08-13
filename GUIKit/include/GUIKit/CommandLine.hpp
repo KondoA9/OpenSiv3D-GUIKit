@@ -9,6 +9,6 @@ namespace s3d::CLI {
 	// Open path on explorer or finder
 	bool OpenFolder(const String& path);
 
-	// Get item from url to output
+	// If Windows, curl is the alias of Invoke-WebRequest
 	bool Curl(const String& url, const FilePath& output);
 }

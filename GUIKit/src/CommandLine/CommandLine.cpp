@@ -46,6 +46,10 @@ namespace s3d::CLI {
 	}
 
 	bool Curl(const String& url, const FilePath& output) {
+#if SIV3D_PLATFORM(WINDOWS)
+		return Execute(U"curl {} -o {} -UseBasicParsing"_fmt(url, output));
+#else
 		return Execute(U"curl {} -o {}"_fmt(url, output));
+#endif
 	}
 }
