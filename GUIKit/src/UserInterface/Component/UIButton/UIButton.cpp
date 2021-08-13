@@ -3,6 +3,8 @@
 
 namespace s3d::gui {
 	void UIButton::initialize() {
+		UIText::initialize();
+
 		backgroundColor = defaultColor;
 		textColor = defaultTextColor;
 
@@ -19,8 +21,6 @@ namespace s3d::gui {
 		addEventListener<MouseEvent::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
-
-		UIText::initialize();
 	}
 
 	void UIButton::draw() {

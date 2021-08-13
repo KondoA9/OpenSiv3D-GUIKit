@@ -2,6 +2,11 @@
 
 namespace s3d::gui {
 	void UIToggleButton::initialize() {
+		UIText::initialize();
+
+		backgroundColor = defaultColor;
+		textColor = defaultTextColor;
+
 		addEventListener<MouseEvent::LeftDown>([this] {
 			m_enabled = !m_enabled;
 			if (m_enabled) {
@@ -35,7 +40,5 @@ namespace s3d::gui {
 		addEventListener<MouseEvent::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
-
-		UIRect::initialize();
 	}
 }
