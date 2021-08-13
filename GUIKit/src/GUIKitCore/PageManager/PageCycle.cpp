@@ -45,13 +45,6 @@ namespace s3d::gui {
 		default:
 			break;
 		}
-
-		for (auto& component : m_isolatedComponents) {
-			if (component->updatable()) {
-				component->updateMouseIntersection();
-				component->updateInputEvents();
-			}
-		}
 	}
 
 	void PageManager::draw() {
@@ -176,6 +169,13 @@ namespace s3d::gui {
 		if (m_drawingPage->m_view.updatable()) {
 			m_drawingPage->m_view.updateMouseIntersection();
 			m_drawingPage->m_view.updateInputEvents();
+		}
+
+		for (auto& component : m_isolatedComponents) {
+			if (component->updatable()) {
+				component->updateMouseIntersection();
+				component->updateInputEvents();
+			}
 		}
 
 		UIComponent::CallInputEvents();
