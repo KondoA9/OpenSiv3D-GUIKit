@@ -3,7 +3,7 @@
 
 namespace s3d::gui {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
-	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr;
+	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr, UIComponent::m_PreviousFocusedComponent = nullptr;
 
 	UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
 		m_id(GUIFactory::GetId()),
@@ -78,30 +78,16 @@ namespace s3d::gui {
 
 	void UIComponent::focus() {
 		try {
-			// Throwable
-			// Get shared_ptr of this
-			const std::shared_ptr<UIComponent> this_ptr = GUIFactory::GetComponent(m_id);
-
-			// Unfocus previous focused component
-			if (m_FocusedComponent) {
-				m_FocusedComponent->unFocus();
-			}
-
-			// Now, focused component is this
-			m_FocusedComponent = this_ptr;
-			registerInputEvent(Focused(this));
+			// Focused component is this
+			m_FocusedComponent = GUIFactory::GetComponent(m_id);;
 		}
 		catch (...) {
-			if (m_FocusedComponent) {
-				m_FocusedComponent->registerInputEvent(UnFocused(m_FocusedComponent.get()));
-				m_FocusedComponent.reset();
-			}
+			m_FocusedComponent.reset();
 		}
 	}
 
 	void UIComponent::unFocus() {
 		if (isFocused()) {
-			registerInputEvent(UnFocused(this, false));
 			m_FocusedComponent.reset();
 		}
 	}

@@ -105,7 +105,29 @@ namespace s3d::gui {
 		}
 	}
 
+	void UIComponent::UpdateFocusEvent() {
+		const bool noFocusedComponent = !m_FocusedComponent && !m_PreviousFocusedComponent;
+		const bool noFocusEventCalled = m_FocusedComponent && m_PreviousFocusedComponent && m_PreviousFocusedComponent->id() == m_FocusedComponent->id();
+
+		if (!noFocusedComponent && !noFocusEventCalled) {
+			if (m_FocusedComponent && m_PreviousFocusedComponent) {
+				m_PreviousFocusedComponent->registerInputEvent(UnFocused(m_PreviousFocusedComponent.get(), false));
+				m_FocusedComponent->registerInputEvent(Focused(m_FocusedComponent.get(), false));
+			}
+			else if (m_FocusedComponent) {
+				m_FocusedComponent->registerInputEvent(Focused(m_FocusedComponent.get(), false));
+			}
+			else if (m_PreviousFocusedComponent) {
+				m_PreviousFocusedComponent->registerInputEvent(UnFocused(m_PreviousFocusedComponent.get(), false));
+			}
+		}
+
+		m_PreviousFocusedComponent = m_FocusedComponent;
+	}
+
 	void UIComponent::CallInputEvents() {
+		UpdateFocusEvent();
+
 		// Copy events to prevent outbreak of incompatible vector caused by calling events within events
 		const Array<CallableInputEvent> events = m_CallableInputEvents;
 		m_CallableInputEvents.release();
