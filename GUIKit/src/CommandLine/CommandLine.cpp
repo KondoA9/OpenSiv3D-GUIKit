@@ -45,8 +45,12 @@ namespace s3d::CLI {
 #endif
 	}
 
-	bool Curl(const String& url, const FilePath& output) {
+	bool Curl(const String& url, const FilePath& output, bool createDirectories) {
 		bool result = true;
+
+		if (createDirectories) {
+			FileSystem::CreateDirectories(FileSystem::ParentPath(output));
+		}
 
 #if SIV3D_PLATFORM(WINDOWS)
 		result &= Execute(U"Invoke-WebRequest \\\"{}\\\" -OutFile \\\"{}\\\" -UseBasicParsing"_fmt(url, output));
