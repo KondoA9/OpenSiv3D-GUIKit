@@ -19,6 +19,8 @@ namespace s3d::gui {
 
 		appendComponent(ui_tabView);
 		appendComponent(ui_tabSelectorView);
+
+		registerInputEvent(TabSwitched(this, false));
 	}
 
 	void UITabView::appendTab(const String& name, UIView& view) {
@@ -43,6 +45,7 @@ namespace s3d::gui {
 
 		if (m_tabs.size() > index) {
 			m_tabs[index].show();
+			registerInputEvent(TabSwitched(this, false));
 		}
 	}
 
