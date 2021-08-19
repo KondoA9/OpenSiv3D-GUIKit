@@ -8,6 +8,9 @@
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	// Called when tab switched or tab view loaded.
+	GUICreateInputEvent(TabSwitched);
+
 	class UITabView : public UIView {
 		struct Tab {
 			size_t index;
@@ -40,6 +43,10 @@ namespace s3d::gui {
 		{}
 
 		virtual ~UITabView() {}
+
+		size_t index() const {
+			return m_tabIndex;
+		}
 
 		void appendTab(const String& name, UIView& view);
 
