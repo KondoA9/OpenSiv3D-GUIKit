@@ -3,10 +3,12 @@
 #include <GUIKit/UnifiedFont.hpp>
 
 #include "PageManager/PageManager.hpp"
+#include "ParallelTaskManager/ParallelTaskManager.hpp"
 
 namespace s3d::gui {
-	void GUIKitCore::initialize() {
+	GUIKitCore::GUIKitCore() {
 		m_pageManager = new PageManager();
+		m_parallelTaskManager = new ParallelTaskManager();
 
 		UnifiedFont::Initialize();
 
@@ -26,6 +28,7 @@ namespace s3d::gui {
 		}
 
 		delete m_pageManager;
+		delete m_parallelTaskManager;
 	}
 
 	void GUIKitCore::run() {

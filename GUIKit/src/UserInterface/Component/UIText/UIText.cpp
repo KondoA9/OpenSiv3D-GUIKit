@@ -101,7 +101,7 @@ namespace s3d::gui {
 
 	void UIText::fitTextRegionToRect() {
 		if (m_textRegion.w > rect().w) {
-			m_textRegion.h *= static_cast<int>(m_textRegion.w / rect().w) + 1;
+			m_textRegion.h *= m_textRegion.w / rect().w + 1.0;
 		}
 
 		if (m_textRegion.x < rect().x) {

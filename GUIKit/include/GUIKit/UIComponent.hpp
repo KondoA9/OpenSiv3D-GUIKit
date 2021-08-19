@@ -59,14 +59,14 @@ namespace s3d::gui {
 
 	private:
 		static Array<CallableInputEvent> m_CallableInputEvents;
-		static std::shared_ptr<UIComponent> m_FocusedComponent;
+		static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
 
 		const size_t m_id;
 		bool m_valid = false;
 
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
-		Rect m_drawableRegion;
+		Rect m_drawableRegion = Rect();
 		bool m_needToUpdateLayer = true;
 		bool m_initialized = false;
 
@@ -75,7 +75,7 @@ namespace s3d::gui {
 		double m_clickIntervalTimer = 0.0;// If mouse released within 0.5s, mouseDown event will be called
 		bool m_mouseDownEnable = false, m_mouseDownRaw = false;
 		bool m_mouseDragging = false;
-		Vec2 m_clickedPos;
+		Vec2 m_clickedPos = Vec2();
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
@@ -111,8 +111,8 @@ namespace s3d::gui {
 
 		bool drawable() const {
 			return !hidden && exist
-				&& m_layer.top <= m_drawableRegion.y + m_drawableRegion.h && m_layer.bottom >= m_drawableRegion.y
-				&& m_layer.left <= m_drawableRegion.x + m_drawableRegion.w && m_layer.right >= m_drawableRegion.x;
+				&& m_layer.top <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h) && m_layer.bottom >= m_drawableRegion.y
+				&& m_layer.left <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w) && m_layer.right >= m_drawableRegion.x;
 		}
 
 		bool updatable() const {
@@ -210,6 +210,8 @@ namespace s3d::gui {
 		}
 
 	private:
+		static void UpdateFocusEvent();
+
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);

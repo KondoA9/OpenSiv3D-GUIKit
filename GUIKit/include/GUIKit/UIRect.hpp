@@ -7,7 +7,7 @@
 namespace s3d::gui {
 	class UIRect : public UIComponent {
 	private:
-		RoundRect m_rect;
+		RoundRect m_rect = RoundRect();
 
 	public:
 		using UIComponent::UIComponent;

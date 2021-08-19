@@ -10,15 +10,14 @@
 #include <atomic>
 
 namespace s3d::gui {
-	class PageManager;
-
 	enum class ColorMode;
 
 	class GUIKitCore final {
 	private:
-		std::mutex m_mainThreadInserterMutex;
+		class PageManager* m_pageManager;
+		class ParallelTaskManager* m_parallelTaskManager;
 
-		PageManager* m_pageManager;
+		std::mutex m_mainThreadInserterMutex;
 
 		std::atomic<bool> m_terminationPrevented = false;
 
@@ -45,6 +44,8 @@ namespace s3d::gui {
 			return m_terminationPrevented;
 		}
 
+		bool isParalellTaskAlive() const;
+
 		void start();
 
 		void switchPage(const String& identifier);
@@ -65,7 +66,7 @@ namespace s3d::gui {
 
 		void insertProcessToMainThread(const std::function<void()>& func);
 
-		void insertAsyncProcess(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
+		void createParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 
@@ -95,9 +96,7 @@ namespace s3d::gui {
 		}
 
 	private:
-		GUIKitCore() {
-			initialize();
-		}
+		GUIKitCore();
 
 		~GUIKitCore() = default;
 
@@ -106,8 +105,6 @@ namespace s3d::gui {
 		void appendPage(const std::shared_ptr<Page>& page);
 
 		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
-
-		void initialize();
 
 		void run();
 
