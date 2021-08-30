@@ -5,18 +5,22 @@ namespace s3d::gui::UnifiedFont {
 	Array<std::shared_ptr<Font>> Fonts;
 
 	void Initialize() {
+		const int32 fontsizeSmall = 12_px;
+		const int32 fontsizeMedium = 18_px;
+		const int32 fontsizeLarge = 26_px;
+
 		Fonts = {
-			std::make_shared<Font>(Font(16_px, Typeface::Regular)),
-			std::make_shared<Font>(Font(16_px, Typeface::Light)),
-			std::make_shared<Font>(Font(16_px, Typeface::Bold)),
+			std::make_shared<Font>(Font(fontsizeSmall, Typeface::Regular)),
+			std::make_shared<Font>(Font(fontsizeSmall, Typeface::Light)),
+			std::make_shared<Font>(Font(fontsizeSmall, Typeface::Bold)),
 
-			std::make_shared<Font>(Font(24_px, Typeface::Regular)),
-			std::make_shared<Font>(Font(24_px, Typeface::Light)),
-			std::make_shared<Font>(Font(24_px, Typeface::Bold)),
+			std::make_shared<Font>(Font(fontsizeMedium, Typeface::Regular)),
+			std::make_shared<Font>(Font(fontsizeMedium, Typeface::Light)),
+			std::make_shared<Font>(Font(fontsizeMedium, Typeface::Bold)),
 
-			std::make_shared<Font>(Font(32_px, Typeface::Regular)),
-			std::make_shared<Font>(Font(32_px, Typeface::Light)),
-			std::make_shared<Font>(Font(32_px, Typeface::Bold))
+			std::make_shared<Font>(Font(fontsizeLarge, Typeface::Regular)),
+			std::make_shared<Font>(Font(fontsizeLarge, Typeface::Light)),
+			std::make_shared<Font>(Font(fontsizeLarge, Typeface::Bold))
 		};
 	}
 
