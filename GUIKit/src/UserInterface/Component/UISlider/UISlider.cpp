@@ -31,7 +31,7 @@ namespace s3d::gui {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
 
-		const double h = 5.0_px;
+		const double h = 3.0_px;
 		ui_railLeft.drawFrame = true;
 		ui_railLeft.backgroundColor = DynamicColor::DefaultBlue;
 		ui_railLeft.penetrateMouseEvent = true;
