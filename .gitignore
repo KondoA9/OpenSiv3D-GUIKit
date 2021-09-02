@@ -3,7 +3,7 @@ AS_DEBUG/
 *.html
 
 # GUIKit
-App/GUIKit
+App/GUIKit*
 
 # Windows
 .vs/
