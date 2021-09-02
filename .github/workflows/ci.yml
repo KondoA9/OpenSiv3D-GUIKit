@@ -5,6 +5,8 @@ on:
     branches:
     - master
     - develop
+    - siv6
+
   pull_request:
     branches:
     - master

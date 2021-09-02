@@ -9,7 +9,7 @@ namespace s3d::gui {
 	private:
 		bool m_checked = false;
 
-		const Texture m_checkdIcon = Texture(Icon(0xf00c, 15_px));
+		const Texture m_checkdIcon = Texture(Icon(0xf00c), 15_px);
 
 	public:
 		explicit UICheckBox(

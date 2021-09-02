@@ -1,7 +1,7 @@
 #include <GUIKit/CommandLine.hpp>
 
 #if SIV3D_PLATFORM(WINDOWS)
-#include <Siv3D/Windows.hpp>
+#include <Siv3D/Windows/Windows.hpp>
 #endif
 
 namespace s3d::CLI {

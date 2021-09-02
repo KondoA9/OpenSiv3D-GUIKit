@@ -7,7 +7,9 @@ namespace s3d::gui {
 		RasterizerState rasterizer = RasterizerState::Default2D;
 		rasterizer.scissorEnable = true;
 		Graphics2D::Internal::SetRasterizerState(rasterizer);
-		m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+
+		const auto size = Window::GetState().frameBufferSize;
+		m_windowScissorRect = Rect(0, 0, size.x, size.y);
 	}
 
 	bool PageManager::initialize() {

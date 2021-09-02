@@ -61,7 +61,7 @@ namespace s3d::gui {
 		UIRect::draw();
 
 		for (size_t i : step(m_textures.size())) {
-			m_textures[i].scaled(m_scale).rotated(m_angle).drawAt(m_drawingCenterPos, Color(255, 255, 255, static_cast<uint32>(m_alphas[i])));
+			m_textures[i].scaled(m_scale).rotated(m_angle).drawAt(m_drawingCenterPos, Color(255, 255, 255, static_cast<uint8>(m_alphas[i])));
 		}
 	}
 

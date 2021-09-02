@@ -29,8 +29,8 @@ protected:
 		UIView::initialize();
 
 		ui_openDirectoryButton.setText(U"Open");
-		ui_parentDirButton.setIcon(Texture(Icon(0xf062, 20)));
-		ui_toggleColorModeButton.setIcon(Texture(Icon(0xf186, 20)));
+		ui_parentDirButton.setIcon(Texture(Icon(0xf062), 20_px));
+		ui_toggleColorModeButton.setIcon(Texture(Icon(0xf186), 20_px));
 
 		ui_toggleColorModeButton.setConstraint(gui::LayerDirection::Top, *this, gui::LayerDirection::Top);
 		ui_toggleColorModeButton.setConstraint(gui::LayerDirection::Bottom, *this, gui::LayerDirection::Bottom);
@@ -87,7 +87,7 @@ public:
 	}
 
 	void setPath(const FilePath& path) {
-		ui_icon.setIcon(FileSystem::IsDirectory(path) ? Icon(0xf07b, 20) : Icon(0xf15b, 20));
+		ui_icon.setIcon(FileSystem::IsDirectory(path) ? Icon(0xf07b) : Icon(0xf15b), 20_px);
 		ui_icon.iconColor = FileSystem::IsDirectory(path) ? gui::ColorTheme(Color(246, 218, 75)) : gui::DynamicColor::Text;
 
 		ui_fileName.setText(FileSystem::FileName(path));
@@ -209,7 +209,7 @@ class ExplorerPage : public gui::Page {
 
 		ui_filesView.release();
 
-		const auto contents = FileSystem::DirectoryContents(dir, false);
+		const auto contents = FileSystem::DirectoryContents(dir, Recursive::No);
 		for (const auto& path : contents) {
 			auto& row = gui::GUIFactory::Create<FileView>();
 			row.setPath(path);

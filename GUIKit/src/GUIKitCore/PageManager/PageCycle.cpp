@@ -7,7 +7,8 @@ namespace s3d::gui {
 	void PageManager::update() {
 		if (WindowManager::DidResized()) {
 			// Update scissor rect
-			m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+			const auto size = Window::GetState().frameBufferSize;
+			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 		}
 
 		switch (m_pageTransition)
@@ -52,15 +53,15 @@ namespace s3d::gui {
 		{
 		case PageTransition::Changing:
 			// Draw previous and next page
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
+			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
 			m_forwardPage->m_view.draw();
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
+			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, m_pageTransitionRate));
 			m_backwardPage->m_view.draw();
 			break;
 
 		case PageTransition::JustChanged:
 			// Initialize ColorMultipiler
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
+			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0));
 			m_forwardPage->m_view.draw();
 			break;
 

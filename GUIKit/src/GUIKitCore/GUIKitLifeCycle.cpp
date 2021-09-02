@@ -14,9 +14,9 @@ namespace s3d::gui {
 
 		WindowManager::Initialize();
 
-		Scene::SetScaleMode(ScaleMode::ResizeFill);
+		Scene::SetResizeMode(ResizeMode::Actual);
 
-		System::SetTerminationTriggers(UserAction::None);
+		System::SetTerminationTriggers(UserAction::NoAction);
 	}
 
 	void GUIKitCore::start() {

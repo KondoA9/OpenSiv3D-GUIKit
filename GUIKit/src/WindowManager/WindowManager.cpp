@@ -9,7 +9,7 @@ namespace s3d::gui::WindowManager {
 	}
 
 	void Update() {
-		const auto size = Window::ClientSize();
+		const auto size = Window::GetState().frameBufferSize;
 		resized = currentwindowSize != size;
 		currentwindowSize = size;
 	}
