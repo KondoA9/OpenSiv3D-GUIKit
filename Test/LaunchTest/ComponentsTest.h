@@ -60,7 +60,7 @@ void ComponentsTest::onLoaded() {
 
 	auto& icon = gui::GUIFactory::Create<gui::UIIcon>();
 	icon.backgroundColor = gui::DynamicColor::DefaultGreen;
-	icon.setIcon(Icon(0xf109, 40_px));
+	icon.setIcon(Icon(0xf109), 40_px);
 	stackView.appendComponent(icon);
 
 	auto& imageView = gui::GUIFactory::Create<gui::UIImageView>();
