@@ -61,6 +61,10 @@ namespace s3d::gui {
 
 		void setDirection(TextDirection direction);
 
+		void setFont(const Font& font) {
+			m_font = font;
+		}
+
 	protected:
 		void updateLayer(const Rect& scissor) override;
 
