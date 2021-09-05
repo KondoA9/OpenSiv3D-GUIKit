@@ -5,7 +5,7 @@ namespace s3d::gui::UnifiedFont {
 	Array<std::shared_ptr<Font>> Fonts;
 
 	void Initialize() {
-		const int32 fontDefault = 12_px;
+		const int32 fontDefault = 13_px;
 		const int32 fontCaption = 10_px;
 		const int32 fontHeader = 18_px;
 
