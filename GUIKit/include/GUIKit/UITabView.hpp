@@ -20,12 +20,12 @@ namespace s3d::gui {
 			bool enabled = true;
 
 			void show() {
-				selector.setFont(UnifiedFontStyle::SmallBold);
+				selector.setFont(UnifiedFontStyle::DefaultBold);
 				view.hidden = false;
 			}
 
 			void hide() {
-				selector.setFont(UnifiedFontStyle::SmallLight);
+				selector.setFont(UnifiedFontStyle::DefaultLight);
 				view.hidden = true;
 			}
 		};

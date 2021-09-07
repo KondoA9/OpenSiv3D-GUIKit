@@ -22,7 +22,7 @@ namespace s3d::gui {
 
 	private:
 		String m_text = U"";
-		Font m_font = UnifiedFont::Get(UnifiedFontStyle::Medium);
+		Font m_font = UnifiedFont::Get();
 		TextDirection m_direction = TextDirection::LeftCenter;
 		DrawableText m_drawableText;
 		RectF m_textRegion = RectF(), m_drawableRegion = RectF();
@@ -60,6 +60,10 @@ namespace s3d::gui {
 		void setText(const String& text);
 
 		void setDirection(TextDirection direction);
+
+		void setFont(const Font& font) {
+			m_font = font;
+		}
 
 	protected:
 		void updateLayer(const Rect& scissor) override;
