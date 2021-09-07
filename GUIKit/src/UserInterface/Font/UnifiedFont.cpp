@@ -2,48 +2,27 @@
 #include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui::UnifiedFont {
-	Array<std::shared_ptr<Font>> Fonts;
-	HashTable<String, std::shared_ptr<Font>> UserFonts;
+	namespace Internal {
+		size_t counter = 0;
 
-	void Initialize() {
-		const int32 fontDefault = 13_px;
-		const int32 fontCaption = 10_px;
-		const int32 fontHeader = 18_px;
+		void RegisterFont(UnifiedFontStyle style, int32 size) {
+			const size_t n = static_cast<size_t>(style);
 
-		Fonts = {
-			std::make_shared<Font>(Font(fontDefault, Typeface::Regular)),
-			std::make_shared<Font>(Font(fontDefault, Typeface::Light)),
-			std::make_shared<Font>(Font(fontDefault, Typeface::Bold)),
+			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n), size, Typeface::Default, AssetParameter::LoadImmediately());
+			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n + 1), size, Typeface::Light, AssetParameter::LoadImmediately());
+			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n + 2), size, Typeface::Bold, AssetParameter::LoadImmediately());
 
-			std::make_shared<Font>(Font(fontCaption, Typeface::Regular)),
-			std::make_shared<Font>(Font(fontCaption, Typeface::Light)),
-			std::make_shared<Font>(Font(fontCaption, Typeface::Bold)),
-
-			std::make_shared<Font>(Font(fontHeader, Typeface::Regular)),
-			std::make_shared<Font>(Font(fontHeader, Typeface::Light)),
-			std::make_shared<Font>(Font(fontHeader, Typeface::Bold))
-		};
-	}
-
-	void Register(const String& identifier, const Font& font) {
-		if (!UserFonts.contains(identifier)) {
-			UserFonts.emplace(identifier, std::make_shared<Font>(font));
+			counter++;
 		}
 	}
 
-	void Register(const String& identifier, int32 size) {
-		Register(identifier, Font(size));
+	void Initialize() {
+		Internal::RegisterFont(UnifiedFontStyle::Default, 13_px);
+		Internal::RegisterFont(UnifiedFontStyle::Caption, 10_px);
+		Internal::RegisterFont(UnifiedFontStyle::Header, 18_px);
 	}
 
-	const Font& Get(const String& identifier) {
-		const auto& font = *UserFonts[identifier].get();
-		assert(!font.isEmpty());
-		return font;
-	}
-
-	const Font& Get(UnifiedFontStyle style) {
-		const size_t index = static_cast<size_t>(style);
-		assert(index < Fonts.size());
-		return *Fonts[index].get();
+	Font Get(UnifiedFontStyle style) {
+		return FontAsset(U"UnifiedFontStyle{}"_fmt(static_cast<size_t>(style)));
 	}
 }
