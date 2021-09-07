@@ -20,6 +20,6 @@ namespace s3d::gui {
 	namespace UnifiedFont {
 		void Initialize();
 
-		Font Get(UnifiedFontStyle style = UnifiedFontStyle::Default);
+		const Font& Get(UnifiedFontStyle style = UnifiedFontStyle::Default);
 	}
 }

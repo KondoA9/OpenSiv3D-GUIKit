@@ -2,23 +2,28 @@
 #include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui::UnifiedFont {
-	namespace Internal {
-		void RegisterFont(UnifiedFontStyle style, int32 size) {
-			const size_t n = static_cast<size_t>(style);
+	Array<std::shared_ptr<Font>> Fonts;
 
-			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n), size, Typeface::Default, AssetParameter::LoadImmediately());
-			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n + 1), size, Typeface::Light, AssetParameter::LoadImmediately());
-			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n + 2), size, Typeface::Bold, AssetParameter::LoadImmediately());
+	namespace Internal {
+		void RegisterFont(int32 size) {
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Default)));
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Light)));
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Bold)));
 		}
 	}
 
 	void Initialize() {
-		Internal::RegisterFont(UnifiedFontStyle::Default, 13_px);
-		Internal::RegisterFont(UnifiedFontStyle::Caption, 10_px);
-		Internal::RegisterFont(UnifiedFontStyle::Header, 18_px);
+		// Default
+		Internal::RegisterFont(13_px);
+
+		// Caption
+		Internal::RegisterFont(10_px);
+
+		// Header
+		Internal::RegisterFont(18_px);
 	}
 
-	Font Get(UnifiedFontStyle style) {
-		return FontAsset(U"UnifiedFontStyle{}"_fmt(static_cast<size_t>(style)));
+	const Font& Get(UnifiedFontStyle style) {
+		return *Fonts[static_cast<size_t>(style)].get();
 	}
 }
