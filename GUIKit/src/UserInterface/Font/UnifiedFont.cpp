@@ -3,16 +3,12 @@
 
 namespace s3d::gui::UnifiedFont {
 	namespace Internal {
-		size_t counter = 0;
-
 		void RegisterFont(UnifiedFontStyle style, int32 size) {
 			const size_t n = static_cast<size_t>(style);
 
 			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n), size, Typeface::Default, AssetParameter::LoadImmediately());
 			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n + 1), size, Typeface::Light, AssetParameter::LoadImmediately());
 			FontAsset::Register(U"UnifiedFontStyle{}"_fmt(n + 2), size, Typeface::Bold, AssetParameter::LoadImmediately());
-
-			counter++;
 		}
 	}
 
