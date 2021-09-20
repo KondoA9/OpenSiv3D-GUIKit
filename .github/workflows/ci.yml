@@ -43,7 +43,7 @@ jobs:
       - name: Extract libraries
         run: |
           brew install unar
-          unar -o Dependencies/lib/ Dependencies/lib/macOS.7z
+          unar -o Dependencies/lib/ Dependencies/lib/macOS.7z -f
 
       - name: Build GUIKit for macOS
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/ -configuration Debug
