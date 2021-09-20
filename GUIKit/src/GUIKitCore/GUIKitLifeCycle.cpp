@@ -1,6 +1,7 @@
 #include <GUIKit/GUIKitCore.hpp>
 #include <GUIKit/WindowManager.hpp>
 #include <GUIKit/UnifiedFont.hpp>
+#include <GUIKit/ColorTheme.hpp>
 
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"

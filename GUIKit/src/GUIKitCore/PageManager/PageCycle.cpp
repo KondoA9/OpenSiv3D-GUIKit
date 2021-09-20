@@ -7,7 +7,7 @@ namespace s3d::gui {
 	void PageManager::update() {
 		if (WindowManager::DidResized()) {
 			// Update scissor rect
-			const auto size = Window::GetState().frameBufferSize;
+			const auto size = Scene::Size();
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 		}
 
