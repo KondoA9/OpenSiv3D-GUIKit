@@ -7,7 +7,7 @@
 namespace s3d::gui {
 	class UICheckBox : public UIButton {
 	private:
-		const Texture m_checkdIcon = Texture(Icon(0xf00c, 13_px));
+		const Texture m_checkdIcon = Texture(Icon(0xf00c), 13_px);
 
 		bool m_checked = false;
 
