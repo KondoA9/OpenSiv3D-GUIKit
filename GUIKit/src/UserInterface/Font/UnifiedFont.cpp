@@ -4,29 +4,26 @@
 namespace s3d::gui::UnifiedFont {
 	Array<std::shared_ptr<Font>> Fonts;
 
+	namespace Internal {
+		void RegisterFont(int32 size) {
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Default)));
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Light)));
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Bold)));
+		}
+	}
+
 	void Initialize() {
-		const int32 fontsizeSmall = 12_px;
-		const int32 fontsizeMedium = 18_px;
-		const int32 fontsizeLarge = 26_px;
+		// Default
+		Internal::RegisterFont(13_px);
 
-		Fonts = {
-			std::make_shared<Font>(Font(fontsizeSmall, Typeface::Regular)),
-			std::make_shared<Font>(Font(fontsizeSmall, Typeface::Light)),
-			std::make_shared<Font>(Font(fontsizeSmall, Typeface::Bold)),
+		// Caption
+		Internal::RegisterFont(10_px);
 
-			std::make_shared<Font>(Font(fontsizeMedium, Typeface::Regular)),
-			std::make_shared<Font>(Font(fontsizeMedium, Typeface::Light)),
-			std::make_shared<Font>(Font(fontsizeMedium, Typeface::Bold)),
-
-			std::make_shared<Font>(Font(fontsizeLarge, Typeface::Regular)),
-			std::make_shared<Font>(Font(fontsizeLarge, Typeface::Light)),
-			std::make_shared<Font>(Font(fontsizeLarge, Typeface::Bold))
-		};
+		// Header
+		Internal::RegisterFont(18_px);
 	}
 
 	const Font& Get(UnifiedFontStyle style) {
-		const size_t index = static_cast<size_t>(style);
-		assert(index < Fonts.size());
-		return *Fonts[index].get();
+		return *Fonts[static_cast<size_t>(style)].get();
 	}
 }

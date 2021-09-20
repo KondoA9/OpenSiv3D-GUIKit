@@ -7,7 +7,7 @@ namespace s3d::gui {
 			}, true);
 
 		drawFrame = true;
-		setCornerRadius(5_px);
+		setCornerRadius(3_px);
 
 		UIButton::initialize();
 	}

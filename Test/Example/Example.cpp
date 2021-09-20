@@ -78,10 +78,6 @@ public:
 	FileView()
 		:UIView()
 	{
-		ui_fileName.setFont(gui::UnifiedFontStyle::Small);
-		ui_updatedDate.setFont(gui::UnifiedFontStyle::Small);
-		ui_kind.setFont(gui::UnifiedFontStyle::Small);
-
 		ui_updatedDate.backgroundColor = gui::DynamicColor::Background;
 		ui_kind.backgroundColor = gui::DynamicColor::Background;
 	}
@@ -231,7 +227,7 @@ class StartPage : public gui::Page {
 
 	void onLoaded() override {
 		ui_title.setText(U"This is the example application of OpenSiv3D GUIKit.");
-		ui_title.setFont(gui::UnifiedFontStyle::Large);
+		ui_title.setFont(gui::UnifiedFontStyle::Header);
 		ui_title.setDirection(gui::TextDirection::Center);
 
 		ui_button.setText(U"Next");
