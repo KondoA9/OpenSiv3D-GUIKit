@@ -23,3 +23,4 @@ xcuserdata/
 
 # Linux
 Linux/**/build/
+gmon.out
