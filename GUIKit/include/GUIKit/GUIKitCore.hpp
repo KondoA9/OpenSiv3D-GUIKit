@@ -100,6 +100,8 @@ namespace s3d::gui {
 
 		~GUIKitCore() = default;
 
+		static void AddLicence();
+
 		Page& getPage(const String& identifier) const noexcept;
 
 		void appendPage(const std::shared_ptr<Page>& page);
