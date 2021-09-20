@@ -6,7 +6,7 @@
 #include "ComponentsTest.h"
 #include "FocusTest.h"
 
-void Main() {
+void GUIMain() {
 	Window::Resize(1280, 720);
 
 	gui::GUIKit::AppendPage<LifeCycleTest>(U"LifeCycleTest");

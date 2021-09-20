@@ -256,7 +256,7 @@ class StartPage : public gui::Page {
 	}
 };
 
-void Main() {
+void GUIMain() {
 	Window::Resize(1280, 720);
 
 	gui::GUIKit::AppendPage<StartPage>(U"start");

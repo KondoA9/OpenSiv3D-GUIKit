@@ -98,9 +98,9 @@ namespace s3d::gui {
 	private:
 		GUIKitCore();
 
-		~GUIKitCore() = default;
+		~GUIKitCore();
 
-		static void AddLicence();
+		static void AddLicense();
 
 		Page& getPage(const String& identifier) const noexcept;
 
