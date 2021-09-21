@@ -1,5 +1,4 @@
 #include <GUIKit/UITabView.hpp>
-#include <GUIKit/GUIFactory.hpp>
 #include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui {

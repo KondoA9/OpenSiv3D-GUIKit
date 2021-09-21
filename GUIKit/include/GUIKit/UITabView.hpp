@@ -1,8 +1,7 @@
 #pragma once
 
-#include "UIRect.hpp"
 #include "UIView.hpp"
-#include "UIToggleButton.hpp"
+#include "UIButton.hpp"
 #include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
