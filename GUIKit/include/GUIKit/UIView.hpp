@@ -25,7 +25,7 @@ namespace s3d::gui {
 
 		template<class T>
 		T& createComponent() {
-			auto& component =  GUIFactory::Create<T>();
+			auto& component = s3d::gui::GUIFactory::Create<T>();
 			appendComponent(component);
 			return component;
 		}
