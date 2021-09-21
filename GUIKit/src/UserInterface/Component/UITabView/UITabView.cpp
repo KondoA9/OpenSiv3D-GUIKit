@@ -17,9 +17,6 @@ namespace s3d::gui {
 		ui_tabView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		ui_tabView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-		appendComponent(ui_tabView);
-		appendComponent(ui_tabSelectorView);
-
 		registerInputEvent(TabSwitched(this, false));
 	}
 

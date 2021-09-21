@@ -1,7 +1,6 @@
 #pragma once
 
 #include "UIRect.hpp"
-#include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
 
@@ -10,6 +9,7 @@ namespace s3d::gui {
 
 	class UIView : public UIRect {
 		friend PageManager;
+		friend GUIFactory;
 
 	private:
 		Array<std::shared_ptr<UIComponent>> m_components;
@@ -23,13 +23,6 @@ namespace s3d::gui {
 		virtual ~UIView() {}
 
 		void release() override;
-
-		template<class T>
-		T& createComponent() {
-			auto& component = GUIFactory::Create<T>();
-			appendComponent(component);
-			return component;
-		}
 
 		size_t componentsCount() const {
 			return m_components.size();
@@ -54,7 +47,8 @@ namespace s3d::gui {
 		}
 
 	protected:
-		virtual void appendComponent(const UIComponent& component);
+		// This function runs after a component appended. gui::GUIFactory::Create<UIComponent>(this);
+		virtual void onAfterComponentAppended() {}
 
 		void updateLayer(const Rect& scissor) override;
 
@@ -65,6 +59,8 @@ namespace s3d::gui {
 		void updateInputEvents() override;
 
 	private:
+		void appendComponent(const UIComponent& component);
+
 		void updateMouseIntersection() final;
 
 		void updateLayerInvert(const Rect& scissor);

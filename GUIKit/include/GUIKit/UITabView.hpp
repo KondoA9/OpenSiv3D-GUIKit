@@ -31,8 +31,8 @@ namespace s3d::gui {
 		};
 
 	private:
-		UIView& ui_tabSelectorView = GUIFactory::Create<UIView>();
-		UIView& ui_tabView = GUIFactory::Create<UIView>();
+		UIView& ui_tabSelectorView = GUIFactory::Create<UIView>(*this);
+		UIView& ui_tabView = GUIFactory::Create<UIView>(*this);
 
 		Array<Tab> m_tabs;
 		size_t m_tabIndex = 0;
@@ -50,10 +50,10 @@ namespace s3d::gui {
 
 		template<class T>
 		T& appendTab(const String& name) {
-			static_assert(std::is_base_of<UIView, T>::value, "Failed to append a tab.");
+			static_assert(std::is_base_of<UIView, T>::value, "Specified Type does not inherit gui::UIView.");
 
-			auto& selector = ui_tabSelectorView.createComponent<UIButton>();
-			auto& view = ui_tabView.createComponent<T>();
+			auto& selector = GUIFactory::Create<UIButton>(ui_tabSelectorView);
+			auto& view = GUIFactory::Create<T>(ui_tabView);
 
 			initializeTab(name, selector, view);
 
@@ -68,8 +68,6 @@ namespace s3d::gui {
 		void initialize() override;
 
 	private:
-		void appendComponent(const UIComponent&) override {}
-
 		void initializeTab(const String& name, UIButton& selector, UIView& view);
 	};
 }

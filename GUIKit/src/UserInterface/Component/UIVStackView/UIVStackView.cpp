@@ -21,8 +21,7 @@ namespace s3d::gui {
 		calcCurrentRowHeight();
 	}
 
-	void UIVStackView::appendComponent(const UIComponent& component) {
-		UIView::appendComponent(component);
+	void UIVStackView::onAfterComponentAppended() {
 		m_constraintsApplied = false;
 		requestToUpdateLayer();
 	}

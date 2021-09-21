@@ -41,7 +41,7 @@ namespace s3d::gui {
 		}
 
 	protected:
-		void appendComponent(const UIComponent& component) override;
+		void onAfterComponentAppended() override;
 
 		void initialize() override;
 

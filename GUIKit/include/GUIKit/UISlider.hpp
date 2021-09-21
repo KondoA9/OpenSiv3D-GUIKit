@@ -13,9 +13,9 @@ namespace s3d::gui {
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect& ui_railLeft = GUIFactory::Create<UIRect>(), & ui_railRight = GUIFactory::Create<UIRect>();
-		UICircle& ui_handle = GUIFactory::Create<UICircle>();
-		UIText& ui_text = GUIFactory::Create<UIText>();
+		UIRect& ui_railLeft = GUIFactory::Create<UIRect>(this), & ui_railRight = GUIFactory::Create<UIRect>(this);
+		UICircle& ui_handle = GUIFactory::Create<UICircle>(this);
+		UIText& ui_text = GUIFactory::Create<UIText>(this);
 
 	public:
 		using UIView::UIView;
