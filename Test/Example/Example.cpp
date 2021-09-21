@@ -5,9 +5,9 @@ class ToolBar final : public gui::UIView {
 	std::function<void(const FilePath&)> m_folderOpenedHandler;
 	std::function<void()> m_openParentDirHandler;
 
-	gui::UIButton& ui_openDirectoryButton = createComponent<gui::UIButton>();//gui::GUIFactory::Create<gui::UIButton>();
-	gui::UIButton& ui_parentDirButton = gui::GUIFactory::Create<gui::UIButton>();
-	gui::UIToggleButton& ui_toggleColorModeButton = gui::GUIFactory::Create<gui::UIToggleButton>();
+	gui::UIToggleButton& ui_toggleColorModeButton = createComponent<gui::UIToggleButton>();
+	gui::UIButton& ui_parentDirButton = createComponent<gui::UIButton>();
+	gui::UIButton& ui_openDirectoryButton = createComponent<gui::UIButton>();
 
 public:
 	using UIView::UIView;
@@ -58,10 +58,6 @@ protected:
 				m_folderOpenedHandler(result.value());
 			}
 			});
-
-		appendComponent(ui_toggleColorModeButton);
-		appendComponent(ui_parentDirButton);
-		//appendComponent(ui_openDirectoryButton);
 	}
 };
 
@@ -69,10 +65,10 @@ class FileView final : public gui::UIView {
 	FilePath m_path;
 	std::function<void(const FilePath& path)> m_folderSelectedHandler;
 
-	gui::UIIcon& ui_icon = gui::GUIFactory::Create<gui::UIIcon>();
-	gui::UIText& ui_fileName = gui::GUIFactory::Create<gui::UIText>();
-	gui::UIText& ui_updatedDate = gui::GUIFactory::Create<gui::UIText>();
-	gui::UIText& ui_kind = gui::GUIFactory::Create<gui::UIText>();
+	gui::UIIcon& ui_icon = createComponent<gui::UIIcon>();
+	gui::UIText& ui_fileName = createComponent<gui::UIText>();
+	gui::UIText& ui_updatedDate = createComponent<gui::UIText>();
+	gui::UIText& ui_kind = createComponent<gui::UIText>();
 
 public:
 	FileView()
@@ -143,11 +139,6 @@ protected:
 		ui_kind.setConstraint(gui::LayerDirection::Bottom, *this, gui::LayerDirection::Bottom);
 		ui_kind.setConstraint(gui::LayerDirection::Width, 80_px);
 		ui_kind.setConstraint(gui::LayerDirection::Right, *this, gui::LayerDirection::Right);
-
-		appendComponent(ui_icon);
-		appendComponent(ui_fileName);
-		appendComponent(ui_updatedDate);
-		appendComponent(ui_kind);
 	}
 };
 
@@ -156,9 +147,9 @@ class ExplorerPage : public gui::Page {
 
 	FilePath m_path;
 
-	ToolBar& ui_toolbar = gui::GUIFactory::Create<ToolBar>();
-	gui::UIVStackView& ui_filesView = gui::GUIFactory::Create<gui::UIVStackView>();
-	gui::UIButton& ui_movePage = gui::GUIFactory::Create<gui::UIButton>();
+	ToolBar& ui_toolbar = view().createComponent<ToolBar>();
+	gui::UIVStackView& ui_filesView = view().createComponent<gui::UIVStackView>();
+	gui::UIButton& ui_movePage = view().createComponent<gui::UIButton>();
 
 	void onLoaded() override {
 		ui_toolbar.backgroundColor = gui::DynamicColor::BackgroundSecondary;
@@ -194,10 +185,6 @@ class ExplorerPage : public gui::Page {
 		ui_movePage.addEventListener<gui::MouseEvent::LeftDown>([this] {
 			gui::GUIKit::SwitchPage(U"start");
 			});
-
-		view().appendComponent(ui_filesView);
-		view().appendComponent(ui_movePage);
-		view().appendComponent(ui_toolbar);
 	}
 
 	void setup(const FilePath& dir) {
@@ -207,13 +194,12 @@ class ExplorerPage : public gui::Page {
 
 		const auto contents = FileSystem::DirectoryContents(dir, Recursive::No);
 		for (const auto& path : contents) {
-			auto& row = gui::GUIFactory::Create<FileView>();
+			auto& row = ui_filesView.createComponent<FileView>();
 			row.setPath(path);
 			row.penetrateMouseEvent = true;
 			row.setFolderSelectedHandler([this](FilePath path) {
 				setup(path);
 				});
-			ui_filesView.appendComponent(row);
 		}
 	}
 };
@@ -221,9 +207,9 @@ class ExplorerPage : public gui::Page {
 class StartPage : public gui::Page {
 	using Page::Page;
 
-	gui::UIText& ui_title = gui::GUIFactory::Create<gui::UIText>();
-	gui::UIButton& ui_button = gui::GUIFactory::Create<gui::UIButton>();
-	gui::UICheckBox& ui_checkBox = gui::GUIFactory::Create<gui::UICheckBox>();
+	gui::UIText& ui_title = view().createComponent<gui::UIText>();
+	gui::UIButton& ui_button = view().createComponent<gui::UIButton>();
+	gui::UICheckBox& ui_checkBox = view().createComponent<gui::UICheckBox>();
 
 	void onLoaded() override {
 		ui_title.setText(U"This is the example application of OpenSiv3D GUIKit.");
@@ -249,10 +235,6 @@ class StartPage : public gui::Page {
 		ui_button.addEventListener<gui::MouseEvent::LeftDown>([this] {
 			gui::GUIKit::SwitchPage(U"explorer");
 			});
-
-		view().appendComponent(ui_title);
-		view().appendComponent(ui_button);
-		view().appendComponent(ui_checkBox);
 	}
 };
 
