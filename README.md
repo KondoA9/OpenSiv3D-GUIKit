@@ -1,7 +1,7 @@
 # OpenSiv3D GUIKit
 C++ GUI framework with [**OpenSiv3D v0.6.1**](https://zenn.dev/reputeless/books/siv3d-documentation).
 
-**:construction:This repository is under development.**
+**:construction: This repository is under development.**
 
 ## Features
  - Comfortable user interface
@@ -20,7 +20,7 @@ C++ GUI framework with [**OpenSiv3D v0.6.1**](https://zenn.dev/reputeless/books/
  - [Example Code](https://github.com/KondoA9/OpenSiv3D-GUIKit/blob/develop/Test/Example/Example.cpp)
  - [Test Code](https://github.com/KondoA9/OpenSiv3D-GUIKit/tree/develop/Test/LaunchTest)
 
-**:warning:Following code does not use latest version of GUIKit**
+**:warning: The following code does not use the latest version of GUIKit.**
 
  ```c++
 #include <GUIKit/GUIKit.h>
