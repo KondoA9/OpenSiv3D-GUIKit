@@ -147,19 +147,19 @@ class ExplorerPage : public gui::Page {
 
 	FilePath m_path;
 
-	ToolBar& ui_toolbar = gui::GUIFactory::Create<ToolBar>(view());
-	gui::UIVStackView& ui_filesView = gui::GUIFactory::Create<gui::UIVStackView>(view());
-	gui::UIButton& ui_movePage = gui::GUIFactory::Create<gui::UIButton>(view());
+	ToolBar& ui_toolbar = gui::GUIFactory::Create<ToolBar>(view);
+	gui::UIVStackView& ui_filesView = gui::GUIFactory::Create<gui::UIVStackView>(view);
+	gui::UIButton& ui_movePage = gui::GUIFactory::Create<gui::UIButton>(view);
 
 	void onLoaded() override {
 		ui_toolbar.backgroundColor = gui::DynamicColor::BackgroundSecondary;
 		ui_movePage.setText(U"Move page");
 
 		ui_toolbar.drawFrame = true;
-		ui_toolbar.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
+		ui_toolbar.setConstraint(gui::LayerDirection::Top, view, gui::LayerDirection::Top);
 		ui_toolbar.setConstraint(gui::LayerDirection::Height, 30_px);
 		ui_toolbar.setConstraint(gui::LayerDirection::Left);
-		ui_toolbar.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+		ui_toolbar.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 		ui_toolbar.setToggleColorModeHandler([this] {
 			gui::GUIKit::ToggleColorMode();
 			});
@@ -175,13 +175,13 @@ class ExplorerPage : public gui::Page {
 		ui_filesView.setRowHeight(30_px);
 		ui_filesView.setConstraint(gui::LayerDirection::Top, ui_toolbar, gui::LayerDirection::Bottom);
 		ui_filesView.setConstraint(gui::LayerDirection::Bottom, ui_movePage, gui::LayerDirection::Top);
-		ui_filesView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
-		ui_filesView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+		ui_filesView.setConstraint(gui::LayerDirection::Left, view, gui::LayerDirection::Left);
+		ui_filesView.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 
 		ui_movePage.setConstraint(gui::LayerDirection::Height, 40_px);
-		ui_movePage.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
-		ui_movePage.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
-		ui_movePage.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+		ui_movePage.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
+		ui_movePage.setConstraint(gui::LayerDirection::Left, view, gui::LayerDirection::Left);
+		ui_movePage.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 		ui_movePage.addEventListener<gui::MouseEvent::LeftDown>([this] {
 			gui::GUIKit::SwitchPage(U"start");
 			});
@@ -207,9 +207,9 @@ class ExplorerPage : public gui::Page {
 class StartPage : public gui::Page {
 	using Page::Page;
 
-	gui::UIText& ui_title = gui::GUIFactory::Create<gui::UIText>(view());
-	gui::UIButton& ui_button = gui::GUIFactory::Create<gui::UIButton>(view());
-	gui::UICheckBox& ui_checkBox = gui::GUIFactory::Create<gui::UICheckBox>(view());
+	gui::UIText& ui_title = gui::GUIFactory::Create<gui::UIText>(view);
+	gui::UIButton& ui_button = gui::GUIFactory::Create<gui::UIButton>(view);
+	gui::UICheckBox& ui_checkBox = gui::GUIFactory::Create<gui::UICheckBox>(view);
 
 	void onLoaded() override {
 		ui_title.setText(U"This is the example application of OpenSiv3D GUIKit.");
@@ -219,19 +219,19 @@ class StartPage : public gui::Page {
 		ui_button.setText(U"Next");
 
 		ui_title.setConstraint(gui::LayerDirection::Top);
-		ui_title.setConstraint(gui::LayerDirection::Height, view(), gui::LayerDirection::Height, 0.0, 0.5);
+		ui_title.setConstraint(gui::LayerDirection::Height, view, gui::LayerDirection::Height, 0.0, 0.5);
 		ui_title.setConstraint(gui::LayerDirection::Left);
-		ui_title.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+		ui_title.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 
 		ui_checkBox.setConstraint(gui::LayerDirection::Height, 100_px);
 		ui_checkBox.setConstraint(gui::LayerDirection::Bottom, ui_button, gui::LayerDirection::Top);
 		ui_checkBox.setConstraint(gui::LayerDirection::Left);
-		ui_checkBox.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+		ui_checkBox.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 
 		ui_button.setConstraint(gui::LayerDirection::Height, 100_px);
-		ui_button.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+		ui_button.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
 		ui_button.setConstraint(gui::LayerDirection::Left);
-		ui_button.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+		ui_button.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 		ui_button.addEventListener<gui::MouseEvent::LeftDown>([this] {
 			gui::GUIKit::SwitchPage(U"explorer");
 			});

@@ -5,17 +5,17 @@ class ComponentsTest : public gui::Page {
 };
 
 void ComponentsTest::onLoaded() {
-	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>(view());
-	stackView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
-	stackView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
-	stackView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
-	stackView.setConstraint(gui::LayerDirection::Width, view(), gui::LayerDirection::Width, 0.0, 0.5);
+	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>(view);
+	stackView.setConstraint(gui::LayerDirection::Top, view, gui::LayerDirection::Top);
+	stackView.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
+	stackView.setConstraint(gui::LayerDirection::Left, view, gui::LayerDirection::Left);
+	stackView.setConstraint(gui::LayerDirection::Width, view, gui::LayerDirection::Width, 0.0, 0.5);
 
-	auto& tabView = gui::GUIFactory::Create<gui::UITabView>(view());
-	tabView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
-	tabView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+	auto& tabView = gui::GUIFactory::Create<gui::UITabView>(view);
+	tabView.setConstraint(gui::LayerDirection::Top, view, gui::LayerDirection::Top);
+	tabView.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
 	tabView.setConstraint(gui::LayerDirection::Left, stackView, gui::LayerDirection::Right);
-	tabView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
+	tabView.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 
 	auto& rect = gui::GUIFactory::Create<gui::UIRect>(stackView);
 	rect.backgroundColor = gui::DynamicColor::DefaultAmber;

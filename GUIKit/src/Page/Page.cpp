@@ -5,14 +5,14 @@
 namespace s3d::gui {
 	Page::Page(const String& identifier) :
 		m_identifier(identifier),
-		m_view(GUIFactory::CreateComponent<UIView>())
+		view(GUIFactory::CreateComponent<UIView>())
 	{
-		m_view.setConstraint(LayerDirection::Top);
-		m_view.setConstraint(LayerDirection::Bottom, [] {
+		view.setConstraint(LayerDirection::Top);
+		view.setConstraint(LayerDirection::Bottom, [] {
 			return Scene::Size().y;
 			});
-		m_view.setConstraint(LayerDirection::Left);
-		m_view.setConstraint(LayerDirection::Right, [] {
+		view.setConstraint(LayerDirection::Left);
+		view.setConstraint(LayerDirection::Right, [] {
 			return Scene::Size().x;
 			});
 	}
