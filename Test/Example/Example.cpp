@@ -84,7 +84,7 @@ public:
 
 		ui_fileName.setText(FileSystem::FileName(path));
 
-		ui_kind.setText(FileSystem::IsDirectory(path) ? U"フォルダ" : U"ファイル");
+		ui_kind.setText(FileSystem::IsDirectory(path) ? U"Folder" : U"File");
 
 		m_path = path;
 
