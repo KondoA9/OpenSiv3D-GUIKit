@@ -9,15 +9,15 @@
 namespace s3d::gui {
 	class UISlider : public UIView {
 	public:
-		UIText& ui_text = GUIFactory::Create<UIText>(this);
+		UIText& uiText = GUIFactory::Create<UIText>(this);
 
 	private:
 		double m_value = 0.0, m_min = 0.0, m_max = 1.0;
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect& m_ui_railLeft = GUIFactory::Create<UIRect>(this), & m_ui_railRight = GUIFactory::Create<UIRect>(this);
-		UICircle& m_ui_handle = GUIFactory::Create<UICircle>(this);
+		UIRect& m_uiRailLeft = GUIFactory::Create<UIRect>(this), & m_uiRailRight = GUIFactory::Create<UIRect>(this);
+		UICircle& m_uiHandle = GUIFactory::Create<UICircle>(this);
 
 	public:
 		using UIView::UIView;
