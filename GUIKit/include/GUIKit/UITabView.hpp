@@ -13,8 +13,8 @@ namespace s3d::gui {
 	class UITabView : public UIView {
 		struct Tab {
 			size_t index;
-			UIButton& selector;
 			UIView& view;
+			UIButton& selector;
 
 			bool enabled = true;
 
@@ -30,8 +30,8 @@ namespace s3d::gui {
 		};
 
 	private:
-		UIView& ui_tabSelectorView = GUIFactory::Create<UIView>(*this);
 		UIView& ui_tabView = GUIFactory::Create<UIView>(*this);
+		UIView& ui_tabSelectorView = GUIFactory::Create<UIView>(*this);
 
 		Array<Tab> m_tabs;
 		size_t m_tabIndex = 0;
@@ -51,8 +51,8 @@ namespace s3d::gui {
 		T& appendTab(const String& name) {
 			static_assert(std::is_base_of<UIView, T>::value, "Specified Type does not inherit gui::UIView.");
 
-			auto& selector = GUIFactory::Create<UIButton>(ui_tabSelectorView);
 			auto& view = GUIFactory::Create<T>(ui_tabView);
+			auto& selector = GUIFactory::Create<UIButton>(ui_tabSelectorView);
 
 			initializeTab(name, selector, view);
 

@@ -63,8 +63,8 @@ namespace s3d::gui {
 
 		Tab tab = {
 			.index = index,
-			.selector = selector,
-			.view = view
+			.view = view,
+			.selector = selector
 		};
 
 		if (tab.index == m_tabIndex) {
