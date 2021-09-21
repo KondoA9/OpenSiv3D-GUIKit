@@ -8,14 +8,16 @@
 
 namespace s3d::gui {
 	class UISlider : public UIView {
+	public:
+		UIText& ui_text = GUIFactory::Create<UIText>(this);
+
 	private:
 		double m_value = 0.0, m_min = 0.0, m_max = 1.0;
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect& ui_railLeft = GUIFactory::Create<UIRect>(this), & ui_railRight = GUIFactory::Create<UIRect>(this);
-		UICircle& ui_handle = GUIFactory::Create<UICircle>(this);
-		UIText& ui_text = GUIFactory::Create<UIText>(this);
+		UIRect& m_ui_railLeft = GUIFactory::Create<UIRect>(this), & m_ui_railRight = GUIFactory::Create<UIRect>(this);
+		UICircle& m_ui_handle = GUIFactory::Create<UICircle>(this);
 
 	public:
 		using UIView::UIView;
@@ -38,14 +40,6 @@ namespace s3d::gui {
 			m_max = max;
 			m_value = Clamp(m_value, m_min, m_max);
 			requestToUpdateLayer();
-		}
-
-		void setLabel(const String& label) {
-			ui_text.setText(label);
-		}
-
-		void setFont(UnifiedFontStyle style) {
-			ui_text.setFont(style);
 		}
 
 	protected:
