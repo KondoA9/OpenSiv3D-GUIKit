@@ -1,6 +1,7 @@
 #pragma once
 
 #include "UIRect.hpp"
+#include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
 
@@ -25,7 +26,7 @@ namespace s3d::gui {
 
 		template<class T>
 		T& createComponent() {
-			auto& component = s3d::gui::GUIFactory::Create<T>();
+			auto& component = GUIFactory::Create<T>();
 			appendComponent(component);
 			return component;
 		}
