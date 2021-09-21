@@ -28,8 +28,6 @@ namespace s3d::gui {
 
 		void release() override;
 
-		void appendComponent(const UIComponent& component) override;
-
 		void setMaxStackCount(size_t count) {
 			m_maxStackCount = count;
 		}
@@ -43,6 +41,8 @@ namespace s3d::gui {
 		}
 
 	protected:
+		void appendComponent(const UIComponent& component) override;
+
 		void initialize() override;
 
 		void updateLayer(const Rect& scissor) override;

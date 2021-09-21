@@ -48,7 +48,17 @@ namespace s3d::gui {
 			return m_tabIndex;
 		}
 
-		void appendTab(const String& name, UIView& view);
+		template<class T>
+		T& appendTab(const String& name) {
+			static_assert(std::is_base_of<UIView, T>::value, "Failed to append a tab.");
+
+			auto& selector = ui_tabSelectorView.createComponent<UIButton>();
+			auto& view = ui_tabView.createComponent<T>();
+
+			initializeTab(name, selector, view);
+
+			return view;
+		}
 
 		void setTab(size_t index);
 
@@ -58,6 +68,8 @@ namespace s3d::gui {
 		void initialize() override;
 
 	private:
-		Tab createTab(const String& name, UIView& view);
+		void appendComponent(const UIComponent&) override {}
+
+		void initializeTab(const String& name, UIButton& selector, UIView& view);
 	};
 }

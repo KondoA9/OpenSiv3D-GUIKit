@@ -23,7 +23,12 @@ namespace s3d::gui {
 
 		void release() override;
 
-		virtual void appendComponent(const UIComponent& component);
+		template<class T>
+		T& createComponent() {
+			auto& component =  GUIFactory::Create<T>();
+			appendComponent(component);
+			return component;
+		}
 
 		size_t componentsCount() const {
 			return m_components.size();
@@ -48,6 +53,8 @@ namespace s3d::gui {
 		}
 
 	protected:
+		virtual void appendComponent(const UIComponent& component);
+
 		void updateLayer(const Rect& scissor) override;
 
 		bool updateLayerIfNeeded(const Rect& scissor) override;

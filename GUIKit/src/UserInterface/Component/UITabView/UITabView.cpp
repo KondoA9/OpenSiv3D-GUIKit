@@ -23,21 +23,6 @@ namespace s3d::gui {
 		registerInputEvent(TabSwitched(this, false));
 	}
 
-	void UITabView::appendTab(const String& name, UIView& view) {
-		auto tab = createTab(name, view);
-		if (tab.index == m_tabIndex) {
-			tab.show();
-		}
-		else {
-			tab.hide();
-		}
-
-		m_tabs.push_back(tab);
-
-		ui_tabSelectorView.appendComponent(tab.selector);
-		ui_tabView.appendComponent(tab.view);
-	}
-
 	void UITabView::setTab(size_t index) {
 		if (m_tabs.size() > index && index != m_tabIndex) {
 			m_tabIndex = index;
@@ -56,12 +41,10 @@ namespace s3d::gui {
 		m_tabs[index].enabled = enabled;
 	}
 
-	UITabView::Tab UITabView::createTab(const String& name, UIView& view) {
+	void UITabView::initializeTab(const String& name, UIButton& selector, UIView& view) {
 		const size_t index = m_tabs.size();
 
-		auto& selector = GUIFactory::Create<UIButton>();
 		selector.setText(name);
-
 		selector.setConstraint(LayerDirection::Top, ui_tabSelectorView, LayerDirection::Top);
 		selector.setConstraint(LayerDirection::Bottom, ui_tabSelectorView, LayerDirection::Bottom);
 		selector.setConstraint(LayerDirection::Left, [this, index] {
@@ -82,10 +65,19 @@ namespace s3d::gui {
 		view.setConstraint(LayerDirection::Left, ui_tabView, LayerDirection::Left);
 		view.setConstraint(LayerDirection::Right, ui_tabView, LayerDirection::Right);
 
-		return {
+		Tab tab = {
 			.index = index,
 			.selector = selector,
 			.view = view
 		};
+
+		if (tab.index == m_tabIndex) {
+			tab.show();
+		}
+		else {
+			tab.hide();
+		}
+
+		m_tabs.push_back(tab);
 	}
 }

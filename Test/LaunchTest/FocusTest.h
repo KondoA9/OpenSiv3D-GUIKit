@@ -5,8 +5,7 @@ class FocusTest : public gui::Page {
 };
 
 void FocusTest::onLoaded() {
-	auto& rect = gui::GUIFactory::Create<gui::UIRect>();
-	view().appendComponent(rect);
+	auto& rect = view().createComponent<gui::UIRect>();
 
 	const size_t focusTimeout = gui::GUIKit::SetTimeout([] {
 		Test::Assert(false, "Focused the component, but event was not triggered");

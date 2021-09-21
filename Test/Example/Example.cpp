@@ -5,7 +5,7 @@ class ToolBar final : public gui::UIView {
 	std::function<void(const FilePath&)> m_folderOpenedHandler;
 	std::function<void()> m_openParentDirHandler;
 
-	gui::UIButton& ui_openDirectoryButton = gui::GUIFactory::Create<gui::UIButton>();
+	gui::UIButton& ui_openDirectoryButton = createComponent<gui::UIButton>();//gui::GUIFactory::Create<gui::UIButton>();
 	gui::UIButton& ui_parentDirButton = gui::GUIFactory::Create<gui::UIButton>();
 	gui::UIToggleButton& ui_toggleColorModeButton = gui::GUIFactory::Create<gui::UIToggleButton>();
 
@@ -61,7 +61,7 @@ protected:
 
 		appendComponent(ui_toggleColorModeButton);
 		appendComponent(ui_parentDirButton);
-		appendComponent(ui_openDirectoryButton);
+		//appendComponent(ui_openDirectoryButton);
 	}
 };
 
