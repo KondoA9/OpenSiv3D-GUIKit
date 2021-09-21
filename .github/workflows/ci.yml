@@ -11,6 +11,7 @@ on:
     branches:
     - master
     - develop
+    - siv6
 
 jobs:
   windows:
