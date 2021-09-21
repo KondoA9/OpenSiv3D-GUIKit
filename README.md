@@ -1,5 +1,7 @@
 # OpenSiv3D GUIKit
-C++ GUI framework
+C++ GUI framework with [**OpenSiv3D v0.6.1**](https://zenn.dev/reputeless/books/siv3d-documentation).
+
+**:construction:This repository is under development.**
 
 ## Features
  - Comfortable user interface
@@ -7,11 +9,19 @@ C++ GUI framework
  - Automatic layout system
  - Event-driven programming
  
- ## Usage
-  - Install [OpenSiv3D (v0.4.3)](https://siv3d.github.io/ja-jp/)
-  - Include GUIKit (.cpp & .h) into your project or build GUIKit and use a static library
+## Usage
+- See following workflows. 
+	- [Windows](https://github.com/KondoA9/OpenSiv3D-GUIKit/blob/695b63c090c24957de28e41c580685959084e811/.github/workflows/ci.yml#L22-L31)
+	- [macOS](https://github.com/KondoA9/OpenSiv3D-GUIKit/blob/695b63c090c24957de28e41c580685959084e811/.github/workflows/ci.yml#L41-L48)
+	- [Linux](https://github.com/KondoA9/OpenSiv3D-GUIKit/blob/695b63c090c24957de28e41c580685959084e811/.github/workflows/ci.yml#L62-L114)
+- This repository includes static library of OpenSiv3D. 
 
- ## Example
+## Example
+ - [Example Code](https://github.com/KondoA9/OpenSiv3D-GUIKit/blob/develop/Test/Example/Example.cpp)
+ - [Test Code](https://github.com/KondoA9/OpenSiv3D-GUIKit/tree/develop/Test/LaunchTest)
+
+**:warning:Following code does not use latest version of GUIKit**
+
  ```c++
 #include <GUIKit/GUIKit.h>
 
