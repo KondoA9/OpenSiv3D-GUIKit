@@ -3,6 +3,8 @@
 
 namespace s3d::gui {
 	void UIText::updateLayer(const Rect& scissor) {
+		updateDrawableText();
+
 		UIRect::updateLayer(scissor);
 
 		updateDrawableText(true);
