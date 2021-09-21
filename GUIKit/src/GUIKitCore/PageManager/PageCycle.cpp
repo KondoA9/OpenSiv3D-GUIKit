@@ -2,6 +2,7 @@
 #include <GUIKit/Page.hpp>
 #include <GUIKit/WindowManager.hpp>
 #include <GUIKit/GUIKitInterface.hpp>
+#include <GUIKit/UIView.hpp>
 
 namespace s3d::gui {
 	void PageManager::update() {

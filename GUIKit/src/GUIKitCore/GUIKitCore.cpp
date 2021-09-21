@@ -2,6 +2,7 @@
 #include <GUIKit/Page.hpp>
 #include <GUIKit/WindowManager.hpp>
 #include <GUIKit/UnifiedFont.hpp>
+#include <GUIKit/GUIFactory.hpp>
 
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
@@ -114,6 +115,10 @@ namespace s3d::gui {
 
 	void GUIKitCore::appendPage(const std::shared_ptr<Page>& page) {
 		m_pageManager->appendPage(page);
+	}
+
+	void GUIKitCore::appendIsolatedComponent(const UIComponent& component) {
+		appendIsolatedComponent(GUIFactory::GetComponent(component.id()));
 	}
 
 	void GUIKitCore::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {

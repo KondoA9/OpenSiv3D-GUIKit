@@ -64,11 +64,6 @@ namespace s3d::gui {
 		ui_text.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		ui_text.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-		appendComponent(ui_railLeft);
-		appendComponent(ui_railRight);
-		appendComponent(ui_handle);
-		appendComponent(ui_text);
-
 		UIView::initialize();
 	}
 

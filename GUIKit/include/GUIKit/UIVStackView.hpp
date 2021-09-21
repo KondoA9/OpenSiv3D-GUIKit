@@ -28,27 +28,30 @@ namespace s3d::gui {
 
 		void release() override;
 
-		void appendComponent(const UIComponent& component) override;
-
 		void setMaxStackCount(size_t count) {
 			m_maxStackCount = count;
+			updateChildrenConstraints(true);
 		}
 
 		void setRowHeight(double h) {
 			m_rowHeight = h;
+			updateChildrenConstraints(true);
 		}
 
 		void setLeadingDirection(LeadingDirection direction) {
 			m_leadingDirection = direction;
+			updateChildrenConstraints(true);
 		}
 
 	protected:
+		void onAfterComponentAppended() override;
+
 		void initialize() override;
 
 		void updateLayer(const Rect& scissor) override;
 
 	private:
-		void updateChildrenConstraints();
+		void updateChildrenConstraints(bool reset = false);
 
 		void calcCurrentRowHeight();
 
