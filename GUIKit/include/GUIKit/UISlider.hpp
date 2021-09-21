@@ -40,6 +40,14 @@ namespace s3d::gui {
 			requestToUpdateLayer();
 		}
 
+		void setLabel(const String& label) {
+			m_uiText.setText(label);
+		}
+
+		void setFont(UnifiedFontStyle style) {
+			m_uiText.setFont(style);
+		}
+
 	protected:
 		void initialize() override;
 
