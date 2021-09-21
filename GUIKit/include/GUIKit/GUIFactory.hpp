@@ -46,6 +46,13 @@ namespace s3d::gui {
 			return GUIFactory::Create<T>(*parent);
 		}
 
+		template<class T>
+		[[nodiscard]] static T& CreateIsolatedComponent() {
+			auto& component = GUIFactory::CreateComponent<T>();
+			GUIKitCore::Instance().appendIsolatedComponent<T>(component);
+			return component;
+		}
+
 	private:
 		GUIFactory() = default;
 

@@ -60,9 +60,4 @@ namespace s3d::gui::GUIKit {
 	void AppendPage(const String& identifier) {
 		return GUIKitCore::Instance().appendPage<T>(identifier);
 	}
-
-	template<class T>
-	void AppendIsolatedComponent(const T& component) {
-		return GUIKitCore::Instance().appendIsolatedComponent<T>(component);
-	}
 }
