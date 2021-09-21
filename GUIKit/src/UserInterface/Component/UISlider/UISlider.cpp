@@ -58,11 +58,11 @@ namespace s3d::gui {
 			});
 		m_uiHandle.setConstraint(LayerDirection::Width, handleRadius * 2);
 
-		uiText.penetrateMouseEvent = true;
-		uiText.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
-		uiText.setConstraint(LayerDirection::Bottom, m_uiHandle, LayerDirection::Top);
-		uiText.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
-		uiText.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
+		m_uiText.penetrateMouseEvent = true;
+		m_uiText.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
+		m_uiText.setConstraint(LayerDirection::Bottom, m_uiHandle, LayerDirection::Top);
+		m_uiText.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
+		m_uiText.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
 		UIView::initialize();
 	}
