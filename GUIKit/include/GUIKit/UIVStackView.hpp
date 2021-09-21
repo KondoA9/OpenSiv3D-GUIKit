@@ -30,14 +30,17 @@ namespace s3d::gui {
 
 		void setMaxStackCount(size_t count) {
 			m_maxStackCount = count;
+			updateChildrenConstraints(true);
 		}
 
 		void setRowHeight(double h) {
 			m_rowHeight = h;
+			updateChildrenConstraints(true);
 		}
 
 		void setLeadingDirection(LeadingDirection direction) {
 			m_leadingDirection = direction;
+			updateChildrenConstraints(true);
 		}
 
 	protected:
@@ -48,7 +51,7 @@ namespace s3d::gui {
 		void updateLayer(const Rect& scissor) override;
 
 	private:
-		void updateChildrenConstraints();
+		void updateChildrenConstraints(bool reset = false);
 
 		void calcCurrentRowHeight();
 

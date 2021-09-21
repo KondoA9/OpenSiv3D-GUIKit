@@ -1,11 +1,9 @@
 #pragma once
 
-#include "UIView.hpp"
-#include "GUIFactory.hpp"
-
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	class UIView;
 	class GUIKitCore;
 	class PageManager;
 
@@ -16,7 +14,7 @@ namespace s3d::gui {
 	private:
 		const String m_identifier;
 
-		UIView& m_view = GUIFactory::CreateComponent<UIView>();
+		UIView& m_view;
 		bool m_loaded = false;
 
 	public:

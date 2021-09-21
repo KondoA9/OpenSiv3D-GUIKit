@@ -39,9 +39,12 @@ namespace s3d::gui {
 		adjustRowsTrailingToViewBottom();
 	}
 
-	void UIVStackView::updateChildrenConstraints() {
+	void UIVStackView::updateChildrenConstraints(bool reset) {
 		for (size_t i : step(componentsCount())) {
 			auto& component = getComponent(i);
+			if (reset) {
+				component.removeAllConstraints();
+			}
 
 			{
 				const auto d1 = m_leadingDirection == LeadingDirection::Top ? LayerDirection::Top : LayerDirection::Bottom;

@@ -2,11 +2,11 @@
 
 #include "UIComponent.hpp"
 #include "UIView.hpp"
+#include "GUIKitCore.hpp"
 
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
-	class GUIKitCore;
 	class Page;
 
 	class GUIFactory {
@@ -49,7 +49,7 @@ namespace s3d::gui {
 		template<class T>
 		[[nodiscard]] static T& CreateIsolatedComponent() {
 			auto& component = GUIFactory::CreateComponent<T>();
-			GUIKitCore::Instance().appendIsolatedComponent<T>(component);
+			GUIKitCore::Instance().appendIsolatedComponent(component);
 			return component;
 		}
 
