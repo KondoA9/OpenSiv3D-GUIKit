@@ -11,6 +11,7 @@ Intermediate/
 *.user
 *.aps
 *.lib
+!Dependencies/lib/Windows/*/*.lib
 
 # MacOS
 .DS_Store
