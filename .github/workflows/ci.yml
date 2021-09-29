@@ -25,7 +25,6 @@ jobs:
       - name: Extract libraries
         run: |
           Expand-Archive -Path "Dependencies\lib\Windows\Siv3D.zip" -DestinationPath "Dependencies\lib\Windows\" -force
-          Expand-Archive -Path "Dependencies\lib\Windows\ThirdParty.zip" -DestinationPath "Dependencies\lib\Windows\" -force
 
       - name: Build GUIKit for Windows
         run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Configuration=Debug /p:Platform=x64
