@@ -1,4 +1,5 @@
 #pragma once
+#pragma once
 
 #include "UIText.hpp"
 #include "UnifiedFont.hpp"
@@ -8,12 +9,13 @@ namespace s3d::gui {
 	public:
 		GUICreateInputEvent(Inputted);
 		GUICreateInputEvent(KeyEnterDown);
+		GUICreateInputEvent(ForbiddenCharInputted);
 
 		bool completeInputWhenEnter = true;
 		String prefix = U"", suffix = U"";
+		Array<char32> forbiddenCharacters = {};
 
 	private:
-		Array<String> m_forbiddenWords;
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect;
@@ -25,10 +27,6 @@ namespace s3d::gui {
 			return m_fieldRect;
 		}
 
-		void setForbiddenWords(const Array<String>& words) {
-			m_forbiddenWords = words;
-		}
-
 	protected:
 		void initialize() override;
 
@@ -37,5 +35,9 @@ namespace s3d::gui {
 		void updateInputEvents() override;
 
 		void updateDrawableText(bool updateField = false) override;
+
+		virtual String updateText(const String& previousString, const String& rawInput, const String& rawUpdatedString);
+
+		String getInputtedRawText();
 	};
 }

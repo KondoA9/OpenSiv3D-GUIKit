@@ -44,20 +44,12 @@ namespace s3d::gui {
 		UIText::updateInputEvents();
 
 		if (isFocused()) {
-			const String pre = text();
-			String txt = text();
-			TextInput::UpdateText(txt, TextInputMode::AllowBackSpaceDelete);
+			const String previousText = text();
 
-			bool valid = true;
-			for (const auto& word : m_forbiddenWords) {
-				if (txt.includes(word)) {
-					valid = false;
-					break;
-				}
-			}
+			const String updatedText = updateText(previousText, TextInput::GetRawInput(), getInputtedRawText());
 
-			if (valid && pre != txt) {
-				setText(txt);
+			if (previousText != updatedText) {
+				setText(updatedText);
 				registerInputEvent(Inputted(this, false));
 			}
 
@@ -80,5 +72,23 @@ namespace s3d::gui {
 		else {
 			m_fieldRect = RectF(rect().x, textRegion().y - 3_px, rect().w, textRegion().h + 6_px);
 		}
+	}
+
+	String UIInputField::getInputtedRawText() {
+		String inputtedRawText = text();
+		TextInput::UpdateText(inputtedRawText, TextInputMode::AllowBackSpaceDelete);
+		return inputtedRawText;
+	}
+
+	String UIInputField::updateText(const String&, const String&, const String& rawUpdatedString) {
+		const auto updatedString = rawUpdatedString.removed_if([this](const char32& c) {
+			return forbiddenCharacters.includes(c);
+			});
+
+		if (updatedString != rawUpdatedString) {
+			registerInputEvent(ForbiddenCharInputted(this, false));
+		}
+
+		return updatedString;
 	}
 }
