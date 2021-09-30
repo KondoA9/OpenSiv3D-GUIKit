@@ -15,6 +15,9 @@ namespace s3d::gui {
 		String prefix = U"", suffix = U"";
 		Array<char32> forbiddenCharacters = {};
 
+		const Array<char32> forbiddenPathChar = { '\\', '/', ':', '*', '*', '?', '<', '>', '|' };
+		const Array<char32> forbiddenPathCharRecommended = { ' ', ';', ',' };
+
 	private:
 		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
