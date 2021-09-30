@@ -24,7 +24,6 @@ namespace s3d::gui {
 		String m_text = U"";
 		Font m_font = UnifiedFont::Get();
 		TextDirection m_direction = TextDirection::LeftCenter;
-		DrawableText m_drawableText;
 		RectF m_textRegion = RectF(), m_drawableRegion = RectF();
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 

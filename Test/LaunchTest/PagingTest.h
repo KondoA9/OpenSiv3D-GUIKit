@@ -81,7 +81,7 @@ protected:
 
 		gui::GUIKit::SetTimeout([this] {
 			Test::Assert(
-				view().backgroundColor == gui::DynamicColor::Background.dark,
+				view.backgroundColor == gui::DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
 			);
 			}, 4000, false);

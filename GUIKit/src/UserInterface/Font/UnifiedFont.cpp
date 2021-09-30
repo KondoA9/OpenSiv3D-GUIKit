@@ -6,7 +6,7 @@ namespace s3d::gui::UnifiedFont {
 
 	namespace Internal {
 		void RegisterFont(int32 size) {
-			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Default)));
+			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Regular)));
 			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Light)));
 			Fonts.push_back(std::make_shared<Font>(Font(size, Typeface::Bold)));
 		}

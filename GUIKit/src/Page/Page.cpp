@@ -1,11 +1,19 @@
 #include <GUIKit/Page.hpp>
+#include <GUIKit/UIView.hpp>
+#include <GUIKit/GUIFactory.hpp>
 
 namespace s3d::gui {
 	Page::Page(const String& identifier) :
-		m_identifier(identifier) {
-		m_view.setConstraint(LayerDirection::Top);
-		m_view.setConstraint(LayerDirection::Bottom, [] {return Window::ClientHeight(); });
-		m_view.setConstraint(LayerDirection::Left);
-		m_view.setConstraint(LayerDirection::Right, [] {return Window::ClientWidth(); });
+		m_identifier(identifier),
+		view(GUIFactory::CreateComponent<UIView>())
+	{
+		view.setConstraint(LayerDirection::Top);
+		view.setConstraint(LayerDirection::Bottom, [] {
+			return Scene::Size().y;
+			});
+		view.setConstraint(LayerDirection::Left);
+		view.setConstraint(LayerDirection::Right, [] {
+			return Scene::Size().x;
+			});
 	}
 }

@@ -1,24 +1,18 @@
 #include <GUIKit/GUIKitCore.hpp>
+#include <GUIKit/ColorTheme.hpp>
 #include <GUIKit/WindowManager.hpp>
-#include <GUIKit/UnifiedFont.hpp>
 
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
 
+void GUIMain();
+
+void Main() {
+	(void)s3d::gui::GUIKitCore::Instance();
+	GUIMain();
+}
+
 namespace s3d::gui {
-	GUIKitCore::GUIKitCore() {
-		m_pageManager = new PageManager();
-		m_parallelTaskManager = new ParallelTaskManager();
-
-		UnifiedFont::Initialize();
-
-		WindowManager::Initialize();
-
-		Scene::SetScaleMode(ScaleMode::ResizeFill);
-
-		System::SetTerminationTriggers(UserAction::None);
-	}
-
 	void GUIKitCore::start() {
 		if (m_pageManager->initialize()) {
 			run();
@@ -26,9 +20,6 @@ namespace s3d::gui {
 		else {
 			Logger << U"Error(GUIKitCore): No pages are registered.";
 		}
-
-		delete m_pageManager;
-		delete m_parallelTaskManager;
 	}
 
 	void GUIKitCore::run() {

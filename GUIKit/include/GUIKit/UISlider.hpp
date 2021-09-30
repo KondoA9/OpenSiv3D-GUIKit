@@ -13,9 +13,9 @@ namespace s3d::gui {
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIRect& ui_railLeft = GUIFactory::Create<UIRect>(), & ui_railRight = GUIFactory::Create<UIRect>();
-		UICircle& ui_handle = GUIFactory::Create<UICircle>();
-		UIText& ui_text = GUIFactory::Create<UIText>();
+		UIText& m_uiText = GUIFactory::Create<UIText>(this);
+		UIRect& m_uiRailLeft = GUIFactory::Create<UIRect>(this), & m_uiRailRight = GUIFactory::Create<UIRect>(this);
+		UICircle& m_uiHandle = GUIFactory::Create<UICircle>(this);
 
 	public:
 		using UIView::UIView;
@@ -41,11 +41,11 @@ namespace s3d::gui {
 		}
 
 		void setLabel(const String& label) {
-			ui_text.setText(label);
+			m_uiText.setText(label);
 		}
 
 		void setFont(UnifiedFontStyle style) {
-			ui_text.setFont(style);
+			m_uiText.setFont(style);
 		}
 
 	protected:

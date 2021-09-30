@@ -6,9 +6,6 @@ namespace s3d::CLI {
 	// On Windows, the command will be executed on powershell
 	bool Execute(const String& command);
 
-	// Open path on explorer or finder
-	bool OpenFolder(const String& path);
-
 	/// <summary>
 	/// Get the content from url and save it to the output path.
 	/// If Windows, this function call Invoke-WebRequest command on powershell

@@ -19,7 +19,7 @@ namespace s3d::gui {
 			}
 		}
 
-		throw "";
+		throw Error{ U"A component with identifier \"{}\" not found."_fmt(id) };
 	}
 
 	void GUIFactory::RequestReleaseComponent(size_t id) {

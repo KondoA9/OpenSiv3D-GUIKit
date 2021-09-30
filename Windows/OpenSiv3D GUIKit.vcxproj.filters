@@ -67,9 +67,6 @@
     <Filter Include="GUIKit\UserInterface\UserInterface\UIInputField">
       <UniqueIdentifier>{64100a12-4a02-48d0-bdc7-03822862222a}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GUIKit\UserInterface\UserInterface\UIVStackView">
-      <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GUIKit\UserInterface\InputEvent">
       <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
     </Filter>
@@ -99,6 +96,9 @@
     </Filter>
     <Filter Include="GUIKit\GUIKitCore\ParallelTaskManager">
       <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GUIKit\UserInterface\UserInterface\UIVStackView">
+      <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>

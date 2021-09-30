@@ -2,7 +2,6 @@
 
 #include "Timeout.hpp"
 #include "Page.hpp"
-#include "GUIFactory.hpp"
 
 #include <Siv3D.hpp>
 
@@ -10,6 +9,7 @@
 #include <atomic>
 
 namespace s3d::gui {
+	class UIComponent;
 	enum class ColorMode;
 
 	class GUIKitCore final {
@@ -90,15 +90,14 @@ namespace s3d::gui {
 			appendPage(std::shared_ptr<T>(new T(identifier)));
 		}
 
-		template<class T>
-		void appendIsolatedComponent(const T& component) {
-			appendIsolatedComponent(GUIFactory::GetComponent(component.id()));
-		}
+		void appendIsolatedComponent(const UIComponent& component);
 
 	private:
 		GUIKitCore();
 
-		~GUIKitCore() = default;
+		~GUIKitCore();
+
+		static void AddLicense();
 
 		Page& getPage(const String& identifier) const noexcept;
 

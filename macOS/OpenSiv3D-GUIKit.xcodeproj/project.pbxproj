@@ -765,6 +765,8 @@
 		9E83802F2679E3D50052AF7B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++2a";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = 35AQWMZRAP;
@@ -779,6 +781,7 @@
 				OBJROOT = build;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYMROOT = build;
 			};
 			name = Debug;
@@ -786,6 +789,8 @@
 		9E8380302679E3D50052AF7B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "c++2a";
+				CLANG_WARN_DOCUMENTATION_COMMENTS = NO;
 				CODE_SIGN_STYLE = Automatic;
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = 35AQWMZRAP;
@@ -800,6 +805,7 @@
 				OBJROOT = build;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYMROOT = build;
 			};
 			name = Release;

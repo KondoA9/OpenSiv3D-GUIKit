@@ -1,11 +1,35 @@
 #include <GUIKit/GUIKitCore.hpp>
 #include <GUIKit/Page.hpp>
+#include <GUIKit/WindowManager.hpp>
+#include <GUIKit/UnifiedFont.hpp>
+#include <GUIKit/GUIFactory.hpp>
+
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
 
 #include <thread>
 
 namespace s3d::gui {
+	GUIKitCore::GUIKitCore() {
+		m_pageManager = new PageManager();
+		m_parallelTaskManager = new ParallelTaskManager();
+
+		WindowManager::Initialize();
+
+		UnifiedFont::Initialize();
+
+		Scene::SetResizeMode(ResizeMode::Actual);
+
+		System::SetTerminationTriggers(UserAction::NoAction);
+
+		GUIKitCore::AddLicense();
+	}
+
+	GUIKitCore::~GUIKitCore() {
+		delete m_pageManager;
+		delete m_parallelTaskManager;
+	}
+
 	bool GUIKitCore::isParalellTaskAlive() const {
 		return m_parallelTaskManager->isAlive();
 	}
@@ -93,7 +117,37 @@ namespace s3d::gui {
 		m_pageManager->appendPage(page);
 	}
 
+	void GUIKitCore::appendIsolatedComponent(const UIComponent& component) {
+		appendIsolatedComponent(GUIFactory::GetComponent(component.id()));
+	}
+
 	void GUIKitCore::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
 		m_pageManager->appendIsolatedComponent(component);
+	}
+
+	void GUIKitCore::AddLicense() {
+		LicenseInfo licence;
+		licence.title = U"OpenSiv3D-GUIKit";
+		licence.copyright = U"Copyright (c) 2021 Ekyu Kondo";
+		licence.text =
+UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.)";
+
+		LicenseManager::AddLicense(licence);
 	}
 }

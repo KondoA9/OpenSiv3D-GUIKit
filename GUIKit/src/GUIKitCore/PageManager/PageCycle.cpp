@@ -2,12 +2,14 @@
 #include <GUIKit/Page.hpp>
 #include <GUIKit/WindowManager.hpp>
 #include <GUIKit/GUIKitInterface.hpp>
+#include <GUIKit/UIView.hpp>
 
 namespace s3d::gui {
 	void PageManager::update() {
 		if (WindowManager::DidResized()) {
 			// Update scissor rect
-			m_windowScissorRect = Rect(0, 0, Window::ClientWidth(), Window::ClientHeight());
+			const auto size = Scene::Size();
+			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 		}
 
 		switch (m_pageTransition)
@@ -52,21 +54,21 @@ namespace s3d::gui {
 		{
 		case PageTransition::Changing:
 			// Draw previous and next page
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-			m_forwardPage->m_view.draw();
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, m_pageTransitionRate));
-			m_backwardPage->m_view.draw();
+			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
+			m_forwardPage->view.draw();
+			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, m_pageTransitionRate));
+			m_backwardPage->view.draw();
 			break;
 
 		case PageTransition::JustChanged:
 			// Initialize ColorMultipiler
-			Graphics2D::Internal::SetColorMul(ColorF(1.0, 1.0, 1.0, 1.0));
-			m_forwardPage->m_view.draw();
+			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0));
+			m_forwardPage->view.draw();
 			break;
 
 		default:
 			// Draw current page
-			m_drawingPage->m_view.draw();
+			m_drawingPage->view.draw();
 			break;
 		}
 
@@ -141,8 +143,8 @@ namespace s3d::gui {
 		m_forwardPage->onBeforeAppeared();
 		m_backwardPage->onBeforeDisappeared();
 
-		m_forwardPage->m_view.updateLayer(m_windowScissorRect);
-		m_forwardPage->m_view.updateLayerInvert(m_windowScissorRect);
+		m_forwardPage->view.updateLayer(m_windowScissorRect);
+		m_forwardPage->view.updateLayerInvert(m_windowScissorRect);
 
 		m_forwardPage->onLayoutCompleted();
 	}
@@ -166,9 +168,9 @@ namespace s3d::gui {
 	}
 
 	void PageManager::updateInputEvents() {
-		if (m_drawingPage->m_view.updatable()) {
-			m_drawingPage->m_view.updateMouseIntersection();
-			m_drawingPage->m_view.updateInputEvents();
+		if (m_drawingPage->view.updatable()) {
+			m_drawingPage->view.updateMouseIntersection();
+			m_drawingPage->view.updateInputEvents();
 		}
 
 		for (auto& component : m_isolatedComponents) {
@@ -184,8 +186,8 @@ namespace s3d::gui {
 	void PageManager::updateLayers() {
 		if (WindowManager::DidResized()) {
 			// Update layer
-			m_drawingPage->m_view.updateLayer(m_windowScissorRect);
-			m_drawingPage->m_view.updateLayerInvert(m_windowScissorRect);
+			m_drawingPage->view.updateLayer(m_windowScissorRect);
+			m_drawingPage->view.updateLayerInvert(m_windowScissorRect);
 
 			// Update isolated components
 			for (auto& component : m_isolatedComponents) {
@@ -196,7 +198,7 @@ namespace s3d::gui {
 			m_drawingPage->onWindowResized();
 		}
 		else {
-			m_drawingPage->m_view.updateLayerIfNeeded(m_windowScissorRect);
+			m_drawingPage->view.updateLayerIfNeeded(m_windowScissorRect);
 
 			// Update isolated components
 			for (auto& component : m_isolatedComponents) {

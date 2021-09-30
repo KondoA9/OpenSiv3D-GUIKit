@@ -18,14 +18,10 @@
 		9E1AB94226A00DCF00235A6A /* engine in Resources */ = {isa = PBXBuildFile; fileRef = 9E1AB94126A00DCF00235A6A /* engine */; };
 		9E1AB96126A00E6300235A6A /* libboost_filesystem.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96026A00E6300235A6A /* libboost_filesystem.a */; };
 		9E1AB96326A00E7200235A6A /* libSiv3D.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96226A00E7200235A6A /* libSiv3D.a */; };
-		9E1AB96526A00E8600235A6A /* libGLEW.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96426A00E8600235A6A /* libGLEW.a */; };
 		9E1AB96726A00E9900235A6A /* libfreetype.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96626A00E9900235A6A /* libfreetype.a */; };
 		9E1AB96926A00EA100235A6A /* libharfbuzz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96826A00EA100235A6A /* libharfbuzz.a */; };
-		9E1AB96C26A00EA800235A6A /* libgif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96A26A00EA800235A6A /* libgif.a */; };
-		9E1AB96D26A00EA800235A6A /* libutil.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96B26A00EA800235A6A /* libutil.a */; };
 		9E1AB96F26A00EAE00235A6A /* libturbojpeg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB96E26A00EAE00235A6A /* libturbojpeg.a */; };
 		9E1AB97126A00EB400235A6A /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB97026A00EB400235A6A /* libogg.a */; };
-		9E1AB97326A00EB900235A6A /* libpng.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB97226A00EB900235A6A /* libpng.a */; };
 		9E1AB97726A00EC000235A6A /* libvorbis.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB97426A00EC000235A6A /* libvorbis.a */; };
 		9E1AB97826A00EC000235A6A /* libvorbisenc.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB97526A00EC000235A6A /* libvorbisenc.a */; };
 		9E1AB97926A00EC000235A6A /* libvorbisfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB97626A00EC000235A6A /* libvorbisfile.a */; };
@@ -36,7 +32,13 @@
 		9E1AB98526A00ECA00235A6A /* libopencv_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB97F26A00ECA00235A6A /* libopencv_core.a */; };
 		9E1AB98626A00ECA00235A6A /* libopencv_photo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB98026A00ECA00235A6A /* libopencv_photo.a */; };
 		9E1AB98726A00ECA00235A6A /* libopencv_videoio.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB98126A00ECA00235A6A /* libopencv_videoio.a */; };
-		9E1AB98926A00ED000235A6A /* libz.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E1AB98826A00ED000235A6A /* libz.a */; };
+		9E32BE7726F85A400065D9ED /* liblibgif.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7626F85A400065D9ED /* liblibgif.a */; };
+		9E32BE7926F85A540065D9ED /* libpng16.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7826F85A540065D9ED /* libpng16.a */; };
+		9E32BE7B26F85A5D0065D9ED /* libzlib.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7A26F85A5D0065D9ED /* libzlib.a */; };
+		9E32BE7D26F85A9E0065D9ED /* libtiff.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7C26F85A9E0065D9ED /* libtiff.a */; };
+		9E32BE8026F85ABD0065D9ED /* libopusfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7E26F85ABD0065D9ED /* libopusfile.a */; };
+		9E32BE8126F85ABD0065D9ED /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7F26F85ABD0065D9ED /* libopus.a */; };
+		9E32BE8326F85BCC0065D9ED /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE8226F85BC10065D9ED /* libcurl.tbd */; };
 		9E41CB7026A97BB300F739A9 /* LaunchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */; };
 /* End PBXBuildFile section */
 
@@ -54,14 +56,10 @@
 		9E1AB94126A00DCF00235A6A /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = ../App/resources/engine; sourceTree = "<group>"; };
 		9E1AB96026A00E6300235A6A /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../Dependencies/lib/macOS/boost/libboost_filesystem.a; sourceTree = "<group>"; };
 		9E1AB96226A00E7200235A6A /* libSiv3D.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libSiv3D.a; path = ../Dependencies/lib/macOS/libSiv3D.a; sourceTree = "<group>"; };
-		9E1AB96426A00E8600235A6A /* libGLEW.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libGLEW.a; path = ../Dependencies/lib/macOS/glew/libGLEW.a; sourceTree = "<group>"; };
 		9E1AB96626A00E9900235A6A /* libfreetype.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libfreetype.a; path = ../Dependencies/lib/macOS/freetype/libfreetype.a; sourceTree = "<group>"; };
 		9E1AB96826A00EA100235A6A /* libharfbuzz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libharfbuzz.a; path = ../Dependencies/lib/macOS/harfbuzz/libharfbuzz.a; sourceTree = "<group>"; };
-		9E1AB96A26A00EA800235A6A /* libgif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libgif.a; path = ../Dependencies/lib/macOS/libgif/libgif.a; sourceTree = "<group>"; };
-		9E1AB96B26A00EA800235A6A /* libutil.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libutil.a; path = ../Dependencies/lib/macOS/libgif/libutil.a; sourceTree = "<group>"; };
 		9E1AB96E26A00EAE00235A6A /* libturbojpeg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libturbojpeg.a; path = "../Dependencies/lib/macOS/libjpeg-turbo/libturbojpeg.a"; sourceTree = "<group>"; };
 		9E1AB97026A00EB400235A6A /* libogg.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libogg.a; path = ../Dependencies/lib/macOS/libogg/libogg.a; sourceTree = "<group>"; };
-		9E1AB97226A00EB900235A6A /* libpng.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng.a; path = ../Dependencies/lib/macOS/libpng/libpng.a; sourceTree = "<group>"; };
 		9E1AB97426A00EC000235A6A /* libvorbis.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbis.a; path = ../Dependencies/lib/macOS/libvorbis/libvorbis.a; sourceTree = "<group>"; };
 		9E1AB97526A00EC000235A6A /* libvorbisenc.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisenc.a; path = ../Dependencies/lib/macOS/libvorbis/libvorbisenc.a; sourceTree = "<group>"; };
 		9E1AB97626A00EC000235A6A /* libvorbisfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libvorbisfile.a; path = ../Dependencies/lib/macOS/libvorbis/libvorbisfile.a; sourceTree = "<group>"; };
@@ -72,7 +70,13 @@
 		9E1AB97F26A00ECA00235A6A /* libopencv_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_core.a; path = ../Dependencies/lib/macOS/opencv/libopencv_core.a; sourceTree = "<group>"; };
 		9E1AB98026A00ECA00235A6A /* libopencv_photo.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_photo.a; path = ../Dependencies/lib/macOS/opencv/libopencv_photo.a; sourceTree = "<group>"; };
 		9E1AB98126A00ECA00235A6A /* libopencv_videoio.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopencv_videoio.a; path = ../Dependencies/lib/macOS/opencv/libopencv_videoio.a; sourceTree = "<group>"; };
-		9E1AB98826A00ED000235A6A /* libz.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libz.a; path = ../Dependencies/lib/macOS/zlib/libz.a; sourceTree = "<group>"; };
+		9E32BE7626F85A400065D9ED /* liblibgif.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblibgif.a; path = ../Dependencies/lib/macOS/libgif/liblibgif.a; sourceTree = "<group>"; };
+		9E32BE7826F85A540065D9ED /* libpng16.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libpng16.a; path = ../Dependencies/lib/macOS/libpng/libpng16.a; sourceTree = "<group>"; };
+		9E32BE7A26F85A5D0065D9ED /* libzlib.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libzlib.a; path = ../Dependencies/lib/macOS/zlib/libzlib.a; sourceTree = "<group>"; };
+		9E32BE7C26F85A9E0065D9ED /* libtiff.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libtiff.a; path = ../Dependencies/lib/macOS/libtiff/libtiff.a; sourceTree = "<group>"; };
+		9E32BE7E26F85ABD0065D9ED /* libopusfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopusfile.a; path = ../Dependencies/lib/macOS/opus/libopusfile.a; sourceTree = "<group>"; };
+		9E32BE7F26F85ABD0065D9ED /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopus.a; path = ../Dependencies/lib/macOS/opus/libopus.a; sourceTree = "<group>"; };
+		9E32BE8226F85BC10065D9ED /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
 		9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaunchTest.cpp; sourceTree = "<group>"; };
 		9E41CB6C26A97BB300F739A9 /* PagingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingTest.h; sourceTree = "<group>"; };
 		9E41CB6D26A97BB300F739A9 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
@@ -85,25 +89,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E1AB96526A00E8600235A6A /* libGLEW.a in Frameworks */,
 				2CE5C858237FDE4600082EEC /* CoreAudio.framework in Frameworks */,
 				2C6906B42298123A00A427D0 /* AudioToolbox.framework in Frameworks */,
 				9E1AB98626A00ECA00235A6A /* libopencv_photo.a in Frameworks */,
 				9E1AB96926A00EA100235A6A /* libharfbuzz.a in Frameworks */,
 				2C6906B62298124100A427D0 /* Foundation.framework in Frameworks */,
-				9E1AB97326A00EB900235A6A /* libpng.a in Frameworks */,
+				9E32BE7726F85A400065D9ED /* liblibgif.a in Frameworks */,
 				9E1AB98326A00ECA00235A6A /* libopencv_objdetect.a in Frameworks */,
 				9E1AB97926A00EC000235A6A /* libvorbisfile.a in Frameworks */,
 				9E1AB97726A00EC000235A6A /* libvorbis.a in Frameworks */,
-				9E1AB96D26A00EA800235A6A /* libutil.a in Frameworks */,
-				9E1AB96C26A00EA800235A6A /* libgif.a in Frameworks */,
+				9E32BE8126F85ABD0065D9ED /* libopus.a in Frameworks */,
 				9E1AB96F26A00EAE00235A6A /* libturbojpeg.a in Frameworks */,
 				9E1AB98226A00ECA00235A6A /* libopencv_imgcodecs.a in Frameworks */,
+				9E32BE7D26F85A9E0065D9ED /* libtiff.a in Frameworks */,
 				9E1AB98726A00ECA00235A6A /* libopencv_videoio.a in Frameworks */,
+				9E32BE7B26F85A5D0065D9ED /* libzlib.a in Frameworks */,
 				2CE5C85B237FDE6000082EEC /* OpenAL.framework in Frameworks */,
 				2CE5C856237FDE3900082EEC /* AVFoundation.framework in Frameworks */,
+				9E32BE7926F85A540065D9ED /* libpng16.a in Frameworks */,
 				9E1AB96726A00E9900235A6A /* libfreetype.a in Frameworks */,
 				9E1AB97B26A00EC400235A6A /* libwebp.a in Frameworks */,
+				9E32BE8326F85BCC0065D9ED /* libcurl.tbd in Frameworks */,
 				9E1AB97126A00EB400235A6A /* libogg.a in Frameworks */,
 				2CE5C85A237FDE5100082EEC /* CoreMedia.framework in Frameworks */,
 				9E1AB96326A00E7200235A6A /* libSiv3D.a in Frameworks */,
@@ -111,7 +117,7 @@
 				9E1AB96126A00E6300235A6A /* libboost_filesystem.a in Frameworks */,
 				9E1AB97826A00EC000235A6A /* libvorbisenc.a in Frameworks */,
 				9E1AB98526A00ECA00235A6A /* libopencv_core.a in Frameworks */,
-				9E1AB98926A00ED000235A6A /* libz.a in Frameworks */,
+				9E32BE8026F85ABD0065D9ED /* libopusfile.a in Frameworks */,
 				9E0A9A65269C3BD7001A95DA /* libOpenSiv3D-GUIKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -142,6 +148,7 @@
 		2CC7F9861F45930A0071A239 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9E32BE8226F85BC10065D9ED /* libcurl.tbd */,
 				2CE5C859237FDE5100082EEC /* CoreMedia.framework */,
 				2CE5C857237FDE4600082EEC /* CoreAudio.framework */,
 				2CE5C855237FDE3900082EEC /* AVFoundation.framework */,
@@ -152,13 +159,12 @@
 				9E1AB96226A00E7200235A6A /* libSiv3D.a */,
 				9E1AB96026A00E6300235A6A /* libboost_filesystem.a */,
 				9E1AB96626A00E9900235A6A /* libfreetype.a */,
-				9E1AB96426A00E8600235A6A /* libGLEW.a */,
 				9E1AB96826A00EA100235A6A /* libharfbuzz.a */,
-				9E1AB96A26A00EA800235A6A /* libgif.a */,
-				9E1AB96B26A00EA800235A6A /* libutil.a */,
+				9E32BE7626F85A400065D9ED /* liblibgif.a */,
 				9E1AB96E26A00EAE00235A6A /* libturbojpeg.a */,
 				9E1AB97026A00EB400235A6A /* libogg.a */,
-				9E1AB97226A00EB900235A6A /* libpng.a */,
+				9E32BE7826F85A540065D9ED /* libpng16.a */,
+				9E32BE7C26F85A9E0065D9ED /* libtiff.a */,
 				9E1AB97426A00EC000235A6A /* libvorbis.a */,
 				9E1AB97526A00EC000235A6A /* libvorbisenc.a */,
 				9E1AB97626A00EC000235A6A /* libvorbisfile.a */,
@@ -169,7 +175,9 @@
 				9E1AB97D26A00ECA00235A6A /* libopencv_objdetect.a */,
 				9E1AB98026A00ECA00235A6A /* libopencv_photo.a */,
 				9E1AB98126A00ECA00235A6A /* libopencv_videoio.a */,
-				9E1AB98826A00ED000235A6A /* libz.a */,
+				9E32BE7F26F85ABD0065D9ED /* libopus.a */,
+				9E32BE7E26F85ABD0065D9ED /* libopusfile.a */,
+				9E32BE7A26F85A5D0065D9ED /* libzlib.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

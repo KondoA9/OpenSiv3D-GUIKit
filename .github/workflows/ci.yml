@@ -5,6 +5,7 @@ on:
     branches:
     - master
     - develop
+
   pull_request:
     branches:
     - master
@@ -22,7 +23,6 @@ jobs:
       - name: Extract libraries
         run: |
           Expand-Archive -Path "Dependencies\lib\Windows\Siv3D.zip" -DestinationPath "Dependencies\lib\Windows\" -force
-          Expand-Archive -Path "Dependencies\lib\Windows\ThirdParty.zip" -DestinationPath "Dependencies\lib\Windows\" -force
 
       - name: Build GUIKit for Windows
         run: msbuild "Windows\OpenSiv3D GUIKit.vcxproj" /p:Configuration=Debug /p:Platform=x64
@@ -39,7 +39,9 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Extract libraries
-        run: unzip -n Dependencies/lib/macOS.zip -d Dependencies/lib/
+        run: |
+          brew install unar
+          unar -o Dependencies/lib/ Dependencies/lib/macOS.7z -f
 
       - name: Build GUIKit for macOS
         run: xcodebuild -project macOS/OpenSiv3D-GUIKit.xcodeproj/ -configuration Debug
@@ -82,11 +84,10 @@ jobs:
           sudo apt install libavcodec-dev
           sudo apt install libavformat-dev
           sudo apt install libavutil-dev
-          sudo apt install libboost-all-dev
+          sudo apt install libboost-dev
           sudo apt install libcurl4-openssl-dev
           sudo apt install libgtk-3-dev
           sudo apt install libgif-dev
-          sudo apt install libglew-dev
           sudo apt install libglu1-mesa-dev
           sudo apt install libharfbuzz-dev
           sudo apt install libmpg123-dev
@@ -97,13 +98,11 @@ jobs:
           sudo apt install libswresample-dev
           sudo apt install libtiff-dev
           sudo apt install libturbojpeg0-dev
-          sudo apt install libudev-dev
           sudo apt install libvorbis-dev
           sudo apt install libwebp-dev
           sudo apt install libxft-dev
           sudo apt install uuid-dev
           sudo apt install xorg-dev
-          sudo apt install libopenal-dev
 
       - name: Build LaunchTest
         run: |

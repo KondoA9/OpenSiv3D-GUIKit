@@ -5,76 +5,62 @@ class ComponentsTest : public gui::Page {
 };
 
 void ComponentsTest::onLoaded() {
-	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>();
-	stackView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
-	stackView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
-	stackView.setConstraint(gui::LayerDirection::Left, view(), gui::LayerDirection::Left);
-	stackView.setConstraint(gui::LayerDirection::Width, view(), gui::LayerDirection::Width, 0.0, 0.5);
-	view().appendComponent(stackView);
+	auto& stackView = gui::GUIFactory::Create<gui::UIVStackView>(view);
+	stackView.setConstraint(gui::LayerDirection::Top, view, gui::LayerDirection::Top);
+	stackView.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
+	stackView.setConstraint(gui::LayerDirection::Left, view, gui::LayerDirection::Left);
+	stackView.setConstraint(gui::LayerDirection::Width, view, gui::LayerDirection::Width, 0.0, 0.5);
 
-	auto& tabView = gui::GUIFactory::Create<gui::UITabView>();
-	tabView.setConstraint(gui::LayerDirection::Top, view(), gui::LayerDirection::Top);
-	tabView.setConstraint(gui::LayerDirection::Bottom, view(), gui::LayerDirection::Bottom);
+	auto& tabView = gui::GUIFactory::Create<gui::UITabView>(view);
+	tabView.setConstraint(gui::LayerDirection::Top, view, gui::LayerDirection::Top);
+	tabView.setConstraint(gui::LayerDirection::Bottom, view, gui::LayerDirection::Bottom);
 	tabView.setConstraint(gui::LayerDirection::Left, stackView, gui::LayerDirection::Right);
-	tabView.setConstraint(gui::LayerDirection::Right, view(), gui::LayerDirection::Right);
-	view().appendComponent(tabView);
+	tabView.setConstraint(gui::LayerDirection::Right, view, gui::LayerDirection::Right);
 
-	auto& rect = gui::GUIFactory::Create<gui::UIRect>();
+	auto& rect = gui::GUIFactory::Create<gui::UIRect>(stackView);
 	rect.backgroundColor = gui::DynamicColor::DefaultAmber;
-	stackView.appendComponent(rect);
 
-	auto& circle = gui::GUIFactory::Create<gui::UICircle>();
+	auto& circle = gui::GUIFactory::Create<gui::UICircle>(stackView);
 	circle.backgroundColor = gui::DynamicColor::DefaultBlue;
-	stackView.appendComponent(circle);
 
-	auto& button = gui::GUIFactory::Create<gui::UIButton>();
+	auto& button = gui::GUIFactory::Create<gui::UIButton>(stackView);
 	button.backgroundColor = gui::DynamicColor::DefaultBlueGray;
 	button.setText(U"UIButton");
-	stackView.appendComponent(button);
 
-	auto& toggleButton = gui::GUIFactory::Create<gui::UIToggleButton>();
+	auto& toggleButton = gui::GUIFactory::Create<gui::UIToggleButton>(stackView);
 	toggleButton.backgroundColor = gui::DynamicColor::DefaultBrown;
 	toggleButton.setText(U"UIToggleButton");
-	stackView.appendComponent(toggleButton);
 
-	auto& text = gui::GUIFactory::Create<gui::UIText>();
+	auto& text = gui::GUIFactory::Create<gui::UIText>(stackView);
 	text.backgroundColor = gui::DynamicColor::DefaultCyan;
 	text.setText(U"UIText");
-	stackView.appendComponent(text);
 
 #if !SIV3D_PLATFORM(LINUX)
-	auto& inputField = gui::GUIFactory::Create<gui::UIInputField>();
+	auto& inputField = gui::GUIFactory::Create<gui::UIInputField>(stackView);
 	inputField.backgroundColor = gui::DynamicColor::DefaultDeepOrange;
 	inputField.setText(U"UIInputField");
-	stackView.appendComponent(inputField);
 #endif
 
-	auto& checkBox = gui::GUIFactory::Create<gui::UICheckBox>();
+	auto& checkBox = gui::GUIFactory::Create<gui::UICheckBox>(stackView);
 	checkBox.backgroundColor = gui::DynamicColor::DefaultDeepPurple;
 	checkBox.setChecked(true);
-	stackView.appendComponent(checkBox);
 
-	auto& slider = gui::GUIFactory::Create<gui::UISlider>();
+	auto& slider = gui::GUIFactory::Create<gui::UISlider>(stackView);
 	slider.backgroundColor = gui::DynamicColor::DefaultGray;
-	stackView.appendComponent(slider);
 
-	auto& icon = gui::GUIFactory::Create<gui::UIIcon>();
+	auto& icon = gui::GUIFactory::Create<gui::UIIcon>(stackView);
 	icon.backgroundColor = gui::DynamicColor::DefaultGreen;
-	icon.setIcon(Icon(0xf109, 40_px));
-	stackView.appendComponent(icon);
+	icon.setIcon(Icon(0xf109), 40_px);
 
-	auto& imageView = gui::GUIFactory::Create<gui::UIImageView>();
+	auto& imageView = gui::GUIFactory::Create<gui::UIImageView>(stackView);
 	imageView.backgroundColor = gui::DynamicColor::DefaultIndigo;
 	imageView.appendImage(Image(U"asset/image1.png"));
-	stackView.appendComponent(imageView);
 
-	auto& tab1 = gui::GUIFactory::Create<gui::UIView>();
+	auto& tab1 = tabView.appendTab<gui::UIView>(U"Tab1");
 	tab1.backgroundColor = gui::DynamicColor::DefaultBlue;
-	tabView.appendTab(U"Tab1", tab1);
 
-	auto& tab2 = gui::GUIFactory::Create<gui::UIView>();
-	tab2.backgroundColor = gui::DynamicColor::DefaultGreen;
-	tabView.appendTab(U"Tab2", tab2);
+	auto& tab2 = tabView.appendTab<gui::UIView>(U"Tab2");
+	tab2.backgroundColor = gui::DynamicColor::DefaultBlue;
 
 	// 5sec later, switch page
 	gui::GUIKit::SetTimeout([] {

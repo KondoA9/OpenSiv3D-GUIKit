@@ -28,8 +28,8 @@ namespace s3d::gui {
 			m_angle = 0.0;
 		}
 
-		void setIcon(const Icon& icon) {
-			m_icon = Texture(icon);
+		void setIcon(const Icon& icon, int32 size) {
+			m_icon = Texture(icon, size);
 		}
 
 		void setIcon(const Texture& icon) {

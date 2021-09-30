@@ -20,11 +20,11 @@ namespace s3d::gui {
 			}, true);
 
 		addEventListener<MouseEvent::Hovered>([this] {
-			ui_handle.backgroundColor.highlight(DynamicColor::DefaultBlue);
+			m_uiHandle.backgroundColor.highlight(DynamicColor::DefaultBlue);
 			}, true);
 
 		addEventListener<MouseEvent::UnHovered>([this] {
-			ui_handle.backgroundColor.lowlight(DynamicColor::Background);
+			m_uiHandle.backgroundColor.lowlight(DynamicColor::Background);
 			}, true);
 
 		addEventListener<MouseEvent::Hovering>([] {
@@ -32,42 +32,37 @@ namespace s3d::gui {
 			}, true);
 
 		const double h = 3.0_px;
-		ui_railLeft.drawFrame = true;
-		ui_railLeft.backgroundColor = DynamicColor::DefaultBlue;
-		ui_railLeft.penetrateMouseEvent = true;
-		ui_railLeft.setConstraint(LayerDirection::CenterY, ui_handle, LayerDirection::CenterY);
-		ui_railLeft.setConstraint(LayerDirection::Height, h);
-		ui_railLeft.setConstraint(LayerDirection::Left, *this, LayerDirection::Left, handleRadius);
-		ui_railLeft.setConstraint(LayerDirection::Right, ui_handle, LayerDirection::CenterX);
+		m_uiRailLeft.drawFrame = true;
+		m_uiRailLeft.backgroundColor = DynamicColor::DefaultBlue;
+		m_uiRailLeft.penetrateMouseEvent = true;
+		m_uiRailLeft.setConstraint(LayerDirection::CenterY, m_uiHandle, LayerDirection::CenterY);
+		m_uiRailLeft.setConstraint(LayerDirection::Height, h);
+		m_uiRailLeft.setConstraint(LayerDirection::Left, *this, LayerDirection::Left, handleRadius);
+		m_uiRailLeft.setConstraint(LayerDirection::Right, m_uiHandle, LayerDirection::CenterX);
 
-		ui_railRight.drawFrame = true;
-		ui_railRight.backgroundColor = DynamicColor::BackgroundSecondary;
-		ui_railRight.penetrateMouseEvent = true;
-		ui_railRight.setConstraint(LayerDirection::CenterY, ui_handle, LayerDirection::CenterY);
-		ui_railRight.setConstraint(LayerDirection::Height, h);
-		ui_railRight.setConstraint(LayerDirection::Left, ui_handle, LayerDirection::CenterX);
-		ui_railRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right, -handleRadius);
+		m_uiRailRight.drawFrame = true;
+		m_uiRailRight.backgroundColor = DynamicColor::BackgroundSecondary;
+		m_uiRailRight.penetrateMouseEvent = true;
+		m_uiRailRight.setConstraint(LayerDirection::CenterY, m_uiHandle, LayerDirection::CenterY);
+		m_uiRailRight.setConstraint(LayerDirection::Height, h);
+		m_uiRailRight.setConstraint(LayerDirection::Left, m_uiHandle, LayerDirection::CenterX);
+		m_uiRailRight.setConstraint(LayerDirection::Right, *this, LayerDirection::Right, -handleRadius);
 
-		ui_handle.drawFrame = true;
-		ui_handle.backgroundColor = DynamicColor::Background;
-		ui_handle.penetrateMouseEvent = true;
-		ui_handle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
-		ui_handle.setConstraint(LayerDirection::Height, handleRadius * 2);
-		ui_handle.setConstraint(LayerDirection::CenterX, [this, handleRadius] {
+		m_uiHandle.drawFrame = true;
+		m_uiHandle.backgroundColor = DynamicColor::Background;
+		m_uiHandle.penetrateMouseEvent = true;
+		m_uiHandle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
+		m_uiHandle.setConstraint(LayerDirection::Height, handleRadius * 2);
+		m_uiHandle.setConstraint(LayerDirection::CenterX, [this, handleRadius] {
 			return layer().left + handleRadius + (layer().width - handleRadius * 2) * (m_value - m_min) / (m_max - m_min);
 			});
-		ui_handle.setConstraint(LayerDirection::Width, handleRadius * 2);
+		m_uiHandle.setConstraint(LayerDirection::Width, handleRadius * 2);
 
-		ui_text.penetrateMouseEvent = true;
-		ui_text.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
-		ui_text.setConstraint(LayerDirection::Bottom, ui_handle, LayerDirection::Top);
-		ui_text.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
-		ui_text.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
-
-		appendComponent(ui_railLeft);
-		appendComponent(ui_railRight);
-		appendComponent(ui_handle);
-		appendComponent(ui_text);
+		m_uiText.penetrateMouseEvent = true;
+		m_uiText.setConstraint(LayerDirection::Top, *this, LayerDirection::Top);
+		m_uiText.setConstraint(LayerDirection::Bottom, m_uiHandle, LayerDirection::Top);
+		m_uiText.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
+		m_uiText.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
 		UIView::initialize();
 	}

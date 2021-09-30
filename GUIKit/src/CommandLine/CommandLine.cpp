@@ -1,7 +1,7 @@
 #include <GUIKit/CommandLine.hpp>
 
 #if SIV3D_PLATFORM(WINDOWS)
-#include <Siv3D/Windows.hpp>
+#include <Siv3D/Windows/Windows.hpp>
 #endif
 
 namespace s3d::CLI {
@@ -33,16 +33,6 @@ namespace s3d::CLI {
 #endif
 
 		return false;
-	}
-
-	bool OpenFolder(const String& path) {
-		const auto folder = FileSystem::IsDirectory(path) ? path : FileSystem::ParentPath(path);
-
-#if SIV3D_PLATFORM(WINDOWS)
-		return Execute(U"Invoke-Item {}"_fmt(folder));
-#elif SIV3D_PLATFORM(MACOS)
-		return Execute(U"open {}"_fmt(folder));
-#endif
 	}
 
 	bool Curl(const String& url, const FilePath& output, bool createDirectories) {

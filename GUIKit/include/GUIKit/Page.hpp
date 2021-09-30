@@ -1,11 +1,9 @@
 #pragma once
 
-#include "UIView.hpp"
-#include "GUIFactory.hpp"
-
 #include <Siv3D.hpp>
 
 namespace s3d::gui {
+	class UIView;
 	class GUIKitCore;
 	class PageManager;
 
@@ -13,10 +11,11 @@ namespace s3d::gui {
 		friend GUIKitCore;
 		friend PageManager;
 
+	public:
+		UIView& view;
+
 	private:
 		const String m_identifier;
-
-		UIView& m_view = GUIFactory::Create<UIView>();
 		bool m_loaded = false;
 
 	public:
@@ -57,10 +56,6 @@ namespace s3d::gui {
 
 		// Called when application terminated
 		virtual void onAppTerminated() {}
-
-		UIView& view() {
-			return m_view;
-		}
 
 	private:
 		explicit Page(const String& identifier);
