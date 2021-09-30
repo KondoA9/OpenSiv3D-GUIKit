@@ -1,5 +1,5 @@
 # OpenSiv3D GUIKit
-C++ GUI framework with [**OpenSiv3D v0.6.1**](https://zenn.dev/reputeless/books/siv3d-documentation).
+C++ GUI framework with [**OpenSiv3D v0.6.2**](https://zenn.dev/reputeless/books/siv3d-documentation).
 
 **:construction: This repository is under development.**
 
