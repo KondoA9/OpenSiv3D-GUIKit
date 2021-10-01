@@ -4,8 +4,8 @@
 
 namespace s3d::gui {
 	Page::Page(const String& identifier) :
-		m_identifier(identifier),
-		view(GUIFactory::CreateComponent<UIView>())
+		view(GUIFactory::CreateComponent<UIView>()),
+		m_identifier(identifier)
 	{
 		view.setConstraint(LayerDirection::Top);
 		view.setConstraint(LayerDirection::Bottom, [] {
