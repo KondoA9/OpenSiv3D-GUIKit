@@ -6,9 +6,9 @@ namespace s3d::gui {
 	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr, UIComponent::m_PreviousFocusedComponent = nullptr;
 
 	UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
-		m_id(GUIFactory::GetId()),
 		backgroundColor(_backgroundColor),
-		frameColor(_frameColor)
+		frameColor(_frameColor),
+		m_id(GUIFactory::GetId())
 	{}
 
 	UIComponent::~UIComponent() {
