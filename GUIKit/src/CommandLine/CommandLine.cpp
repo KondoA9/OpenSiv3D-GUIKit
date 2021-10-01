@@ -28,7 +28,7 @@ namespace s3d::CLI {
 
 		return static_cast<bool>(result);
 
-#elif SIV3D_PLATFORM(MACOS)
+#else
 		return system(command.narrow().c_str()) == 0;
 #endif
 
