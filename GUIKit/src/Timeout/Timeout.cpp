@@ -1,4 +1,4 @@
-#include <GUIKit/Timeout.hpp>
+﻿#include <GUIKit/Timeout.hpp>
 
 #include <thread>
 #include <atomic>

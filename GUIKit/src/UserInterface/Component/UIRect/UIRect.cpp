@@ -1,4 +1,4 @@
-#include <GUIKit/UIRect.hpp>
+﻿#include <GUIKit/UIRect.hpp>
 
 namespace s3d::gui {
 	void UIRect::setCornerRadius(double r) {

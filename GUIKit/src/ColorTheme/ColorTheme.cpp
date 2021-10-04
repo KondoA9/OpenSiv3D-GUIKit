@@ -1,4 +1,4 @@
-#include <GUIKit/ColorTheme.hpp>
+﻿#include <GUIKit/ColorTheme.hpp>
 
 namespace s3d::gui {
 	ColorMode CurrentMode;

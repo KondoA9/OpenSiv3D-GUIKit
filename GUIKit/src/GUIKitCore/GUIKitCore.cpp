@@ -1,4 +1,4 @@
-#include <GUIKit/GUIKitCore.hpp>
+﻿#include <GUIKit/GUIKitCore.hpp>
 #include <GUIKit/Page.hpp>
 #include <GUIKit/WindowManager.hpp>
 #include <GUIKit/UnifiedFont.hpp>

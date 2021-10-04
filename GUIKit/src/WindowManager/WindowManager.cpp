@@ -1,4 +1,4 @@
-#include <GUIKit/WindowManager.hpp>
+﻿#include <GUIKit/WindowManager.hpp>
 
 namespace s3d::gui::WindowManager {
 	Size currentwindowSize = Size(0, 0);

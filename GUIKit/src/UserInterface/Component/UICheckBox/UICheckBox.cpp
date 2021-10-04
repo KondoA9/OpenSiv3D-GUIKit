@@ -1,4 +1,4 @@
-#include <GUIKit/UICheckBox.hpp>
+﻿#include <GUIKit/UICheckBox.hpp>
 
 namespace s3d::gui {
 	void UICheckBox::initialize() {

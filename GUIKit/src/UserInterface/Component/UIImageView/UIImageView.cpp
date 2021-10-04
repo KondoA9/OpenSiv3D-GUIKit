@@ -1,4 +1,4 @@
-#include <GUIKit/UIImageView.hpp>
+﻿#include <GUIKit/UIImageView.hpp>
 #include <GUIKit/Imaging.hpp>
 
 namespace s3d::gui {

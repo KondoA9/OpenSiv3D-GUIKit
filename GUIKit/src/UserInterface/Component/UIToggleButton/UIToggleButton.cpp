@@ -1,4 +1,4 @@
-#include <GUIKit/UIToggleButton.hpp>
+﻿#include <GUIKit/UIToggleButton.hpp>
 
 namespace s3d::gui {
 	void UIToggleButton::initialize() {

@@ -1,4 +1,4 @@
-#include <GUIKit/UnifiedFont.hpp>
+﻿#include <GUIKit/UnifiedFont.hpp>
 #include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui::UnifiedFont {

@@ -1,4 +1,4 @@
-#include <GUIKit/UIText.hpp>
+﻿#include <GUIKit/UIText.hpp>
 #include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui {
