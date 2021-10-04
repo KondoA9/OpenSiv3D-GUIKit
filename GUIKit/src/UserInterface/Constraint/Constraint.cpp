@@ -1,4 +1,4 @@
-#include <GUIKit/Constraint.hpp>
+﻿#include <GUIKit/Constraint.hpp>
 
 namespace s3d::gui {
 	void Constraint::setConstraint(double constant, double multiplier) {

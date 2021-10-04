@@ -1,4 +1,4 @@
-#include <GUIKit/GUIKitCore.hpp>
+﻿#include <GUIKit/GUIKitCore.hpp>
 #include <GUIKit/ColorTheme.hpp>
 #include <GUIKit/WindowManager.hpp>
 

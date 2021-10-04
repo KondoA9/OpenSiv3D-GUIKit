@@ -1,4 +1,4 @@
-#include <GUIKit/Imaging.hpp>
+﻿#include <GUIKit/Imaging.hpp>
 
 namespace s3d::gui::Imaging {
 	namespace Internal {

@@ -1,4 +1,4 @@
-#include <GUIKit/UIVStackView.hpp>
+﻿#include <GUIKit/UIVStackView.hpp>
 
 namespace s3d::gui {
 	void UIVStackView::initialize() {

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 #include "UIComponent.hpp"
 #include "UIRect.hpp"

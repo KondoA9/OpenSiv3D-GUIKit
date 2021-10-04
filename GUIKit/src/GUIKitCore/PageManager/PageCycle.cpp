@@ -1,4 +1,4 @@
-#include "PageManager.hpp"
+﻿#include "PageManager.hpp"
 #include <GUIKit/Page.hpp>
 #include <GUIKit/WindowManager.hpp>
 #include <GUIKit/GUIKitInterface.hpp>

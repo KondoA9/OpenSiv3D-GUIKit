@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 
 int operator"" _px(unsigned long long int value);
 

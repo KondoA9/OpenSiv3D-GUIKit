@@ -1,4 +1,4 @@
-#include "ParallelTaskManager.hpp"
+﻿#include "ParallelTaskManager.hpp"
 
 #include <thread>
 

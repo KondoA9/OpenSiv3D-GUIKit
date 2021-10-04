@@ -1,4 +1,4 @@
-#include "PageManager.hpp"
+﻿#include "PageManager.hpp"
 #include <GUIKit/Page.hpp>
 
 namespace s3d::gui {
