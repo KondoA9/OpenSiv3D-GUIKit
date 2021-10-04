@@ -1,5 +1,5 @@
 # OpenSiv3D GUIKit
-C++ GUI framework with [**OpenSiv3D v0.6.2**](https://zenn.dev/reputeless/books/siv3d-documentation).
+C++ GUI framework with [OpenSiv3D](https://github.com/Siv3D/OpenSiv3D) v0.6.2.
 
 **:construction: This repository is under development.**
 
@@ -17,6 +17,7 @@ C++ GUI framework with [**OpenSiv3D v0.6.2**](https://zenn.dev/reputeless/books/
 - This repository includes static library of OpenSiv3D. 
 
 ## Example
+ - [DermAnnotation](https://kondoa9.github.io/DermAnnotation/) (The product built with this)
  - [Example Code](https://github.com/KondoA9/OpenSiv3D-GUIKit/blob/develop/Test/Example/Example.cpp)
  - [Test Code](https://github.com/KondoA9/OpenSiv3D-GUIKit/tree/develop/Test/LaunchTest)
 
