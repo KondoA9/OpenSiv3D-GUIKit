@@ -1,7 +1,14 @@
-#include <GUIKit/UIInputField.hpp>
+﻿#include <GUIKit/UIInputField.hpp>
 #include <GUIKit/PixelUnit.hpp>
+#include <GUIKit/GUIFactory.hpp>
+#include <GUIKit/DynamicColor.hpp>
 
 namespace s3d::gui {
+	const Array<char32> UIInputField::ForbiddenPathChar = { '\\', '/', ':', '*', '*', '?', '<', '>', '|' };
+	const Array<char32> UIInputField::ForbiddenPathCharRecommended = { ' ', ';', ',' };
+	UIText* UIInputField::ui_Warning = nullptr;
+	size_t UIInputField::m_WarningTimeoutID = 0;
+
 	void UIInputField::initialize() {
 		UIText::initialize();
 
@@ -86,6 +93,26 @@ namespace s3d::gui {
 			});
 
 		if (updatedString != rawUpdatedString) {
+			if (ui_Warning == nullptr) {
+				ui_Warning = &GUIFactory::CreateIsolatedComponent<UIText>();
+				ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
+				ui_Warning->textColor = Palette::Black;
+				ui_Warning->setDirection(TextDirection::Center);
+				ui_Warning->setCornerRadius(5);
+				ui_Warning->setText(U"この文字は許可されていません");
+			}
+
+			GUIKitCore::Instance().stopTimeout(m_WarningTimeoutID);
+
+			ui_Warning->exist = true;
+			ui_Warning->setConstraint(LayerDirection::Top, *this, LayerDirection::Bottom);
+			ui_Warning->setConstraint(LayerDirection::Height, 30_px);
+			ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
+			ui_Warning->setConstraint(LayerDirection::Width, 250_px);
+			m_WarningTimeoutID = GUIKitCore::Instance().setTimeout([this] {
+				ui_Warning->exist = false;
+				}, 3000, false);
+
 			registerInputEvent(ForbiddenCharInputted(this, false));
 		}
 
