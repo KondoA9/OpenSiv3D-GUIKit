@@ -2,6 +2,9 @@
 #include <GUIKit/PixelUnit.hpp>
 
 namespace s3d::gui {
+	const Array<char32> UIInputField::ForbiddenPathChar = { '\\', '/', ':', '*', '*', '?', '<', '>', '|' };
+	const Array<char32> UIInputField::ForbiddenPathCharRecommended = { ' ', ';', ',' };
+
 	void UIInputField::initialize() {
 		UIText::initialize();
 
