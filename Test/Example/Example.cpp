@@ -1,4 +1,4 @@
-#include <GUIKit/GUIKit.hpp>
+﻿#include <GUIKit/GUIKit.hpp>
 
 class ToolBar final : public gui::UIView {
 private:
@@ -86,7 +86,7 @@ public:
 
 		m_uiFileName.setText(FileSystem::FileName(path));
 
-		m_uiKind.setText(FileSystem::IsDirectory(path) ? U"Folder" : U"File");
+		m_uiKind.setText(FileSystem::IsDirectory(path) ? U"フォルダ" : U"ファイル");
 
 		m_path = path;
 
