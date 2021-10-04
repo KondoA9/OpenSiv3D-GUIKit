@@ -22,6 +22,9 @@ namespace s3d::gui {
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect;
 
+		static UIText* ui_Warning;
+		static size_t m_WarningTimeoutID;
+
 	public:
 		using UIText::UIText;
 
