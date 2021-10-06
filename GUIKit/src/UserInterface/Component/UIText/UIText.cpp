@@ -13,7 +13,7 @@ namespace s3d::gui {
 	void UIText::draw() {
 		UIRect::draw();
 
-		m_font(m_text).draw(m_drawableRegion, textColor);
+		m_font(m_text).draw(m_textRegion, textColor);
 	}
 
 	void UIText::setPadding(double top, double bottom, double left, double right) {
@@ -98,10 +98,9 @@ namespace s3d::gui {
 	}
 
 	void UIText::fitTextRegionToRect() {
-		if (m_textRegion.w > rect().w) {
-			m_textRegion.h *= static_cast<int>(m_textRegion.w / rect().w) + 1;
-		}
+		const auto oneLineWidth = m_textRegion.w;
 
+		// Fit starting pos
 		if (m_textRegion.x < rect().x) {
 			m_textRegion.x = rect().x;
 		}
@@ -110,10 +109,13 @@ namespace s3d::gui {
 			m_textRegion.y = rect().y;
 		}
 
-		if (const auto right = rect().x + rect().w; m_textRegion.x + m_textRegion.w > right) {
-			m_textRegion.w = right - m_textRegion.x;
+		// Word wrap
+		if (const auto lines = static_cast<int>(oneLineWidth / rect().w) + 1; lines != 1) {
+			m_textRegion.w = rect().w;
+			m_textRegion.h *= lines;
 		}
 
+		// Fit overhang region
 		if (const auto bottom = rect().y + rect().h; m_textRegion.y + m_textRegion.h > bottom) {
 			m_textRegion.h = bottom - m_textRegion.y;
 		}
