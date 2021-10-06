@@ -46,6 +46,11 @@ namespace s3d::gui {
 			fitTextRegionToRect();
 
 			updateDrawableRegion();
+
+			m_textRegion.x -= 2_px;
+			m_textRegion.y -= 2_px;
+			m_textRegion.w += 4_px;
+			m_textRegion.h += 4_px;
 		}
 	}
 
@@ -127,6 +132,6 @@ namespace s3d::gui {
 
 		const auto h = rect().h - (m_textRegion.y - rect().y);
 
-		m_drawableRegion = RectF(m_textRegion.x, m_textRegion.y, w, h + 4_px);
+		m_drawableRegion = RectF(m_textRegion.x - 3_px, m_textRegion.y - 2_px, w + 6_px, h + 4_px);
 	}
 }
