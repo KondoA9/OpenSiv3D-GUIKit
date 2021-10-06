@@ -24,7 +24,7 @@ namespace s3d::gui {
 		String m_text = U"";
 		Font m_font = UnifiedFont::Get();
 		TextDirection m_direction = TextDirection::LeftCenter;
-		RectF m_textRegion = RectF(), m_drawableRegion = RectF();
+		RectF m_textRegion = RectF();
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
@@ -41,15 +41,8 @@ namespace s3d::gui {
 		const String& text() const {
 			return m_text;
 		}
-
-		// Text region is depend on layer.
-		// Be careful when use this func in constraint.
 		const RectF& textRegion() const {
 			return m_textRegion;
-		}
-
-		const RectF& drawableRegion() const {
-			return m_drawableRegion;
 		}
 
 		void setPadding(double top, double bottom, double left, double right);
@@ -75,7 +68,5 @@ namespace s3d::gui {
 		void updateTextRegion();
 
 		void fitTextRegionToRect();
-
-		void updateDrawableRegion();
 	};
 }

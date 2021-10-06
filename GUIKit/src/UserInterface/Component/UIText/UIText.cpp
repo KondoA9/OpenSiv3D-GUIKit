@@ -45,8 +45,7 @@ namespace s3d::gui {
 		if (updateField) {
 			fitTextRegionToRect();
 
-			updateDrawableRegion();
-
+			// Set margin
 			m_textRegion.x -= 2_px;
 			m_textRegion.y -= 2_px;
 			m_textRegion.w += 4_px;
@@ -124,14 +123,5 @@ namespace s3d::gui {
 		if (const auto bottom = rect().y + rect().h; m_textRegion.y + m_textRegion.h > bottom) {
 			m_textRegion.h = bottom - m_textRegion.y;
 		}
-	}
-
-	void UIText::updateDrawableRegion() {
-		const auto right = rect().x + rect().w - (m_textRegion.x - rect().x);
-		const auto w = right - m_textRegion.x;
-
-		const auto h = rect().h - (m_textRegion.y - rect().y);
-
-		m_drawableRegion = RectF(m_textRegion.x - 3_px, m_textRegion.y - 2_px, w + 6_px, h + 4_px);
 	}
 }
