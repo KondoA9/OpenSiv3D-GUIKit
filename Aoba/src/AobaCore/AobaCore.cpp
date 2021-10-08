@@ -127,7 +127,7 @@ namespace s3d::aoba {
 
 	void AobaCore::AddLicense() {
 		LicenseInfo licence;
-		licence.title = U"OpenSiv3D-Aoba";
+		licence.title = U"Aoba";
 		licence.copyright = U"Copyright (c) 2021 Ekyu Kondo";
 		licence.text =
 UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
