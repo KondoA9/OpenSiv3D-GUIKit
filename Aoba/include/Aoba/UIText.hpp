@@ -60,7 +60,7 @@ namespace s3d::aoba {
 	protected:
 		void updateLayer(const Rect& scissor) override;
 
-		void draw() override;
+		void draw() const override;
 
 		virtual void updateDrawableText(bool updateField = false);
 

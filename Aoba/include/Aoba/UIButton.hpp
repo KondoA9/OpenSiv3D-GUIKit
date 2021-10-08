@@ -42,6 +42,6 @@ namespace s3d::aoba {
 	protected:
 		void initialize() override;
 
-		void draw() override;
+		void draw() const override;
 	};
 }

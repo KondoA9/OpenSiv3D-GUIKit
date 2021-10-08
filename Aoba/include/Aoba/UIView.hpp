@@ -54,7 +54,7 @@ namespace s3d::aoba {
 
 		bool updateLayerIfNeeded(const Rect& scissor) override;
 
-		void draw() override;
+		void draw() const override;
 
 		void updateInputEvents() override;
 

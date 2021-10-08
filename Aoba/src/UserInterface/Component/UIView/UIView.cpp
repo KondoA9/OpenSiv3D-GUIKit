@@ -68,7 +68,7 @@ namespace s3d::aoba {
 		}
 	}
 
-	void UIView::draw() {
+	void UIView::draw() const {
 		Graphics2D::SetScissorRect(m_parentScissorRect);
 
 		UIRect::draw();

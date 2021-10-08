@@ -152,13 +152,15 @@ namespace s3d::aoba {
 		// Do not forget to call super::initialize().
 		virtual void initialize();
 
-		virtual void updateLayer(const Rect& scissor);
+		virtual void update() {};
 
-		virtual void draw() = 0;
+		virtual void updateLayer(const Rect& scissor);
 
 		virtual void updateMouseIntersection() = 0;
 
 		virtual void updateInputEvents();
+
+		virtual void draw() const = 0;
 
 		const MouseCondition& mouseCondition() const {
 			return m_mouseCondition;
