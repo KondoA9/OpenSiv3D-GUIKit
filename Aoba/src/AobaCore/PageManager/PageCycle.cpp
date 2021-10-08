@@ -12,6 +12,18 @@ namespace s3d::aoba {
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 		}
 
+		if (m_forwardPage) {
+			m_forwardPage->view.update();
+		}
+
+		if (m_drawingPage) {
+			m_drawingPage->view.update();
+		}
+
+		if (m_backwardPage) {
+			m_backwardPage->view.update();
+		}
+
 		switch (m_pageTransition)
 		{
 		case PageTransition::StartUp:
