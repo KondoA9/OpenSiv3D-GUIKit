@@ -23,7 +23,7 @@ namespace s3d::aoba {
 			}, true);
 	}
 
-	void UIButton::draw() {
+	void UIButton::draw() const {
 		UIText::draw();
 
 		if (m_icon) {

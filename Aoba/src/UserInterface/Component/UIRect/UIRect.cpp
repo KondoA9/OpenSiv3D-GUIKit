@@ -11,7 +11,7 @@ namespace s3d::aoba {
 		);
 	}
 
-	void UIRect::draw() {
+	void UIRect::draw() const {
 		if (fillInner) {
 			m_rect.draw(backgroundColor);
 		}

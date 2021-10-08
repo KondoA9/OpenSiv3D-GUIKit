@@ -6,7 +6,7 @@ namespace s3d::aoba {
 		m_circle = Ellipse(layer().centerX, layer().centerY, layer().width * 0.5, layer().height * 0.5);
 	}
 
-	void UICircle::draw() {
+	void UICircle::draw() const {
 		if (fillInner) {
 			m_circle.draw(backgroundColor);
 		}

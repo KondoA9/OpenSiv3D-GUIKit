@@ -57,7 +57,7 @@ namespace s3d::aoba {
 		setDrawingCenterPos(rect().center());
 	}
 
-	void UIImageView::draw() {
+	void UIImageView::draw() const {
 		UIRect::draw();
 
 		for (size_t i : step(m_textures.size())) {

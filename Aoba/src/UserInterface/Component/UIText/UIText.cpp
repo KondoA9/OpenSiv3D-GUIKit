@@ -10,7 +10,7 @@ namespace s3d::aoba {
 		updateDrawableText(true);
 	}
 
-	void UIText::draw() {
+	void UIText::draw() const {
 		UIRect::draw();
 
 		m_font(m_text).draw(m_textRegion, textColor);

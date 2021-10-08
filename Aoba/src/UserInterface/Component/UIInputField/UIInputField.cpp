@@ -26,10 +26,8 @@ namespace s3d::aoba {
 			}, true);
 	}
 
-	void UIInputField::draw() {
-		m_fieldRect.draw(DynamicColor::BackgroundSecondary);
-
-		UIText::draw();
+	void UIInputField::update() {
+		UIText::update();
 
 		if (isFocused()) {
 			m_cursorVisibleTimer += Scene::DeltaTime();
@@ -37,7 +35,15 @@ namespace s3d::aoba {
 				m_cursorVisibleTimer = 0.0;
 				m_isCursorVisible = !m_isCursorVisible;
 			}
+		}
+	}
 
+	void UIInputField::draw() const {
+		m_fieldRect.draw(DynamicColor::BackgroundSecondary);
+
+		UIText::draw();
+
+		if (isFocused()) {
 			if (m_isCursorVisible) {
 				const auto x = textRegion().right().begin.x + 2_px;
 				Line(x, m_fieldRect.y + 4_px, x, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);

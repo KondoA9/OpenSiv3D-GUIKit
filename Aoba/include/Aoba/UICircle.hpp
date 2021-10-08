@@ -19,6 +19,6 @@ namespace s3d::aoba {
 
 		void updateLayer(const Rect& scissor) override;
 
-		void draw() override;
+		void draw() const override;
 	};
 }

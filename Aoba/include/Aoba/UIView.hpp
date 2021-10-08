@@ -50,13 +50,15 @@ namespace s3d::aoba {
 		// This function runs after a component appended. gui::AobaFactory::Create<UIComponent>(this);
 		virtual void onAfterComponentAppended() {}
 
+		void update() override;
+
 		void updateLayer(const Rect& scissor) override;
 
 		bool updateLayerIfNeeded(const Rect& scissor) override;
 
-		void draw() override;
-
 		void updateInputEvents() override;
+
+		void draw() const override;
 
 	private:
 		void appendComponent(const UIComponent& component);

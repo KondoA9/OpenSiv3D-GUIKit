@@ -23,6 +23,16 @@ namespace s3d::aoba {
 		}
 	}
 
+	void UIView::update() {
+		UIRect::update();
+
+		for (const auto& component : m_components) {
+			if (component->updatable()) {
+				component->update();
+			}
+		}
+	}
+
 	void UIView::updateLayer(const Rect& scissor) {
 		updateScissorRect(scissor);
 
@@ -68,7 +78,7 @@ namespace s3d::aoba {
 		}
 	}
 
-	void UIView::draw() {
+	void UIView::draw() const {
 		Graphics2D::SetScissorRect(m_parentScissorRect);
 
 		UIRect::draw();

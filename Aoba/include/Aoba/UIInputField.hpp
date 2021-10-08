@@ -35,11 +35,13 @@ namespace s3d::aoba {
 	protected:
 		void initialize() override;
 
-		void draw() override;
+		void update() override;
 
 		void updateInputEvents() override;
 
 		void updateDrawableText(bool updateField = false) override;
+
+		void draw() const override;
 
 		virtual String updateText(const String& previousString, const String& rawInput, const String& rawUpdatedString);
 
