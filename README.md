@@ -1,9 +1,9 @@
-# Aoba
+# Aoba Framework
 **:construction: This repository is under development.**
 
 C++ GUI framework with [OpenSiv3D](https://github.com/Siv3D/OpenSiv3D) v0.6.2.
 
-This framework is being developed mainly for [DermAnnotation](https://kondoa9.github.io/DermAnnotation/).
+This is being developed mainly for [DermAnnotation](https://kondoa9.github.io/DermAnnotation/).
  
 ## Usage
 - See following workflows. (Build and launch by CLI tools)
