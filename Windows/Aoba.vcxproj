@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp" />
+    <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
+    <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp" />
+    <ClCompile Include="..\Aoba\src\AobaCore\ParallelTaskManager\ParallelTaskManager.cpp" />
+    <ClCompile Include="..\Aoba\src\AobaCore\AobaCore.cpp" />
+    <ClCompile Include="..\Aoba\src\AobaCore\AobaLifeCycle.cpp" />
+    <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageCycle.cpp" />
+    <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageManager.cpp" />
+    <ClCompile Include="..\Aoba\src\AobaInterface\AobaInterface.cpp" />
+    <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
+    <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
+    <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
+    <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UICheckBox\UICheckBox.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UICircle\UICircle.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponent.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponentMouseEvent.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIRect\UIRect.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UISlider\UISlider.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UITabView\UITabView.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIText\UIText.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIView\UIView.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Constraint\Constraint.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Font\UnifiedFont.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Layer\Layer.cpp" />
+    <ClCompile Include="..\Aoba\src\WindowManager\WindowManager.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\ColorTheme.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Constraint.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\AobaCore.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\AobaInterface.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Page.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Timeout.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UICircle.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIComponent.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIIcon.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIImageView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIInputField.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIRect.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UISlider.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UITabView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIText.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIToggleButton.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\WindowManager.hpp" />
+    <ClInclude Include="..\Aoba\src\AobaCore\ParallelTaskManager\ParallelTaskManager.hpp" />
+    <ClInclude Include="..\Aoba\src\AobaCore\PageManager\PageManager.hpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>Aoba</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>Aoba</ProjectName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v142</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+    <IncludePath>../Dependencies/include;../Dependencies/include/ThirdParty;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Intermediate\$(ProjectName)\Debug\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\Debug\Intermediate\</IntDir>
+    <TargetName>aoba_d</TargetName>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)..\App</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+    <IncludePath>../Dependencies/include;../Dependencies/include/ThirdParty;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
+    <OutDir>$(SolutionDir)Intermediate\$(ProjectName)\Release\</OutDir>
+    <IntDir>$(SolutionDir)Intermediate\$(ProjectName)\Release\Intermediate\</IntDir>
+    <TargetName>aoba</TargetName>
+    <LocalDebuggerWorkingDirectory>$(ProjectDir)..\App</LocalDebuggerWorkingDirectory>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;MSDFGEN_USE_CPP11;__WINDOWS_WASAPI__;WITH_MINIAUDIO;WITH_NOSOUND;_CRT_SECURE_NO_WARNINGS;AS_DEBUG;AS_USE_NAMESPACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <MinimalRebuild>false</MinimalRebuild>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\Aoba\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+      <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)\lib"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;MSDFGEN_USE_CPP11;__WINDOWS_WASAPI__;WITH_MINIAUDIO;WITH_NOSOUND;_CRT_SECURE_NO_WARNINGS;AS_USE_NAMESPACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <SDLCheck>true</SDLCheck>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>..\Aoba\include</AdditionalIncludeDirectories>
+      <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy /I /D /Y "$(OutDir)$(TargetFileName)" "$(ProjectDir)\lib"</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

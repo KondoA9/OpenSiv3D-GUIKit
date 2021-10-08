@@ -1,0 +1,116 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - main
+    - develop
+
+  pull_request:
+    branches:
+    - main
+    - develop
+
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Add msbuild to PATH
+        uses: microsoft/setup-msbuild@v1.0.2
+
+      - name: Extract libraries
+        run: 7z x Dependencies\lib\Windows.7z -o"Dependencies\lib\"
+
+      - name: Build Aoba for Windows
+        run: msbuild "Windows\Aoba.vcxproj" /p:Configuration=Debug /p:Platform=x64
+
+      - name: Build LaunchTest
+        run: msbuild "Windows\Aoba-LaunchTest.vcxproj" /p:Configuration=Debug /p:Platform=x64
+
+      - name: Launch
+        run: .\App\Aoba-LaunchTest_debug.exe
+
+  macOS:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Extract libraries
+        run: |
+          brew install unar
+          unar -o Dependencies/lib/ Dependencies/lib/macOS.7z -f
+
+      - name: Build Aoba for macOS
+        run: xcodebuild -project macOS/Aoba.xcodeproj/ -configuration Debug
+
+      - name: Build LaunchTest
+        run: xcodebuild -project macOS/Aoba-LaunchTest.xcodeproj/ -configuration Debug
+
+      #- name: Launch
+      #  run: open ./App/Aoba-LaunchTest.app
+
+  linux:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Extract libraries
+        run: 7za x ./Dependencies/lib/Linux.7z -o"./Dependencies/lib/"
+
+      - name: Install ninja
+        run: |
+          sudo apt update
+          sudo apt install ninja-build
+
+      - name: Configure
+        run: |
+          cd Linux/
+          mkdir build
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=Debug -GNinja ..
+
+      - name: Build Aoba for Linux
+        run: |
+          cd Linux/build/
+          ninja
+
+      - name: Install packeages
+        run: |
+          sudo apt install libasound2-dev
+          sudo apt install libavcodec-dev
+          sudo apt install libavformat-dev
+          sudo apt install libavutil-dev
+          sudo apt install libboost-dev
+          sudo apt install libcurl4-openssl-dev
+          sudo apt install libgtk-3-dev
+          sudo apt install libgif-dev
+          sudo apt install libglu1-mesa-dev
+          sudo apt install libharfbuzz-dev
+          sudo apt install libmpg123-dev
+          sudo apt install libopencv-dev
+          sudo apt install libopus-dev
+          sudo apt install libopusfile-dev
+          sudo apt install libsoundtouch-dev
+          sudo apt install libswresample-dev
+          sudo apt install libtiff-dev
+          sudo apt install libturbojpeg0-dev
+          sudo apt install libvorbis-dev
+          sudo apt install libwebp-dev
+          sudo apt install libxft-dev
+          sudo apt install uuid-dev
+          sudo apt install xorg-dev
+
+      - name: Build LaunchTest
+        run: |
+          cd Linux/LaunchTest/
+          mkdir build
+          cd build/
+          cmake -DCMAKE_BUILD_TYPE=Debug -GNinja ..
+          ninja
+
+      - name: Launch
+        run: |
+          sudo apt install xvfb
+          xvfb-run ./App/Aoba-LaunchTest

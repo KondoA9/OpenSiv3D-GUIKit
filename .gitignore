@@ -1,0 +1,30 @@
+# OpenSiv3D
+AS_DEBUG/
+*.html
+
+# Aoba
+App/Aoba*
+Dependencies/lib/Windows/*
+Dependencies/lib/macOS/*
+Dependencies/lib/Linux/*
+
+# Windows
+.vs/
+Intermediate/
+*.user
+*.aps
+*.lib
+
+# macOS
+.DS_Store
+__MACOSX/
+macOS/build/
+DerivedData/
+xcshareddata/
+xcuserdata/
+*.dSYM
+*.xcworkspacedata
+
+# Linux
+Linux/**/build/
+gmon.out
