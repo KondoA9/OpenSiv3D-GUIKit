@@ -18,6 +18,8 @@ namespace s3d::aoba {
 
 		UnifiedFont::Initialize();
 
+		Window::SetTitle(U"Aoba Framework");
+
 		Scene::SetResizeMode(ResizeMode::Actual);
 
 		System::SetTerminationTriggers(UserAction::NoAction);
