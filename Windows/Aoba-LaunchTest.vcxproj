@@ -116,54 +116,6 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <Image Include="..\App\engine\texture\box-shadow\128.png" />
-    <Image Include="..\App\engine\texture\box-shadow\16.png" />
-    <Image Include="..\App\engine\texture\box-shadow\256.png" />
-    <Image Include="..\App\engine\texture\box-shadow\32.png" />
-    <Image Include="..\App\engine\texture\box-shadow\64.png" />
-    <Image Include="..\App\engine\texture\box-shadow\8.png" />
-    <Image Include="..\App\icon.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\App\engine\emoji\noto7_dictionary.dat" />
-    <None Include="..\App\engine\font\fontawesome\fontawesome-brands.otf.zstdcmp" />
-    <None Include="..\App\engine\font\fontawesome\fontawesome-solid.otf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\LICENSE_E" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-black.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-bold.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-heavy.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-light.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-medium.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-regular.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\mplus\mplus-1p-thin.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\noto\NotoColorEmoji.ttf.zstdcmp" />
-    <None Include="..\App\engine\font\noto\NotoEmoji-Regular.ttf.zstdcmp" />
-    <None Include="..\App\engine\objdetect\haarcascade\eye.xml.zstdcmp" />
-    <None Include="..\App\engine\objdetect\haarcascade\eye_eyeglasses.xml.zstdcmp" />
-    <None Include="..\App\engine\objdetect\haarcascade\face_anime.xml.zstdcmp" />
-    <None Include="..\App\engine\objdetect\haarcascade\frontal_catface.xml.zstdcmp" />
-    <None Include="..\App\engine\objdetect\haarcascade\frontal_face_alt2.xml.zstdcmp" />
-    <None Include="..\App\engine\shader\copy.ps" />
-    <None Include="..\App\engine\shader\fullscreen_triangle_draw.ps" />
-    <None Include="..\App\engine\shader\fullscreen_triangle_draw.vs" />
-    <None Include="..\App\engine\shader\fullscreen_triangle_resolve.ps" />
-    <None Include="..\App\engine\shader\fullscreen_triangle_resolve.vs" />
-    <None Include="..\App\engine\shader\gaussian_blur_9.ps" />
-    <None Include="..\App\engine\shader\round_dot.ps" />
-    <None Include="..\App\engine\shader\sdf.ps" />
-    <None Include="..\App\engine\shader\shape.ps" />
-    <None Include="..\App\engine\shader\sprite.vs" />
-    <None Include="..\App\engine\shader\square_dot.ps" />
-    <None Include="..\App\engine\shader\texture.ps" />
-    <None Include="..\App\engine\soundfont\GMGSx.sf2.zstdcmp" />
-    <None Include="..\App\nlp\japanese\jumanpp\LICENSE" />
-    <None Include="..\App\nlp\japanese\jumanpp\README.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\App\engine\font\fontawesome\LICENSE.txt" />
-    <Text Include="..\App\engine\font\noto\LICENSE_OFL.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ResourceCompile Include="..\App\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
