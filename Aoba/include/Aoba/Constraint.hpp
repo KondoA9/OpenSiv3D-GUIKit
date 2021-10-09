@@ -19,10 +19,6 @@ namespace s3d::aoba {
 		double m_multiplier = 1.0;
 
 	public:
-		Constraint() = default;
-
-		~Constraint() = default;
-
 		bool isExist() const {
 			return m_exists;
 		}
@@ -47,6 +43,8 @@ namespace s3d::aoba {
 	private:
 		// Return the pointer of the value
 		double* data() {
+			auto a = Constraint();
+			a = Constraint();
 			return &m_value;
 		}
 

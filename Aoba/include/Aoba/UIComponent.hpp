@@ -83,6 +83,8 @@ namespace s3d::aoba {
 
 		UIComponent(const UIComponent&) = delete;
 
+		UIComponent(UIComponent&&) = default;
+
 		virtual ~UIComponent();
 
 		virtual void release() {}
@@ -157,6 +159,8 @@ namespace s3d::aoba {
 		}
 
 		UIComponent& operator =(const UIComponent&) = delete;
+
+		UIComponent& operator =(UIComponent&&) = default;
 
 	protected:
 		// Called once before layer updated.
