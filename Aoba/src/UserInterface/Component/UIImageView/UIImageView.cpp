@@ -33,7 +33,7 @@ namespace s3d::aoba {
 		m_textures.push_back(DynamicTexture(image, TextureDesc::Unmipped));
 		m_alphas.push_back(255 * alphaRate);
 
-		setDrawingCenterPos(rect().center());
+		setDrawingCenterPos(layer().center());
 
 		requestToUpdateLayer();
 
@@ -54,7 +54,7 @@ namespace s3d::aoba {
 	void UIImageView::releaseImages() {
 		m_textures.release();
 		m_alphas.release();
-		setDrawingCenterPos(rect().center());
+		setDrawingCenterPos(layer().center());
 	}
 
 	void UIImageView::draw() const {
@@ -88,9 +88,9 @@ namespace s3d::aoba {
 	double UIImageView::calcMinimumScale() {
 		m_baseRotatedTextureSize = Imaging::GetSizeFitsTexture(m_textures[0].size(), angle());
 
-		double scale = static_cast<double>(rect().w) / static_cast<double>(m_baseRotatedTextureSize.x);
-		if (const double h = scale * m_baseRotatedTextureSize.y; h > rect().h) {
-			scale *= rect().h / h;
+		double scale = layer().width / static_cast<double>(m_baseRotatedTextureSize.x);
+		if (const double h = scale * m_baseRotatedTextureSize.y; h > layer().height) {
+			scale *= layer().height / h;
 		}
 
 		return scale;
@@ -108,7 +108,7 @@ namespace s3d::aoba {
 		m_scale = m_minScale * m_maxPixel / (m_maxPixel - (m_maxPixel - m_minPixel) * m_scaleRate);
 
 		if (m_scale != preScale) {
-			const auto diff = (rect().center() - m_drawingCenterPos) * (1.0 - m_scale / preScale);
+			const auto diff = (layer().center() - m_drawingCenterPos) * (1.0 - m_scale / preScale);
 			setDrawingCenterPos(m_drawingCenterPos.movedBy(diff));
 		}
 	}
@@ -132,37 +132,37 @@ namespace s3d::aoba {
 	}
 
 	void UIImageView::restrictImageMovement(bool safeRerecursion) {
-		const auto center = rect().center();
+		const auto center = layer().center();
 
 		bool updated = false;
 
 		// Correct the overhang
-		if (m_rotatedTextureRegion.x > rect().x) {
-			m_drawingCenterPos.x = rect().x + m_rotatedTextureRegion.w * 0.5;
+		if (m_rotatedTextureRegion.x > layer().left) {
+			m_drawingCenterPos.x = layer().left + m_rotatedTextureRegion.w * 0.5;
 			updated = true;
 		}
-		else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < rect().x + rect().w) {
-			m_drawingCenterPos.x = rect().x + rect().w - m_rotatedTextureRegion.w * 0.5;
+		else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < layer().right) {
+			m_drawingCenterPos.x = layer().right - m_rotatedTextureRegion.w * 0.5;
 			updated = true;
 		}
 
 		// Centering
-		if (m_rotatedTextureRegion.w <= rect().w) {
+		if (m_rotatedTextureRegion.w <= layer().width) {
 			m_drawingCenterPos.x = center.x;
 		}
 
 		// Correct the overhang
-		if (m_rotatedTextureRegion.y > rect().y) {
-			m_drawingCenterPos.y = rect().y + m_rotatedTextureRegion.h * 0.5;
+		if (m_rotatedTextureRegion.y > layer().top) {
+			m_drawingCenterPos.y = layer().top + m_rotatedTextureRegion.h * 0.5;
 			updated = true;
 		}
-		else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < rect().y + rect().h) {
-			m_drawingCenterPos.y = rect().y + rect().h - m_rotatedTextureRegion.h * 0.5;
+		else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < layer().bottom) {
+			m_drawingCenterPos.y = layer().bottom - m_rotatedTextureRegion.h * 0.5;
 			updated = true;
 		}
 
 		// Centering
-		if (m_rotatedTextureRegion.h <= rect().h) {
+		if (m_rotatedTextureRegion.h <= layer().height) {
 			m_drawingCenterPos.y = center.y;
 		}
 
@@ -174,7 +174,7 @@ namespace s3d::aoba {
 	void UIImageView::setViewingCenterPixel(const Point& centerPixel) {
 		// Current scene position of the pixel that will be centered
 		const auto pos = Imaging::PixelToScenePos(centerPixel, m_textureRegion, m_scale, angle());
-		const auto movement = rect().center() - pos;
+		const auto movement = layer().center() - pos;
 		setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
 	}
 

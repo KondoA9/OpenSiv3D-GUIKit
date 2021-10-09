@@ -89,5 +89,7 @@ namespace s3d::aoba {
 		else {
 			Logger << U"X-axis constraints are invalid ";
 		}
+
+		m_center = Vec2(centerX, centerY);
 	}
 }

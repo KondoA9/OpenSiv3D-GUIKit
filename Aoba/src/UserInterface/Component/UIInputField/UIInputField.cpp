@@ -80,10 +80,10 @@ namespace s3d::aoba {
 
 		if (textRegion().h == 0) {
 			const auto h = font().fontSize() * 1.416 + 6_px;
-			m_fieldRect = RectF(rect().x, textRegion().y - h * 0.5, rect().w, h);
+			m_fieldRect = RectF(layer().left, textRegion().y - h * 0.5, layer().width, h);
 		}
 		else {
-			m_fieldRect = RectF(rect().x, textRegion().y - 3_px, rect().w, textRegion().h + 6_px);
+			m_fieldRect = RectF(layer().left, textRegion().y - 3_px, layer().width, textRegion().h + 6_px);
 		}
 	}
 

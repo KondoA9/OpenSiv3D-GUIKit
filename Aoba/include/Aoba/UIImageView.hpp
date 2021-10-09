@@ -75,10 +75,10 @@ namespace s3d::aoba {
 
 		RectF visibleTextureRect() const {
 			return RectF(
-				m_rotatedTextureRegion.x < rect().x ? rect().x : m_rotatedTextureRegion.x,
-				m_rotatedTextureRegion.y < rect().y ? rect().y : m_rotatedTextureRegion.y,
-				m_rotatedTextureRegion.w < rect().w ? m_rotatedTextureRegion.w : rect().w,
-				m_rotatedTextureRegion.h < rect().h ? m_rotatedTextureRegion.h : rect().h
+				m_rotatedTextureRegion.x < layer().left ? layer().left : m_rotatedTextureRegion.x,
+				m_rotatedTextureRegion.y < layer().top ? layer().top : m_rotatedTextureRegion.y,
+				m_rotatedTextureRegion.w < layer().width ? m_rotatedTextureRegion.w : layer().width,
+				m_rotatedTextureRegion.h < layer().height ? m_rotatedTextureRegion.h : layer().height
 			);
 		}
 

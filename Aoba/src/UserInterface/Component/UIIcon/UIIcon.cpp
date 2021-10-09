@@ -13,10 +13,10 @@ namespace s3d::aoba {
 		UIRect::draw();
 
 		if (rotate) {
-			m_icon.rotated(m_angle).drawAt(rect().center(), iconColor);
+			m_icon.rotated(m_angle).drawAt(layer().center(), iconColor);
 		}
 		else {
-			m_icon.drawAt(rect().center(), iconColor);
+			m_icon.drawAt(layer().center(), iconColor);
 		}
 	}
 }
