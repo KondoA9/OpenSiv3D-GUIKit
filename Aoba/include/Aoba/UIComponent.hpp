@@ -108,15 +108,27 @@ namespace s3d::aoba {
 		bool isFocused() const {
 			return m_FocusedComponent && m_FocusedComponent->id() == m_id;
 		}
-
-		bool drawable() const {
-			return !hidden && exist
-				&& m_layer.top <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h) && m_layer.bottom >= m_drawableRegion.y
-				&& m_layer.left <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w) && m_layer.right >= m_drawableRegion.x;
+		
+		bool updatable() const {
+			return exist;
 		}
 
-		bool updatable() const {
-			return exist && controllable && drawable();
+		bool layerUpdatable() const {
+			return updatable();
+		}
+
+		bool drawable() const {
+			const bool insideRegion =
+				m_layer.top <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
+				&& m_layer.left <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
+				&& m_layer.bottom >= m_drawableRegion.y
+				&& m_layer.right >= m_drawableRegion.x;
+
+			return updatable() && !hidden && insideRegion;
+		}
+
+		bool eventUpdatable() const {
+			return drawable() && controllable;
 		}
 
 		void requestToUpdateLayer() {

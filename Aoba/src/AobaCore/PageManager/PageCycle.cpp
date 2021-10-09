@@ -180,13 +180,13 @@ namespace s3d::aoba {
 	}
 
 	void PageManager::updateInputEvents() {
-		if (m_drawingPage->view.updatable()) {
+		if (m_drawingPage->view.eventUpdatable()) {
 			m_drawingPage->view.updateMouseIntersection();
 			m_drawingPage->view.updateInputEvents();
 		}
 
 		for (auto& component : m_isolatedComponents) {
-			if (component->updatable()) {
+			if (component->eventUpdatable()) {
 				component->updateMouseIntersection();
 				component->updateInputEvents();
 			}
