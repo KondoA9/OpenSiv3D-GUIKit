@@ -39,7 +39,7 @@ namespace s3d::aoba {
 		UIRect::updateLayer(scissor);
 
 		for (const auto& component : m_components) {
-			if (component->exist) {
+			if (component->layerUpdatable()) {
 				component->updateLayer(m_scissorRect);
 			}
 		}
@@ -98,7 +98,7 @@ namespace s3d::aoba {
 		UIRect::updateMouseIntersection();
 
 		for (const auto& component : m_components) {
-			if (component->updatable()) {
+			if (component->eventUpdatable()) {
 				component->updateMouseIntersection();
 			}
 		}
@@ -108,7 +108,7 @@ namespace s3d::aoba {
 		UIRect::updateInputEvents();
 
 		for (const auto& component : m_components) {
-			if (component->updatable()) {
+			if (component->eventUpdatable()) {
 				component->updateInputEvents();
 			}
 		}
