@@ -100,7 +100,7 @@ namespace s3d::aoba {
 
 		if (updatedString != rawUpdatedString) {
 			if (ui_Warning == nullptr) {
-				ui_Warning = &AobaFactory::CreateIsolatedComponent<UIText>();
+				ui_Warning = &AobaFactory::Create<UIText>();
 				ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
 				ui_Warning->textColor = Palette::Black;
 				ui_Warning->setDirection(TextDirection::Center);

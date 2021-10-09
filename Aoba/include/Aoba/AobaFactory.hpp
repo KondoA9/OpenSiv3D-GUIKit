@@ -46,8 +46,9 @@ namespace s3d::aoba {
 			return AobaFactory::Create<T>(*parent);
 		}
 
+		// Create component without parent component
 		template<class T>
-		[[nodiscard]] static T& CreateIsolatedComponent() {
+		[[nodiscard]] static T& Create() {
 			auto& component = AobaFactory::CreateComponent<T>();
 			AobaCore::Instance().appendIsolatedComponent(component);
 			return component;
