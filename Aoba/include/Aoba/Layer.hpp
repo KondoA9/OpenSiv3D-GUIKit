@@ -17,7 +17,15 @@ namespace s3d::aoba {
 	};
 
 	struct Layer {
+	private:
+		Vec2 m_center = Vec2();
+
+	public:
 		Constraint top, bottom, centerY, height, left, right, centerX, width;
+
+		Vec2 center() const {
+			return m_center;
+		}
 
 		void updateConstraints();
 

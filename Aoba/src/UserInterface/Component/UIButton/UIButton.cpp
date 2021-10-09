@@ -27,7 +27,7 @@ namespace s3d::aoba {
 		UIText::draw();
 
 		if (m_icon) {
-			m_icon.drawAt(rect().center(), textColor);
+			m_icon.drawAt(layer().center(), textColor);
 		}
 	}
 }

@@ -12,8 +12,8 @@ namespace s3d::aoba {
 	public:
 		using UIComponent::UIComponent;
 
-		const RoundRect& rect() const {
-			return m_rect;
+		double cornerRadius() const {
+			return m_rect.r;
 		}
 
 		void setCornerRadius(double r);

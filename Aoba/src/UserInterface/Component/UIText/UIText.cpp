@@ -58,12 +58,12 @@ namespace s3d::aoba {
 	}
 
 	void UIText::updateTextRegion() {
-		const double top = rect().y + paddingTop;
-		const double bottom = rect().y + rect().h - paddingBottom;
-		const double centerY = rect().y + rect().h * 0.5 + paddingTop - paddingBottom;
-		const double left = rect().x + paddingLeft + 3.0_px;
-		const double right = rect().x + rect().w - paddingRight - 3.0_px;
-		const double centerX = rect().x + rect().w * 0.5 + paddingLeft - paddingRight;
+		const double top = layer().top + paddingTop;
+		const double bottom = layer().bottom - paddingBottom;
+		const double centerY = layer().centerY + paddingTop - paddingBottom;
+		const double left = layer().left + paddingLeft + 3.0_px;
+		const double right = layer().right - paddingRight - 3.0_px;
+		const double centerX = layer().centerX + paddingLeft - paddingRight;
 
 		switch (m_direction)
 		{
@@ -109,22 +109,22 @@ namespace s3d::aoba {
 		const auto oneLineWidth = m_textRegion.w;
 
 		// Fit starting pos
-		if (m_textRegion.x < rect().x) {
-			m_textRegion.x = rect().x;
+		if (m_textRegion.x < layer().left) {
+			m_textRegion.x = layer().left;
 		}
 
-		if (m_textRegion.y < rect().y) {
-			m_textRegion.y = rect().y;
+		if (m_textRegion.y < layer().top) {
+			m_textRegion.y = layer().top;
 		}
 
 		// Word wrap
-		if (const auto lines = static_cast<int>(oneLineWidth / rect().w) + 1; lines != 1) {
-			m_textRegion.w = rect().w;
+		if (const auto lines = static_cast<int>(oneLineWidth / layer().width) + 1; lines != 1) {
+			m_textRegion.w = layer().width;
 			m_textRegion.h *= lines;
 		}
 
 		// Fit overhang region
-		if (const auto bottom = rect().y + rect().h; m_textRegion.y + m_textRegion.h > bottom) {
+		if (const auto bottom = layer().bottom; m_textRegion.y + m_textRegion.h > bottom) {
 			m_textRegion.h = bottom - m_textRegion.y;
 		}
 	}

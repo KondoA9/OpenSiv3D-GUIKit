@@ -19,10 +19,6 @@ namespace s3d::aoba {
 		double m_multiplier = 1.0;
 
 	public:
-		Constraint() = default;
-
-		~Constraint() = default;
-
 		bool isExist() const {
 			return m_exists;
 		}
