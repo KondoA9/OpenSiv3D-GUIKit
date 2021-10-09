@@ -46,10 +46,15 @@ namespace s3d::aoba {
 			fitTextRegionToRect();
 
 			// Set margin
-			m_textRegion.x -= 2_px;
-			m_textRegion.y -= 2_px;
-			m_textRegion.w += 4_px;
-			m_textRegion.h += 4_px;
+			{
+				const auto fontsize = m_font.fontSize();
+
+				m_textRegion.y -= 2_px;
+				m_textRegion.h += 4_px;
+
+				m_textRegion.x -= fontsize * 0.5;
+				m_textRegion.w += fontsize;
+			}
 		}
 	}
 
