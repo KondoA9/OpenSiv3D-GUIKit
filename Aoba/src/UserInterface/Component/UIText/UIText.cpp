@@ -47,13 +47,8 @@ namespace s3d::aoba {
 
 			// Set margin
 			{
-				const auto fontsize = m_font.fontSize();
-
-				m_textRegion.y -= 2_px;
 				m_textRegion.h += 4_px;
-
-				m_textRegion.x -= fontsize * 0.5;
-				m_textRegion.w += fontsize;
+				m_textRegion.w += m_font.fontSize();
 			}
 		}
 	}
