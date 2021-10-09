@@ -49,6 +49,10 @@ namespace s3d::aoba {
 			{
 				m_textRegion.h += 4_px;
 				m_textRegion.w += m_font.fontSize();
+
+				if (const auto right = m_textRegion.x + m_textRegion.w; right > layer().right) {
+					m_textRegion.w = layer().right - m_textRegion.x;
+				}
 			}
 		}
 	}
