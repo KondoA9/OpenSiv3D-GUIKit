@@ -45,7 +45,7 @@ namespace s3d::aoba {
 
 		if (isFocused()) {
 			if (m_isCursorVisible) {
-				const auto x = textRegion().right().begin.x + 2_px;
+				const auto x = textRegion().right().begin.x - font().fontSize() + 2_px;
 				Line(x, m_fieldRect.y + 4_px, x, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);
 			}
 
