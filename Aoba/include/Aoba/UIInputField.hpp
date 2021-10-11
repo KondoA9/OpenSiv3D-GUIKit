@@ -8,8 +8,7 @@ namespace s3d::aoba {
 	public:
 		enum class Type {
 			Text,
-			Number,
-			Password
+			Number
 		};
 
 		enum class NumberType {
