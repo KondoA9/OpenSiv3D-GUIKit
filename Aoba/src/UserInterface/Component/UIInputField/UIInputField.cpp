@@ -95,7 +95,6 @@ namespace s3d::aoba {
 	}
 
 	String UIInputField::updateText() {
-		const auto previousText = text();
 		auto editingString = text();
 
 		const auto raw = TextInput::GetRawInput();
@@ -115,6 +114,12 @@ namespace s3d::aoba {
 			}
 
 			editingString = fixedStr;
+		}
+
+		if (editingString.length() > maxLength) {
+			const auto diff = editingString.length() - maxLength;
+			editingString.erase(m_cursorPos - diff, diff);
+			m_cursorPos -= diff;
 		}
 
 		return editingString;

@@ -10,6 +10,7 @@ namespace s3d::aoba {
 		AobaCreateInputEvent(KeyEnterDown);
 		AobaCreateInputEvent(ForbiddenCharInputted);
 
+		size_t maxLength = String::npos;
 		String prefix = U"", suffix = U"";
 		Array<char32> forbiddenCharacters = {};
 
