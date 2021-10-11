@@ -18,9 +18,12 @@ namespace s3d::aoba {
 		static const Array<char32> ForbiddenPathChar, ForbiddenPathCharRecommended;
 
 	private:
-		double m_cursorVisibleTimer = 0.0;
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect;
+
+		Stopwatch m_cursorBeamWatcher;
+		size_t m_cursorPos = 0;
+		double m_cursorBeamPosX = 0;
 
 		static UIText* ui_Warning;
 		static size_t m_WarningTimeoutID;
@@ -43,7 +46,7 @@ namespace s3d::aoba {
 
 		void draw() const override;
 
-		virtual String updateText(const String& previousString, const String& rawInput, const String& rawUpdatedString);
+		virtual String updateText();
 
 		String getInputtedRawText();
 	};

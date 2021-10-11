@@ -23,16 +23,21 @@ namespace s3d::aoba {
 			if (!suffix.empty() && !text().ends_with(suffix)) {
 				setText(text() + suffix);
 			}
+
+			m_cursorBeamWatcher.reset();
 			}, true);
+
+		addEventListener<Focused>([this] {
+			m_cursorBeamWatcher.start();
+			}), true;
 	}
 
 	void UIInputField::update() {
 		UIText::update();
 
 		if (isFocused()) {
-			m_cursorVisibleTimer += Scene::DeltaTime();
-			if (m_cursorVisibleTimer > 0.5) {
-				m_cursorVisibleTimer = 0.0;
+			if (m_cursorBeamWatcher.ms() > 500) {
+				m_cursorBeamWatcher.restart();
 				m_isCursorVisible = !m_isCursorVisible;
 			}
 		}
@@ -45,8 +50,7 @@ namespace s3d::aoba {
 
 		if (isFocused()) {
 			if (m_isCursorVisible) {
-				const auto x = textRegion().right().begin.x - font().fontSize() + 2_px;
-				Line(x, m_fieldRect.y + 4_px, x, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);
+				Line(m_cursorBeamPosX, m_fieldRect.y + 4_px, m_cursorBeamPosX, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);
 			}
 
 			m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
@@ -59,7 +63,8 @@ namespace s3d::aoba {
 		if (isFocused()) {
 			const String previousText = text();
 
-			const String updatedText = updateText(previousText, TextInput::GetRawInput(), getInputtedRawText());
+			const String updatedText = test(previousText);
+			//const String updatedText = updateText(previousText, TextInput::GetRawInput(), getInputtedRawText());
 
 			if (previousText != updatedText) {
 				setText(updatedText);
@@ -93,6 +98,37 @@ namespace s3d::aoba {
 		return inputtedRawText;
 	}
 
+	String UIInputField::updateText() {
+		String str = text();
+
+		if (KeyLeft.down() && m_cursorPos > 0) {
+			m_cursorPos--;
+			m_isCursorVisible = true;
+			m_cursorBeamWatcher.restart();
+		}
+		if (KeyRight.down() && m_cursorPos < text().length()) {
+			m_cursorPos++;
+			m_isCursorVisible = true;
+			m_cursorBeamWatcher.restart();
+		}
+
+		const auto raw = TextInput::GetRawInput();
+
+		m_cursorPos = TextInput::UpdateText(str, m_cursorPos);
+
+		m_cursorBeamPosX = textRegion().x;
+		for (const auto& [i, glyph] : Indexed(font().getGlyphs(str))) {
+			if (i == m_cursorPos) {
+				break;
+			}
+
+			m_cursorBeamPosX += glyph.xAdvance;
+		}
+
+		return str;
+	}
+
+	/*
 	String UIInputField::updateText(const String&, const String&, const String& rawUpdatedString) {
 		const auto updatedString = rawUpdatedString.removed_if([this](const char32& c) {
 			return forbiddenCharacters.includes(c);
@@ -124,4 +160,5 @@ namespace s3d::aoba {
 
 		return updatedString;
 	}
+	*/
 }
