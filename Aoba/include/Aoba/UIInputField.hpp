@@ -11,7 +11,6 @@ namespace s3d::aoba {
 		AobaCreateInputEvent(KeyEnterDown);
 		AobaCreateInputEvent(ForbiddenCharInputted);
 
-		bool completeInputWhenEnter = true;
 		String prefix = U"", suffix = U"";
 		Array<char32> forbiddenCharacters = {};
 

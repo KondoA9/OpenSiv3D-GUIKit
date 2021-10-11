@@ -77,9 +77,7 @@ namespace s3d::aoba {
 
 			if (KeyEnter.down()) {
 				registerInputEvent(KeyEnterDown(this, false));
-				if (completeInputWhenEnter) {
-					unFocus();
-				}
+				unFocus();
 			}
 		}
 	}
