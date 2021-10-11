@@ -21,7 +21,8 @@ namespace s3d::aoba {
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect;
 
-		Stopwatch m_cursorBeamWatcher;
+		Stopwatch m_cursorBeamWatcher, m_cursorMoveDurationWatcher;
+		int32 m_cursorMoveDuration = 500;
 		size_t m_cursorPos = 0;
 		double m_cursorBeamPosX = 0;
 
@@ -49,5 +50,8 @@ namespace s3d::aoba {
 		virtual String updateText();
 
 		String getInputtedRawText();
+
+	private:
+		void updateCursorMoveDuration();
 	};
 }

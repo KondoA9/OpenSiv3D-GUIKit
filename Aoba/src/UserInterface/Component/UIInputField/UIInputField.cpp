@@ -35,6 +35,8 @@ namespace s3d::aoba {
 	void UIInputField::update() {
 		UIText::update();
 
+		updateCursorMoveDuration();
+
 		if (isFocused()) {
 			if (m_cursorBeamWatcher.ms() > 500) {
 				m_cursorBeamWatcher.restart();
@@ -63,8 +65,7 @@ namespace s3d::aoba {
 		if (isFocused()) {
 			const String previousText = text();
 
-			const String updatedText = test(previousText);
-			//const String updatedText = updateText(previousText, TextInput::GetRawInput(), getInputtedRawText());
+			const String updatedText = updateText();
 
 			if (previousText != updatedText) {
 				setText(updatedText);
@@ -101,17 +102,6 @@ namespace s3d::aoba {
 	String UIInputField::updateText() {
 		String str = text();
 
-		if (KeyLeft.down() && m_cursorPos > 0) {
-			m_cursorPos--;
-			m_isCursorVisible = true;
-			m_cursorBeamWatcher.restart();
-		}
-		if (KeyRight.down() && m_cursorPos < text().length()) {
-			m_cursorPos++;
-			m_isCursorVisible = true;
-			m_cursorBeamWatcher.restart();
-		}
-
 		const auto raw = TextInput::GetRawInput();
 
 		m_cursorPos = TextInput::UpdateText(str, m_cursorPos);
@@ -126,6 +116,50 @@ namespace s3d::aoba {
 		}
 
 		return str;
+	}
+
+	void UIInputField::updateCursorMoveDuration() {
+		if (m_cursorPos > 0) {
+			const bool down = KeyLeft.down();
+			const bool press = KeyLeft.pressed() && m_cursorMoveDurationWatcher.ms() > m_cursorMoveDuration;
+
+			if (down) {
+				m_cursorMoveDuration = 500;
+				m_cursorMoveDurationWatcher.restart();
+			}
+			else if (press) {
+				m_cursorMoveDuration = 30;
+				m_cursorMoveDurationWatcher.restart();
+			}
+
+			if (down || press) {
+				m_cursorPos--;
+				m_cursorMoveDurationWatcher.restart();
+				m_isCursorVisible = true;
+				m_cursorBeamWatcher.restart();
+			}
+		}
+
+		if (m_cursorPos < text().length()) {
+			const bool down = KeyRight.down();
+			const bool press = KeyRight.pressed() && m_cursorMoveDurationWatcher.ms() > m_cursorMoveDuration;
+
+			if (down) {
+				m_cursorMoveDuration = 500;
+				m_cursorMoveDurationWatcher.restart();
+			}
+			else if (press) {
+				m_cursorMoveDuration = 30;
+				m_cursorMoveDurationWatcher.restart();
+			}
+
+			if (down || press) {
+				m_cursorPos++;
+				m_cursorMoveDurationWatcher.restart();
+				m_isCursorVisible = true;
+				m_cursorBeamWatcher.restart();
+			}
+		}
 	}
 
 	/*
