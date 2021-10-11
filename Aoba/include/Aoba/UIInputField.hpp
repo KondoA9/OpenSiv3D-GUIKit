@@ -1,5 +1,4 @@
 ﻿#pragma once
-#pragma once
 
 #include "UIText.hpp"
 #include "UnifiedFont.hpp"
