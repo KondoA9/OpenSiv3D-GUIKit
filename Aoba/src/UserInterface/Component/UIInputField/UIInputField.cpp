@@ -95,24 +95,29 @@ namespace s3d::aoba {
 	}
 
 	String UIInputField::updateText() {
-		String str = text();
+		const auto previousText = text();
+		auto editingString = text();
 
 		const auto raw = TextInput::GetRawInput();
 
-		m_cursorPos = TextInput::UpdateText(str, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
+		m_cursorPos = TextInput::UpdateText(editingString, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
 
 		// Fix forbidden characters
-		const auto fixedStr = str.removed_if([this](const char32& c) {
-			return forbiddenCharacters.includes(c);
-			});
+		{
+			const auto fixedStr = editingString.removed_if([this](const char32& c) {
+				return forbiddenCharacters.includes(c);
+				});
 
-		if (fixedStr != str) {
-			const auto diff = str.length() - fixedStr.length();
-			m_cursorPos -= diff;
-			fireForbiddenCharsNotifier();
+			if (fixedStr != editingString) {
+				const auto diff = editingString.length() - fixedStr.length();
+				m_cursorPos -= diff;
+				fireForbiddenCharsNotifier();
+			}
+
+			editingString = fixedStr;
 		}
 
-		return fixedStr;
+		return editingString;
 	}
 
 	void UIInputField::updateCursorMovement() {
