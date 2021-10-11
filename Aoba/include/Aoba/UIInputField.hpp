@@ -6,6 +6,12 @@
 namespace s3d::aoba {
 	class UIInputField : public UIText {
 	public:
+		enum class Type {
+			Text,
+			Number,
+			Password
+		};
+
 		AobaCreateInputEvent(Inputted);
 		AobaCreateInputEvent(KeyEnterDown);
 		AobaCreateInputEvent(ForbiddenCharInputted);

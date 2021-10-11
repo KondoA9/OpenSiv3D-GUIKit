@@ -116,6 +116,7 @@ namespace s3d::aoba {
 			editingString = fixedStr;
 		}
 
+		// Fix if reached max length
 		if (editingString.length() > maxLength) {
 			const auto diff = editingString.length() - maxLength;
 			editingString.erase(m_cursorPos - diff, diff);
