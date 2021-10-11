@@ -50,6 +50,10 @@ namespace s3d::aoba {
 		virtual String updateText();
 
 	private:
-		void updateCursorMoveDuration();
+		void updateCursorMovement();
+
+		void fireForbiddenCharsNotifier();
+
+		void updateCursorBeamPos();
 	};
 }

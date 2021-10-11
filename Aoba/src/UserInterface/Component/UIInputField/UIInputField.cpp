@@ -16,6 +16,11 @@ namespace s3d::aoba {
 			Cursor::RequestStyle(CursorStyle::IBeam);
 			});
 
+		addEventListener<Focused>([this] {
+			m_cursorPos = text().length();
+			m_cursorBeamWatcher.start();
+			}), true;
+
 		addEventListener<UnFocused>([this] {
 			if (!prefix.empty() && !text().starts_with(prefix)) {
 				setText(prefix + text());
@@ -26,22 +31,20 @@ namespace s3d::aoba {
 
 			m_cursorBeamWatcher.reset();
 			}, true);
-
-		addEventListener<Focused>([this] {
-			m_cursorBeamWatcher.start();
-			}), true;
 	}
 
 	void UIInputField::update() {
 		UIText::update();
-
-		updateCursorMoveDuration();
 
 		if (isFocused()) {
 			if (m_cursorBeamWatcher.ms() > 500) {
 				m_cursorBeamWatcher.restart();
 				m_isCursorVisible = !m_isCursorVisible;
 			}
+
+			updateCursorMovement();
+
+			updateCursorBeamPos();
 		}
 	}
 
@@ -100,19 +103,21 @@ namespace s3d::aoba {
 
 		m_cursorPos = TextInput::UpdateText(str, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
 
-		m_cursorBeamPosX = textRegion().x;
-		for (const auto& [i, glyph] : Indexed(font().getGlyphs(str))) {
-			if (i == m_cursorPos) {
-				break;
-			}
+		// Fix forbidden characters
+		const auto fixedStr = str.removed_if([this](const char32& c) {
+			return forbiddenCharacters.includes(c);
+			});
 
-			m_cursorBeamPosX += glyph.xAdvance;
+		if (fixedStr != str) {
+			const auto diff = str.length() - fixedStr.length();
+			m_cursorPos -= diff;
+			fireForbiddenCharsNotifier();
 		}
 
-		return str;
+		return fixedStr;
 	}
 
-	void UIInputField::updateCursorMoveDuration() {
+	void UIInputField::updateCursorMovement() {
 		const bool leftMoveable = m_cursorPos > 0;
 		const bool rightMoveable = m_cursorPos < text().length();
 
@@ -148,37 +153,39 @@ namespace s3d::aoba {
 		}
 	}
 
-	/*
-	String UIInputField::updateText(const String&, const String&, const String& rawUpdatedString) {
-		const auto updatedString = rawUpdatedString.removed_if([this](const char32& c) {
-			return forbiddenCharacters.includes(c);
-			});
-
-		if (updatedString != rawUpdatedString) {
-			if (ui_Warning == nullptr) {
-				ui_Warning = &AobaFactory::Create<UIText>();
-				ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
-				ui_Warning->textColor = Palette::Black;
-				ui_Warning->setDirection(TextDirection::Center);
-				ui_Warning->setCornerRadius(5);
-				ui_Warning->setText(U"この文字は許可されていません");
-			}
-
-			AobaCore::Instance().stopTimeout(m_WarningTimeoutID);
-
-			ui_Warning->exist = true;
-			ui_Warning->setConstraint(LayerDirection::Top, *this, LayerDirection::Bottom);
-			ui_Warning->setConstraint(LayerDirection::Height, 30_px);
-			ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
-			ui_Warning->setConstraint(LayerDirection::Width, 250_px);
-			m_WarningTimeoutID = AobaCore::Instance().setTimeout([this] {
-				ui_Warning->exist = false;
-				}, 3000, false);
-
-			registerInputEvent(ForbiddenCharInputted(this, false));
+	void UIInputField::fireForbiddenCharsNotifier() {
+		if (ui_Warning == nullptr) {
+			ui_Warning = &AobaFactory::Create<UIText>();
+			ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
+			ui_Warning->textColor = Palette::Black;
+			ui_Warning->setDirection(TextDirection::Center);
+			ui_Warning->setCornerRadius(5);
+			ui_Warning->setText(U"この文字は許可されていません");
 		}
 
-		return updatedString;
+		AobaCore::Instance().stopTimeout(m_WarningTimeoutID);
+
+		ui_Warning->exist = true;
+		ui_Warning->setConstraint(LayerDirection::Top, *this, LayerDirection::Bottom);
+		ui_Warning->setConstraint(LayerDirection::Height, 30_px);
+		ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
+		ui_Warning->setConstraint(LayerDirection::Width, 250_px);
+		m_WarningTimeoutID = AobaCore::Instance().setTimeout([this] {
+			ui_Warning->exist = false;
+			}, 3000, false);
+
+		registerInputEvent(ForbiddenCharInputted(this, false));
 	}
-	*/
+
+	void UIInputField::updateCursorBeamPos() {
+		m_cursorBeamPosX = textRegion().x;
+
+		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+			if (i == m_cursorPos) {
+				break;
+			}
+
+			m_cursorBeamPosX += glyph.xAdvance;
+		}
+	}
 }
