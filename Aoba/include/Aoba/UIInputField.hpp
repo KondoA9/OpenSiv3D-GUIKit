@@ -12,11 +12,23 @@ namespace s3d::aoba {
 			Password
 		};
 
+		enum class NumberType {
+			Integer,
+			Decimals
+		};
+
+		struct ValidateResult {
+			Optional<String> fixedText = none;
+		};
+
 		AobaCreateInputEvent(Inputted);
 		AobaCreateInputEvent(KeyEnterDown);
 		AobaCreateInputEvent(ForbiddenCharInputted);
 
+		Type type = Type::Text;
+		NumberType numberType = NumberType::Decimals;
 		size_t maxLength = String::npos;
+		double minNum = -DBL_MAX, maxNum = DBL_MAX;
 		String prefix = U"", suffix = U"";
 		Array<char32> forbiddenCharacters = {};
 
@@ -41,6 +53,15 @@ namespace s3d::aoba {
 			return m_fieldRect;
 		}
 
+		double number() {
+			if (text().length() == 1 && text().starts_with('-')) {
+				return 0;
+			}
+
+			assert(type == Type::Number);
+			return ParseFloat<double>(text());
+		}
+
 	protected:
 		void initialize() override;
 
@@ -54,11 +75,15 @@ namespace s3d::aoba {
 
 		virtual String updateText();
 
+		virtual ValidateResult validateStr(const String& str);
+
 	private:
 		void updateCursorMovement();
 
 		void fireForbiddenCharsNotifier();
 
 		void updateCursorBeamPos();
+
+		ValidateResult validateNumber(const String& str);
 	};
 }

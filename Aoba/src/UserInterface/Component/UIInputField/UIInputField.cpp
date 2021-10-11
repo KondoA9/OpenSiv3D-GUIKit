@@ -116,10 +116,32 @@ namespace s3d::aoba {
 			editingString = fixedStr;
 		}
 
+		// Limit max length
+		if (type == Type::Number && !editingString.isEmpty()) {
+			maxLength = editingString.starts_with('-') | editingString.includes('.') ? 9 : 8;
+		}
+
 		// Fix if reached max length
 		if (editingString.length() > maxLength) {
 			const auto diff = editingString.length() - maxLength;
 			editingString.erase(m_cursorPos - diff, diff);
+			m_cursorPos -= diff;
+		}
+
+		// Validate
+		if (const auto result = validateStr(editingString); result.fixedText.has_value()) {
+			const auto fixed = result.fixedText.value();
+			const auto fixedLen = fixed.length();
+			const auto editingLen = editingString.length();
+			size_t diff = 0;
+			for (size_t i : step(m_cursorPos)) {
+				if (fixedLen > i && editingLen > i + diff) {
+					if (editingString[i] != fixed[i]) {
+						diff++;
+					}
+				}
+			}
+			editingString = fixed;
 			m_cursorPos -= diff;
 		}
 
@@ -196,5 +218,82 @@ namespace s3d::aoba {
 
 			m_cursorBeamPosX += glyph.xAdvance;
 		}
+	}
+
+	UIInputField::ValidateResult UIInputField::validateStr(const String& str) {
+		switch (type)
+		{
+		case s3d::aoba::UIInputField::Type::Number:
+			return validateNumber(str);
+
+		default:
+			return { none };
+		}
+	}
+
+	UIInputField::ValidateResult UIInputField::validateNumber(const String& str) {
+		// Remove chars if not '-', '.' or numbers
+		String fixedText = str.removed_if([](const char32& c) {
+			return !('0' <= c && c <= '9') && c != '-' && c != '.';
+			});
+
+		// Remove dots if integer
+		if (numberType == NumberType::Integer) {
+			fixedText.remove('.');
+		}
+
+		// Remove extra '-' and '.'
+		{
+			String tmp = U"";
+			size_t dotCount = 0;
+
+			for (const auto [i, c] : Indexed(fixedText)) {
+				if (c == '.') {
+					dotCount++;
+				}
+
+				const bool hyphenNG = c == '-' && i != 0;
+				const bool dotNG = c == '.' && (i == 0 || dotCount > 1);
+
+				if (!hyphenNG && !dotNG) {
+					tmp += c;
+				}
+			}
+
+			fixedText = tmp;
+		}
+
+		const bool minus = fixedText.starts_with('-');
+		const bool withDot = fixedText.includes('.');
+
+		if (fixedText.length() == 1 && minus) {
+			return { fixedText };
+		}
+
+		// Clamp
+		if (fixedText.length() > 0) {
+			if (minNum >= 0 && minus) {
+				fixedText.remove_at(0);
+			}
+
+			if (numberType == NumberType::Integer) {
+				const int num = Clamp(ParseInt<int>(fixedText), static_cast<int>(minNum), static_cast<int>(maxNum));
+				fixedText = Format(num);
+			}
+			else {
+				if (!fixedText.ends_with('.')) {
+					const double num = Clamp(ParseFloat<double>(fixedText), minNum, maxNum);
+					if (num == 0.0 && withDot) {
+						const auto len = fixedText.length() - 2;
+						fixedText = U"0." + String(len > 5 ? 5 : len, '0');
+					}
+					else {
+						fixedText = Format(num);
+					}
+				}
+			}
+		}
+
+		return { fixedText };
 	}
 }
