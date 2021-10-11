@@ -49,8 +49,6 @@ namespace s3d::aoba {
 
 		virtual String updateText();
 
-		String getInputtedRawText();
-
 	private:
 		void updateCursorMoveDuration();
 	};

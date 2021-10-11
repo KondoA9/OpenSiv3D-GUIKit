@@ -93,18 +93,12 @@ namespace s3d::aoba {
 		}
 	}
 
-	String UIInputField::getInputtedRawText() {
-		String inputtedRawText = text();
-		TextInput::UpdateText(inputtedRawText, TextInputMode::AllowBackSpaceDelete);
-		return inputtedRawText;
-	}
-
 	String UIInputField::updateText() {
 		String str = text();
 
 		const auto raw = TextInput::GetRawInput();
 
-		m_cursorPos = TextInput::UpdateText(str, m_cursorPos);
+		m_cursorPos = TextInput::UpdateText(str, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
 
 		m_cursorBeamPosX = textRegion().x;
 		for (const auto& [i, glyph] : Indexed(font().getGlyphs(str))) {
@@ -119,46 +113,38 @@ namespace s3d::aoba {
 	}
 
 	void UIInputField::updateCursorMoveDuration() {
-		if (m_cursorPos > 0) {
-			const bool down = KeyLeft.down();
-			const bool press = KeyLeft.pressed() && m_cursorMoveDurationWatcher.ms() > m_cursorMoveDuration;
+		const bool leftMoveable = m_cursorPos > 0;
+		const bool rightMoveable = m_cursorPos < text().length();
 
-			if (down) {
-				m_cursorMoveDuration = 500;
-				m_cursorMoveDurationWatcher.restart();
-			}
-			else if (press) {
-				m_cursorMoveDuration = 30;
-				m_cursorMoveDurationWatcher.restart();
-			}
+		const bool pressDurationElapsed = m_cursorMoveDurationWatcher.ms() > m_cursorMoveDuration;
 
-			if (down || press) {
-				m_cursorPos--;
-				m_cursorMoveDurationWatcher.restart();
-				m_isCursorVisible = true;
-				m_cursorBeamWatcher.restart();
-			}
+		const bool leftDown = leftMoveable && KeyLeft.down();
+		const bool leftPress = leftMoveable && pressDurationElapsed && KeyLeft.pressed();
+
+		const bool rightDown = rightMoveable && KeyRight.down();
+		const bool rightPress = rightMoveable && pressDurationElapsed && KeyRight.pressed();
+
+		if (leftDown || rightDown) {
+			m_cursorMoveDuration = 500;
+			m_cursorMoveDurationWatcher.restart();
+		}
+		else if (leftPress || rightPress) {
+			m_cursorMoveDuration = 30;
+			m_cursorMoveDurationWatcher.restart();
 		}
 
-		if (m_cursorPos < text().length()) {
-			const bool down = KeyRight.down();
-			const bool press = KeyRight.pressed() && m_cursorMoveDurationWatcher.ms() > m_cursorMoveDuration;
+		if (leftDown || leftPress) {
+			m_cursorPos--;
+		}
 
-			if (down) {
-				m_cursorMoveDuration = 500;
-				m_cursorMoveDurationWatcher.restart();
-			}
-			else if (press) {
-				m_cursorMoveDuration = 30;
-				m_cursorMoveDurationWatcher.restart();
-			}
+		if (rightDown || rightPress) {
+			m_cursorPos++;
+		}
 
-			if (down || press) {
-				m_cursorPos++;
-				m_cursorMoveDurationWatcher.restart();
-				m_isCursorVisible = true;
-				m_cursorBeamWatcher.restart();
-			}
+		if (leftDown || leftPress || rightDown || rightPress) {
+			m_cursorMoveDurationWatcher.restart();
+			m_isCursorVisible = true;
+			m_cursorBeamWatcher.restart();
 		}
 	}
 
