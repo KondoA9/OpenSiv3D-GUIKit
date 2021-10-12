@@ -42,7 +42,13 @@ namespace s3d::aoba {
 				m_isCursorVisible = !m_isCursorVisible;
 			}
 
+			updateTextSelecting();
+
 			updateCursorMovement();
+
+			if (m_selectingByKeyboard) {
+				m_textSelected = m_selectingCursorStart != m_cursorPos; 
+			}
 
 			updateCursorBeamPos();
 		}
@@ -59,7 +65,35 @@ namespace s3d::aoba {
 			}
 
 			m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
+
+			if (m_textSelected) {
+				drawSelectingArea();
+			}
 		}
+	}
+
+	void UIInputField::drawSelectingArea() const {
+		const size_t start = Min(m_selectingCursorStart, m_cursorPos);
+		const size_t end = Max(m_selectingCursorStart, m_cursorPos);
+
+		double startPos = textRegion().x;
+		double width = 0;
+
+		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+			if (i < start) {
+				startPos += glyph.xAdvance;
+			}
+			else {
+				if (i < end) {
+					width += glyph.xAdvance;
+				}
+				else {
+					break;
+				}
+			}
+		}
+
+		Rect(startPos, textRegion().y, width, textRegion().h).draw({ 0, 0, 1, 0.5 });
 	}
 
 	void UIInputField::updateInputEvents() {
@@ -181,6 +215,22 @@ namespace s3d::aoba {
 			m_cursorMoveDurationWatcher.restart();
 			m_isCursorVisible = true;
 			m_cursorBeamWatcher.restart();
+			if (!m_selectingByKeyboard) {
+				// Reset selecting
+				m_textSelected = false;
+				m_selectingCursorStart = m_cursorPos;
+			}
+		}
+	}
+
+	void UIInputField::updateTextSelecting() {
+		if (KeyShift.down()) {
+			m_selectingByKeyboard = true;
+			m_selectingCursorStart = m_cursorPos;
+		}
+
+		if (KeyShift.up()) {
+			m_selectingByKeyboard = false;
 		}
 	}
 

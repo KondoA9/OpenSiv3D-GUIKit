@@ -34,6 +34,10 @@ namespace s3d::aoba {
 		static const Array<char32> ForbiddenPathChar, ForbiddenPathCharRecommended;
 
 	private:
+		bool m_textSelected = false;
+		bool m_selectingByKeyboard = false;
+		size_t m_selectingCursorStart = 0;
+
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect;
 
@@ -79,9 +83,13 @@ namespace s3d::aoba {
 	private:
 		void updateCursorMovement();
 
+		void updateTextSelecting();
+
 		void fireForbiddenCharsNotifier();
 
 		void updateCursorBeamPos();
+
+		void drawSelectingArea() const;
 
 		ValidateResult validateNumber(const String& str);
 	};
