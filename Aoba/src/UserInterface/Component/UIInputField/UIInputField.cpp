@@ -29,6 +29,7 @@ namespace s3d::aoba {
 				setText(text() + suffix);
 			}
 
+			m_textSelected = false;
 			m_cursorBeamWatcher.reset();
 			}, true);
 	}
@@ -41,6 +42,8 @@ namespace s3d::aoba {
 				m_cursorBeamWatcher.restart();
 				m_isCursorVisible = !m_isCursorVisible;
 			}
+
+			updateTextControls();
 
 			updateTextSelecting();
 
@@ -211,6 +214,60 @@ namespace s3d::aoba {
 
 		if (KeyShift.up()) {
 			m_selectingByKeyboard = false;
+		}
+	}
+
+	void UIInputField::updateTextControls() {
+		if (m_textSelected) {
+			// Copy
+			if ((KeyControl + KeyC).down() || (KeyCommand + KeyC).down()) {
+				const auto start = Min(m_selectingCursorStart, m_cursorPos);
+				const auto end = Max(m_selectingCursorStart, m_cursorPos);
+				Clipboard::SetText(text().substr(start, end - start));
+			}
+
+			// Backspace / Delete
+			if ((KeyBackspace | KeyDelete).down()) {
+				const auto start = Min(m_selectingCursorStart, m_cursorPos);
+				const auto end = Max(m_selectingCursorStart, m_cursorPos);
+				String str = text();
+				str.erase(start, end - start);
+				setText(str);
+				m_textSelected = false;
+				m_cursorPos = start;
+			}
+		}
+		else {
+			// Select all
+			if ((KeyControl + KeyA).down() || (KeyCommand + KeyA).down()) {
+				m_textSelected = true;
+				m_selectingCursorStart = 0;
+				m_cursorPos = text().length();
+			}
+		}
+
+		// Paste
+		if ((KeyControl + KeyV).down() || (KeyCommand + KeyV).down()) {
+			String copiedText;
+			if (Clipboard::GetText(copiedText)) {
+				copiedText.remove(U"\r");
+				copiedText.remove(U"\n");
+				String str = text();
+				if (m_textSelected) {
+					const auto start = Min(m_selectingCursorStart, m_cursorPos);
+					const auto end = Max(m_selectingCursorStart, m_cursorPos);
+					str.erase(start, end - start);
+					str.insert(start, copiedText);
+					setText(str);
+					m_cursorPos = start + copiedText.length();
+					m_textSelected = false;
+				}
+				else {
+					str.insert(m_cursorPos, copiedText);
+					setText(str);
+					m_cursorPos = m_cursorPos + copiedText.length();
+				}
+			}
 		}
 	}
 

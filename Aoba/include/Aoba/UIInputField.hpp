@@ -91,6 +91,8 @@ namespace s3d::aoba {
 
 		void updateSelectingRect();
 
+		void updateTextControls();
+
 		ValidateResult validateNumber(const String& str);
 	};
 }
