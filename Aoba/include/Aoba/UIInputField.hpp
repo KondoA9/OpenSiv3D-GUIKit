@@ -39,7 +39,7 @@ namespace s3d::aoba {
 		size_t m_selectingCursorStart = 0;
 
 		bool m_isCursorVisible = true;
-		RectF m_fieldRect;
+		RectF m_fieldRect, m_selectingRect;
 
 		Stopwatch m_cursorBeamWatcher, m_cursorMoveDurationWatcher;
 		int32 m_cursorMoveDuration = 500;
@@ -89,7 +89,7 @@ namespace s3d::aoba {
 
 		void updateCursorBeamPos();
 
-		void drawSelectingArea() const;
+		void updateSelectingRect();
 
 		ValidateResult validateNumber(const String& str);
 	};

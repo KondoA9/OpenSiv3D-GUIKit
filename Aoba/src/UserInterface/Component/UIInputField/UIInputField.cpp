@@ -51,11 +51,19 @@ namespace s3d::aoba {
 			}
 
 			updateCursorBeamPos();
+
+			if (m_textSelected) {
+				updateSelectingRect();
+			}
 		}
 	}
 
 	void UIInputField::draw() const {
 		m_fieldRect.draw(DynamicColor::BackgroundSecondary);
+
+		if (isFocused() && m_textSelected) {
+			m_selectingRect.draw({ 0.68, 0.80, 0.98, 1.0 });
+		}
 
 		UIText::draw();
 
@@ -65,35 +73,7 @@ namespace s3d::aoba {
 			}
 
 			m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
-
-			if (m_textSelected) {
-				drawSelectingArea();
-			}
 		}
-	}
-
-	void UIInputField::drawSelectingArea() const {
-		const size_t start = Min(m_selectingCursorStart, m_cursorPos);
-		const size_t end = Max(m_selectingCursorStart, m_cursorPos);
-
-		double startPos = textRegion().x;
-		double width = 0;
-
-		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
-			if (i < start) {
-				startPos += glyph.xAdvance;
-			}
-			else {
-				if (i < end) {
-					width += glyph.xAdvance;
-				}
-				else {
-					break;
-				}
-			}
-		}
-
-		Rect(startPos, textRegion().y, width, textRegion().h).draw({ 0, 0, 1, 0.5 });
 	}
 
 	void UIInputField::updateInputEvents() {
@@ -268,6 +248,30 @@ namespace s3d::aoba {
 
 			m_cursorBeamPosX += glyph.xAdvance;
 		}
+	}
+
+	void UIInputField::updateSelectingRect() {
+		const size_t start = Min(m_selectingCursorStart, m_cursorPos);
+		const size_t end = Max(m_selectingCursorStart, m_cursorPos);
+
+		double startPos = textRegion().x;
+		double width = 0;
+
+		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+			if (i < start) {
+				startPos += glyph.xAdvance;
+			}
+			else {
+				if (i < end) {
+					width += glyph.xAdvance;
+				}
+				else {
+					break;
+				}
+			}
+		}
+
+		m_selectingRect = RectF(startPos, textRegion().y, width, textRegion().h);
 	}
 
 	UIInputField::ValidateResult UIInputField::validateStr(const String& str) {
