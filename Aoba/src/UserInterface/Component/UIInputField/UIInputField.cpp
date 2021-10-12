@@ -118,7 +118,7 @@ namespace s3d::aoba {
 
 		// Limit max length
 		if (type == Type::Number && !editingString.isEmpty()) {
-			maxLength = editingString.starts_with('-') | editingString.includes('.') ? 9 : 8;
+			maxLength = (editingString.starts_with('-') | editingString.includes('.')) ? 9 : 8;
 		}
 
 		// Fix if reached max length
