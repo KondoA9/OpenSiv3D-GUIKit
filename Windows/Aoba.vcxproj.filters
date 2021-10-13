@@ -100,6 +100,9 @@
     <Filter Include="Aoba\UserInterface\UserInterface\UIVStackView">
       <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation">
+      <UniqueIdentifier>{1ba2773f-98d4-4967-be4b-688122e9ac14}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -197,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp">
       <Filter>Aoba\AobaFactory</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\KeyboardOperation\KeyboardOperation.cpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp">
       <Filter>Aoba\AobaFactory</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

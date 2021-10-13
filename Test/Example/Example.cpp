@@ -214,8 +214,8 @@ private:
 	using Page::Page;
 
 	aoba::UIText& m_uiTitle = aoba::AobaFactory::Create<aoba::UIText>(view);
+	aoba::UIInputField& m_uiInputField = aoba::AobaFactory::Create<aoba::UIInputField>(view);
 	aoba::UIButton& m_uiButton = aoba::AobaFactory::Create<aoba::UIButton>(view);
-	aoba::UICheckBox& m_uiCheckBox = aoba::AobaFactory::Create<aoba::UICheckBox>(view);
 
 protected:
 	void onLoaded() override {
@@ -230,10 +230,11 @@ protected:
 		m_uiTitle.setConstraint(aoba::LayerDirection::Left);
 		m_uiTitle.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 
-		m_uiCheckBox.setConstraint(aoba::LayerDirection::Height, 100_px);
-		m_uiCheckBox.setConstraint(aoba::LayerDirection::Bottom, m_uiButton, aoba::LayerDirection::Top);
-		m_uiCheckBox.setConstraint(aoba::LayerDirection::Left);
-		m_uiCheckBox.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
+		m_uiInputField.setText(U"This is the example application of Aoba.");
+		m_uiInputField.setConstraint(aoba::LayerDirection::Height, 100_px);
+		m_uiInputField.setConstraint(aoba::LayerDirection::Bottom, m_uiButton, aoba::LayerDirection::Top);
+		m_uiInputField.setConstraint(aoba::LayerDirection::Left);
+		m_uiInputField.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 
 		m_uiButton.setConstraint(aoba::LayerDirection::Height, 100_px);
 		m_uiButton.setConstraint(aoba::LayerDirection::Bottom, view, aoba::LayerDirection::Bottom);
