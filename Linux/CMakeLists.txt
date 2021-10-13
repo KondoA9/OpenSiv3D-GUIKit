@@ -64,6 +64,7 @@ set(SOURCE_FILES
 "../Aoba/src/UserInterface/Component/UIIcon/UIIcon.cpp"
 "../Aoba/src/UserInterface/Component/UIImageView/UIImageView.cpp"
 "../Aoba/src/UserInterface/Component/UIInputField/UIInputField.cpp"
+"../Aoba/src/UserInterface/Component/UIInputField/KeyboardOperation/KeyboardOperation.cpp"
 "../Aoba/src/UserInterface/Component/UIRect/UIRect.cpp"
 "../Aoba/src/UserInterface/Component/UISlider/UISlider.cpp"
 "../Aoba/src/UserInterface/Component/UIText/UIText.cpp"
