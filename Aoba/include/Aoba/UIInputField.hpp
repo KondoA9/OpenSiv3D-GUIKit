@@ -2,6 +2,7 @@
 
 #include "UIText.hpp"
 #include "UnifiedFont.hpp"
+#include "KeyboardOperation.hpp"
 
 namespace s3d::aoba {
 	class UIInputField : public UIText {
@@ -34,6 +35,14 @@ namespace s3d::aoba {
 		static const Array<char32> ForbiddenPathChar, ForbiddenPathCharRecommended;
 
 	private:
+		KeyboardOperation<Input> operationCursorToLeft = KeyboardOperation(KeyLeft, [this] { m_cursorPos--; });
+		KeyboardOperation<Input> operationCursorToRight = KeyboardOperation(KeyRight, [this] { m_cursorPos++; });
+		KeyboardOperation<InputGroup> operationSelectAll = KeyboardOperation(((KeyControl + KeyA) | (KeyCommand + KeyA)), [this] { selectAllText(); });
+		KeyboardOperation<InputGroup> operationDeleteSelected = KeyboardOperation((KeyBackspace | KeyDelete), [this] { deleteSelectedText(); });
+		KeyboardOperation<InputGroup> operationCopy = KeyboardOperation(((KeyControl + KeyC) | (KeyCommand + KeyC)), [this] { copyText(); });
+		KeyboardOperation<InputGroup> operationPaste = KeyboardOperation(((KeyControl + KeyV) | (KeyCommand + KeyV)), [this] { pasteText(); });
+		KeyboardOperation<InputGroup> operationCut = KeyboardOperation(((KeyControl + KeyX) | (KeyCommand + KeyX)), [this] { copyText(); deleteSelectedText(); });
+
 		bool m_textSelected = false;
 		bool m_selectingByKeyboard = false;
 		size_t m_selectingCursorStart = 0;
@@ -41,8 +50,7 @@ namespace s3d::aoba {
 		bool m_isCursorVisible = true;
 		RectF m_fieldRect, m_selectingRect;
 
-		Stopwatch m_cursorBeamWatcher, m_cursorMoveDurationWatcher;
-		int32 m_cursorMoveDuration = 500;
+		Stopwatch m_cursorBeamWatcher;
 		size_t m_cursorPos = 0;
 		double m_cursorBeamPosX = 0;
 
@@ -94,5 +102,14 @@ namespace s3d::aoba {
 		void updateTextControls();
 
 		ValidateResult validateNumber(const String& str);
+
+		// Controls
+		void selectAllText();
+
+		void deleteSelectedText();
+
+		void copyText();
+
+		void pasteText();
 	};
 }

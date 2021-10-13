@@ -31,6 +31,7 @@
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponentMouseEvent.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\KeyboardOperation\KeyboardOperation.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIRect\UIRect.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UISlider\UISlider.cpp" />
@@ -55,6 +56,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\AobaInterface.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp" />

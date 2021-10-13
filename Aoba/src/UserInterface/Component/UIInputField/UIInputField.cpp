@@ -166,44 +166,25 @@ namespace s3d::aoba {
 	}
 
 	void UIInputField::updateCursorMovement() {
-		const bool leftMoveable = m_cursorPos > 0;
-		const bool rightMoveable = m_cursorPos < text().length();
+		operationCursorToLeft.update();
+		operationCursorToRight.update();
 
-		const bool pressDurationElapsed = m_cursorMoveDurationWatcher.ms() > m_cursorMoveDuration;
-
-		const bool leftDown = leftMoveable && KeyLeft.down();
-		const bool leftPress = leftMoveable && pressDurationElapsed && KeyLeft.pressed();
-
-		const bool rightDown = rightMoveable && KeyRight.down();
-		const bool rightPress = rightMoveable && pressDurationElapsed && KeyRight.pressed();
-
-		if (leftDown || rightDown) {
-			m_cursorMoveDuration = 500;
-			m_cursorMoveDurationWatcher.restart();
-		}
-		else if (leftPress || rightPress) {
-			m_cursorMoveDuration = 30;
-			m_cursorMoveDurationWatcher.restart();
+		if (m_cursorPos > 0) {
+			operationCursorToLeft.tryCall();
 		}
 
-		if (leftDown || leftPress) {
-			m_cursorPos--;
+		if (m_cursorPos < text().length()) {
+			operationCursorToRight.tryCall();
 		}
 
-		if (rightDown || rightPress) {
-			m_cursorPos++;
-		}
-
-		if (leftDown || leftPress || rightDown || rightPress) {
-			m_cursorMoveDurationWatcher.restart();
+		if (operationCursorToLeft.isCalled() || operationCursorToRight.isCalled()) {
 			m_isCursorVisible = true;
-			m_cursorBeamWatcher.restart();
 			if (!m_selectingByKeyboard) {
 				// Reset selecting
 				if (m_textSelected) {
-					m_cursorPos = (leftDown | leftPress) ? Min(m_selectingCursorStart, m_cursorPos++) : Max(m_selectingCursorStart, m_cursorPos--);
+					m_cursorPos = operationCursorToLeft.isCalled() ? Min(m_selectingCursorStart, m_cursorPos++) : Max(m_selectingCursorStart, m_cursorPos--);
+					m_textSelected = false;
 				}
-				m_textSelected = false;
 				m_selectingCursorStart = m_cursorPos;
 			}
 		}
@@ -221,56 +202,20 @@ namespace s3d::aoba {
 	}
 
 	void UIInputField::updateTextControls() {
+		operationPaste.update();
+		operationSelectAll.update();
+
+		operationPaste.tryCall();
+		operationSelectAll.tryCall();
+
 		if (m_textSelected) {
-			// Copy
-			if (((KeyControl + KeyC) | (KeyCommand + KeyC)).down()) {
-				const auto start = Min(m_selectingCursorStart, m_cursorPos);
-				const auto end = Max(m_selectingCursorStart, m_cursorPos);
-				Clipboard::SetText(text().substr(start, end - start));
-			}
+			operationCut.update();
+			operationCopy.update();
+			operationDeleteSelected.update();
 
-			// Backspace / Delete
-			if ((KeyBackspace | KeyDelete).down()) {
-				const auto start = Min(m_selectingCursorStart, m_cursorPos);
-				const auto end = Max(m_selectingCursorStart, m_cursorPos);
-				String str = text();
-				str.erase(start, end - start);
-				setText(str);
-				m_textSelected = false;
-				m_cursorPos = start;
-			}
-		}
-		else {
-			// Select all
-			if (((KeyControl + KeyA) | (KeyCommand + KeyA)).down()) {
-				m_textSelected = true;
-				m_selectingCursorStart = 0;
-				m_cursorPos = text().length();
-			}
-		}
-
-		// Paste
-		if (((KeyControl + KeyV) | (KeyCommand + KeyV)).down()) {
-			String copiedText;
-			if (Clipboard::GetText(copiedText)) {
-				copiedText.remove(U"\r");
-				copiedText.remove(U"\n");
-				String str = text();
-				if (m_textSelected) {
-					const auto start = Min(m_selectingCursorStart, m_cursorPos);
-					const auto end = Max(m_selectingCursorStart, m_cursorPos);
-					str.erase(start, end - start);
-					str.insert(start, copiedText);
-					setText(str);
-					m_cursorPos = start + copiedText.length();
-					m_textSelected = false;
-				}
-				else {
-					str.insert(m_cursorPos, copiedText);
-					setText(str);
-					m_cursorPos = m_cursorPos + copiedText.length();
-				}
-			}
+			operationCut.tryCall();
+			operationCopy.tryCall();
+			operationDeleteSelected.tryCall();
 		}
 	}
 
@@ -409,5 +354,50 @@ namespace s3d::aoba {
 		}
 
 		return { fixedText };
+	}
+
+	void UIInputField::selectAllText() {
+		m_textSelected = true;
+		m_selectingCursorStart = 0;
+		m_cursorPos = text().length();
+	}
+
+	void UIInputField::deleteSelectedText() {
+		const auto start = Min(m_selectingCursorStart, m_cursorPos);
+		const auto end = Max(m_selectingCursorStart, m_cursorPos);
+		String str = text();
+		str.erase(start, end - start);
+		setText(str);
+		m_textSelected = false;
+		m_cursorPos = start;
+	}
+
+	void UIInputField::copyText() {
+		const auto start = Min(m_selectingCursorStart, m_cursorPos);
+		const auto end = Max(m_selectingCursorStart, m_cursorPos);
+		Clipboard::SetText(text().substr(start, end - start));
+	}
+
+	void UIInputField::pasteText() {
+		String copiedText;
+		if (Clipboard::GetText(copiedText)) {
+			copiedText.remove(U"\r");
+			copiedText.remove(U"\n");
+			String str = text();
+			if (m_textSelected) {
+				const auto start = Min(m_selectingCursorStart, m_cursorPos);
+				const auto end = Max(m_selectingCursorStart, m_cursorPos);
+				str.erase(start, end - start);
+				str.insert(start, copiedText);
+				setText(str);
+				m_cursorPos = start + copiedText.length();
+				m_textSelected = false;
+			}
+			else {
+				str.insert(m_cursorPos, copiedText);
+				setText(str);
+				m_cursorPos = m_cursorPos + copiedText.length();
+			}
+		}
 	}
 }
