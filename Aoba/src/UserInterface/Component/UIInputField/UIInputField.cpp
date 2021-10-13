@@ -200,6 +200,9 @@ namespace s3d::aoba {
 			m_cursorBeamWatcher.restart();
 			if (!m_selectingByKeyboard) {
 				// Reset selecting
+				if (m_textSelected) {
+					m_cursorPos = (leftDown | leftPress) ? Min(m_selectingCursorStart, m_cursorPos++) : Max(m_selectingCursorStart, m_cursorPos--);
+				}
 				m_textSelected = false;
 				m_selectingCursorStart = m_cursorPos;
 			}
