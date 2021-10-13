@@ -223,7 +223,7 @@ namespace s3d::aoba {
 	void UIInputField::updateTextControls() {
 		if (m_textSelected) {
 			// Copy
-			if ((KeyControl + KeyC).down() || (KeyCommand + KeyC).down()) {
+			if (((KeyControl + KeyC) | (KeyCommand + KeyC)).down()) {
 				const auto start = Min(m_selectingCursorStart, m_cursorPos);
 				const auto end = Max(m_selectingCursorStart, m_cursorPos);
 				Clipboard::SetText(text().substr(start, end - start));
@@ -242,7 +242,7 @@ namespace s3d::aoba {
 		}
 		else {
 			// Select all
-			if ((KeyControl + KeyA).down() || (KeyCommand + KeyA).down()) {
+			if (((KeyControl + KeyA) | (KeyCommand + KeyA)).down()) {
 				m_textSelected = true;
 				m_selectingCursorStart = 0;
 				m_cursorPos = text().length();
@@ -250,7 +250,7 @@ namespace s3d::aoba {
 		}
 
 		// Paste
-		if ((KeyControl + KeyV).down() || (KeyCommand + KeyV).down()) {
+		if (((KeyControl + KeyV) | (KeyCommand + KeyV)).down()) {
 			String copiedText;
 			if (Clipboard::GetText(copiedText)) {
 				copiedText.remove(U"\r");
