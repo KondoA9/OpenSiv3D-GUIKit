@@ -4,7 +4,7 @@
 #include <Aoba/DynamicColor.hpp>
 
 namespace s3d::aoba {
-	const Array<char32> UIInputField::ForbiddenPathChar = { '\\', '/', ':', '*', '*', '?', '<', '>', '|' };
+	const Array<char32> UIInputField::ForbiddenPathChar = { '\\', '/', ':', '*', '?', '\"', '<', '>', '|' };
 	const Array<char32> UIInputField::ForbiddenPathCharRecommended = { ' ', ';', ',' };
 	UIText* UIInputField::ui_Warning = nullptr;
 	size_t UIInputField::m_WarningTimeoutID = 0;
@@ -50,7 +50,7 @@ namespace s3d::aoba {
 			updateCursorMovement();
 
 			if (m_selectingByKeyboard) {
-				m_textSelected = m_selectingCursorStart != m_cursorPos; 
+				m_textSelected = m_selectingCursorStart != m_cursorPos;
 			}
 
 			updateCursorBeamPos();

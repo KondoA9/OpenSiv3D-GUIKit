@@ -32,7 +32,11 @@ namespace s3d::aoba {
 		String prefix = U"", suffix = U"";
 		Array<char32> forbiddenCharacters = {};
 
-		static const Array<char32> ForbiddenPathChar, ForbiddenPathCharRecommended;
+		// Includes \ / : * ? " < > |
+		static const Array<char32> ForbiddenPathChar;
+
+		// Includes ; , and space
+		static const Array<char32> ForbiddenPathCharRecommended;
 
 	private:
 		KeyboardOperation<Input> operationCursorToLeft = KeyboardOperation(KeyLeft, [this] { m_cursorPos--; });
