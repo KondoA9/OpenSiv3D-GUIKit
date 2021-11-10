@@ -4,7 +4,7 @@
 #include <atomic>
 
 namespace s3d::aoba {
-	std::atomic<size_t> Timeout::m_Id = 0;
+	std::atomic<size_t> Timeout::m_Id = 1;
 
 	Timeout::Timeout(const std::function<void()>& func, double ms, bool threading) :
 		m_id(m_Id),
@@ -14,14 +14,6 @@ namespace s3d::aoba {
 	{
 		m_Id++;
 		m_stopwatch.start();
-	}
-
-	bool Timeout::isRunning() {
-		return m_started && !m_finished;
-	}
-
-	bool Timeout::isAlive() {
-		return !m_stopped && !m_finished;
 	}
 
 	void Timeout::update() {

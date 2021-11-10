@@ -25,9 +25,13 @@ namespace s3d::aoba {
 			return m_id;
 		}
 
-		bool isRunning();
+		bool isRunning() {
+			return m_started && !m_finished;
+		}
 
-		bool isAlive();
+		bool isAlive() {
+			return !m_stopped && !m_finished;
+		}
 
 		void update();
 
