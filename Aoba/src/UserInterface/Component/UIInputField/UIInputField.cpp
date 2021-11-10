@@ -112,7 +112,16 @@ namespace s3d::aoba {
 	}
 
 	String UIInputField::updateText() {
-		const auto raw = TextInput::GetRawInput();
+		// Delete selected text if inputted
+		{
+			const auto previousText = text();
+			auto editedText = text();
+			TextInput::UpdateText(editedText, TextInputMode::AllowBackSpaceDelete);
+			if (previousText != editedText) {
+				deleteSelectedText();
+			}
+		}
+
 		auto editingString = text();
 
 		m_cursorPos = TextInput::UpdateText(editingString, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
@@ -190,12 +199,16 @@ namespace s3d::aoba {
 	}
 
 	void UIInputField::updateTextSelecting() {
-		if (KeyShift.down()) {
+		if ((KeyShift + KeyLeft).down() || (KeyShift + KeyRight).down()) {
+			if (!m_selectingByKeyboard) {
+				m_selectingCursorStart = m_cursorPos;
+			}
 			m_selectingByKeyboard = true;
-			m_selectingCursorStart = m_cursorPos;
 		}
-
-		if (KeyShift.up()) {
+		else if (const Array<Input> activeKeys = Keyboard::GetAllInputs(); activeKeys.includes_if([](const Input key) {return key.down(); })) {
+			m_selectingByKeyboard = false;
+		}
+		else if (KeyShift.up()) {
 			m_selectingByKeyboard = false;
 		}
 	}
@@ -362,6 +375,10 @@ namespace s3d::aoba {
 	}
 
 	void UIInputField::deleteSelectedText() {
+		if (!m_textSelected) {
+			return;
+		}
+
 		const auto start = Min(m_selectingCursorStart, m_cursorPos);
 		const auto end = Max(m_selectingCursorStart, m_cursorPos);
 		String str = text();
