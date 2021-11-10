@@ -17,8 +17,8 @@ namespace s3d::aoba {
 			Decimals
 		};
 
-		struct ValidateResult {
-			Optional<String> fixedText = none;
+		struct FormatResult {
+			Optional<String> formattedText = none;
 		};
 
 		AobaCreateInputEvent(Inputted);
@@ -90,7 +90,7 @@ namespace s3d::aoba {
 
 		virtual String updateText();
 
-		virtual ValidateResult validateStr(const String& str);
+		virtual FormatResult formatText(const String& str);
 
 	private:
 		void updateCursorMovement();
@@ -105,7 +105,7 @@ namespace s3d::aoba {
 
 		void updateTextControls();
 
-		ValidateResult validateNumber(const String& str);
+		FormatResult formatNumber(const String& str);
 
 		// Controls
 		void selectAllText();
