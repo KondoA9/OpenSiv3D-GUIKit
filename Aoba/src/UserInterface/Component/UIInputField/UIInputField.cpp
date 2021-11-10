@@ -291,6 +291,10 @@ namespace s3d::aoba {
 	}
 
 	UIInputField::FormatResult UIInputField::formatText(const String& str) {
+		if(m_textFormatter.has_value()){
+			return m_textFormatter.value()(str);
+		}
+
 		switch (type)
 		{
 		case s3d::aoba::UIInputField::Type::Number:
