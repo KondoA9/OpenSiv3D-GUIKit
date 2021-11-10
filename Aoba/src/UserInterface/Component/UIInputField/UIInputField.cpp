@@ -112,9 +112,8 @@ namespace s3d::aoba {
 	}
 
 	String UIInputField::updateText() {
-		auto editingString = text();
-
 		const auto raw = TextInput::GetRawInput();
+		auto editingString = text();
 
 		m_cursorPos = TextInput::UpdateText(editingString, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
 
@@ -135,7 +134,7 @@ namespace s3d::aoba {
 
 		// Limit max length
 		if (type == Type::Number && !editingString.isEmpty()) {
-			maxLength = (editingString.starts_with('-') | editingString.includes('.')) ? 9 : 8;
+			maxLength = (editingString.starts_with('-') || editingString.includes('.')) ? 9 : 8;
 		}
 
 		// Fix if reached max length
