@@ -82,7 +82,7 @@ namespace s3d::aoba {
 	void UIInputField::updateInputEvents() {
 		UIText::updateInputEvents();
 
-		if (isFocused()) {
+		if (isFocused() && !operationDeleteSelected.isCalled()) {
 			const String previousText = text();
 
 			const String updatedText = updateText();
@@ -216,15 +216,14 @@ namespace s3d::aoba {
 	void UIInputField::updateTextControls() {
 		operationPaste.update();
 		operationSelectAll.update();
+		operationCut.update();
+		operationCopy.update();
+		operationDeleteSelected.update();
 
 		operationPaste.tryCall();
 		operationSelectAll.tryCall();
 
 		if (m_textSelected) {
-			operationCut.update();
-			operationCopy.update();
-			operationDeleteSelected.update();
-
 			operationCut.tryCall();
 			operationCopy.tryCall();
 			operationDeleteSelected.tryCall();
