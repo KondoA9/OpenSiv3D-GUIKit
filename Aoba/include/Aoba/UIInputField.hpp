@@ -17,8 +17,8 @@ namespace s3d::aoba {
 			Decimals
 		};
 
-		struct ValidateResult {
-			Optional<String> fixedText = none;
+		struct FormatResult {
+			Optional<String> formattedText = none;
 		};
 
 		AobaCreateInputEvent(Inputted);
@@ -47,6 +47,8 @@ namespace s3d::aoba {
 		KeyboardOperation<InputGroup> operationPaste = KeyboardOperation(((KeyControl + KeyV) | (KeyCommand + KeyV)), [this] { pasteText(); });
 		KeyboardOperation<InputGroup> operationCut = KeyboardOperation(((KeyControl + KeyX) | (KeyCommand + KeyX)), [this] { copyText(); deleteSelectedText(); });
 
+		Optional<std::function<FormatResult(const String& str)>> m_textFormatter = none;
+
 		bool m_textSelected = false;
 		bool m_selectingByKeyboard = false;
 		size_t m_selectingCursorStart = 0;
@@ -66,6 +68,14 @@ namespace s3d::aoba {
 
 		const RectF& fieldRect() const {
 			return m_fieldRect;
+		}
+
+		void setTextFormatter(const std::function<FormatResult(const String& str)>& formatter) {
+			m_textFormatter = formatter;
+		}
+
+		void removeTextFormatter() {
+			m_textFormatter = none;
 		}
 
 		double number() {
@@ -90,7 +100,7 @@ namespace s3d::aoba {
 
 		virtual String updateText();
 
-		virtual ValidateResult validateStr(const String& str);
+		virtual FormatResult formatText(const String& str);
 
 	private:
 		void updateCursorMovement();
@@ -105,7 +115,7 @@ namespace s3d::aoba {
 
 		void updateTextControls();
 
-		ValidateResult validateNumber(const String& str);
+		FormatResult formatNumber(const String& str);
 
 		// Controls
 		void selectAllText();

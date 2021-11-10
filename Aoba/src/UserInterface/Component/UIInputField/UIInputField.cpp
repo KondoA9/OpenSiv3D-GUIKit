@@ -154,8 +154,8 @@ namespace s3d::aoba {
 		}
 
 		// Validate
-		if (const auto result = validateStr(editingString); result.fixedText.has_value()) {
-			const auto fixed = result.fixedText.value();
+		if (const auto result = formatText(editingString); result.formattedText.has_value()) {
+			const auto fixed = result.formattedText.value();
 			const auto fixedLen = fixed.length();
 			const auto editingLen = editingString.length();
 			size_t diff = 0;
@@ -290,18 +290,22 @@ namespace s3d::aoba {
 		m_selectingRect = RectF(startPos, textRegion().y, width, textRegion().h);
 	}
 
-	UIInputField::ValidateResult UIInputField::validateStr(const String& str) {
+	UIInputField::FormatResult UIInputField::formatText(const String& str) {
+		if(m_textFormatter.has_value()){
+			return m_textFormatter.value()(str);
+		}
+
 		switch (type)
 		{
 		case s3d::aoba::UIInputField::Type::Number:
-			return validateNumber(str);
+			return formatNumber(str);
 
 		default:
 			return { none };
 		}
 	}
 
-	UIInputField::ValidateResult UIInputField::validateNumber(const String& str) {
+	UIInputField::FormatResult UIInputField::formatNumber(const String& str) {
 		// Remove chars if not '-', '.' or numbers
 		String fixedText = str.removed_if([](const char32& c) {
 			return !('0' <= c && c <= '9') && c != '-' && c != '.';
