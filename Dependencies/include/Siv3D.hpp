@@ -1325,6 +1325,9 @@
 // ペンタブレット | Digitizer
 # include <Siv3D/Pentablet.hpp>
 
+// Leap デバイス | Leap Device
+# include <Siv3D/Leap.hpp>
+
 //////////////////////////////////////////////////
 //
 //	Web カメラ | Webcam
@@ -1567,6 +1570,8 @@
 # include <Siv3D/GlyphCluster.hpp>
 # include <Siv3D/OutlineGlyph.hpp>
 # include <Siv3D/BitmapGlyph.hpp>
+# include <Siv3D/PolygonGlyph.hpp>
+# include <Siv3D/MeshGlyph.hpp>
 # include <Siv3D/SDFGlyph.hpp>
 # include <Siv3D/MSDFGlyph.hpp>
 
@@ -1816,30 +1821,6 @@
 	# include <emscripten.h>
 
 # endif
-
-# if SIV3D_PLATFORM(WEB)
-
-	# define SIV3D_MAINLOOP_BEGIN	s3d::Platform::Web::System::SetMainLoop([&] { s3d::System::Update();
-	# define SIV3D_MAINLOOP_END		});
-
-# else
-
-	# define SIV3D_MAINLOOP_BEGIN	while (s3d::System::Update())
-	# define SIV3D_MAINLOOP_END		
-
-# endif
-/*
-# include <Siv3D.hpp>
-
-void Main()
-{
-	SIV3D_MAINLOOP_BEGIN
-	{
-
-	}
-	SIV3D_MAINLOOP_END
-}
-*/
 
 //////////////////////////////////////////////////
 //

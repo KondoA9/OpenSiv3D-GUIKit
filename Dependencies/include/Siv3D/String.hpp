@@ -10,10 +10,17 @@
 //-----------------------------------------------
 
 # pragma once
+# if  __has_include(<compare>)
+#	include <compare>
+# endif
+# include <functional>
 # include <string>
+# include <unordered_set>
 # include "Common.hpp"
 # include "StringView.hpp"
 # include "Utility.hpp"
+# include "Random.hpp"
+# include "Char.hpp"
 # include "Shuffle.hpp"
 
 namespace s3d
@@ -1129,13 +1136,21 @@ namespace s3d
 		/// @return 新しい文字列
 		String xml_escaped() const;
 
-
-		friend bool operator ==(const String& lhs, const String& rhs) noexcept;
-
-		friend bool operator ==(const value_type* lhs, const String& rhs);
-
 		friend bool operator ==(const String& lhs, const value_type* rhs);
 
+#if __cpp_impl_three_way_comparison
+
+		bool operator == (const String& rhs) const noexcept = default;
+
+		std::strong_ordering operator <=> (const String & rhs) const noexcept = default;
+
+		friend std::strong_ordering operator <=> (const String & lhs, const value_type * rhs);
+
+#else
+
+		friend bool operator ==(const String & lhs, const String & rhs) noexcept;
+
+		friend bool operator ==(const value_type * lhs, const String & rhs);
 
 		friend bool operator !=(const String& lhs, const String& rhs) noexcept;
 
@@ -1171,6 +1186,7 @@ namespace s3d
 
 		friend bool operator >=(const String& lhs, const value_type* rhs);
 
+#endif
 
 		friend String operator +(const value_type lhs, const String& rhs);
 
