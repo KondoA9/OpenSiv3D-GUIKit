@@ -30,5 +30,5 @@
 
 #include "CommandLine.hpp"
 
-// Siv3D v0.6.2
+// Siv3D v0.6.3
 #include <Siv3D.hpp>
