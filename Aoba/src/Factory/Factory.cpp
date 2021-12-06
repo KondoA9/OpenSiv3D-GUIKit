@@ -1,4 +1,4 @@
-﻿#include <Aoba/AobaFactory.hpp>
+﻿#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
 	size_t AobaFactory::m_Id = 0, AobaFactory::m_PreviousId = 0;

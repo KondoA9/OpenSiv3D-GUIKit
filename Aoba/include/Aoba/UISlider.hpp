@@ -4,7 +4,7 @@
 #include "UIRect.hpp"
 #include "UICircle.hpp"
 #include "UIText.hpp"
-#include "AobaFactory.hpp"
+#include "Factory.hpp"
 
 namespace s3d::aoba {
 	class UISlider : public UIView {

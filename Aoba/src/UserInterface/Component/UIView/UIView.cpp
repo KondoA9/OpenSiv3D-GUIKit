@@ -1,6 +1,6 @@
 ﻿#include <Aoba/UIView.hpp>
 #include <Aoba/WindowManager.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
 	void UIView::release() {

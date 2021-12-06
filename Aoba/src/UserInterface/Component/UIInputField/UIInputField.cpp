@@ -1,6 +1,6 @@
 ﻿#include <Aoba/UIInputField.hpp>
 #include <Aoba/PixelUnit.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 #include <Aoba/DynamicColor.hpp>
 
 namespace s3d::aoba {

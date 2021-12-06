@@ -11,7 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp" />
+    <ClCompile Include="..\Aoba\src\Factory\Factory.cpp" />
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp" />
     <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.cpp" />
@@ -45,7 +45,7 @@
     <ClCompile Include="..\Aoba\src\WindowManager\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\ColorTheme.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Constraint.hpp" />

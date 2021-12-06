@@ -2,7 +2,7 @@
 
 #include "UIView.hpp"
 #include "UIButton.hpp"
-#include "AobaFactory.hpp"
+#include "Factory.hpp"
 
 #include <Siv3D.hpp>
 

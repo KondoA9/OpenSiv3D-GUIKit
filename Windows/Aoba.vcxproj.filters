@@ -73,9 +73,6 @@
     <Filter Include="Aoba\WindowManager">
       <UniqueIdentifier>{249619ae-b99c-4922-ae0e-2dd4f07d8580}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\AobaFactory">
-      <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\UserInterface\UserInterface\UIImageView">
       <UniqueIdentifier>{cf997c9c-d86b-463c-bb4a-51a2778f1432}</UniqueIdentifier>
     </Filter>
@@ -99,6 +96,9 @@
     </Filter>
     <Filter Include="Aoba\Core\ParallelTaskManager">
       <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Factory">
+      <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -192,8 +192,8 @@
     <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.cpp">
       <Filter>Aoba\Core\ParallelTaskManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp">
-      <Filter>Aoba\AobaFactory</Filter>
+    <ClCompile Include="..\Aoba\src\Factory\Factory.cpp">
+      <Filter>Aoba\Factory</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\KeyboardOperation\KeyboardOperation.cpp">
       <Filter>Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation</Filter>
@@ -296,8 +296,8 @@
     <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.hpp">
       <Filter>Aoba\Core\ParallelTaskManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp">
-      <Filter>Aoba\AobaFactory</Filter>
+    <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp">
+      <Filter>Aoba\Factory</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp">
       <Filter>Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation</Filter>

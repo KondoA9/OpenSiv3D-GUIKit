@@ -1,6 +1,6 @@
 ﻿#include <Aoba/Page.hpp>
 #include <Aoba/UIView.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
 	Page::Page(const String& identifier) :

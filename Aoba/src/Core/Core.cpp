@@ -2,7 +2,7 @@
 #include <Aoba/Page.hpp>
 #include <Aoba/WindowManager.hpp>
 #include <Aoba/UnifiedFont.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
