@@ -28,13 +28,13 @@ include_directories(
 )
 
 set(SOURCE_FILES
-"../Aoba/src/AobaCore/AobaCore.cpp"
-"../Aoba/src/AobaCore/AobaLifeCycle.cpp"
-"../Aoba/src/AobaCore/PageManager/PageManager.cpp"
-"../Aoba/src/AobaCore/PageManager/PageCycle.cpp"
-"../Aoba/src/AobaCore/ParallelTaskManager/ParallelTaskManager.cpp"
+"../Aoba/src/Core/Core.cpp"
+"../Aoba/src/Core/CoreLifeCycle.cpp"
+"../Aoba/src/Core/PageManager/PageManager.cpp"
+"../Aoba/src/Core/PageManager/PageCycle.cpp"
+"../Aoba/src/Core/ParallelTaskManager/ParallelTaskManager.cpp"
 
-"../Aoba/src/AobaFactory/AobaFactory.cpp"
+"../Aoba/src/Factory/Factory.cpp"
 
 "../Aoba/src/AobaInterface/AobaInterface.cpp"
 
