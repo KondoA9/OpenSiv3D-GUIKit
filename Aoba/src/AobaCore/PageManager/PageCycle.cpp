@@ -132,7 +132,7 @@ namespace s3d::aoba {
 			once = false;
 		}
 
-		if (aoba::AobaCore::IsTerminationPrevented() || aoba::AobaCore::IsParallelTaskAlive()) {
+		if (aoba::Core::IsTerminationPrevented() || aoba::Core::IsParallelTaskAlive()) {
 			updateLayers();
 		}
 		else {

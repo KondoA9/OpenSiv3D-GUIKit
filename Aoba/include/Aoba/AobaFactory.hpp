@@ -10,7 +10,7 @@ namespace s3d::aoba {
 	class Page;
 
 	class AobaFactory {
-		friend AobaCore;
+		friend Core;
 		friend UIComponent;
 		friend UIView;
 		friend Page;
@@ -50,7 +50,7 @@ namespace s3d::aoba {
 		template<class T>
 		[[nodiscard]] static T& Create() {
 			auto& component = AobaFactory::CreateComponent<T>();
-			AobaCore::AppendIsolatedComponent(component);
+			Core::AppendIsolatedComponent(component);
 			return component;
 		}
 

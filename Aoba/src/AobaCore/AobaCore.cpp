@@ -10,7 +10,7 @@
 #include <thread>
 
 namespace s3d::aoba {
-	AobaCore::AobaCore() {
+	Core::Core() {
 		m_pageManager = new PageManager();
 		m_parallelTaskManager = new ParallelTaskManager();
 
@@ -24,32 +24,32 @@ namespace s3d::aoba {
 
 		System::SetTerminationTriggers(UserAction::NoAction);
 
-		AobaCore::AddLicense();
+		Core::AddLicense();
 	}
 
-	AobaCore::~AobaCore() {
+	Core::~Core() {
 		delete m_pageManager;
 		delete m_parallelTaskManager;
 	}
 
-	bool AobaCore::IsParallelTaskAlive() {
+	bool Core::IsParallelTaskAlive() {
 		return Instance().m_parallelTaskManager->isAlive();
 	}
 
-	void AobaCore::SwitchPage(const String& identifier) {
+	void Core::SwitchPage(const String& identifier) {
 		Instance().m_pageManager->switchPage(identifier);
 	}
 
-	void AobaCore::SetColorMode(ColorMode mode) {
+	void Core::SetColorMode(ColorMode mode) {
 		Instance().m_animateColor = true;
 		ColorTheme::SetColorMode(mode);
 	}
 
-	void AobaCore::ToggleColorMode() {
+	void Core::ToggleColorMode() {
 		Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
 	}
 
-	bool AobaCore::animateColor() {
+	bool Core::animateColor() {
 		static double t = 0.0;
 		t += 5.0 * Scene::DeltaTime();
 
@@ -63,12 +63,12 @@ namespace s3d::aoba {
 		return true;
 	}
 
-	void AobaCore::InsertProcessToMainThread(const std::function<void()>& func) {
+	void Core::InsertProcessToMainThread(const std::function<void()>& func) {
 		std::lock_guard<std::mutex> lock(Instance().m_mainThreadInserterMutex);
 		Instance().m_eventsRequestedToRunInMainThread.push_back(func);
 	}
 
-	void AobaCore::CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
+	void Core::CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
 		if (completion) {
 			Instance().m_parallelTaskManager->createTask(func, [completion] {
 				Instance().InsertProcessToMainThread(completion);
@@ -79,12 +79,12 @@ namespace s3d::aoba {
 		}
 	}
 
-	size_t AobaCore::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
+	size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
 		Instance().m_timeouts.push_back(Timeout(func, ms, threading));
 		return Instance().m_timeouts[Instance().m_timeouts.size() - 1].id();
 	}
 
-	bool AobaCore::StopTimeout(size_t id) {
+	bool Core::StopTimeout(size_t id) {
 		for (auto& timeout : Instance().m_timeouts) {
 			if (timeout.id() == id) {
 				return timeout.stop();
@@ -93,7 +93,7 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	bool AobaCore::RestartTimeout(size_t id) {
+	bool Core::RestartTimeout(size_t id) {
 		for (auto& timeout : Instance().m_timeouts) {
 			if (timeout.id() == id) {
 				return timeout.restart();
@@ -102,7 +102,7 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	bool AobaCore::IsTimeoutAlive(size_t id) {
+	bool Core::IsTimeoutAlive(size_t id) {
 		for (auto& timeout : Instance().m_timeouts) {
 			if (timeout.id() == id) {
 				return timeout.isAlive();
@@ -111,23 +111,23 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	Page& AobaCore::getPage(const String& identifier) const noexcept {
+	Page& Core::getPage(const String& identifier) const noexcept {
 		return m_pageManager->getPage(identifier);
 	}
 
-	void AobaCore::appendPage(const std::shared_ptr<Page>& page) {
+	void Core::appendPage(const std::shared_ptr<Page>& page) {
 		m_pageManager->appendPage(page);
 	}
 
-	void AobaCore::AppendIsolatedComponent(const UIComponent& component) {
+	void Core::AppendIsolatedComponent(const UIComponent& component) {
 		Instance().appendIsolatedComponent(AobaFactory::GetComponent(component.id()));
 	}
 
-	void AobaCore::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
 		m_pageManager->appendIsolatedComponent(component);
 	}
 
-	void AobaCore::AddLicense() {
+	void Core::AddLicense() {
 		LicenseInfo licence;
 		licence.title = U"Aoba Framework";
 		licence.copyright = U"Copyright (c) 2021 Ekyu Kondo";

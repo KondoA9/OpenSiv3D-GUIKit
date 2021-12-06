@@ -8,7 +8,7 @@
 #include <Siv3D.hpp>
 
 namespace s3d::aoba {
-	class AobaCore;
+	class Core;
 	class UIView;
 	class AobaFactory;
 	class PageManager;
@@ -45,7 +45,7 @@ namespace s3d::aoba {
 			}
 		};
 
-		friend AobaCore;
+		friend Core;
 		friend AobaFactory;
 		friend UIView;
 		friend PageManager;

@@ -165,7 +165,7 @@ protected:
 		m_uiToolbar.setConstraint(aoba::LayerDirection::Left);
 		m_uiToolbar.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 		m_uiToolbar.setToggleColorModeHandler([this] {
-			aoba::AobaCore::ToggleColorMode();
+			aoba::Core::ToggleColorMode();
 			});
 		m_uiToolbar.setFolderOpendHandler([this](const FilePath& path) {
 			setup(path);
@@ -187,7 +187,7 @@ protected:
 		m_uiMovePage.setConstraint(aoba::LayerDirection::Left, view, aoba::LayerDirection::Left);
 		m_uiMovePage.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 		m_uiMovePage.addEventListener<aoba::MouseEvent::LeftDown>([this] {
-			aoba::AobaCore::SwitchPage(U"start");
+			aoba::Core::SwitchPage(U"start");
 			});
 	}
 
@@ -241,7 +241,7 @@ protected:
 		m_uiButton.setConstraint(aoba::LayerDirection::Left);
 		m_uiButton.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 		m_uiButton.addEventListener<aoba::MouseEvent::LeftDown>([this] {
-			aoba::AobaCore::SwitchPage(U"explorer");
+			aoba::Core::SwitchPage(U"explorer");
 			});
 	}
 };
@@ -249,8 +249,8 @@ protected:
 void AobaMain() {
 	Window::Resize(1280, 720);
 
-	aoba::AobaCore::AppendPage<StartPage>(U"start");
-	aoba::AobaCore::AppendPage<ExplorerPage>(U"explorer");
+	aoba::Core::AppendPage<StartPage>(U"start");
+	aoba::Core::AppendPage<ExplorerPage>(U"explorer");
 
-	aoba::AobaCore::Start();
+	aoba::Core::Start();
 }

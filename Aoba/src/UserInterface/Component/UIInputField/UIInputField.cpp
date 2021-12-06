@@ -240,14 +240,14 @@ namespace s3d::aoba {
 			ui_Warning->setText(U"この文字は許可されていません");
 		}
 
-		AobaCore::StopTimeout(m_WarningTimeoutID);
+		Core::StopTimeout(m_WarningTimeoutID);
 
 		ui_Warning->exist = true;
 		ui_Warning->setConstraint(LayerDirection::Top, *this, LayerDirection::Bottom);
 		ui_Warning->setConstraint(LayerDirection::Height, 30_px);
 		ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
 		ui_Warning->setConstraint(LayerDirection::Width, 250_px);
-		m_WarningTimeoutID = AobaCore::SetTimeout([this] {
+		m_WarningTimeoutID = Core::SetTimeout([this] {
 			ui_Warning->exist = false;
 			}, 3000, false);
 

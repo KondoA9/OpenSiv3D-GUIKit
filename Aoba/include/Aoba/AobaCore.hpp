@@ -12,7 +12,7 @@ namespace s3d::aoba {
 	class UIComponent;
 	enum class ColorMode;
 
-	class AobaCore final {
+	class Core final {
 	private:
 		class PageManager* m_pageManager;
 		class ParallelTaskManager* m_parallelTaskManager;
@@ -27,16 +27,16 @@ namespace s3d::aoba {
 		Array<Timeout> m_timeouts;
 
 	public:
-		AobaCore(const AobaCore&) = delete;
+		Core(const Core&) = delete;
 
-		AobaCore(AobaCore&&) = delete;
+		Core(Core&&) = delete;
 
-		AobaCore& operator=(const AobaCore&) = delete;
+		Core& operator=(const Core&) = delete;
 
-		AobaCore& operator=(AobaCore&&) = delete;
+		Core& operator=(Core&&) = delete;
 
-		static AobaCore& Instance() {
-			static AobaCore instance;
+		static Core& Instance() {
+			static Core instance;
 			return instance;
 		}
 
@@ -111,9 +111,9 @@ namespace s3d::aoba {
 		static void AppendIsolatedComponent(const UIComponent& component);
 
 	private:
-		AobaCore();
+		Core();
 
-		~AobaCore();
+		~Core();
 
 		static void AddLicense();
 
