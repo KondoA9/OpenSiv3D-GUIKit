@@ -126,7 +126,7 @@
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp">
       <Filter>Aoba\Imaging</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\Core\LifeCycle.cpp">
+    <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp">
       <Filter>Aoba\Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp">
