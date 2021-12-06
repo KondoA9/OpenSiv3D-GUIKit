@@ -5,7 +5,7 @@ namespace s3d::aoba {
 	Factory Factory::m_Instance;
 
 	size_t Factory::GetId() {
-		FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through AobaFactory::Create()");
+		FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through Factory::Create()");
 
 		m_PreviousId = m_Id;
 
