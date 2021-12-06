@@ -74,12 +74,12 @@ protected:
 
 	void onLoaded() override {
 		// Toggle color mode test
-		aoba::SetTimeout([] {
-			aoba::SetColorMode(aoba::ColorMode::Light);
-			aoba::ToggleColorMode();
+		aoba::Core::SetTimeout([] {
+			aoba::Core::SetColorMode(aoba::ColorMode::Light);
+			aoba::Core::ToggleColorMode();
 			}, 2000, false);
 
-		aoba::SetTimeout([this] {
+		aoba::Core::SetTimeout([this] {
 			Test::Assert(
 				view.backgroundColor == aoba::DynamicColor::Background.dark,
 				"Toggled color mode to dark from light, but color of the view is not dark color"
@@ -87,8 +87,8 @@ protected:
 			}, 4000, false);
 
 		// 5sec later, switch page
-		aoba::SetTimeout([] {
-			aoba::SwitchPage(U"ComponentsTest");
+		aoba::Core::SetTimeout([] {
+			aoba::Core::SwitchPage(U"ComponentsTest");
 			}, 5000, true);
 
 		pagingTest.loaded();

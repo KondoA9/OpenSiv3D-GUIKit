@@ -63,7 +63,7 @@ void ComponentsTest::onLoaded() {
 	tab2.backgroundColor = aoba::DynamicColor::DefaultBlue;
 
 	// 5sec later, switch page
-	aoba::SetTimeout([] {
-		aoba::SwitchPage(U"FocusTest");
+	aoba::Core::SetTimeout([] {
+		aoba::Core::SwitchPage(U"FocusTest");
 		}, 5000, true);
 }
