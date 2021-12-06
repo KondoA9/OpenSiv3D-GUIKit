@@ -13,13 +13,17 @@ void Main() {
 }
 
 namespace s3d::aoba {
-	void AobaCore::start() {
-		if (m_pageManager->initialize()) {
-			run();
+	void AobaCore::Start() {
+		if (Instance().m_pageManager->initialize()) {
+			Instance().run();
 		}
 		else {
 			Logger << U"Error(AobaCore): No pages are registered.";
 		}
+	}
+
+	void AobaCore::Terminate() {
+		Instance().m_pageManager->terminate();
 	}
 
 	void AobaCore::run() {
@@ -80,9 +84,5 @@ namespace s3d::aoba {
 		if (!alive) {
 			m_timeouts.release();
 		}
-	}
-
-	void AobaCore::terminate() {
-		m_pageManager->terminate();
 	}
 }

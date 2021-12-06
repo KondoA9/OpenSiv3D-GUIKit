@@ -1,8 +1,8 @@
 ﻿#include "PageManager.hpp"
 #include <Aoba/Page.hpp>
 #include <Aoba/WindowManager.hpp>
-#include <Aoba/AobaInterface.hpp>
 #include <Aoba/UIView.hpp>
+#include <Aoba/AobaCore.hpp>
 
 namespace s3d::aoba {
 	void PageManager::update() {
@@ -132,7 +132,7 @@ namespace s3d::aoba {
 			once = false;
 		}
 
-		if (aoba::IsTerminationPrevented() || aoba::IsParallelTaskAlive()) {
+		if (aoba::AobaCore::IsTerminationPrevented() || aoba::AobaCore::IsParallelTaskAlive()) {
 			updateLayers();
 		}
 		else {

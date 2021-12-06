@@ -50,7 +50,7 @@ namespace s3d::aoba {
 		template<class T>
 		[[nodiscard]] static T& Create() {
 			auto& component = AobaFactory::CreateComponent<T>();
-			AobaCore::Instance().appendIsolatedComponent(component);
+			AobaCore::AppendIsolatedComponent(component);
 			return component;
 		}
 

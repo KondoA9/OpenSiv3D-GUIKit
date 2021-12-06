@@ -40,36 +40,36 @@ namespace s3d::aoba {
 			return instance;
 		}
 
-		bool isTerminationPrevented() const {
-			return m_terminationPrevented;
+		static bool IsTerminationPrevented() {
+			return Instance().m_terminationPrevented;
 		}
 
-		bool isParalellTaskAlive() const;
+		static bool IsParallelTaskAlive();
 
-		void start();
+		static void Start();
 
-		void switchPage(const String& identifier);
+		static void SwitchPage(const String& identifier);
 
-		void setColorMode(ColorMode mode);
+		static void SetColorMode(ColorMode mode);
 
-		void toggleColorMode();
+		static void ToggleColorMode();
 
-		void terminate();
+		static void Terminate();
 
 		// If you call this, you should call ContinueTermination() to terminate app
-		void preventTermination() {
-			m_terminationPrevented = true;
+		static void PreventTermination() {
+			Instance().m_terminationPrevented = true;
 		}
 
-		void continueTermination() {
-			m_terminationPrevented = false;
+		static void ContinueTermination() {
+			Instance().m_terminationPrevented = false;
 		}
 
 		/// <summary>
 		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
 		/// </summary>
 		/// <param name="func">The process that runs on main thread.</param>
-		void insertProcessToMainThread(const std::function<void()>& func);
+		static void InsertProcessToMainThread(const std::function<void()>& func);
 
 		/// <summary>
 		/// Request to run a task parallelly, and if need, a completion process will runs on main thread.
@@ -77,7 +77,7 @@ namespace s3d::aoba {
 		/// </summary>
 		/// <param name="func">The process that runs parallelly. Do not set a process that changes user interfaces.</param>
 		/// <param name="completion">The process that runs on main thread after func() ended.</param>
-		void createParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
+		static void CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
 		/// <summary>
 		/// Set an event with timeout. Do not set a process that changes user interfaces.
@@ -86,29 +86,29 @@ namespace s3d::aoba {
 		/// <param name="ms">The time to time out.</param>
 		/// <param name="threading">If true, the function runs asynchronously.</param>
 		/// <returns>The ID of the Timeout. ID is 1, 2, 3, ...</returns>
-		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
+		static size_t SetTimeout(const std::function<void()>& func, double ms, bool threading);
 
-		bool stopTimeout(size_t id);
+		static bool StopTimeout(size_t id);
 
-		bool restartTimeout(size_t id);
+		static bool RestartTimeout(size_t id);
 
-		bool isTimeoutAlive(size_t id);
+		static bool IsTimeoutAlive(size_t id);
 
-		void addDrawingEvent(const std::function<void()>& func) {
-			m_drawingEvents.push_back(func);
+		static void AddDrawingEvent(const std::function<void()>& func) {
+			Instance().m_drawingEvents.push_back(func);
 		}
 
 		template<class T>
-		T& getPage(const String& identifier) const noexcept {
+		static T& GetPage(const String& identifier) noexcept {
 			return static_cast<T&>(getPage(identifier));
 		}
 
 		template<class T>
-		void appendPage(const String& identifier) {
-			appendPage(std::shared_ptr<T>(new T(identifier)));
+		static void AppendPage(const String& identifier) {
+			Instance().appendPage(std::shared_ptr<T>(new T(identifier)));
 		}
 
-		void appendIsolatedComponent(const UIComponent& component);
+		static void AppendIsolatedComponent(const UIComponent& component);
 
 	private:
 		AobaCore();
