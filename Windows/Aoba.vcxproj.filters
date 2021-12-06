@@ -79,9 +79,6 @@
     <Filter Include="Aoba\AobaFactory">
       <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\AobaInterface">
-      <UniqueIdentifier>{a8d020f5-ab08-4c3b-9974-1b93aa667e0c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\AobaCore\PageManager">
       <UniqueIdentifier>{3232ea50-e972-4532-82ba-40f75cd65b71}</UniqueIdentifier>
     </Filter>
@@ -170,9 +167,6 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Page\Page.cpp">
       <Filter>Aoba\Page</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaInterface\AobaInterface.cpp">
-      <Filter>Aoba\AobaInterface</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageManager.cpp">
       <Filter>Aoba\AobaCore\PageManager</Filter>
@@ -286,9 +280,6 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp">
       <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\AobaInterface.hpp">
-      <Filter>Aoba\AobaInterface</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\AobaCore\PageManager\PageManager.hpp">
       <Filter>Aoba\AobaCore\PageManager</Filter>

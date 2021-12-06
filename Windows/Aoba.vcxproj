@@ -19,7 +19,6 @@
     <ClCompile Include="..\Aoba\src\AobaCore\AobaLifeCycle.cpp" />
     <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageManager.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaInterface\AobaInterface.cpp" />
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
@@ -53,7 +52,6 @@
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\AobaCore.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\AobaInterface.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp" />
