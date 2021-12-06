@@ -56,6 +56,7 @@ namespace s3d::aoba {
 
 		void terminate();
 
+		// If you call this, you should call ContinueTermination() to terminate app
 		void preventTermination() {
 			m_terminationPrevented = true;
 		}
@@ -64,10 +65,27 @@ namespace s3d::aoba {
 			m_terminationPrevented = false;
 		}
 
+		/// <summary>
+		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
+		/// </summary>
+		/// <param name="func">The process that runs on main thread.</param>
 		void insertProcessToMainThread(const std::function<void()>& func);
 
+		/// <summary>
+		/// Request to run a task parallelly, and if need, a completion process will runs on main thread.
+		/// 
+		/// </summary>
+		/// <param name="func">The process that runs parallelly. Do not set a process that changes user interfaces.</param>
+		/// <param name="completion">The process that runs on main thread after func() ended.</param>
 		void createParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
 
+		/// <summary>
+		/// Set an event with timeout. Do not set a process that changes user interfaces.
+		/// </summary>
+		/// <param name="func">A function that runs when timed out.</param>
+		/// <param name="ms">The time to time out.</param>
+		/// <param name="threading">If true, the function runs asynchronously.</param>
+		/// <returns>The ID of the Timeout. ID is 1, 2, 3, ...</returns>
 		size_t setTimeout(const std::function<void()>& func, double ms, bool threading);
 
 		bool stopTimeout(size_t id);
