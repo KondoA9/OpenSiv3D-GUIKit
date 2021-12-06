@@ -2,7 +2,7 @@
 #include <Aoba/Page.hpp>
 #include <Aoba/WindowManager.hpp>
 #include <Aoba/UIView.hpp>
-#include <Aoba/AobaCore.hpp>
+#include <Aoba/Core.hpp>
 
 namespace s3d::aoba {
 	void PageManager::update() {

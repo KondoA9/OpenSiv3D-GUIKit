@@ -120,13 +120,13 @@
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp">
       <Filter>Aoba\UserInterface\PixelUnit</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaCore\AobaCore.cpp">
+    <ClCompile Include="..\Aoba\src\Core\Core.cpp">
       <Filter>Aoba\AobaCore</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp">
       <Filter>Aoba\Imaging</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaCore\AobaLifeCycle.cpp">
+    <ClCompile Include="..\Aoba\src\Core\AobaLifeCycle.cpp">
       <Filter>Aoba\AobaCore</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp">
@@ -168,10 +168,10 @@
     <ClCompile Include="..\Aoba\src\Page\Page.cpp">
       <Filter>Aoba\Page</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageManager.cpp">
+    <ClCompile Include="..\Aoba\src\Core\PageManager\PageManager.cpp">
       <Filter>Aoba\AobaCore\PageManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageCycle.cpp">
+    <ClCompile Include="..\Aoba\src\Core\PageManager\PageCycle.cpp">
       <Filter>Aoba\AobaCore\PageManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp">
@@ -189,7 +189,7 @@
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp">
       <Filter>Aoba\CommandLine</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\AobaCore\ParallelTaskManager\ParallelTaskManager.cpp">
+    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.cpp">
       <Filter>Aoba\AobaCore\ParallelTaskManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp">
@@ -230,7 +230,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp">
       <Filter>Aoba\Page</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\AobaCore.hpp">
+    <ClInclude Include="..\Aoba\include\Aoba\Core.hpp">
       <Filter>Aoba\AobaCore</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp">
@@ -281,7 +281,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp">
       <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\src\AobaCore\PageManager\PageManager.hpp">
+    <ClInclude Include="..\Aoba\src\Core\PageManager\PageManager.hpp">
       <Filter>Aoba\AobaCore\PageManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIImageView.hpp">
@@ -293,7 +293,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp">
       <Filter>Aoba\CommandLine</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\src\AobaCore\ParallelTaskManager\ParallelTaskManager.hpp">
+    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.hpp">
       <Filter>Aoba\AobaCore\ParallelTaskManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp">

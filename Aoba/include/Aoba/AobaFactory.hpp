@@ -2,7 +2,7 @@
 
 #include "UIComponent.hpp"
 #include "UIView.hpp"
-#include "AobaCore.hpp"
+#include "Core.hpp"
 
 #include <Siv3D.hpp>
 

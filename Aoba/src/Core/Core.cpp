@@ -1,4 +1,4 @@
-﻿#include <Aoba/AobaCore.hpp>
+﻿#include <Aoba/Core.hpp>
 #include <Aoba/Page.hpp>
 #include <Aoba/WindowManager.hpp>
 #include <Aoba/UnifiedFont.hpp>

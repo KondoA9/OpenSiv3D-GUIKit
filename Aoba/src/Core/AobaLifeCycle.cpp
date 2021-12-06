@@ -1,4 +1,4 @@
-﻿#include <Aoba/AobaCore.hpp>
+﻿#include <Aoba/Core.hpp>
 #include <Aoba/ColorTheme.hpp>
 #include <Aoba/WindowManager.hpp>
 
