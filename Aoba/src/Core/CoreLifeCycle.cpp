@@ -18,7 +18,7 @@ namespace s3d::aoba {
 			Instance().run();
 		}
 		else {
-			Logger << U"Error(AobaCore): No pages are registered.";
+			Logger << U"Error(Core): No pages are registered.";
 		}
 	}
 

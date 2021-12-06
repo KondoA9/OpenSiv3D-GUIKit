@@ -30,8 +30,8 @@ namespace s3d::aoba {
 		};
 
 	private:
-		UIView& ui_tabView = AobaFactory::Create<UIView>(*this);
-		UIView& ui_tabSelectorView = AobaFactory::Create<UIView>(*this);
+		UIView& ui_tabView = Factory::Create<UIView>(*this);
+		UIView& ui_tabSelectorView = Factory::Create<UIView>(*this);
 
 		Array<Tab> m_tabs;
 		size_t m_tabIndex = 0;
@@ -51,8 +51,8 @@ namespace s3d::aoba {
 		T& appendTab(const String& name) {
 			static_assert(std::is_base_of<UIView, T>::value, "Specified Type does not inherit gui::UIView.");
 
-			auto& view = AobaFactory::Create<T>(ui_tabView);
-			auto& selector = AobaFactory::Create<UIButton>(ui_tabSelectorView);
+			auto& view = Factory::Create<T>(ui_tabView);
+			auto& selector = Factory::Create<UIButton>(ui_tabSelectorView);
 
 			initializeTab(name, selector, view);
 

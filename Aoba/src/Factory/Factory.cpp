@@ -1,10 +1,10 @@
 ﻿#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
-	size_t AobaFactory::m_Id = 0, AobaFactory::m_PreviousId = 0;
-	AobaFactory AobaFactory::m_Instance;
+	size_t Factory::m_Id = 0, Factory::m_PreviousId = 0;
+	Factory Factory::m_Instance;
 
-	size_t AobaFactory::GetId() {
+	size_t Factory::GetId() {
 		FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through AobaFactory::Create()");
 
 		m_PreviousId = m_Id;
@@ -12,7 +12,7 @@ namespace s3d::aoba {
 		return m_Id;
 	}
 
-	std::shared_ptr<UIComponent>& AobaFactory::GetComponent(size_t id) {
+	std::shared_ptr<UIComponent>& Factory::GetComponent(size_t id) {
 		for (auto& component : m_Instance.m_components) {
 			if (component && component->id() == id) {
 				return component;
@@ -22,7 +22,7 @@ namespace s3d::aoba {
 		throw Error{ U"A component with identifier \"{}\" not found."_fmt(id) };
 	}
 
-	void AobaFactory::RequestReleaseComponent(size_t id) {
+	void Factory::RequestReleaseComponent(size_t id) {
 		for (auto& component : m_Instance.m_components) {
 			if (component && component->id() == id) {
 				component.reset();
@@ -31,7 +31,7 @@ namespace s3d::aoba {
 		}
 	}
 
-	void AobaFactory::ReleaseInvalidComponents() {
+	void Factory::ReleaseInvalidComponents() {
 		m_Instance.m_components.remove_if([](const std::shared_ptr<UIComponent>& component) {
 			return !component;
 			});

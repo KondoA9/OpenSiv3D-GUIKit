@@ -120,7 +120,7 @@ namespace s3d::aoba {
 	}
 
 	void Core::AppendIsolatedComponent(const UIComponent& component) {
-		Instance().appendIsolatedComponent(AobaFactory::GetComponent(component.id()));
+		Instance().appendIsolatedComponent(Factory::GetComponent(component.id()));
 	}
 
 	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {

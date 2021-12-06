@@ -9,7 +9,7 @@ namespace s3d::aoba {
 
 	class UIView : public UIRect {
 		friend PageManager;
-		friend AobaFactory;
+		friend Factory;
 
 	private:
 		Array<std::shared_ptr<UIComponent>> m_components;
@@ -47,7 +47,7 @@ namespace s3d::aoba {
 		}
 
 	protected:
-		// This function runs after a component appended. gui::AobaFactory::Create<UIComponent>(this);
+		// This function runs after a component appended. gui::Factory::Create<UIComponent>(this);
 		virtual void onAfterComponentAppended() {}
 
 		void update() override;

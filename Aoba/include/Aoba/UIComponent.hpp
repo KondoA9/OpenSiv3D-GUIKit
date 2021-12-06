@@ -10,7 +10,7 @@
 namespace s3d::aoba {
 	class Core;
 	class UIView;
-	class AobaFactory;
+	class Factory;
 	class PageManager;
 
 	AobaCreateInputEvent(UnFocused);
@@ -46,7 +46,7 @@ namespace s3d::aoba {
 		};
 
 		friend Core;
-		friend AobaFactory;
+		friend Factory;
 		friend UIView;
 		friend PageManager;
 

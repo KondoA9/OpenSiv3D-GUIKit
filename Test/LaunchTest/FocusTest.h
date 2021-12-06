@@ -5,7 +5,7 @@
 };
 
 void FocusTest::onLoaded() {
-	auto& rect = aoba::AobaFactory::Create<aoba::UIRect>(view);
+	auto& rect = aoba::Factory::Create<aoba::UIRect>(view);
 
 	const size_t focusTimeout = aoba::Core::SetTimeout([] {
 		Test::Assert(false, "Focused the component, but event was not triggered");

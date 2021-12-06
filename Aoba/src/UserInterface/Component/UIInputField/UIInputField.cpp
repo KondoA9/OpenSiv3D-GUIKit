@@ -232,7 +232,7 @@ namespace s3d::aoba {
 
 	void UIInputField::fireForbiddenCharsNotifier() {
 		if (ui_Warning == nullptr) {
-			ui_Warning = &AobaFactory::Create<UIText>();
+			ui_Warning = &Factory::Create<UIText>();
 			ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
 			ui_Warning->textColor = Palette::Black;
 			ui_Warning->setDirection(TextDirection::Center);

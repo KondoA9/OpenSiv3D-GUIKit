@@ -9,7 +9,7 @@
 namespace s3d::aoba {
 	class Page;
 
-	class AobaFactory {
+	class Factory {
 		friend Core;
 		friend UIComponent;
 		friend UIView;
@@ -17,23 +17,23 @@ namespace s3d::aoba {
 
 	private:
 		static size_t m_Id, m_PreviousId;
-		static AobaFactory m_Instance;
+		static Factory m_Instance;
 
 		size_t m_releaseCounter = 0;
 		Array<std::shared_ptr<UIComponent>> m_components;
 
 	public:
-		AobaFactory(const AobaFactory&) = delete;
+		Factory(const Factory&) = delete;
 
-		AobaFactory(AobaFactory&&) = delete;
+		Factory(Factory&&) = delete;
 
-		AobaFactory& operator =(const AobaFactory&) = delete;
+		Factory& operator =(const Factory&) = delete;
 
-		AobaFactory& operator =(AobaFactory&&) = delete;
+		Factory& operator =(Factory&&) = delete;
 
 		template<class T>
 		[[nodiscard]] static T& Create(UIView& parent) {
-			auto& component = AobaFactory::CreateComponent<T>();
+			auto& component = Factory::CreateComponent<T>();
 
 			parent.appendComponent(component);
 			parent.onAfterComponentAppended();
@@ -43,19 +43,19 @@ namespace s3d::aoba {
 
 		template<class T>
 		[[nodiscard]] static T& Create(UIView* parent) {
-			return AobaFactory::Create<T>(*parent);
+			return Factory::Create<T>(*parent);
 		}
 
 		// Create component without parent component
 		template<class T>
 		[[nodiscard]] static T& Create() {
-			auto& component = AobaFactory::CreateComponent<T>();
+			auto& component = Factory::CreateComponent<T>();
 			Core::AppendIsolatedComponent(component);
 			return component;
 		}
 
 	private:
-		AobaFactory() = default;
+		Factory() = default;
 
 		static size_t GetId();
 

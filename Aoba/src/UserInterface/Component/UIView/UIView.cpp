@@ -19,7 +19,7 @@ namespace s3d::aoba {
 			return component.id() == component2->id();
 			})) {
 
-			m_components.push_back(AobaFactory::GetComponent(component.id()));
+			m_components.push_back(Factory::GetComponent(component.id()));
 		}
 	}
 

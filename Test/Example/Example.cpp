@@ -6,9 +6,9 @@ private:
 	std::function<void(const FilePath&)> m_folderOpenedHandler;
 	std::function<void()> m_openParentDirHandler;
 
-	aoba::UIToggleButton& m_uiToggleColorModeButton = aoba::AobaFactory::Create<aoba::UIToggleButton>(this);
-	aoba::UIButton& m_uiParentDirButton = aoba::AobaFactory::Create<aoba::UIButton>(this);
-	aoba::UIButton& m_uiOpenDirectoryButton = aoba::AobaFactory::Create<aoba::UIButton>(this);
+	aoba::UIToggleButton& m_uiToggleColorModeButton = aoba::Factory::Create<aoba::UIToggleButton>(this);
+	aoba::UIButton& m_uiParentDirButton = aoba::Factory::Create<aoba::UIButton>(this);
+	aoba::UIButton& m_uiOpenDirectoryButton = aoba::Factory::Create<aoba::UIButton>(this);
 
 public:
 	using UIView::UIView;
@@ -67,10 +67,10 @@ private:
 	FilePath m_path;
 	std::function<void(const FilePath& path)> m_folderSelectedHandler;
 
-	aoba::UIIcon& m_uiIcon = aoba::AobaFactory::Create<aoba::UIIcon>(this);
-	aoba::UIText& m_uiFileName = aoba::AobaFactory::Create<aoba::UIText>(this);
-	aoba::UIText& m_uiUpdatedDate = aoba::AobaFactory::Create<aoba::UIText>(this);
-	aoba::UIText& m_uiKind = aoba::AobaFactory::Create<aoba::UIText>(this);
+	aoba::UIIcon& m_uiIcon = aoba::Factory::Create<aoba::UIIcon>(this);
+	aoba::UIText& m_uiFileName = aoba::Factory::Create<aoba::UIText>(this);
+	aoba::UIText& m_uiUpdatedDate = aoba::Factory::Create<aoba::UIText>(this);
+	aoba::UIText& m_uiKind = aoba::Factory::Create<aoba::UIText>(this);
 
 public:
 	FileView()
@@ -150,9 +150,9 @@ private:
 
 	FilePath m_path;
 
-	ToolBar& m_uiToolbar = aoba::AobaFactory::Create<ToolBar>(view);
-	aoba::UIVStackView& m_uiFilesView = aoba::AobaFactory::Create<aoba::UIVStackView>(view);
-	aoba::UIButton& m_uiMovePage = aoba::AobaFactory::Create<aoba::UIButton>(view);
+	ToolBar& m_uiToolbar = aoba::Factory::Create<ToolBar>(view);
+	aoba::UIVStackView& m_uiFilesView = aoba::Factory::Create<aoba::UIVStackView>(view);
+	aoba::UIButton& m_uiMovePage = aoba::Factory::Create<aoba::UIButton>(view);
 
 protected:
 	void onLoaded() override {
@@ -199,7 +199,7 @@ private:
 
 		const auto contents = FileSystem::DirectoryContents(dir, Recursive::No);
 		for (const auto& path : contents) {
-			auto& row = aoba::AobaFactory::Create<FileView>(m_uiFilesView);
+			auto& row = aoba::Factory::Create<FileView>(m_uiFilesView);
 			row.setPath(path);
 			row.penetrateMouseEvent = true;
 			row.setFolderSelectedHandler([this](FilePath path) {
@@ -213,9 +213,9 @@ class StartPage : public aoba::Page {
 private:
 	using Page::Page;
 
-	aoba::UIText& m_uiTitle = aoba::AobaFactory::Create<aoba::UIText>(view);
-	aoba::UIInputField& m_uiInputField = aoba::AobaFactory::Create<aoba::UIInputField>(view);
-	aoba::UIButton& m_uiButton = aoba::AobaFactory::Create<aoba::UIButton>(view);
+	aoba::UIText& m_uiTitle = aoba::Factory::Create<aoba::UIText>(view);
+	aoba::UIInputField& m_uiInputField = aoba::Factory::Create<aoba::UIInputField>(view);
+	aoba::UIButton& m_uiButton = aoba::Factory::Create<aoba::UIButton>(view);
 
 protected:
 	void onLoaded() override {

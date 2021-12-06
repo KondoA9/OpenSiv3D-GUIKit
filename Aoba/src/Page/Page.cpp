@@ -4,7 +4,7 @@
 
 namespace s3d::aoba {
 	Page::Page(const String& identifier) :
-		view(AobaFactory::CreateComponent<UIView>()),
+		view(Factory::CreateComponent<UIView>()),
 		m_identifier(identifier)
 	{
 		view.setConstraint(LayerDirection::Top);

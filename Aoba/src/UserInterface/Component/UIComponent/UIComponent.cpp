@@ -1,5 +1,5 @@
 ﻿#include <Aoba/UIComponent.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
@@ -8,16 +8,16 @@ namespace s3d::aoba {
 	UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
 		backgroundColor(_backgroundColor),
 		frameColor(_frameColor),
-		m_id(AobaFactory::GetId())
+		m_id(Factory::GetId())
 	{}
 
 	UIComponent::~UIComponent() {
-		AobaFactory::RequestReleaseComponent(m_id);
+		Factory::RequestReleaseComponent(m_id);
 		release();
 	}
 
 	void UIComponent::initialize() {
-		FMT_ASSERT(m_valid, "Make sure you instantiated through AobaFactory::Create()");
+		FMT_ASSERT(m_valid, "Make sure you instantiated through Factory::Create()");
 	}
 
 	void UIComponent::updateLayer(const Rect& scissor) {
@@ -79,7 +79,7 @@ namespace s3d::aoba {
 	void UIComponent::focus() {
 		try {
 			// Focused component is this
-			m_FocusedComponent = AobaFactory::GetComponent(m_id);;
+			m_FocusedComponent = Factory::GetComponent(m_id);;
 		}
 		catch (...) {
 			m_FocusedComponent.reset();
