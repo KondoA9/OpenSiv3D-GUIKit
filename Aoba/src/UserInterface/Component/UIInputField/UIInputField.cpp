@@ -1,4 +1,4 @@
-﻿#include <Aoba/UIInputField.hpp>
+#include <Aoba/UIInputField.hpp>
 #include <Aoba/PixelUnit.hpp>
 #include <Aoba/Factory.hpp>
 #include <Aoba/DynamicColor.hpp>
@@ -19,7 +19,7 @@ namespace s3d::aoba {
 		addEventListener<Focused>([this] {
 			m_cursorPos = text().length();
 			m_cursorBeamWatcher.start();
-			}), true;
+			}, true);
 
 		addEventListener<UnFocused>([this] {
 			if (!prefix.empty() && !text().starts_with(prefix)) {
@@ -257,7 +257,7 @@ namespace s3d::aoba {
 	void UIInputField::updateCursorBeamPos() {
 		m_cursorBeamPosX = textRegion().x;
 
-		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+        for (const auto [i, glyph] : Indexed(font().getGlyphs(text()))) {
 			if (i == m_cursorPos) {
 				break;
 			}
@@ -273,7 +273,7 @@ namespace s3d::aoba {
 		double startPos = textRegion().x;
 		double width = 0;
 
-		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+		for (const auto [i, glyph] : Indexed(font().getGlyphs(text()))) {
 			if (i < start) {
 				startPos += glyph.xAdvance;
 			}
