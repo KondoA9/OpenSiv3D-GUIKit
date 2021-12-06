@@ -100,7 +100,7 @@ namespace s3d::aoba {
 
 		template<class T>
 		static T& GetPage(const String& identifier) noexcept {
-			return static_cast<T&>(getPage(identifier));
+			return static_cast<T&>(Instance().getPage(identifier));
 		}
 
 		template<class T>
