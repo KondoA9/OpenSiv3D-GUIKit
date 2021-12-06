@@ -31,9 +31,6 @@
     <Filter Include="Aoba\Page">
       <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\AobaCore">
-      <UniqueIdentifier>{054a96f4-680e-475a-843d-cce404d55269}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\Imaging">
       <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
     </Filter>
@@ -79,9 +76,6 @@
     <Filter Include="Aoba\AobaFactory">
       <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\AobaCore\PageManager">
-      <UniqueIdentifier>{3232ea50-e972-4532-82ba-40f75cd65b71}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\UserInterface\UserInterface\UIImageView">
       <UniqueIdentifier>{cf997c9c-d86b-463c-bb4a-51a2778f1432}</UniqueIdentifier>
     </Filter>
@@ -91,14 +85,20 @@
     <Filter Include="Aoba\CommandLine">
       <UniqueIdentifier>{6d0d160c-5188-43c8-b5db-ec94219256aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\AobaCore\ParallelTaskManager">
-      <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\UserInterface\UserInterface\UIVStackView">
       <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation">
       <UniqueIdentifier>{1ba2773f-98d4-4967-be4b-688122e9ac14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core">
+      <UniqueIdentifier>{054a96f4-680e-475a-843d-cce404d55269}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\PageManager">
+      <UniqueIdentifier>{3232ea50-e972-4532-82ba-40f75cd65b71}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\ParallelTaskManager">
+      <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -121,13 +121,13 @@
       <Filter>Aoba\UserInterface\PixelUnit</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\Core.cpp">
-      <Filter>Aoba\AobaCore</Filter>
+      <Filter>Aoba\Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp">
       <Filter>Aoba\Imaging</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\Core\AobaLifeCycle.cpp">
-      <Filter>Aoba\AobaCore</Filter>
+    <ClCompile Include="..\Aoba\src\Core\LifeCycle.cpp">
+      <Filter>Aoba\Core</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp">
       <Filter>Aoba\UserInterface\UserInterface\UIButton</Filter>
@@ -169,10 +169,10 @@
       <Filter>Aoba\Page</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\PageManager\PageManager.cpp">
-      <Filter>Aoba\AobaCore\PageManager</Filter>
+      <Filter>Aoba\Core\PageManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\PageManager\PageCycle.cpp">
-      <Filter>Aoba\AobaCore\PageManager</Filter>
+      <Filter>Aoba\Core\PageManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp">
       <Filter>Aoba\UserInterface\UserInterface\UIImageView</Filter>
@@ -190,7 +190,7 @@
       <Filter>Aoba\CommandLine</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.cpp">
-      <Filter>Aoba\AobaCore\ParallelTaskManager</Filter>
+      <Filter>Aoba\Core\ParallelTaskManager</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp">
       <Filter>Aoba\AobaFactory</Filter>
@@ -231,7 +231,7 @@
       <Filter>Aoba\Page</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Core.hpp">
-      <Filter>Aoba\AobaCore</Filter>
+      <Filter>Aoba\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp">
       <Filter>Aoba\UserInterface\InputEvent</Filter>
@@ -282,7 +282,7 @@
       <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Core\PageManager\PageManager.hpp">
-      <Filter>Aoba\AobaCore\PageManager</Filter>
+      <Filter>Aoba\Core\PageManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIImageView.hpp">
       <Filter>Aoba\UserInterface\UserInterface\UIImageView</Filter>
@@ -294,7 +294,7 @@
       <Filter>Aoba\CommandLine</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.hpp">
-      <Filter>Aoba\AobaCore\ParallelTaskManager</Filter>
+      <Filter>Aoba\Core\ParallelTaskManager</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp">
       <Filter>Aoba\AobaFactory</Filter>
