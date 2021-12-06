@@ -36,8 +36,6 @@ set(SOURCE_FILES
 
 "../Aoba/src/Factory/Factory.cpp"
 
-"../Aoba/src/AobaInterface/AobaInterface.cpp"
-
 "../Aoba/src/Page/Page.cpp"
 
 "../Aoba/src/ColorTheme/ColorTheme.cpp"
