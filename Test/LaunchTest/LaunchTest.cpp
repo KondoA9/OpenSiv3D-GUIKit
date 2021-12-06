@@ -9,11 +9,11 @@
 void AobaMain() {
 	Window::Resize(1280, 720);
 
-	aoba::AppendPage<LifeCycleTest>(U"LifeCycleTest");
-	aoba::AppendPage<ComponentsTest>(U"ComponentsTest");
-	aoba::AppendPage<FocusTest>(U"FocusTest");
+	aoba::Core::AppendPage<LifeCycleTest>(U"LifeCycleTest");
+	aoba::Core::AppendPage<ComponentsTest>(U"ComponentsTest");
+	aoba::Core::AppendPage<FocusTest>(U"FocusTest");
 
-	aoba::Start();
+	aoba::Core::Start();
 
 	pagingTest.validate();
 }

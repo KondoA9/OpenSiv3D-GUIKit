@@ -1,4 +1,4 @@
-﻿#include <Aoba/AobaCore.hpp>
+﻿#include <Aoba/Core.hpp>
 #include <Aoba/ColorTheme.hpp>
 #include <Aoba/WindowManager.hpp>
 
@@ -8,21 +8,25 @@
 void AobaMain();
 
 void Main() {
-	(void)s3d::aoba::AobaCore::Instance();
+	(void)s3d::aoba::Core::Instance();
 	AobaMain();
 }
 
 namespace s3d::aoba {
-	void AobaCore::start() {
-		if (m_pageManager->initialize()) {
-			run();
+	void Core::Start() {
+		if (Instance().m_pageManager->initialize()) {
+			Instance().run();
 		}
 		else {
-			Logger << U"Error(AobaCore): No pages are registered.";
+			Logger << U"Error(Core): No pages are registered.";
 		}
 	}
 
-	void AobaCore::run() {
+	void Core::Terminate() {
+		Instance().m_pageManager->terminate();
+	}
+
+	void Core::run() {
 		while (System::Update()) {
 			if (System::GetUserActions() == UserAction::CloseButtonClicked) {
 				m_pageManager->terminate();
@@ -32,7 +36,7 @@ namespace s3d::aoba {
 		}
 	}
 
-	void AobaCore::updateAoba() {
+	void Core::updateAoba() {
 		// Update window state
 		WindowManager::Update();
 
@@ -59,7 +63,7 @@ namespace s3d::aoba {
 		updateTimeouts();
 	}
 
-	void AobaCore::updateMainThreadEvents() {
+	void Core::updateMainThreadEvents() {
 		std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
 
 		for (const auto& f : m_eventsRequestedToRunInMainThread) {
@@ -69,7 +73,7 @@ namespace s3d::aoba {
 		m_eventsRequestedToRunInMainThread.release();
 	}
 
-	void AobaCore::updateTimeouts() {
+	void Core::updateTimeouts() {
 		bool alive = false;
 
 		for (auto& timeout : m_timeouts) {
@@ -80,9 +84,5 @@ namespace s3d::aoba {
 		if (!alive) {
 			m_timeouts.release();
 		}
-	}
-
-	void AobaCore::terminate() {
-		m_pageManager->terminate();
 	}
 }

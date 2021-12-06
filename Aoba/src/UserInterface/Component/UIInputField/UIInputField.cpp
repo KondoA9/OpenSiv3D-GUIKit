@@ -1,6 +1,6 @@
-﻿#include <Aoba/UIInputField.hpp>
+#include <Aoba/UIInputField.hpp>
 #include <Aoba/PixelUnit.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 #include <Aoba/DynamicColor.hpp>
 
 namespace s3d::aoba {
@@ -19,7 +19,7 @@ namespace s3d::aoba {
 		addEventListener<Focused>([this] {
 			m_cursorPos = text().length();
 			m_cursorBeamWatcher.start();
-			}), true;
+			}, true);
 
 		addEventListener<UnFocused>([this] {
 			if (!prefix.empty() && !text().starts_with(prefix)) {
@@ -232,7 +232,7 @@ namespace s3d::aoba {
 
 	void UIInputField::fireForbiddenCharsNotifier() {
 		if (ui_Warning == nullptr) {
-			ui_Warning = &AobaFactory::Create<UIText>();
+			ui_Warning = &Factory::Create<UIText>();
 			ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
 			ui_Warning->textColor = Palette::Black;
 			ui_Warning->setDirection(TextDirection::Center);
@@ -240,14 +240,14 @@ namespace s3d::aoba {
 			ui_Warning->setText(U"この文字は許可されていません");
 		}
 
-		AobaCore::Instance().stopTimeout(m_WarningTimeoutID);
+		Core::StopTimeout(m_WarningTimeoutID);
 
 		ui_Warning->exist = true;
 		ui_Warning->setConstraint(LayerDirection::Top, *this, LayerDirection::Bottom);
 		ui_Warning->setConstraint(LayerDirection::Height, 30_px);
 		ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
 		ui_Warning->setConstraint(LayerDirection::Width, 250_px);
-		m_WarningTimeoutID = AobaCore::Instance().setTimeout([this] {
+		m_WarningTimeoutID = Core::SetTimeout([this] {
 			ui_Warning->exist = false;
 			}, 3000, false);
 
@@ -257,7 +257,7 @@ namespace s3d::aoba {
 	void UIInputField::updateCursorBeamPos() {
 		m_cursorBeamPosX = textRegion().x;
 
-		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+        for (const auto [i, glyph] : Indexed(font().getGlyphs(text()))) {
 			if (i == m_cursorPos) {
 				break;
 			}
@@ -273,7 +273,7 @@ namespace s3d::aoba {
 		double startPos = textRegion().x;
 		double width = 0;
 
-		for (const auto& [i, glyph] : Indexed(font().getGlyphs(text()))) {
+		for (const auto [i, glyph] : Indexed(font().getGlyphs(text()))) {
 			if (i < start) {
 				startPos += glyph.xAdvance;
 			}

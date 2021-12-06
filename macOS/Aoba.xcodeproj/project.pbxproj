@@ -7,146 +7,142 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9EBF10DB2716939D00ECCD40 /* UIRect.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10762716939D00ECCD40 /* UIRect.hpp */; };
-		9EBF10DC2716939D00ECCD40 /* Imaging.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10772716939D00ECCD40 /* Imaging.hpp */; };
-		9EBF10DD2716939D00ECCD40 /* UISlider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10782716939D00ECCD40 /* UISlider.hpp */; };
-		9EBF10DE2716939D00ECCD40 /* UIToggleButton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10792716939D00ECCD40 /* UIToggleButton.hpp */; };
-		9EBF10DF2716939D00ECCD40 /* CommandLine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF107A2716939D00ECCD40 /* CommandLine.hpp */; };
-		9EBF10E02716939D00ECCD40 /* Timeout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF107B2716939D00ECCD40 /* Timeout.hpp */; };
-		9EBF10E12716939D00ECCD40 /* UIImageView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF107C2716939D00ECCD40 /* UIImageView.hpp */; };
-		9EBF10E22716939D00ECCD40 /* DynamicColor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF107D2716939D00ECCD40 /* DynamicColor.hpp */; };
-		9EBF10E32716939D00ECCD40 /* PixelUnit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF107E2716939D00ECCD40 /* PixelUnit.hpp */; };
-		9EBF10E42716939D00ECCD40 /* Aoba.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF107F2716939D00ECCD40 /* Aoba.hpp */; };
-		9EBF10E52716939D00ECCD40 /* InputEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10802716939D00ECCD40 /* InputEvent.hpp */; };
-		9EBF10E62716939D00ECCD40 /* AobaCore.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10812716939D00ECCD40 /* AobaCore.hpp */; };
-		9EBF10E72716939D00ECCD40 /* ColorTheme.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10822716939D00ECCD40 /* ColorTheme.hpp */; };
-		9EBF10E82716939D00ECCD40 /* UIIcon.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10832716939D00ECCD40 /* UIIcon.hpp */; };
-		9EBF10E92716939D00ECCD40 /* AobaFactory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10842716939D00ECCD40 /* AobaFactory.hpp */; };
-		9EBF10EA2716939D00ECCD40 /* UIInputField.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10852716939D00ECCD40 /* UIInputField.hpp */; };
-		9EBF10EB2716939D00ECCD40 /* WindowManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10862716939D00ECCD40 /* WindowManager.hpp */; };
-		9EBF10EC2716939D00ECCD40 /* UIComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10872716939D00ECCD40 /* UIComponent.hpp */; };
-		9EBF10ED2716939D00ECCD40 /* UICircle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10882716939D00ECCD40 /* UICircle.hpp */; };
-		9EBF10EE2716939D00ECCD40 /* UICheckBox.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10892716939D00ECCD40 /* UICheckBox.hpp */; };
-		9EBF10EF2716939D00ECCD40 /* Constraint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF108A2716939D00ECCD40 /* Constraint.hpp */; };
-		9EBF10F02716939D00ECCD40 /* UIVStackView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF108B2716939D00ECCD40 /* UIVStackView.hpp */; };
-		9EBF10F12716939D00ECCD40 /* UIText.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF108C2716939D00ECCD40 /* UIText.hpp */; };
-		9EBF10F22716939D00ECCD40 /* Layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF108D2716939D00ECCD40 /* Layer.hpp */; };
-		9EBF10F32716939D00ECCD40 /* AobaInterface.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF108E2716939D00ECCD40 /* AobaInterface.hpp */; };
-		9EBF10F42716939D00ECCD40 /* UITabView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF108F2716939D00ECCD40 /* UITabView.hpp */; };
-		9EBF10F52716939D00ECCD40 /* MouseEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10902716939D00ECCD40 /* MouseEvent.hpp */; };
-		9EBF10F62716939D00ECCD40 /* Page.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10912716939D00ECCD40 /* Page.hpp */; };
-		9EBF10F72716939D00ECCD40 /* UIView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10922716939D00ECCD40 /* UIView.hpp */; };
-		9EBF10F82716939D00ECCD40 /* UnifiedFont.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10932716939D00ECCD40 /* UnifiedFont.hpp */; };
-		9EBF10F92716939D00ECCD40 /* InputEventHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10942716939D00ECCD40 /* InputEventHandler.hpp */; };
-		9EBF10FA2716939D00ECCD40 /* UIButton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10952716939D00ECCD40 /* UIButton.hpp */; };
-		9EBF10FB2716939D00ECCD40 /* KeyboardOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10962716939D00ECCD40 /* KeyboardOperation.hpp */; };
-		9EBF10FC2716939D00ECCD40 /* Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10992716939D00ECCD40 /* Page.cpp */; };
-		9EBF10FD2716939D00ECCD40 /* AobaFactory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF109B2716939D00ECCD40 /* AobaFactory.cpp */; };
-		9EBF10FE2716939D00ECCD40 /* PixelUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF109D2716939D00ECCD40 /* PixelUnit.cpp */; };
-		9EBF10FF2716939D00ECCD40 /* WindowManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF109F2716939D00ECCD40 /* WindowManager.cpp */; };
-		9EBF11002716939D00ECCD40 /* AobaCore.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10A12716939D00ECCD40 /* AobaCore.cpp */; };
-		9EBF11012716939D00ECCD40 /* AobaLifeCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10A22716939D00ECCD40 /* AobaLifeCycle.cpp */; };
-		9EBF11022716939D00ECCD40 /* PageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10A42716939D00ECCD40 /* PageManager.cpp */; };
-		9EBF11032716939D00ECCD40 /* PageCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10A52716939D00ECCD40 /* PageCycle.cpp */; };
-		9EBF11042716939D00ECCD40 /* PageManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10A62716939D00ECCD40 /* PageManager.hpp */; };
-		9EBF11052716939D00ECCD40 /* ParallelTaskManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9EBF10A82716939D00ECCD40 /* ParallelTaskManager.hpp */; };
-		9EBF11062716939D00ECCD40 /* ParallelTaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10A92716939D00ECCD40 /* ParallelTaskManager.cpp */; };
-		9EBF11072716939D00ECCD40 /* Timeout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10AB2716939D00ECCD40 /* Timeout.cpp */; };
-		9EBF11082716939D00ECCD40 /* ColorTheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10AD2716939D00ECCD40 /* ColorTheme.cpp */; };
-		9EBF11092716939D00ECCD40 /* Imaging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10AF2716939D00ECCD40 /* Imaging.cpp */; };
-		9EBF110A2716939D00ECCD40 /* CommandLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10B12716939D00ECCD40 /* CommandLine.cpp */; };
-		9EBF110B2716939D00ECCD40 /* AobaInterface.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10B32716939D00ECCD40 /* AobaInterface.cpp */; };
-		9EBF110C2716939D00ECCD40 /* UICheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10B72716939D00ECCD40 /* UICheckBox.cpp */; };
-		9EBF110D2716939D00ECCD40 /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10B92716939D00ECCD40 /* UIButton.cpp */; };
-		9EBF110E2716939D00ECCD40 /* UIToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10BB2716939D00ECCD40 /* UIToggleButton.cpp */; };
-		9EBF110F2716939D00ECCD40 /* UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10BD2716939D00ECCD40 /* UIView.cpp */; };
-		9EBF11102716939D00ECCD40 /* UIText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10BF2716939D00ECCD40 /* UIText.cpp */; };
-		9EBF11112716939D00ECCD40 /* UIVStackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10C12716939D00ECCD40 /* UIVStackView.cpp */; };
-		9EBF11122716939D00ECCD40 /* UIIcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10C32716939D00ECCD40 /* UIIcon.cpp */; };
-		9EBF11132716939D00ECCD40 /* UICircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10C52716939D00ECCD40 /* UICircle.cpp */; };
-		9EBF11142716939D00ECCD40 /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10C72716939D00ECCD40 /* UIImageView.cpp */; };
-		9EBF11152716939D00ECCD40 /* UIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10C92716939D00ECCD40 /* UIRect.cpp */; };
-		9EBF11162716939D00ECCD40 /* KeyboardOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10CC2716939D00ECCD40 /* KeyboardOperation.cpp */; };
-		9EBF11172716939D00ECCD40 /* UIInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10CD2716939D00ECCD40 /* UIInputField.cpp */; };
-		9EBF11182716939D00ECCD40 /* UISlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10CF2716939D00ECCD40 /* UISlider.cpp */; };
-		9EBF11192716939D00ECCD40 /* UIComponentMouseEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10D12716939D00ECCD40 /* UIComponentMouseEvent.cpp */; };
-		9EBF111A2716939D00ECCD40 /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10D22716939D00ECCD40 /* UIComponent.cpp */; };
-		9EBF111B2716939D00ECCD40 /* UITabView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10D42716939D00ECCD40 /* UITabView.cpp */; };
-		9EBF111C2716939D00ECCD40 /* Layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10D62716939D00ECCD40 /* Layer.cpp */; };
-		9EBF111D2716939D00ECCD40 /* UnifiedFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10D82716939D00ECCD40 /* UnifiedFont.cpp */; };
-		9EBF111E2716939D00ECCD40 /* Constraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9EBF10DA2716939D00ECCD40 /* Constraint.cpp */; };
+		9E2D3490275E2C750013A7BD /* Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D342E275E2C750013A7BD /* Page.cpp */; };
+		9E2D3491275E2C750013A7BD /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3430275E2C750013A7BD /* Core.cpp */; };
+		9E2D3492275E2C750013A7BD /* CoreLifeCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3431275E2C750013A7BD /* CoreLifeCycle.cpp */; };
+		9E2D3493275E2C750013A7BD /* PageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3433275E2C750013A7BD /* PageManager.cpp */; };
+		9E2D3494275E2C750013A7BD /* PageCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3434275E2C750013A7BD /* PageCycle.cpp */; };
+		9E2D3495275E2C750013A7BD /* PageManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3435275E2C750013A7BD /* PageManager.hpp */; };
+		9E2D3496275E2C750013A7BD /* ParallelTaskManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3437275E2C750013A7BD /* ParallelTaskManager.hpp */; };
+		9E2D3497275E2C750013A7BD /* ParallelTaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3438275E2C750013A7BD /* ParallelTaskManager.cpp */; };
+		9E2D3498275E2C750013A7BD /* PixelUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D343A275E2C750013A7BD /* PixelUnit.cpp */; };
+		9E2D3499275E2C750013A7BD /* WindowManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D343C275E2C750013A7BD /* WindowManager.cpp */; };
+		9E2D349A275E2C750013A7BD /* Timeout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D343E275E2C750013A7BD /* Timeout.cpp */; };
+		9E2D349B275E2C750013A7BD /* ColorTheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3440275E2C750013A7BD /* ColorTheme.cpp */; };
+		9E2D349C275E2C750013A7BD /* Imaging.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3442275E2C750013A7BD /* Imaging.cpp */; };
+		9E2D349D275E2C750013A7BD /* CommandLine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3444275E2C750013A7BD /* CommandLine.cpp */; };
+		9E2D349E275E2C750013A7BD /* UICheckBox.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3448275E2C750013A7BD /* UICheckBox.cpp */; };
+		9E2D349F275E2C750013A7BD /* UIButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D344A275E2C750013A7BD /* UIButton.cpp */; };
+		9E2D34A0275E2C750013A7BD /* UIToggleButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D344C275E2C750013A7BD /* UIToggleButton.cpp */; };
+		9E2D34A1275E2C750013A7BD /* UIView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D344E275E2C750013A7BD /* UIView.cpp */; };
+		9E2D34A2275E2C750013A7BD /* UIText.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3450275E2C750013A7BD /* UIText.cpp */; };
+		9E2D34A3275E2C750013A7BD /* UIVStackView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3452275E2C750013A7BD /* UIVStackView.cpp */; };
+		9E2D34A4275E2C750013A7BD /* UIIcon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3454275E2C750013A7BD /* UIIcon.cpp */; };
+		9E2D34A5275E2C750013A7BD /* UICircle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3456275E2C750013A7BD /* UICircle.cpp */; };
+		9E2D34A6275E2C750013A7BD /* UIImageView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3458275E2C750013A7BD /* UIImageView.cpp */; };
+		9E2D34A7275E2C750013A7BD /* UIRect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D345A275E2C750013A7BD /* UIRect.cpp */; };
+		9E2D34A8275E2C750013A7BD /* KeyboardOperation.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D345D275E2C750013A7BD /* KeyboardOperation.cpp */; };
+		9E2D34A9275E2C750013A7BD /* UIInputField.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D345E275E2C750013A7BD /* UIInputField.cpp */; };
+		9E2D34AA275E2C750013A7BD /* UISlider.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3460275E2C750013A7BD /* UISlider.cpp */; };
+		9E2D34AB275E2C750013A7BD /* UIComponentMouseEvent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3462275E2C750013A7BD /* UIComponentMouseEvent.cpp */; };
+		9E2D34AC275E2C750013A7BD /* UIComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3463275E2C750013A7BD /* UIComponent.cpp */; };
+		9E2D34AD275E2C750013A7BD /* UITabView.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3465275E2C750013A7BD /* UITabView.cpp */; };
+		9E2D34AE275E2C750013A7BD /* Layer.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3467275E2C750013A7BD /* Layer.cpp */; };
+		9E2D34AF275E2C750013A7BD /* UnifiedFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D3469275E2C750013A7BD /* UnifiedFont.cpp */; };
+		9E2D34B0275E2C750013A7BD /* Constraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D346B275E2C750013A7BD /* Constraint.cpp */; };
+		9E2D34B1275E2C750013A7BD /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E2D346D275E2C750013A7BD /* Factory.cpp */; };
+		9E2D34B2275E2C750013A7BD /* UIRect.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3470275E2C750013A7BD /* UIRect.hpp */; };
+		9E2D34B3275E2C750013A7BD /* Imaging.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3471275E2C750013A7BD /* Imaging.hpp */; };
+		9E2D34B4275E2C750013A7BD /* Factory.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3472275E2C750013A7BD /* Factory.hpp */; };
+		9E2D34B5275E2C750013A7BD /* UISlider.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3473275E2C750013A7BD /* UISlider.hpp */; };
+		9E2D34B6275E2C750013A7BD /* UIToggleButton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3474275E2C750013A7BD /* UIToggleButton.hpp */; };
+		9E2D34B7275E2C750013A7BD /* CommandLine.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3475275E2C750013A7BD /* CommandLine.hpp */; };
+		9E2D34B8275E2C750013A7BD /* Timeout.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3476275E2C750013A7BD /* Timeout.hpp */; };
+		9E2D34B9275E2C750013A7BD /* UIImageView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3477275E2C750013A7BD /* UIImageView.hpp */; };
+		9E2D34BA275E2C750013A7BD /* DynamicColor.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3478275E2C750013A7BD /* DynamicColor.hpp */; };
+		9E2D34BB275E2C750013A7BD /* PixelUnit.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3479275E2C750013A7BD /* PixelUnit.hpp */; };
+		9E2D34BC275E2C750013A7BD /* Aoba.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D347A275E2C750013A7BD /* Aoba.hpp */; };
+		9E2D34BD275E2C750013A7BD /* InputEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D347B275E2C750013A7BD /* InputEvent.hpp */; };
+		9E2D34BE275E2C750013A7BD /* ColorTheme.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D347C275E2C750013A7BD /* ColorTheme.hpp */; };
+		9E2D34BF275E2C750013A7BD /* UIIcon.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D347D275E2C750013A7BD /* UIIcon.hpp */; };
+		9E2D34C0275E2C750013A7BD /* UIInputField.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D347E275E2C750013A7BD /* UIInputField.hpp */; };
+		9E2D34C1275E2C750013A7BD /* WindowManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D347F275E2C750013A7BD /* WindowManager.hpp */; };
+		9E2D34C2275E2C750013A7BD /* UIComponent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3480275E2C750013A7BD /* UIComponent.hpp */; };
+		9E2D34C3275E2C750013A7BD /* UICircle.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3481275E2C750013A7BD /* UICircle.hpp */; };
+		9E2D34C4275E2C750013A7BD /* UICheckBox.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3482275E2C750013A7BD /* UICheckBox.hpp */; };
+		9E2D34C5275E2C750013A7BD /* Constraint.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3483275E2C750013A7BD /* Constraint.hpp */; };
+		9E2D34C6275E2C750013A7BD /* UIVStackView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3484275E2C750013A7BD /* UIVStackView.hpp */; };
+		9E2D34C7275E2C750013A7BD /* UIText.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3485275E2C750013A7BD /* UIText.hpp */; };
+		9E2D34C8275E2C750013A7BD /* Layer.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3486275E2C750013A7BD /* Layer.hpp */; };
+		9E2D34C9275E2C750013A7BD /* UITabView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3487275E2C750013A7BD /* UITabView.hpp */; };
+		9E2D34CA275E2C750013A7BD /* MouseEvent.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3488275E2C750013A7BD /* MouseEvent.hpp */; };
+		9E2D34CB275E2C750013A7BD /* Page.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D3489275E2C750013A7BD /* Page.hpp */; };
+		9E2D34CC275E2C750013A7BD /* UIView.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D348A275E2C750013A7BD /* UIView.hpp */; };
+		9E2D34CD275E2C750013A7BD /* UnifiedFont.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D348B275E2C750013A7BD /* UnifiedFont.hpp */; };
+		9E2D34CE275E2C750013A7BD /* InputEventHandler.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D348C275E2C750013A7BD /* InputEventHandler.hpp */; };
+		9E2D34CF275E2C750013A7BD /* UIButton.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D348D275E2C750013A7BD /* UIButton.hpp */; };
+		9E2D34D0275E2C750013A7BD /* Core.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D348E275E2C750013A7BD /* Core.hpp */; };
+		9E2D34D1275E2C750013A7BD /* KeyboardOperation.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E2D348F275E2C750013A7BD /* KeyboardOperation.hpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9E2D342E275E2C750013A7BD /* Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Page.cpp; sourceTree = "<group>"; };
+		9E2D3430275E2C750013A7BD /* Core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
+		9E2D3431275E2C750013A7BD /* CoreLifeCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoreLifeCycle.cpp; sourceTree = "<group>"; };
+		9E2D3433275E2C750013A7BD /* PageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageManager.cpp; sourceTree = "<group>"; };
+		9E2D3434275E2C750013A7BD /* PageCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageCycle.cpp; sourceTree = "<group>"; };
+		9E2D3435275E2C750013A7BD /* PageManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PageManager.hpp; sourceTree = "<group>"; };
+		9E2D3437275E2C750013A7BD /* ParallelTaskManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParallelTaskManager.hpp; sourceTree = "<group>"; };
+		9E2D3438275E2C750013A7BD /* ParallelTaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParallelTaskManager.cpp; sourceTree = "<group>"; };
+		9E2D343A275E2C750013A7BD /* PixelUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelUnit.cpp; sourceTree = "<group>"; };
+		9E2D343C275E2C750013A7BD /* WindowManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowManager.cpp; sourceTree = "<group>"; };
+		9E2D343E275E2C750013A7BD /* Timeout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timeout.cpp; sourceTree = "<group>"; };
+		9E2D3440275E2C750013A7BD /* ColorTheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorTheme.cpp; sourceTree = "<group>"; };
+		9E2D3442275E2C750013A7BD /* Imaging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Imaging.cpp; sourceTree = "<group>"; };
+		9E2D3444275E2C750013A7BD /* CommandLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandLine.cpp; sourceTree = "<group>"; };
+		9E2D3448275E2C750013A7BD /* UICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICheckBox.cpp; sourceTree = "<group>"; };
+		9E2D344A275E2C750013A7BD /* UIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIButton.cpp; sourceTree = "<group>"; };
+		9E2D344C275E2C750013A7BD /* UIToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIToggleButton.cpp; sourceTree = "<group>"; };
+		9E2D344E275E2C750013A7BD /* UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIView.cpp; sourceTree = "<group>"; };
+		9E2D3450275E2C750013A7BD /* UIText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIText.cpp; sourceTree = "<group>"; };
+		9E2D3452275E2C750013A7BD /* UIVStackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIVStackView.cpp; sourceTree = "<group>"; };
+		9E2D3454275E2C750013A7BD /* UIIcon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIIcon.cpp; sourceTree = "<group>"; };
+		9E2D3456275E2C750013A7BD /* UICircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICircle.cpp; sourceTree = "<group>"; };
+		9E2D3458275E2C750013A7BD /* UIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImageView.cpp; sourceTree = "<group>"; };
+		9E2D345A275E2C750013A7BD /* UIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIRect.cpp; sourceTree = "<group>"; };
+		9E2D345D275E2C750013A7BD /* KeyboardOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardOperation.cpp; sourceTree = "<group>"; };
+		9E2D345E275E2C750013A7BD /* UIInputField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIInputField.cpp; sourceTree = "<group>"; };
+		9E2D3460275E2C750013A7BD /* UISlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISlider.cpp; sourceTree = "<group>"; };
+		9E2D3462275E2C750013A7BD /* UIComponentMouseEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponentMouseEvent.cpp; sourceTree = "<group>"; };
+		9E2D3463275E2C750013A7BD /* UIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponent.cpp; sourceTree = "<group>"; };
+		9E2D3465275E2C750013A7BD /* UITabView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITabView.cpp; sourceTree = "<group>"; };
+		9E2D3467275E2C750013A7BD /* Layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Layer.cpp; sourceTree = "<group>"; };
+		9E2D3469275E2C750013A7BD /* UnifiedFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnifiedFont.cpp; sourceTree = "<group>"; };
+		9E2D346B275E2C750013A7BD /* Constraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constraint.cpp; sourceTree = "<group>"; };
+		9E2D346D275E2C750013A7BD /* Factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Factory.cpp; sourceTree = "<group>"; };
+		9E2D3470275E2C750013A7BD /* UIRect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIRect.hpp; sourceTree = "<group>"; };
+		9E2D3471275E2C750013A7BD /* Imaging.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Imaging.hpp; sourceTree = "<group>"; };
+		9E2D3472275E2C750013A7BD /* Factory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Factory.hpp; sourceTree = "<group>"; };
+		9E2D3473275E2C750013A7BD /* UISlider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UISlider.hpp; sourceTree = "<group>"; };
+		9E2D3474275E2C750013A7BD /* UIToggleButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIToggleButton.hpp; sourceTree = "<group>"; };
+		9E2D3475275E2C750013A7BD /* CommandLine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandLine.hpp; sourceTree = "<group>"; };
+		9E2D3476275E2C750013A7BD /* Timeout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timeout.hpp; sourceTree = "<group>"; };
+		9E2D3477275E2C750013A7BD /* UIImageView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIImageView.hpp; sourceTree = "<group>"; };
+		9E2D3478275E2C750013A7BD /* DynamicColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DynamicColor.hpp; sourceTree = "<group>"; };
+		9E2D3479275E2C750013A7BD /* PixelUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PixelUnit.hpp; sourceTree = "<group>"; };
+		9E2D347A275E2C750013A7BD /* Aoba.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Aoba.hpp; sourceTree = "<group>"; };
+		9E2D347B275E2C750013A7BD /* InputEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputEvent.hpp; sourceTree = "<group>"; };
+		9E2D347C275E2C750013A7BD /* ColorTheme.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorTheme.hpp; sourceTree = "<group>"; };
+		9E2D347D275E2C750013A7BD /* UIIcon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIIcon.hpp; sourceTree = "<group>"; };
+		9E2D347E275E2C750013A7BD /* UIInputField.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIInputField.hpp; sourceTree = "<group>"; };
+		9E2D347F275E2C750013A7BD /* WindowManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindowManager.hpp; sourceTree = "<group>"; };
+		9E2D3480275E2C750013A7BD /* UIComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIComponent.hpp; sourceTree = "<group>"; };
+		9E2D3481275E2C750013A7BD /* UICircle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UICircle.hpp; sourceTree = "<group>"; };
+		9E2D3482275E2C750013A7BD /* UICheckBox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UICheckBox.hpp; sourceTree = "<group>"; };
+		9E2D3483275E2C750013A7BD /* Constraint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Constraint.hpp; sourceTree = "<group>"; };
+		9E2D3484275E2C750013A7BD /* UIVStackView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIVStackView.hpp; sourceTree = "<group>"; };
+		9E2D3485275E2C750013A7BD /* UIText.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIText.hpp; sourceTree = "<group>"; };
+		9E2D3486275E2C750013A7BD /* Layer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Layer.hpp; sourceTree = "<group>"; };
+		9E2D3487275E2C750013A7BD /* UITabView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UITabView.hpp; sourceTree = "<group>"; };
+		9E2D3488275E2C750013A7BD /* MouseEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseEvent.hpp; sourceTree = "<group>"; };
+		9E2D3489275E2C750013A7BD /* Page.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Page.hpp; sourceTree = "<group>"; };
+		9E2D348A275E2C750013A7BD /* UIView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIView.hpp; sourceTree = "<group>"; };
+		9E2D348B275E2C750013A7BD /* UnifiedFont.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UnifiedFont.hpp; sourceTree = "<group>"; };
+		9E2D348C275E2C750013A7BD /* InputEventHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputEventHandler.hpp; sourceTree = "<group>"; };
+		9E2D348D275E2C750013A7BD /* UIButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIButton.hpp; sourceTree = "<group>"; };
+		9E2D348E275E2C750013A7BD /* Core.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Core.hpp; sourceTree = "<group>"; };
+		9E2D348F275E2C750013A7BD /* KeyboardOperation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardOperation.hpp; sourceTree = "<group>"; };
 		9E8380232679E3D50052AF7B /* libaoba.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libaoba.a; path = libAoba.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		9EBF10762716939D00ECCD40 /* UIRect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIRect.hpp; sourceTree = "<group>"; };
-		9EBF10772716939D00ECCD40 /* Imaging.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Imaging.hpp; sourceTree = "<group>"; };
-		9EBF10782716939D00ECCD40 /* UISlider.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UISlider.hpp; sourceTree = "<group>"; };
-		9EBF10792716939D00ECCD40 /* UIToggleButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIToggleButton.hpp; sourceTree = "<group>"; };
-		9EBF107A2716939D00ECCD40 /* CommandLine.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = CommandLine.hpp; sourceTree = "<group>"; };
-		9EBF107B2716939D00ECCD40 /* Timeout.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Timeout.hpp; sourceTree = "<group>"; };
-		9EBF107C2716939D00ECCD40 /* UIImageView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIImageView.hpp; sourceTree = "<group>"; };
-		9EBF107D2716939D00ECCD40 /* DynamicColor.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = DynamicColor.hpp; sourceTree = "<group>"; };
-		9EBF107E2716939D00ECCD40 /* PixelUnit.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PixelUnit.hpp; sourceTree = "<group>"; };
-		9EBF107F2716939D00ECCD40 /* Aoba.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Aoba.hpp; sourceTree = "<group>"; };
-		9EBF10802716939D00ECCD40 /* InputEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputEvent.hpp; sourceTree = "<group>"; };
-		9EBF10812716939D00ECCD40 /* AobaCore.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AobaCore.hpp; sourceTree = "<group>"; };
-		9EBF10822716939D00ECCD40 /* ColorTheme.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ColorTheme.hpp; sourceTree = "<group>"; };
-		9EBF10832716939D00ECCD40 /* UIIcon.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIIcon.hpp; sourceTree = "<group>"; };
-		9EBF10842716939D00ECCD40 /* AobaFactory.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AobaFactory.hpp; sourceTree = "<group>"; };
-		9EBF10852716939D00ECCD40 /* UIInputField.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIInputField.hpp; sourceTree = "<group>"; };
-		9EBF10862716939D00ECCD40 /* WindowManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindowManager.hpp; sourceTree = "<group>"; };
-		9EBF10872716939D00ECCD40 /* UIComponent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIComponent.hpp; sourceTree = "<group>"; };
-		9EBF10882716939D00ECCD40 /* UICircle.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UICircle.hpp; sourceTree = "<group>"; };
-		9EBF10892716939D00ECCD40 /* UICheckBox.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UICheckBox.hpp; sourceTree = "<group>"; };
-		9EBF108A2716939D00ECCD40 /* Constraint.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Constraint.hpp; sourceTree = "<group>"; };
-		9EBF108B2716939D00ECCD40 /* UIVStackView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIVStackView.hpp; sourceTree = "<group>"; };
-		9EBF108C2716939D00ECCD40 /* UIText.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIText.hpp; sourceTree = "<group>"; };
-		9EBF108D2716939D00ECCD40 /* Layer.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Layer.hpp; sourceTree = "<group>"; };
-		9EBF108E2716939D00ECCD40 /* AobaInterface.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = AobaInterface.hpp; sourceTree = "<group>"; };
-		9EBF108F2716939D00ECCD40 /* UITabView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UITabView.hpp; sourceTree = "<group>"; };
-		9EBF10902716939D00ECCD40 /* MouseEvent.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = MouseEvent.hpp; sourceTree = "<group>"; };
-		9EBF10912716939D00ECCD40 /* Page.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Page.hpp; sourceTree = "<group>"; };
-		9EBF10922716939D00ECCD40 /* UIView.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIView.hpp; sourceTree = "<group>"; };
-		9EBF10932716939D00ECCD40 /* UnifiedFont.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UnifiedFont.hpp; sourceTree = "<group>"; };
-		9EBF10942716939D00ECCD40 /* InputEventHandler.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = InputEventHandler.hpp; sourceTree = "<group>"; };
-		9EBF10952716939D00ECCD40 /* UIButton.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIButton.hpp; sourceTree = "<group>"; };
-		9EBF10962716939D00ECCD40 /* KeyboardOperation.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyboardOperation.hpp; sourceTree = "<group>"; };
-		9EBF10992716939D00ECCD40 /* Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Page.cpp; sourceTree = "<group>"; };
-		9EBF109B2716939D00ECCD40 /* AobaFactory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AobaFactory.cpp; sourceTree = "<group>"; };
-		9EBF109D2716939D00ECCD40 /* PixelUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelUnit.cpp; sourceTree = "<group>"; };
-		9EBF109F2716939D00ECCD40 /* WindowManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowManager.cpp; sourceTree = "<group>"; };
-		9EBF10A12716939D00ECCD40 /* AobaCore.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AobaCore.cpp; sourceTree = "<group>"; };
-		9EBF10A22716939D00ECCD40 /* AobaLifeCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AobaLifeCycle.cpp; sourceTree = "<group>"; };
-		9EBF10A42716939D00ECCD40 /* PageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageManager.cpp; sourceTree = "<group>"; };
-		9EBF10A52716939D00ECCD40 /* PageCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageCycle.cpp; sourceTree = "<group>"; };
-		9EBF10A62716939D00ECCD40 /* PageManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PageManager.hpp; sourceTree = "<group>"; };
-		9EBF10A82716939D00ECCD40 /* ParallelTaskManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParallelTaskManager.hpp; sourceTree = "<group>"; };
-		9EBF10A92716939D00ECCD40 /* ParallelTaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParallelTaskManager.cpp; sourceTree = "<group>"; };
-		9EBF10AB2716939D00ECCD40 /* Timeout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timeout.cpp; sourceTree = "<group>"; };
-		9EBF10AD2716939D00ECCD40 /* ColorTheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorTheme.cpp; sourceTree = "<group>"; };
-		9EBF10AF2716939D00ECCD40 /* Imaging.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Imaging.cpp; sourceTree = "<group>"; };
-		9EBF10B12716939D00ECCD40 /* CommandLine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CommandLine.cpp; sourceTree = "<group>"; };
-		9EBF10B32716939D00ECCD40 /* AobaInterface.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AobaInterface.cpp; sourceTree = "<group>"; };
-		9EBF10B72716939D00ECCD40 /* UICheckBox.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICheckBox.cpp; sourceTree = "<group>"; };
-		9EBF10B92716939D00ECCD40 /* UIButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIButton.cpp; sourceTree = "<group>"; };
-		9EBF10BB2716939D00ECCD40 /* UIToggleButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIToggleButton.cpp; sourceTree = "<group>"; };
-		9EBF10BD2716939D00ECCD40 /* UIView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIView.cpp; sourceTree = "<group>"; };
-		9EBF10BF2716939D00ECCD40 /* UIText.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIText.cpp; sourceTree = "<group>"; };
-		9EBF10C12716939D00ECCD40 /* UIVStackView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIVStackView.cpp; sourceTree = "<group>"; };
-		9EBF10C32716939D00ECCD40 /* UIIcon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIIcon.cpp; sourceTree = "<group>"; };
-		9EBF10C52716939D00ECCD40 /* UICircle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UICircle.cpp; sourceTree = "<group>"; };
-		9EBF10C72716939D00ECCD40 /* UIImageView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIImageView.cpp; sourceTree = "<group>"; };
-		9EBF10C92716939D00ECCD40 /* UIRect.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIRect.cpp; sourceTree = "<group>"; };
-		9EBF10CC2716939D00ECCD40 /* KeyboardOperation.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyboardOperation.cpp; sourceTree = "<group>"; };
-		9EBF10CD2716939D00ECCD40 /* UIInputField.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIInputField.cpp; sourceTree = "<group>"; };
-		9EBF10CF2716939D00ECCD40 /* UISlider.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UISlider.cpp; sourceTree = "<group>"; };
-		9EBF10D12716939D00ECCD40 /* UIComponentMouseEvent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponentMouseEvent.cpp; sourceTree = "<group>"; };
-		9EBF10D22716939D00ECCD40 /* UIComponent.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UIComponent.cpp; sourceTree = "<group>"; };
-		9EBF10D42716939D00ECCD40 /* UITabView.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UITabView.cpp; sourceTree = "<group>"; };
-		9EBF10D62716939D00ECCD40 /* Layer.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Layer.cpp; sourceTree = "<group>"; };
-		9EBF10D82716939D00ECCD40 /* UnifiedFont.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = UnifiedFont.cpp; sourceTree = "<group>"; };
-		9EBF10DA2716939D00ECCD40 /* Constraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constraint.cpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -160,11 +156,349 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9E2D342C275E2C750013A7BD /* src */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D342D275E2C750013A7BD /* Page */,
+				9E2D342F275E2C750013A7BD /* Core */,
+				9E2D3439275E2C750013A7BD /* PixelUnit */,
+				9E2D343B275E2C750013A7BD /* WindowManager */,
+				9E2D343D275E2C750013A7BD /* Timeout */,
+				9E2D343F275E2C750013A7BD /* ColorTheme */,
+				9E2D3441275E2C750013A7BD /* Imaging */,
+				9E2D3443275E2C750013A7BD /* CommandLine */,
+				9E2D3445275E2C750013A7BD /* UserInterface */,
+				9E2D346C275E2C750013A7BD /* Factory */,
+			);
+			name = src;
+			path = ../Aoba/src;
+			sourceTree = "<group>";
+		};
+		9E2D342D275E2C750013A7BD /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D342E275E2C750013A7BD /* Page.cpp */,
+			);
+			path = Page;
+			sourceTree = "<group>";
+		};
+		9E2D342F275E2C750013A7BD /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3430275E2C750013A7BD /* Core.cpp */,
+				9E2D3431275E2C750013A7BD /* CoreLifeCycle.cpp */,
+				9E2D3432275E2C750013A7BD /* PageManager */,
+				9E2D3436275E2C750013A7BD /* ParallelTaskManager */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		9E2D3432275E2C750013A7BD /* PageManager */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3433275E2C750013A7BD /* PageManager.cpp */,
+				9E2D3434275E2C750013A7BD /* PageCycle.cpp */,
+				9E2D3435275E2C750013A7BD /* PageManager.hpp */,
+			);
+			path = PageManager;
+			sourceTree = "<group>";
+		};
+		9E2D3436275E2C750013A7BD /* ParallelTaskManager */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3437275E2C750013A7BD /* ParallelTaskManager.hpp */,
+				9E2D3438275E2C750013A7BD /* ParallelTaskManager.cpp */,
+			);
+			path = ParallelTaskManager;
+			sourceTree = "<group>";
+		};
+		9E2D3439275E2C750013A7BD /* PixelUnit */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D343A275E2C750013A7BD /* PixelUnit.cpp */,
+			);
+			path = PixelUnit;
+			sourceTree = "<group>";
+		};
+		9E2D343B275E2C750013A7BD /* WindowManager */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D343C275E2C750013A7BD /* WindowManager.cpp */,
+			);
+			path = WindowManager;
+			sourceTree = "<group>";
+		};
+		9E2D343D275E2C750013A7BD /* Timeout */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D343E275E2C750013A7BD /* Timeout.cpp */,
+			);
+			path = Timeout;
+			sourceTree = "<group>";
+		};
+		9E2D343F275E2C750013A7BD /* ColorTheme */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3440275E2C750013A7BD /* ColorTheme.cpp */,
+			);
+			path = ColorTheme;
+			sourceTree = "<group>";
+		};
+		9E2D3441275E2C750013A7BD /* Imaging */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3442275E2C750013A7BD /* Imaging.cpp */,
+			);
+			path = Imaging;
+			sourceTree = "<group>";
+		};
+		9E2D3443275E2C750013A7BD /* CommandLine */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3444275E2C750013A7BD /* CommandLine.cpp */,
+			);
+			path = CommandLine;
+			sourceTree = "<group>";
+		};
+		9E2D3445275E2C750013A7BD /* UserInterface */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3446275E2C750013A7BD /* Component */,
+				9E2D3466275E2C750013A7BD /* Layer */,
+				9E2D3468275E2C750013A7BD /* Font */,
+				9E2D346A275E2C750013A7BD /* Constraint */,
+			);
+			path = UserInterface;
+			sourceTree = "<group>";
+		};
+		9E2D3446275E2C750013A7BD /* Component */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3447275E2C750013A7BD /* UICheckBox */,
+				9E2D3449275E2C750013A7BD /* UIButton */,
+				9E2D344B275E2C750013A7BD /* UIToggleButton */,
+				9E2D344D275E2C750013A7BD /* UIView */,
+				9E2D344F275E2C750013A7BD /* UIText */,
+				9E2D3451275E2C750013A7BD /* UIVStackView */,
+				9E2D3453275E2C750013A7BD /* UIIcon */,
+				9E2D3455275E2C750013A7BD /* UICircle */,
+				9E2D3457275E2C750013A7BD /* UIImageView */,
+				9E2D3459275E2C750013A7BD /* UIRect */,
+				9E2D345B275E2C750013A7BD /* UIInputField */,
+				9E2D345F275E2C750013A7BD /* UISlider */,
+				9E2D3461275E2C750013A7BD /* UIComponent */,
+				9E2D3464275E2C750013A7BD /* UITabView */,
+			);
+			path = Component;
+			sourceTree = "<group>";
+		};
+		9E2D3447275E2C750013A7BD /* UICheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3448275E2C750013A7BD /* UICheckBox.cpp */,
+			);
+			path = UICheckBox;
+			sourceTree = "<group>";
+		};
+		9E2D3449275E2C750013A7BD /* UIButton */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D344A275E2C750013A7BD /* UIButton.cpp */,
+			);
+			path = UIButton;
+			sourceTree = "<group>";
+		};
+		9E2D344B275E2C750013A7BD /* UIToggleButton */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D344C275E2C750013A7BD /* UIToggleButton.cpp */,
+			);
+			path = UIToggleButton;
+			sourceTree = "<group>";
+		};
+		9E2D344D275E2C750013A7BD /* UIView */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D344E275E2C750013A7BD /* UIView.cpp */,
+			);
+			path = UIView;
+			sourceTree = "<group>";
+		};
+		9E2D344F275E2C750013A7BD /* UIText */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3450275E2C750013A7BD /* UIText.cpp */,
+			);
+			path = UIText;
+			sourceTree = "<group>";
+		};
+		9E2D3451275E2C750013A7BD /* UIVStackView */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3452275E2C750013A7BD /* UIVStackView.cpp */,
+			);
+			path = UIVStackView;
+			sourceTree = "<group>";
+		};
+		9E2D3453275E2C750013A7BD /* UIIcon */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3454275E2C750013A7BD /* UIIcon.cpp */,
+			);
+			path = UIIcon;
+			sourceTree = "<group>";
+		};
+		9E2D3455275E2C750013A7BD /* UICircle */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3456275E2C750013A7BD /* UICircle.cpp */,
+			);
+			path = UICircle;
+			sourceTree = "<group>";
+		};
+		9E2D3457275E2C750013A7BD /* UIImageView */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3458275E2C750013A7BD /* UIImageView.cpp */,
+			);
+			path = UIImageView;
+			sourceTree = "<group>";
+		};
+		9E2D3459275E2C750013A7BD /* UIRect */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D345A275E2C750013A7BD /* UIRect.cpp */,
+			);
+			path = UIRect;
+			sourceTree = "<group>";
+		};
+		9E2D345B275E2C750013A7BD /* UIInputField */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D345C275E2C750013A7BD /* KeyboardOperation */,
+				9E2D345E275E2C750013A7BD /* UIInputField.cpp */,
+			);
+			path = UIInputField;
+			sourceTree = "<group>";
+		};
+		9E2D345C275E2C750013A7BD /* KeyboardOperation */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D345D275E2C750013A7BD /* KeyboardOperation.cpp */,
+			);
+			path = KeyboardOperation;
+			sourceTree = "<group>";
+		};
+		9E2D345F275E2C750013A7BD /* UISlider */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3460275E2C750013A7BD /* UISlider.cpp */,
+			);
+			path = UISlider;
+			sourceTree = "<group>";
+		};
+		9E2D3461275E2C750013A7BD /* UIComponent */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3462275E2C750013A7BD /* UIComponentMouseEvent.cpp */,
+				9E2D3463275E2C750013A7BD /* UIComponent.cpp */,
+			);
+			path = UIComponent;
+			sourceTree = "<group>";
+		};
+		9E2D3464275E2C750013A7BD /* UITabView */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3465275E2C750013A7BD /* UITabView.cpp */,
+			);
+			path = UITabView;
+			sourceTree = "<group>";
+		};
+		9E2D3466275E2C750013A7BD /* Layer */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3467275E2C750013A7BD /* Layer.cpp */,
+			);
+			path = Layer;
+			sourceTree = "<group>";
+		};
+		9E2D3468275E2C750013A7BD /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3469275E2C750013A7BD /* UnifiedFont.cpp */,
+			);
+			path = Font;
+			sourceTree = "<group>";
+		};
+		9E2D346A275E2C750013A7BD /* Constraint */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D346B275E2C750013A7BD /* Constraint.cpp */,
+			);
+			path = Constraint;
+			sourceTree = "<group>";
+		};
+		9E2D346C275E2C750013A7BD /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D346D275E2C750013A7BD /* Factory.cpp */,
+			);
+			path = Factory;
+			sourceTree = "<group>";
+		};
+		9E2D346E275E2C750013A7BD /* include */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D346F275E2C750013A7BD /* Aoba */,
+			);
+			name = include;
+			path = ../Aoba/include;
+			sourceTree = "<group>";
+		};
+		9E2D346F275E2C750013A7BD /* Aoba */ = {
+			isa = PBXGroup;
+			children = (
+				9E2D3470275E2C750013A7BD /* UIRect.hpp */,
+				9E2D3471275E2C750013A7BD /* Imaging.hpp */,
+				9E2D3472275E2C750013A7BD /* Factory.hpp */,
+				9E2D3473275E2C750013A7BD /* UISlider.hpp */,
+				9E2D3474275E2C750013A7BD /* UIToggleButton.hpp */,
+				9E2D3475275E2C750013A7BD /* CommandLine.hpp */,
+				9E2D3476275E2C750013A7BD /* Timeout.hpp */,
+				9E2D3477275E2C750013A7BD /* UIImageView.hpp */,
+				9E2D3478275E2C750013A7BD /* DynamicColor.hpp */,
+				9E2D3479275E2C750013A7BD /* PixelUnit.hpp */,
+				9E2D347A275E2C750013A7BD /* Aoba.hpp */,
+				9E2D347B275E2C750013A7BD /* InputEvent.hpp */,
+				9E2D347C275E2C750013A7BD /* ColorTheme.hpp */,
+				9E2D347D275E2C750013A7BD /* UIIcon.hpp */,
+				9E2D347E275E2C750013A7BD /* UIInputField.hpp */,
+				9E2D347F275E2C750013A7BD /* WindowManager.hpp */,
+				9E2D3480275E2C750013A7BD /* UIComponent.hpp */,
+				9E2D3481275E2C750013A7BD /* UICircle.hpp */,
+				9E2D3482275E2C750013A7BD /* UICheckBox.hpp */,
+				9E2D3483275E2C750013A7BD /* Constraint.hpp */,
+				9E2D3484275E2C750013A7BD /* UIVStackView.hpp */,
+				9E2D3485275E2C750013A7BD /* UIText.hpp */,
+				9E2D3486275E2C750013A7BD /* Layer.hpp */,
+				9E2D3487275E2C750013A7BD /* UITabView.hpp */,
+				9E2D3488275E2C750013A7BD /* MouseEvent.hpp */,
+				9E2D3489275E2C750013A7BD /* Page.hpp */,
+				9E2D348A275E2C750013A7BD /* UIView.hpp */,
+				9E2D348B275E2C750013A7BD /* UnifiedFont.hpp */,
+				9E2D348C275E2C750013A7BD /* InputEventHandler.hpp */,
+				9E2D348D275E2C750013A7BD /* UIButton.hpp */,
+				9E2D348E275E2C750013A7BD /* Core.hpp */,
+				9E2D348F275E2C750013A7BD /* KeyboardOperation.hpp */,
+			);
+			path = Aoba;
+			sourceTree = "<group>";
+		};
 		9E83801A2679E3D50052AF7B = {
 			isa = PBXGroup;
 			children = (
-				9EBF10742716939D00ECCD40 /* include */,
-				9EBF10972716939D00ECCD40 /* src */,
+				9E2D346E275E2C750013A7BD /* include */,
+				9E2D342C275E2C750013A7BD /* src */,
 				9E8380242679E3D50052AF7B /* Products */,
 			);
 			sourceTree = "<group>";
@@ -177,354 +511,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		9EBF10742716939D00ECCD40 /* include */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10752716939D00ECCD40 /* Aoba */,
-			);
-			name = include;
-			path = ../Aoba/include;
-			sourceTree = "<group>";
-		};
-		9EBF10752716939D00ECCD40 /* Aoba */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10762716939D00ECCD40 /* UIRect.hpp */,
-				9EBF10772716939D00ECCD40 /* Imaging.hpp */,
-				9EBF10782716939D00ECCD40 /* UISlider.hpp */,
-				9EBF10792716939D00ECCD40 /* UIToggleButton.hpp */,
-				9EBF107A2716939D00ECCD40 /* CommandLine.hpp */,
-				9EBF107B2716939D00ECCD40 /* Timeout.hpp */,
-				9EBF107C2716939D00ECCD40 /* UIImageView.hpp */,
-				9EBF107D2716939D00ECCD40 /* DynamicColor.hpp */,
-				9EBF107E2716939D00ECCD40 /* PixelUnit.hpp */,
-				9EBF107F2716939D00ECCD40 /* Aoba.hpp */,
-				9EBF10802716939D00ECCD40 /* InputEvent.hpp */,
-				9EBF10812716939D00ECCD40 /* AobaCore.hpp */,
-				9EBF10822716939D00ECCD40 /* ColorTheme.hpp */,
-				9EBF10832716939D00ECCD40 /* UIIcon.hpp */,
-				9EBF10842716939D00ECCD40 /* AobaFactory.hpp */,
-				9EBF10852716939D00ECCD40 /* UIInputField.hpp */,
-				9EBF10862716939D00ECCD40 /* WindowManager.hpp */,
-				9EBF10872716939D00ECCD40 /* UIComponent.hpp */,
-				9EBF10882716939D00ECCD40 /* UICircle.hpp */,
-				9EBF10892716939D00ECCD40 /* UICheckBox.hpp */,
-				9EBF108A2716939D00ECCD40 /* Constraint.hpp */,
-				9EBF108B2716939D00ECCD40 /* UIVStackView.hpp */,
-				9EBF108C2716939D00ECCD40 /* UIText.hpp */,
-				9EBF108D2716939D00ECCD40 /* Layer.hpp */,
-				9EBF108E2716939D00ECCD40 /* AobaInterface.hpp */,
-				9EBF108F2716939D00ECCD40 /* UITabView.hpp */,
-				9EBF10902716939D00ECCD40 /* MouseEvent.hpp */,
-				9EBF10912716939D00ECCD40 /* Page.hpp */,
-				9EBF10922716939D00ECCD40 /* UIView.hpp */,
-				9EBF10932716939D00ECCD40 /* UnifiedFont.hpp */,
-				9EBF10942716939D00ECCD40 /* InputEventHandler.hpp */,
-				9EBF10952716939D00ECCD40 /* UIButton.hpp */,
-				9EBF10962716939D00ECCD40 /* KeyboardOperation.hpp */,
-			);
-			path = Aoba;
-			sourceTree = "<group>";
-		};
-		9EBF10972716939D00ECCD40 /* src */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10982716939D00ECCD40 /* Page */,
-				9EBF109A2716939D00ECCD40 /* AobaFactory */,
-				9EBF109C2716939D00ECCD40 /* PixelUnit */,
-				9EBF109E2716939D00ECCD40 /* WindowManager */,
-				9EBF10A02716939D00ECCD40 /* AobaCore */,
-				9EBF10AA2716939D00ECCD40 /* Timeout */,
-				9EBF10AC2716939D00ECCD40 /* ColorTheme */,
-				9EBF10AE2716939D00ECCD40 /* Imaging */,
-				9EBF10B02716939D00ECCD40 /* CommandLine */,
-				9EBF10B22716939D00ECCD40 /* AobaInterface */,
-				9EBF10B42716939D00ECCD40 /* UserInterface */,
-			);
-			name = src;
-			path = ../Aoba/src;
-			sourceTree = "<group>";
-		};
-		9EBF10982716939D00ECCD40 /* Page */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10992716939D00ECCD40 /* Page.cpp */,
-			);
-			path = Page;
-			sourceTree = "<group>";
-		};
-		9EBF109A2716939D00ECCD40 /* AobaFactory */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF109B2716939D00ECCD40 /* AobaFactory.cpp */,
-			);
-			path = AobaFactory;
-			sourceTree = "<group>";
-		};
-		9EBF109C2716939D00ECCD40 /* PixelUnit */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF109D2716939D00ECCD40 /* PixelUnit.cpp */,
-			);
-			path = PixelUnit;
-			sourceTree = "<group>";
-		};
-		9EBF109E2716939D00ECCD40 /* WindowManager */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF109F2716939D00ECCD40 /* WindowManager.cpp */,
-			);
-			path = WindowManager;
-			sourceTree = "<group>";
-		};
-		9EBF10A02716939D00ECCD40 /* AobaCore */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10A12716939D00ECCD40 /* AobaCore.cpp */,
-				9EBF10A22716939D00ECCD40 /* AobaLifeCycle.cpp */,
-				9EBF10A32716939D00ECCD40 /* PageManager */,
-				9EBF10A72716939D00ECCD40 /* ParallelTaskManager */,
-			);
-			path = AobaCore;
-			sourceTree = "<group>";
-		};
-		9EBF10A32716939D00ECCD40 /* PageManager */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10A42716939D00ECCD40 /* PageManager.cpp */,
-				9EBF10A52716939D00ECCD40 /* PageCycle.cpp */,
-				9EBF10A62716939D00ECCD40 /* PageManager.hpp */,
-			);
-			path = PageManager;
-			sourceTree = "<group>";
-		};
-		9EBF10A72716939D00ECCD40 /* ParallelTaskManager */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10A82716939D00ECCD40 /* ParallelTaskManager.hpp */,
-				9EBF10A92716939D00ECCD40 /* ParallelTaskManager.cpp */,
-			);
-			path = ParallelTaskManager;
-			sourceTree = "<group>";
-		};
-		9EBF10AA2716939D00ECCD40 /* Timeout */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10AB2716939D00ECCD40 /* Timeout.cpp */,
-			);
-			path = Timeout;
-			sourceTree = "<group>";
-		};
-		9EBF10AC2716939D00ECCD40 /* ColorTheme */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10AD2716939D00ECCD40 /* ColorTheme.cpp */,
-			);
-			path = ColorTheme;
-			sourceTree = "<group>";
-		};
-		9EBF10AE2716939D00ECCD40 /* Imaging */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10AF2716939D00ECCD40 /* Imaging.cpp */,
-			);
-			path = Imaging;
-			sourceTree = "<group>";
-		};
-		9EBF10B02716939D00ECCD40 /* CommandLine */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10B12716939D00ECCD40 /* CommandLine.cpp */,
-			);
-			path = CommandLine;
-			sourceTree = "<group>";
-		};
-		9EBF10B22716939D00ECCD40 /* AobaInterface */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10B32716939D00ECCD40 /* AobaInterface.cpp */,
-			);
-			path = AobaInterface;
-			sourceTree = "<group>";
-		};
-		9EBF10B42716939D00ECCD40 /* UserInterface */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10B52716939D00ECCD40 /* Component */,
-				9EBF10D52716939D00ECCD40 /* Layer */,
-				9EBF10D72716939D00ECCD40 /* Font */,
-				9EBF10D92716939D00ECCD40 /* Constraint */,
-			);
-			path = UserInterface;
-			sourceTree = "<group>";
-		};
-		9EBF10B52716939D00ECCD40 /* Component */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10B62716939D00ECCD40 /* UICheckBox */,
-				9EBF10B82716939D00ECCD40 /* UIButton */,
-				9EBF10BA2716939D00ECCD40 /* UIToggleButton */,
-				9EBF10BC2716939D00ECCD40 /* UIView */,
-				9EBF10BE2716939D00ECCD40 /* UIText */,
-				9EBF10C02716939D00ECCD40 /* UIVStackView */,
-				9EBF10C22716939D00ECCD40 /* UIIcon */,
-				9EBF10C42716939D00ECCD40 /* UICircle */,
-				9EBF10C62716939D00ECCD40 /* UIImageView */,
-				9EBF10C82716939D00ECCD40 /* UIRect */,
-				9EBF10CA2716939D00ECCD40 /* UIInputField */,
-				9EBF10CE2716939D00ECCD40 /* UISlider */,
-				9EBF10D02716939D00ECCD40 /* UIComponent */,
-				9EBF10D32716939D00ECCD40 /* UITabView */,
-			);
-			path = Component;
-			sourceTree = "<group>";
-		};
-		9EBF10B62716939D00ECCD40 /* UICheckBox */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10B72716939D00ECCD40 /* UICheckBox.cpp */,
-			);
-			path = UICheckBox;
-			sourceTree = "<group>";
-		};
-		9EBF10B82716939D00ECCD40 /* UIButton */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10B92716939D00ECCD40 /* UIButton.cpp */,
-			);
-			path = UIButton;
-			sourceTree = "<group>";
-		};
-		9EBF10BA2716939D00ECCD40 /* UIToggleButton */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10BB2716939D00ECCD40 /* UIToggleButton.cpp */,
-			);
-			path = UIToggleButton;
-			sourceTree = "<group>";
-		};
-		9EBF10BC2716939D00ECCD40 /* UIView */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10BD2716939D00ECCD40 /* UIView.cpp */,
-			);
-			path = UIView;
-			sourceTree = "<group>";
-		};
-		9EBF10BE2716939D00ECCD40 /* UIText */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10BF2716939D00ECCD40 /* UIText.cpp */,
-			);
-			path = UIText;
-			sourceTree = "<group>";
-		};
-		9EBF10C02716939D00ECCD40 /* UIVStackView */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10C12716939D00ECCD40 /* UIVStackView.cpp */,
-			);
-			path = UIVStackView;
-			sourceTree = "<group>";
-		};
-		9EBF10C22716939D00ECCD40 /* UIIcon */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10C32716939D00ECCD40 /* UIIcon.cpp */,
-			);
-			path = UIIcon;
-			sourceTree = "<group>";
-		};
-		9EBF10C42716939D00ECCD40 /* UICircle */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10C52716939D00ECCD40 /* UICircle.cpp */,
-			);
-			path = UICircle;
-			sourceTree = "<group>";
-		};
-		9EBF10C62716939D00ECCD40 /* UIImageView */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10C72716939D00ECCD40 /* UIImageView.cpp */,
-			);
-			path = UIImageView;
-			sourceTree = "<group>";
-		};
-		9EBF10C82716939D00ECCD40 /* UIRect */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10C92716939D00ECCD40 /* UIRect.cpp */,
-			);
-			path = UIRect;
-			sourceTree = "<group>";
-		};
-		9EBF10CA2716939D00ECCD40 /* UIInputField */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10CB2716939D00ECCD40 /* KeyboardOperation */,
-				9EBF10CD2716939D00ECCD40 /* UIInputField.cpp */,
-			);
-			path = UIInputField;
-			sourceTree = "<group>";
-		};
-		9EBF10CB2716939D00ECCD40 /* KeyboardOperation */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10CC2716939D00ECCD40 /* KeyboardOperation.cpp */,
-			);
-			path = KeyboardOperation;
-			sourceTree = "<group>";
-		};
-		9EBF10CE2716939D00ECCD40 /* UISlider */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10CF2716939D00ECCD40 /* UISlider.cpp */,
-			);
-			path = UISlider;
-			sourceTree = "<group>";
-		};
-		9EBF10D02716939D00ECCD40 /* UIComponent */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10D12716939D00ECCD40 /* UIComponentMouseEvent.cpp */,
-				9EBF10D22716939D00ECCD40 /* UIComponent.cpp */,
-			);
-			path = UIComponent;
-			sourceTree = "<group>";
-		};
-		9EBF10D32716939D00ECCD40 /* UITabView */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10D42716939D00ECCD40 /* UITabView.cpp */,
-			);
-			path = UITabView;
-			sourceTree = "<group>";
-		};
-		9EBF10D52716939D00ECCD40 /* Layer */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10D62716939D00ECCD40 /* Layer.cpp */,
-			);
-			path = Layer;
-			sourceTree = "<group>";
-		};
-		9EBF10D72716939D00ECCD40 /* Font */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10D82716939D00ECCD40 /* UnifiedFont.cpp */,
-			);
-			path = Font;
-			sourceTree = "<group>";
-		};
-		9EBF10D92716939D00ECCD40 /* Constraint */ = {
-			isa = PBXGroup;
-			children = (
-				9EBF10DA2716939D00ECCD40 /* Constraint.cpp */,
-			);
-			path = Constraint;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -532,41 +518,40 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EBF10E02716939D00ECCD40 /* Timeout.hpp in Headers */,
-				9EBF10DF2716939D00ECCD40 /* CommandLine.hpp in Headers */,
-				9EBF10ED2716939D00ECCD40 /* UICircle.hpp in Headers */,
-				9EBF10E92716939D00ECCD40 /* AobaFactory.hpp in Headers */,
-				9EBF10F92716939D00ECCD40 /* InputEventHandler.hpp in Headers */,
-				9EBF10E52716939D00ECCD40 /* InputEvent.hpp in Headers */,
-				9EBF10E22716939D00ECCD40 /* DynamicColor.hpp in Headers */,
-				9EBF10F82716939D00ECCD40 /* UnifiedFont.hpp in Headers */,
-				9EBF10DE2716939D00ECCD40 /* UIToggleButton.hpp in Headers */,
-				9EBF10F32716939D00ECCD40 /* AobaInterface.hpp in Headers */,
-				9EBF10F52716939D00ECCD40 /* MouseEvent.hpp in Headers */,
-				9EBF10E82716939D00ECCD40 /* UIIcon.hpp in Headers */,
-				9EBF10E72716939D00ECCD40 /* ColorTheme.hpp in Headers */,
-				9EBF11052716939D00ECCD40 /* ParallelTaskManager.hpp in Headers */,
-				9EBF11042716939D00ECCD40 /* PageManager.hpp in Headers */,
-				9EBF10EA2716939D00ECCD40 /* UIInputField.hpp in Headers */,
-				9EBF10E12716939D00ECCD40 /* UIImageView.hpp in Headers */,
-				9EBF10DB2716939D00ECCD40 /* UIRect.hpp in Headers */,
-				9EBF10F22716939D00ECCD40 /* Layer.hpp in Headers */,
-				9EBF10DC2716939D00ECCD40 /* Imaging.hpp in Headers */,
-				9EBF10F12716939D00ECCD40 /* UIText.hpp in Headers */,
-				9EBF10F02716939D00ECCD40 /* UIVStackView.hpp in Headers */,
-				9EBF10EC2716939D00ECCD40 /* UIComponent.hpp in Headers */,
-				9EBF10E32716939D00ECCD40 /* PixelUnit.hpp in Headers */,
-				9EBF10DD2716939D00ECCD40 /* UISlider.hpp in Headers */,
-				9EBF10EB2716939D00ECCD40 /* WindowManager.hpp in Headers */,
-				9EBF10FB2716939D00ECCD40 /* KeyboardOperation.hpp in Headers */,
-				9EBF10F72716939D00ECCD40 /* UIView.hpp in Headers */,
-				9EBF10F42716939D00ECCD40 /* UITabView.hpp in Headers */,
-				9EBF10EE2716939D00ECCD40 /* UICheckBox.hpp in Headers */,
-				9EBF10E62716939D00ECCD40 /* AobaCore.hpp in Headers */,
-				9EBF10FA2716939D00ECCD40 /* UIButton.hpp in Headers */,
-				9EBF10E42716939D00ECCD40 /* Aoba.hpp in Headers */,
-				9EBF10EF2716939D00ECCD40 /* Constraint.hpp in Headers */,
-				9EBF10F62716939D00ECCD40 /* Page.hpp in Headers */,
+				9E2D3496275E2C750013A7BD /* ParallelTaskManager.hpp in Headers */,
+				9E2D34D0275E2C750013A7BD /* Core.hpp in Headers */,
+				9E2D34BC275E2C750013A7BD /* Aoba.hpp in Headers */,
+				9E2D34C1275E2C750013A7BD /* WindowManager.hpp in Headers */,
+				9E2D34C2275E2C750013A7BD /* UIComponent.hpp in Headers */,
+				9E2D34CE275E2C750013A7BD /* InputEventHandler.hpp in Headers */,
+				9E2D34BB275E2C750013A7BD /* PixelUnit.hpp in Headers */,
+				9E2D34B6275E2C750013A7BD /* UIToggleButton.hpp in Headers */,
+				9E2D34CD275E2C750013A7BD /* UnifiedFont.hpp in Headers */,
+				9E2D34BE275E2C750013A7BD /* ColorTheme.hpp in Headers */,
+				9E2D34B3275E2C750013A7BD /* Imaging.hpp in Headers */,
+				9E2D34CA275E2C750013A7BD /* MouseEvent.hpp in Headers */,
+				9E2D34B9275E2C750013A7BD /* UIImageView.hpp in Headers */,
+				9E2D34C6275E2C750013A7BD /* UIVStackView.hpp in Headers */,
+				9E2D34C5275E2C750013A7BD /* Constraint.hpp in Headers */,
+				9E2D34D1275E2C750013A7BD /* KeyboardOperation.hpp in Headers */,
+				9E2D34BF275E2C750013A7BD /* UIIcon.hpp in Headers */,
+				9E2D34C4275E2C750013A7BD /* UICheckBox.hpp in Headers */,
+				9E2D34B4275E2C750013A7BD /* Factory.hpp in Headers */,
+				9E2D34B7275E2C750013A7BD /* CommandLine.hpp in Headers */,
+				9E2D34BA275E2C750013A7BD /* DynamicColor.hpp in Headers */,
+				9E2D34B2275E2C750013A7BD /* UIRect.hpp in Headers */,
+				9E2D34C3275E2C750013A7BD /* UICircle.hpp in Headers */,
+				9E2D34BD275E2C750013A7BD /* InputEvent.hpp in Headers */,
+				9E2D34C7275E2C750013A7BD /* UIText.hpp in Headers */,
+				9E2D34B8275E2C750013A7BD /* Timeout.hpp in Headers */,
+				9E2D34CC275E2C750013A7BD /* UIView.hpp in Headers */,
+				9E2D34C9275E2C750013A7BD /* UITabView.hpp in Headers */,
+				9E2D34C0275E2C750013A7BD /* UIInputField.hpp in Headers */,
+				9E2D3495275E2C750013A7BD /* PageManager.hpp in Headers */,
+				9E2D34CF275E2C750013A7BD /* UIButton.hpp in Headers */,
+				9E2D34B5275E2C750013A7BD /* UISlider.hpp in Headers */,
+				9E2D34C8275E2C750013A7BD /* Layer.hpp in Headers */,
+				9E2D34CB275E2C750013A7BD /* Page.hpp in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -626,39 +611,38 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9EBF11082716939D00ECCD40 /* ColorTheme.cpp in Sources */,
-				9EBF111A2716939D00ECCD40 /* UIComponent.cpp in Sources */,
-				9EBF11102716939D00ECCD40 /* UIText.cpp in Sources */,
-				9EBF10FC2716939D00ECCD40 /* Page.cpp in Sources */,
-				9EBF111C2716939D00ECCD40 /* Layer.cpp in Sources */,
-				9EBF11002716939D00ECCD40 /* AobaCore.cpp in Sources */,
-				9EBF11182716939D00ECCD40 /* UISlider.cpp in Sources */,
-				9EBF111B2716939D00ECCD40 /* UITabView.cpp in Sources */,
-				9EBF10FF2716939D00ECCD40 /* WindowManager.cpp in Sources */,
-				9EBF110B2716939D00ECCD40 /* AobaInterface.cpp in Sources */,
-				9EBF11092716939D00ECCD40 /* Imaging.cpp in Sources */,
-				9EBF11062716939D00ECCD40 /* ParallelTaskManager.cpp in Sources */,
-				9EBF110D2716939D00ECCD40 /* UIButton.cpp in Sources */,
-				9EBF111E2716939D00ECCD40 /* Constraint.cpp in Sources */,
-				9EBF110E2716939D00ECCD40 /* UIToggleButton.cpp in Sources */,
-				9EBF11032716939D00ECCD40 /* PageCycle.cpp in Sources */,
-				9EBF110F2716939D00ECCD40 /* UIView.cpp in Sources */,
-				9EBF11022716939D00ECCD40 /* PageManager.cpp in Sources */,
-				9EBF11192716939D00ECCD40 /* UIComponentMouseEvent.cpp in Sources */,
-				9EBF11132716939D00ECCD40 /* UICircle.cpp in Sources */,
-				9EBF110A2716939D00ECCD40 /* CommandLine.cpp in Sources */,
-				9EBF11152716939D00ECCD40 /* UIRect.cpp in Sources */,
-				9EBF11112716939D00ECCD40 /* UIVStackView.cpp in Sources */,
-				9EBF11172716939D00ECCD40 /* UIInputField.cpp in Sources */,
-				9EBF11122716939D00ECCD40 /* UIIcon.cpp in Sources */,
-				9EBF11012716939D00ECCD40 /* AobaLifeCycle.cpp in Sources */,
-				9EBF11142716939D00ECCD40 /* UIImageView.cpp in Sources */,
-				9EBF10FE2716939D00ECCD40 /* PixelUnit.cpp in Sources */,
-				9EBF111D2716939D00ECCD40 /* UnifiedFont.cpp in Sources */,
-				9EBF11162716939D00ECCD40 /* KeyboardOperation.cpp in Sources */,
-				9EBF110C2716939D00ECCD40 /* UICheckBox.cpp in Sources */,
-				9EBF10FD2716939D00ECCD40 /* AobaFactory.cpp in Sources */,
-				9EBF11072716939D00ECCD40 /* Timeout.cpp in Sources */,
+				9E2D3494275E2C750013A7BD /* PageCycle.cpp in Sources */,
+				9E2D3493275E2C750013A7BD /* PageManager.cpp in Sources */,
+				9E2D3492275E2C750013A7BD /* CoreLifeCycle.cpp in Sources */,
+				9E2D349E275E2C750013A7BD /* UICheckBox.cpp in Sources */,
+				9E2D34A1275E2C750013A7BD /* UIView.cpp in Sources */,
+				9E2D34A6275E2C750013A7BD /* UIImageView.cpp in Sources */,
+				9E2D349D275E2C750013A7BD /* CommandLine.cpp in Sources */,
+				9E2D349C275E2C750013A7BD /* Imaging.cpp in Sources */,
+				9E2D34A4275E2C750013A7BD /* UIIcon.cpp in Sources */,
+				9E2D349A275E2C750013A7BD /* Timeout.cpp in Sources */,
+				9E2D34A5275E2C750013A7BD /* UICircle.cpp in Sources */,
+				9E2D34AE275E2C750013A7BD /* Layer.cpp in Sources */,
+				9E2D34A9275E2C750013A7BD /* UIInputField.cpp in Sources */,
+				9E2D34AC275E2C750013A7BD /* UIComponent.cpp in Sources */,
+				9E2D34AA275E2C750013A7BD /* UISlider.cpp in Sources */,
+				9E2D34A3275E2C750013A7BD /* UIVStackView.cpp in Sources */,
+				9E2D34B0275E2C750013A7BD /* Constraint.cpp in Sources */,
+				9E2D3498275E2C750013A7BD /* PixelUnit.cpp in Sources */,
+				9E2D3497275E2C750013A7BD /* ParallelTaskManager.cpp in Sources */,
+				9E2D34A8275E2C750013A7BD /* KeyboardOperation.cpp in Sources */,
+				9E2D34B1275E2C750013A7BD /* Factory.cpp in Sources */,
+				9E2D34AD275E2C750013A7BD /* UITabView.cpp in Sources */,
+				9E2D349F275E2C750013A7BD /* UIButton.cpp in Sources */,
+				9E2D34AF275E2C750013A7BD /* UnifiedFont.cpp in Sources */,
+				9E2D34AB275E2C750013A7BD /* UIComponentMouseEvent.cpp in Sources */,
+				9E2D3499275E2C750013A7BD /* WindowManager.cpp in Sources */,
+				9E2D3491275E2C750013A7BD /* Core.cpp in Sources */,
+				9E2D3490275E2C750013A7BD /* Page.cpp in Sources */,
+				9E2D34A0275E2C750013A7BD /* UIToggleButton.cpp in Sources */,
+				9E2D34A7275E2C750013A7BD /* UIRect.cpp in Sources */,
+				9E2D34A2275E2C750013A7BD /* UIText.cpp in Sources */,
+				9E2D349B275E2C750013A7BD /* ColorTheme.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

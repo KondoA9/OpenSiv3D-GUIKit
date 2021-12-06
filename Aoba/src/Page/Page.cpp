@@ -1,10 +1,10 @@
 ﻿#include <Aoba/Page.hpp>
 #include <Aoba/UIView.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
 	Page::Page(const String& identifier) :
-		view(AobaFactory::CreateComponent<UIView>()),
+		view(Factory::CreateComponent<UIView>()),
 		m_identifier(identifier)
 	{
 		view.setConstraint(LayerDirection::Top);

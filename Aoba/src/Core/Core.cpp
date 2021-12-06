@@ -1,8 +1,8 @@
-﻿#include <Aoba/AobaCore.hpp>
+﻿#include <Aoba/Core.hpp>
 #include <Aoba/Page.hpp>
 #include <Aoba/WindowManager.hpp>
 #include <Aoba/UnifiedFont.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
@@ -10,7 +10,7 @@
 #include <thread>
 
 namespace s3d::aoba {
-	AobaCore::AobaCore() {
+	Core::Core() {
 		m_pageManager = new PageManager();
 		m_parallelTaskManager = new ParallelTaskManager();
 
@@ -24,32 +24,32 @@ namespace s3d::aoba {
 
 		System::SetTerminationTriggers(UserAction::NoAction);
 
-		AobaCore::AddLicense();
+		Core::AddLicense();
 	}
 
-	AobaCore::~AobaCore() {
+	Core::~Core() {
 		delete m_pageManager;
 		delete m_parallelTaskManager;
 	}
 
-	bool AobaCore::isParalellTaskAlive() const {
-		return m_parallelTaskManager->isAlive();
+	bool Core::IsParallelTaskAlive() {
+		return Instance().m_parallelTaskManager->isAlive();
 	}
 
-	void AobaCore::switchPage(const String& identifier) {
-		m_pageManager->switchPage(identifier);
+	void Core::SwitchPage(const String& identifier) {
+		Instance().m_pageManager->switchPage(identifier);
 	}
 
-	void AobaCore::setColorMode(ColorMode mode) {
-		m_animateColor = true;
+	void Core::SetColorMode(ColorMode mode) {
+		Instance().m_animateColor = true;
 		ColorTheme::SetColorMode(mode);
 	}
 
-	void AobaCore::toggleColorMode() {
-		setColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
+	void Core::ToggleColorMode() {
+		Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
 	}
 
-	bool AobaCore::animateColor() {
+	bool Core::animateColor() {
 		static double t = 0.0;
 		t += 5.0 * Scene::DeltaTime();
 
@@ -63,29 +63,29 @@ namespace s3d::aoba {
 		return true;
 	}
 
-	void AobaCore::insertProcessToMainThread(const std::function<void()>& func) {
-		std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
-		m_eventsRequestedToRunInMainThread.push_back(func);
+	void Core::InsertProcessToMainThread(const std::function<void()>& func) {
+		std::lock_guard<std::mutex> lock(Instance().m_mainThreadInserterMutex);
+		Instance().m_eventsRequestedToRunInMainThread.push_back(func);
 	}
 
-	void AobaCore::createParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
+	void Core::CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
 		if (completion) {
-			m_parallelTaskManager->createTask(func, [this, completion] {
-				insertProcessToMainThread(completion);
+			Instance().m_parallelTaskManager->createTask(func, [completion] {
+				Instance().InsertProcessToMainThread(completion);
 				});
 		}
 		else {
-			m_parallelTaskManager->createTask(func);
+			Instance().m_parallelTaskManager->createTask(func);
 		}
 	}
 
-	size_t AobaCore::setTimeout(const std::function<void()>& func, double ms, bool threading) {
-		m_timeouts.push_back(Timeout(func, ms, threading));
-		return m_timeouts[m_timeouts.size() - 1].id();
+	size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
+		Instance().m_timeouts.push_back(Timeout(func, ms, threading));
+		return Instance().m_timeouts[Instance().m_timeouts.size() - 1].id();
 	}
 
-	bool AobaCore::stopTimeout(size_t id) {
-		for (auto& timeout : m_timeouts) {
+	bool Core::StopTimeout(size_t id) {
+		for (auto& timeout : Instance().m_timeouts) {
 			if (timeout.id() == id) {
 				return timeout.stop();
 			}
@@ -93,8 +93,8 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	bool AobaCore::restartTimeout(size_t id) {
-		for (auto& timeout : m_timeouts) {
+	bool Core::RestartTimeout(size_t id) {
+		for (auto& timeout : Instance().m_timeouts) {
 			if (timeout.id() == id) {
 				return timeout.restart();
 			}
@@ -102,8 +102,8 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	bool AobaCore::isTimeoutAlive(size_t id) {
-		for (auto& timeout : m_timeouts) {
+	bool Core::IsTimeoutAlive(size_t id) {
+		for (auto& timeout : Instance().m_timeouts) {
 			if (timeout.id() == id) {
 				return timeout.isAlive();
 			}
@@ -111,23 +111,23 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	Page& AobaCore::getPage(const String& identifier) const noexcept {
+	Page& Core::getPage(const String& identifier) const noexcept {
 		return m_pageManager->getPage(identifier);
 	}
 
-	void AobaCore::appendPage(const std::shared_ptr<Page>& page) {
+	void Core::appendPage(const std::shared_ptr<Page>& page) {
 		m_pageManager->appendPage(page);
 	}
 
-	void AobaCore::appendIsolatedComponent(const UIComponent& component) {
-		appendIsolatedComponent(AobaFactory::GetComponent(component.id()));
+	void Core::AppendIsolatedComponent(const UIComponent& component) {
+		Instance().appendIsolatedComponent(Factory::GetComponent(component.id()));
 	}
 
-	void AobaCore::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
 		m_pageManager->appendIsolatedComponent(component);
 	}
 
-	void AobaCore::AddLicense() {
+	void Core::AddLicense() {
 		LicenseInfo licence;
 		licence.title = U"Aoba Framework";
 		licence.copyright = U"Copyright (c) 2021 Ekyu Kondo";

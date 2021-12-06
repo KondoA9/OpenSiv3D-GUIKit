@@ -4,11 +4,11 @@
 
 namespace s3d::aoba {
 	class UIView;
-	class AobaCore;
+	class Core;
 	class PageManager;
 
 	class Page {
-		friend AobaCore;
+		friend Core;
 		friend PageManager;
 
 	public:

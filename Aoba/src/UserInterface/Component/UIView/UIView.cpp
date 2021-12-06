@@ -1,6 +1,6 @@
 ﻿#include <Aoba/UIView.hpp>
 #include <Aoba/WindowManager.hpp>
-#include <Aoba/AobaFactory.hpp>
+#include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {
 	void UIView::release() {
@@ -19,7 +19,7 @@ namespace s3d::aoba {
 			return component.id() == component2->id();
 			})) {
 
-			m_components.push_back(AobaFactory::GetComponent(component.id()));
+			m_components.push_back(Factory::GetComponent(component.id()));
 		}
 	}
 

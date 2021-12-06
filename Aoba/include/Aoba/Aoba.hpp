@@ -24,9 +24,7 @@
 
 #include "Page.hpp"
 
-#include "AobaInterface.hpp"
-
-#include "AobaFactory.hpp"
+#include "Factory.hpp"
 
 #include "CommandLine.hpp"
 

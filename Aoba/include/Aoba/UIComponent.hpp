@@ -8,9 +8,9 @@
 #include <Siv3D.hpp>
 
 namespace s3d::aoba {
-	class AobaCore;
+	class Core;
 	class UIView;
-	class AobaFactory;
+	class Factory;
 	class PageManager;
 
 	AobaCreateInputEvent(UnFocused);
@@ -45,8 +45,8 @@ namespace s3d::aoba {
 			}
 		};
 
-		friend AobaCore;
-		friend AobaFactory;
+		friend Core;
+		friend Factory;
 		friend UIView;
 		friend PageManager;
 

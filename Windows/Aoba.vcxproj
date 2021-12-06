@@ -11,15 +11,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\Aoba\src\AobaFactory\AobaFactory.cpp" />
+    <ClCompile Include="..\Aoba\src\Factory\Factory.cpp" />
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaCore\ParallelTaskManager\ParallelTaskManager.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaCore\AobaCore.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaCore\AobaLifeCycle.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageCycle.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaCore\PageManager\PageManager.cpp" />
-    <ClCompile Include="..\Aoba\src\AobaInterface\AobaInterface.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\Core.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\PageManager\PageCycle.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\PageManager\PageManager.cpp" />
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
@@ -46,14 +45,13 @@
     <ClCompile Include="..\Aoba\src\WindowManager\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Aoba\include\Aoba\AobaFactory.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\ColorTheme.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Constraint.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\AobaCore.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\AobaInterface.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Core.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp" />
@@ -79,8 +77,8 @@
     <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\WindowManager.hpp" />
-    <ClInclude Include="..\Aoba\src\AobaCore\ParallelTaskManager\ParallelTaskManager.hpp" />
-    <ClInclude Include="..\Aoba\src\AobaCore\PageManager\PageManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\PageManager\PageManager.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>

@@ -4,7 +4,7 @@
 #include "UIRect.hpp"
 #include "UICircle.hpp"
 #include "UIText.hpp"
-#include "AobaFactory.hpp"
+#include "Factory.hpp"
 
 namespace s3d::aoba {
 	class UISlider : public UIView {
@@ -13,9 +13,9 @@ namespace s3d::aoba {
 		std::function<void(double value)> m_valueChangedHandler;
 		bool m_sliding = false;
 
-		UIText& m_uiText = AobaFactory::Create<UIText>(this);
-		UIRect& m_uiRailLeft = AobaFactory::Create<UIRect>(this), & m_uiRailRight = AobaFactory::Create<UIRect>(this);
-		UICircle& m_uiHandle = AobaFactory::Create<UICircle>(this);
+		UIText& m_uiText = Factory::Create<UIText>(this);
+		UIRect& m_uiRailLeft = Factory::Create<UIRect>(this), & m_uiRailRight = Factory::Create<UIRect>(this);
+		UICircle& m_uiHandle = Factory::Create<UICircle>(this);
 
 	public:
 		using UIView::UIView;
