@@ -45,15 +45,15 @@ namespace s3d::aoba {
 			return m_textRegion;
 		}
 
-		void setPadding(double top, double bottom, double left, double right);
+		virtual void setPadding(double top, double bottom, double left, double right);
 
-		void setFont(UnifiedFontStyle style);
+		virtual void setFont(UnifiedFontStyle style);
 
-		void setText(const String& text);
+		virtual void setText(const String& text);
 
-		void setDirection(TextDirection direction);
+		virtual void setDirection(TextDirection direction);
 
-		void setFont(const Font& font) {
+		virtual void setFont(const Font& font) {
 			m_font = font;
 		}
 

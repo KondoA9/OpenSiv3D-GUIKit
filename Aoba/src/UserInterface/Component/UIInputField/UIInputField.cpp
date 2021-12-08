@@ -99,6 +99,13 @@ namespace s3d::aoba {
 		}
 	}
 
+	void UIInputField::setText(const String& str) {
+		UIText::setText(str);
+		if (ui_Warning) {
+			ui_Warning->exist = false;
+		}
+	}
+
 	void UIInputField::updateDrawableText(bool updateField) {
 		UIText::updateDrawableText(updateField);
 
@@ -243,7 +250,7 @@ namespace s3d::aoba {
 		Core::StopTimeout(m_WarningTimeoutID);
 
 		ui_Warning->exist = true;
-		ui_Warning->setConstraint(LayerDirection::Top, *this, LayerDirection::Bottom);
+		ui_Warning->setConstraint(LayerDirection::Top, [this] {return m_fieldRect.y + m_fieldRect.h + 3_px; });
 		ui_Warning->setConstraint(LayerDirection::Height, 30_px);
 		ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
 		ui_Warning->setConstraint(LayerDirection::Width, 250_px);

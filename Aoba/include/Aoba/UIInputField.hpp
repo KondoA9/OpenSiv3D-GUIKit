@@ -70,6 +70,8 @@ namespace s3d::aoba {
 			return m_fieldRect;
 		}
 
+		void setText(const String& str) override;
+
 		void setTextFormatter(const std::function<FormatResult(const String& str)>& formatter) {
 			m_textFormatter = formatter;
 		}
