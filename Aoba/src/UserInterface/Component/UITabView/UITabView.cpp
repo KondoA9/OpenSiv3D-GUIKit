@@ -45,10 +45,10 @@ namespace s3d::aoba {
 		selector.setConstraint(LayerDirection::Top, ui_tabSelectorView, LayerDirection::Top);
 		selector.setConstraint(LayerDirection::Bottom, ui_tabSelectorView, LayerDirection::Bottom);
 		selector.setConstraint(LayerDirection::Left, [this, index] {
-			return ui_tabSelectorView.layer().left + index * ui_tabSelectorView.layer().width / ui_tabSelectorView.componentsCount();
+			return ui_tabSelectorView.layer().left() + index * ui_tabSelectorView.layer().width() / ui_tabSelectorView.componentsCount();
 			});
 		selector.setConstraint(LayerDirection::Width, [this] {
-			return ui_tabSelectorView.layer().width / ui_tabSelectorView.componentsCount();
+			return ui_tabSelectorView.layer().width() / ui_tabSelectorView.componentsCount();
 			});
 
 		selector.addEventListener<MouseEvent::LeftDown>([this, index] {

@@ -10,7 +10,7 @@ namespace s3d::aoba {
 
 		addEventListener<Sliding>([this, handleRadius] {
 			const double pre = m_value;
-			m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - (layer().left + handleRadius)) / (layer().width - handleRadius * 2), m_min, m_max);
+			m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - (layer().left() + handleRadius)) / (layer().width() - handleRadius * 2), m_min, m_max);
 
 			if (pre != m_value) {
 				requestToUpdateLayer();
@@ -55,7 +55,7 @@ namespace s3d::aoba {
 		m_uiHandle.setConstraint(LayerDirection::Top, *this, LayerDirection::CenterY);
 		m_uiHandle.setConstraint(LayerDirection::Height, handleRadius * 2);
 		m_uiHandle.setConstraint(LayerDirection::CenterX, [this, handleRadius] {
-			return layer().left + handleRadius + (layer().width - handleRadius * 2) * (m_value - m_min) / (m_max - m_min);
+			return layer().left() + handleRadius + (layer().width() - handleRadius * 2) * (m_value - m_min) / (m_max - m_min);
 			});
 		m_uiHandle.setConstraint(LayerDirection::Width, handleRadius * 2);
 
