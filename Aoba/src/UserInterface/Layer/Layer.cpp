@@ -1,10 +1,6 @@
 ﻿#include <Aoba/Layer.hpp>
 
 namespace s3d::aoba {
-	const Vec2& Layer::center() const {
-		return m_center;
-	}
-
 	const Constraint& Layer::top() const {
 		return m_top;
 	}
@@ -35,6 +31,18 @@ namespace s3d::aoba {
 
 	const Constraint& Layer::width() const {
 		return m_width;
+	}
+
+	const Vec2& Layer::center() const {
+		return m_center;
+	}
+
+	const LayerSpace& Layer::margin() const {
+		return m_margin;
+	}
+
+	const LayerSpace& Layer::padding() const {
+		return m_padding;
 	}
 
 	void Layer::updateConstraints() {
@@ -190,5 +198,13 @@ namespace s3d::aoba {
 		m_right.removeConstraint();
 		m_centerX.removeConstraint();
 		m_width.removeConstraint();
+	}
+
+	void Layer::setMargin(const LayerSpace& layerSpace) {
+		m_margin = layerSpace;
+	}
+
+	void Layer::setPadding(const LayerSpace& layerSpace) {
+		m_padding = layerSpace;
 	}
 }
