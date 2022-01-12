@@ -40,6 +40,7 @@ namespace s3d::aoba {
 	}
 
 	void UIVStackView::updateChildrenConstraints(bool reset) {
+		const auto verticalMargin = m_leadingDirection == LeadingDirection::Top ? m_verticalMargin : -m_verticalMargin;
 		for (size_t i : step(componentsCount())) {
 			auto& component = getComponent(i);
 			if (reset) {
@@ -53,7 +54,7 @@ namespace s3d::aoba {
 					component.setConstraint(d1, *this, d1, m_leadingPositionConstant);
 				}
 				else {
-					component.setConstraint(d1, getComponent(i - 1), d2);
+					component.setConstraint(d1, getComponent(i - 1), d2, verticalMargin);
 				}
 			}
 

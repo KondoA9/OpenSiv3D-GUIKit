@@ -17,6 +17,7 @@ namespace s3d::aoba {
 
 		size_t m_maxStackCount = 0;
 		double m_rowHeight = 0.0;
+		double m_verticalMargin = 0.0;
 
 		double m_currentRowHeight = 0.0, m_currentRowsHeight = 0.0;
 		double m_leadingPositionConstant = 0.0;
@@ -40,6 +41,11 @@ namespace s3d::aoba {
 
 		void setLeadingDirection(LeadingDirection direction) {
 			m_leadingDirection = direction;
+			updateChildrenConstraints(true);
+		}
+
+		void setVerticalMargin(double margin) {
+			m_verticalMargin = margin;
 			updateChildrenConstraints(true);
 		}
 

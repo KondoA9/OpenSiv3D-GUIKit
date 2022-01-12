@@ -177,6 +177,7 @@ protected:
 
 		m_uiFilesView.setLeadingDirection(aoba::LeadingDirection::Bottom);
 		m_uiFilesView.setRowHeight(30_px);
+		m_uiFilesView.setVerticalMargin(20_px);
 		m_uiFilesView.setConstraint(aoba::LayerDirection::Top, m_uiToolbar, aoba::LayerDirection::Bottom);
 		m_uiFilesView.setConstraint(aoba::LayerDirection::Bottom, m_uiMovePage, aoba::LayerDirection::Top);
 		m_uiFilesView.setConstraint(aoba::LayerDirection::Left, view, aoba::LayerDirection::Left);
