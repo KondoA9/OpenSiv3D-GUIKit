@@ -16,22 +16,15 @@ namespace s3d::aoba {
 		Width
 	};
 
-	struct LayerSpace {
-		double top = 0;
-		double bottom = 0;
-		double left = 0;
-		double right = 0;
-	};
-
 	struct Layer {
 	private:
 		Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
 
-		LayerSpace m_margin, m_padding;
-
 		Vec2 m_center = Vec2();
 
 	public:
+		const Vec2& center() const;
+
 		const Constraint& top() const;
 
 		const Constraint& bottom() const;
@@ -48,12 +41,6 @@ namespace s3d::aoba {
 
 		const Constraint& width() const;
 
-		const Vec2& center() const;
-
-		const LayerSpace& margin() const;
-
-		const LayerSpace& padding() const;
-
 		void updateConstraints();
 
 		void setConstraint(LayerDirection direction, double constant, double multiplier);
@@ -65,10 +52,6 @@ namespace s3d::aoba {
 		void removeConstraint(LayerDirection direction);
 
 		void removeAllConstraints();
-
-		void setMargin(const LayerSpace& layerSpace);
-
-		void setPadding(const LayerSpace& layerSpace);
 
 	private:
 		Constraint& constraintReferenceTo(LayerDirection direction);
