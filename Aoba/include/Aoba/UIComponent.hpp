@@ -16,13 +16,6 @@ namespace s3d::aoba {
 	AobaCreateInputEvent(UnFocused);
 	AobaCreateInputEvent(Focused);
 
-	struct LayerSpaces {
-		double top = 0;
-		double bottom = 0;
-		double left = 0;
-		double right = 0;
-	};
-
 	class UIComponent {
 		struct CallableInputEvent {
 			InputEvent mouseEvent;
@@ -73,7 +66,6 @@ namespace s3d::aoba {
 
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
-		LayerSpaces m_margin, m_padding;
 		Rect m_drawableRegion = Rect();
 		bool m_needToUpdateLayer = true;
 		bool m_initialized = false;
@@ -109,14 +101,6 @@ namespace s3d::aoba {
 			return m_layer;
 		}
 
-		const LayerSpaces& margin() const {
-			return m_margin;
-		}
-
-		const LayerSpaces& padding() const {
-			return m_padding;
-		}
-
 		size_t id() const {
 			return m_id;
 		}
@@ -145,14 +129,6 @@ namespace s3d::aoba {
 
 		bool eventUpdatable() const {
 			return drawable() && controllable;
-		}
-
-		void setMargin(const LayerSpaces& margin) {
-			m_margin = margin;
-		}
-
-		void setPadding(const LayerSpaces& padding) {
-			m_padding = padding;
 		}
 
 		void requestToUpdateLayer() {
