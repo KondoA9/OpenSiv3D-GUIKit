@@ -95,18 +95,20 @@ namespace s3d::aoba {
 	}
 
 	bool PageManager::updateOnStartUp() {
-		static bool appeared = false;
-		if (!appeared) {
+		// Run once when launching the app
+		if (static bool called = false; !called) {
 			m_forwardPage->onLoaded();
 			m_forwardPage->onBeforeAppeared();
 			m_drawingPage = m_forwardPage;
-			appeared = true;
+			called = true;
 		}
+		// Run at next frame
 		else {
 			m_forwardPage->onAfterAppeared();
 			m_forwardPage.reset();
 			return false;
 		}
+
 		return true;
 	}
 
