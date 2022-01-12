@@ -1,32 +1,33 @@
 ﻿#pragma once
 
-#include "PixelUnit.hpp"
+// Siv3D v0.6.3
+#include <Siv3D.hpp>
 
-#include "Imaging.hpp"
+// Aoba includes
+#include "CommandLine.hpp"
 
 #include "DynamicColor.hpp"
 
-#include "MouseEvent.hpp"
+#include "Factory.hpp"
 
-#include "UIView.hpp"
-#include "UITabView.hpp"
-#include "UIVStackView.hpp"
-#include "UIRect.hpp"
-#include "UICircle.hpp"
-#include "UIText.hpp"
-#include "UIImageView.hpp"
-#include "UIButton.hpp"
-#include "UIToggleButton.hpp"
-#include "UISlider.hpp"
-#include "UIIcon.hpp"
-#include "UIInputField.hpp"
-#include "UICheckBox.hpp"
+#include "Imaging.hpp"
+
+#include "MouseEvent.hpp"
 
 #include "Page.hpp"
 
-#include "Factory.hpp"
+#include "PixelUnit.hpp"
 
-#include "CommandLine.hpp"
-
-// Siv3D v0.6.3
-#include <Siv3D.hpp>
+#include "UIButton.hpp"
+#include "UICircle.hpp"
+#include "UICheckBox.hpp"
+#include "UIIcon.hpp"
+#include "UIImageView.hpp"
+#include "UIInputField.hpp"
+#include "UIRect.hpp"
+#include "UISlider.hpp"
+#include "UITabView.hpp"
+#include "UIToggleButton.hpp"
+#include "UIText.hpp"
+#include "UIView.hpp"
+#include "UIVStackView.hpp"

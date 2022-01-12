@@ -1,4 +1,5 @@
 ﻿#include <Aoba/UnifiedFont.hpp>
+
 #include <Aoba/PixelUnit.hpp>
 
 namespace s3d::aoba::UnifiedFont {

@@ -1,10 +1,10 @@
 ﻿#pragma once
 
+#include <Siv3D.hpp>
+
+#include "Core.hpp"
 #include "UIComponent.hpp"
 #include "UIView.hpp"
-#include "Core.hpp"
-
-#include <Siv3D.hpp>
 
 namespace s3d::aoba {
 	class Page;

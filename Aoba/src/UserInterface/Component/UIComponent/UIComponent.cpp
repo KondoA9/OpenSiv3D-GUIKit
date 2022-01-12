@@ -1,4 +1,5 @@
 ﻿#include <Aoba/UIComponent.hpp>
+
 #include <Aoba/Factory.hpp>
 
 namespace s3d::aoba {

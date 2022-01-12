@@ -1,4 +1,5 @@
 ﻿#include "PageManager.hpp"
+
 #include <Aoba/Page.hpp>
 
 namespace s3d::aoba {

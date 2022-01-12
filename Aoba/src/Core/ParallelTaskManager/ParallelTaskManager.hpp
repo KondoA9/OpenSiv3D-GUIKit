@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include <functional>
 #include <atomic>
+#include <functional>
 
 namespace s3d::aoba {
 	class ParallelTaskManager final {

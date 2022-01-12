@@ -1,4 +1,7 @@
-﻿#include <Siv3D.hpp>
+﻿#pragma once
+
+#include <Siv3D.hpp>
+
 #include <Aoba/UIComponent.hpp>
 
 namespace s3d::aoba {
