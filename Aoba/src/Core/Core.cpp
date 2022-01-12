@@ -1,13 +1,14 @@
 ﻿#include <Aoba/Core.hpp>
-#include <Aoba/Page.hpp>
-#include <Aoba/WindowManager.hpp>
-#include <Aoba/UnifiedFont.hpp>
+
+#include <thread>
+
 #include <Aoba/Factory.hpp>
+#include <Aoba/Page.hpp>
+#include <Aoba/UnifiedFont.hpp>
+#include <Aoba/WindowManager.hpp>
 
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
-
-#include <thread>
 
 namespace s3d::aoba {
 	Core::Core() {

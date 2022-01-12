@@ -1,12 +1,12 @@
 ﻿#pragma once
 
-#include "Timeout.hpp"
-#include "Page.hpp"
+#include <mutex>
+#include <atomic>
 
 #include <Siv3D.hpp>
 
-#include <mutex>
-#include <atomic>
+#include "Timeout.hpp"
+#include "Page.hpp"
 
 namespace s3d::aoba {
 	class UIComponent;
@@ -125,7 +125,7 @@ namespace s3d::aoba {
 
 		void run();
 
-		void updateAoba();
+		void update();
 
 		void updateMainThreadEvents();
 

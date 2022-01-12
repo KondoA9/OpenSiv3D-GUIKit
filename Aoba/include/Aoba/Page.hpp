@@ -31,31 +31,28 @@ namespace s3d::aoba {
 		virtual ~Page() = default;
 
 		// Called when Aoba core system loaded the page
-		virtual void onLoaded() {}
+		virtual void onLoaded();
 
 		// Called before Aoba core system draws the page
-		virtual void onBeforeAppeared() {}
-
-		// Called when all constraints updated
-		virtual void onLayoutCompleted() {}
+		virtual void onBeforeAppeared();
 
 		// Called after Aoba core system draws the page
-		virtual void onAfterAppeared() {}
+		virtual void onAfterAppeared();
 
 		// Called before Aoba core system erases the page
-		virtual void onBeforeDisappeared() {}
+		virtual void onBeforeDisappeared();
 
 		// Called after Aoba core system erases the page
-		virtual void onAfterDisappeared() {}
+		virtual void onAfterDisappeared();
 
 		// Called when window resized
-		virtual void onWindowResized() {}
+		virtual void onWindowResized();
 
 		// Called before when application terminated
-		virtual void onBeforeAppTerminated() {}
+		virtual void onBeforeAppTerminated();
 
 		// Called when application terminated
-		virtual void onAppTerminated() {}
+		virtual void onAppTerminated();
 
 	private:
 		explicit Page(const String& identifier);

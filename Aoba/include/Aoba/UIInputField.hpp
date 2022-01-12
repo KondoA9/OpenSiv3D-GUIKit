@@ -1,8 +1,8 @@
 ﻿#pragma once
 
+#include "KeyboardOperation.hpp"
 #include "UIText.hpp"
 #include "UnifiedFont.hpp"
-#include "KeyboardOperation.hpp"
 
 namespace s3d::aoba {
 	class UIInputField : public UIText {

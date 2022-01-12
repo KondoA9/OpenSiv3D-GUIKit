@@ -2,8 +2,6 @@
 
 #include "UIText.hpp"
 
-#include <Siv3D.hpp>
-
 namespace s3d::aoba {
 	class UIButton : public UIText {
 	public:

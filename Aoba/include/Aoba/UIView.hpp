@@ -2,8 +2,6 @@
 
 #include "UIRect.hpp"
 
-#include <Siv3D.hpp>
-
 namespace s3d::aoba {
 	class PageManager;
 

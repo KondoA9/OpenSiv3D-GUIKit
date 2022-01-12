@@ -1,7 +1,7 @@
 ﻿#include <Aoba/Timeout.hpp>
 
-#include <thread>
 #include <atomic>
+#include <thread>
 
 namespace s3d::aoba {
 	std::atomic<size_t> Timeout::m_Id = 1;

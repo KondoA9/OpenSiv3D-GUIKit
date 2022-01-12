@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "Constraint.hpp"
-
 #include <Siv3D.hpp>
+
+#include "Constraint.hpp"
 
 namespace s3d::aoba {
 	enum class LayerDirection {

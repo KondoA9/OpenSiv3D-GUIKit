@@ -2,8 +2,6 @@
 
 #include "UIComponent.hpp"
 
-#include <Siv3D.hpp>
-
 namespace s3d::aoba {
 	class UIRect : public UIComponent {
 	private:

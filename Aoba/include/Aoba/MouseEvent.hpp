@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "InputEvent.hpp"
-
 #include <Siv3D.hpp>
+
+#include "InputEvent.hpp"
 
 namespace s3d::aoba {
 	namespace MouseEvent {

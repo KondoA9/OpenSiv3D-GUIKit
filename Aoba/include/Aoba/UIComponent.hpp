@@ -1,11 +1,11 @@
 ﻿#pragma once
 
+#include <Siv3D.hpp>
+
 #include "DynamicColor.hpp"
-#include "MouseEvent.hpp"
 #include "InputEventHandler.hpp"
 #include "Layer.hpp"
-
-#include <Siv3D.hpp>
+#include "MouseEvent.hpp"
 
 namespace s3d::aoba {
 	class Core;

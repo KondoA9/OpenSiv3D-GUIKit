@@ -1,4 +1,7 @@
-﻿#include <Siv3D.hpp>
+﻿#pragma once
+
+#include <Siv3D.hpp>
+
 #include <Aoba/UIComponent.hpp>
 
 namespace s3d::aoba {
@@ -18,7 +21,7 @@ namespace s3d::aoba {
 		PageTransition m_pageTransition = PageTransition::StartUp;
 
 		Array<std::shared_ptr<Page>> m_pages;
-		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
+		std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
 
 		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
@@ -47,17 +50,11 @@ namespace s3d::aoba {
 
 		void switchPage(const String& identifier);
 
-		void appendPage(const std::shared_ptr<Page>& page) {
-			m_pages.push_back(page);
-		}
+		void appendPage(const std::shared_ptr<Page>& page);
 
-		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-			m_isolatedComponents.push_back(component);
-		}
+		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
-		void terminate() {
-			m_pageTransition = PageTransition::Termination;
-		}
+		void terminate();
 
 	private:
 		const std::shared_ptr<Page>& getPagePtr(const String& identifier) const;
@@ -76,8 +73,10 @@ namespace s3d::aoba {
 
 		void updateOnTermination();
 
-		void updateInputEvents();
+		void updateViews();
 
 		void updateLayers();
+
+		void updateInputEvents();
 	};
 }

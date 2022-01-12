@@ -1,10 +1,8 @@
 ﻿#pragma once
 
-#include "UIView.hpp"
-#include "UIButton.hpp"
 #include "Factory.hpp"
-
-#include <Siv3D.hpp>
+#include "UIButton.hpp"
+#include "UIView.hpp"
 
 namespace s3d::aoba {
 	// Called when tab switched or tab view loaded.

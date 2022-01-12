@@ -1,6 +1,7 @@
 ﻿#include <Aoba/Page.hpp>
-#include <Aoba/UIView.hpp>
+
 #include <Aoba/Factory.hpp>
+#include <Aoba/UIView.hpp>
 
 namespace s3d::aoba {
 	Page::Page(const String& identifier) :
@@ -16,4 +17,22 @@ namespace s3d::aoba {
 			return Scene::Size().x;
 			});
 	}
+
+	void Page::onLoaded() {
+		m_loaded = true;
+	}
+
+	void Page::onBeforeAppeared() {}
+
+	void Page::onAfterAppeared() {}
+
+	void Page::onBeforeDisappeared() {}
+
+	void Page::onAfterDisappeared() {}
+
+	void Page::onWindowResized() {}
+
+	void Page::onBeforeAppTerminated() {}
+
+	void Page::onAppTerminated() {}
 }

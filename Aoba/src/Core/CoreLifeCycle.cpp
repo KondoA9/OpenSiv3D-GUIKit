@@ -1,7 +1,7 @@
 ﻿#include <Aoba/Core.hpp>
+
 #include <Aoba/ColorTheme.hpp>
 #include <Aoba/WindowManager.hpp>
-
 #include "PageManager/PageManager.hpp"
 #include "ParallelTaskManager/ParallelTaskManager.hpp"
 
@@ -32,11 +32,11 @@ namespace s3d::aoba {
 				m_pageManager->terminate();
 			}
 
-			updateAoba();
+			update();
 		}
 	}
 
-	void Core::updateAoba() {
+	void Core::update() {
 		// Update window state
 		WindowManager::Update();
 

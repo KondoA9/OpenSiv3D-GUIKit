@@ -1,4 +1,5 @@
 ﻿#include <Aoba/UIButton.hpp>
+
 #include <Aoba/UnifiedFont.hpp>
 
 namespace s3d::aoba {
