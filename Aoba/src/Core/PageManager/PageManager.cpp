@@ -15,7 +15,7 @@ namespace s3d::aoba {
 	bool PageManager::initialize() {
 		if (m_pages) {
 			// Set the initial page
-			m_forwardPage = m_pages[0];
+			m_nextPage = m_pages[0];
 			return true;
 		}
 
@@ -44,9 +44,9 @@ namespace s3d::aoba {
 
 	void PageManager::switchPage(const String& identifier) {
 		if (const auto& page = getPagePtr(identifier); m_pageTransition == PageTransition::Stable && page) {
-			m_forwardPage = page;
-			m_backwardPage = m_drawingPage;
-			m_drawingPage.reset();
+			m_nextPage = page;
+			m_previousPage = m_currentPage;
+			m_currentPage.reset();
 			m_pageTransition = PageTransition::StartChanging;
 		}
 		else {

@@ -12,9 +12,9 @@ namespace s3d::aoba {
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 
 			// Call window resize event
-			if (m_forwardPage) m_forwardPage->onWindowResized();
-			if (m_drawingPage) m_drawingPage->onWindowResized();
-			if (m_backwardPage) m_backwardPage->onWindowResized();
+			if (m_nextPage) m_nextPage->onWindowResized();
+			if (m_currentPage) m_currentPage->onWindowResized();
+			if (m_previousPage) m_previousPage->onWindowResized();
 		}
 
 		updateViews();
@@ -63,26 +63,26 @@ namespace s3d::aoba {
 		switch (m_pageTransition)
 		{
 		case PageTransition::StartChanging:
-			m_backwardPage->view.draw();
+			m_previousPage->view.draw();
 			break;
 
 		case PageTransition::Changing:
 			// Draw previous and next page
 			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-			m_forwardPage->view.draw();
+			m_nextPage->view.draw();
 			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, m_pageTransitionRate));
-			m_backwardPage->view.draw();
+			m_previousPage->view.draw();
 			break;
 
 		case PageTransition::JustChanged:
 			// Initialize ColorMultipiler
 			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0));
-			m_forwardPage->view.draw();
+			m_nextPage->view.draw();
 			break;
 
 		default:
 			// Draw current page
-			m_drawingPage->view.draw();
+			m_currentPage->view.draw();
 			break;
 		}
 
@@ -97,15 +97,15 @@ namespace s3d::aoba {
 	bool PageManager::updateOnStartUp() {
 		// Run once when launching the app
 		if (static bool called = false; !called) {
-			m_forwardPage->onLoaded();
-			m_forwardPage->onBeforeAppeared();
-			m_drawingPage = m_forwardPage;
+			m_nextPage->onLoaded();
+			m_nextPage->onBeforeAppeared();
+			m_currentPage = m_nextPage;
 			called = true;
 		}
 		// Run at next frame
 		else {
-			m_forwardPage->onAfterAppeared();
-			m_forwardPage.reset();
+			m_nextPage->onAfterAppeared();
+			m_nextPage.reset();
 			return false;
 		}
 
@@ -125,7 +125,7 @@ namespace s3d::aoba {
 	}
 
 	void PageManager::updateOnStable() {
-		assert(m_drawingPage);
+		assert(m_currentPage);
 
 		updateInputEvents();
 	}
@@ -145,7 +145,7 @@ namespace s3d::aoba {
 			updateLayers();
 		}
 		else {
-			m_drawingPage->onBeforeDisappeared();
+			m_currentPage->onBeforeDisappeared();
 			for (auto& page : m_pages) {
 				page->onAppTerminated();
 			}
@@ -156,57 +156,57 @@ namespace s3d::aoba {
 
 	void PageManager::preparePageChanging() {
 		// Load the next page if needed
-		if (!m_forwardPage->didLoaded()) {
-			m_forwardPage->onLoaded();
+		if (!m_nextPage->didLoaded()) {
+			m_nextPage->onLoaded();
 		}
 
-		m_forwardPage->onBeforeAppeared();
-		m_backwardPage->onBeforeDisappeared();
+		m_nextPage->onBeforeAppeared();
+		m_previousPage->onBeforeDisappeared();
 
 		// Update layer of the next page
-		m_forwardPage->view.updateLayer(m_windowScissorRect);
-		m_forwardPage->view.updateLayerInvert(m_windowScissorRect);
+		m_nextPage->view.updateLayer(m_windowScissorRect);
+		m_nextPage->view.updateLayerInvert(m_windowScissorRect);
 	}
 
 	void PageManager::finalizePageChanging() {
-		m_forwardPage->onAfterAppeared();
-		m_backwardPage->onAfterDisappeared();
+		m_nextPage->onAfterAppeared();
+		m_previousPage->onAfterDisappeared();
 
-		m_drawingPage = m_forwardPage;
+		m_currentPage = m_nextPage;
 
-		m_forwardPage.reset();
-		m_backwardPage.reset();
+		m_nextPage.reset();
+		m_previousPage.reset();
 	}
 
 	void PageManager::updateViews() {
-		if (m_forwardPage) {
-			m_forwardPage->view.update();
+		if (m_nextPage) {
+			m_nextPage->view.update();
 		}
 
-		if (m_drawingPage) {
-			m_drawingPage->view.update();
+		if (m_currentPage) {
+			m_currentPage->view.update();
 		}
 
-		if (m_backwardPage) {
-			m_backwardPage->view.update();
+		if (m_previousPage) {
+			m_previousPage->view.update();
 		}
 	}
 
 	void PageManager::updateLayers() {
 		if (WindowManager::DidResized()) {
-			if (m_forwardPage) {
-				m_forwardPage->view.updateLayer(m_windowScissorRect);
-				m_forwardPage->view.updateLayerInvert(m_windowScissorRect);
+			if (m_nextPage) {
+				m_nextPage->view.updateLayer(m_windowScissorRect);
+				m_nextPage->view.updateLayerInvert(m_windowScissorRect);
 			}
 
-			if (m_drawingPage) {
-				m_drawingPage->view.updateLayer(m_windowScissorRect);
-				m_drawingPage->view.updateLayerInvert(m_windowScissorRect);
+			if (m_currentPage) {
+				m_currentPage->view.updateLayer(m_windowScissorRect);
+				m_currentPage->view.updateLayerInvert(m_windowScissorRect);
 			}
 
-			if (m_backwardPage) {
-				m_backwardPage->view.updateLayer(m_windowScissorRect);
-				m_backwardPage->view.updateLayerInvert(m_windowScissorRect);
+			if (m_previousPage) {
+				m_previousPage->view.updateLayer(m_windowScissorRect);
+				m_previousPage->view.updateLayerInvert(m_windowScissorRect);
 			}
 
 			for (auto& component : m_isolatedComponents) {
@@ -214,16 +214,16 @@ namespace s3d::aoba {
 			}
 		}
 		else {
-			if (m_forwardPage) {
-				m_forwardPage->view.updateLayerIfNeeded(m_windowScissorRect);
+			if (m_nextPage) {
+				m_nextPage->view.updateLayerIfNeeded(m_windowScissorRect);
 			}
 
-			if (m_drawingPage) {
-				m_drawingPage->view.updateLayerIfNeeded(m_windowScissorRect);
+			if (m_currentPage) {
+				m_currentPage->view.updateLayerIfNeeded(m_windowScissorRect);
 			}
 
-			if (m_backwardPage) {
-				m_backwardPage->view.updateLayerIfNeeded(m_windowScissorRect);
+			if (m_previousPage) {
+				m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
 			}
 
 			for (auto& component : m_isolatedComponents) {
@@ -233,9 +233,9 @@ namespace s3d::aoba {
 	}
 
 	void PageManager::updateInputEvents() {
-		if (m_drawingPage->view.eventUpdatable()) {
-			m_drawingPage->view.updateMouseIntersection();
-			m_drawingPage->view.updateInputEvents();
+		if (m_currentPage->view.eventUpdatable()) {
+			m_currentPage->view.updateMouseIntersection();
+			m_currentPage->view.updateInputEvents();
 		}
 
 		for (auto& component : m_isolatedComponents) {

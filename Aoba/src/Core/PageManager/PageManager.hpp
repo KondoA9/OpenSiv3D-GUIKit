@@ -18,7 +18,7 @@ namespace s3d::aoba {
 		PageTransition m_pageTransition = PageTransition::StartUp;
 
 		Array<std::shared_ptr<Page>> m_pages;
-		std::shared_ptr<Page> m_drawingPage, m_forwardPage, m_backwardPage;
+		std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
 
 		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
