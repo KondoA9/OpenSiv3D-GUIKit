@@ -23,7 +23,7 @@ namespace s3d::aoba {
 	public:
 		Constraint top, bottom, centerY, height, left, right, centerX, width;
 
-		Vec2 center() const {
+		const Vec2& center() const {
 			return m_center;
 		}
 
