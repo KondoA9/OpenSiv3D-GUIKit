@@ -18,26 +18,42 @@ namespace s3d::aoba {
 
 	struct Layer {
 	private:
+		Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
+
 		Vec2 m_center = Vec2();
 
 	public:
-		Constraint top, bottom, centerY, height, left, right, centerX, width;
+		const Vec2& center() const;
 
-		Vec2 center() const {
-			return m_center;
-		}
+		const Constraint& top() const;
+
+		const Constraint& bottom() const;
+
+		const Constraint& centerY() const;
+
+		const Constraint& height() const;
+
+		const Constraint& left() const;
+
+		const Constraint& right() const;
+
+		const Constraint& centerX() const;
+
+		const Constraint& width() const;
 
 		void updateConstraints();
 
-		Constraint* constraintPtr(LayerDirection direction) {
-			return direction == LayerDirection::Top ? &top
-				: direction == LayerDirection::Bottom ? &bottom
-				: direction == LayerDirection::CenterY ? &centerY
-				: direction == LayerDirection::Height ? &height
-				: direction == LayerDirection::Left ? &left
-				: direction == LayerDirection::Right ? &right
-				: direction == LayerDirection::CenterX ? &centerX
-				: direction == LayerDirection::Width ? &width : nullptr;
-		}
+		void setConstraint(LayerDirection direction, double constant, double multiplier);
+
+		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier);
+
+		void setConstraint(LayerDirection direction, Layer& otherLayer, LayerDirection otherLayerDirection, double constant, double multiplier);
+
+		void removeConstraint(LayerDirection direction);
+
+		void removeAllConstraints();
+
+	private:
+		Constraint& constraintReferenceTo(LayerDirection direction);
 	};
 }

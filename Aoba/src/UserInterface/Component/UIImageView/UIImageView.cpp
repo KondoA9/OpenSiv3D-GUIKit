@@ -89,9 +89,9 @@ namespace s3d::aoba {
 	double UIImageView::calcMinimumScale() {
 		m_baseRotatedTextureSize = Imaging::GetSizeFitsTexture(m_textures[0].size(), angle());
 
-		double scale = layer().width / static_cast<double>(m_baseRotatedTextureSize.x);
-		if (const double h = scale * m_baseRotatedTextureSize.y; h > layer().height) {
-			scale *= layer().height / h;
+		double scale = layer().width() / static_cast<double>(m_baseRotatedTextureSize.x);
+		if (const double h = scale * m_baseRotatedTextureSize.y; h > layer().height()) {
+			scale *= layer().height() / h;
 		}
 
 		return scale;
@@ -138,32 +138,32 @@ namespace s3d::aoba {
 		bool updated = false;
 
 		// Correct the overhang
-		if (m_rotatedTextureRegion.x > layer().left) {
-			m_drawingCenterPos.x = layer().left + m_rotatedTextureRegion.w * 0.5;
+		if (m_rotatedTextureRegion.x > layer().left()) {
+			m_drawingCenterPos.x = layer().left() + m_rotatedTextureRegion.w * 0.5;
 			updated = true;
 		}
-		else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < layer().right) {
-			m_drawingCenterPos.x = layer().right - m_rotatedTextureRegion.w * 0.5;
+		else if (m_rotatedTextureRegion.x + m_rotatedTextureRegion.w < layer().right()) {
+			m_drawingCenterPos.x = layer().right() - m_rotatedTextureRegion.w * 0.5;
 			updated = true;
 		}
 
 		// Centering
-		if (m_rotatedTextureRegion.w <= layer().width) {
+		if (m_rotatedTextureRegion.w <= layer().width()) {
 			m_drawingCenterPos.x = center.x;
 		}
 
 		// Correct the overhang
-		if (m_rotatedTextureRegion.y > layer().top) {
-			m_drawingCenterPos.y = layer().top + m_rotatedTextureRegion.h * 0.5;
+		if (m_rotatedTextureRegion.y > layer().top()) {
+			m_drawingCenterPos.y = layer().top() + m_rotatedTextureRegion.h * 0.5;
 			updated = true;
 		}
-		else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < layer().bottom) {
-			m_drawingCenterPos.y = layer().bottom - m_rotatedTextureRegion.h * 0.5;
+		else if (m_rotatedTextureRegion.y + m_rotatedTextureRegion.h < layer().bottom()) {
+			m_drawingCenterPos.y = layer().bottom() - m_rotatedTextureRegion.h * 0.5;
 			updated = true;
 		}
 
 		// Centering
-		if (m_rotatedTextureRegion.h <= layer().height) {
+		if (m_rotatedTextureRegion.h <= layer().height()) {
 			m_drawingCenterPos.y = center.y;
 		}
 

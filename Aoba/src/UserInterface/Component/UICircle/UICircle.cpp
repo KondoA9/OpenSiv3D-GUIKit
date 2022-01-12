@@ -3,7 +3,7 @@
 namespace s3d::aoba {
 	void UICircle::updateLayer(const Rect& scissor) {
 		UIComponent::updateLayer(scissor);
-		m_circle = Ellipse(layer().centerX, layer().centerY, layer().width * 0.5, layer().height * 0.5);
+		m_circle = Ellipse(layer().centerX(), layer().centerY(), layer().width() * 0.5, layer().height() * 0.5);
 	}
 
 	void UICircle::draw() const {

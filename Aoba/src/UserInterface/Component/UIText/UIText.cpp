@@ -51,20 +51,20 @@ namespace s3d::aoba {
 				m_textRegion.h += 4_px;
 				m_textRegion.w += m_font.fontSize();
 
-				if (const auto right = m_textRegion.x + m_textRegion.w; right > layer().right) {
-					m_textRegion.w = layer().right - m_textRegion.x;
+				if (const auto right = m_textRegion.x + m_textRegion.w; right > layer().right()) {
+					m_textRegion.w = layer().right() - m_textRegion.x;
 				}
 			}
 		}
 	}
 
 	void UIText::updateTextRegion() {
-		const double top = layer().top + paddingTop;
-		const double bottom = layer().bottom - paddingBottom;
-		const double centerY = layer().centerY + paddingTop - paddingBottom;
-		const double left = layer().left + paddingLeft + 3.0_px;
-		const double right = layer().right - paddingRight - 3.0_px;
-		const double centerX = layer().centerX + paddingLeft - paddingRight;
+		const double top = layer().top() + paddingTop;
+		const double bottom = layer().bottom() - paddingBottom;
+		const double centerY = layer().centerY() + paddingTop - paddingBottom;
+		const double left = layer().left() + paddingLeft + 3.0_px;
+		const double right = layer().right() - paddingRight - 3.0_px;
+		const double centerX = layer().centerX() + paddingLeft - paddingRight;
 
 		switch (m_direction)
 		{
@@ -110,22 +110,22 @@ namespace s3d::aoba {
 		const auto oneLineWidth = m_textRegion.w;
 
 		// Fit starting pos
-		if (m_textRegion.x < layer().left) {
-			m_textRegion.x = layer().left;
+		if (m_textRegion.x < layer().left()) {
+			m_textRegion.x = layer().left();
 		}
 
-		if (m_textRegion.y < layer().top) {
-			m_textRegion.y = layer().top;
+		if (m_textRegion.y < layer().top()) {
+			m_textRegion.y = layer().top();
 		}
 
 		// Word wrap
-		if (const auto lines = static_cast<int>(oneLineWidth / layer().width) + 1; lines != 1) {
-			m_textRegion.w = layer().width;
+		if (const auto lines = static_cast<int>(oneLineWidth / layer().width()) + 1; lines != 1) {
+			m_textRegion.w = layer().width();
 			m_textRegion.h *= lines;
 		}
 
 		// Fit overhang region
-		if (const auto bottom = layer().bottom; m_textRegion.y + m_textRegion.h > bottom) {
+		if (const auto bottom = layer().bottom(); m_textRegion.y + m_textRegion.h > bottom) {
 			m_textRegion.h = bottom - m_textRegion.y;
 		}
 	}
