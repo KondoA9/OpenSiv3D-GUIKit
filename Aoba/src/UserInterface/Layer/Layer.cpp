@@ -129,6 +129,58 @@ namespace s3d::aoba {
 		m_center = Vec2(m_centerX, m_centerY);
 	}
 
+	void Layer::setConstraint(LayerDirection direction, double constant, double multiplier) {
+		constraintReferenceTo(direction).setConstraint(constant, multiplier);
+	}
+
+	void Layer::setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier) {
+		constraintReferenceTo(direction).setConstraint(func, constant, multiplier);
+	}
+
+	void Layer::setConstraint(LayerDirection direction, Layer& otherLayer, LayerDirection otherLayerDirection, double constant, double multiplier) {
+		double* const watchingValue = otherLayer.constraintReferenceTo(otherLayerDirection).data();
+		constraintReferenceTo(direction).setConstraint(watchingValue, constant, multiplier);
+	}
+
+#pragma warning(disable: 4715)
+	Constraint& Layer::constraintReferenceTo(LayerDirection direction) {
+		switch (direction)
+		{
+		case s3d::aoba::LayerDirection::Top:
+			return m_top;
+
+		case s3d::aoba::LayerDirection::Bottom:
+			return m_bottom;
+
+		case s3d::aoba::LayerDirection::CenterY:
+			return m_centerY;
+
+		case s3d::aoba::LayerDirection::Height:
+			return m_height;
+
+		case s3d::aoba::LayerDirection::Left:
+			return m_left;
+
+		case s3d::aoba::LayerDirection::Right:
+			return m_right;
+
+		case s3d::aoba::LayerDirection::CenterX:
+			return m_centerX;
+
+		case s3d::aoba::LayerDirection::Width:
+			return m_width;
+
+		default:
+			assert(false);
+			break;
+		}
+	}
+#pragma warning(default: 4715)
+
+	void Layer::removeConstraint(LayerDirection direction) {
+		constraintReferenceTo(direction).removeConstraint();
+	}
+
 	void Layer::removeAllConstraints() {
 		m_top.removeConstraint();
 		m_bottom.removeConstraint();

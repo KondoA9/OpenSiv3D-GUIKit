@@ -7,7 +7,7 @@ namespace s3d::aoba {
 		m_exists = true;
 	}
 
-	void Constraint::setConstraint(double* watchingValue, double constant, double multiplier) {
+	void Constraint::setConstraint(double* const watchingValue, double constant, double multiplier) {
 		m_watchingValue = watchingValue;
 		setConstraint(constant, multiplier);
 	}

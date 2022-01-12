@@ -23,7 +23,6 @@ namespace s3d::aoba {
 		Vec2 m_center = Vec2();
 
 	public:
-
 		const Vec2& center() const;
 
 		const Constraint& top() const;
@@ -44,17 +43,17 @@ namespace s3d::aoba {
 
 		void updateConstraints();
 
+		void setConstraint(LayerDirection direction, double constant, double multiplier);
+
+		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier);
+
+		void setConstraint(LayerDirection direction, Layer& otherLayer, LayerDirection otherLayerDirection, double constant, double multiplier);
+
+		void removeConstraint(LayerDirection direction);
+
 		void removeAllConstraints();
 
-		Constraint* constraintPtr(LayerDirection direction) {
-			return direction == LayerDirection::Top ? &m_top
-				: direction == LayerDirection::Bottom ? &m_bottom
-				: direction == LayerDirection::CenterY ? &m_centerY
-				: direction == LayerDirection::Height ? &m_height
-				: direction == LayerDirection::Left ? &m_left
-				: direction == LayerDirection::Right ? &m_right
-				: direction == LayerDirection::CenterX ? &m_centerX
-				: direction == LayerDirection::Width ? &m_width : nullptr;
-		}
+	private:
+		Constraint& constraintReferenceTo(LayerDirection direction);
 	};
 }

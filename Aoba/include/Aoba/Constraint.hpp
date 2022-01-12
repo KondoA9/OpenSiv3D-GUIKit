@@ -30,7 +30,7 @@ namespace s3d::aoba {
 
 		void setConstraint(double constant = 0.0, double multiplier = 1.0);
 
-		void setConstraint(double* watchingValue, double constant = 0.0, double multiplier = 1.0);
+		void setConstraint(double* const  watchingValue, double constant = 0.0, double multiplier = 1.0);
 
 		void setConstraint(const std::function<double()>& func, double constant = 0.0, double multiplier = 1.0);
 

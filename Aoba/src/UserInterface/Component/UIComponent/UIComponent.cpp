@@ -47,23 +47,22 @@ namespace s3d::aoba {
 
 	void UIComponent::setConstraint(LayerDirection direction, UIComponent& component, LayerDirection toDirection, double constant, double multiplier) {
 		m_dependentLayers.push_back(&component.m_layer);
-		m_layer.constraintPtr(direction)->setConstraint(component.m_layer.constraintPtr(toDirection)->data(), constant, multiplier);
+		m_layer.setConstraint(direction, component.m_layer, toDirection, constant, multiplier);
 		m_needToUpdateLayer = true;
 	}
 
 	void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) {
-		m_layer.constraintPtr(direction)->setConstraint(constant, multiplier);
+		m_layer.setConstraint(direction, constant, multiplier);
 		m_needToUpdateLayer = true;
 	}
 
 	void UIComponent::setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier) {
-		m_layer.constraintPtr(direction)->setConstraint(func, constant, multiplier);
+		m_layer.setConstraint(direction, func, constant, multiplier);
 		m_needToUpdateLayer = true;
 	}
 
 	void UIComponent::removeConstraint(LayerDirection direction) {
-		auto constraint = m_layer.constraintPtr(direction);
-		constraint->removeConstraint();
+		m_layer.removeConstraint(direction);
 	}
 
 	void UIComponent::removeAllConstraints() {
