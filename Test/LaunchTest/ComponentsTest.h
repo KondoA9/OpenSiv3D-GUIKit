@@ -5,6 +5,8 @@
 };
 
 void ComponentsTest::onLoaded() {
+	Page::onLoaded();
+
 	auto& stackView = aoba::Factory::Create<aoba::UIVStackView>(view);
 	stackView.setConstraint(aoba::LayerDirection::Top, view, aoba::LayerDirection::Top);
 	stackView.setConstraint(aoba::LayerDirection::Bottom, view, aoba::LayerDirection::Bottom);
