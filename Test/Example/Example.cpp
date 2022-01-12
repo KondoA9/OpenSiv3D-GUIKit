@@ -219,6 +219,8 @@ private:
 
 protected:
 	void onLoaded() override {
+		Page::onLoaded();
+
 		m_uiTitle.setText(U"This is the example application of Aoba.");
 		m_uiTitle.setFont(aoba::UnifiedFontStyle::Header);
 		m_uiTitle.setDirection(aoba::TextDirection::Center);

@@ -6,12 +6,13 @@
 
 namespace s3d::aoba {
 	void PageManager::update() {
+		// Update scissor rect if window is resized
 		if (WindowManager::DidResized()) {
-			// Update scissor rect
 			const auto size = Scene::Size();
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 		}
 
+		// Update views
 		if (m_forwardPage) {
 			m_forwardPage->view.update();
 		}
@@ -24,6 +25,7 @@ namespace s3d::aoba {
 			m_backwardPage->view.update();
 		}
 
+		// Page transition
 		switch (m_pageTransition)
 		{
 		case PageTransition::StartUp:

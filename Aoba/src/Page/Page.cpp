@@ -16,4 +16,24 @@ namespace s3d::aoba {
 			return Scene::Size().x;
 			});
 	}
+
+	void Page::onLoaded() {
+		m_loaded = true;
+	}
+
+	void Page::onBeforeAppeared() {}
+
+	void Page::onLayoutCompleted() {}
+
+	void Page::onAfterAppeared() {}
+
+	void Page::onBeforeDisappeared() {}
+
+	void Page::onAfterDisappeared() {}
+
+	void Page::onWindowResized() {}
+
+	void Page::onBeforeAppTerminated() {}
+
+	void Page::onAppTerminated() {}
 }
