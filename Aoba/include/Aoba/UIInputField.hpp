@@ -28,7 +28,7 @@ namespace s3d::aoba {
 		Type type = Type::Text;
 		NumberType numberType = NumberType::Decimals;
 		size_t maxLength = String::npos;
-		double minNum = -DBL_MAX, maxNum = DBL_MAX;
+		double minNum = INT_MIN, maxNum = INT_MAX;
 		String prefix = U"", suffix = U"";
 		Array<char32> forbiddenCharacters = {};
 
