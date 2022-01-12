@@ -157,6 +157,7 @@ namespace s3d::aoba {
 		m_forwardPage->onBeforeAppeared();
 		m_backwardPage->onBeforeDisappeared();
 
+		// Update layer of the next page
 		m_forwardPage->view.updateLayer(m_windowScissorRect);
 		m_forwardPage->view.updateLayerInvert(m_windowScissorRect);
 	}
