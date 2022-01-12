@@ -47,17 +47,11 @@ namespace s3d::aoba {
 
 		void switchPage(const String& identifier);
 
-		void appendPage(const std::shared_ptr<Page>& page) {
-			m_pages.push_back(page);
-		}
+		void appendPage(const std::shared_ptr<Page>& page);
 
-		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-			m_isolatedComponents.push_back(component);
-		}
+		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
-		void terminate() {
-			m_pageTransition = PageTransition::Termination;
-		}
+		void terminate();
 
 	private:
 		const std::shared_ptr<Page>& getPagePtr(const String& identifier) const;
@@ -76,8 +70,10 @@ namespace s3d::aoba {
 
 		void updateOnTermination();
 
-		void updateInputEvents();
+		void updateViews();
 
 		void updateLayers();
+
+		void updateInputEvents();
 	};
 }

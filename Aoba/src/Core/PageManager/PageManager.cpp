@@ -14,6 +14,7 @@ namespace s3d::aoba {
 
 	bool PageManager::initialize() {
 		if (m_pages) {
+			// Set the initial page
 			m_forwardPage = m_pages[0];
 			return true;
 		}
@@ -45,10 +46,23 @@ namespace s3d::aoba {
 		if (const auto& page = getPagePtr(identifier); m_pageTransition == PageTransition::Stable && page) {
 			m_forwardPage = page;
 			m_backwardPage = m_drawingPage;
+			m_drawingPage.reset();
 			m_pageTransition = PageTransition::StartChanging;
 		}
 		else {
 			Logger << U"Error(PageManager): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);
 		}
+	}
+
+	void PageManager::appendPage(const std::shared_ptr<Page>& page) {
+		m_pages.push_back(page);
+	}
+
+	void PageManager::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+		m_isolatedComponents.push_back(component);
+	}
+
+	void PageManager::terminate() {
+		m_pageTransition = PageTransition::Termination;
 	}
 }

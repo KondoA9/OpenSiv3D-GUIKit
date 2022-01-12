@@ -6,24 +6,20 @@
 
 namespace s3d::aoba {
 	void PageManager::update() {
-		// Update scissor rect if window is resized
 		if (WindowManager::DidResized()) {
+			// Update scissor rect
 			const auto size = Scene::Size();
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
+
+			// Call window resize event
+			if (m_forwardPage) m_forwardPage->onWindowResized();
+			if (m_drawingPage) m_drawingPage->onWindowResized();
+			if (m_backwardPage) m_backwardPage->onWindowResized();
 		}
 
-		// Update views
-		if (m_forwardPage) {
-			m_forwardPage->view.update();
-		}
+		updateViews();
 
-		if (m_drawingPage) {
-			m_drawingPage->view.update();
-		}
-
-		if (m_backwardPage) {
-			m_backwardPage->view.update();
-		}
+		updateLayers();
 
 		// Page transition
 		switch (m_pageTransition)
@@ -66,6 +62,10 @@ namespace s3d::aoba {
 	void PageManager::draw() {
 		switch (m_pageTransition)
 		{
+		case PageTransition::StartChanging:
+			m_backwardPage->view.draw();
+			break;
+
 		case PageTransition::Changing:
 			// Draw previous and next page
 			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
@@ -124,6 +124,12 @@ namespace s3d::aoba {
 		return true;
 	}
 
+	void PageManager::updateOnStable() {
+		assert(m_drawingPage);
+
+		updateInputEvents();
+	}
+
 	void PageManager::updateOnTermination() {
 		static bool once = true;
 
@@ -172,12 +178,58 @@ namespace s3d::aoba {
 		m_backwardPage.reset();
 	}
 
-	void PageManager::updateOnStable() {
-		assert(m_drawingPage);
+	void PageManager::updateViews() {
+		if (m_forwardPage) {
+			m_forwardPage->view.update();
+		}
 
-		updateInputEvents();
+		if (m_drawingPage) {
+			m_drawingPage->view.update();
+		}
 
-		updateLayers();
+		if (m_backwardPage) {
+			m_backwardPage->view.update();
+		}
+	}
+
+	void PageManager::updateLayers() {
+		if (WindowManager::DidResized()) {
+			if (m_forwardPage) {
+				m_forwardPage->view.updateLayer(m_windowScissorRect);
+				m_forwardPage->view.updateLayerInvert(m_windowScissorRect);
+			}
+
+			if (m_drawingPage) {
+				m_drawingPage->view.updateLayer(m_windowScissorRect);
+				m_drawingPage->view.updateLayerInvert(m_windowScissorRect);
+			}
+
+			if (m_backwardPage) {
+				m_backwardPage->view.updateLayer(m_windowScissorRect);
+				m_backwardPage->view.updateLayerInvert(m_windowScissorRect);
+			}
+
+			for (auto& component : m_isolatedComponents) {
+				component->updateLayer(m_windowScissorRect);
+			}
+		}
+		else {
+			if (m_forwardPage) {
+				m_forwardPage->view.updateLayerIfNeeded(m_windowScissorRect);
+			}
+
+			if (m_drawingPage) {
+				m_drawingPage->view.updateLayerIfNeeded(m_windowScissorRect);
+			}
+
+			if (m_backwardPage) {
+				m_backwardPage->view.updateLayerIfNeeded(m_windowScissorRect);
+			}
+
+			for (auto& component : m_isolatedComponents) {
+				component->updateLayerIfNeeded(m_windowScissorRect);
+			}
+		}
 	}
 
 	void PageManager::updateInputEvents() {
@@ -194,29 +246,5 @@ namespace s3d::aoba {
 		}
 
 		UIComponent::CallInputEvents();
-	}
-
-	void PageManager::updateLayers() {
-		if (WindowManager::DidResized()) {
-			// Update layer
-			m_drawingPage->view.updateLayer(m_windowScissorRect);
-			m_drawingPage->view.updateLayerInvert(m_windowScissorRect);
-
-			// Update isolated components
-			for (auto& component : m_isolatedComponents) {
-				component->updateLayer(m_windowScissorRect);
-			}
-
-			// Call window resized event
-			m_drawingPage->onWindowResized();
-		}
-		else {
-			m_drawingPage->view.updateLayerIfNeeded(m_windowScissorRect);
-
-			// Update isolated components
-			for (auto& component : m_isolatedComponents) {
-				component->updateLayerIfNeeded(m_windowScissorRect);
-			}
-		}
 	}
 }
