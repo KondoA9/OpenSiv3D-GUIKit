@@ -15,7 +15,7 @@ namespace s3d::aoba {
 	bool PageManager::initialize() {
 		if (m_pages) {
 			// Set the initial page
-			m_nextPage = m_pages[0];
+			m_currentPage = m_pages[0];
 			return true;
 		}
 

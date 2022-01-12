@@ -97,15 +97,13 @@ namespace s3d::aoba {
 	bool PageManager::updateOnStartUp() {
 		// Run once when launching the app
 		if (static bool called = false; !called) {
-			m_nextPage->onLoaded();
-			m_nextPage->onBeforeAppeared();
-			m_currentPage = m_nextPage;
+			m_currentPage->onLoaded();
+			m_currentPage->onBeforeAppeared();
 			called = true;
 		}
 		// Run at next frame
 		else {
-			m_nextPage->onAfterAppeared();
-			m_nextPage.reset();
+			m_currentPage->onAfterAppeared();
 			return false;
 		}
 
@@ -141,11 +139,9 @@ namespace s3d::aoba {
 			once = false;
 		}
 
-		if (aoba::Core::IsTerminationPrevented() || aoba::Core::IsParallelTaskAlive()) {
-			updateLayers();
-		}
-		else {
+		if (!(aoba::Core::IsTerminationPrevented() || aoba::Core::IsParallelTaskAlive())) {
 			m_currentPage->onBeforeDisappeared();
+
 			for (auto& page : m_pages) {
 				page->onAppTerminated();
 			}
@@ -163,9 +159,8 @@ namespace s3d::aoba {
 		m_nextPage->onBeforeAppeared();
 		m_previousPage->onBeforeDisappeared();
 
-		// Update layer of the next page
-		m_nextPage->view.updateLayer(m_windowScissorRect);
-		m_nextPage->view.updateLayerInvert(m_windowScissorRect);
+		// Request to update layer of the next page
+		m_nextPage->view.requestToUpdateLayer();
 	}
 
 	void PageManager::finalizePageChanging() {
