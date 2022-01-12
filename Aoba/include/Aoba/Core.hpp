@@ -125,7 +125,7 @@ namespace s3d::aoba {
 
 		void run();
 
-		void updateAoba();
+		void update();
 
 		void updateMainThreadEvents();
 

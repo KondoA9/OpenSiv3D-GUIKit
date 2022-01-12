@@ -32,11 +32,11 @@ namespace s3d::aoba {
 				m_pageManager->terminate();
 			}
 
-			updateAoba();
+			update();
 		}
 	}
 
-	void Core::updateAoba() {
+	void Core::update() {
 		// Update window state
 		WindowManager::Update();
 
