@@ -36,9 +36,6 @@ namespace s3d::aoba {
 		// Called before Aoba core system draws the page
 		virtual void onBeforeAppeared();
 
-		// Called when all constraints updated
-		virtual void onLayoutCompleted();
-
 		// Called after Aoba core system draws the page
 		virtual void onAfterAppeared();
 

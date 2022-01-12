@@ -23,8 +23,6 @@ namespace s3d::aoba {
 
 	void Page::onBeforeAppeared() {}
 
-	void Page::onLayoutCompleted() {}
-
 	void Page::onAfterAppeared() {}
 
 	void Page::onBeforeDisappeared() {}

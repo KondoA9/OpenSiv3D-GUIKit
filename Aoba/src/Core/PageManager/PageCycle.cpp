@@ -149,7 +149,7 @@ namespace s3d::aoba {
 	}
 
 	void PageManager::preparePageChanging() {
-		// Load a page once
+		// Load the next page if needed
 		if (!m_forwardPage->didLoaded()) {
 			m_forwardPage->onLoaded();
 		}
@@ -159,8 +159,6 @@ namespace s3d::aoba {
 
 		m_forwardPage->view.updateLayer(m_windowScissorRect);
 		m_forwardPage->view.updateLayerInvert(m_windowScissorRect);
-
-		m_forwardPage->onLayoutCompleted();
 	}
 
 	void PageManager::finalizePageChanging() {
