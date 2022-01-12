@@ -67,14 +67,7 @@ namespace s3d::aoba {
 	}
 
 	void UIComponent::removeAllConstraints() {
-		m_layer.top.removeConstraint();
-		m_layer.bottom.removeConstraint();
-		m_layer.left.removeConstraint();
-		m_layer.right.removeConstraint();
-		m_layer.centerX.removeConstraint();
-		m_layer.centerY.removeConstraint();
-		m_layer.height.removeConstraint();
-		m_layer.width.removeConstraint();
+		m_layer.removeAllConstraints();
 	}
 
 	void UIComponent::focus() {

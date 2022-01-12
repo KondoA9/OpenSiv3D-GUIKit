@@ -71,20 +71,20 @@ namespace s3d::aoba {
 
 	void UIVStackView::calcCurrentRowHeight() {
 		const size_t rows = m_maxStackCount == 0 ? componentsCount() : m_maxStackCount;
-		m_currentRowHeight = m_rowHeight == 0.0 ? layer().height / rows : m_rowHeight;
+		m_currentRowHeight = m_rowHeight == 0.0 ? layer().height() / rows : m_rowHeight;
 		m_currentRowsHeight = m_currentRowHeight * rows;
 	}
 
 	void UIVStackView::adjustRowsTrailingToViewBottom() {
-		if (componentsCount() != 0 && layer().height < m_currentRowsHeight && (
-			(m_leadingDirection == LeadingDirection::Top && layer().top + m_leadingPositionConstant + m_currentRowsHeight < layer().bottom) ||
-			(m_leadingDirection == LeadingDirection::Bottom && layer().bottom + m_leadingPositionConstant - m_currentRowsHeight > layer().top)))
+		if (componentsCount() != 0 && layer().height() < m_currentRowsHeight && (
+			(m_leadingDirection == LeadingDirection::Top && layer().top() + m_leadingPositionConstant + m_currentRowsHeight < layer().bottom()) ||
+			(m_leadingDirection == LeadingDirection::Bottom && layer().bottom() + m_leadingPositionConstant - m_currentRowsHeight > layer().top())))
 		{
 			if (m_leadingDirection == LeadingDirection::Top) {
-				m_leadingPositionConstant = layer().height - m_currentRowsHeight;
+				m_leadingPositionConstant = layer().height() - m_currentRowsHeight;
 			}
 			else {
-				m_leadingPositionConstant = -layer().height + m_currentRowsHeight;
+				m_leadingPositionConstant = -layer().height() + m_currentRowsHeight;
 			}
 
 			updateChildrenConstraints();
@@ -92,7 +92,7 @@ namespace s3d::aoba {
 	}
 
 	void UIVStackView::scroll(double dy) {
-		if (scrollingEnabled && m_currentRowsHeight >= layer().height) {
+		if (scrollingEnabled && m_currentRowsHeight >= layer().height()) {
 			m_leadingPositionConstant -= dy;
 
 			if (m_leadingDirection == LeadingDirection::Top) {

@@ -3,10 +3,10 @@
 namespace s3d::aoba {
 	void UIRect::setCornerRadius(double r) {
 		m_rect = RoundRect(
-			static_cast<int>(layer().left),
-			static_cast<int>(layer().top),
-			static_cast<int>(layer().width),
-			static_cast<int>(layer().height),
+			static_cast<int>(layer().left()),
+			static_cast<int>(layer().top()),
+			static_cast<int>(layer().width()),
+			static_cast<int>(layer().height()),
 			static_cast<int>(r)
 		);
 	}
@@ -24,10 +24,10 @@ namespace s3d::aoba {
 		UIComponent::updateLayer(scissor);
 
 		m_rect = RoundRect(
-			static_cast<int>(layer().left),
-			static_cast<int>(layer().top),
-			static_cast<int>(layer().width),
-			static_cast<int>(layer().height),
+			static_cast<int>(layer().left()),
+			static_cast<int>(layer().top()),
+			static_cast<int>(layer().width()),
+			static_cast<int>(layer().height()),
 			static_cast<int>(m_rect.r)
 		);
 	}
