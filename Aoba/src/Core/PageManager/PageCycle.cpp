@@ -98,7 +98,6 @@ namespace s3d::aoba {
 		static bool appeared = false;
 		if (!appeared) {
 			m_forwardPage->onLoaded();
-			m_forwardPage->m_loaded = true;
 			m_forwardPage->onBeforeAppeared();
 			m_drawingPage = m_forwardPage;
 			appeared = true;
@@ -149,9 +148,8 @@ namespace s3d::aoba {
 
 	void PageManager::preparePageChanging() {
 		// Load a page once
-		if (!m_forwardPage->m_loaded) {
+		if (!m_forwardPage->didLoaded()) {
 			m_forwardPage->onLoaded();
-			m_forwardPage->m_loaded = true;
 		}
 
 		m_forwardPage->onBeforeAppeared();
