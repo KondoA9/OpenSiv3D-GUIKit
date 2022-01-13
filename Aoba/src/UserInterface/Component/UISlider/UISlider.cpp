@@ -5,7 +5,7 @@
 AobaCreateInputEvent(Sliding);
 
 namespace s3d::aoba {
-	Color UISlider::DefaultAccentColor = MaterialColor::Blue5;
+	ColorTheme UISlider::DefaultAccentColor = MaterialColor::Blue5;
 
 	void UISlider::initialize() {
 		const double handleRadius = 6_px;
