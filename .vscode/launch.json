@@ -1,0 +1,77 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Launch Aoba-Example",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/App/Aoba-Example",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/App",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build Aoba-Example",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Launch Aoba-Example (Debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/App/Aoba-Example",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/App",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build Aoba-Example (Debug)",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Launch Aoba-LaunchTest",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/App/Aoba-LaunchTest",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/App",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build Aoba-LaunchTest",
+            "miDebuggerPath": "/usr/bin/gdb"
+        },
+        {
+            "name": "Launch Aoba-LaunchTest (Debug)",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/App/Aoba-LaunchTest",
+            "stopAtEntry": false,
+            "cwd": "${workspaceFolder}/App",
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ],
+            "preLaunchTask": "Build Aoba-LaunchTest (Debug)",
+            "miDebuggerPath": "/usr/bin/gdb"
+        }
+    ]
+}
