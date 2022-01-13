@@ -5,6 +5,8 @@
 AobaCreateInputEvent(Sliding);
 
 namespace s3d::aoba {
+	Color UISlider::DefaultAccentColor = MaterialColor::Blue5;
+
 	void UISlider::initialize() {
 		const double handleRadius = 6_px;
 
@@ -21,7 +23,7 @@ namespace s3d::aoba {
 			}, true);
 
 		addEventListener<MouseEvent::Hovered>([this] {
-			m_uiHandle.backgroundColor.highlight(MaterialColor::Blue5);
+			m_uiHandle.backgroundColor.highlight(accentColor);
 			}, true);
 
 		addEventListener<MouseEvent::UnHovered>([this] {
@@ -34,7 +36,7 @@ namespace s3d::aoba {
 
 		const double h = 3.0_px;
 		m_uiRailLeft.drawFrame = true;
-		m_uiRailLeft.backgroundColor = MaterialColor::Blue5;
+		m_uiRailLeft.backgroundColor = accentColor;
 		m_uiRailLeft.penetrateMouseEvent = true;
 		m_uiRailLeft.setConstraint(LayerDirection::CenterY, m_uiHandle, LayerDirection::CenterY);
 		m_uiRailLeft.setConstraint(LayerDirection::Height, h);
