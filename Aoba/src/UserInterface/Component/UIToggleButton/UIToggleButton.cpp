@@ -1,6 +1,9 @@
 ﻿#include <Aoba/UIToggleButton.hpp>
 
 namespace s3d::aoba {
+	ColorTheme UIToggleButton::DefaultSelectedColor = DynamicColor::BackgroundSecondary;
+	ColorTheme UIToggleButton::DefaultSelectedTextColor = Palette::White;
+
 	void UIToggleButton::initialize() {
 		UIText::initialize();
 

@@ -5,6 +5,8 @@
 namespace s3d::aoba {
 	class UIButton : public UIText {
 	public:
+		static ColorTheme DefaultColor, DefaultTextColor, DefaultHoveredColor, DefaultHoveredTextColor;
+
 		ColorTheme defaultColor, hoveredColor, defaultTextColor, hoveredTextColor;
 
 	private:
@@ -12,10 +14,10 @@ namespace s3d::aoba {
 
 	public:
 		explicit UIButton(
-			const ColorTheme& _defaultColor = DynamicColor::Background,
-			const ColorTheme& _defaultTextColor = DynamicColor::Text,
-			const ColorTheme& _hoveredColor = DynamicColor::BackgroundSecondary,
-			const ColorTheme& _hoveredTextColor = DynamicColor::Text) noexcept :
+			const ColorTheme& _defaultColor = DefaultColor,
+			const ColorTheme& _defaultTextColor = DefaultTextColor,
+			const ColorTheme& _hoveredColor = DefaultHoveredColor,
+			const ColorTheme& _hoveredTextColor = DefaultHoveredTextColor) noexcept :
 			UIText(_defaultColor, _defaultTextColor),
 			defaultColor(_defaultColor),
 			hoveredColor(_hoveredColor),

@@ -5,14 +5,16 @@
 namespace s3d::aoba {
 	class UIToggleButton : public UIButton {
 	public:
+		static ColorTheme DefaultSelectedColor, DefaultSelectedTextColor;
+
 		ColorTheme selectedColor, selectedTextColor;
 
 	private:
 		bool m_enabled = false;
 
 	public:
-		explicit UIToggleButton(const ColorTheme& _selectedColor = DynamicColor::BackgroundSecondary, const ColorTheme& _selectedTextColor = Palette::White) :
-			UIButton(DynamicColor::Background, DynamicColor::Text, DynamicColor::BackgroundSecondary, Palette::White),
+		explicit UIToggleButton(const ColorTheme& _selectedColor = DefaultSelectedColor, const ColorTheme& _selectedTextColor = DefaultSelectedTextColor) :
+			UIButton(DefaultColor, DefaultTextColor, DefaultHoveredColor, Palette::White),
 			selectedColor(_selectedColor),
 			selectedTextColor(_selectedTextColor)
 		{}

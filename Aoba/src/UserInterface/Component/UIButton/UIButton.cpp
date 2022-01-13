@@ -3,6 +3,11 @@
 #include <Aoba/UnifiedFont.hpp>
 
 namespace s3d::aoba {
+	ColorTheme UIButton::DefaultColor = DynamicColor::Background;
+	ColorTheme UIButton::DefaultTextColor = DynamicColor::Text;
+	ColorTheme UIButton::DefaultHoveredColor = DynamicColor::BackgroundSecondary;
+	ColorTheme UIButton::DefaultHoveredTextColor = DynamicColor::Text;
+
 	void UIButton::initialize() {
 		UIText::initialize();
 
