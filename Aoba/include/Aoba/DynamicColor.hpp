@@ -3,11 +3,10 @@
 #include "ColorTheme.hpp"
 
 namespace s3d::aoba {
-	// DynamicColor is based on Material design
 	namespace DynamicColor {
 		constexpr auto Clear = ColorTheme(Color(0, 0, 0, 0));
 
-		constexpr auto Background = ColorTheme(Color(250, 250, 250), Color(33, 33, 33));
+		constexpr auto Background = ColorTheme(Color(250, 250, 250), Color(30, 30, 30));
 		constexpr auto BackgroundSecondary = ColorTheme(Color(236, 239, 241), Color(66, 66, 66));
 		constexpr auto BackgroundTertiary = ColorTheme(Color(207, 216, 220), Color(97, 97, 97));
 
@@ -16,9 +15,6 @@ namespace s3d::aoba {
 		constexpr auto Separator = ColorTheme(Color(189, 189, 189), Color(97, 97, 97));
 
 		constexpr auto Text = ColorTheme(Color(33, 33, 33), Color(250, 250, 250));
-
-		constexpr auto ButtonDefault = ColorTheme(Color(112, 100, 255), Color(82, 70, 255));
-		constexpr auto ButtonPushed = ColorTheme(Color(95, 80, 229), Color(69, 57, 229));
 	}
 
 	/////////////////////////////////////////////////////

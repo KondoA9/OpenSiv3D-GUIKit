@@ -11,7 +11,7 @@ namespace s3d::aoba {
 		bool m_enabled = false;
 
 	public:
-		explicit UIToggleButton(const ColorTheme& _selectedColor = DynamicColor::ButtonPushed, const ColorTheme& _selectedTextColor = Palette::White) :
+		explicit UIToggleButton(const ColorTheme& _selectedColor = DynamicColor::BackgroundSecondary, const ColorTheme& _selectedTextColor = Palette::White) :
 			UIButton(DynamicColor::Background, DynamicColor::Text, DynamicColor::BackgroundSecondary, Palette::White),
 			selectedColor(_selectedColor),
 			selectedTextColor(_selectedTextColor)
