@@ -21,7 +21,7 @@ namespace s3d::aoba {
 			}, true);
 
 		addEventListener<MouseEvent::Hovered>([this] {
-			m_uiHandle.backgroundColor.highlight(DynamicColor::DefaultBlue);
+			m_uiHandle.backgroundColor.highlight(MaterialColor::Blue5);
 			}, true);
 
 		addEventListener<MouseEvent::UnHovered>([this] {
@@ -34,7 +34,7 @@ namespace s3d::aoba {
 
 		const double h = 3.0_px;
 		m_uiRailLeft.drawFrame = true;
-		m_uiRailLeft.backgroundColor = DynamicColor::DefaultBlue;
+		m_uiRailLeft.backgroundColor = MaterialColor::Blue5;
 		m_uiRailLeft.penetrateMouseEvent = true;
 		m_uiRailLeft.setConstraint(LayerDirection::CenterY, m_uiHandle, LayerDirection::CenterY);
 		m_uiRailLeft.setConstraint(LayerDirection::Height, h);

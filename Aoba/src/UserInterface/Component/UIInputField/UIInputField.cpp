@@ -76,7 +76,7 @@ namespace s3d::aoba {
 				Line(m_cursorBeamPosX, m_fieldRect.y + 4_px, m_cursorBeamPosX, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);
 			}
 
-			m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
+			m_fieldRect.drawFrame(1.0_px, 0.0, MaterialColor::Blue5);
 		}
 	}
 
@@ -241,7 +241,7 @@ namespace s3d::aoba {
 	void UIInputField::fireForbiddenCharsNotifier() {
 		if (ui_Warning == nullptr) {
 			ui_Warning = &Factory::Create<UIText>();
-			ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
+			ui_Warning->backgroundColor = MaterialColor::Yellow6;
 			ui_Warning->textColor = Palette::Black;
 			ui_Warning->setDirection(TextDirection::Center);
 			ui_Warning->setCornerRadius(5);

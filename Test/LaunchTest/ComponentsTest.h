@@ -20,49 +20,49 @@ void ComponentsTest::onLoaded() {
 	tabView.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 
 	auto& rect = aoba::Factory::Create<aoba::UIRect>(stackView);
-	rect.backgroundColor = aoba::DynamicColor::DefaultAmber;
+	rect.backgroundColor = aoba::MaterialColor::Amber5;
 
 	auto& circle = aoba::Factory::Create<aoba::UICircle>(stackView);
-	circle.backgroundColor = aoba::DynamicColor::DefaultBlue;
+	circle.backgroundColor = aoba::MaterialColor::Blue5;
 
 	auto& button = aoba::Factory::Create<aoba::UIButton>(stackView);
-	button.backgroundColor = aoba::DynamicColor::DefaultBlueGray;
+	button.backgroundColor = aoba::MaterialColor::BlueGrey5;
 	button.setText(U"UIButton");
 
 	auto& toggleButton = aoba::Factory::Create<aoba::UIToggleButton>(stackView);
-	toggleButton.backgroundColor = aoba::DynamicColor::DefaultBrown;
+	toggleButton.backgroundColor = aoba::MaterialColor::Brown5;
 	toggleButton.setText(U"UIToggleButton");
 
 	auto& text = aoba::Factory::Create<aoba::UIText>(stackView);
-	text.backgroundColor = aoba::DynamicColor::DefaultCyan;
+	text.backgroundColor = aoba::MaterialColor::Cyan5;
 	text.setText(U"UIText");
 
 #if !SIV3D_PLATFORM(LINUX)
 	auto& inputField = aoba::Factory::Create<aoba::UIInputField>(stackView);
-	inputField.backgroundColor = aoba::DynamicColor::DefaultDeepOrange;
+	inputField.backgroundColor = aoba::MaterialColor::DeepOrange5;
 	inputField.setText(U"UIInputField");
 #endif
 
 	auto& checkBox = aoba::Factory::Create<aoba::UICheckBox>(stackView);
-	checkBox.backgroundColor = aoba::DynamicColor::DefaultDeepPurple;
+	checkBox.backgroundColor = aoba::MaterialColor::DeepPurple5;
 	checkBox.setChecked(true);
 
 	auto& slider = aoba::Factory::Create<aoba::UISlider>(stackView);
-	slider.backgroundColor = aoba::DynamicColor::DefaultGray;
+	slider.backgroundColor = aoba::MaterialColor::Grey5;
 
 	auto& icon = aoba::Factory::Create<aoba::UIIcon>(stackView);
-	icon.backgroundColor = aoba::DynamicColor::DefaultGreen;
+	icon.backgroundColor = aoba::MaterialColor::Green5;
 	icon.setIcon(Icon(0xf109), 40_px);
 
 	auto& imageView = aoba::Factory::Create<aoba::UIImageView>(stackView);
-	imageView.backgroundColor = aoba::DynamicColor::DefaultIndigo;
+	imageView.backgroundColor = aoba::MaterialColor::Indigo5;
 	imageView.appendImage(Image(U"asset/image1.png"));
 
 	auto& tab1 = tabView.appendTab<aoba::UIView>(U"Tab1");
-	tab1.backgroundColor = aoba::DynamicColor::DefaultBlue;
+	tab1.backgroundColor = aoba::MaterialColor::Blue5;
 
 	auto& tab2 = tabView.appendTab<aoba::UIView>(U"Tab2");
-	tab2.backgroundColor = aoba::DynamicColor::DefaultBlue;
+	tab2.backgroundColor = aoba::MaterialColor::Blue5;
 
 	// 5sec later, switch page
 	aoba::Core::SetTimeout([] {
