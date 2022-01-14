@@ -7,6 +7,11 @@
 
 namespace s3d::aoba {
 	void PageManager::update() {
+		// Load nextPage
+		if (m_nextPage && !m_nextPage->didLoaded()) {
+			m_nextPage->onLoaded();
+		}
+
 		if (WindowManager::DidResized()) {
 			// Update scissor rect
 			const auto size = Scene::Size();
