@@ -13,9 +13,17 @@ namespace s3d::aoba {
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 
 			// Call window resize event
-			if (m_nextPage) m_nextPage->onWindowResized();
-			if (m_currentPage) m_currentPage->onWindowResized();
-			if (m_previousPage) m_previousPage->onWindowResized();
+			if (m_nextPage) {
+				m_nextPage->onWindowResized();
+			}
+
+			if (m_currentPage) {
+				m_currentPage->onWindowResized();
+			}
+
+			if (m_previousPage) {
+				m_previousPage->onWindowResized();
+			}
 		}
 
 		updateViews();
