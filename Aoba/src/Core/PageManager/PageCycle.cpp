@@ -178,11 +178,6 @@ namespace s3d::aoba {
 	}
 
 	void PageManager::preparePageChanging() {
-		// Load the next page if needed
-		if (!m_nextPage->didLoaded()) {
-			m_nextPage->onLoaded();
-		}
-
 		m_nextPage->onBeforeAppeared();
 		m_previousPage->onBeforeDisappeared();
 
