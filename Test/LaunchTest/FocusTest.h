@@ -5,8 +5,6 @@
 };
 
 void FocusTest::onLoaded() {
-	Page::onLoaded();
-
 	auto& rect = aoba::Factory::Create<aoba::UIRect>(view);
 
 	const size_t focusTimeout = aoba::Core::SetTimeout([] {

@@ -10,6 +10,7 @@ namespace s3d::aoba {
 		// Load nextPage
 		if (m_nextPage && !m_nextPage->didLoaded()) {
 			m_nextPage->onLoaded();
+			m_nextPage->m_loaded = true;
 		}
 
 		if (WindowManager::DidResized()) {
