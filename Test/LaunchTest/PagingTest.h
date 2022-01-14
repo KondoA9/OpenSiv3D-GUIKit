@@ -73,8 +73,6 @@ protected:
 	using Page::Page;
 
 	void onLoaded() override {
-		Page::onLoaded();
-
 		// Toggle color mode test
 		aoba::Core::SetTimeout([] {
 			aoba::Core::SetColorMode(aoba::ColorMode::Light);
