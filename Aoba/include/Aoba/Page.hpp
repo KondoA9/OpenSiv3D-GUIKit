@@ -17,6 +17,7 @@ namespace s3d::aoba {
 	private:
 		const String m_identifier;
 		bool m_loaded = false;
+		bool m_acceptDragDrop = false;
 
 	public:
 		const String& identifier() const {
@@ -26,6 +27,12 @@ namespace s3d::aoba {
 		bool didLoaded() const {
 			return m_loaded;
 		}
+
+		bool isDragDropAccepted() const {
+			return m_acceptDragDrop;
+		}
+
+		void acceptDragDrop(bool accept);
 
 	protected:
 		virtual ~Page() = default;
@@ -53,6 +60,9 @@ namespace s3d::aoba {
 
 		// Called when application terminated
 		virtual void onAppTerminated();
+
+		// Called when the files or texts are drag and dropped
+		virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
 
 	private:
 		explicit Page(const String& identifier);

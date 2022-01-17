@@ -32,6 +32,12 @@ namespace s3d::aoba {
 			}
 		}
 
+		// Update DragDrop
+		if (m_currentPage && m_currentPage->isDragDropAccepted() && DragDrop::HasNewFilePaths() || DragDrop::HasNewText()) {
+			m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
+			DragDrop::Clear();
+		}
+
 		updateViews();
 
 		updateLayers();
