@@ -36,8 +36,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../App)
 add_executable(Aoba-LaunchTest ${SOURCE_FILES})
 
 target_link_libraries(Aoba-LaunchTest
-	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${PROJECT_SOURCE_DIR}/../build/libaoba.a
+	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${OPENCV4_LIBRARIES}
 	-lasound
 	-lavcodec
