@@ -131,7 +131,7 @@ namespace s3d::aoba {
 	void Core::AddLicense() {
 		LicenseInfo licence;
 		licence.title = U"Aoba Framework";
-		licence.copyright = U"Copyright (c) 2021 Ekyu Kondo";
+		licence.copyright = U"Copyright (c) 2021-2022 Ekyu Kondo";
 		licence.text =
 UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
