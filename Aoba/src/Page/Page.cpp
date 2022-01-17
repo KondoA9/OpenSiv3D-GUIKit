@@ -8,7 +8,7 @@ namespace s3d::aoba {
 		view(Factory::CreateComponent<UIView>()),
 		m_identifier(identifier)
 	{
-		acceptDragDrop(false);
+		acceptDragDrop(false, false);
 
 		view.setConstraint(LayerDirection::Top);
 		view.setConstraint(LayerDirection::Bottom, [] {
@@ -20,10 +20,9 @@ namespace s3d::aoba {
 			});
 	}
 
-	void Page::acceptDragDrop(bool accept) {
-		m_acceptDragDrop = accept;
-		DragDrop::AcceptFilePaths(accept);
-		DragDrop::AcceptText(accept);
+	void Page::acceptDragDrop(bool acceptFiles, bool acceptTexts) {
+		m_acceptDragDropFiles = acceptFiles;
+		m_acceptDragDropTexts = acceptTexts;
 	}
 
 	void Page::onLoaded() {}

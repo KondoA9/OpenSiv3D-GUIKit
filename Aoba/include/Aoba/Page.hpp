@@ -17,7 +17,7 @@ namespace s3d::aoba {
 	private:
 		const String m_identifier;
 		bool m_loaded = false;
-		bool m_acceptDragDrop = false;
+		bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
 
 	public:
 		const String& identifier() const {
@@ -28,11 +28,12 @@ namespace s3d::aoba {
 			return m_loaded;
 		}
 
-		bool isDragDropAccepted() const {
-			return m_acceptDragDrop;
+		// Return { accept files, accept texts }
+		std::tuple<bool, bool> isDragDropAccepted() const {
+			return { m_acceptDragDropFiles, m_acceptDragDropTexts };
 		}
 
-		void acceptDragDrop(bool accept);
+		void acceptDragDrop(bool acceptFiles, bool acceptTexts);
 
 	protected:
 		virtual ~Page() = default;
