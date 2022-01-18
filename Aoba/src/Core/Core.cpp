@@ -5,10 +5,10 @@
 #include <Aoba/Factory.hpp>
 #include <Aoba/Page.hpp>
 #include <Aoba/UnifiedFont.hpp>
-#include <Aoba/WindowManager.hpp>
 
-#include "PageManager/PageManager.hpp"
-#include "ParallelTaskManager/ParallelTaskManager.hpp"
+#include "PageManager.hpp"
+#include "ParallelTaskManager.hpp"
+#include "WindowManager.hpp"
 
 namespace s3d::aoba {
 	Core::Core() {

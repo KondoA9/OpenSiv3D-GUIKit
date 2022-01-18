@@ -11,14 +11,15 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\WindowManager.cpp" />
     <ClCompile Include="..\Aoba\src\Factory\Factory.cpp" />
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp" />
-    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.cpp" />
     <ClCompile Include="..\Aoba\src\Core\Core.cpp" />
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp" />
-    <ClCompile Include="..\Aoba\src\Core\PageManager\PageCycle.cpp" />
-    <ClCompile Include="..\Aoba\src\Core\PageManager\PageManager.cpp" />
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
@@ -42,7 +43,6 @@
     <ClCompile Include="..\Aoba\src\UserInterface\Constraint\Constraint.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Font\UnifiedFont.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Layer\Layer.cpp" />
-    <ClCompile Include="..\Aoba\src\WindowManager\WindowManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp" />
@@ -76,9 +76,9 @@
     <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\WindowManager.hpp" />
-    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager\ParallelTaskManager.hpp" />
-    <ClInclude Include="..\Aoba\src\Core\PageManager\PageManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>

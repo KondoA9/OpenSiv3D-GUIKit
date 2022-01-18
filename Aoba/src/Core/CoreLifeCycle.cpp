@@ -1,9 +1,9 @@
 ﻿#include <Aoba/Core.hpp>
 
 #include <Aoba/ColorTheme.hpp>
-#include <Aoba/WindowManager.hpp>
-#include "PageManager/PageManager.hpp"
-#include "ParallelTaskManager/ParallelTaskManager.hpp"
+
+#include "PageManager.hpp"
+#include "WindowManager.hpp"
 
 void AobaMain();
 

@@ -30,9 +30,10 @@ include_directories(
 add_library(aoba STATIC
 	"../Aoba/src/Core/Core.cpp"
 	"../Aoba/src/Core/CoreLifeCycle.cpp"
-	"../Aoba/src/Core/PageManager/PageManager.cpp"
-	"../Aoba/src/Core/PageManager/PageCycle.cpp"
-	"../Aoba/src/Core/ParallelTaskManager/ParallelTaskManager.cpp"
+	"../Aoba/src/Core/PageCycle.cpp"
+	"../Aoba/src/Core/PageManager.cpp"
+	"../Aoba/src/Core/ParallelTaskManager.cpp"
+	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
 
@@ -45,8 +46,6 @@ add_library(aoba STATIC
 	"../Aoba/src/PixelUnit/PixelUnit.cpp"
 
 	"../Aoba/src/Timeout/Timeout.cpp"
-
-	"../Aoba/src/WindowManager/WindowManager.cpp"
 
 	"../Aoba/src/CommandLine/CommandLine.cpp"
 
