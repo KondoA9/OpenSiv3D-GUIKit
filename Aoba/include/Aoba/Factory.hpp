@@ -63,7 +63,7 @@ namespace s3d::aoba {
 
 		static void RequestReleaseComponent(size_t id);
 
-		static void ReleaseInvalidComponents();
+		static void ReleaseUnusedComponents();
 
 		static void ReleaseComponentsIfNeed();
 
