@@ -22,7 +22,7 @@ namespace s3d::aoba {
 		throw Error{ U"A component with identifier \"{}\" not found."_fmt(id) };
 	}
 
-	void Factory::RequestReleaseComponent(size_t id) {
+	void Factory::ReleaseComponent(size_t id) {
 		for (auto& component : m_Instance.m_components) {
 			if (component && component->id() == id) {
 #if SIV3D_BUILD(DEBUG)

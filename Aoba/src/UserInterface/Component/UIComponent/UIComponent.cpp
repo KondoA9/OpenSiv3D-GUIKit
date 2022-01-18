@@ -22,7 +22,7 @@ namespace s3d::aoba {
 
 	void UIComponent::_destroy() {
 		release();
-		Factory::RequestReleaseComponent(m_id);
+		Factory::ReleaseComponent(m_id);
 	}
 
 	void UIComponent::updateLayer(const Rect& scissor) {

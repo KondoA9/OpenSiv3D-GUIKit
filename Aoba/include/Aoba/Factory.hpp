@@ -61,7 +61,7 @@ namespace s3d::aoba {
 
 		static std::shared_ptr<UIComponent>& GetComponent(size_t id);
 
-		static void RequestReleaseComponent(size_t id);
+		static void ReleaseComponent(size_t id);
 
 		static void ReleaseUnusedComponents();
 
