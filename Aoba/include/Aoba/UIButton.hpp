@@ -13,16 +13,12 @@ namespace s3d::aoba {
 		Texture m_icon;
 
 	public:
-		explicit UIButton(
-			const ColorTheme& _defaultColor = DefaultColor,
-			const ColorTheme& _defaultTextColor = DefaultTextColor,
-			const ColorTheme& _hoveredColor = DefaultHoveredColor,
-			const ColorTheme& _hoveredTextColor = DefaultHoveredTextColor) noexcept :
-			UIText(_defaultColor, _defaultTextColor),
-			defaultColor(_defaultColor),
-			hoveredColor(_hoveredColor),
-			defaultTextColor(_defaultTextColor),
-			hoveredTextColor(_hoveredTextColor)
+		UIButton() noexcept :
+			UIText(),
+			defaultColor(DefaultColor),
+			defaultTextColor(DefaultTextColor),
+			hoveredColor(DefaultHoveredColor),
+			hoveredTextColor(DefaultHoveredTextColor)
 		{
 			setDirection(TextDirection::Center);
 		}

@@ -6,9 +6,9 @@ namespace s3d::aoba {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr, UIComponent::m_PreviousFocusedComponent = nullptr;
 
-	UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
-		backgroundColor(_backgroundColor),
-		frameColor(_frameColor),
+	UIComponent::UIComponent() noexcept :
+		backgroundColor(DynamicColor::BackgroundSecondary),
+		frameColor(DynamicColor::Separator),
 		m_id(Factory::GetId())
 	{}
 

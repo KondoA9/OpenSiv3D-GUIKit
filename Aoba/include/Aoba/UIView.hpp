@@ -14,11 +14,11 @@ namespace s3d::aoba {
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
-		explicit UIView() noexcept :
-			UIRect(DynamicColor::Background)
-		{}
-
-		virtual ~UIView() {}
+		UIView() noexcept :
+			UIRect()
+		{
+			backgroundColor = DynamicColor::Background;
+		}
 
 		void release() override;
 

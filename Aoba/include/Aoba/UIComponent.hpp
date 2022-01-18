@@ -79,7 +79,7 @@ namespace s3d::aoba {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		explicit UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept;
+		UIComponent() noexcept;
 
 		UIComponent(const UIComponent&) = delete;
 

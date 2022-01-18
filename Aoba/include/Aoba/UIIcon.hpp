@@ -15,10 +15,12 @@ namespace s3d::aoba {
 		double m_angle = 0.0;
 
 	public:
-		explicit UIIcon(const ColorTheme& _backgroundColor = DynamicColor::Clear, const ColorTheme& _iconColor = DynamicColor::Text) noexcept :
-			UIRect(_backgroundColor),
-			iconColor(_iconColor)
-		{}
+		UIIcon() noexcept :
+			UIRect(),
+			iconColor(DynamicColor::Text)
+		{
+			backgroundColor = DynamicColor::Clear;
+		}
 
 		void setAngle(double angle) {
 			m_angle = angle;

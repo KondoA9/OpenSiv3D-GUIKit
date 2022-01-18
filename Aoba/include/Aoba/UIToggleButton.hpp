@@ -13,12 +13,13 @@ namespace s3d::aoba {
 		bool m_enabled = false;
 
 	public:
-		explicit UIToggleButton(const ColorTheme& _selectedColor = DefaultSelectedColor, const ColorTheme& _selectedTextColor = DefaultSelectedTextColor) :
-			UIButton(DefaultColor, DefaultTextColor, DefaultHoveredColor, Palette::White),
-			selectedColor(_selectedColor),
-			selectedTextColor(_selectedTextColor)
-		{}
-
+		UIToggleButton() :
+			UIButton(),
+			selectedColor(DefaultSelectedColor),
+			selectedTextColor(DefaultSelectedTextColor)
+		{
+			hoveredTextColor = Palette::White;
+		}
 
 		bool isEnabled() const {
 			return m_enabled;

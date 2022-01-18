@@ -28,10 +28,11 @@ namespace s3d::aoba {
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
-		explicit UIText(const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& _textColor = DynamicColor::Text) noexcept :
-			UIRect(backgroundColor)
+		UIText() noexcept :
+			UIRect()
 		{
-			textColor = _textColor;
+			backgroundColor = DynamicColor::Clear;
+			textColor = DynamicColor::Text;
 		}
 
 		const Font& font() const {

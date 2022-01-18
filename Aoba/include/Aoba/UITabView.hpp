@@ -35,11 +35,7 @@ namespace s3d::aoba {
 		size_t m_tabIndex = 0;
 
 	public:
-		explicit UITabView() noexcept :
-			UIView()
-		{}
-
-		virtual ~UITabView() {}
+		using UIView::UIView;
 
 		size_t index() const {
 			return m_tabIndex;
