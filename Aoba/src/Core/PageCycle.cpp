@@ -43,7 +43,7 @@ namespace s3d::aoba {
 		if (m_currentPage) {
 			if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
 				(acceptFiles || acceptTexts) &&
-                (DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
+				(DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
 				m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
 				DragDrop::Clear();
 			}
