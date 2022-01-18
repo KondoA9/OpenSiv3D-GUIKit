@@ -60,6 +60,8 @@ namespace s3d::aoba {
 
 		void draw() const override;
 
+		void _destroy() override;
+
 	private:
 		void appendComponent(const UIComponent& component);
 

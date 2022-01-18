@@ -13,12 +13,16 @@ namespace s3d::aoba {
 	{}
 
 	UIComponent::~UIComponent() {
-		Factory::RequestReleaseComponent(m_id);
-		release();
+		_destroy();
 	}
 
 	void UIComponent::initialize() {
 		FMT_ASSERT(m_valid, "Make sure you instantiated through Factory::Create()");
+	}
+
+	void UIComponent::_destroy() {
+		release();
+		Factory::ReleaseComponent(m_id);
 	}
 
 	void UIComponent::updateLayer(const Rect& scissor) {

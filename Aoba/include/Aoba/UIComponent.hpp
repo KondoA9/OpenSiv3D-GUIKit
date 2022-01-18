@@ -182,6 +182,9 @@ namespace s3d::aoba {
 			return m_mouseCondition;
 		}
 
+		// Do not call this function if the component is not UIView
+		virtual void _destroy();
+
 		// Do not call this function if the component is not UIRect or UICircle
 		void _updateMouseCondition(
 			bool leftDown, bool leftUp, bool leftPress,

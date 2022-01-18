@@ -7,8 +7,7 @@ namespace s3d::aoba {
 		UIRect::release();
 
 		for (auto& component : m_components) {
-			component->release();
-			component.reset();
+			component->_destroy();
 		}
 
 		m_components.release();
@@ -92,6 +91,14 @@ namespace s3d::aoba {
 		}
 
 		Graphics2D::SetScissorRect(m_parentScissorRect);
+	}
+
+	void UIView::_destroy() {
+		for (auto& component : m_components) {
+			component->_destroy();
+		}
+
+		UIRect::_destroy();
 	}
 
 	void UIView::updateMouseIntersection() {

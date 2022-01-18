@@ -22,7 +22,7 @@ namespace s3d::aoba {
 		throw Error{ U"A component with identifier \"{}\" not found."_fmt(id) };
 	}
 
-	void Factory::RequestReleaseComponent(size_t id) {
+	void Factory::ReleaseComponent(size_t id) {
 		for (auto& component : m_Instance.m_components) {
 			if (component && component->id() == id) {
 #if SIV3D_BUILD(DEBUG)
@@ -34,7 +34,7 @@ namespace s3d::aoba {
 		}
 	}
 
-	void Factory::ReleaseInvalidComponents() {
+	void Factory::ReleaseUnusedComponents() {
 		m_Instance.m_components.remove_if([](const std::shared_ptr<UIComponent>& component) {
 			return !component;
 			});
@@ -42,7 +42,7 @@ namespace s3d::aoba {
 
 	void Factory::ReleaseComponentsIfNeed() {
 		if (m_Instance.m_releaseCounter++; m_Instance.m_releaseCounter == 100) {
-			ReleaseInvalidComponents();
+			ReleaseUnusedComponents();
 
 			if (m_Instance.m_components.capacity() != m_Instance.m_components.size()) {
 				m_Instance.m_components.shrink_to_fit();
