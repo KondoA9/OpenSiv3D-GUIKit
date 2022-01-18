@@ -1,5 +1,7 @@
 ﻿#include <Aoba/WindowManager.hpp>
 
+#include <Siv3D.hpp>
+
 namespace s3d::aoba::WindowManager {
 	Size currentwindowSize = Size(0, 0);
 	bool resized = false;
