@@ -20,6 +20,8 @@ namespace s3d::aoba {
 			backgroundColor = DynamicColor::Background;
 		}
 
+		virtual ~UIView() {}
+
 		void release() override;
 
 		size_t componentsCount() const {

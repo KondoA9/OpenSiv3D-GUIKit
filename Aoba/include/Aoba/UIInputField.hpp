@@ -66,6 +66,8 @@ namespace s3d::aoba {
 	public:
 		using UIText::UIText;
 
+		virtual ~UIInputField() {}
+
 		const RectF& fieldRect() const {
 			return m_fieldRect;
 		}

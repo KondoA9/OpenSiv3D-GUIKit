@@ -35,6 +35,8 @@ namespace s3d::aoba {
 			textColor = DynamicColor::Text;
 		}
 
+		virtual ~UIText() {}
+
 		const Font& font() const {
 			return m_font;
 		}
