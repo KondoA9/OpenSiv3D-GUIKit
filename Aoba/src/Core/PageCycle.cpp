@@ -1,4 +1,4 @@
-﻿#include "PageManager.hpp"
+#include "PageManager.hpp"
 
 #include <Aoba/Core.hpp>
 #include <Aoba/Page.hpp>
@@ -42,8 +42,8 @@ namespace s3d::aoba {
 
 		if (m_currentPage) {
 			if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
-				(acceptFiles || acceptTexts)
-				&& DragDrop::HasNewFilePaths() || DragDrop::HasNewText()) {
+				(acceptFiles || acceptTexts) &&
+                (DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
 				m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
 				DragDrop::Clear();
 			}
