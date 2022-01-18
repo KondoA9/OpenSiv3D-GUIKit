@@ -78,6 +78,10 @@ namespace s3d::aoba {
 				component->validate();
 
 				m_Instance.m_components.push_back(component);
+
+#if SIV3D_BUILD(DEBUG)
+				Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(component->id());
+#endif
 			}
 
 			return *static_cast<T*>(m_Instance.m_components.back().get());
