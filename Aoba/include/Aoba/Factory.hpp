@@ -65,17 +65,11 @@ namespace s3d::aoba {
 
 		static void ReleaseInvalidComponents();
 
+		static void ReleaseComponentsIfNeed();
+
 		template<class T>
 		[[nodiscard]] static T& CreateComponent() {
-			if (m_Instance.m_releaseCounter++; m_Instance.m_releaseCounter == 100) {
-				ReleaseInvalidComponents();
-
-				if (m_Instance.m_components.capacity() != m_Instance.m_components.size()) {
-					m_Instance.m_components.shrink_to_fit();
-				}
-
-				m_Instance.m_releaseCounter = 0;
-			}
+			ReleaseComponentsIfNeed();
 
 			m_Id++;
 

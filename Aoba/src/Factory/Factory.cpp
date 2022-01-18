@@ -36,4 +36,16 @@ namespace s3d::aoba {
 			return !component;
 			});
 	}
+
+	void Factory::ReleaseComponentsIfNeed() {
+		if (m_Instance.m_releaseCounter++; m_Instance.m_releaseCounter == 100) {
+			ReleaseInvalidComponents();
+
+			if (m_Instance.m_components.capacity() != m_Instance.m_components.size()) {
+				m_Instance.m_components.shrink_to_fit();
+			}
+
+			m_Instance.m_releaseCounter = 0;
+		}
+	}
 }
