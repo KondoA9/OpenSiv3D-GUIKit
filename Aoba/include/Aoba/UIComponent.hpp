@@ -110,7 +110,7 @@ namespace s3d::aoba {
 		bool isFocused() const {
 			return m_FocusedComponent && m_FocusedComponent->id() == m_id;
 		}
-		
+
 		bool updatable() const {
 			return exist;
 		}

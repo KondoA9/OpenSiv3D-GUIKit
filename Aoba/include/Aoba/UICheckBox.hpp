@@ -12,7 +12,7 @@ namespace s3d::aoba {
 		bool m_checked = false;
 
 	public:
-		explicit UICheckBox() noexcept :
+		UICheckBox() noexcept :
 			UIButton()
 		{
 			backgroundColor = DynamicColor::BackgroundSecondary;
