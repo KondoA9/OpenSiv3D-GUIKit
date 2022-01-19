@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
     <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager.cpp" />
@@ -76,6 +77,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
+    <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp" />
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
@@ -144,7 +146,7 @@
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <MinimalRebuild>false</MinimalRebuild>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>..\Aoba\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\Aoba\include;..\Aoba</AdditionalIncludeDirectories>
       <AdditionalOptions>/Zc:__cplusplus %(AdditionalOptions)</AdditionalOptions>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
     </ClCompile>
