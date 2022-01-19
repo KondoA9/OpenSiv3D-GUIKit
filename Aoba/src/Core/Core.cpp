@@ -2,10 +2,10 @@
 
 #include <thread>
 
-#include <Aoba/Factory.hpp>
 #include <Aoba/Page.hpp>
 #include <Aoba/UnifiedFont.hpp>
 
+#include "src/ComponentStorage/ComponentStorage.hpp"
 #include "PageManager.hpp"
 #include "ParallelTaskManager.hpp"
 #include "WindowManager.hpp"
@@ -121,7 +121,7 @@ namespace s3d::aoba {
 	}
 
 	void Core::AppendIsolatedComponent(const UIComponent& component) {
-		Instance().appendIsolatedComponent(Factory::GetComponent(component.id()));
+		Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
 	}
 
 	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {

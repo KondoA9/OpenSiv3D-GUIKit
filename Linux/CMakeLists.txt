@@ -22,6 +22,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 endif()
 
 include_directories(
+	"../Aoba"
 	"../Aoba/include"
 	"../Dependencies/include"
 	"../Dependencies/include/ThirdParty"
@@ -36,6 +37,8 @@ add_library(aoba STATIC
 	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
+	
+	"../Aoba/src/ComponentStorage/ComponentStorage.cpp"
 
 	"../Aoba/src/Page/Page.cpp"
 

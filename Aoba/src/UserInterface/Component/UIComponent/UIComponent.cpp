@@ -2,6 +2,8 @@
 
 #include <Aoba/Factory.hpp>
 
+#include "src/ComponentStorage/ComponentStorage.hpp"
+
 namespace s3d::aoba {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr, UIComponent::m_PreviousFocusedComponent = nullptr;
@@ -22,7 +24,7 @@ namespace s3d::aoba {
 
 	void UIComponent::_destroy() {
 		release();
-		Factory::ReleaseComponent(m_id);
+		ComponentStorage::Release(m_id);
 	}
 
 	void UIComponent::updateLayer(const Rect& scissor) {
@@ -76,7 +78,7 @@ namespace s3d::aoba {
 	void UIComponent::focus() {
 		try {
 			// Focused component is this
-			m_FocusedComponent = Factory::GetComponent(m_id);;
+			m_FocusedComponent = ComponentStorage::Get(m_id);;
 		}
 		catch (...) {
 			m_FocusedComponent.reset();

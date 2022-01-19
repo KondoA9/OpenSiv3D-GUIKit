@@ -19,9 +19,6 @@ namespace s3d::aoba {
 		static size_t m_Id, m_PreviousId;
 		static Factory m_Instance;
 
-		size_t m_releaseCounter = 0;
-		Array<std::shared_ptr<UIComponent>> m_components;
-
 	public:
 		Factory(const Factory&) = delete;
 
@@ -59,32 +56,17 @@ namespace s3d::aoba {
 
 		static size_t GetId();
 
-		static std::shared_ptr<UIComponent>& GetComponent(size_t id);
-
-		static void ReleaseComponent(size_t id);
-
-		static void ReleaseUnusedComponents();
-
-		static void ReleaseComponentsIfNeed();
-
 		template<class T>
 		[[nodiscard]] static T& CreateComponent() {
-			ReleaseComponentsIfNeed();
-
-			m_Id++;
-
-			{
-				auto component = std::shared_ptr<T>(new T());
-				component->validate();
-
-				m_Instance.m_components.push_back(component);
+			const size_t id = m_Id++;
 
 #if SIV3D_BUILD(DEBUG)
-				Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(component->id());
+			Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
 #endif
-			}
 
-			return *static_cast<T*>(m_Instance.m_components.back().get());
+			return *static_cast<T*>(m_Instance.storeComponent(std::shared_ptr<T>(new T())).get());
 		}
+
+		std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
 	};
 }

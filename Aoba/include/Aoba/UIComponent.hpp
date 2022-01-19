@@ -9,9 +9,9 @@
 
 namespace s3d::aoba {
 	class Core;
-	class UIView;
-	class Factory;
+	class ComponentStorage;
 	class PageManager;
+	class UIView;
 
 	AobaCreateInputEvent(UnFocused);
 	AobaCreateInputEvent(Focused);
@@ -46,9 +46,9 @@ namespace s3d::aoba {
 		};
 
 		friend Core;
-		friend Factory;
-		friend UIView;
+		friend ComponentStorage;
 		friend PageManager;
+		friend UIView;
 
 	public:
 		ColorTheme backgroundColor, frameColor;

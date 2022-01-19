@@ -100,6 +100,9 @@
     <Filter Include="Aoba\Core\WindowManager">
       <UniqueIdentifier>{249619ae-b99c-4922-ae0e-2dd4f07d8580}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\ComponentStorage">
+      <UniqueIdentifier>{2d4c3037-5150-4845-a2b2-e097a05cf4c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -197,6 +200,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager.cpp">
       <Filter>Aoba\Core\ParallelTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp">
+      <Filter>Aoba\ComponentStorage</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -301,6 +307,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager.hpp">
       <Filter>Aoba\Core\ParallelTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp">
+      <Filter>Aoba\ComponentStorage</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

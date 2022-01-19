@@ -3,11 +3,12 @@
 #include "UIRect.hpp"
 
 namespace s3d::aoba {
+	class Factory;
 	class PageManager;
 
 	class UIView : public UIRect {
-		friend PageManager;
 		friend Factory;
+		friend PageManager;
 
 	private:
 		Array<std::shared_ptr<UIComponent>> m_components;
