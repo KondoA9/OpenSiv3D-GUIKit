@@ -36,6 +36,8 @@ add_library(aoba STATIC
 	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
+	
+	"../Aoba/src/ComponentStorage/ComponentStorage.cpp"
 
 	"../Aoba/src/Page/Page.cpp"
 
