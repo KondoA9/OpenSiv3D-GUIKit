@@ -1,6 +1,6 @@
 ﻿#include <Aoba/UIView.hpp>
 
-#include <Aoba/Factory.hpp>
+#include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
 	void UIView::release() {
@@ -18,7 +18,7 @@ namespace s3d::aoba {
 			return component.id() == component2->id();
 			})) {
 
-			m_components.push_back(Factory::GetComponent(component.id()));
+			m_components.push_back(ComponentStorage::Get(component.id()));
 		}
 	}
 

@@ -1,21 +1,38 @@
 #pragma once
 
+#include <Aoba/UIComponent.hpp>
+
 namespace s3d::aoba {
 	class ComponentStorage {
-	public:
-		static void Store() {
-			Instance().store();
-		}
+	private:
+		Array<std::shared_ptr<UIComponent>> m_components;
 
-		static void Release(size_t id) {
-			Instance().release(id);
-		}
+		size_t m_releaseCounter = 0;
+
+	public:
+		ComponentStorage(const ComponentStorage&) = delete;
+
+		ComponentStorage(ComponentStorage&&) = delete;
+
+		ComponentStorage& operator=(const ComponentStorage&) = delete;
+
+		ComponentStorage& operator=(ComponentStorage&&) = delete;
+
+		static void Store(const std::shared_ptr<UIComponent>& component);
+
+		static void Release(size_t id);
+
+		static std::shared_ptr<UIComponent>& Get(size_t id);
 
 	private:
-		static ComponentStorage Instance();
+		ComponentStorage() = default;
 
-		void store();
+		~ComponentStorage() = default;
 
-		void release(size_t id);
+		static ComponentStorage& Instance();
+
+		void releaseComponentsIfNeed();
+
+		void releaseUnusedComponents();
 	};
 }
