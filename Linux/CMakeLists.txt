@@ -22,6 +22,7 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 endif()
 
 include_directories(
+	"../Aoba"
 	"../Aoba/include"
 	"../Dependencies/include"
 	"../Dependencies/include/ThirdParty"
