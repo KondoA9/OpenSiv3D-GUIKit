@@ -90,4 +90,8 @@ namespace s3d::aoba {
 			m_FocusedComponent.reset();
 		}
 	}
+
+	void UIComponent::signAsCreatedThroughFactory() {
+		m_createdThroughFactory = true;
+	}
 }

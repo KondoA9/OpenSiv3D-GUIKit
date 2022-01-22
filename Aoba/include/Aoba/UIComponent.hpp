@@ -237,8 +237,6 @@ namespace s3d::aoba {
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);
 
-		void signAsCreatedThroughFactory() {
-			m_createdThroughFactory = true;
-		}
+		void signAsCreatedThroughFactory();
 	};
 }
