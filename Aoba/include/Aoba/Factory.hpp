@@ -9,8 +9,8 @@ namespace s3d::aoba {
 	class UIComponent;
 
 	class Factory {
-		friend UIComponent;
 		friend Page;
+		friend UIComponent;
 
 	private:
 		size_t m_id = 0, m_previousId = 0;
