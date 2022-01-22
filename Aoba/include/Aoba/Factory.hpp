@@ -2,22 +2,18 @@
 
 #include <Siv3D.hpp>
 
-#include "Core.hpp"
-#include "UIComponent.hpp"
 #include "UIView.hpp"
 
 namespace s3d::aoba {
 	class Page;
+	class UIComponent;
 
 	class Factory {
-		friend Core;
 		friend UIComponent;
-		friend UIView;
 		friend Page;
 
 	private:
-		static size_t m_Id, m_PreviousId;
-		static Factory m_Instance;
+		size_t m_id = 0, m_previousId = 0;
 
 	public:
 		Factory(const Factory&) = delete;
@@ -54,18 +50,24 @@ namespace s3d::aoba {
 	private:
 		Factory() = default;
 
+		~Factory() = default;
+
+		static Factory& Instance();
+
 		static size_t GetId();
 
 		template<class T>
 		[[nodiscard]] static T& CreateComponent() {
-			const size_t id = m_Id++;
+			const size_t id = Instance().createId();
 
 #if SIV3D_BUILD(DEBUG)
 			Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
 #endif
 
-			return *static_cast<T*>(m_Instance.storeComponent(std::shared_ptr<T>(new T())).get());
+			return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T())).get());
 		}
+
+		size_t createId();
 
 		std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
 	};

@@ -1,5 +1,6 @@
 ﻿#include <Aoba/UIInputField.hpp>
 
+#include <Aoba/Core.hpp>
 #include <Aoba/DynamicColor.hpp>
 #include <Aoba/Factory.hpp>
 #include <Aoba/PixelUnit.hpp>
