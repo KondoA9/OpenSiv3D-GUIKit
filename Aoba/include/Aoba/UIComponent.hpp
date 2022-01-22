@@ -9,7 +9,7 @@
 
 namespace s3d::aoba {
 	class Core;
-	class ComponentStorage;
+	class Factory;
 	class PageManager;
 	class UIView;
 
@@ -46,7 +46,7 @@ namespace s3d::aoba {
 		};
 
 		friend Core;
-		friend ComponentStorage;
+		friend Factory;
 		friend PageManager;
 		friend UIView;
 
@@ -62,7 +62,7 @@ namespace s3d::aoba {
 		static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
 
 		const size_t m_id;
-		bool m_valid = false;
+		bool m_createdThroughFactory = false;
 
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
@@ -237,8 +237,8 @@ namespace s3d::aoba {
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);
 
-		void validate() {
-			m_valid = true;
+		void signAsCreatedThroughFactory() {
+			m_createdThroughFactory = true;
 		}
 	};
 }

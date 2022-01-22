@@ -19,7 +19,7 @@ namespace s3d::aoba {
 	}
 
 	void UIComponent::initialize() {
-		FMT_ASSERT(m_valid, "Make sure you instantiated through Factory::Create()");
+		FMT_ASSERT(m_createdThroughFactory, "Make sure you instantiated through Factory::Create()");
 	}
 
 	void UIComponent::_destroy() {
