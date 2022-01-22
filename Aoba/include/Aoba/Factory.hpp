@@ -2,6 +2,7 @@
 
 #include <Siv3D.hpp>
 
+#include "Core.hpp"
 #include "UIView.hpp"
 
 namespace s3d::aoba {
