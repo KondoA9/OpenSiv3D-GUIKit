@@ -22,15 +22,11 @@ namespace s3d::aoba {
 	public:
 		Page() = delete;
 
-		Page(const Page&) = default;
+		Page(const Page&) = delete;
 
-		Page(Page&&) = default;
+		Page& operator =(const Page&) = delete;
 
 		virtual ~Page() = default;
-
-		Page& operator =(const Page&) = default;
-
-		Page& operator =(Page&&) = default;
 
 		const String& identifier() const {
 			return m_identifier;

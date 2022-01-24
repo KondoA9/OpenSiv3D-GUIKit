@@ -83,11 +83,7 @@ namespace s3d::aoba {
 
 		UIComponent(const UIComponent&) = delete;
 
-		UIComponent(UIComponent&&) = default;
-
 		UIComponent& operator =(const UIComponent&) = delete;
-
-		UIComponent& operator =(UIComponent&&) = default;
 
 		virtual ~UIComponent();
 
