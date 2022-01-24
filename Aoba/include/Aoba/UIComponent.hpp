@@ -62,7 +62,6 @@ namespace s3d::aoba {
 		static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
 
 		const size_t m_id;
-		bool m_createdThroughFactory = false;
 
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
@@ -166,9 +165,9 @@ namespace s3d::aoba {
 		// Called once before layer updated.
 		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
 		// Do not forget to call super::initialize().
-		virtual void initialize();
+		virtual void initialize() {}
 
-		virtual void update() {};
+		virtual void update() {}
 
 		virtual void updateLayer(const Rect& scissor);
 
@@ -238,7 +237,5 @@ namespace s3d::aoba {
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);
-
-		void signAsCreatedThroughFactory();
 	};
 }

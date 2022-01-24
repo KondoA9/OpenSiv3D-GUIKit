@@ -16,10 +16,6 @@ namespace s3d::aoba {
 		_destroy();
 	}
 
-	void UIComponent::initialize() {
-		FMT_ASSERT(m_createdThroughFactory, "Make sure you instantiated through Factory::Create()");
-	}
-
 	void UIComponent::_destroy() {
 		release();
 		ComponentStorage::Release(m_id);
@@ -87,9 +83,5 @@ namespace s3d::aoba {
 		if (isFocused()) {
 			m_FocusedComponent.reset();
 		}
-	}
-
-	void UIComponent::signAsCreatedThroughFactory() {
-		m_createdThroughFactory = true;
 	}
 }
