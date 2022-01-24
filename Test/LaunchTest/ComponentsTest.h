@@ -35,11 +35,9 @@ void ComponentsTest::onLoaded() {
 	text.backgroundColor = aoba::MaterialColor::Cyan5;
 	text.setText(U"UIText");
 
-#if !SIV3D_PLATFORM(LINUX)
 	auto& inputField = aoba::Factory::Create<aoba::UIInputField>(stackView);
 	inputField.backgroundColor = aoba::MaterialColor::DeepOrange5;
 	inputField.setText(U"UIInputField");
-#endif
 
 	auto& checkBox = aoba::Factory::Create<aoba::UICheckBox>(stackView);
 	checkBox.backgroundColor = aoba::MaterialColor::DeepPurple5;
