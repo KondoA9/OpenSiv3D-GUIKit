@@ -1,19 +1,16 @@
-cmake_minimum_required(VERSION 3.0)
+cmake_minimum_required(VERSION 3.1)
 
-project(Aoba_Linux)
-enable_language(C)
+enable_language(CXX)
 
-set(CMAKE_CXX_FLAGS "-std=c++2a -Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1 -D_GLFW_X11")
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
+
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1 -D_GLFW_X11")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -pg -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG -march=x86-64")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -Og -pg")
 set(CMAKE_CXX_FLAGS_MINSIZEREL "-Os -DNDEBUG -march=x86-64")
-
-set(CMAKE_C_FLAGS "-Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1 -D_GLFW_X11")
-set(CMAKE_C_FLAGS_DEBUG "-g3 -O0 -pg -DDEBUG")
-set(CMAKE_C_FLAGS_RELEASE "-O2 -DNDEBUG -march=x86-64")
-set(CMAKE_C_FLAGS_RELWITHDEBINFO "-g3 -Og -pg")
-set(CMAKE_C_FLAGS_MINSIZEREL "-Os -DNDEBUG -march=x86-64")
 
 if("${CMAKE_CXX_COMPILER_ID}" STREQUAL "Clang")
 	add_compile_options("-fcolor-diagnostics")
@@ -21,11 +18,13 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 	add_compile_options("-fdiagnostics-color=always")
 endif()
 
+project(Aoba_Linux)
+
 include_directories(
+	SYSTEM "../Dependencies/include"
+	SYSTEM "../Dependencies/include/ThirdParty"
 	"../Aoba"
 	"../Aoba/include"
-	"../Dependencies/include"
-	"../Dependencies/include/ThirdParty"
 )
 
 add_library(aoba STATIC
