@@ -166,6 +166,8 @@ namespace s3d::aoba {
 		// Do not forget to call super::initialize().
 		virtual void initialize() {}
 
+		virtual void initializeColors() {}
+
 		virtual void update() {}
 
 		virtual void updateLayer(const Rect& scissor);
