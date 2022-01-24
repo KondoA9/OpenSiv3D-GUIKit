@@ -73,12 +73,7 @@ private:
 	aoba::UIText& m_uiKind = aoba::Factory::Create<aoba::UIText>(this);
 
 public:
-	FileView()
-		:UIView()
-	{
-		m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
-		m_uiKind.backgroundColor = aoba::DynamicColor::Background;
-	}
+	using aoba::UIView::UIView;
 
 	void setPath(const FilePath& path) {
 		m_uiIcon.setIcon(FileSystem::IsDirectory(path) ? Icon(0xf07b) : Icon(0xf15b), 20_px);
@@ -103,6 +98,9 @@ public:
 protected:
 	void initialize() override {
 		UIView::initialize();
+
+		m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
+		m_uiKind.backgroundColor = aoba::DynamicColor::Background;
 
 		addEventListener<aoba::MouseEvent::Hovered>([this] {
 			backgroundColor.highlight(aoba::DynamicColor::BackgroundSecondary);

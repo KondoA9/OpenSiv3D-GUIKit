@@ -15,11 +15,7 @@ namespace s3d::aoba {
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
-		UIView() noexcept :
-			UIRect()
-		{
-			backgroundColor = DynamicColor::Background;
-		}
+		using UIRect::UIRect;
 
 		virtual ~UIView() {}
 
@@ -50,6 +46,8 @@ namespace s3d::aoba {
 	protected:
 		// This function runs after a component appended. gui::Factory::Create<UIComponent>(this);
 		virtual void onAfterComponentAppended() {}
+
+		void initialize() override;
 
 		void update() override;
 

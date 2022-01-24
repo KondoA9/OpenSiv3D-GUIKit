@@ -7,19 +7,15 @@ namespace s3d::aoba {
 	public:
 		static ColorTheme DefaultSelectedColor, DefaultSelectedTextColor;
 
-		ColorTheme selectedColor, selectedTextColor;
+		ColorTheme
+			selectedColor = DefaultSelectedColor,
+			selectedTextColor = DefaultSelectedTextColor;
 
 	private:
 		bool m_enabled = false;
 
 	public:
-		UIToggleButton() :
-			UIButton(),
-			selectedColor(DefaultSelectedColor),
-			selectedTextColor(DefaultSelectedTextColor)
-		{
-			hoveredTextColor = Palette::White;
-		}
+		using UIButton::UIButton;
 
 		bool isEnabled() const {
 			return m_enabled;

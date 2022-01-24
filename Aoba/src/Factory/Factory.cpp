@@ -24,6 +24,7 @@ namespace s3d::aoba {
 
 	std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
 		component->signAsCreatedThroughFactory();
+		component->initialize();
 
 		ComponentStorage::Store(component);
 

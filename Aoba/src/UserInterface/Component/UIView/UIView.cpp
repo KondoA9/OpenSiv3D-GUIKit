@@ -3,6 +3,12 @@
 #include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
+	void UIView::initialize() {
+		UIRect::initialize();
+
+		backgroundColor = DynamicColor::Background;
+	}
+
 	void UIView::release() {
 		UIRect::release();
 

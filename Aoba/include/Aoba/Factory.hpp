@@ -11,7 +11,6 @@ namespace s3d::aoba {
 
 	class Factory {
 		friend Page;
-		friend UIComponent;
 
 	private:
 		size_t m_id = 0, m_previousId = 0;
@@ -65,7 +64,7 @@ namespace s3d::aoba {
 			Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
 #endif
 
-			return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T())).get());
+			return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(GetId()))).get());
 		}
 
 		size_t createId();

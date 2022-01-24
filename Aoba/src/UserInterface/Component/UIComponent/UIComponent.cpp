@@ -1,17 +1,15 @@
 ﻿#include <Aoba/UIComponent.hpp>
 
-#include <Aoba/Factory.hpp>
-
 #include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr, UIComponent::m_PreviousFocusedComponent = nullptr;
 
-	UIComponent::UIComponent() noexcept :
+	UIComponent::UIComponent(size_t id) noexcept :
 		backgroundColor(DynamicColor::BackgroundSecondary),
 		frameColor(DynamicColor::Separator),
-		m_id(Factory::GetId())
+		m_id(id)
 	{}
 
 	UIComponent::~UIComponent() {
@@ -31,7 +29,7 @@ namespace s3d::aoba {
 		m_drawableRegion = scissor;
 
 		if (!m_initialized) {
-			initialize();
+			//initialize();
 			m_initialized = true;
 		}
 

@@ -14,6 +14,8 @@ namespace s3d::aoba {
 		backgroundColor = defaultColor;
 		textColor = defaultTextColor;
 
+		setDirection(TextDirection::Center);
+
 		addEventListener<MouseEvent::Hovered>([this] {
 			backgroundColor.highlight(hoveredColor);
 			textColor.highlight(hoveredTextColor);

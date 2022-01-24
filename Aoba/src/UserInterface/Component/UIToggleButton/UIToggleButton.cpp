@@ -9,6 +9,7 @@ namespace s3d::aoba {
 
 		backgroundColor = defaultColor;
 		textColor = defaultTextColor;
+		hoveredTextColor = Palette::White;
 
 		addEventListener<MouseEvent::LeftDown>([this] {
 			m_enabled = !m_enabled;

@@ -8,6 +8,8 @@ namespace s3d::aoba {
 	ColorTheme UISlider::DefaultAccentColor = MaterialColor::Blue5;
 
 	void UISlider::initialize() {
+		UIView::initialize();
+
 		const double handleRadius = 6_px;
 
 		addEventListener<Sliding>([this, handleRadius] {
@@ -66,8 +68,6 @@ namespace s3d::aoba {
 		m_uiText.setConstraint(LayerDirection::Bottom, m_uiHandle, LayerDirection::Top);
 		m_uiText.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		m_uiText.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
-
-		UIView::initialize();
 	}
 
 	void UISlider::updateInputEvents() {

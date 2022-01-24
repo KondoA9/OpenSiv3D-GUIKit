@@ -6,7 +6,8 @@
 namespace s3d::aoba {
 	class UIIcon :public UIRect {
 	public:
-		ColorTheme iconColor;
+		ColorTheme iconColor = DynamicColor::Text;
+
 		bool rotate = false;
 		double rotationAnglerVelocity = 0.0;
 
@@ -15,12 +16,7 @@ namespace s3d::aoba {
 		double m_angle = 0.0;
 
 	public:
-		UIIcon() noexcept :
-			UIRect(),
-			iconColor(DynamicColor::Text)
-		{
-			backgroundColor = DynamicColor::Clear;
-		}
+		using UIRect::UIRect;
 
 		void setAngle(double angle) {
 			m_angle = angle;
@@ -39,6 +35,8 @@ namespace s3d::aoba {
 		}
 
 	protected:
+		void initialize() override;
+
 		void update() override;
 
 		void draw() const override;

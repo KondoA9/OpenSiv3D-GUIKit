@@ -79,11 +79,15 @@ namespace s3d::aoba {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		UIComponent() noexcept;
+		UIComponent() = delete;
 
 		UIComponent(const UIComponent&) = delete;
 
 		UIComponent(UIComponent&&) = default;
+
+		UIComponent& operator =(const UIComponent&) = delete;
+
+		UIComponent& operator =(UIComponent&&) = default;
 
 		virtual ~UIComponent();
 
@@ -158,10 +162,6 @@ namespace s3d::aoba {
 			addEventListener<T>([f](const InputEvent&) { f(); }, primary);
 		}
 
-		UIComponent& operator =(const UIComponent&) = delete;
-
-		UIComponent& operator =(UIComponent&&) = default;
-
 	protected:
 		// Called once before layer updated.
 		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
@@ -231,6 +231,8 @@ namespace s3d::aoba {
 		}
 
 	private:
+		UIComponent(size_t id) noexcept;
+
 		static void UpdateFocusEvent();
 
 		static void CallInputEvents();

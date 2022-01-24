@@ -12,13 +12,7 @@ namespace s3d::aoba {
 		bool m_checked = false;
 
 	public:
-		UICheckBox() noexcept :
-			UIButton()
-		{
-			backgroundColor = DynamicColor::BackgroundSecondary;
-			defaultTextColor = DynamicColor::Text;
-			hoveredColor = DynamicColor::BackgroundSecondary;
-		}
+		using UIButton::UIButton;
 
 		bool isChecked() const {
 			return m_checked;
