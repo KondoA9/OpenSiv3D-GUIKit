@@ -7,8 +7,6 @@ namespace s3d::aoba {
 	void UIToggleButton::initialize() {
 		UIText::initialize();
 
-		backgroundColor = defaultColor;
-		textColor = defaultTextColor;
 		hoveredTextColor = Palette::White;
 
 		addEventListener<MouseEvent::LeftDown>([this] {

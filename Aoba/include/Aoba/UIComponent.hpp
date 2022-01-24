@@ -63,6 +63,8 @@ namespace s3d::aoba {
 
 		const size_t m_id;
 
+		bool m_initializedColors = false;
+
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
 		Rect m_drawableRegion = Rect();
@@ -168,6 +170,7 @@ namespace s3d::aoba {
 
 		// Called once before draw().
 		// This function is intended to initialize background color. (ex. backgroundColor = defaultColor; in UIButton)
+		// Override and implement this function if the component has default colors.
 		virtual void initializeColors() {}
 
 		virtual void update() {}

@@ -4,9 +4,9 @@ namespace s3d::aoba {
 	void UICheckBox::initialize() {
 		UIButton::initialize();
 
-		backgroundColor = DynamicColor::BackgroundSecondary;
-		defaultTextColor = DynamicColor::Text;
+		defaultColor = DynamicColor::BackgroundSecondary;
 		hoveredColor = DynamicColor::BackgroundSecondary;
+		defaultTextColor = DynamicColor::Text;
 
 		drawFrame = true;
 

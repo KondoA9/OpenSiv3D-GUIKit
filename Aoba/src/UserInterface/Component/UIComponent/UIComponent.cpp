@@ -22,6 +22,11 @@ namespace s3d::aoba {
 	}
 
 	void UIComponent::updateLayer(const Rect& scissor) {
+		if (!m_initializedColors) {
+			initializeColors();
+			m_initializedColors = true;
+		}
+
 		m_drawableRegion = scissor;
 
 		for (auto layer : m_dependentLayers) {

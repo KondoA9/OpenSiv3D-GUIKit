@@ -7,7 +7,6 @@ namespace s3d::aoba {
 		UIRect::initialize();
 
 		backgroundColor = DynamicColor::Clear;
-		textColor = DynamicColor::Text;
 	}
 
 	void UIText::updateLayer(const Rect& scissor) {

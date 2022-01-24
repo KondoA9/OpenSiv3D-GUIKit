@@ -11,9 +11,6 @@ namespace s3d::aoba {
 	void UIButton::initialize() {
 		UIText::initialize();
 
-		backgroundColor = defaultColor;
-		textColor = defaultTextColor;
-
 		setDirection(TextDirection::Center);
 
 		addEventListener<MouseEvent::Hovered>([this] {
@@ -29,6 +26,13 @@ namespace s3d::aoba {
 		addEventListener<MouseEvent::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
+	}
+
+	void UIButton::initializeColors() {
+		UIText::initializeColors();
+
+		backgroundColor = defaultColor;
+		textColor = defaultTextColor;
 	}
 
 	void UIButton::draw() const {
