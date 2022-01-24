@@ -161,11 +161,13 @@ namespace s3d::aoba {
 		}
 
 	protected:
-		// Called once before layer updated.
-		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
+		// Called once at constructed.
+		// If you need to call addEventlistener etc to implement the default behavior, define this function.
 		// Do not forget to call super::initialize().
 		virtual void initialize() {}
 
+		// Called once before draw().
+		// This function is intended to initialize background color. (ex. backgroundColor = defaultColor; in UIButton)
 		virtual void initializeColors() {}
 
 		virtual void update() {}
