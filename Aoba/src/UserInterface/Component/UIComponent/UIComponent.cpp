@@ -24,11 +24,6 @@ namespace s3d::aoba {
 	void UIComponent::updateLayer(const Rect& scissor) {
 		m_drawableRegion = scissor;
 
-		if (!m_initialized) {
-			//initialize();
-			m_initialized = true;
-		}
-
 		for (auto layer : m_dependentLayers) {
 			layer->updateConstraints();
 		}

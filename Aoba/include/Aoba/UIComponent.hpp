@@ -67,7 +67,6 @@ namespace s3d::aoba {
 		Array<Layer*> m_dependentLayers;
 		Rect m_drawableRegion = Rect();
 		bool m_needToUpdateLayer = true;
-		bool m_initialized = false;
 
 		// Mouse event
 		MouseCondition m_mouseCondition;
