@@ -4,11 +4,9 @@
 
 namespace s3d::aoba {
 	struct Layer;
-	class UIComponent;
 
 	struct Constraint {
 		friend Layer;
-		friend UIComponent;
 
 	private:
 		double m_value = 0;
