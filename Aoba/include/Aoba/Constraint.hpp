@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include <Siv3D.hpp>
+#include <functional>
 
 namespace s3d::aoba {
 	struct Layer;
