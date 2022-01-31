@@ -20,16 +20,9 @@ namespace s3d::aoba {
 
 		UIComponent* component;
 
-		constexpr InputEvent(const InputEvent& e):
-			id(e.id),
-			wheel(e.wheel),
-			pos(e.pos),
-			previousPos(e.previousPos),
-			callIfComponentInFront(e.callIfComponentInFront),
-			component(e.component)
-		{}
+		InputEvent() = delete;
 
-		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) :
+		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) noexcept :
 			id(_id),
 			wheel(Mouse::Wheel()),
 			pos(Cursor::PosF()),
@@ -40,10 +33,22 @@ namespace s3d::aoba {
 
 		virtual ~InputEvent() = default;
 
-		const InputEvent& operator =(const InputEvent& e) {
+		constexpr InputEvent(const InputEvent& e) noexcept = default;
+
+		constexpr InputEvent(InputEvent&& e) noexcept = default;
+
+		const InputEvent& operator =(const InputEvent& e) noexcept {
 			assert(id == e.id);
 
 			component = e.component;
+
+			return *this;
+		}
+
+		const InputEvent& operator =(InputEvent&& e) noexcept {
+			assert(id == e.id);
+
+			component = std::move(e.component);
 
 			return *this;
 		}
