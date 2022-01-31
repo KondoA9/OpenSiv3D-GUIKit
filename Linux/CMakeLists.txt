@@ -32,7 +32,7 @@ add_library(aoba STATIC
 	"../Aoba/src/Core/CoreLifeCycle.cpp"
 	"../Aoba/src/Core/PageCycle.cpp"
 	"../Aoba/src/Core/PageManager.cpp"
-	"../Aoba/src/Core/ParallelTaskManager.cpp"
+	"../Aoba/src/Core/TaskRunner.cpp"
 	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
