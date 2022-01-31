@@ -2,7 +2,7 @@
 
 #include <Aoba/PixelUnit.hpp>
 
-AobaCreateInputEvent(Sliding);
+AobaCreateEventComponentNS(Slider, Sliding);
 
 namespace s3d::aoba {
 	ColorTheme UISlider::DefaultAccentColor = MaterialColor::Blue5;
@@ -12,7 +12,7 @@ namespace s3d::aoba {
 
 		const double handleRadius = 6_px;
 
-		addEventListener<Sliding>([this, handleRadius] {
+		addEventListener<Event::Component::Slider::Sliding>([this, handleRadius] {
 			const double pre = m_value;
 			m_value = Clamp(m_min + (m_max - m_min) * (Cursor::Pos().x - (layer().left() + handleRadius)) / (layer().width() - handleRadius * 2), m_min, m_max);
 
@@ -24,15 +24,15 @@ namespace s3d::aoba {
 			}
 			}, true);
 
-		addEventListener<MouseEvent::Hovered>([this] {
+		addEventListener<Event::Mouse::Hovered>([this] {
 			m_uiHandle.backgroundColor.highlight(accentColor);
 			}, true);
 
-		addEventListener<MouseEvent::UnHovered>([this] {
+		addEventListener<Event::Mouse::UnHovered>([this] {
 			m_uiHandle.backgroundColor.lowlight(DynamicColor::Background);
 			}, true);
 
-		addEventListener<MouseEvent::Hovering>([] {
+		addEventListener<Event::Mouse::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
 
@@ -80,7 +80,7 @@ namespace s3d::aoba {
 				m_sliding = false;
 			}
 			else {
-				registerInputEvent(Sliding(this, false));
+				registerInputEvent(Event::Component::Slider::Sliding(this, false));
 			}
 		}
 

@@ -9,7 +9,7 @@ namespace s3d::aoba {
 
 		hoveredTextColor = Palette::White;
 
-		addEventListener<MouseEvent::LeftDown>([this] {
+		addEventListener<Event::Mouse::LeftDown>([this] {
 			m_enabled = !m_enabled;
 			if (m_enabled) {
 				backgroundColor.highlight(selectedColor);
@@ -21,7 +21,7 @@ namespace s3d::aoba {
 			}
 			}, true);
 
-		addEventListener<MouseEvent::Hovered>([this] {
+		addEventListener<Event::Mouse::Hovered>([this] {
 			if (!m_enabled) {
 				backgroundColor.highlight(hoveredColor);
 			}
@@ -30,7 +30,7 @@ namespace s3d::aoba {
 			}
 			}, true);
 
-		addEventListener<MouseEvent::UnHovered>([this] {
+		addEventListener<Event::Mouse::UnHovered>([this] {
 			if (!m_enabled) {
 				backgroundColor.lowlight(defaultColor);
 			}
@@ -39,7 +39,7 @@ namespace s3d::aoba {
 			}
 			}, true);
 
-		addEventListener<MouseEvent::Hovering>([] {
+		addEventListener<Event::Mouse::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
 	}

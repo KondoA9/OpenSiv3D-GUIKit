@@ -12,7 +12,7 @@ namespace s3d::aoba {
 
 		setCornerRadius(3_px);
 
-		addEventListener<MouseEvent::LeftDown>([this] {
+		addEventListener<Event::Mouse::LeftDown>([this] {
 			setChecked(!m_checked);
 			}, true);
 	}

@@ -13,17 +13,17 @@ namespace s3d::aoba {
 
 		setDirection(TextDirection::Center);
 
-		addEventListener<MouseEvent::Hovered>([this] {
+		addEventListener<Event::Mouse::Hovered>([this] {
 			backgroundColor.highlight(hoveredColor);
 			textColor.highlight(hoveredTextColor);
 			}, true);
 
-		addEventListener<MouseEvent::UnHovered>([this] {
+		addEventListener<Event::Mouse::UnHovered>([this] {
 			backgroundColor.lowlight(defaultColor);
 			textColor.lowlight(defaultTextColor);
 			}, true);
 
-		addEventListener<MouseEvent::Hovering>([] {
+		addEventListener<Event::Mouse::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::Hand);
 			}, true);
 	}

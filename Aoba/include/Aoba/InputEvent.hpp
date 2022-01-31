@@ -2,12 +2,22 @@
 
 #include <Siv3D.hpp>
 
-#define AobaCreateInputEvent(Event) \
-struct Event : public s3d::aoba::InputEvent { \
-	explicit Event(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) : \
-		s3d::aoba::InputEvent(typeid(Event).hash_code(), _component, callIfComponentInFront) \
+// Create InputEvent
+#define AobaCreateEvent(EVENT_NAME) \
+struct EVENT_NAME : public s3d::aoba::InputEvent { \
+	explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) : \
+		s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), _component, callIfComponentInFront) \
 	{} \
-};
+}; \
+
+// Create InputEvent in namespace NAMESPACE
+#define AobaCreateEventNS(NAMESPACE, EVENT_NAME) \
+namespace NAMESPACE { \
+	AobaCreateEvent(EVENT_NAME) \
+}
+
+// Create InputEvent in namespace s3d::aoba::Event::NAMESPACE
+#define AobaCreateEventNSEvent(NAMESPACE, EVENT_NAME) AobaCreateEventNS(s3d::aoba::Event::NAMESPACE, EVENT_NAME)
 
 namespace s3d::aoba {
 	class UIComponent;

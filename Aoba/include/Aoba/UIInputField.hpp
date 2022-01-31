@@ -4,6 +4,10 @@
 #include "UIText.hpp"
 #include "UnifiedFont.hpp"
 
+AobaCreateEventComponentNS(InputField, ForbiddenCharInputted)
+AobaCreateEventComponentNS(InputField, Inputted)
+AobaCreateEventComponentNS(InputField, KeyEnterDown)
+
 namespace s3d::aoba {
 	class UIInputField : public UIText {
 	public:
@@ -20,10 +24,6 @@ namespace s3d::aoba {
 		struct FormatResult {
 			Optional<String> formattedText = none;
 		};
-
-		AobaCreateInputEvent(Inputted);
-		AobaCreateInputEvent(KeyEnterDown);
-		AobaCreateInputEvent(ForbiddenCharInputted);
 
 		Type type = Type::Text;
 		NumberType numberType = NumberType::Decimals;

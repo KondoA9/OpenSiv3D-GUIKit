@@ -4,11 +4,11 @@ namespace s3d::aoba {
 	void UIVStackView::initialize() {
 		UIView::initialize();
 
-		addEventListener<MouseEvent::Wheel>([this](const MouseEvent::Wheel& e) {
+		addEventListener<Event::Mouse::Wheel>([this](const Event::Mouse::Wheel& e) {
 			scroll(e.wheel * 40);
 			}, true);
 
-		addEventListener<MouseEvent::LeftDragging>([this](const MouseEvent::LeftDragging& e) {
+		addEventListener<Event::Mouse::LeftDragging>([this](const Event::Mouse::LeftDragging& e) {
 			scroll(e.previousPos.y - e.pos.y);
 			}, true);
 	}

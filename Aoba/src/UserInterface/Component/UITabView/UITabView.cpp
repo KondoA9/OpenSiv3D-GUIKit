@@ -17,7 +17,7 @@ namespace s3d::aoba {
 		ui_tabView.setConstraint(LayerDirection::Left, *this, LayerDirection::Left);
 		ui_tabView.setConstraint(LayerDirection::Right, *this, LayerDirection::Right);
 
-		registerInputEvent(TabSwitched(this, false));
+		registerInputEvent(Event::Component::TabView::Switched(this, false));
 	}
 
 	void UITabView::setTab(size_t index) {
@@ -30,7 +30,7 @@ namespace s3d::aoba {
 
 			m_tabs[index].show();
 
-			registerInputEvent(TabSwitched(this, false));
+			registerInputEvent(Event::Component::TabView::Switched(this, false));
 		}
 	}
 
@@ -51,7 +51,7 @@ namespace s3d::aoba {
 			return ui_tabSelectorView.layer().width() / ui_tabSelectorView.componentsCount();
 			});
 
-		selector.addEventListener<MouseEvent::LeftDown>([this, index] {
+		selector.addEventListener<Event::Mouse::LeftDown>([this, index] {
 			if (m_tabs[index].enabled) {
 				setTab(index);
 			}

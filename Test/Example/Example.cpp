@@ -37,7 +37,7 @@ protected:
 		m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
 		m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Left);
 		m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Width, 40_px);
-		m_uiToggleColorModeButton.addEventListener<aoba::MouseEvent::LeftDown>([this] {
+		m_uiToggleColorModeButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] {
 			m_toggleColorModeHandler();
 			});
 
@@ -45,7 +45,7 @@ protected:
 		m_uiParentDirButton.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
 		m_uiParentDirButton.setConstraint(aoba::LayerDirection::Left, m_uiToggleColorModeButton, aoba::LayerDirection::Right);
 		m_uiParentDirButton.setConstraint(aoba::LayerDirection::Width, 40_px);
-		m_uiParentDirButton.addEventListener<aoba::MouseEvent::LeftDown>([this] {
+		m_uiParentDirButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] {
 			m_openParentDirHandler();
 			});
 
@@ -53,7 +53,7 @@ protected:
 		m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
 		m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Left, m_uiParentDirButton, aoba::LayerDirection::Right);
 		m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Width, 120_px);
-		m_uiOpenDirectoryButton.addEventListener<aoba::MouseEvent::LeftDown>([this] {
+		m_uiOpenDirectoryButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] {
 			const auto result = Dialog::SelectFolder();
 			if (result.has_value()) {
 				m_folderOpenedHandler(result.value());
@@ -102,13 +102,13 @@ protected:
 		m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
 		m_uiKind.backgroundColor = aoba::DynamicColor::Background;
 
-		addEventListener<aoba::MouseEvent::Hovered>([this] {
+		addEventListener<aoba::Event::Mouse::Hovered>([this] {
 			backgroundColor.highlight(aoba::DynamicColor::BackgroundSecondary);
 			});
-		addEventListener<aoba::MouseEvent::UnHovered>([this] {
+		addEventListener<aoba::Event::Mouse::UnHovered>([this] {
 			backgroundColor.lowlight(aoba::DynamicColor::Background);
 			});
-		addEventListener<aoba::MouseEvent::LeftDown>([this] {
+		addEventListener<aoba::Event::Mouse::LeftDown>([this] {
 			if (FileSystem::IsDirectory(m_path)) {
 				m_folderSelectedHandler(m_path);
 			}
@@ -185,7 +185,7 @@ protected:
 		m_uiMovePage.setConstraint(aoba::LayerDirection::Bottom, view, aoba::LayerDirection::Bottom);
 		m_uiMovePage.setConstraint(aoba::LayerDirection::Left, view, aoba::LayerDirection::Left);
 		m_uiMovePage.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
-		m_uiMovePage.addEventListener<aoba::MouseEvent::LeftDown>([this] {
+		m_uiMovePage.addEventListener<aoba::Event::Mouse::LeftDown>([this] {
 			aoba::Core::SwitchPage(U"start");
 			});
 	}
@@ -239,7 +239,7 @@ protected:
 		m_uiButton.setConstraint(aoba::LayerDirection::Bottom, view, aoba::LayerDirection::Bottom);
 		m_uiButton.setConstraint(aoba::LayerDirection::Left);
 		m_uiButton.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
-		m_uiButton.addEventListener<aoba::MouseEvent::LeftDown>([this] {
+		m_uiButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] {
 			aoba::Core::SwitchPage(U"explorer");
 			});
 	}

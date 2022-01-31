@@ -14,16 +14,16 @@ namespace s3d::aoba {
 	void UIInputField::initialize() {
 		UIText::initialize();
 
-		addEventListener<MouseEvent::Hovering>([] {
+		addEventListener<Event::Mouse::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::IBeam);
 			});
 
-		addEventListener<Focused>([this] {
+		addEventListener<Event::Component::Focused>([this] {
 			m_cursorPos = text().length();
 			m_cursorBeamWatcher.start();
 			}, true);
 
-		addEventListener<UnFocused>([this] {
+		addEventListener<Event::Component::UnFocused>([this] {
 			if (!prefix.empty() && !text().starts_with(prefix)) {
 				setText(prefix + text());
 			}
@@ -91,11 +91,11 @@ namespace s3d::aoba {
 
 			if (previousText != updatedText) {
 				setText(updatedText);
-				registerInputEvent(Inputted(this, false));
+				registerInputEvent(Event::Component::InputField::Inputted(this, false));
 			}
 
 			if (KeyEnter.down()) {
-				registerInputEvent(KeyEnterDown(this, false));
+				registerInputEvent(Event::Component::InputField::KeyEnterDown(this, false));
 				unFocus();
 			}
 		}
@@ -260,7 +260,7 @@ namespace s3d::aoba {
 			ui_Warning->exist = false;
 			}, 3000, false);
 
-		registerInputEvent(ForbiddenCharInputted(this, false));
+		registerInputEvent(Event::Component::InputField::ForbiddenCharInputted(this, false));
 	}
 
 	void UIInputField::updateCursorBeamPos() {

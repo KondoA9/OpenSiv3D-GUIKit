@@ -7,14 +7,20 @@
 #include "Layer.hpp"
 #include "MouseEvent.hpp"
 
+// Create InputEvent in namespace s3d::aoba::Event::Component
+#define AobaCreateEventComponent(EVENT_NAME) AobaCreateEventNSEvent(Component, EVENT_NAME)
+
+// Create InputEvent in namespace s3d::aoba::Event::Component::NAMESPACE
+#define AobaCreateEventComponentNS(NAMESPACE, EVENT_NAME) AobaCreateEventNSEvent(Component::NAMESPACE, EVENT_NAME)
+
+AobaCreateEventComponent(Focused)
+AobaCreateEventComponent(UnFocused)
+
 namespace s3d::aoba {
 	class Core;
 	class Factory;
 	class PageManager;
 	class UIView;
-
-	AobaCreateInputEvent(UnFocused);
-	AobaCreateInputEvent(Focused);
 
 	class UIComponent {
 		struct CallableInputEvent {
