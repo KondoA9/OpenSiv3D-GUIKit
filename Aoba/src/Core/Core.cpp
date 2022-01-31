@@ -32,6 +32,11 @@ namespace s3d::aoba {
 		delete m_pageManager;
 		delete m_taskRunner;
 	}
+	
+	Core& Core::Instance() {
+		static Core instance;
+		return instance;
+	}
 
 	bool Core::IsAsyncTaskAlive() {
 		return Instance().m_taskRunner->isAsyncTaskAlive();

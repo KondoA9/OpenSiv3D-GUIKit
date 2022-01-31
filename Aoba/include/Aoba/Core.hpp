@@ -5,8 +5,8 @@
 
 #include <Siv3D.hpp>
 
-#include "Timeout.hpp"
 #include "Page.hpp"
+#include "Timeout.hpp"
 
 namespace s3d::aoba {
 	class UIComponent;
@@ -32,10 +32,7 @@ namespace s3d::aoba {
 
 		Core& operator=(Core&&) = delete;
 
-		static Core& Instance() {
-			static Core instance;
-			return instance;
-		}
+		static Core& Instance();
 
 		static bool IsTerminationPrevented() {
 			return Instance().m_terminationPrevented;
