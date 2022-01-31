@@ -4,7 +4,7 @@
 #include <functional>
 
 namespace s3d::aoba {
-	class ParallelTaskManager final {
+	class TaskRunner final {
 	private:
 		std::atomic<size_t> m_counter = 0;
 

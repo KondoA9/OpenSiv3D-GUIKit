@@ -91,9 +91,6 @@
     <Filter Include="Aoba\Core\PageManager">
       <UniqueIdentifier>{3232ea50-e972-4532-82ba-40f75cd65b71}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\Core\ParallelTaskManager">
-      <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\Factory">
       <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
     </Filter>
@@ -102,6 +99,9 @@
     </Filter>
     <Filter Include="Aoba\ComponentStorage">
       <UniqueIdentifier>{2d4c3037-5150-4845-a2b2-e097a05cf4c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner">
+      <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -198,8 +198,8 @@
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp">
       <Filter>Aoba\Core\PageManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager.cpp">
-      <Filter>Aoba\Core\ParallelTaskManager</Filter>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner.cpp">
+      <Filter>Aoba\Core\TaskRunner</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp">
       <Filter>Aoba\ComponentStorage</Filter>
@@ -305,8 +305,8 @@
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp">
       <Filter>Aoba\Core\PageManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager.hpp">
-      <Filter>Aoba\Core\ParallelTaskManager</Filter>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp">
+      <Filter>Aoba\Core\TaskRunner</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp">
       <Filter>Aoba\ComponentStorage</Filter>

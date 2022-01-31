@@ -14,7 +14,7 @@
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
-    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner.cpp" />
     <ClCompile Include="..\Aoba\src\Core\WindowManager.cpp" />
     <ClCompile Include="..\Aoba\src\Factory\Factory.cpp" />
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
@@ -79,7 +79,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp" />
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
-    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

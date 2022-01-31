@@ -7,13 +7,13 @@
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
 #include "PageManager.hpp"
-#include "ParallelTaskManager.hpp"
+#include "TaskRunner.hpp"
 #include "WindowManager.hpp"
 
 namespace s3d::aoba {
 	Core::Core() {
 		m_pageManager = new PageManager();
-		m_parallelTaskManager = new ParallelTaskManager();
+		m_taskRunner = new TaskRunner();
 
 		WindowManager::Initialize();
 
@@ -30,11 +30,11 @@ namespace s3d::aoba {
 
 	Core::~Core() {
 		delete m_pageManager;
-		delete m_parallelTaskManager;
+		delete m_taskRunner;
 	}
 
 	bool Core::IsParallelTaskAlive() {
-		return Instance().m_parallelTaskManager->isAlive();
+		return Instance().m_taskRunner->isAlive();
 	}
 
 	void Core::SwitchPage(const String& identifier) {
@@ -71,12 +71,12 @@ namespace s3d::aoba {
 
 	void Core::CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
 		if (completion) {
-			Instance().m_parallelTaskManager->createTask(func, [completion] {
+			Instance().m_taskRunner->createTask(func, [completion] {
 				Instance().InsertProcessToMainThread(completion);
 				});
 		}
 		else {
-			Instance().m_parallelTaskManager->createTask(func);
+			Instance().m_taskRunner->createTask(func);
 		}
 	}
 

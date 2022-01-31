@@ -15,7 +15,7 @@ namespace s3d::aoba {
 	class Core final {
 	private:
 		class PageManager* m_pageManager;
-		class ParallelTaskManager* m_parallelTaskManager;
+		class TaskRunner* m_taskRunner;
 
 		std::mutex m_mainThreadInserterMutex;
 
