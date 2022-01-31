@@ -15,7 +15,7 @@ namespace s3d::aoba {
 		for (auto& component : Instance().m_components) {
 			if (component && component->id() == id) {
 #if SIV3D_BUILD(DEBUG)
-				Logger << U"[Aoba](Destroy) " + Unicode::Widen(std::string(typeid(*component).name())) + U" " + ToString(component->id());
+				Logger << U"Aoba(ComponentStorage) [Info] Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" " + ToString(component->id());
 #endif
 				component.reset();
 				break;

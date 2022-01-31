@@ -41,9 +41,26 @@ namespace s3d::aoba {
 	bool Core::IsAsyncTaskAlive() {
 		return Instance().m_taskRunner->isAsyncTaskAlive();
 	}
+	
+	bool Core::IsTerminationPrevented() {
+		return Instance().m_terminationPrevented;
+	}
+
+	bool Core::IsTimeoutAlive(size_t id) {
+		for (auto& timeout : Instance().m_timeouts) {
+			if (timeout.id() == id) {
+				return timeout.isAlive();
+			}
+		}
+		return false;
+	}
 
 	void Core::SwitchPage(const String& identifier) {
 		Instance().m_pageManager->switchPage(identifier);
+	}
+
+	void Core::AppendIsolatedComponent(const UIComponent& component) {
+		Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
 	}
 
 	void Core::SetColorMode(ColorMode mode) {
@@ -54,19 +71,13 @@ namespace s3d::aoba {
 	void Core::ToggleColorMode() {
 		Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
 	}
+	
+	void Core::PreventTermination() {
+		Instance().m_terminationPrevented = true;
+	}
 
-	bool Core::animateColor() {
-		static double t = 0.0;
-		t += 5.0 * Scene::DeltaTime();
-
-		if (t > 1.0) {
-			ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 0.0 : 1.0);
-			t = 0.0;
-			return false;
-		}
-
-		ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 1 - t : t);
-		return true;
+	void Core::ContinueTermination() {
+		Instance().m_terminationPrevented = false;
 	}
 
 	void Core::PostAsyncTask(const std::function<void()>& task, const std::function<void()>& completion) {
@@ -107,31 +118,6 @@ namespace s3d::aoba {
 		return false;
 	}
 
-	bool Core::IsTimeoutAlive(size_t id) {
-		for (auto& timeout : Instance().m_timeouts) {
-			if (timeout.id() == id) {
-				return timeout.isAlive();
-			}
-		}
-		return false;
-	}
-
-	Page& Core::getPage(const String& identifier) const noexcept {
-		return m_pageManager->getPage(identifier);
-	}
-
-	void Core::appendPage(const std::shared_ptr<Page>& page) {
-		m_pageManager->appendPage(page);
-	}
-
-	void Core::AppendIsolatedComponent(const UIComponent& component) {
-		Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
-	}
-
-	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-		m_pageManager->appendIsolatedComponent(component);
-	}
-
 	void Core::AddLicense() {
 		LicenseInfo licence;
 		licence.title = U"Aoba Framework";
@@ -156,5 +142,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.)";
 
 		LicenseManager::AddLicense(licence);
+	}
+
+	Page& Core::getPage(const String& identifier) const noexcept {
+		return m_pageManager->getPage(identifier);
+	}
+
+	bool Core::animateColor() {
+		static double t = 0.0;
+		t += 5.0 * Scene::DeltaTime();
+
+		if (t > 1.0) {
+			ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 0.0 : 1.0);
+			t = 0.0;
+			return false;
+		}
+
+		ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 1 - t : t);
+		return true;
+	}
+
+	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+		m_pageManager->appendIsolatedComponent(component);
+	}
+
+	void Core::appendPage(const std::shared_ptr<Page>& page) {
+		m_pageManager->appendPage(page);
 	}
 }

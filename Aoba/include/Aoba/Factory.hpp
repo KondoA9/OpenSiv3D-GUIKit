@@ -59,7 +59,7 @@ namespace s3d::aoba {
 			const size_t id = Instance().createId();
 
 #if SIV3D_BUILD(DEBUG)
-			Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
+			Logger << U"Aoba(Factory) [Info] Create:" + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
 #endif
 
 			return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(id))).get());

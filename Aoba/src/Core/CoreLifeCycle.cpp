@@ -14,12 +14,14 @@ void Main() {
 }
 
 namespace s3d::aoba {
-	void Core::Start() {
+	bool Core::Start() {
 		if (Instance().m_pageManager->initialize()) {
 			Instance().run();
+			return true;
 		}
 		else {
-			Logger << U"Error(Core): No pages are registered.";
+			Logger << U"Aoba(Core) [Error]: No pages are registered.";
+			return false;
 		}
 	}
 
@@ -38,21 +40,16 @@ namespace s3d::aoba {
 	}
 
 	void Core::update() {
-		// Update window state
 		WindowManager::Update();
 
-		// Update pages
 		m_pageManager->update();
 
-		// Update color theme
 		if (m_animateColor) {
 			m_animateColor = animateColor();
 		}
 
-		// Draw pages, components and events
 		m_pageManager->draw();
 
-		// Update
 		m_taskRunner->runSyncTasks();
 
 		updateTimeouts();

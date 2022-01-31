@@ -34,42 +34,40 @@ namespace s3d::aoba {
 
 		static Core& Instance();
 
-		static bool IsTerminationPrevented() {
-			return Instance().m_terminationPrevented;
-		}
-
 		static bool IsAsyncTaskAlive();
 
-		static void Start();
+		static bool IsTerminationPrevented();
+
+		static bool IsTimeoutAlive(size_t id);
+
+		static bool Start();
+
+		static void Terminate();
 
 		static void SwitchPage(const String& identifier);
+
+		static void AppendIsolatedComponent(const UIComponent& component);
 
 		static void SetColorMode(ColorMode mode);
 
 		static void ToggleColorMode();
 
-		static void Terminate();
-
 		// If you call this, you should call ContinueTermination() to terminate app
-		static void PreventTermination() {
-			Instance().m_terminationPrevented = true;
-		}
+		static void PreventTermination();
 
-		static void ContinueTermination() {
-			Instance().m_terminationPrevented = false;
-		}
+		static void ContinueTermination();
 
 		/// <summary>
 		/// Request to run a task asynchrony, and if need, a completion process will runs on main thread.
 		/// </summary>
-		/// <param name="func">The process that runs asynchrony. Do not set a process that changes user interfaces.</param>
+		/// <param name="task">The process that runs asynchrony. Do not set a process that changes user interfaces.</param>
 		/// <param name="completion">The process that runs on main thread after func() ended.</param>
 		static void PostAsyncTask(const std::function<void()>& task, const std::function<void()>& completion = std::function<void()>());
 
 		/// <summary>
 		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
 		/// </summary>
-		/// <param name="func">The process that runs on main thread.</param>
+		/// <param name="task">The process that runs on main thread.</param>
 		static void PostSyncTask(const std::function<void()>& task);
 
 		/// <summary>
@@ -85,8 +83,6 @@ namespace s3d::aoba {
 
 		static bool RestartTimeout(size_t id);
 
-		static bool IsTimeoutAlive(size_t id);
-
 		template<class T>
 		static T& GetPage(const String& identifier) noexcept {
 			return static_cast<T&>(Instance().getPage(identifier));
@@ -97,8 +93,6 @@ namespace s3d::aoba {
 			Instance().appendPage(std::shared_ptr<T>(new T(identifier)));
 		}
 
-		static void AppendIsolatedComponent(const UIComponent& component);
-
 	private:
 		Core();
 
@@ -107,6 +101,8 @@ namespace s3d::aoba {
 		static void AddLicense();
 
 		Page& getPage(const String& identifier) const noexcept;
+
+		bool animateColor();
 
 		void appendPage(const std::shared_ptr<Page>& page);
 
@@ -117,7 +113,5 @@ namespace s3d::aoba {
 		void update();
 
 		void updateTimeouts();
-
-		bool animateColor();
 	};
 }
