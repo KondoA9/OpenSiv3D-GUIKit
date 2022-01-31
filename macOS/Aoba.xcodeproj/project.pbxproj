@@ -41,13 +41,13 @@
 		9E4B20AF2798348E00D9F7EC /* Page.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B204F2798348E00D9F7EC /* Page.cpp */; };
 		9E4B20B02798348E00D9F7EC /* PageManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20512798348E00D9F7EC /* PageManager.cpp */; };
 		9E4B20B12798348E00D9F7EC /* Core.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20522798348E00D9F7EC /* Core.cpp */; };
-		9E4B20B22798348E00D9F7EC /* ParallelTaskManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E4B20532798348E00D9F7EC /* ParallelTaskManager.hpp */; };
+		9E4B20B22798348E00D9F7EC /* TaskRunner.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E4B20532798348E00D9F7EC /* TaskRunner.hpp */; };
 		9E4B20B32798348E00D9F7EC /* CoreLifeCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20542798348E00D9F7EC /* CoreLifeCycle.cpp */; };
 		9E4B20B42798348E00D9F7EC /* PageCycle.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20552798348E00D9F7EC /* PageCycle.cpp */; };
 		9E4B20B52798348E00D9F7EC /* WindowManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E4B20562798348E00D9F7EC /* WindowManager.hpp */; };
 		9E4B20B62798348E00D9F7EC /* WindowManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20572798348E00D9F7EC /* WindowManager.cpp */; };
 		9E4B20B72798348E00D9F7EC /* PageManager.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E4B20582798348E00D9F7EC /* PageManager.hpp */; };
-		9E4B20B82798348E00D9F7EC /* ParallelTaskManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20592798348E00D9F7EC /* ParallelTaskManager.cpp */; };
+		9E4B20B82798348E00D9F7EC /* TaskRunner.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B20592798348E00D9F7EC /* TaskRunner.cpp */; };
 		9E4B20B92798348E00D9F7EC /* PixelUnit.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B205B2798348E00D9F7EC /* PixelUnit.cpp */; };
 		9E4B20BA2798348E00D9F7EC /* Timeout.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B205D2798348E00D9F7EC /* Timeout.cpp */; };
 		9E4B20BB2798348E00D9F7EC /* ColorTheme.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E4B205F2798348E00D9F7EC /* ColorTheme.cpp */; };
@@ -112,13 +112,13 @@
 		9E4B204F2798348E00D9F7EC /* Page.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Page.cpp; sourceTree = "<group>"; };
 		9E4B20512798348E00D9F7EC /* PageManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageManager.cpp; sourceTree = "<group>"; };
 		9E4B20522798348E00D9F7EC /* Core.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Core.cpp; sourceTree = "<group>"; };
-		9E4B20532798348E00D9F7EC /* ParallelTaskManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ParallelTaskManager.hpp; sourceTree = "<group>"; };
+		9E4B20532798348E00D9F7EC /* TaskRunner.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = TaskRunner.hpp; sourceTree = "<group>"; };
 		9E4B20542798348E00D9F7EC /* CoreLifeCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CoreLifeCycle.cpp; sourceTree = "<group>"; };
 		9E4B20552798348E00D9F7EC /* PageCycle.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PageCycle.cpp; sourceTree = "<group>"; };
 		9E4B20562798348E00D9F7EC /* WindowManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = WindowManager.hpp; sourceTree = "<group>"; };
 		9E4B20572798348E00D9F7EC /* WindowManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WindowManager.cpp; sourceTree = "<group>"; };
 		9E4B20582798348E00D9F7EC /* PageManager.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PageManager.hpp; sourceTree = "<group>"; };
-		9E4B20592798348E00D9F7EC /* ParallelTaskManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ParallelTaskManager.cpp; sourceTree = "<group>"; };
+		9E4B20592798348E00D9F7EC /* TaskRunner.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = TaskRunner.cpp; sourceTree = "<group>"; };
 		9E4B205B2798348E00D9F7EC /* PixelUnit.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PixelUnit.cpp; sourceTree = "<group>"; };
 		9E4B205D2798348E00D9F7EC /* Timeout.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Timeout.cpp; sourceTree = "<group>"; };
 		9E4B205F2798348E00D9F7EC /* ColorTheme.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ColorTheme.cpp; sourceTree = "<group>"; };
@@ -238,13 +238,13 @@
 			children = (
 				9E4B20512798348E00D9F7EC /* PageManager.cpp */,
 				9E4B20522798348E00D9F7EC /* Core.cpp */,
-				9E4B20532798348E00D9F7EC /* ParallelTaskManager.hpp */,
+				9E4B20532798348E00D9F7EC /* TaskRunner.hpp */,
 				9E4B20542798348E00D9F7EC /* CoreLifeCycle.cpp */,
 				9E4B20552798348E00D9F7EC /* PageCycle.cpp */,
 				9E4B20562798348E00D9F7EC /* WindowManager.hpp */,
 				9E4B20572798348E00D9F7EC /* WindowManager.cpp */,
 				9E4B20582798348E00D9F7EC /* PageManager.hpp */,
-				9E4B20592798348E00D9F7EC /* ParallelTaskManager.cpp */,
+				9E4B20592798348E00D9F7EC /* TaskRunner.cpp */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -516,7 +516,7 @@
 				9E4B20AC2798348E00D9F7EC /* UIButton.hpp in Headers */,
 				9E4B20972798348E00D9F7EC /* UIImageView.hpp in Headers */,
 				9E4B209E2798348E00D9F7EC /* UIInputField.hpp in Headers */,
-				9E4B20B22798348E00D9F7EC /* ParallelTaskManager.hpp in Headers */,
+				9E4B20B22798348E00D9F7EC /* TaskRunner.hpp in Headers */,
 				9E4B20A02798348E00D9F7EC /* UICircle.hpp in Headers */,
 				9E4B20902798348E00D9F7EC /* UIRect.hpp in Headers */,
 				9E4B20AA2798348E00D9F7EC /* UnifiedFont.hpp in Headers */,
@@ -628,7 +628,7 @@
 				9E4B20BF2798348E00D9F7EC /* UIButton.cpp in Sources */,
 				9E4B20CF2798348E00D9F7EC /* UnifiedFont.cpp in Sources */,
 				9E4B20CB2798348E00D9F7EC /* UIComponentMouseEvent.cpp in Sources */,
-				9E4B20B82798348E00D9F7EC /* ParallelTaskManager.cpp in Sources */,
+				9E4B20B82798348E00D9F7EC /* TaskRunner.cpp in Sources */,
 				9E4B20B32798348E00D9F7EC /* CoreLifeCycle.cpp in Sources */,
 				9E4B20B62798348E00D9F7EC /* WindowManager.cpp in Sources */,
 				9E4B20C02798348E00D9F7EC /* UIToggleButton.cpp in Sources */,
