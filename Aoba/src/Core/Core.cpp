@@ -33,8 +33,8 @@ namespace s3d::aoba {
 		delete m_taskRunner;
 	}
 
-	bool Core::IsParallelTaskAlive() {
-		return Instance().m_taskRunner->isAlive();
+	bool Core::IsAsyncTaskAlive() {
+		return Instance().m_taskRunner->isAsyncTaskAlive();
 	}
 
 	void Core::SwitchPage(const String& identifier) {
@@ -64,20 +64,19 @@ namespace s3d::aoba {
 		return true;
 	}
 
-	void Core::InsertProcessToMainThread(const std::function<void()>& func) {
-		std::lock_guard<std::mutex> lock(Instance().m_mainThreadInserterMutex);
-		Instance().m_eventsRequestedToRunInMainThread.push_back(func);
-	}
-
-	void Core::CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
+	void Core::PostAsyncTask(const std::function<void()>& task, const std::function<void()>& completion) {
 		if (completion) {
-			Instance().m_taskRunner->createTask(func, [completion] {
-				Instance().InsertProcessToMainThread(completion);
+			Instance().m_taskRunner->addAsyncTask(task, [completion] {
+				PostSyncTask(completion);
 				});
 		}
 		else {
-			Instance().m_taskRunner->createTask(func);
+			Instance().m_taskRunner->addAsyncTask(task);
 		}
+	}
+
+	void Core::PostSyncTask(const std::function<void()>& task) {
+		Instance().m_taskRunner->addSyncTask(task);
 	}
 
 	size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
@@ -133,7 +132,7 @@ namespace s3d::aoba {
 		licence.title = U"Aoba Framework";
 		licence.copyright = U"Copyright (c) 2021-2022 Ekyu Kondo";
 		licence.text =
-UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
+			UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell

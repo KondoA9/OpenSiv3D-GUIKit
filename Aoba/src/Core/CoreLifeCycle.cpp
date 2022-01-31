@@ -3,6 +3,7 @@
 #include <Aoba/ColorTheme.hpp>
 
 #include "PageManager.hpp"
+#include "TaskRunner.hpp"
 #include "WindowManager.hpp"
 
 void AobaMain();
@@ -51,26 +52,10 @@ namespace s3d::aoba {
 		// Draw pages, components and events
 		m_pageManager->draw();
 
-		// Additional drawing events
-		for (auto& f : m_drawingEvents) {
-			f();
-		}
-		m_drawingEvents.release();
-
 		// Update
-		updateMainThreadEvents();
+		m_taskRunner->runSyncTasks();
 
 		updateTimeouts();
-	}
-
-	void Core::updateMainThreadEvents() {
-		std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
-
-		for (const auto& f : m_eventsRequestedToRunInMainThread) {
-			f();
-		}
-
-		m_eventsRequestedToRunInMainThread.release();
 	}
 
 	void Core::updateTimeouts() {

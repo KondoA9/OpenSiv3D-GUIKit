@@ -184,7 +184,7 @@ namespace s3d::aoba {
 			once = false;
 		}
 
-		if (!(aoba::Core::IsTerminationPrevented() || aoba::Core::IsParallelTaskAlive())) {
+		if (!(aoba::Core::IsTerminationPrevented() || aoba::Core::IsAsyncTaskAlive())) {
 			m_currentPage->onBeforeDisappeared();
 
 			for (auto& page : m_pages) {
