@@ -6,12 +6,12 @@ namespace s3d::aoba {
 	void UIImageView::initialize() {
 		UIRect::initialize();
 
-		addEventListener<MouseEvent::RightDragging>([this] {
+		addEventListener<Event::Mouse::RightDragging>([this] {
 			const auto movement = Cursor::Pos() - Cursor::PreviousPos();
 			setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
 			}, true);
 
-		addEventListener<MouseEvent::Hovering>([this](const MouseEvent::Hovering& e) {
+		addEventListener<Event::Mouse::Hovering>([this](const Event::Mouse::Hovering& e) {
 			if (m_textures) {
 				m_cursoredPixel = Imaging::ScenePosToPixel(e.pos, m_textureRegion, m_scale, angle());
 				m_cursoredPixel.x = Clamp(m_cursoredPixel.x, 0, m_textures[0].width() - 1);
@@ -23,7 +23,7 @@ namespace s3d::aoba {
 			}
 			}, true);
 
-		addEventListener<MouseEvent::Wheel>([this](const MouseEvent::Wheel& e) {
+		addEventListener<Event::Mouse::Wheel>([this](const Event::Mouse::Wheel& e) {
 			if (manualScalingEnabled) {
 				setScale(m_scaleRate + (Sign(e.wheel) < 0 ? 0.05 : -0.05));
 			}

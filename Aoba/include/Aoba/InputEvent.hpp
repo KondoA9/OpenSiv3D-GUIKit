@@ -2,12 +2,22 @@
 
 #include <Siv3D.hpp>
 
-#define AobaCreateInputEvent(Event) \
-struct Event : public s3d::aoba::InputEvent { \
-	explicit Event(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) : \
-		s3d::aoba::InputEvent(typeid(Event).hash_code(), _component, callIfComponentInFront) \
+// Create InputEvent
+#define AobaCreateEvent(EVENT_NAME) \
+struct EVENT_NAME : public s3d::aoba::InputEvent { \
+	explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) : \
+		s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), _component, callIfComponentInFront) \
 	{} \
-};
+}; \
+
+// Create InputEvent in namespace NAMESPACE
+#define AobaCreateEventNS(NAMESPACE, EVENT_NAME) \
+namespace NAMESPACE { \
+	AobaCreateEvent(EVENT_NAME) \
+}
+
+// Create InputEvent in namespace s3d::aoba::Event::NAMESPACE
+#define AobaCreateEventNSEvent(NAMESPACE, EVENT_NAME) AobaCreateEventNS(s3d::aoba::Event::NAMESPACE, EVENT_NAME)
 
 namespace s3d::aoba {
 	class UIComponent;
@@ -20,16 +30,9 @@ namespace s3d::aoba {
 
 		UIComponent* component;
 
-		constexpr InputEvent(const InputEvent& e):
-			id(e.id),
-			wheel(e.wheel),
-			pos(e.pos),
-			previousPos(e.previousPos),
-			callIfComponentInFront(e.callIfComponentInFront),
-			component(e.component)
-		{}
+		InputEvent() = delete;
 
-		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) :
+		InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) noexcept :
 			id(_id),
 			wheel(Mouse::Wheel()),
 			pos(Cursor::PosF()),
@@ -40,10 +43,22 @@ namespace s3d::aoba {
 
 		virtual ~InputEvent() = default;
 
-		const InputEvent& operator =(const InputEvent& e) {
+		constexpr InputEvent(const InputEvent& e) noexcept = default;
+
+		constexpr InputEvent(InputEvent&& e) noexcept = default;
+
+		const InputEvent& operator =(const InputEvent& e) noexcept {
 			assert(id == e.id);
 
 			component = e.component;
+
+			return *this;
+		}
+
+		const InputEvent& operator =(InputEvent&& e) noexcept {
+			assert(id == e.id);
+
+			component = std::move(e.component);
 
 			return *this;
 		}

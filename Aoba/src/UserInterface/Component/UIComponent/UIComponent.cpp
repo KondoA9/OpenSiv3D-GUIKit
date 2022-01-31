@@ -1,33 +1,33 @@
 ﻿#include <Aoba/UIComponent.hpp>
 
-#include <Aoba/Factory.hpp>
+#include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
 	Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
 	std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent = nullptr, UIComponent::m_PreviousFocusedComponent = nullptr;
 
-	UIComponent::UIComponent(const ColorTheme& _backgroundColor, const ColorTheme& _frameColor) noexcept :
-		backgroundColor(_backgroundColor),
-		frameColor(_frameColor),
-		m_id(Factory::GetId())
+	UIComponent::UIComponent(size_t id) noexcept :
+		backgroundColor(DynamicColor::BackgroundSecondary),
+		frameColor(DynamicColor::Separator),
+		m_id(id)
 	{}
 
 	UIComponent::~UIComponent() {
-		Factory::RequestReleaseComponent(m_id);
-		release();
+		_destroy();
 	}
 
-	void UIComponent::initialize() {
-		FMT_ASSERT(m_valid, "Make sure you instantiated through Factory::Create()");
+	void UIComponent::_destroy() {
+		release();
+		ComponentStorage::Release(m_id);
 	}
 
 	void UIComponent::updateLayer(const Rect& scissor) {
-		m_drawableRegion = scissor;
-
-		if (!m_initialized) {
-			initialize();
-			m_initialized = true;
+		if (!m_initializedColors) {
+			initializeColors();
+			m_initializedColors = true;
 		}
+
+		m_drawableRegion = scissor;
 
 		for (auto layer : m_dependentLayers) {
 			layer->updateConstraints();
@@ -72,7 +72,7 @@ namespace s3d::aoba {
 	void UIComponent::focus() {
 		try {
 			// Focused component is this
-			m_FocusedComponent = Factory::GetComponent(m_id);;
+			m_FocusedComponent = ComponentStorage::Get(m_id);;
 		}
 		catch (...) {
 			m_FocusedComponent.reset();

@@ -3,6 +3,12 @@
 #include <Aoba/PixelUnit.hpp>
 
 namespace s3d::aoba {
+	void UIText::initialize() {
+		UIRect::initialize();
+
+		backgroundColor = DynamicColor::Clear;
+	}
+
 	void UIText::updateLayer(const Rect& scissor) {
 		updateDrawableText();
 

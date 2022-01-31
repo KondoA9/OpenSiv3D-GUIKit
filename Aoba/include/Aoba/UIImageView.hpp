@@ -28,9 +28,7 @@ namespace s3d::aoba {
 		double m_angle = 0.0;
 
 	public:
-		explicit UIImageView() noexcept :
-			UIRect()
-		{}
+		using UIRect::UIRect;
 
 		const Point& currentPixel() const {
 			return m_cursoredPixel;

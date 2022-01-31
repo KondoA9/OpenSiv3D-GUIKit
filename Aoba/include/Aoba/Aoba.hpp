@@ -4,6 +4,8 @@
 #include <Siv3D.hpp>
 
 // Aoba includes
+#include "Core.hpp"
+
 #include "CommandLine.hpp"
 
 #include "DynamicColor.hpp"

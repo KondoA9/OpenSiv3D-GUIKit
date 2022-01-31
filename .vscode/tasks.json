@@ -1,0 +1,63 @@
+{
+    "tasks": [
+        {
+            "type": "shell",
+            "label": "Build Aoba",
+            "command": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -GNinja .. && ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/Linux/"
+            },
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build Aoba (Debug)",
+            "command": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug -GNinja .. && ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/Linux/"
+            },
+            "group": "build"
+        },
+        {
+            "type": "shell",
+            "label": "Build Aoba-Example",
+            "command": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -GNinja .. && ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/Linux/Example/"
+            },
+            "group": "build",
+            "dependsOn": "Build Aoba"
+        },
+        {
+            "type": "shell",
+            "label": "Build Aoba-Example (Debug)",
+            "command": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug -GNinja .. && ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/Linux/Example/"
+            },
+            "group": "build",
+            "dependsOn": "Build Aoba (Debug)"
+        },
+        {
+            "type": "shell",
+            "label": "Build Aoba-LaunchTest",
+            "command": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Release -GNinja .. && ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/Linux/LaunchTest/"
+            },
+            "group": "build",
+            "dependsOn": "Build Aoba"
+        },
+        {
+            "type": "shell",
+            "label": "Build Aoba-LaunchTest (Debug)",
+            "command": "mkdir -p build && cd build && cmake -DCMAKE_BUILD_TYPE=Debug -GNinja .. && ninja",
+            "options": {
+                "cwd": "${workspaceFolder}/Linux/LaunchTest/"
+            },
+            "group": "build",
+            "dependsOn": "Build Aoba (Debug)"
+        }
+    ],
+    "version": "2.0.0"
+}

@@ -1,5 +1,6 @@
 ﻿#include <Aoba/UIInputField.hpp>
 
+#include <Aoba/Core.hpp>
 #include <Aoba/DynamicColor.hpp>
 #include <Aoba/Factory.hpp>
 #include <Aoba/PixelUnit.hpp>
@@ -13,16 +14,16 @@ namespace s3d::aoba {
 	void UIInputField::initialize() {
 		UIText::initialize();
 
-		addEventListener<MouseEvent::Hovering>([] {
+		addEventListener<Event::Mouse::Hovering>([] {
 			Cursor::RequestStyle(CursorStyle::IBeam);
 			});
 
-		addEventListener<Focused>([this] {
+		addEventListener<Event::Component::Focused>([this] {
 			m_cursorPos = text().length();
 			m_cursorBeamWatcher.start();
 			}, true);
 
-		addEventListener<UnFocused>([this] {
+		addEventListener<Event::Component::UnFocused>([this] {
 			if (!prefix.empty() && !text().starts_with(prefix)) {
 				setText(prefix + text());
 			}
@@ -76,7 +77,7 @@ namespace s3d::aoba {
 				Line(m_cursorBeamPosX, m_fieldRect.y + 4_px, m_cursorBeamPosX, m_fieldRect.y + m_fieldRect.h - 4_px).draw(textColor);
 			}
 
-			m_fieldRect.drawFrame(1.0_px, 0.0, DynamicColor::DefaultBlue);
+			m_fieldRect.drawFrame(1.0_px, 0.0, MaterialColor::Blue5);
 		}
 	}
 
@@ -90,11 +91,11 @@ namespace s3d::aoba {
 
 			if (previousText != updatedText) {
 				setText(updatedText);
-				registerInputEvent(Inputted(this, false));
+				registerInputEvent(Event::Component::InputField::Inputted(this, false));
 			}
 
 			if (KeyEnter.down()) {
-				registerInputEvent(KeyEnterDown(this, false));
+				registerInputEvent(Event::Component::InputField::KeyEnterDown(this, false));
 				unFocus();
 			}
 		}
@@ -241,7 +242,7 @@ namespace s3d::aoba {
 	void UIInputField::fireForbiddenCharsNotifier() {
 		if (ui_Warning == nullptr) {
 			ui_Warning = &Factory::Create<UIText>();
-			ui_Warning->backgroundColor = DynamicColor::DefaultYellow;
+			ui_Warning->backgroundColor = MaterialColor::Yellow6;
 			ui_Warning->textColor = Palette::Black;
 			ui_Warning->setDirection(TextDirection::Center);
 			ui_Warning->setCornerRadius(5);
@@ -259,7 +260,7 @@ namespace s3d::aoba {
 			ui_Warning->exist = false;
 			}, 3000, false);
 
-		registerInputEvent(ForbiddenCharInputted(this, false));
+		registerInputEvent(Event::Component::InputField::ForbiddenCharInputted(this, false));
 	}
 
 	void UIInputField::updateCursorBeamPos() {

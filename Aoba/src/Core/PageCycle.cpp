@@ -1,21 +1,52 @@
-﻿#include "PageManager.hpp"
+#include "PageManager.hpp"
 
 #include <Aoba/Core.hpp>
 #include <Aoba/Page.hpp>
 #include <Aoba/UIView.hpp>
-#include <Aoba/WindowManager.hpp>
+
+#include "WindowManager.hpp"
 
 namespace s3d::aoba {
 	void PageManager::update() {
+		// Load nextPage
+		if (m_nextPage && !m_nextPage->didLoaded()) {
+			m_nextPage->onLoaded();
+			m_nextPage->m_loaded = true;
+		}
+
 		if (WindowManager::DidResized()) {
 			// Update scissor rect
 			const auto size = Scene::Size();
 			m_windowScissorRect = Rect(0, 0, size.x, size.y);
 
 			// Call window resize event
-			if (m_nextPage) m_nextPage->onWindowResized();
-			if (m_currentPage) m_currentPage->onWindowResized();
-			if (m_previousPage) m_previousPage->onWindowResized();
+			if (m_nextPage) {
+				m_nextPage->onWindowResized();
+			}
+
+			if (m_currentPage) {
+				m_currentPage->onWindowResized();
+			}
+
+			if (m_previousPage) {
+				m_previousPage->onWindowResized();
+			}
+		}
+
+		// Update DragDrop
+		if (m_nextPage) {
+			const auto& [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
+			DragDrop::AcceptFilePaths(acceptFiles);
+			DragDrop::AcceptText(acceptTexts);
+		}
+
+		if (m_currentPage) {
+			if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
+				(acceptFiles || acceptTexts) &&
+				(DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
+				m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
+				DragDrop::Clear();
+			}
 		}
 
 		updateViews();
@@ -56,6 +87,7 @@ namespace s3d::aoba {
 			break;
 
 		default:
+			assert(false);
 			break;
 		}
 	}
@@ -63,6 +95,14 @@ namespace s3d::aoba {
 	void PageManager::draw() {
 		switch (m_pageTransition)
 		{
+		case PageTransition::StartUp:
+			m_nextPage->view.draw();
+			break;
+
+		case PageTransition::Stable:
+			m_currentPage->view.draw();
+			break;
+
 		case PageTransition::StartChanging:
 			m_previousPage->view.draw();
 			break;
@@ -81,9 +121,12 @@ namespace s3d::aoba {
 			m_nextPage->view.draw();
 			break;
 
-		default:
-			// Draw current page
+		case PageTransition::Termination:
 			m_currentPage->view.draw();
+			break;
+
+		default:
+			assert(false);
 			break;
 		}
 
@@ -98,13 +141,14 @@ namespace s3d::aoba {
 	bool PageManager::updateOnStartUp() {
 		// Run once when launching the app
 		if (static bool called = false; !called) {
-			m_currentPage->onLoaded();
-			m_currentPage->onBeforeAppeared();
+			m_nextPage->onBeforeAppeared();
 			called = true;
 		}
 		// Run at next frame
 		else {
-			m_currentPage->onAfterAppeared();
+			m_nextPage->onAfterAppeared();
+			m_currentPage = m_nextPage;
+			m_nextPage.reset();
 			return false;
 		}
 
@@ -152,11 +196,6 @@ namespace s3d::aoba {
 	}
 
 	void PageManager::preparePageChanging() {
-		// Load the next page if needed
-		if (!m_nextPage->didLoaded()) {
-			m_nextPage->onLoaded();
-		}
-
 		m_nextPage->onBeforeAppeared();
 		m_previousPage->onBeforeDisappeared();
 

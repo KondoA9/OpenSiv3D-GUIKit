@@ -7,16 +7,16 @@ namespace s3d::aoba {
 
 		// Call raw events
 		if (m_mouseCondition.left.down) {
-			registerInputEvent(MouseEvent::LeftDownRaw(this));
+			registerInputEvent(Event::Mouse::LeftDownRaw(this));
 		}
 		if (m_mouseCondition.right.down) {
-			registerInputEvent(MouseEvent::RightDownRaw(this));
+			registerInputEvent(Event::Mouse::RightDownRaw(this));
 		}
 		if (m_mouseCondition.left.up) {
-			registerInputEvent(MouseEvent::LeftUpRaw(this));
+			registerInputEvent(Event::Mouse::LeftUpRaw(this));
 		}
 		if (m_mouseCondition.right.up) {
-			registerInputEvent(MouseEvent::RightUpRaw(this));
+			registerInputEvent(Event::Mouse::RightUpRaw(this));
 		}
 
 		// Prepare to call mouse event
@@ -45,10 +45,10 @@ namespace s3d::aoba {
 			if (m_clickedPos.distanceFrom(Cursor::PosF()) > 10.0) {
 				if (m_mouseCondition.left.press) {
 					focus();
-					registerInputEvent(MouseEvent::LeftDraggingStart(this));
+					registerInputEvent(Event::Mouse::LeftDraggingStart(this));
 				}
 				else {
-					registerInputEvent(MouseEvent::RightDraggingStart(this));
+					registerInputEvent(Event::Mouse::RightDraggingStart(this));
 				}
 				m_mouseDownEnable = false;
 				m_mouseDragging = true;
@@ -59,10 +59,10 @@ namespace s3d::aoba {
 		if (m_mouseDownEnable && (m_mouseCondition.left.up || m_mouseCondition.right.up)) {
 			if (m_mouseCondition.left.up) {
 				focus();
-				registerInputEvent(MouseEvent::LeftDown(this));
+				registerInputEvent(Event::Mouse::LeftDown(this));
 			}
 			else {
-				registerInputEvent(MouseEvent::RightDown(this));
+				registerInputEvent(Event::Mouse::RightDown(this));
 			}
 			m_mouseDownEnable = false;
 		}
@@ -70,38 +70,38 @@ namespace s3d::aoba {
 		// Mouse dragging and end dragging event
 		if (m_mouseDragging) {
 			if (m_mouseCondition.left.press) {
-				registerInputEvent(MouseEvent::LeftDragging(this));
+				registerInputEvent(Event::Mouse::LeftDragging(this));
 			}
 			if (m_mouseCondition.left.up) {
-				registerInputEvent(MouseEvent::LeftDraggingEnd(this));
+				registerInputEvent(Event::Mouse::LeftDraggingEnd(this));
 				m_mouseDragging = false;
 			}
 			if (m_mouseCondition.right.press) {
-				registerInputEvent(MouseEvent::RightDragging(this));
+				registerInputEvent(Event::Mouse::RightDragging(this));
 			}
 			if (m_mouseCondition.right.up) {
-				registerInputEvent(MouseEvent::RightDraggingEnd(this));
+				registerInputEvent(Event::Mouse::RightDraggingEnd(this));
 				m_mouseDragging = false;
 			}
 		}
 
 		// Mouse hover event
 		if (!m_mouseCondition.preHover && m_mouseCondition.hover) {
-			registerInputEvent(MouseEvent::Hovered(this));
+			registerInputEvent(Event::Mouse::Hovered(this));
 		}
 
 		if (m_mouseCondition.hover) {
-			registerInputEvent(MouseEvent::Hovering(this));
+			registerInputEvent(Event::Mouse::Hovering(this));
 		}
 
 		if (m_mouseCondition.preHover && !m_mouseCondition.hover) {
-			registerInputEvent(MouseEvent::UnHovered(this, false));
+			registerInputEvent(Event::Mouse::UnHovered(this, false));
 			m_mouseDownRaw = false;
 		}
 
 		// Mouse wheel event
 		if (const double wheel = Mouse::Wheel(); m_mouseCondition.hover && wheel != 0.0) {
-			registerInputEvent(MouseEvent::Wheel(this));
+			registerInputEvent(Event::Mouse::Wheel(this));
 		}
 	}
 
@@ -111,14 +111,14 @@ namespace s3d::aoba {
 
 		if (!noFocusedComponent && !noFocusEventCalled) {
 			if (m_FocusedComponent && m_PreviousFocusedComponent) {
-				m_PreviousFocusedComponent->registerInputEvent(UnFocused(m_PreviousFocusedComponent.get(), false));
-				m_FocusedComponent->registerInputEvent(Focused(m_FocusedComponent.get(), false));
+				m_PreviousFocusedComponent->registerInputEvent(Event::Component::UnFocused(m_PreviousFocusedComponent.get(), false));
+				m_FocusedComponent->registerInputEvent(Event::Component::Focused(m_FocusedComponent.get(), false));
 			}
 			else if (m_FocusedComponent) {
-				m_FocusedComponent->registerInputEvent(Focused(m_FocusedComponent.get(), false));
+				m_FocusedComponent->registerInputEvent(Event::Component::Focused(m_FocusedComponent.get(), false));
 			}
 			else if (m_PreviousFocusedComponent) {
-				m_PreviousFocusedComponent->registerInputEvent(UnFocused(m_PreviousFocusedComponent.get(), false));
+				m_PreviousFocusedComponent->registerInputEvent(Event::Component::UnFocused(m_PreviousFocusedComponent.get(), false));
 			}
 		}
 

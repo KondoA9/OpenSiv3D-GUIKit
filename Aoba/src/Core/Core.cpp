@@ -2,13 +2,13 @@
 
 #include <thread>
 
-#include <Aoba/Factory.hpp>
 #include <Aoba/Page.hpp>
 #include <Aoba/UnifiedFont.hpp>
-#include <Aoba/WindowManager.hpp>
 
-#include "PageManager/PageManager.hpp"
-#include "ParallelTaskManager/ParallelTaskManager.hpp"
+#include "src/ComponentStorage/ComponentStorage.hpp"
+#include "PageManager.hpp"
+#include "ParallelTaskManager.hpp"
+#include "WindowManager.hpp"
 
 namespace s3d::aoba {
 	Core::Core() {
@@ -121,7 +121,7 @@ namespace s3d::aoba {
 	}
 
 	void Core::AppendIsolatedComponent(const UIComponent& component) {
-		Instance().appendIsolatedComponent(Factory::GetComponent(component.id()));
+		Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
 	}
 
 	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
@@ -131,7 +131,7 @@ namespace s3d::aoba {
 	void Core::AddLicense() {
 		LicenseInfo licence;
 		licence.title = U"Aoba Framework";
-		licence.copyright = U"Copyright (c) 2021 Ekyu Kondo";
+		licence.copyright = U"Copyright (c) 2021-2022 Ekyu Kondo";
 		licence.text =
 UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -1,6 +1,12 @@
 ﻿#include <Aoba/UIIcon.hpp>
 
 namespace s3d::aoba {
+	void UIIcon::initialize() {
+		UIRect::initialize();
+
+		backgroundColor = DynamicColor::Clear;
+	}
+
 	void UIIcon::update() {
 		UIRect::update();
 

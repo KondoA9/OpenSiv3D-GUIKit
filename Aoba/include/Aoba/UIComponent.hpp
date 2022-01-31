@@ -7,14 +7,20 @@
 #include "Layer.hpp"
 #include "MouseEvent.hpp"
 
+// Create InputEvent in namespace s3d::aoba::Event::Component
+#define AobaCreateEventComponent(EVENT_NAME) AobaCreateEventNSEvent(Component, EVENT_NAME)
+
+// Create InputEvent in namespace s3d::aoba::Event::Component::NAMESPACE
+#define AobaCreateEventComponentNS(NAMESPACE, EVENT_NAME) AobaCreateEventNSEvent(Component::NAMESPACE, EVENT_NAME)
+
+AobaCreateEventComponent(Focused)
+AobaCreateEventComponent(UnFocused)
+
 namespace s3d::aoba {
 	class Core;
-	class UIView;
 	class Factory;
 	class PageManager;
-
-	AobaCreateInputEvent(UnFocused);
-	AobaCreateInputEvent(Focused);
+	class UIView;
 
 	class UIComponent {
 		struct CallableInputEvent {
@@ -47,8 +53,8 @@ namespace s3d::aoba {
 
 		friend Core;
 		friend Factory;
-		friend UIView;
 		friend PageManager;
+		friend UIView;
 
 	public:
 		ColorTheme backgroundColor, frameColor;
@@ -62,13 +68,13 @@ namespace s3d::aoba {
 		static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
 
 		const size_t m_id;
-		bool m_valid = false;
+
+		bool m_initializedColors = false;
 
 		Layer m_layer;
 		Array<Layer*> m_dependentLayers;
 		Rect m_drawableRegion = Rect();
 		bool m_needToUpdateLayer = true;
-		bool m_initialized = false;
 
 		// Mouse event
 		MouseCondition m_mouseCondition;
@@ -79,9 +85,11 @@ namespace s3d::aoba {
 		Array<InputEventHandler> m_inputEventHandlers;
 
 	public:
-		explicit UIComponent(const ColorTheme& _backgroundColor = DynamicColor::BackgroundSecondary, const ColorTheme& _frameColor = DynamicColor::Separator) noexcept;
+		UIComponent() = delete;
 
 		UIComponent(const UIComponent&) = delete;
+
+		UIComponent& operator =(const UIComponent&) = delete;
 
 		virtual ~UIComponent();
 
@@ -108,7 +116,7 @@ namespace s3d::aoba {
 		bool isFocused() const {
 			return m_FocusedComponent && m_FocusedComponent->id() == m_id;
 		}
-		
+
 		bool updatable() const {
 			return exist;
 		}
@@ -156,15 +164,18 @@ namespace s3d::aoba {
 			addEventListener<T>([f](const InputEvent&) { f(); }, primary);
 		}
 
-		UIComponent& operator =(const UIComponent&) = delete;
-
 	protected:
-		// Called once before layer updated.
-		// If you need to call addEventlistener or appnendComponent to implement the default behavior, define this function.
+		// Called once at constructed.
+		// If you need to call addEventlistener etc to implement the default behavior, define this function.
 		// Do not forget to call super::initialize().
-		virtual void initialize();
+		virtual void initialize() {}
 
-		virtual void update() {};
+		// Called once before draw().
+		// This function is intended to initialize background color. (ex. backgroundColor = defaultColor; in UIButton)
+		// Override and implement this function if the component has default colors.
+		virtual void initializeColors() {}
+
+		virtual void update() {}
 
 		virtual void updateLayer(const Rect& scissor);
 
@@ -177,6 +188,9 @@ namespace s3d::aoba {
 		const MouseCondition& mouseCondition() const {
 			return m_mouseCondition;
 		}
+
+		// Do not call this function if the component is not UIView
+		virtual void _destroy();
 
 		// Do not call this function if the component is not UIRect or UICircle
 		void _updateMouseCondition(
@@ -224,14 +238,12 @@ namespace s3d::aoba {
 		}
 
 	private:
+		UIComponent(size_t id) noexcept;
+
 		static void UpdateFocusEvent();
 
 		static void CallInputEvents();
 
 		virtual bool updateLayerIfNeeded(const Rect& scissor);
-
-		void validate() {
-			m_valid = true;
-		}
 	};
 }

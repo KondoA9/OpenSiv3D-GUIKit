@@ -1,11 +1,12 @@
-cmake_minimum_required (VERSION 3.0)
+cmake_minimum_required (VERSION 3.1)
 
-find_package(PkgConfig)
+enable_language(CXX)
 
-project(Aoba-Example)
-enable_language(C)
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
-set(CMAKE_CXX_FLAGS "-std=c++2a -Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1")
+set(CMAKE_CXX_FLAGS "-Wall -Wextra -Wno-unknown-pragmas -fPIC -msse4.1")
 set(CMAKE_CXX_FLAGS_DEBUG "-g3 -O0 -pg -DDEBUG")
 set(CMAKE_CXX_FLAGS_RELEASE "-O2 -DNDEBUG -march=x86-64")
 set(CMAKE_CXX_FLAGS_RELWITHDEBINFO "-g3 -Og -pg")
@@ -17,14 +18,17 @@ elseif("${CMAKE_CXX_COMPILER_ID}" STREQUAL "GNU")
 	add_compile_options ("-fdiagnostics-color=always")
 endif()
 
+find_package(PkgConfig)
+
 pkg_check_modules(OPENCV4 REQUIRED opencv4)
 
-include_directories(
-	"/usr/include"
+project(Aoba-Example)
 
+include_directories(
+	SYSTEM "/usr/include"
+	SYSTEM "../../Dependencies/include"
+	SYSTEM "../../Dependencies/include/ThirdParty"
 	"../../Aoba/include"
-	"../../Dependencies/include"
-	"../../Dependencies/include/ThirdParty"
 )
 
 set(SOURCE_FILES
@@ -36,8 +40,8 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../../../App)
 add_executable(Aoba-Example ${SOURCE_FILES})
 
 target_link_libraries(Aoba-Example
-	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${PROJECT_SOURCE_DIR}/../build/libaoba.a
+	${PROJECT_SOURCE_DIR}/../../Dependencies/lib/Linux/libSiv3D.a
 	${OPENCV4_LIBRARIES}
 	-lasound
 	-lavcodec

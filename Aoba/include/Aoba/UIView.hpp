@@ -3,20 +3,19 @@
 #include "UIRect.hpp"
 
 namespace s3d::aoba {
+	class Factory;
 	class PageManager;
 
 	class UIView : public UIRect {
-		friend PageManager;
 		friend Factory;
+		friend PageManager;
 
 	private:
 		Array<std::shared_ptr<UIComponent>> m_components;
 		Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
 	public:
-		explicit UIView() noexcept :
-			UIRect(DynamicColor::Background)
-		{}
+		using UIRect::UIRect;
 
 		virtual ~UIView() {}
 
@@ -48,6 +47,8 @@ namespace s3d::aoba {
 		// This function runs after a component appended. gui::Factory::Create<UIComponent>(this);
 		virtual void onAfterComponentAppended() {}
 
+		void initialize() override;
+
 		void update() override;
 
 		void updateLayer(const Rect& scissor) override;
@@ -57,6 +58,8 @@ namespace s3d::aoba {
 		void updateInputEvents() override;
 
 		void draw() const override;
+
+		void _destroy() override;
 
 	private:
 		void appendComponent(const UIComponent& component);

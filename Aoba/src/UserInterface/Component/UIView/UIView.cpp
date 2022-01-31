@@ -1,15 +1,19 @@
 ﻿#include <Aoba/UIView.hpp>
 
-#include <Aoba/Factory.hpp>
-#include <Aoba/WindowManager.hpp>
+#include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
+	void UIView::initialize() {
+		UIRect::initialize();
+
+		backgroundColor = DynamicColor::Background;
+	}
+
 	void UIView::release() {
 		UIRect::release();
 
 		for (auto& component : m_components) {
-			component->release();
-			component.reset();
+			component->_destroy();
 		}
 
 		m_components.release();
@@ -20,7 +24,7 @@ namespace s3d::aoba {
 			return component.id() == component2->id();
 			})) {
 
-			m_components.push_back(Factory::GetComponent(component.id()));
+			m_components.push_back(ComponentStorage::Get(component.id()));
 		}
 	}
 
@@ -93,6 +97,14 @@ namespace s3d::aoba {
 		}
 
 		Graphics2D::SetScissorRect(m_parentScissorRect);
+	}
+
+	void UIView::_destroy() {
+		for (auto& component : m_components) {
+			component->_destroy();
+		}
+
+		UIRect::_destroy();
 	}
 
 	void UIView::updateMouseIntersection() {

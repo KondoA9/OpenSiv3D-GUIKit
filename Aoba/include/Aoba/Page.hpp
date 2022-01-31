@@ -3,9 +3,9 @@
 #include <Siv3D.hpp>
 
 namespace s3d::aoba {
-	class UIView;
 	class Core;
 	class PageManager;
+	class UIView;
 
 	class Page {
 		friend Core;
@@ -17,8 +17,17 @@ namespace s3d::aoba {
 	private:
 		const String m_identifier;
 		bool m_loaded = false;
+		bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
 
 	public:
+		Page() = delete;
+
+		Page(const Page&) = delete;
+
+		Page& operator =(const Page&) = delete;
+
+		virtual ~Page() = default;
+
 		const String& identifier() const {
 			return m_identifier;
 		}
@@ -27,9 +36,14 @@ namespace s3d::aoba {
 			return m_loaded;
 		}
 
-	protected:
-		virtual ~Page() = default;
+		// Return { accept files, accept texts }
+		std::tuple<bool, bool> isDragDropAccepted() const {
+			return { m_acceptDragDropFiles, m_acceptDragDropTexts };
+		}
 
+		void acceptDragDrop(bool acceptFiles, bool acceptTexts);
+
+	protected:
 		// Called when Aoba core system loaded the page
 		virtual void onLoaded();
 
@@ -53,6 +67,9 @@ namespace s3d::aoba {
 
 		// Called when application terminated
 		virtual void onAppTerminated();
+
+		// Called when the files or texts are drag and dropped
+		virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
 
 	private:
 		explicit Page(const String& identifier);

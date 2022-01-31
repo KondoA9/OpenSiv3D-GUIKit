@@ -28,11 +28,9 @@ namespace s3d::aoba {
 		double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
 	public:
-		explicit UIText(const ColorTheme& backgroundColor = DynamicColor::Clear, const ColorTheme& _textColor = DynamicColor::Text) noexcept :
-			UIRect(backgroundColor)
-		{
-			textColor = _textColor;
-		}
+		using UIRect::UIRect;
+
+		virtual ~UIText() {}
 
 		const Font& font() const {
 			return m_font;
@@ -58,6 +56,8 @@ namespace s3d::aoba {
 		}
 
 	protected:
+		void initialize() override;
+
 		void updateLayer(const Rect& scissor) override;
 
 		void draw() const override;

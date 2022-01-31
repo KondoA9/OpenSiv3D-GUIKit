@@ -1,15 +1,9 @@
 ﻿#pragma once
 
-#include <Siv3D.hpp>
+#include <functional>
 
 namespace s3d::aoba {
-	struct Layer;
-	class UIComponent;
-
 	struct Constraint {
-		friend Layer;
-		friend UIComponent;
-
 	private:
 		double m_value = 0;
 		bool m_exists = false;
@@ -21,6 +15,11 @@ namespace s3d::aoba {
 	public:
 		bool isExist() const {
 			return m_exists;
+		}
+
+		// Return the pointer of the value
+		double* data() {
+			return &m_value;
 		}
 
 		void updateConstraint() {
@@ -38,12 +37,6 @@ namespace s3d::aoba {
 
 		operator double() const {
 			return m_value;
-		}
-
-	private:
-		// Return the pointer of the value
-		double* data() {
-			return &m_value;
 		}
 
 		Constraint& operator =(double value) {

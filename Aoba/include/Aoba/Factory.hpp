@@ -3,24 +3,17 @@
 #include <Siv3D.hpp>
 
 #include "Core.hpp"
-#include "UIComponent.hpp"
 #include "UIView.hpp"
 
 namespace s3d::aoba {
 	class Page;
+	class UIComponent;
 
 	class Factory {
-		friend Core;
-		friend UIComponent;
-		friend UIView;
 		friend Page;
 
 	private:
-		static size_t m_Id, m_PreviousId;
-		static Factory m_Instance;
-
-		size_t m_releaseCounter = 0;
-		Array<std::shared_ptr<UIComponent>> m_components;
+		size_t m_id = 0;
 
 	public:
 		Factory(const Factory&) = delete;
@@ -57,36 +50,23 @@ namespace s3d::aoba {
 	private:
 		Factory() = default;
 
-		static size_t GetId();
+		~Factory() = default;
 
-		static std::shared_ptr<UIComponent>& GetComponent(size_t id);
-
-		static void RequestReleaseComponent(size_t id);
-
-		static void ReleaseInvalidComponents();
+		static Factory& Instance();
 
 		template<class T>
 		[[nodiscard]] static T& CreateComponent() {
-			if (m_Instance.m_releaseCounter++; m_Instance.m_releaseCounter == 100) {
-				ReleaseInvalidComponents();
+			const size_t id = Instance().createId();
 
-				if (m_Instance.m_components.capacity() != m_Instance.m_components.size()) {
-					m_Instance.m_components.shrink_to_fit();
-				}
+#if SIV3D_BUILD(DEBUG)
+			Logger << U"[Aoba](Create) " + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
+#endif
 
-				m_Instance.m_releaseCounter = 0;
-			}
-
-			m_Id++;
-
-			{
-				auto component = std::shared_ptr<T>(new T());
-				component->validate();
-
-				m_Instance.m_components.push_back(component);
-			}
-
-			return *static_cast<T*>(m_Instance.m_components.back().get());
+			return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(id))).get());
 		}
+
+		size_t createId();
+
+		std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
 	};
 }

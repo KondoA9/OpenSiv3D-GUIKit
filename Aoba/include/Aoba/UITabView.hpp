@@ -4,10 +4,9 @@
 #include "UIButton.hpp"
 #include "UIView.hpp"
 
-namespace s3d::aoba {
-	// Called when tab switched or tab view loaded.
-	AobaCreateInputEvent(TabSwitched);
+AobaCreateEventComponentNS(TabView, Switched)
 
+namespace s3d::aoba {
 	class UITabView : public UIView {
 		struct Tab {
 			size_t index;
@@ -35,11 +34,7 @@ namespace s3d::aoba {
 		size_t m_tabIndex = 0;
 
 	public:
-		explicit UITabView() noexcept :
-			UIView()
-		{}
-
-		virtual ~UITabView() {}
+		using UIView::UIView;
 
 		size_t index() const {
 			return m_tabIndex;

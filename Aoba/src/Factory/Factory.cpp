@@ -1,39 +1,24 @@
 ﻿#include <Aoba/Factory.hpp>
 
+#include <Aoba/UIComponent.hpp>
+
+#include "src/ComponentStorage/ComponentStorage.hpp"
+
 namespace s3d::aoba {
-	size_t Factory::m_Id = 0, Factory::m_PreviousId = 0;
-	Factory Factory::m_Instance;
-
-	size_t Factory::GetId() {
-		FMT_ASSERT(m_PreviousId != m_Id, "Make sure you instantiated through Factory::Create()");
-
-		m_PreviousId = m_Id;
-
-		return m_Id;
+	Factory& Factory::Instance() {
+		static Factory instance;
+		return instance;
 	}
 
-	std::shared_ptr<UIComponent>& Factory::GetComponent(size_t id) {
-		for (auto& component : m_Instance.m_components) {
-			if (component && component->id() == id) {
-				return component;
-			}
-		}
-
-		throw Error{ U"A component with identifier \"{}\" not found."_fmt(id) };
+	size_t Factory::createId() {
+		return Instance().m_id++;
 	}
 
-	void Factory::RequestReleaseComponent(size_t id) {
-		for (auto& component : m_Instance.m_components) {
-			if (component && component->id() == id) {
-				component.reset();
-				break;
-			}
-		}
-	}
+	std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
+		component->initialize();
 
-	void Factory::ReleaseInvalidComponents() {
-		m_Instance.m_components.remove_if([](const std::shared_ptr<UIComponent>& component) {
-			return !component;
-			});
+		ComponentStorage::Store(component);
+
+		return ComponentStorage::Get(component->id());
 	}
 }

@@ -8,6 +8,8 @@ namespace s3d::aoba {
 		view(Factory::CreateComponent<UIView>()),
 		m_identifier(identifier)
 	{
+		acceptDragDrop(false, false);
+
 		view.setConstraint(LayerDirection::Top);
 		view.setConstraint(LayerDirection::Bottom, [] {
 			return Scene::Size().y;
@@ -18,9 +20,12 @@ namespace s3d::aoba {
 			});
 	}
 
-	void Page::onLoaded() {
-		m_loaded = true;
+	void Page::acceptDragDrop(bool acceptFiles, bool acceptTexts) {
+		m_acceptDragDropFiles = acceptFiles;
+		m_acceptDragDropTexts = acceptTexts;
 	}
+
+	void Page::onLoaded() {}
 
 	void Page::onBeforeAppeared() {}
 
@@ -35,4 +40,6 @@ namespace s3d::aoba {
 	void Page::onBeforeAppTerminated() {}
 
 	void Page::onAppTerminated() {}
+
+	void Page::onDragDrop(const Array<DroppedFilePath>&, const Array<DroppedText>&) {}
 }

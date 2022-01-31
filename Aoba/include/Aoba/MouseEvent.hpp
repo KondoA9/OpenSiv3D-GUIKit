@@ -4,32 +4,28 @@
 
 #include "InputEvent.hpp"
 
-namespace s3d::aoba {
-	namespace MouseEvent {
-		// Raw events called when mouse down / up.
-		// Does not consider whether it is a long press event, dragging event or not
-		AobaCreateInputEvent(LeftDownRaw);
-		AobaCreateInputEvent(LeftUpRaw);
+// Raw events called when mouse down / up.
+// Does not consider whether it is a long press event, dragging event or not
+AobaCreateEventNSEvent(Mouse, LeftDownRaw)
+AobaCreateEventNSEvent(Mouse, LeftUpRaw)
 
-		AobaCreateInputEvent(RightDownRaw);
-		AobaCreateInputEvent(RightUpRaw);
+AobaCreateEventNSEvent(Mouse, RightDownRaw)
+AobaCreateEventNSEvent(Mouse, RightUpRaw)
 
-		// Mouse down event is called if mouse up within 0.5s
-		AobaCreateInputEvent(LeftDown);
-		AobaCreateInputEvent(LeftDragging);
-		AobaCreateInputEvent(LeftDraggingStart);
-		AobaCreateInputEvent(LeftDraggingEnd);
+// Mouse down event is called if mouse up within 0.5s
+AobaCreateEventNSEvent(Mouse, LeftDown)
+AobaCreateEventNSEvent(Mouse, LeftDragging)
+AobaCreateEventNSEvent(Mouse, LeftDraggingStart)
+AobaCreateEventNSEvent(Mouse, LeftDraggingEnd)
 
-		AobaCreateInputEvent(RightDown);
-		AobaCreateInputEvent(RightDragging);
-		AobaCreateInputEvent(RightDraggingStart);
-		AobaCreateInputEvent(RightDraggingEnd);
+AobaCreateEventNSEvent(Mouse, RightDown)
+AobaCreateEventNSEvent(Mouse, RightDragging)
+AobaCreateEventNSEvent(Mouse, RightDraggingStart)
+AobaCreateEventNSEvent(Mouse, RightDraggingEnd)
 
-		// Hover events are called even if while mouse dragging
-		AobaCreateInputEvent(Hovered);
-		AobaCreateInputEvent(UnHovered);
-		AobaCreateInputEvent(Hovering);
+// Hover events are called even if while mouse dragging
+AobaCreateEventNSEvent(Mouse, Hovered)
+AobaCreateEventNSEvent(Mouse, UnHovered)
+AobaCreateEventNSEvent(Mouse, Hovering)
 
-		AobaCreateInputEvent(Wheel);
-	}
-}
+AobaCreateEventNSEvent(Mouse, Wheel)

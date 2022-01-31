@@ -18,16 +18,37 @@ namespace s3d::aoba {
 		bool mutable m_isTransition = false;
 
 	public:
-		constexpr ColorTheme(const Color& lightColor, const Color& darkColor) :
+		constexpr ColorTheme() = delete;
+
+		constexpr ColorTheme(const ColorTheme&) noexcept = default;
+
+		constexpr ColorTheme(ColorTheme&&) noexcept = default;
+
+		constexpr ColorTheme(const Color& lightColor, const Color& darkColor) noexcept :
 			light(lightColor),
 			dark(darkColor),
 			m_transitionLight(lightColor),
 			m_transitionDark(darkColor)
 		{}
 
-		constexpr ColorTheme(const Color& color) :
+		constexpr ColorTheme(Color&& lightColor, Color&& darkColor) noexcept :
+			light(lightColor),
+			dark(darkColor),
+			m_transitionLight(lightColor),
+			m_transitionDark(darkColor)
+		{}
+
+		constexpr ColorTheme(const Color& color) noexcept :
 			ColorTheme(color, color)
 		{}
+
+		constexpr ColorTheme(Color&& color) noexcept :
+			ColorTheme(color, color)
+		{}
+
+		ColorTheme& operator =(const ColorTheme&) noexcept = default;
+
+		ColorTheme& operator =(ColorTheme&&) noexcept = default;
 
 		Color color() const;
 

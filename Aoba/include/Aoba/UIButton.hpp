@@ -5,25 +5,19 @@
 namespace s3d::aoba {
 	class UIButton : public UIText {
 	public:
-		ColorTheme defaultColor, hoveredColor, defaultTextColor, hoveredTextColor;
+		static ColorTheme DefaultColor, DefaultTextColor, DefaultHoveredColor, DefaultHoveredTextColor;
+
+		ColorTheme
+			defaultColor = DefaultColor,
+			hoveredColor = DefaultHoveredColor,
+			defaultTextColor = DefaultTextColor,
+			hoveredTextColor = DefaultHoveredTextColor;
 
 	private:
 		Texture m_icon;
 
 	public:
-		explicit UIButton(
-			const ColorTheme& _defaultColor = DynamicColor::Background,
-			const ColorTheme& _defaultTextColor = DynamicColor::Text,
-			const ColorTheme& _hoveredColor = DynamicColor::BackgroundSecondary,
-			const ColorTheme& _hoveredTextColor = DynamicColor::Text) noexcept :
-			UIText(_defaultColor, _defaultTextColor),
-			defaultColor(_defaultColor),
-			hoveredColor(_hoveredColor),
-			defaultTextColor(_defaultTextColor),
-			hoveredTextColor(_hoveredTextColor)
-		{
-			setDirection(TextDirection::Center);
-		}
+		using UIText::UIText;
 
 		const Texture& icon() const {
 			return m_icon;
@@ -39,6 +33,8 @@ namespace s3d::aoba {
 
 	protected:
 		void initialize() override;
+
+		void initializeColors() override;
 
 		void draw() const override;
 	};

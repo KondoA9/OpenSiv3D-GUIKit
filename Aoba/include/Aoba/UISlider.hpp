@@ -8,6 +8,11 @@
 
 namespace s3d::aoba {
 	class UISlider : public UIView {
+	public:
+		static ColorTheme DefaultAccentColor;
+
+		ColorTheme accentColor = DefaultAccentColor;
+
 	private:
 		double m_value = 0.0, m_min = 0.0, m_max = 1.0;
 		std::function<void(double value)> m_valueChangedHandler;

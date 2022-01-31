@@ -5,8 +5,6 @@
 };
 
 void FocusTest::onLoaded() {
-	Page::onLoaded();
-
 	auto& rect = aoba::Factory::Create<aoba::UIRect>(view);
 
 	const size_t focusTimeout = aoba::Core::SetTimeout([] {
@@ -18,7 +16,7 @@ void FocusTest::onLoaded() {
 		Test::Assert(rect.isFocused(), "Focused a component, but it is not focused");
 		}, 1500, false);
 
-	rect.addEventListener<aoba::Focused>([&rect, focusTimeout] {
+	rect.addEventListener<aoba::Event::Component::Focused>([&rect, focusTimeout] {
 		aoba::Core::StopTimeout(focusTimeout);
 
 		const size_t unfocusTimeout = aoba::Core::SetTimeout([] {
@@ -30,7 +28,7 @@ void FocusTest::onLoaded() {
 			Test::Assert(!rect.isFocused(), "UnFocused a component, but it is focused");
 			}, 1500, false);
 
-		rect.addEventListener<aoba::UnFocused>([unfocusTimeout] {
+		rect.addEventListener<aoba::Event::Component::UnFocused>([unfocusTimeout] {
 			aoba::Core::StopTimeout(unfocusTimeout);
 			});
 		});

@@ -2,14 +2,19 @@
 
 namespace s3d::aoba {
 	void UICheckBox::initialize() {
-		addEventListener<MouseEvent::LeftDown>([this] {
-			setChecked(!m_checked);
-			}, true);
+		UIButton::initialize();
+
+		defaultColor = DynamicColor::BackgroundSecondary;
+		hoveredColor = DynamicColor::BackgroundSecondary;
+		defaultTextColor = DynamicColor::Text;
 
 		drawFrame = true;
+
 		setCornerRadius(3_px);
 
-		UIButton::initialize();
+		addEventListener<Event::Mouse::LeftDown>([this] {
+			setChecked(!m_checked);
+			}, true);
 	}
 
 	void UICheckBox::setChecked(bool checked) {
