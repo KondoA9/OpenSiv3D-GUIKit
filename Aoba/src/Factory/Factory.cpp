@@ -1,4 +1,4 @@
-﻿#include <Aoba/Factory.hpp>
+#include <Aoba/Factory.hpp>
 
 #include <Aoba/UIComponent.hpp>
 
@@ -11,7 +11,7 @@ namespace s3d::aoba {
 		return instance;
 	}
 
-	void Factory::LogCreatedComponent(size_t id, const type_info& info) {
+	void Factory::LogCreatedComponent(size_t id, const std::type_info& info) {
 		AobaLog::Log(AobaLog::Type::Info, U"Factory", U"Create " + Unicode::Widen(std::string(info.name())) + U" " + ToString(id));
 	}
 

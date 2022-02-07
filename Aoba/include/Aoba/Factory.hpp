@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include <Siv3D.hpp>
 
@@ -54,7 +54,7 @@ namespace s3d::aoba {
 
 		static Factory& Instance();
 
-		static void LogCreatedComponent(size_t id, const type_info& info);
+		static void LogCreatedComponent(size_t id, const std::type_info& info);
 
 		template<class T>
 		[[nodiscard]] static T& CreateComponent() {
