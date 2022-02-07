@@ -42,6 +42,10 @@ namespace s3d::CLI {
 			FileSystem::CreateDirectories(FileSystem::ParentPath(output));
 		}
 
+		if (FileSystem::Exists(output)) {
+			FileSystem::Remove(output);
+		}
+
 #if SIV3D_PLATFORM(WINDOWS)
 		result &= Execute(U"Invoke-WebRequest \\\"{}\\\" -OutFile \\\"{}\\\" -UseBasicParsing"_fmt(url, output));
 #else
