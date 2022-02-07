@@ -1,5 +1,7 @@
 #include "ComponentStorage.hpp"
 
+#include "src/AobaLog/AobaLog.hpp"
+
 namespace s3d::aoba {
 	ComponentStorage& ComponentStorage::Instance() {
 		static ComponentStorage instance;
@@ -15,7 +17,7 @@ namespace s3d::aoba {
 		for (auto& component : Instance().m_components) {
 			if (component && component->id() == id) {
 #if SIV3D_BUILD(DEBUG)
-				Logger << U"Aoba(ComponentStorage) [Info] Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" " + ToString(component->id());
+				AobaLog::Log(AobaLog::Type::Info, U"ComponentStorage", U"Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" " + ToString(component->id()));
 #endif
 				component.reset();
 				break;

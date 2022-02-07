@@ -207,6 +207,9 @@
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp">
       <Filter>Aoba\ComponentStorage</Filter>
     </ClCompile>
+    <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp">
+      <Filter>Aoba\AobaLog</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp">

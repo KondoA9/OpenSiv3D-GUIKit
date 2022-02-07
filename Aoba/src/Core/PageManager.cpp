@@ -2,6 +2,8 @@
 
 #include <Aoba/Page.hpp>
 
+#include "src/AobaLog/AobaLog.hpp"
+
 namespace s3d::aoba {
 	PageManager::PageManager() {
 		// Set scissor rect
@@ -37,7 +39,7 @@ namespace s3d::aoba {
 			}
 		}
 
-		Logger << U"Error(PageManager): A page identified as {} does not exist."_fmt(identifier);
+		AobaLog::Log(AobaLog::Type::Error, U"PageManager", U"A page identified as {} does not exist."_fmt(identifier));
 
 		assert(false);
 	}
@@ -51,7 +53,7 @@ namespace s3d::aoba {
 			m_pageTransition = PageTransition::StartChanging;
 		}
 		else {
-			Logger << U"Error(PageManager): Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier);
+			AobaLog::Log(AobaLog::Type::Error, U"PageManager", U"Switched current ui to the ui identified as {}, but the ui does not exist."_fmt(identifier));
 		}
 	}
 

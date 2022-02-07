@@ -54,12 +54,14 @@ namespace s3d::aoba {
 
 		static Factory& Instance();
 
+		static void LogCreatedComponent(size_t id, const type_info& info);
+
 		template<class T>
 		[[nodiscard]] static T& CreateComponent() {
 			const size_t id = Instance().createId();
 
 #if SIV3D_BUILD(DEBUG)
-			Logger << U"Aoba(Factory) [Info] Create:" + Unicode::Widen(std::string(typeid(T).name())) + U" " + ToString(id);
+			LogCreatedComponent(id, typeid(T));
 #endif
 
 			return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(id))).get());
