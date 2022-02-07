@@ -35,6 +35,8 @@ add_library(aoba STATIC
 	"../Aoba/src/Core/TaskRunner.cpp"
 	"../Aoba/src/Core/WindowManager.cpp"
 
+	"../Aoba/src/AobaLog/AobaLog.cpp"
+
 	"../Aoba/src/Factory/Factory.cpp"
 	
 	"../Aoba/src/ComponentStorage/ComponentStorage.cpp"
