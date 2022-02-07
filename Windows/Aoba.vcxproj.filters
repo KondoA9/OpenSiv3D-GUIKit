@@ -103,6 +103,9 @@
     <Filter Include="Aoba\Core\TaskRunner">
       <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\AobaLog">
+      <UniqueIdentifier>{f06c9c0b-d735-4684-99c1-766c23e0428a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -203,6 +206,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp">
       <Filter>Aoba\ComponentStorage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp">
+      <Filter>Aoba\AobaLog</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -310,6 +316,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp">
       <Filter>Aoba\ComponentStorage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\AobaLog\AobaLog.hpp">
+      <Filter>Aoba\AobaLog</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

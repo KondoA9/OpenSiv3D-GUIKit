@@ -6,6 +6,8 @@
 #include "TaskRunner.hpp"
 #include "WindowManager.hpp"
 
+#include "src/AobaLog/AobaLog.hpp"
+
 void AobaMain();
 
 void Main() {
@@ -20,7 +22,7 @@ namespace s3d::aoba {
 			return true;
 		}
 		else {
-			Logger << U"Aoba(Core) [Error]: No pages are registered.";
+			AobaLog::Log(AobaLog::Type::Error, U"Core", U"No pages are registered");
 			return false;
 		}
 	}

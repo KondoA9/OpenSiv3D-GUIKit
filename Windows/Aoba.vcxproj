@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp" />
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
@@ -77,6 +78,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
+    <ClInclude Include="..\Aoba\src\AobaLog\AobaLog.hpp" />
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp" />
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp" />

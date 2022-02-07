@@ -1,5 +1,7 @@
 ﻿#include <Aoba/Layer.hpp>
 
+#include "src/AobaLog/AobaLog.hpp"
+
 namespace s3d::aoba {
 	const Vec2& Layer::center() const {
 		return m_center;
@@ -79,7 +81,7 @@ namespace s3d::aoba {
 			m_bottom = m_top + m_height;
 		}
 		else {
-			Logger << U"Y-axis constraints are invalid ";
+			AobaLog::Log(AobaLog::Type::Warning, U"Layer", U"Y-axis constraints are invalid");
 		}
 
 		// x-axis constraints
@@ -123,7 +125,7 @@ namespace s3d::aoba {
 			m_right = m_left + m_width;
 		}
 		else {
-			Logger << U"X-axis constraints are invalid ";
+			AobaLog::Log(AobaLog::Type::Warning, U"Layer", U"X-axis constraints are invalid");
 		}
 
 		m_center = Vec2(m_centerX, m_centerY);
