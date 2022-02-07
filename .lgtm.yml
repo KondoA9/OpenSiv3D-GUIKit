@@ -1,0 +1,18 @@
+path_classifiers:
+  library:
+    - Dependencies
+
+extraction:
+  cpp:
+    prepare:
+      packages:
+        - ninja-build
+    configure:
+      command:
+      - mkdir Linux/build
+      - cd Linux/build
+      - cmake -DCMAKE_BUILD_TYPE=Debug -GNinja ..
+    index:
+      build_command:
+      - cd Linux/build/
+      - ninja
