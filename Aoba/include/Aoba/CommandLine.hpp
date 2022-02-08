@@ -6,6 +6,15 @@ namespace s3d::CLI {
 	// On Windows, the command will be executed on powershell
 	bool Execute(const String& command);
 
+#if SIV3D_PLATFORM(WINDOWS)
+	enum class WindowType {
+		Hide,
+		Show
+	};
+
+	bool Execute(const String& command, WindowType windowType, bool waitProcessTermination, const Optional<String>& currentDirectory);
+#endif
+
 	/// <summary>
 	/// Get the content from url and save it to the output path.
 	/// If Windows, this function call Invoke-WebRequest command on powershell
