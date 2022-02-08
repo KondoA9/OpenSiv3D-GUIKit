@@ -1,9 +1,9 @@
-﻿#include <Aoba/Core.hpp>
+﻿#include "Aoba/Core.hpp"
 
 #include <thread>
 
-#include <Aoba/Page.hpp>
-#include <Aoba/UnifiedFont.hpp>
+#include "Aoba/Page.hpp"
+#include "Aoba/UnifiedFont.hpp"
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
 #include "PageManager.hpp"

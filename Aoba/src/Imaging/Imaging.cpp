@@ -1,4 +1,4 @@
-﻿#include <Aoba/Imaging.hpp>
+﻿#include "Aoba/Imaging.hpp"
 
 namespace s3d::aoba::Imaging {
 	namespace Internal {

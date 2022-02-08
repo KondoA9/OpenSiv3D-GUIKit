@@ -1,6 +1,6 @@
-﻿#include <Aoba/UIImageView.hpp>
+﻿#include "Aoba/UIImageView.hpp"
 
-#include <Aoba/Imaging.hpp>
+#include "Aoba/Imaging.hpp"
 
 namespace s3d::aoba {
 	void UIImageView::initialize() {

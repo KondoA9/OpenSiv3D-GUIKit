@@ -1,6 +1,6 @@
-﻿#include <Aoba/UIText.hpp>
+﻿#include "Aoba/UIText.hpp"
 
-#include <Aoba/PixelUnit.hpp>
+#include "Aoba/PixelUnit.hpp"
 
 namespace s3d::aoba {
 	void UIText::initialize() {

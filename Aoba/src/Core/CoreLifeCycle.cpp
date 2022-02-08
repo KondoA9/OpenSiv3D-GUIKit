@@ -1,6 +1,6 @@
-﻿#include <Aoba/Core.hpp>
+﻿#include "Aoba/Core.hpp"
 
-#include <Aoba/ColorTheme.hpp>
+#include "Aoba/ColorTheme.hpp"
 
 #include "PageManager.hpp"
 #include "TaskRunner.hpp"

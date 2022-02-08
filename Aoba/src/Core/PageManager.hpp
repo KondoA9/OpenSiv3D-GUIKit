@@ -2,7 +2,7 @@
 
 #include <Siv3D.hpp>
 
-#include <Aoba/UIComponent.hpp>
+#include "Aoba/UIComponent.hpp"
 
 namespace s3d::aoba {
 	class Page;

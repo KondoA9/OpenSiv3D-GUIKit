@@ -1,4 +1,4 @@
-﻿#include <Aoba/Constraint.hpp>
+﻿#include "Aoba/Constraint.hpp"
 
 namespace s3d::aoba {
 	void Constraint::setConstraint(double constant, double multiplier) {
