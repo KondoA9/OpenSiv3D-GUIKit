@@ -1,24 +1,22 @@
 ﻿#include "Aoba/UICheckBox.hpp"
 
 namespace s3d::aoba {
-	void UICheckBox::initialize() {
-		UIButton::initialize();
+    void UICheckBox::initialize() {
+        UIButton::initialize();
 
-		defaultColor = DynamicColor::BackgroundSecondary;
-		hoveredColor = DynamicColor::BackgroundSecondary;
-		defaultTextColor = DynamicColor::Text;
+        defaultColor     = DynamicColor::BackgroundSecondary;
+        hoveredColor     = DynamicColor::BackgroundSecondary;
+        defaultTextColor = DynamicColor::Text;
 
-		drawFrame = true;
+        drawFrame = true;
 
-		setCornerRadius(3_px);
+        setCornerRadius(3_px);
 
-		addEventListener<Event::Mouse::LeftDown>([this] {
-			setChecked(!m_checked);
-			}, true);
-	}
+        addEventListener<Event::Mouse::LeftDown>([this] { setChecked(!m_checked); }, true);
+    }
 
-	void UICheckBox::setChecked(bool checked) {
-		m_checked = checked;
-		setIcon(m_checked ? m_checkdIcon : Texture());
-	}
+    void UICheckBox::setChecked(bool checked) {
+        m_checked = checked;
+        setIcon(m_checked ? m_checkdIcon : Texture());
+    }
 }

@@ -5,55 +5,53 @@
 #include "Constraint.hpp"
 
 namespace s3d::aoba {
-	enum class LayerDirection {
-		Top,
-		Bottom,
-		CenterY,
-		Height,
-		Left,
-		Right,
-		CenterX,
-		Width
-	};
+    enum class LayerDirection { Top, Bottom, CenterY, Height, Left, Right, CenterX, Width };
 
-	struct Layer {
-	private:
-		Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
+    struct Layer {
+    private:
+        Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
 
-		Vec2 m_center = Vec2();
+        Vec2 m_center = Vec2();
 
-	public:
-		const Vec2& center() const;
+    public:
+        const Vec2& center() const;
 
-		const Constraint& top() const;
+        const Constraint& top() const;
 
-		const Constraint& bottom() const;
+        const Constraint& bottom() const;
 
-		const Constraint& centerY() const;
+        const Constraint& centerY() const;
 
-		const Constraint& height() const;
+        const Constraint& height() const;
 
-		const Constraint& left() const;
+        const Constraint& left() const;
 
-		const Constraint& right() const;
+        const Constraint& right() const;
 
-		const Constraint& centerX() const;
+        const Constraint& centerX() const;
 
-		const Constraint& width() const;
+        const Constraint& width() const;
 
-		void updateConstraints();
+        void updateConstraints();
 
-		void setConstraint(LayerDirection direction, double constant, double multiplier);
+        void setConstraint(LayerDirection direction, double constant, double multiplier);
 
-		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier);
+        void setConstraint(LayerDirection direction,
+                           const std::function<double()>& func,
+                           double constant,
+                           double multiplier);
 
-		void setConstraint(LayerDirection direction, Layer& otherLayer, LayerDirection otherLayerDirection, double constant, double multiplier);
+        void setConstraint(LayerDirection direction,
+                           Layer& otherLayer,
+                           LayerDirection otherLayerDirection,
+                           double constant,
+                           double multiplier);
 
-		void removeConstraint(LayerDirection direction);
+        void removeConstraint(LayerDirection direction);
 
-		void removeAllConstraints();
+        void removeAllConstraints();
 
-	private:
-		Constraint& constraintReferenceTo(LayerDirection direction);
-	};
+    private:
+        Constraint& constraintReferenceTo(LayerDirection direction);
+    };
 }

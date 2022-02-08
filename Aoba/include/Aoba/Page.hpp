@@ -3,75 +3,75 @@
 #include <Siv3D.hpp>
 
 namespace s3d::aoba {
-	class Core;
-	class PageManager;
-	class UIView;
+    class Core;
+    class PageManager;
+    class UIView;
 
-	class Page {
-		friend Core;
-		friend PageManager;
+    class Page {
+        friend Core;
+        friend PageManager;
 
-	public:
-		UIView& view;
+    public:
+        UIView& view;
 
-	private:
-		const String m_identifier;
-		bool m_loaded = false;
-		bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
+    private:
+        const String m_identifier;
+        bool m_loaded              = false;
+        bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
 
-	public:
-		Page() = delete;
+    public:
+        Page() = delete;
 
-		Page(const Page&) = delete;
+        Page(const Page&) = delete;
 
-		Page& operator =(const Page&) = delete;
+        Page& operator=(const Page&) = delete;
 
-		virtual ~Page() = default;
+        virtual ~Page() = default;
 
-		const String& identifier() const {
-			return m_identifier;
-		}
+        const String& identifier() const {
+            return m_identifier;
+        }
 
-		bool didLoaded() const {
-			return m_loaded;
-		}
+        bool didLoaded() const {
+            return m_loaded;
+        }
 
-		// Return { accept files, accept texts }
-		std::tuple<bool, bool> isDragDropAccepted() const {
-			return { m_acceptDragDropFiles, m_acceptDragDropTexts };
-		}
+        // Return { accept files, accept texts }
+        std::tuple<bool, bool> isDragDropAccepted() const {
+            return {m_acceptDragDropFiles, m_acceptDragDropTexts};
+        }
 
-		void acceptDragDrop(bool acceptFiles, bool acceptTexts);
+        void acceptDragDrop(bool acceptFiles, bool acceptTexts);
 
-	protected:
-		// Called when Aoba core system loaded the page
-		virtual void onLoaded();
+    protected:
+        // Called when Aoba core system loaded the page
+        virtual void onLoaded();
 
-		// Called before Aoba core system draws the page
-		virtual void onBeforeAppeared();
+        // Called before Aoba core system draws the page
+        virtual void onBeforeAppeared();
 
-		// Called after Aoba core system draws the page
-		virtual void onAfterAppeared();
+        // Called after Aoba core system draws the page
+        virtual void onAfterAppeared();
 
-		// Called before Aoba core system erases the page
-		virtual void onBeforeDisappeared();
+        // Called before Aoba core system erases the page
+        virtual void onBeforeDisappeared();
 
-		// Called after Aoba core system erases the page
-		virtual void onAfterDisappeared();
+        // Called after Aoba core system erases the page
+        virtual void onAfterDisappeared();
 
-		// Called when window resized
-		virtual void onWindowResized();
+        // Called when window resized
+        virtual void onWindowResized();
 
-		// Called before when application terminated
-		virtual void onBeforeAppTerminated();
+        // Called before when application terminated
+        virtual void onBeforeAppTerminated();
 
-		// Called when application terminated
-		virtual void onAppTerminated();
+        // Called when application terminated
+        virtual void onAppTerminated();
 
-		// Called when the files or texts are drag and dropped
-		virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
+        // Called when the files or texts are drag and dropped
+        virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
 
-	private:
-		explicit Page(const String& identifier);
-	};
+    private:
+        explicit Page(const String& identifier);
+    };
 }

@@ -3,44 +3,44 @@
 #include <Siv3D.hpp>
 
 namespace s3d::aoba {
-	class Timeout {
-		static std::atomic<size_t> m_Id;
+    class Timeout {
+        static std::atomic<size_t> m_Id;
 
-		const size_t m_id;
-		const double m_ms;
-		const bool m_threading;
-		const std::function<void()> m_func;
+        const size_t m_id;
+        const double m_ms;
+        const bool m_threading;
+        const std::function<void()> m_func;
 
-		Stopwatch m_stopwatch;
-		bool m_started = false, m_stopped = false, m_finished = false;
+        Stopwatch m_stopwatch;
+        bool m_started = false, m_stopped = false, m_finished = false;
 
-	public:
-		Timeout(const std::function<void()>& func, double ms, bool threading);
+    public:
+        Timeout(const std::function<void()>& func, double ms, bool threading);
 
-		Timeout(const Timeout&) = delete;
+        Timeout(const Timeout&) = delete;
 
-		Timeout(Timeout&&) = default;
+        Timeout(Timeout&&) = default;
 
-		size_t id() const {
-			return m_id;
-		}
+        size_t id() const {
+            return m_id;
+        }
 
-		bool isRunning() {
-			return m_started && !m_finished;
-		}
+        bool isRunning() {
+            return m_started && !m_finished;
+        }
 
-		bool isAlive() {
-			return !m_stopped && !m_finished;
-		}
+        bool isAlive() {
+            return !m_stopped && !m_finished;
+        }
 
-		void update();
+        void update();
 
-		bool restart();
+        bool restart();
 
-		bool stop();
+        bool stop();
 
-		Timeout& operator=(const Timeout&) = delete;
+        Timeout& operator=(const Timeout&) = delete;
 
-		Timeout& operator=(Timeout&&) = delete;
-	};
+        Timeout& operator=(Timeout&&) = delete;
+    };
 }

@@ -1,28 +1,27 @@
 ﻿#include "Aoba/UIIcon.hpp"
 
 namespace s3d::aoba {
-	void UIIcon::initialize() {
-		UIRect::initialize();
+    void UIIcon::initialize() {
+        UIRect::initialize();
 
-		backgroundColor = DynamicColor::Clear;
-	}
+        backgroundColor = DynamicColor::Clear;
+    }
 
-	void UIIcon::update() {
-		UIRect::update();
+    void UIIcon::update() {
+        UIRect::update();
 
-		if (rotate) {
-			m_angle += rotationAnglerVelocity * Scene::DeltaTime();
-		}
-	}
+        if (rotate) {
+            m_angle += rotationAnglerVelocity * Scene::DeltaTime();
+        }
+    }
 
-	void UIIcon::draw() const {
-		UIRect::draw();
+    void UIIcon::draw() const {
+        UIRect::draw();
 
-		if (rotate) {
-			m_icon.rotated(m_angle).drawAt(layer().center(), iconColor);
-		}
-		else {
-			m_icon.drawAt(layer().center(), iconColor);
-		}
-	}
+        if (rotate) {
+            m_icon.rotated(m_angle).drawAt(layer().center(), iconColor);
+        } else {
+            m_icon.drawAt(layer().center(), iconColor);
+        }
+    }
 }
