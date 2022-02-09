@@ -6,6 +6,7 @@
 namespace s3d::aoba {
     Page::Page(const String& identifier) : view(Factory::CreateComponent<UIView>()), m_identifier(identifier) {
         acceptDragDrop(false, false);
+        view.backgroundColor = DynamicColor::Background;
 
         view.setConstraint(LayerDirection::Top);
         view.setConstraint(LayerDirection::Bottom, [] { return Scene::Size().y; });
