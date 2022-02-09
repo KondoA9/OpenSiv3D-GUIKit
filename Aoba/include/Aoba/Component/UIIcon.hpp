@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIComponent.hpp"
+#include "Aoba/Component/UIBase.hpp"
 #include "Aoba/Component/UIRect.hpp"
 
 namespace s3d::aoba {

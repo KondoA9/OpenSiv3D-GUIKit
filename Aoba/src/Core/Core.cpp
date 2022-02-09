@@ -58,7 +58,7 @@ namespace s3d::aoba {
         Instance().m_pageManager->switchPage(identifier);
     }
 
-    void Core::AppendIsolatedComponent(const UIComponent& component) {
+    void Core::AppendIsolatedComponent(const UIBase& component) {
         Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
     }
 
@@ -159,7 +159,7 @@ SOFTWARE.)";
         return true;
     }
 
-    void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+    void Core::appendIsolatedComponent(const std::shared_ptr<UIBase>& component) {
         m_pageManager->appendIsolatedComponent(component);
     }
 

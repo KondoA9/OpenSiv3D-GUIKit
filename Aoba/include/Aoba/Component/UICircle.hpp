@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIComponent.hpp"
+#include "Aoba/Component/UIBase.hpp"
 
 namespace s3d::aoba {
-    class UICircle : public UIComponent {
+    class UICircle : public UIBase {
     private:
         Ellipse m_circle;
 
     public:
-        using UIComponent::UIComponent;
+        using UIBase::UIBase;
 
         const Ellipse& circle() const {
             return m_circle;

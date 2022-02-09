@@ -22,7 +22,7 @@ namespace s3d::aoba {
     class PageManager;
     class UIView;
 
-    class UIComponent {
+    class UIBase {
         struct CallableInputEvent {
             InputEvent mouseEvent;
             Array<InputEventHandler> handlers;
@@ -65,7 +65,7 @@ namespace s3d::aoba {
 
     private:
         static Array<CallableInputEvent> m_CallableInputEvents;
-        static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
+        static std::shared_ptr<UIBase> m_FocusedComponent, m_PreviousFocusedComponent;
 
         const size_t m_id;
 
@@ -85,18 +85,18 @@ namespace s3d::aoba {
         Array<InputEventHandler> m_inputEventHandlers;
 
     public:
-        UIComponent() = delete;
+        UIBase() = delete;
 
-        UIComponent(const UIComponent&) = delete;
+        UIBase(const UIBase&) = delete;
 
-        UIComponent& operator=(const UIComponent&) = delete;
+        UIBase& operator=(const UIBase&) = delete;
 
-        virtual ~UIComponent();
+        virtual ~UIBase();
 
         virtual void release() {}
 
         void setConstraint(LayerDirection direction,
-                           UIComponent& component,
+                           UIBase& component,
                            LayerDirection toDirection,
                            double constant   = 0.0,
                            double multiplier = 1.0);
@@ -237,7 +237,7 @@ namespace s3d::aoba {
         }
 
     private:
-        UIComponent(size_t id) noexcept;
+        UIBase(size_t id) noexcept;
 
         static void UpdateFocusEvent();
 

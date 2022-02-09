@@ -1,14 +1,14 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIComponent.hpp"
+#include "Aoba/Component/UIBase.hpp"
 
 namespace s3d::aoba {
-    class UIRect : public UIComponent {
+    class UIRect : public UIBase {
     private:
         RoundRect m_rect = RoundRect();
 
     public:
-        using UIComponent::UIComponent;
+        using UIBase::UIBase;
 
         double cornerRadius() const {
             return m_rect.r;

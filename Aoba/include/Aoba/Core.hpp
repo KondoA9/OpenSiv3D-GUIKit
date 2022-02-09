@@ -8,7 +8,7 @@
 #include "Aoba/Timeout.hpp"
 
 namespace s3d::aoba {
-    class UIComponent;
+    class UIBase;
     enum class ColorMode;
 
     class Core final {
@@ -45,7 +45,7 @@ namespace s3d::aoba {
 
         static void SwitchPage(const String& identifier);
 
-        static void AppendIsolatedComponent(const UIComponent& component);
+        static void AppendIsolatedComponent(const UIBase& component);
 
         static void SetColorMode(ColorMode mode);
 
@@ -107,7 +107,7 @@ namespace s3d::aoba {
 
         void appendPage(const std::shared_ptr<Page>& page);
 
-        void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
+        void appendIsolatedComponent(const std::shared_ptr<UIBase>& component);
 
         void run();
 

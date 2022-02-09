@@ -5,7 +5,7 @@
 // Create InputEvent
 #define AobaCreateEvent(EVENT_NAME)                                                                      \
     struct EVENT_NAME : public s3d::aoba::InputEvent {                                                   \
-        explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) :    \
+        explicit EVENT_NAME(s3d::aoba::UIBase* _component, bool callIfComponentInFront = true) :         \
             s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), _component, callIfComponentInFront) {} \
     };
 
@@ -19,7 +19,7 @@
 #define AobaCreateEventNSEvent(NAMESPACE, EVENT_NAME) AobaCreateEventNS(s3d::aoba::Event::NAMESPACE, EVENT_NAME)
 
 namespace s3d::aoba {
-    class UIComponent;
+    class UIBase;
 
     struct InputEvent {
         const size_t id;
@@ -27,11 +27,11 @@ namespace s3d::aoba {
         const Vec2 pos, previousPos;
         const bool callIfComponentInFront;
 
-        UIComponent* component;
+        UIBase* component;
 
         InputEvent() = delete;
 
-        InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) noexcept :
+        InputEvent(size_t _id, UIBase* _component, bool _callIfComponentInFront) noexcept :
             id(_id),
             wheel(Mouse::Wheel()),
             pos(Cursor::PosF()),

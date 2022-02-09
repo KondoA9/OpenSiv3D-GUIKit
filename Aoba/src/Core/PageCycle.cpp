@@ -274,6 +274,6 @@ namespace s3d::aoba {
             }
         }
 
-        UIComponent::CallInputEvents();
+        UIBase::CallInputEvents();
     }
 }

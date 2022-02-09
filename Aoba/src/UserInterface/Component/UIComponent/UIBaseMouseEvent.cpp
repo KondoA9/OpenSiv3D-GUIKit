@@ -1,7 +1,7 @@
-﻿#include "Aoba/Component/UIComponent.hpp"
+﻿#include "Aoba/Component/UIBase.hpp"
 
 namespace s3d::aoba {
-    void UIComponent::updateInputEvents() {
+    void UIBase::updateInputEvents() {
         // Fix mouse status
         m_mouseCondition &= m_drawableRegion.mouseOver();
 
@@ -102,7 +102,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIComponent::UpdateFocusEvent() {
+    void UIBase::UpdateFocusEvent() {
         const bool noFocusedComponent = !m_FocusedComponent && !m_PreviousFocusedComponent;
         const bool noFocusEventCalled = m_FocusedComponent && m_PreviousFocusedComponent
                                         && m_PreviousFocusedComponent->id() == m_FocusedComponent->id();
@@ -123,7 +123,7 @@ namespace s3d::aoba {
         m_PreviousFocusedComponent = m_FocusedComponent;
     }
 
-    void UIComponent::CallInputEvents() {
+    void UIBase::CallInputEvents() {
         UpdateFocusEvent();
 
         // Copy events to prevent outbreak of incompatible vector caused by calling events within events
@@ -137,7 +137,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIComponent::_updateMouseCondition(
+    void UIBase::_updateMouseCondition(
         bool leftDown, bool leftUp, bool leftPress, bool rightDown, bool rightUp, bool rightPress, bool hover) {
         m_mouseCondition.left.down  = leftDown;
         m_mouseCondition.left.up    = leftUp;

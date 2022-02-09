@@ -19,7 +19,7 @@ namespace s3d::aoba {
     }
 
     void UIRect::updateLayer(const Rect& scissor) {
-        UIComponent::updateLayer(scissor);
+        UIBase::updateLayer(scissor);
 
         m_rect = RoundRect(static_cast<int>(layer().left()),
                            static_cast<int>(layer().top()),

@@ -20,8 +20,8 @@ namespace s3d::aoba {
         m_components.release();
     }
 
-    void UIView::appendComponent(const UIComponent& component) {
-        if (!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
+    void UIView::appendComponent(const UIBase& component) {
+        if (!m_components.includes_if([&component](const std::shared_ptr<UIBase>& component2) {
                 return component.id() == component2->id();
             })) {
             m_components.push_back(ComponentStorage::Get(component.id()));

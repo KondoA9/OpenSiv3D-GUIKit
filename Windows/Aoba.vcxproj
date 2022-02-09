@@ -29,8 +29,8 @@
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UICheckBox\UICheckBox.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UICircle\UICircle.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponent.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponentMouseEvent.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIBase.cpp" />
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIBaseMouseEvent.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\KeyboardOperation\KeyboardOperation.cpp" />
@@ -50,7 +50,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\Component\UIButton.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Component\UICheckBox.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Component\UICircle.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\Component\UIComponent.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIBase.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Component\UIIcon.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Component\UIImageView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Component\UIInputField.hpp" />

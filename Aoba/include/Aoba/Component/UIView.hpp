@@ -11,7 +11,7 @@ namespace s3d::aoba {
         friend PageManager;
 
     private:
-        Array<std::shared_ptr<UIComponent>> m_components;
+        Array<std::shared_ptr<UIBase>> m_components;
         Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
     public:
@@ -25,7 +25,7 @@ namespace s3d::aoba {
             return m_components.size();
         }
 
-        const UIComponent& getComponent(size_t index) const {
+        const UIBase& getComponent(size_t index) const {
             return *m_components[index].get();
         }
 
@@ -34,7 +34,7 @@ namespace s3d::aoba {
             return *static_cast<T*>(m_components[index].get());
         }
 
-        UIComponent& getComponent(size_t index) {
+        UIBase& getComponent(size_t index) {
             return *m_components[index].get();
         }
 
@@ -44,7 +44,7 @@ namespace s3d::aoba {
         }
 
     protected:
-        // This function runs after a component appended. gui::Factory::Create<UIComponent>(this);
+        // This function runs after a component appended. gui::Factory::Create<UIBase>(this);
         virtual void onAfterComponentAppended() {}
 
         void initialize() override;
@@ -62,7 +62,7 @@ namespace s3d::aoba {
         void _destroy() override;
 
     private:
-        void appendComponent(const UIComponent& component);
+        void appendComponent(const UIBase& component);
 
         void updateMouseIntersection() final;
 

@@ -8,7 +8,7 @@ namespace s3d::aoba {
         return instance;
     }
 
-    void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
+    void ComponentStorage::Store(const std::shared_ptr<UIBase>& component) {
         Instance().releaseComponentsIfNeed();
         Instance().m_components.push_back(component);
     }
@@ -28,7 +28,7 @@ namespace s3d::aoba {
         }
     }
 
-    std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
+    std::shared_ptr<UIBase>& ComponentStorage::Get(size_t id) {
         for (auto& component : Instance().m_components) {
             if (component && component->id() == id) {
                 return component;
@@ -39,7 +39,7 @@ namespace s3d::aoba {
     }
 
     void ComponentStorage::releaseUnusedComponents() {
-        m_components.remove_if([](const std::shared_ptr<UIComponent>& component) { return !component; });
+        m_components.remove_if([](const std::shared_ptr<UIBase>& component) { return !component; });
     }
 
     void ComponentStorage::releaseComponentsIfNeed() {

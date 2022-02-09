@@ -1,25 +1,25 @@
-﻿#include "Aoba/Component/UIComponent.hpp"
+﻿#include "Aoba/Component/UIBase.hpp"
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
-    Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
-    std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent         = nullptr,
-                                 UIComponent::m_PreviousFocusedComponent = nullptr;
+    Array<UIBase::CallableInputEvent> UIBase::m_CallableInputEvents;
+    std::shared_ptr<UIBase> UIBase::m_FocusedComponent         = nullptr,
+                                 UIBase::m_PreviousFocusedComponent = nullptr;
 
-    UIComponent::UIComponent(size_t id) noexcept :
+    UIBase::UIBase(size_t id) noexcept :
         backgroundColor(DynamicColor::BackgroundSecondary), frameColor(DynamicColor::Separator), m_id(id) {}
 
-    UIComponent::~UIComponent() {
+    UIBase::~UIBase() {
         _destroy();
     }
 
-    void UIComponent::_destroy() {
+    void UIBase::_destroy() {
         release();
         ComponentStorage::Release(m_id);
     }
 
-    void UIComponent::updateLayer(const Rect& scissor) {
+    void UIBase::updateLayer(const Rect& scissor) {
         if (!m_initializedColors) {
             initializeColors();
             m_initializedColors = true;
@@ -33,7 +33,7 @@ namespace s3d::aoba {
         m_layer.updateConstraints();
     }
 
-    bool UIComponent::updateLayerIfNeeded(const Rect& scissor) {
+    bool UIBase::updateLayerIfNeeded(const Rect& scissor) {
         if (m_needToUpdateLayer) {
             updateLayer(scissor);
             m_needToUpdateLayer = false;
@@ -43,8 +43,8 @@ namespace s3d::aoba {
         return false;
     }
 
-    void UIComponent::setConstraint(LayerDirection direction,
-                                    UIComponent& component,
+    void UIBase::setConstraint(LayerDirection direction,
+                                    UIBase& component,
                                     LayerDirection toDirection,
                                     double constant,
                                     double multiplier) {
@@ -53,12 +53,12 @@ namespace s3d::aoba {
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) {
+    void UIBase::setConstraint(LayerDirection direction, double constant, double multiplier) {
         m_layer.setConstraint(direction, constant, multiplier);
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::setConstraint(LayerDirection direction,
+    void UIBase::setConstraint(LayerDirection direction,
                                     const std::function<double()>& func,
                                     double constant,
                                     double multiplier) {
@@ -66,15 +66,15 @@ namespace s3d::aoba {
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::removeConstraint(LayerDirection direction) {
+    void UIBase::removeConstraint(LayerDirection direction) {
         m_layer.removeConstraint(direction);
     }
 
-    void UIComponent::removeAllConstraints() {
+    void UIBase::removeAllConstraints() {
         m_layer.removeAllConstraints();
     }
 
-    void UIComponent::focus() {
+    void UIBase::focus() {
         try {
             // Focused component is this
             m_FocusedComponent = ComponentStorage::Get(m_id);
@@ -84,7 +84,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIComponent::unFocus() {
+    void UIBase::unFocus() {
         if (isFocused()) {
             m_FocusedComponent.reset();
         }

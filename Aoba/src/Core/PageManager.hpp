@@ -2,7 +2,7 @@
 
 #include <Siv3D.hpp>
 
-#include "Aoba/Component/UIComponent.hpp"
+#include "Aoba/Component/UIBase.hpp"
 
 namespace s3d::aoba {
     class Page;
@@ -16,7 +16,7 @@ namespace s3d::aoba {
         Array<std::shared_ptr<Page>> m_pages;
         std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
 
-        Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
+        Array<std::shared_ptr<UIBase>> m_isolatedComponents;
 
         double m_pageTransitionRate = 1.0;
 
@@ -45,7 +45,7 @@ namespace s3d::aoba {
 
         void appendPage(const std::shared_ptr<Page>& page);
 
-        void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
+        void appendIsolatedComponent(const std::shared_ptr<UIBase>& component);
 
         void terminate();
 
