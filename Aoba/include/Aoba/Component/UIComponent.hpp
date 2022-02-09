@@ -2,10 +2,10 @@
 
 #include <Siv3D.hpp>
 
-#include "DynamicColor.hpp"
-#include "InputEventHandler.hpp"
-#include "Layer.hpp"
-#include "MouseEvent.hpp"
+#include "Aoba/DynamicColor.hpp"
+#include "Aoba/InputEventHandler.hpp"
+#include "Aoba/Layer.hpp"
+#include "Aoba/MouseEvent.hpp"
 
 // Create InputEvent in namespace s3d::aoba::Event::Component
 #define AobaCreateEventComponent(EVENT_NAME) AobaCreateEventNSEvent(Component, EVENT_NAME)

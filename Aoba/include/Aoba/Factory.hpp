@@ -2,8 +2,8 @@
 
 #include <Siv3D.hpp>
 
-#include "Core.hpp"
-#include "UIView.hpp"
+#include "Aoba/Component/UIView.hpp"
+#include "Aoba/Core.hpp"
 
 namespace s3d::aoba {
     class Page;

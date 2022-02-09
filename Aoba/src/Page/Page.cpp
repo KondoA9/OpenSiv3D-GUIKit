@@ -1,7 +1,7 @@
 ﻿#include "Aoba/Page.hpp"
 
+#include "Aoba/Component/UIView.hpp"
 #include "Aoba/Factory.hpp"
-#include "Aoba/UIView.hpp"
 
 namespace s3d::aoba {
     Page::Page(const String& identifier) : view(Factory::CreateComponent<UIView>()), m_identifier(identifier) {

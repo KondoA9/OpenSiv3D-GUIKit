@@ -1,4 +1,4 @@
-﻿#include "Aoba/UICheckBox.hpp"
+﻿#include "Aoba/Component/UICheckBox.hpp"
 
 namespace s3d::aoba {
     void UICheckBox::initialize() {

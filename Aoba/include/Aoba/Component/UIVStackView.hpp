@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "UIView.hpp"
+#include "Aoba/Component/UIView.hpp"
 
 namespace s3d::aoba {
     enum class LeadingDirection { Top, Bottom };

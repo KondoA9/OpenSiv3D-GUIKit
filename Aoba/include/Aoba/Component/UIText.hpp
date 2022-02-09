@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "UIRect.hpp"
-#include "UnifiedFont.hpp"
+#include "Aoba/Component/UIRect.hpp"
+#include "Aoba/UnifiedFont.hpp"
 
 namespace s3d::aoba {
     enum class TextDirection {

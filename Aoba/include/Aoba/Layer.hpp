@@ -2,7 +2,7 @@
 
 #include <Siv3D.hpp>
 
-#include "Constraint.hpp"
+#include "Aoba/Constraint.hpp"
 
 namespace s3d::aoba {
     enum class LayerDirection { Top, Bottom, CenterY, Height, Left, Right, CenterX, Width };
@@ -16,7 +16,7 @@ namespace s3d::aoba {
     public:
         Rect asRect() const;
 
-		RectF asRectF() const;
+        RectF asRectF() const;
 
         const Vec2& center() const;
 

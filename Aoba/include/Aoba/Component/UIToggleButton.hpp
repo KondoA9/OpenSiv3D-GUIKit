@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "UIButton.hpp"
+#include "Aoba/Component/UIButton.hpp"
 
 namespace s3d::aoba {
     class UIToggleButton : public UIButton {

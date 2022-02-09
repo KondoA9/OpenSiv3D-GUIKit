@@ -1,4 +1,4 @@
-﻿#include "Aoba/UIText.hpp"
+﻿#include "Aoba/Component/UIText.hpp"
 
 #include "Aoba/PixelUnit.hpp"
 

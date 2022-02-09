@@ -1,4 +1,4 @@
-﻿#include "Aoba/UIImageView.hpp"
+﻿#include "Aoba/Component/UIImageView.hpp"
 
 #include "Aoba/Imaging.hpp"
 

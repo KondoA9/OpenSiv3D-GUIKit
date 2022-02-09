@@ -1,4 +1,4 @@
-﻿#include "Aoba/UIRect.hpp"
+﻿#include "Aoba/Component/UIRect.hpp"
 
 namespace s3d::aoba {
     void UIRect::setCornerRadius(double r) {

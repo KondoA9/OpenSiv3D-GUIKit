@@ -1,4 +1,4 @@
-﻿#include "Aoba/UIIcon.hpp"
+﻿#include "Aoba/Component/UIIcon.hpp"
 
 namespace s3d::aoba {
     void UIIcon::initialize() {

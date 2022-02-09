@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "UIComponent.hpp"
+#include "Aoba/Component/UIComponent.hpp"
 
 namespace s3d::aoba {
     class UICircle : public UIComponent {

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Aoba/UIComponent.hpp"
+#include "Aoba/Component/UIComponent.hpp"
 
 namespace s3d::aoba {
     class ComponentStorage {

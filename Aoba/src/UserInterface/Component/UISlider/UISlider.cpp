@@ -1,4 +1,4 @@
-﻿#include "Aoba/UISlider.hpp"
+﻿#include "Aoba/Component/UISlider.hpp"
 
 #include "Aoba/PixelUnit.hpp"
 

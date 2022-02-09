@@ -47,6 +47,20 @@
     <ClCompile Include="..\Aoba\src\UserInterface\Layer\Layer.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIButton.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UICheckBox.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UICircle.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIComponent.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIIcon.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIImageView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIInputField.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIRect.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UISlider.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UITabView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIText.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIToggleButton.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIView.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIVStackView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\ColorTheme.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp" />
@@ -63,20 +77,6 @@
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Timeout.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UICircle.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIComponent.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIIcon.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIImageView.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIInputField.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIRect.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UISlider.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UITabView.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIText.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIToggleButton.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp" />
     <ClInclude Include="..\Aoba\src\AobaLog\AobaLog.hpp" />
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp" />

@@ -248,53 +248,11 @@
     <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp">
       <Filter>Aoba\Imaging</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIButton</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UICircle.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UICircle</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIComponent.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIComponent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIIcon.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIIcon</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIText.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIText</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIRect.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIRect</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIToggleButton.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIToggleButton</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIView</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UISlider.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UISlider</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIInputField.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIInputField</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIVStackView</Filter>
-    </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp">
       <Filter>Aoba\UserInterface\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp">
       <Filter>Aoba\UserInterface\InputEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UIImageView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIImageView</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\UITabView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UITabView</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp">
       <Filter>Aoba\CommandLine</Filter>
@@ -319,6 +277,48 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\AobaLog\AobaLog.hpp">
       <Filter>Aoba\AobaLog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIVStackView.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIVStackView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIView.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIToggleButton.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIToggleButton</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIText.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIText</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UITabView.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UITabView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UISlider.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UISlider</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIRect.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIRect</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIInputField.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIInputField</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIImageView.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIImageView</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIIcon.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIIcon</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIComponent.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIComponent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UICircle.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UICircle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UICheckBox.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Component\UIButton.hpp">
+      <Filter>Aoba\UserInterface\UserInterface\UIButton</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

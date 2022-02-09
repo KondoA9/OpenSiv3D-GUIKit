@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "Factory.hpp"
-#include "UIButton.hpp"
-#include "UIView.hpp"
+#include "Aoba/Component/UIButton.hpp"
+#include "Aoba/Component/UIView.hpp"
+#include "Aoba/Factory.hpp"
 
 AobaCreateEventComponentNS(TabView, Switched);
 

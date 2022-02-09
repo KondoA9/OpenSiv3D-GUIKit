@@ -1,10 +1,10 @@
 ﻿#pragma once
 
-#include "Factory.hpp"
-#include "UICircle.hpp"
-#include "UIRect.hpp"
-#include "UIText.hpp"
-#include "UIView.hpp"
+#include "Aoba/Component/UICircle.hpp"
+#include "Aoba/Component/UIRect.hpp"
+#include "Aoba/Component/UIText.hpp"
+#include "Aoba/Component/UIView.hpp"
+#include "Aoba/Factory.hpp"
 
 namespace s3d::aoba {
     class UISlider : public UIView {

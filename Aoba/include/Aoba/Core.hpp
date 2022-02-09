@@ -4,8 +4,8 @@
 #include <atomic>
 #include <mutex>
 
-#include "Page.hpp"
-#include "Timeout.hpp"
+#include "Aoba/Page.hpp"
+#include "Aoba/Timeout.hpp"
 
 namespace s3d::aoba {
     class UIComponent;

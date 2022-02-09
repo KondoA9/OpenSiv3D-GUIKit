@@ -1,4 +1,4 @@
-﻿#include "Aoba/UICircle.hpp"
+﻿#include "Aoba/Component/UICircle.hpp"
 
 namespace s3d::aoba {
     void UICircle::updateLayer(const Rect& scissor) {

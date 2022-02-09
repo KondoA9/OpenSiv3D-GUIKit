@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "InputEvent.hpp"
+#include "Aoba/InputEvent.hpp"
 
 namespace s3d::aoba {
     class InputEventHandler {

@@ -1,6 +1,6 @@
-#include "Aoba/Factory.hpp"
+﻿#include "Aoba/Factory.hpp"
 
-#include "Aoba/UIComponent.hpp"
+#include "Aoba/Component/UIComponent.hpp"
 #include "src/AobaLog/AobaLog.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
 
