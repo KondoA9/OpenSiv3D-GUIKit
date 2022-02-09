@@ -67,10 +67,13 @@ namespace s3d::aoba {
     void UIImageView::draw() const {
         UIRect::draw();
 
+        const auto scissor = Graphics2D::GetScissorRect();
+        Graphics2D::SetScissorRect(layer().asRect());
         for (size_t i : step(m_textures.size())) {
             m_textures[i].scaled(m_scale).rotated(m_angle).drawAt(
                 m_drawingCenterPos, Color(255, 255, 255, static_cast<uint8>(m_alphas[i])));
         }
+        Graphics2D::SetScissorRect(scissor);
     }
 
     void UIImageView::updateLayer(const Rect& scissor) {
