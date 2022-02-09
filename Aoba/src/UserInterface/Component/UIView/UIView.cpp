@@ -6,7 +6,8 @@ namespace s3d::aoba {
     void UIView::initialize() {
         UIRect::initialize();
 
-        backgroundColor = DynamicColor::Background;
+        backgroundColor     = DynamicColor::Clear;
+        penetrateMouseEvent = true;
     }
 
     void UIView::release() {
