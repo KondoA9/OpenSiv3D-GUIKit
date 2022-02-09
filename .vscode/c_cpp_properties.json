@@ -11,6 +11,18 @@
             "cStandard": "gnu17",
             "cppStandard": "gnu++20",
             "intelliSenseMode": "linux-gcc-x64"
+        },
+        {
+            "name": "Win32",
+            "includePath": [
+                "${workspaceFolder}/Aoba/include",
+                "${workspaceFolder}/Dependencies/include",
+                "${workspaceFolder}/Dependencies/include/ThirdParty"
+            ],
+            "compilerPath": "C:/Program Files/Microsoft Visual Studio/2022/Community/VC/Tools/MSVC/14.30.30705/bin/Hostx64/x64/cl.exe",
+            "cStandard": "c17",
+            "cppStandard": "c++20",
+            "intelliSenseMode": "windows-msvc-x64"
         }
     ],
     "version": 4
