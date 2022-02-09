@@ -3,6 +3,14 @@
 #include "src/AobaLog/AobaLog.hpp"
 
 namespace s3d::aoba {
+    Rect Layer::asRect() const {
+        return asRectF().asRect();
+    }
+
+    RectF Layer::asRectF() const {
+        return RectF(m_left, m_top, m_width, m_height);
+    }
+
     const Vec2& Layer::center() const {
         return m_center;
     }
