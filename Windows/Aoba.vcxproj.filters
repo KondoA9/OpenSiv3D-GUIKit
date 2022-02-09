@@ -174,10 +174,10 @@
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp">
       <Filter>Aoba\Component\Component\UIImageView</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIBaseMouseEvent.cpp">
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIBase\UIBaseMouseEvent.cpp">
       <Filter>Aoba\Component\Component\UIBase</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIBase.cpp">
+    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIBase\UIBase.cpp">
       <Filter>Aoba\Component\Component\UIBase</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UITabView\UITabView.cpp">
