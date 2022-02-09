@@ -150,4 +150,38 @@ namespace s3d::aoba {
         m_mouseCondition.preHover = m_mouseCondition.hover;
         m_mouseCondition.hover    = hover;
     }
+
+    void UIBase::registerInputEvent(const InputEvent& e) const {
+        // Get handlers that are matched to called event type
+        const auto handlers = m_inputEventHandlers.removed_if(
+            [e](const InputEventHandler& handler) { return handler.eventTypeId != e.id; });
+
+        if (e.callIfComponentInFront && !e.component->penetrateMouseEvent) {
+            if (m_CallableInputEvents
+                && m_CallableInputEvents[m_CallableInputEvents.size() - 1].mouseEvent.component != e.component) {
+                m_CallableInputEvents = m_CallableInputEvents.removed_if(
+                    [](const CallableInputEvent& e) { return e.mouseEvent.callIfComponentInFront; });
+            }
+            m_CallableInputEvents.push_back({.mouseEvent = e, .handlers = handlers});
+        } else {
+            // Append handlers if event stack is empty or the component penetrates a mouse event
+            if (!m_CallableInputEvents || e.component->penetrateMouseEvent) {
+                m_CallableInputEvents.push_back({.mouseEvent = e, .handlers = handlers});
+            } else {
+                for (size_t i : step(m_CallableInputEvents.size())) {
+                    auto& behindComponentEvents = m_CallableInputEvents[i];
+                    if (behindComponentEvents.mouseEvent.id == e.id
+                        && behindComponentEvents.mouseEvent.callIfComponentInFront) {
+                        behindComponentEvents.mouseEvent = e;
+                        behindComponentEvents.handlers   = handlers;
+                        break;
+                    }
+                    // Append handler if a event that is same type of the event does not exists
+                    else if (i == m_CallableInputEvents.size() - 1) {
+                        m_CallableInputEvents.push_back({.mouseEvent = e, .handlers = handlers});
+                    }
+                }
+            }
+        }
+    }
 }
