@@ -4,9 +4,9 @@
 #include "UIButton.hpp"
 #include "UIView.hpp"
 
-AobaCreateEventComponentNS(TabView, Switched)
+AobaCreateEventComponentNS(TabView, Switched);
 
-    namespace s3d::aoba {
+namespace s3d::aoba {
     class UITabView : public UIView {
         struct Tab {
             size_t index;

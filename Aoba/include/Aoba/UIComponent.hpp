@@ -13,9 +13,10 @@
 // Create InputEvent in namespace s3d::aoba::Event::Component::NAMESPACE
 #define AobaCreateEventComponentNS(NAMESPACE, EVENT_NAME) AobaCreateEventNSEvent(Component::NAMESPACE, EVENT_NAME)
 
-AobaCreateEventComponent(Focused) AobaCreateEventComponent(UnFocused)
+AobaCreateEventComponent(Focused);
+AobaCreateEventComponent(UnFocused);
 
-    namespace s3d::aoba {
+namespace s3d::aoba {
     class Core;
     class Factory;
     class PageManager;

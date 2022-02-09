@@ -4,10 +4,11 @@
 #include "UIText.hpp"
 #include "UnifiedFont.hpp"
 
-AobaCreateEventComponentNS(InputField, ForbiddenCharInputted) AobaCreateEventComponentNS(InputField, Inputted)
-    AobaCreateEventComponentNS(InputField, KeyEnterDown)
+AobaCreateEventComponentNS(InputField, ForbiddenCharInputted);
+AobaCreateEventComponentNS(InputField, Inputted);
+AobaCreateEventComponentNS(InputField, KeyEnterDown);
 
-        namespace s3d::aoba {
+namespace s3d::aoba {
     class UIInputField : public UIText {
     public:
         enum class Type { Text, Number };
