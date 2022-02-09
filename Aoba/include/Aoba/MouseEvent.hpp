@@ -2,7 +2,7 @@
 
 #include <Siv3D.hpp>
 
-#include "Aoba/InputEvent.hpp"
+#include "InputEvent.hpp"
 
 // Raw events called when mouse down / up.
 // Does not consider whether it is a long press event, dragging event or not

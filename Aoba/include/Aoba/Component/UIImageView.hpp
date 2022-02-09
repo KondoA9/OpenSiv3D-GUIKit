@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIRect.hpp"
+#include "UIRect.hpp"
 
 namespace s3d::aoba {
     class UIImageView : public UIRect {

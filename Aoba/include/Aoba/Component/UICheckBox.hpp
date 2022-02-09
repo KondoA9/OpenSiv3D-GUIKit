@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIButton.hpp"
-#include "Aoba/Component/UIText.hpp"
-#include "Aoba/PixelUnit.hpp"
+#include "../PixelUnit.hpp"
+#include "UIButton.hpp"
+#include "UIText.hpp"
 
 namespace s3d::aoba {
     class UICheckBox : public UIButton {

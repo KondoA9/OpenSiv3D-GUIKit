@@ -2,7 +2,7 @@
 
 #include <Siv3D.hpp>
 
-#include "Aoba/Constraint.hpp"
+#include "Constraint.hpp"
 
 namespace s3d::aoba {
     enum class LayerDirection { Top, Bottom, CenterY, Height, Left, Right, CenterX, Width };

@@ -1,7 +1,7 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIBase.hpp"
-#include "Aoba/Component/UIRect.hpp"
+#include "UIBase.hpp"
+#include "UIRect.hpp"
 
 namespace s3d::aoba {
     class UIIcon : public UIRect {

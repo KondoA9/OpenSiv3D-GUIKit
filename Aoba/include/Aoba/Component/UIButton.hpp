@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIText.hpp"
+#include "UIText.hpp"
 
 namespace s3d::aoba {
     class UIButton : public UIText {

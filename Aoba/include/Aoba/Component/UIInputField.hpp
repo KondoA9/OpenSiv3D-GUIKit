@@ -1,8 +1,8 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIText.hpp"
-#include "Aoba/KeyboardOperation.hpp"
-#include "Aoba/UnifiedFont.hpp"
+#include "UIText.hpp"
+#include "../KeyboardOperation.hpp"
+#include "../UnifiedFont.hpp"
 
 AobaCreateEventComponentNS(InputField, ForbiddenCharInputted);
 AobaCreateEventComponentNS(InputField, Inputted);

@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Aoba/Component/UIBase.hpp"
+#include "UIBase.hpp"
 
 namespace s3d::aoba {
     class UIRect : public UIBase {

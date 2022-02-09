@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-#include "Aoba/ColorTheme.hpp"
+#include "ColorTheme.hpp"
 
 namespace s3d::aoba {
     namespace DynamicColor {
