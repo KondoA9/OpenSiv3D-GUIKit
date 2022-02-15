@@ -194,47 +194,14 @@ namespace s3d::aoba {
             return m_mouseCondition;
         }
 
+		void registerInputEvent(const InputEvent& e) const;
+
         // Do not call this function if the component is not UIView
         virtual void _destroy();
 
         // Do not call this function if the component is not UIRect or UICircle
         void _updateMouseCondition(
             bool leftDown, bool leftUp, bool leftPress, bool rightDown, bool rightUp, bool rightPress, bool hover);
-
-        template <class T>
-        void registerInputEvent(const T& e) const {
-            // Get handlers that are matched to called event type
-            const auto handlers = m_inputEventHandlers.removed_if(
-                [e](const InputEventHandler& handler) { return handler.eventTypeId != e.id; });
-
-            if (e.callIfComponentInFront && !e.component->penetrateMouseEvent) {
-                if (m_CallableInputEvents
-                    && m_CallableInputEvents[m_CallableInputEvents.size() - 1].mouseEvent.component != e.component) {
-                    m_CallableInputEvents = m_CallableInputEvents.removed_if(
-                        [](const CallableInputEvent& e) { return e.mouseEvent.callIfComponentInFront; });
-                }
-                m_CallableInputEvents.push_back({.mouseEvent = e, .handlers = handlers});
-            } else {
-                // Append handlers if event stack is empty or the component penetrates a mouse event
-                if (!m_CallableInputEvents || e.component->penetrateMouseEvent) {
-                    m_CallableInputEvents.push_back({.mouseEvent = e, .handlers = handlers});
-                } else {
-                    for (size_t i : step(m_CallableInputEvents.size())) {
-                        auto& behindComponentEvents = m_CallableInputEvents[i];
-                        if (behindComponentEvents.mouseEvent.id == e.id
-                            && behindComponentEvents.mouseEvent.callIfComponentInFront) {
-                            behindComponentEvents.mouseEvent = e;
-                            behindComponentEvents.handlers   = handlers;
-                            break;
-                        }
-                        // Append handler if a event that is same type of the event does not exists
-                        else if (i == m_CallableInputEvents.size() - 1) {
-                            m_CallableInputEvents.push_back({.mouseEvent = e, .handlers = handlers});
-                        }
-                    }
-                }
-            }
-        }
 
     private:
         UIComponent(size_t id) noexcept;
