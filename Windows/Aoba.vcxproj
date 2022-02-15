@@ -13,6 +13,22 @@
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp" />
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIButton.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UICheckBox.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UICircle.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIComponent.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIComponentMouseEvent.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIIcon.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIImageView.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIInputField.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIInputField\KeyboardOperation.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIRect.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UISlider.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UITabView.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIText.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIToggleButton.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIView.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIVStackView.cpp" />
     <ClCompile Include="..\Aoba\src\Constraint\Constraint.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
@@ -31,22 +47,6 @@
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp" />
     <ClCompile Include="..\Aoba\src\UnifiedFont\UnifiedFont.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UICheckBox\UICheckBox.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UICircle\UICircle.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponent.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponentMouseEvent.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIIcon\UIIcon.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\KeyboardOperation\KeyboardOperation.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\UIInputField.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIRect\UIRect.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UISlider\UISlider.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UITabView\UITabView.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIText\UIText.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIView\UIView.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp" />
