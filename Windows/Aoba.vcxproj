@@ -46,6 +46,7 @@
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp" />
+    <ClCompile Include="..\Aoba\src\Tooltip\Tooltip.cpp" />
     <ClCompile Include="..\Aoba\src\UnifiedFont\UnifiedFont.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +87,7 @@
     <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>
