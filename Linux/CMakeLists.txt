@@ -69,7 +69,7 @@ add_library(aoba STATIC
 	"../Aoba/src/InputEvent/InputEvent.cpp"
 	"../Aoba/src/InputEvent/InputEventManager.cpp"
 
-	"../Aoba/src/UserInterface/Layer/Layer.cpp"
+	"../Aoba/src/Layer/Layer.cpp"
 
 	"../Aoba/src/Page/Page.cpp"
 
