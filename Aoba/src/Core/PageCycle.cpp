@@ -3,7 +3,7 @@
 #include "Aoba/UIView.hpp"
 #include "PageManager.hpp"
 #include "WindowManager.hpp"
-#include "src/InputEventManager/InputEventManager.hpp"
+#include "src/InputEvent/InputEventManager.hpp"
 
 namespace s3d::aoba {
     void PageManager::update() {

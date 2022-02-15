@@ -1,7 +1,7 @@
 ﻿#include "Aoba/UIComponent.hpp"
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
-#include "src/InputEventManager/InputEventManager.hpp"
+#include "src/InputEvent/InputEventManager.hpp"
 
 namespace s3d::aoba {
     Optional<size_t> UIComponent::m_FocusedComponentId = none, UIComponent::m_PreviousFocusedComponentId = none;

@@ -1,6 +1,6 @@
 ﻿#include "Aoba/UIComponent.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
-#include "src/InputEventManager/InputEventManager.hpp"
+#include "src/InputEvent/InputEventManager.hpp"
 
 namespace s3d::aoba {
     void UIComponent::registerInputEvent(const InputEvent& e) {

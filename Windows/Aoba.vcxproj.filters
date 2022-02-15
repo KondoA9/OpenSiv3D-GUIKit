@@ -210,10 +210,10 @@
     <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp">
       <Filter>Aoba\AobaLog</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\InputEventManager\InputEventManager.cpp">
+    <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp">
       <Filter>Aoba\UserInterface\InputEvent</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp">
+    <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp">
       <Filter>Aoba\UserInterface\InputEvent</Filter>
     </ClCompile>
   </ItemGroup>
@@ -326,7 +326,7 @@
     <ClInclude Include="..\Aoba\src\AobaLog\AobaLog.hpp">
       <Filter>Aoba\AobaLog</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\src\InputEventManager\InputEventManager.hpp">
+    <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp">
       <Filter>Aoba\UserInterface\InputEvent</Filter>
     </ClInclude>
   </ItemGroup>
