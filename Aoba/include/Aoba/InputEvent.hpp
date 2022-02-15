@@ -3,10 +3,10 @@
 #include <Siv3D.hpp>
 
 // Create InputEvent
-#define AobaCreateEvent(EVENT_NAME)                                                                      \
-    struct EVENT_NAME : public s3d::aoba::InputEvent {                                                   \
-        explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) :    \
-            s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), _component, callIfComponentInFront) {} \
+#define AobaCreateEvent(EVENT_NAME)                                                                         \
+    struct EVENT_NAME : public s3d::aoba::InputEvent {                                                      \
+        explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) :       \
+            s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), *_component, callIfComponentInFront) {}   \
     };
 
 // Create InputEvent in namespace NAMESPACE
@@ -22,43 +22,27 @@ namespace s3d::aoba {
     class UIComponent;
 
     struct InputEvent {
-        const size_t id;
+        const size_t id, componentId;
         const double wheel;
         const Vec2 pos, previousPos;
         const bool callIfComponentInFront;
 
-        UIComponent* component;
-
         InputEvent() = delete;
 
-        InputEvent(size_t _id, UIComponent* _component, bool _callIfComponentInFront) noexcept :
-            id(_id),
-            wheel(Mouse::Wheel()),
-            pos(Cursor::PosF()),
-            previousPos(Cursor::PreviousPosF()),
-            callIfComponentInFront(_callIfComponentInFront),
-            component(_component) {}
+        InputEvent(size_t _id, const UIComponent& _component, bool _callIfComponentInFront);
 
-        virtual ~InputEvent() = default;
+        InputEvent(const InputEvent&) = default;
 
-        constexpr InputEvent(const InputEvent& e) noexcept = default;
+        InputEvent(InputEvent&&) noexcept = default;
 
-        constexpr InputEvent(InputEvent&& e) noexcept = default;
-
-        const InputEvent& operator=(const InputEvent& e) noexcept {
-            assert(id == e.id);
-
-            component = e.component;
-
+        InputEvent& operator=(const InputEvent&) {
             return *this;
         }
 
-        const InputEvent& operator=(InputEvent&& e) noexcept {
-            assert(id == e.id);
-
-            component = std::move(e.component);
-
+        InputEvent& operator=(InputEvent&&) noexcept {
             return *this;
         }
+
+        virtual ~InputEvent(){};
     };
 }

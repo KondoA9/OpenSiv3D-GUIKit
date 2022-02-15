@@ -1,8 +1,9 @@
-#include "Aoba/Core.hpp"
+﻿#include "Aoba/Core.hpp"
 #include "Aoba/Page.hpp"
 #include "Aoba/UIView.hpp"
 #include "PageManager.hpp"
 #include "WindowManager.hpp"
+#include "src/InputEventManager/InputEventManager.hpp"
 
 namespace s3d::aoba {
     void PageManager::update() {
@@ -274,6 +275,6 @@ namespace s3d::aoba {
             }
         }
 
-        UIComponent::CallInputEvents();
+        InputEventManager::Call();
     }
 }

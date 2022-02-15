@@ -20,7 +20,7 @@ namespace s3d::aoba {
 
         static std::shared_ptr<UIComponent>& Get(size_t id);
 
-		static bool Has(size_t id);
+        static bool Has(size_t id);
 
         static void Store(const std::shared_ptr<UIComponent>& component);
 

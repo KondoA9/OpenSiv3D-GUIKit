@@ -1,11 +1,10 @@
 ﻿#include "Aoba/UIComponent.hpp"
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
+#include "src/InputEventManager/InputEventManager.hpp"
 
 namespace s3d::aoba {
-    Array<UIComponent::CallableInputEvent> UIComponent::m_CallableInputEvents;
-    std::shared_ptr<UIComponent> UIComponent::m_FocusedComponent         = nullptr,
-                                 UIComponent::m_PreviousFocusedComponent = nullptr;
+    Optional<size_t> UIComponent::m_FocusedComponentId = none, UIComponent::m_PreviousFocusedComponentId = none;
 
     UIComponent::UIComponent(size_t id) noexcept :
         backgroundColor(DynamicColor::BackgroundSecondary), frameColor(DynamicColor::Separator), m_id(id) {}
@@ -16,6 +15,7 @@ namespace s3d::aoba {
 
     void UIComponent::_destroy() {
         release();
+        InputEventManager::Unregister(m_id);
         ComponentStorage::Release(m_id);
     }
 
@@ -75,18 +75,17 @@ namespace s3d::aoba {
     }
 
     void UIComponent::focus() {
-        try {
+        if (ComponentStorage::Has(m_id)) {
             // Focused component is this
-            m_FocusedComponent = ComponentStorage::Get(m_id);
-            ;
-        } catch (...) {
-            m_FocusedComponent.reset();
+            m_FocusedComponentId = m_id;
+        } else {
+            m_FocusedComponentId = none;
         }
     }
 
     void UIComponent::unFocus() {
         if (isFocused()) {
-            m_FocusedComponent.reset();
+            m_FocusedComponentId = none;
         }
     }
 }

@@ -1,4 +1,4 @@
-#include "Aoba/Factory.hpp"
+﻿#include "Aoba/Factory.hpp"
 
 #include "Aoba/UIComponent.hpp"
 #include "src/AobaLog/AobaLog.hpp"
@@ -21,9 +21,9 @@ namespace s3d::aoba {
     }
 
     std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
-        component->initialize();
-
         ComponentStorage::Store(component);
+
+        component->initialize();
 
         return ComponentStorage::Get(component->id());
     }

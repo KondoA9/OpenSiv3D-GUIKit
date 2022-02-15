@@ -16,7 +16,7 @@ namespace s3d::aoba {
     public:
         Rect asRect() const;
 
-		RectF asRectF() const;
+        RectF asRectF() const;
 
         const Vec2& center() const;
 

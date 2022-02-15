@@ -1,6 +1,7 @@
 ﻿#include "Aoba/UIView.hpp"
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
+#include "src/InputEventManager/InputEventManager.hpp"
 
 namespace s3d::aoba {
     void UIView::initialize() {

@@ -23,6 +23,8 @@
     <ClCompile Include="..\Aoba\src\Core\Core.cpp" />
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
+    <ClCompile Include="..\Aoba\src\InputEventManager\InputEventManager.cpp" />
+    <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp" />
@@ -83,6 +85,7 @@
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
+    <ClInclude Include="..\Aoba\src\InputEventManager\InputEventManager.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{7d81de8f-ea0c-4b54-9153-4c7424206620}</ProjectGuid>

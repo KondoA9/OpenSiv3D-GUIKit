@@ -19,15 +19,11 @@ AobaCreateEventComponent(UnFocused);
 namespace s3d::aoba {
     class Core;
     class Factory;
+    class InputEventManager;
     class PageManager;
     class UIView;
 
     class UIComponent {
-        struct CallableInputEvent {
-            InputEvent mouseEvent;
-            Array<InputEventHandler> handlers;
-        };
-
         struct MouseClickCondition {
             bool down = false, up = false, press = false;
 
@@ -53,6 +49,7 @@ namespace s3d::aoba {
 
         friend Core;
         friend Factory;
+        friend InputEventManager;
         friend PageManager;
         friend UIView;
 
@@ -64,8 +61,7 @@ namespace s3d::aoba {
         bool hidden = false, exist = true, controllable = true;
 
     private:
-        static Array<CallableInputEvent> m_CallableInputEvents;
-        static std::shared_ptr<UIComponent> m_FocusedComponent, m_PreviousFocusedComponent;
+        static Optional<size_t> m_FocusedComponentId, m_PreviousFocusedComponentId;
 
         const size_t m_id;
 
@@ -121,7 +117,7 @@ namespace s3d::aoba {
         }
 
         bool isFocused() const {
-            return m_FocusedComponent && m_FocusedComponent->id() == m_id;
+            return m_FocusedComponentId && m_FocusedComponentId == m_id;
         }
 
         bool updatable() const {
@@ -190,11 +186,11 @@ namespace s3d::aoba {
 
         virtual void draw() const = 0;
 
+        void registerInputEvent(const InputEvent& e);
+
         const MouseCondition& mouseCondition() const {
             return m_mouseCondition;
         }
-
-		void registerInputEvent(const InputEvent& e) const;
 
         // Do not call this function if the component is not UIView
         virtual void _destroy();
@@ -207,8 +203,6 @@ namespace s3d::aoba {
         UIComponent(size_t id) noexcept;
 
         static void UpdateFocusEvent();
-
-        static void CallInputEvents();
 
         virtual bool updateLayerIfNeeded(const Rect& scissor);
     };

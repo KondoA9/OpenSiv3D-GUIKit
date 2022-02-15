@@ -20,7 +20,7 @@ namespace s3d::aoba {
 
     bool ComponentStorage::Has(size_t id) {
         return Instance().m_components.includes_if(
-            [id](const std::shared_ptr<UIComponent>& component) { return component->id() == id; });
+            [id](const std::shared_ptr<UIComponent>& component) { return component && component->id() == id; });
     }
 
     void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
