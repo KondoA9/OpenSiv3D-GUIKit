@@ -6,12 +6,12 @@
 
 namespace s3d::aoba {
     Tooltip::Tooltip() {
-        m_uiTooltipText.hidden          = true;
-        m_uiTooltipText.drawFrame       = true;
-        m_uiTooltipText.frameThickness  = 1.0_px;
-        m_uiTooltipText.frameColor      = DynamicColor::Separator;
-        m_uiTooltipText.backgroundColor = DynamicColor::Background;
-        m_uiTooltipText.tooltipDisabled = true;
+        m_uiTooltipText.hidden              = true;
+        m_uiTooltipText.drawFrame           = true;
+        m_uiTooltipText.frameThickness      = 1.0_px;
+        m_uiTooltipText.frameColor          = DynamicColor::Separator;
+        m_uiTooltipText.backgroundColor     = DynamicColor::Background;
+        m_uiTooltipText.tooltipDisabled     = true;
         m_uiTooltipText.penetrateMouseEvent = true;
         m_uiTooltipText.setCornerRadius(2_px);
         m_uiTooltipText.setDirection(TextDirection::Center);
@@ -43,14 +43,14 @@ namespace s3d::aoba {
     }
 
     void Tooltip::SetHoveredComponent(size_t id) {
+        if (Instance().m_timeoutId) {
+            Core::StopTimeout(Instance().m_timeoutId.value());
+        }
+
         auto& component = ComponentStorage::Get(id);
 
         if (component->tooltipMessage.isEmpty()) {
             return;
-        }
-
-        if (Instance().m_timeoutId) {
-            Core::StopTimeout(Instance().m_timeoutId.value());
         }
 
         auto& instance         = Instance();
