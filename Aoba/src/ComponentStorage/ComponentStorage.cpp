@@ -1,4 +1,4 @@
-#include "ComponentStorage.hpp"
+﻿#include "ComponentStorage.hpp"
 
 #include "src/AobaLog/AobaLog.hpp"
 
@@ -6,6 +6,21 @@ namespace s3d::aoba {
     ComponentStorage& ComponentStorage::Instance() {
         static ComponentStorage instance;
         return instance;
+    }
+
+    std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
+        for (auto& component : Instance().m_components) {
+            if (component && component->id() == id) {
+                return component;
+            }
+        }
+
+        throw Error{U"A component with identifier \"{}\" not found."_fmt(id)};
+    }
+
+    bool ComponentStorage::Has(size_t id) {
+        return Instance().m_components.includes_if(
+            [id](const std::shared_ptr<UIComponent>& component) { return component->id() == id; });
     }
 
     void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
@@ -26,16 +41,6 @@ namespace s3d::aoba {
                 break;
             }
         }
-    }
-
-    std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
-        for (auto& component : Instance().m_components) {
-            if (component && component->id() == id) {
-                return component;
-            }
-        }
-
-        throw Error{U"A component with identifier \"{}\" not found."_fmt(id)};
     }
 
     void ComponentStorage::releaseUnusedComponents() {
