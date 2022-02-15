@@ -13,6 +13,7 @@
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp" />
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp" />
+    <ClCompile Include="..\Aoba\src\Constraint\Constraint.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
     <ClCompile Include="..\Aoba\src\Core\TaskRunner.cpp" />
@@ -25,9 +26,11 @@
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
     <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp" />
+    <ClCompile Include="..\Aoba\src\UnifiedFont\UnifiedFont.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UICheckBox\UICheckBox.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UICircle\UICircle.cpp" />
@@ -44,9 +47,6 @@
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIView\UIView.cpp" />
     <ClCompile Include="..\Aoba\src\UserInterface\Component\UIVStackView\UIVStackView.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Constraint\Constraint.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Font\UnifiedFont.cpp" />
-    <ClCompile Include="..\Aoba\src\UserInterface\Layer\Layer.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Factory.hpp" />

@@ -13,20 +13,8 @@
     <Filter Include="Aoba\UserInterface\UserInterface">
       <UniqueIdentifier>{4faaad3a-684d-48df-8ce7-5621f734b1e3}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\UserInterface\Font">
-      <UniqueIdentifier>{2480c2de-8ad4-4ae0-bd1d-8e553f0472a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\Layer">
-      <UniqueIdentifier>{0c52fae9-ddd3-4ec7-9a25-ce4cd2614791}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\Constraint">
-      <UniqueIdentifier>{c1aac708-f70f-429d-8896-0048554f2a48}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\Timeout">
       <UniqueIdentifier>{b9c0167d-3b26-444b-a408-0ce707d480c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\PixelUnit">
-      <UniqueIdentifier>{a0d0136b-6a55-4c46-9ce8-e929016f8675}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\Page">
       <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
@@ -63,9 +51,6 @@
     </Filter>
     <Filter Include="Aoba\UserInterface\UserInterface\UIInputField">
       <UniqueIdentifier>{64100a12-4a02-48d0-bdc7-03822862222a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\InputEvent">
-      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\UserInterface\UserInterface\UICheckBox">
       <UniqueIdentifier>{40771309-6547-4154-b832-db05add49ba5}</UniqueIdentifier>
@@ -106,25 +91,31 @@
     <Filter Include="Aoba\AobaLog">
       <UniqueIdentifier>{f06c9c0b-d735-4684-99c1-766c23e0428a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\PixelUnit">
+      <UniqueIdentifier>{a0d0136b-6a55-4c46-9ce8-e929016f8675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Layer">
+      <UniqueIdentifier>{0c52fae9-ddd3-4ec7-9a25-ce4cd2614791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\InputEvent">
+      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Constraint">
+      <UniqueIdentifier>{c1aac708-f70f-429d-8896-0048554f2a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\UnifiedFont">
+      <UniqueIdentifier>{2480c2de-8ad4-4ae0-bd1d-8e553f0472a3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
       <Filter>Aoba\ColorTheme</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Font\UnifiedFont.cpp">
-      <Filter>Aoba\UserInterface\Font</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Layer\Layer.cpp">
-      <Filter>Aoba\UserInterface\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Constraint\Constraint.cpp">
-      <Filter>Aoba\UserInterface\Constraint</Filter>
-    </ClCompile>
     <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp">
       <Filter>Aoba\Timeout</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp">
-      <Filter>Aoba\UserInterface\PixelUnit</Filter>
+      <Filter>Aoba\PixelUnit</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\Core.cpp">
       <Filter>Aoba\Core</Filter>
@@ -211,10 +202,19 @@
       <Filter>Aoba\AobaLog</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Constraint\Constraint.cpp">
+      <Filter>Aoba\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\UnifiedFont\UnifiedFont.cpp">
+      <Filter>Aoba\UnifiedFont</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Layer\Layer.cpp">
+      <Filter>Aoba\Layer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,13 +225,13 @@
       <Filter>Aoba\ColorTheme</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp">
-      <Filter>Aoba\UserInterface\Font</Filter>
+      <Filter>Aoba\UnifiedFont</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp">
-      <Filter>Aoba\UserInterface\Layer</Filter>
+      <Filter>Aoba\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Constraint.hpp">
-      <Filter>Aoba\UserInterface\Constraint</Filter>
+      <Filter>Aoba\Constraint</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp">
       <Filter>Aoba\ColorTheme</Filter>
@@ -240,7 +240,7 @@
       <Filter>Aoba\Timeout</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp">
-      <Filter>Aoba\UserInterface\PixelUnit</Filter>
+      <Filter>Aoba\PixelUnit</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp">
       <Filter>Aoba\Page</Filter>
@@ -249,7 +249,7 @@
       <Filter>Aoba\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp">
       <Filter>Aoba\Imaging</Filter>
@@ -288,10 +288,10 @@
       <Filter>Aoba\UserInterface\UserInterface\UIVStackView</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp">
       <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
@@ -327,7 +327,7 @@
       <Filter>Aoba\AobaLog</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
