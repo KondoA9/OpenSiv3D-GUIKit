@@ -77,5 +77,7 @@ add_library(aoba STATIC
 
 	"../Aoba/src/Timeout/Timeout.cpp"
 
+	"../Aoba/src/Tooltip/Tooltip.cpp"
+
 	"../Aoba/src/UnifiedFont/UnifiedFont.cpp"
 )
