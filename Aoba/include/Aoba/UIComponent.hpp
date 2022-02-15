@@ -55,6 +55,7 @@ namespace s3d::aoba {
 
     public:
         ColorTheme backgroundColor, frameColor;
+        String tooltipMessage = U"";
         double frameThickness = 1.0;
         bool fillInner = true, drawFrame = false;
         bool penetrateMouseEvent = false;
