@@ -3,6 +3,7 @@
         {
             "name": "Linux",
             "includePath": [
+                "${workspaceFolder}/Aoba",
                 "${workspaceFolder}/Aoba/include",
                 "${workspaceFolder}/Dependencies/include",
                 "${workspaceFolder}/Dependencies/include/ThirdParty"
@@ -15,6 +16,7 @@
         {
             "name": "Win32",
             "includePath": [
+                "${workspaceFolder}/Aoba",
                 "${workspaceFolder}/Aoba/include",
                 "${workspaceFolder}/Dependencies/include",
                 "${workspaceFolder}/Dependencies/include/ThirdParty"
