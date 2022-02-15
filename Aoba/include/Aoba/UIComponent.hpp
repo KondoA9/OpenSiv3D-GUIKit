@@ -60,6 +60,7 @@ namespace s3d::aoba {
         bool fillInner = true, drawFrame = false;
         bool penetrateMouseEvent = false;
         bool hidden = false, exist = true, controllable = true;
+        bool tooltipDisabled = false;
 
     private:
         static Optional<size_t> m_FocusedComponentId, m_PreviousFocusedComponentId;
@@ -170,7 +171,7 @@ namespace s3d::aoba {
         // Called once at constructed.
         // If you need to call addEventlistener etc to implement the default behavior, define this function.
         // Do not forget to call super::initialize().
-        virtual void initialize() {}
+        virtual void initialize();
 
         // Called once before draw().
         // This function is intended to initialize background color. (ex. backgroundColor = defaultColor; in UIButton)

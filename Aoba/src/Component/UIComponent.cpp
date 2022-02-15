@@ -2,6 +2,7 @@
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
 #include "src/InputEvent/InputEventManager.hpp"
+#include "src/Tooltip/Tooltip.hpp"
 
 namespace s3d::aoba {
     Optional<size_t> UIComponent::m_FocusedComponentId = none, UIComponent::m_PreviousFocusedComponentId = none;
@@ -17,6 +18,19 @@ namespace s3d::aoba {
         release();
         InputEventManager::Unregister(m_id);
         ComponentStorage::Release(m_id);
+    }
+
+    void UIComponent::initialize() {
+        addEventListener<Event::Mouse::Hovered>([this] {
+            if (!tooltipDisabled) {
+                Tooltip::SetHoveredComponent(m_id);
+            }
+        });
+        addEventListener<Event::Mouse::UnHovered>([this] {
+            if (!tooltipDisabled) {
+                Tooltip::Hide();
+            }
+        });
     }
 
     void UIComponent::updateLayer(const Rect& scissor) {

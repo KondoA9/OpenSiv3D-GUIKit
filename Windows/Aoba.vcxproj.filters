@@ -103,6 +103,9 @@
     <Filter Include="Aoba\Component\UIVStackView">
       <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\Tooltip">
+      <UniqueIdentifier>{dd42968e-bd00-4713-9212-9f21e7fabcfc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -212,6 +215,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Component\UIButton.cpp">
       <Filter>Aoba\Component\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Tooltip\Tooltip.cpp">
+      <Filter>Aoba\Tooltip</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -325,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp">
       <Filter>Aoba\InputEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp">
+      <Filter>Aoba\Tooltip</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
