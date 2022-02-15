@@ -1,4 +1,4 @@
-#include "src/Tooltip/Tooltip.hpp"
+﻿#include "src/Tooltip/Tooltip.hpp"
 
 #include "Aoba/Core.hpp"
 #include "Aoba/PixelUnit.hpp"
@@ -12,6 +12,7 @@ namespace s3d::aoba {
         m_uiTooltipText.frameColor      = DynamicColor::Separator;
         m_uiTooltipText.backgroundColor = DynamicColor::Background;
         m_uiTooltipText.tooltipDisabled = true;
+        m_uiTooltipText.penetrateMouseEvent = true;
         m_uiTooltipText.setCornerRadius(2_px);
         m_uiTooltipText.setDirection(TextDirection::Center);
         m_uiTooltipText.setConstraint(LayerDirection::Top, [this] {
