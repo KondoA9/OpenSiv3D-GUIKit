@@ -32,7 +32,7 @@ namespace s3d::aoba {
                     auto& behindComponentEvents = inputEvents[i];
                     if (behindComponentEvents.inputEvent.id == e.id
                         && behindComponentEvents.inputEvent.callIfComponentInFront) {
-                        behindComponentEvents.handlers   = handlers;
+                        behindComponentEvents.handlers = handlers;
                         break;
                     }
                     // Append handler if a event that is same type of the event does not exists
@@ -59,8 +59,10 @@ namespace s3d::aoba {
         Intance().m_inputEvents.release();
 
         for (const auto& e : events) {
-            for (const auto& handler : e.handlers) {
-                handler.handler(e.inputEvent);
+            if (ComponentStorage::Has(e.inputEvent.componentId)) {
+                for (const auto& handler : e.handlers) {
+                    handler.handler(e.inputEvent);
+                }
             }
         }
     }
