@@ -43,24 +43,23 @@ namespace s3d::aoba {
     }
 
     void Tooltip::SetHoveredComponent(size_t id) {
-        if (Instance().m_timeoutId) {
-            Core::StopTimeout(Instance().m_timeoutId.value());
+        auto& instance = Instance();
+
+        if (instance.m_timeoutId) {
+            Core::StopTimeout(instance.m_timeoutId.value());
+            instance.m_timeoutId = none;
         }
 
-        auto& component = ComponentStorage::Get(id);
-
-        if (component->tooltipMessage.isEmpty()) {
-            return;
+		// Show tooltip after 500ms if the component has a non-empty tooltip message.
+        if (auto& component = ComponentStorage::Get(id); !component->tooltipMessage.isEmpty()) {
+            instance.m_timeoutId = Core::SetTimeout(
+                [&instance, &component] {
+                    instance.m_uiTooltipText.hidden = false;
+                    instance.m_uiTooltipText.setText(component->tooltipMessage);
+                },
+                500,
+                false);
         }
-
-        auto& instance         = Instance();
-        Instance().m_timeoutId = Core::SetTimeout(
-            [&instance, &component] {
-                instance.m_uiTooltipText.hidden = false;
-                instance.m_uiTooltipText.setText(component->tooltipMessage);
-            },
-            500,
-            false);
     }
 
     void Tooltip::Hide() {
