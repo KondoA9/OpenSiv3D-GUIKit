@@ -28,7 +28,17 @@ namespace s3d::aoba {
         });
         addEventListener<Event::Mouse::UnHovered>([this] {
             if (!tooltipDisabled) {
-                Tooltip::Hide();
+                Tooltip::Hide(m_id);
+            }
+        });
+        addEventListener<Event::Mouse::LeftDownRaw>([this] {
+            if (!tooltipDisabled) {
+                Tooltip::Hide(m_id);
+            }
+        });
+        addEventListener<Event::Mouse::RightDownRaw>([this] {
+            if (!tooltipDisabled) {
+                Tooltip::Hide(m_id);
             }
         });
     }

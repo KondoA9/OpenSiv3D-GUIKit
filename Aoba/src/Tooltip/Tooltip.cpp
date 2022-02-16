@@ -42,27 +42,38 @@ namespace s3d::aoba {
         return instance;
     }
 
-    void Tooltip::SetHoveredComponent(size_t id) {
-        auto& instance = Instance();
+    void Tooltip::SetHoveredComponent(size_t componentId) {
+        auto& instance  = Instance();
+        auto& component = ComponentStorage::Get(componentId);
+
+        if (component->tooltipMessage.isEmpty()) {
+            return;
+        }
 
         if (instance.m_timeoutId) {
             Core::StopTimeout(instance.m_timeoutId.value());
             instance.m_timeoutId = none;
         }
 
-		// Show tooltip after 500ms if the component has a non-empty tooltip message.
-        if (auto& component = ComponentStorage::Get(id); !component->tooltipMessage.isEmpty()) {
-            instance.m_timeoutId = Core::SetTimeout(
-                [&instance, &component] {
-                    instance.m_uiTooltipText.hidden = false;
-                    instance.m_uiTooltipText.setText(component->tooltipMessage);
-                },
-                500,
-                false);
-        }
+        // Show tooltip after 500ms if the component has a non-empty tooltip message.
+        instance.m_componentId = componentId;
+        instance.m_timeoutId   = Core::SetTimeout(
+            [&instance, &component] {
+                instance.m_uiTooltipText.hidden = false;
+                instance.m_uiTooltipText.setText(component->tooltipMessage);
+            },
+            500,
+            false);
     }
 
-    void Tooltip::Hide() {
-        Instance().m_uiTooltipText.hidden = true;
+    void Tooltip::Hide(size_t componentId) {
+        if (Instance().m_componentId && Instance().m_componentId.value() == componentId) {
+            Instance().m_uiTooltipText.hidden = true;
+            if (Instance().m_timeoutId) {
+                Core::StopTimeout(Instance().m_timeoutId.value());
+                Instance().m_timeoutId   = none;
+                Instance().m_componentId = none;
+            }
+        }
     }
 }
