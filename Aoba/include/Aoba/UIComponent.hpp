@@ -158,7 +158,7 @@ namespace s3d::aoba {
             if (primary) {
                 m_inputEventHandlers.push_front(handler);
             } else {
-                m_inputEventHandlers.push_back(handler);
+                m_inputEventHandlers.emplace_back(handler);
             }
         }
 

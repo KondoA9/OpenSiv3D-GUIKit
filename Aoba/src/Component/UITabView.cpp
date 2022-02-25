@@ -63,14 +63,12 @@ namespace s3d::aoba {
         view.setConstraint(LayerDirection::Left, ui_tabView, LayerDirection::Left);
         view.setConstraint(LayerDirection::Right, ui_tabView, LayerDirection::Right);
 
-        Tab tab = {.index = index, .view = view, .selector = selector};
+        auto& tab = m_tabs.emplace_back(index, view, selector);
 
         if (tab.index == m_tabIndex) {
             tab.show();
         } else {
             tab.hide();
         }
-
-        m_tabs.push_back(tab);
     }
 }

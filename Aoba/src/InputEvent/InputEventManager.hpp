@@ -7,6 +7,9 @@ namespace s3d::aoba {
         struct CallableInputEvent {
             InputEvent inputEvent;
             Array<InputEventHandler> handlers;
+
+            CallableInputEvent(const InputEvent& _inputEvent, const Array<InputEventHandler>& _handlers) :
+                inputEvent(_inputEvent), handlers(_handlers) {}
         };
 
     private:

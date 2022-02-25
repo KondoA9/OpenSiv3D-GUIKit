@@ -22,7 +22,7 @@ namespace s3d::aoba {
 
     void TaskRunner::SyncTaskManager::addTask(const std::function<void()>& task) {
         std::lock_guard<std::mutex> lock(m_mutex);
-        m_tasks.push_back(task);
+        m_tasks.emplace_back(task);
     }
 
     void TaskRunner::SyncTaskManager::run() {

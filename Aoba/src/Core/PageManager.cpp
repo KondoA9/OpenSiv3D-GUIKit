@@ -58,11 +58,11 @@ namespace s3d::aoba {
     }
 
     void PageManager::appendPage(const std::shared_ptr<Page>& page) {
-        m_pages.push_back(page);
+        m_pages.emplace_back(page);
     }
 
     void PageManager::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-        m_isolatedComponents.push_back(component);
+        m_isolatedComponents.emplace_back(component);
     }
 
     void PageManager::terminate() {

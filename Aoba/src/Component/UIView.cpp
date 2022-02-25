@@ -25,7 +25,7 @@ namespace s3d::aoba {
         if (!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
                 return component.id() == component2->id();
             })) {
-            m_components.push_back(ComponentStorage::Get(component.id()));
+            m_components.emplace_back(ComponentStorage::Get(component.id()));
         }
     }
 

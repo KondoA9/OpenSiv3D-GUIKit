@@ -15,6 +15,8 @@ namespace s3d::aoba {
 
             bool enabled = true;
 
+            Tab(size_t _index, UIView& _view, UIButton& _selector) : index(_index), view(_view), selector(_selector) {}
+
             void show() {
                 selector.setFont(UnifiedFontStyle::DefaultBold);
                 view.hidden = false;

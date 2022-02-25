@@ -93,7 +93,7 @@ namespace s3d::aoba {
     }
 
     size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
-        Instance().m_timeouts.push_back(Timeout(func, ms, threading));
+        Instance().m_timeouts.emplace_back(func, ms, threading);
         return Instance().m_timeouts[Instance().m_timeouts.size() - 1].id();
     }
 

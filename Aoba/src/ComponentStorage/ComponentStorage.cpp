@@ -25,7 +25,7 @@ namespace s3d::aoba {
 
     void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
         Instance().releaseComponentsIfNeed();
-        Instance().m_components.push_back(component);
+        Instance().m_components.emplace_back(component);
     }
 
     void ComponentStorage::Release(size_t id) {

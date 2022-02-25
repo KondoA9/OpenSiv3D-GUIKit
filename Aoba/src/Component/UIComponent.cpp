@@ -72,7 +72,7 @@ namespace s3d::aoba {
                                     LayerDirection toDirection,
                                     double constant,
                                     double multiplier) {
-        m_dependentLayers.push_back(&component.m_layer);
+        m_dependentLayers.emplace_back(&component.m_layer);
         m_layer.setConstraint(direction, component.m_layer, toDirection, constant, multiplier);
         m_needToUpdateLayer = true;
     }

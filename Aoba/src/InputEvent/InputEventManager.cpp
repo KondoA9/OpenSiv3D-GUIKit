@@ -22,11 +22,11 @@ namespace s3d::aoba {
                 inputEvents = inputEvents.removed_if(
                     [](const CallableInputEvent& e) { return e.inputEvent.callIfComponentInFront; });
             }
-            inputEvents.push_back({.inputEvent = e, .handlers = handlers});
+            inputEvents.emplace_back(e, handlers);
         } else {
             // Append handlers if event stack is empty or the component penetrates a mouse event
             if (!inputEvents || component->penetrateMouseEvent) {
-                inputEvents.push_back({.inputEvent = e, .handlers = handlers});
+                inputEvents.emplace_back(e, handlers);
             } else {
                 for (size_t i : step(inputEvents.size())) {
                     auto& behindComponentEvents = inputEvents[i];
@@ -37,7 +37,7 @@ namespace s3d::aoba {
                     }
                     // Append handler if a event that is same type of the event does not exists
                     else if (i == inputEvents.size() - 1) {
-                        inputEvents.push_back({.inputEvent = e, .handlers = handlers});
+                        inputEvents.emplace_back(e, handlers);
                     }
                 }
             }

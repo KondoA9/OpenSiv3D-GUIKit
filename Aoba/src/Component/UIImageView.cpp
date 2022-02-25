@@ -37,8 +37,8 @@ namespace s3d::aoba {
     }
 
     void UIImageView::appendImage(const Image& image, double alphaRate) {
-        m_textures.push_back(DynamicTexture(image, TextureDesc::Unmipped));
-        m_alphas.push_back(255 * alphaRate);
+        m_textures.emplace_back(image, TextureDesc::Unmipped);
+        m_alphas.emplace_back(255 * alphaRate);
 
         setDrawingCenterPos(layer().center());
 
