@@ -156,7 +156,7 @@ namespace s3d::aoba {
             const auto handler = InputEventHandler::Create<T>(([f](InputEvent e) { f(*static_cast<T*>(&e)); }));
 
             if (primary) {
-                m_inputEventHandlers.push_front(handler);
+                m_inputEventHandlers.emplace(m_inputEventHandlers.begin(), handler);
             } else {
                 m_inputEventHandlers.emplace_back(handler);
             }
