@@ -60,7 +60,10 @@ add_library(aoba STATIC
 	"../Aoba/src/Core/PageCycle.cpp"
 	"../Aoba/src/Core/PageManager.cpp"
 	"../Aoba/src/Core/TaskRunner.cpp"
-	"../Aoba/src/Core/Timeout.cpp"
+	"../Aoba/src/Core/TaskRunner/AsyncTaskManager.cpp"
+	"../Aoba/src/Core/TaskRunner/SyncTaskManager.cpp"
+	"../Aoba/src/Core/TaskRunner/Timeout.cpp"
+	"../Aoba/src/Core/TaskRunner/TimeoutTaskManager.cpp"
 	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
