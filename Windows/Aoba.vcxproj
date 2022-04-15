@@ -33,6 +33,7 @@
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
     <ClCompile Include="..\Aoba\src\Core\TaskRunner.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\Timeout.cpp" />
     <ClCompile Include="..\Aoba\src\Core\WindowManager.cpp" />
     <ClCompile Include="..\Aoba\src\Factory\Factory.cpp" />
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
@@ -45,7 +46,6 @@
     <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
-    <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp" />
     <ClCompile Include="..\Aoba\src\Tooltip\Tooltip.cpp" />
     <ClCompile Include="..\Aoba\src\UnifiedFont\UnifiedFont.cpp" />
   </ItemGroup>
@@ -65,7 +65,6 @@
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\Timeout.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UICircle.hpp" />
@@ -85,6 +84,7 @@
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp" />
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\Timeout.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp" />
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp" />

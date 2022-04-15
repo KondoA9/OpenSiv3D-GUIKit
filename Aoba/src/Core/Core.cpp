@@ -4,10 +4,11 @@
 
 #include "Aoba/Page.hpp"
 #include "Aoba/UnifiedFont.hpp"
-#include "PageManager.hpp"
-#include "TaskRunner.hpp"
-#include "WindowManager.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
+#include "src/Core/PageManager.hpp"
+#include "src/Core/TaskRunner.hpp"
+#include "src/Core/Timeout.hpp"
+#include "src/Core/WindowManager.hpp"
 
 namespace s3d::aoba {
     Core::Core() {

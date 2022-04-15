@@ -7,9 +7,6 @@
     <Filter Include="Aoba\ColorTheme">
       <UniqueIdentifier>{763e9ae4-251a-4624-aaa8-21ba53c04535}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\Timeout">
-      <UniqueIdentifier>{b9c0167d-3b26-444b-a408-0ce707d480c6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\Page">
       <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
     </Filter>
@@ -106,13 +103,13 @@
     <Filter Include="Aoba\Tooltip">
       <UniqueIdentifier>{dd42968e-bd00-4713-9212-9f21e7fabcfc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\Core\Timeout">
+      <UniqueIdentifier>{442c921f-1f2b-4397-80ef-991868619902}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
       <Filter>Aoba\ColorTheme</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp">
-      <Filter>Aoba\Timeout</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp">
       <Filter>Aoba\PixelUnit</Filter>
@@ -219,6 +216,9 @@
     <ClCompile Include="..\Aoba\src\Tooltip\Tooltip.cpp">
       <Filter>Aoba\Tooltip</Filter>
     </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\Timeout.cpp">
+      <Filter>Aoba\Core\Timeout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp">
@@ -238,9 +238,6 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp">
       <Filter>Aoba\ColorTheme</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\Timeout.hpp">
-      <Filter>Aoba\Timeout</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp">
       <Filter>Aoba\PixelUnit</Filter>
@@ -334,6 +331,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp">
       <Filter>Aoba\Tooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\Timeout.hpp">
+      <Filter>Aoba\Core\Timeout</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,9 +1,10 @@
 ﻿#include "Aoba/ColorTheme.hpp"
 #include "Aoba/Core.hpp"
-#include "PageManager.hpp"
-#include "TaskRunner.hpp"
-#include "WindowManager.hpp"
 #include "src/AobaLog/AobaLog.hpp"
+#include "src/Core/PageManager.hpp"
+#include "src/Core/TaskRunner.hpp"
+#include "src/Core/Timeout.hpp"
+#include "src/Core/WindowManager.hpp"
 
 void AobaMain();
 

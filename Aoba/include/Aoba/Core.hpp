@@ -5,7 +5,6 @@
 #include <mutex>
 
 #include "Page.hpp"
-#include "Timeout.hpp"
 
 namespace s3d::aoba {
     class UIComponent;
@@ -20,7 +19,7 @@ namespace s3d::aoba {
 
         bool m_animateColor = false;
 
-        Array<Timeout> m_timeouts;
+        Array<class Timeout> m_timeouts;
 
     public:
         Core(const Core&) = delete;
