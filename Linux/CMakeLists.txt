@@ -60,6 +60,7 @@ add_library(aoba STATIC
 	"../Aoba/src/Core/PageCycle.cpp"
 	"../Aoba/src/Core/PageManager.cpp"
 	"../Aoba/src/Core/TaskRunner.cpp"
+	"../Aoba/src/Core/Timeout.cpp"
 	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
@@ -74,8 +75,6 @@ add_library(aoba STATIC
 	"../Aoba/src/Page/Page.cpp"
 
 	"../Aoba/src/PixelUnit/PixelUnit.cpp"
-
-	"../Aoba/src/Timeout/Timeout.cpp"
 
 	"../Aoba/src/Tooltip/Tooltip.cpp"
 
