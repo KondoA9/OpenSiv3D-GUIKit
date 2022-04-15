@@ -11,8 +11,8 @@
 
 namespace s3d::aoba {
     Core::Core() {
-        m_pageManager = new PageManager();
-        m_taskRunner  = new TaskRunner();
+        m_pageManager = std::make_unique<PageManager>();
+        m_taskRunner  = std::make_unique<TaskRunner>();
 
         WindowManager::Initialize();
 
@@ -27,10 +27,7 @@ namespace s3d::aoba {
         Core::AddLicense();
     }
 
-    Core::~Core() {
-        delete m_pageManager;
-        delete m_taskRunner;
-    }
+    Core::~Core() {}
 
     Core& Core::Instance() {
         static Core instance;

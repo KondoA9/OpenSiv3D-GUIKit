@@ -13,8 +13,8 @@ namespace s3d::aoba {
 
     class Core final {
     private:
-        class PageManager* m_pageManager;
-        class TaskRunner* m_taskRunner;
+        std::unique_ptr<class PageManager> m_pageManager;
+        std::unique_ptr<class TaskRunner> m_taskRunner;
 
         std::atomic<bool> m_terminationPrevented = false;
 
