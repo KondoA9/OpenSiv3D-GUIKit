@@ -1,6 +1,8 @@
 ﻿#pragma once
 
-#include <Siv3D.hpp>
+#include <atomic>
+#include <chrono>
+#include <functional>
 
 namespace s3d::aoba {
     class Timeout {
@@ -11,7 +13,8 @@ namespace s3d::aoba {
         const bool m_threading;
         const std::function<void()> m_func;
 
-        Stopwatch m_stopwatch;
+        std::chrono::system_clock::time_point m_startedTime;
+
         bool m_started = false, m_stopped = false, m_finished = false;
 
     public:
@@ -25,11 +28,11 @@ namespace s3d::aoba {
             return m_id;
         }
 
-        bool isRunning() {
+        bool isRunning() const {
             return m_started && !m_finished;
         }
 
-        bool isAlive() {
+        bool isAlive() const {
             return !m_stopped && !m_finished;
         }
 

@@ -33,7 +33,10 @@
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageManager.cpp" />
     <ClCompile Include="..\Aoba\src\Core\TaskRunner.cpp" />
-    <ClCompile Include="..\Aoba\src\Core\Timeout.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\AsyncTaskManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\SyncTaskManager.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp" />
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.cpp" />
     <ClCompile Include="..\Aoba\src\Core\WindowManager.cpp" />
     <ClCompile Include="..\Aoba\src\Factory\Factory.cpp" />
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp" />
@@ -84,7 +87,10 @@
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp" />
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp" />
-    <ClInclude Include="..\Aoba\src\Core\Timeout.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\AsyncTaskManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\SyncTaskManager.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\Timeout.hpp" />
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp" />
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp" />

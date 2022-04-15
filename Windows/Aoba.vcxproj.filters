@@ -103,8 +103,17 @@
     <Filter Include="Aoba\Tooltip">
       <UniqueIdentifier>{dd42968e-bd00-4713-9212-9f21e7fabcfc}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\Core\Timeout">
-      <UniqueIdentifier>{442c921f-1f2b-4397-80ef-991868619902}</UniqueIdentifier>
+    <Filter Include="Aoba\Core\TaskRunner\AsyncTaskManager">
+      <UniqueIdentifier>{a13dbbdd-d768-4077-9b2a-323a893adc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\SyncTaskManager">
+      <UniqueIdentifier>{3ffa52c2-ee6b-4195-a073-933a69d51d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\TimeoutTaskManager">
+      <UniqueIdentifier>{acdab193-6dac-4cfb-a228-ce9878b07c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\Timeout">
+      <UniqueIdentifier>{5cbf70a9-9134-4688-b319-0a96b773b854}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -216,8 +225,17 @@
     <ClCompile Include="..\Aoba\src\Tooltip\Tooltip.cpp">
       <Filter>Aoba\Tooltip</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\Core\Timeout.cpp">
-      <Filter>Aoba\Core\Timeout</Filter>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\AsyncTaskManager.cpp">
+      <Filter>Aoba\Core\TaskRunner\AsyncTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\SyncTaskManager.cpp">
+      <Filter>Aoba\Core\TaskRunner\SyncTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.cpp">
+      <Filter>Aoba\Core\TaskRunner\TimeoutTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
+      <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -332,8 +350,17 @@
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp">
       <Filter>Aoba\Tooltip</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\src\Core\Timeout.hpp">
-      <Filter>Aoba\Core\Timeout</Filter>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\AsyncTaskManager.hpp">
+      <Filter>Aoba\Core\TaskRunner\AsyncTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\SyncTaskManager.hpp">
+      <Filter>Aoba\Core\TaskRunner\SyncTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.hpp">
+      <Filter>Aoba\Core\TaskRunner\TimeoutTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\Timeout.hpp">
+      <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

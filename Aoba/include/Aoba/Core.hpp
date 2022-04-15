@@ -2,11 +2,9 @@
 
 #include <Siv3D.hpp>
 #include <atomic>
-#include <mutex>
-
-#include "Page.hpp"
 
 namespace s3d::aoba {
+    class Page;
     class UIComponent;
     enum class ColorMode;
 
@@ -18,8 +16,6 @@ namespace s3d::aoba {
         std::atomic<bool> m_terminationPrevented = false;
 
         bool m_animateColor = false;
-
-        Array<class Timeout> m_timeouts;
 
     public:
         Core(const Core&) = delete;
@@ -111,7 +107,5 @@ namespace s3d::aoba {
         void run();
 
         void update();
-
-        void updateTimeouts();
     };
 }

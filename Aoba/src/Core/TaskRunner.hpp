@@ -1,55 +1,34 @@
 ﻿#pragma once
 
-#include <atomic>
-#include <functional>
-#include <mutex>
-#include <vector>
+#include "src/Core/TaskRunner/AsyncTaskManager.hpp"
+#include "src/Core/TaskRunner/SyncTaskManager.hpp"
+#include "src/Core/TaskRunner/TimeoutTaskManager.hpp"
 
 namespace s3d::aoba {
     class TaskRunner final {
-        class AsyncTaskManager final {
-        private:
-            std::atomic<size_t> m_taskCount = 0;
-
-        public:
-            bool isAlive() const {
-                return m_taskCount != 0;
-            }
-
-            void addTask(const std::function<void()>& task, const std::function<void()>& completion);
-        };
-
-        class SyncTaskManager final {
-        private:
-            std::mutex m_mutex;
-            std::vector<std::function<void()>> m_tasks;
-
-        public:
-            void addTask(const std::function<void()>& task);
-
-            void run();
-        };
-
     private:
         AsyncTaskManager m_asyncTaskManager;
         SyncTaskManager m_syncTaskManager;
+        TimeoutTaskManager m_timeoutTaskManager;
 
     public:
-        bool isAsyncTaskAlive() const {
-            return m_asyncTaskManager.isAlive();
-        }
+        bool isAsyncTaskAlive() const;
+
+        bool isTimeoutTaskAlive(size_t id) const;
+
+        bool isTimeoutTaskRunning(size_t id) const;
 
         void addAsyncTask(const std::function<void()>& task,
-                          const std::function<void()>& completion = std::function<void()>()) {
-            m_asyncTaskManager.addTask(task, completion);
-        }
+                          const std::function<void()>& completion = std::function<void()>());
 
-        void addSyncTask(const std::function<void()>& task) {
-            m_syncTaskManager.addTask(task);
-        }
+        void addSyncTask(const std::function<void()>& task);
 
-        void runSyncTasks() {
-            m_syncTaskManager.run();
-        }
+        size_t addTimeoutTask(const std::function<void()>& task, double ms, bool threading);
+
+        void update();
+
+        bool stopTimeoutTask(size_t id);
+
+        bool restartTimeoutTask(size_t id);
     };
 }

@@ -3,7 +3,6 @@
 #include "src/AobaLog/AobaLog.hpp"
 #include "src/Core/PageManager.hpp"
 #include "src/Core/TaskRunner.hpp"
-#include "src/Core/Timeout.hpp"
 #include "src/Core/WindowManager.hpp"
 
 void AobaMain();
@@ -49,21 +48,6 @@ namespace s3d::aoba {
 
         m_pageManager->draw();
 
-        m_taskRunner->runSyncTasks();
-
-        updateTimeouts();
-    }
-
-    void Core::updateTimeouts() {
-        bool alive = false;
-
-        for (auto& timeout : m_timeouts) {
-            timeout.update();
-            alive |= timeout.isAlive();
-        }
-
-        if (!alive) {
-            m_timeouts.release();
-        }
+        m_taskRunner->update();
     }
 }

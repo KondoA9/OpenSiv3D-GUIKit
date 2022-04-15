@@ -7,7 +7,6 @@
 #include "src/ComponentStorage/ComponentStorage.hpp"
 #include "src/Core/PageManager.hpp"
 #include "src/Core/TaskRunner.hpp"
-#include "src/Core/Timeout.hpp"
 #include "src/Core/WindowManager.hpp"
 
 namespace s3d::aoba {
@@ -44,12 +43,7 @@ namespace s3d::aoba {
     }
 
     bool Core::IsTimeoutAlive(size_t id) {
-        for (auto& timeout : Instance().m_timeouts) {
-            if (timeout.id() == id) {
-                return timeout.isAlive();
-            }
-        }
-        return false;
+        return Instance().m_taskRunner->isTimeoutTaskAlive(id);
     }
 
     void Core::SwitchPage(const String& identifier) {
@@ -91,26 +85,15 @@ namespace s3d::aoba {
     }
 
     size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
-        Instance().m_timeouts.emplace_back(func, ms, threading);
-        return Instance().m_timeouts[Instance().m_timeouts.size() - 1].id();
+        return Instance().m_taskRunner->addTimeoutTask(func, ms, threading);
     }
 
     bool Core::StopTimeout(size_t id) {
-        for (auto& timeout : Instance().m_timeouts) {
-            if (timeout.id() == id) {
-                return timeout.stop();
-            }
-        }
-        return false;
+        return Instance().m_taskRunner->stopTimeoutTask(id);
     }
 
     bool Core::RestartTimeout(size_t id) {
-        for (auto& timeout : Instance().m_timeouts) {
-            if (timeout.id() == id) {
-                return timeout.restart();
-            }
-        }
-        return false;
+        return Instance().m_taskRunner->restartTimeoutTask(id);
     }
 
     void Core::AddLicense() {

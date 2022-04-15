@@ -1,39 +1,40 @@
 ﻿#include "TaskRunner.hpp"
 
-#include <thread>
-
 namespace s3d::aoba {
-    void TaskRunner::AsyncTaskManager::addTask(const std::function<void()>& task,
-                                               const std::function<void()>& completion) {
-        m_taskCount++;
-
-        std::thread thread([this, task, completion]() {
-            task();
-
-            if (completion) {
-                completion();
-            }
-
-            m_taskCount--;
-        });
-
-        thread.detach();
+    bool TaskRunner::isAsyncTaskAlive() const {
+        return m_asyncTaskManager.isAlive();
     }
 
-    void TaskRunner::SyncTaskManager::addTask(const std::function<void()>& task) {
-        std::lock_guard<std::mutex> lock(m_mutex);
-        m_tasks.emplace_back(task);
+    bool TaskRunner::isTimeoutTaskAlive(size_t id) const {
+        return m_timeoutTaskManager.isAlive(id);
     }
 
-    void TaskRunner::SyncTaskManager::run() {
-        std::lock_guard<std::mutex> lock(m_mutex);
+    bool TaskRunner::isTimeoutTaskRunning(size_t id) const {
+        return m_timeoutTaskManager.isRunning(id);
+    }
 
-        for (const auto& task : m_tasks) {
-            task();
-        }
+    void TaskRunner::addAsyncTask(const std::function<void()>& task, const std::function<void()>& completion) {
+        m_asyncTaskManager.addTask(task, completion);
+    }
 
-        // release tasks
-        m_tasks.clear();
-        m_tasks.shrink_to_fit();
+    void TaskRunner::addSyncTask(const std::function<void()>& task) {
+        m_syncTaskManager.addTask(task);
+    }
+
+    size_t TaskRunner::addTimeoutTask(const std::function<void()>& task, double ms, bool threading) {
+        return m_timeoutTaskManager.addTask(task, ms, threading);
+    }
+
+    void TaskRunner::update() {
+        m_syncTaskManager.run();
+        m_timeoutTaskManager.update();
+    }
+
+    bool TaskRunner::stopTimeoutTask(size_t id) {
+        return m_timeoutTaskManager.stop(id);
+    }
+
+    bool TaskRunner::restartTimeoutTask(size_t id) {
+        return m_timeoutTaskManager.restart(id);
     }
 }
