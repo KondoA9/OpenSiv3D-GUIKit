@@ -1,16 +1,18 @@
 ﻿#pragma once
 
-#include <Siv3D.hpp>
+#include <functional>
+#include <mutex>
+#include <vector>
 
 namespace s3d::aoba {
     class TaskRunner final {
         class AsyncTaskManager final {
         private:
-            std::atomic<size_t> m_counter = 0;
+            std::atomic<size_t> m_taskCount = 0;
 
         public:
             bool isAlive() const {
-                return m_counter != 0;
+                return m_taskCount != 0;
             }
 
             void addTask(const std::function<void()>& task, const std::function<void()>& completion);
@@ -19,7 +21,7 @@ namespace s3d::aoba {
         class SyncTaskManager final {
         private:
             std::mutex m_mutex;
-            Array<std::function<void()>> m_tasks;
+            std::vector<std::function<void()>> m_tasks;
 
         public:
             void addTask(const std::function<void()>& task);

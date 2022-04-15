@@ -5,7 +5,7 @@
 namespace s3d::aoba {
     void TaskRunner::AsyncTaskManager::addTask(const std::function<void()>& task,
                                                const std::function<void()>& completion) {
-        m_counter++;
+        m_taskCount++;
 
         std::thread thread([this, task, completion]() {
             task();
@@ -14,7 +14,7 @@ namespace s3d::aoba {
                 completion();
             }
 
-            m_counter--;
+            m_taskCount--;
         });
 
         thread.detach();
@@ -32,6 +32,8 @@ namespace s3d::aoba {
             task();
         }
 
-        m_tasks.release();
+        // release tasks
+        m_tasks.clear();
+        m_tasks.shrink_to_fit();
     }
 }
