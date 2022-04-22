@@ -40,6 +40,11 @@ namespace s3d::aoba {
     void Core::update() {
         WindowManager::Update();
 
+        for (const auto& func : m_nextFrameFunctions) {
+            func();
+        }
+        m_nextFrameFunctions.release();
+
         m_pageManager->update();
 
         if (m_animateColor) {

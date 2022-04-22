@@ -96,6 +96,10 @@ namespace s3d::aoba {
         return Instance().m_taskRunner->restartTimeoutTask(id);
     }
 
+	void Core::NextFrame(const std::function<void()>& func) {
+        Instance().m_nextFrameFunctions.emplace_back(func);
+	}
+
     void Core::AddLicense() {
         LicenseInfo licence;
         licence.title     = U"Aoba Framework";
