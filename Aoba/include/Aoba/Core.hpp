@@ -16,6 +16,7 @@ namespace s3d::aoba {
         std::atomic<bool> m_terminationPrevented = false;
 
         bool m_animateColor = false;
+        Array<std::function<void()>> m_nextFrameFunctions;
 
     public:
         Core(const Core&) = delete;
@@ -78,6 +79,9 @@ namespace s3d::aoba {
         static bool StopTimeout(size_t id);
 
         static bool RestartTimeout(size_t id);
+
+		// Execute func in the next frame.
+		static void NextFrame(const std::function<void()>& func);
 
         template <class T>
         static T& GetPage(const String& identifier) noexcept {
