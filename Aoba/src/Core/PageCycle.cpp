@@ -192,16 +192,16 @@ namespace s3d::aoba {
     }
 
     void PageManager::preparePageChanging() {
-        m_nextPage->onBeforeAppeared();
         m_previousPage->onBeforeDisappeared();
+        m_nextPage->onBeforeAppeared();
 
         // Request to update layer of the next page
         m_nextPage->view.requestToUpdateLayer();
     }
 
     void PageManager::finalizePageChanging() {
-        m_nextPage->onAfterAppeared();
         m_previousPage->onAfterDisappeared();
+        m_nextPage->onAfterAppeared();
 
         m_currentPage = m_nextPage;
 
