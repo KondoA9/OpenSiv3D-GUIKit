@@ -96,9 +96,9 @@ namespace s3d::aoba {
         return Instance().m_taskRunner->restartTimeoutTask(id);
     }
 
-	void Core::NextFrame(const std::function<void()>& func) {
+    void Core::NextFrame(const std::function<void()>& func) {
         Instance().m_nextFrameFunctions.emplace_back(func);
-	}
+    }
 
     void Core::AddLicense() {
         LicenseInfo licence;
@@ -150,5 +150,16 @@ SOFTWARE.)";
 
     void Core::appendPage(const std::shared_ptr<Page>& page) {
         m_pageManager->appendPage(page);
+    }
+
+    void Core::updateNextFrameFunctions() {
+		// this implementation supports recursive calling of NextFrame()
+        const auto count = m_nextFrameFunctions.size();
+        if (count > 0) {
+            for (size_t i = 0; i < count; i++) {
+                m_nextFrameFunctions[i]();
+            }
+            m_nextFrameFunctions.erase(m_nextFrameFunctions.begin(), m_nextFrameFunctions.begin() + count);
+        }
     }
 }

@@ -111,5 +111,7 @@ namespace s3d::aoba {
         void run();
 
         void update();
+
+		void updateNextFrameFunctions();
     };
 }
