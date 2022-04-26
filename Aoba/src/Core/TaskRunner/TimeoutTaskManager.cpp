@@ -25,14 +25,14 @@ namespace s3d::aoba {
     }
 
     void TimeoutTaskManager::update() {
-        bool anyTimeoutAlive = false;
+        bool timeoutDeletable = true;
 
         for (auto& timeout : m_timeouts) {
             timeout.update();
-            anyTimeoutAlive |= timeout.isAlive();
+            timeoutDeletable &= !timeout.isAlive();
         }
 
-        if (!anyTimeoutAlive) {
+        if (timeoutDeletable) {
             m_timeouts.clear();
             m_timeouts.shrink_to_fit();
         }

@@ -28,6 +28,10 @@ namespace s3d::aoba {
             return m_id;
         }
 
+        bool isPending() const {
+            return !m_started && !m_stopped;
+        }
+
         bool isRunning() const {
             return m_started && !m_finished;
         }
