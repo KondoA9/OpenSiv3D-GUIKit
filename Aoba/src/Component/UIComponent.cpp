@@ -2,6 +2,7 @@
 
 #include "src/ComponentStorage/ComponentStorage.hpp"
 #include "src/InputEvent/InputEventManager.hpp"
+#include "src/KeyShortcut/KeyShortcut.hpp"
 #include "src/Tooltip/Tooltip.hpp"
 
 namespace s3d::aoba {
@@ -41,6 +42,16 @@ namespace s3d::aoba {
                 Tooltip::Hide(m_id);
             }
         });
+    }
+
+    void UIComponent::update() {
+        if (isFocused()) {
+            for (auto& shortcut : m_keyShortcuts) {
+                if (shortcut->keyDown()) {
+                    shortcut->call();
+                }
+            }
+        }
     }
 
     void UIComponent::updateLayer(const Rect& scissor) {
@@ -111,5 +122,17 @@ namespace s3d::aoba {
         if (isFocused()) {
             m_FocusedComponentId = none;
         }
+    }
+
+    void UIComponent::registerKeyShortcut(const Input& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<Input>>(input, callback));
+    }
+
+    void UIComponent::registerKeyShortcut(const InputCombination& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<InputCombination>>(input, callback));
+    }
+
+    void UIComponent::registerKeyShortcut(const InputGroup& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<InputGroup>>(input, callback));
     }
 }

@@ -47,6 +47,10 @@ namespace s3d::aoba {
             }
         }
 
+        if (m_currentPage) {
+            m_currentPage->update();
+        }
+
         updateViews();
 
         updateLayers();
