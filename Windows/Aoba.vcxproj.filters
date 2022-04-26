@@ -115,6 +115,9 @@
     <Filter Include="Aoba\Core\TaskRunner\Timeout">
       <UniqueIdentifier>{5cbf70a9-9134-4688-b319-0a96b773b854}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\KeyShortcut">
+      <UniqueIdentifier>{74b01146-42b6-4ee1-8a89-12fced3203f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -236,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
       <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\KeyShortcut\KeyShortcut.cpp">
+      <Filter>Aoba\KeyShortcut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -361,6 +367,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Core\TaskRunner\Timeout.hpp">
       <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\KeyShortcut\KeyShortcut.hpp">
+      <Filter>Aoba\KeyShortcut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

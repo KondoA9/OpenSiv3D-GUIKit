@@ -82,6 +82,9 @@ namespace s3d::aoba {
         Vec2 m_clickedPos    = Vec2();
         Array<InputEventHandler> m_inputEventHandlers;
 
+        // keyboard shortcuts
+        Array<std::unique_ptr<class KeyShortcutBase>> m_keyShortcuts;
+
     public:
         UIComponent() = delete;
 
@@ -151,6 +154,12 @@ namespace s3d::aoba {
 
         void unFocus();
 
+        void registerKeyShortcut(const Input& input, const std::function<void()>& callback);
+
+        void registerKeyShortcut(const InputCombination& input, const std::function<void()>& callback);
+
+        void registerKeyShortcut(const InputGroup& input, const std::function<void()>& callback);
+
         template <class T>
         void addEventListener(const std::function<void(const T&)>& f, bool primary = false) {
             const auto handler = InputEventHandler::Create<T>(([f](InputEvent e) { f(*static_cast<T*>(&e)); }));
@@ -178,7 +187,7 @@ namespace s3d::aoba {
         // Override and implement this function if the component has default colors.
         virtual void initializeColors() {}
 
-        virtual void update() {}
+        virtual void update();
 
         virtual void updateLayer(const Rect& scissor);
 

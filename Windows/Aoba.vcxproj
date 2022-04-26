@@ -46,6 +46,7 @@
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp" />
+    <ClCompile Include="..\Aoba\src\KeyShortcut\KeyShortcut.cpp" />
     <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
@@ -93,6 +94,7 @@
     <ClInclude Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp" />
+    <ClInclude Include="..\Aoba\src\KeyShortcut\KeyShortcut.hpp" />
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
