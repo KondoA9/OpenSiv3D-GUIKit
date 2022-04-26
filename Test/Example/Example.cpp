@@ -210,6 +210,8 @@ private:
 
 protected:
     void onLoaded() override {
+        registerKeyShortcut(KeySpace, [] { Print << U"Page shortcut: space"; });
+
         m_uiTitle.setText(U"This is the example application of Aoba.");
         m_uiTitle.setFont(aoba::UnifiedFontStyle::Header);
         m_uiTitle.setDirection(aoba::TextDirection::Center);

@@ -2,6 +2,7 @@
 
 #include "Aoba/Factory.hpp"
 #include "Aoba/UIView.hpp"
+#include "src/KeyShortcut/KeyShortcut.hpp"
 
 namespace s3d::aoba {
     Page::Page(const String& identifier) : view(Factory::CreateComponent<UIView>()), m_identifier(identifier) {
@@ -18,6 +19,8 @@ namespace s3d::aoba {
         m_acceptDragDropFiles = acceptFiles;
         m_acceptDragDropTexts = acceptTexts;
     }
+
+    Page::~Page() {}
 
     void Page::onLoaded() {}
 
@@ -36,4 +39,24 @@ namespace s3d::aoba {
     void Page::onAppTerminated() {}
 
     void Page::onDragDrop(const Array<DroppedFilePath>&, const Array<DroppedText>&) {}
+
+    void Page::registerKeyShortcut(const Input& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<Input>>(input, callback));
+    }
+
+    void Page::registerKeyShortcut(const InputCombination& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<InputCombination>>(input, callback));
+    }
+
+    void Page::registerKeyShortcut(const InputGroup& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<InputGroup>>(input, callback));
+    }
+
+    void Page::update() {
+        for (auto& shortcut : m_keyShortcuts) {
+            if (shortcut->keyDown()) {
+                shortcut->call();
+            }
+        }
+    }
 }

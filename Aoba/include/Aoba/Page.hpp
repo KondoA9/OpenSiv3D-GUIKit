@@ -19,6 +19,9 @@ namespace s3d::aoba {
         bool m_loaded              = false;
         bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
 
+        // keyboard shortcut
+        Array<std::unique_ptr<class KeyShortcutBase>> m_keyShortcuts;
+
     public:
         Page() = delete;
 
@@ -26,7 +29,7 @@ namespace s3d::aoba {
 
         Page& operator=(const Page&) = delete;
 
-        virtual ~Page() = default;
+        virtual ~Page();
 
         const String& identifier() const {
             return m_identifier;
@@ -42,6 +45,12 @@ namespace s3d::aoba {
         }
 
         void acceptDragDrop(bool acceptFiles, bool acceptTexts);
+
+        void registerKeyShortcut(const Input& input, const std::function<void()>& callback);
+
+        void registerKeyShortcut(const InputCombination& input, const std::function<void()>& callback);
+
+        void registerKeyShortcut(const InputGroup& input, const std::function<void()>& callback);
 
     protected:
         // Called when Aoba core system loaded the page
@@ -73,5 +82,7 @@ namespace s3d::aoba {
 
     private:
         explicit Page(const String& identifier);
+
+		void update();
     };
 }
