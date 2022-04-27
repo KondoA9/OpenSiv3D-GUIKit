@@ -2,6 +2,11 @@
 
 #include "src/AobaLog/AobaLog.hpp"
 
+// ComponentStorage::m_components and ComponentStorage::m_isolatedComponents are sorted when a new component is
+// inserted. To find the component from m_components or m_isolatedComponents, use binary search. Insertion does not
+// occur frequently but searching occurs frequently. So computational complexity is depends on search algorithm.
+// Therefore using sorting and binary search not naive method
+
 namespace s3d::aoba {
     namespace Internal {
         size_t FindIndexToInsert(const Array<std::shared_ptr<UIComponent>>& sortedArray,
