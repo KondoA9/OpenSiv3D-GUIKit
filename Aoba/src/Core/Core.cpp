@@ -2,6 +2,7 @@
 
 #include <thread>
 
+#include "Aoba/Factory.hpp"
 #include "Aoba/Page.hpp"
 #include "Aoba/UnifiedFont.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
@@ -48,10 +49,6 @@ namespace s3d::aoba {
 
     void Core::SwitchPage(const String& identifier) {
         Instance().m_pageManager->switchPage(identifier);
-    }
-
-    void Core::AppendIsolatedComponent(const UIComponent& component) {
-        Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
     }
 
     void Core::SetColorMode(ColorMode mode) {
@@ -144,16 +141,12 @@ SOFTWARE.)";
         return true;
     }
 
-    void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-        m_pageManager->appendIsolatedComponent(component);
-    }
-
     void Core::appendPage(const std::shared_ptr<Page>& page) {
         m_pageManager->appendPage(page);
     }
 
     void Core::updateNextFrameFunctions() {
-		// this implementation supports recursive calling of NextFrame()
+        // this implementation supports recursive calling of NextFrame()
         const auto count = m_nextFrameFunctions.size();
         if (count > 0) {
             for (size_t i = 0; i < count; i++) {
