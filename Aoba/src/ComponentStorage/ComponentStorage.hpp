@@ -8,8 +8,6 @@ namespace s3d::aoba {
         Array<std::shared_ptr<UIComponent>> m_components;
         Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
-        size_t m_releaseCounter = 0;
-
     public:
         ComponentStorage(const ComponentStorage&) = delete;
 
@@ -43,9 +41,5 @@ namespace s3d::aoba {
         ~ComponentStorage() = default;
 
         static ComponentStorage& Instance();
-
-        void releaseComponentsIfNeed();
-
-        void releaseUnusedComponents();
     };
 }
