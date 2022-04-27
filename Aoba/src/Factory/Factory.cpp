@@ -10,6 +10,10 @@ namespace s3d::aoba {
         return instance;
     }
 
+    UIView& Factory::_CreatePageView() {
+        return CreateComponent<UIView>(false);
+    }
+
     void Factory::LogCreatedComponent(size_t id, const std::type_info& info) {
         AobaLog::Log(AobaLog::Type::Info,
                      U"Factory",
@@ -22,6 +26,14 @@ namespace s3d::aoba {
 
     const std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
         ComponentStorage::Store(component);
+
+        component->initialize();
+
+        return ComponentStorage::Get(component->id());
+    }
+
+    const std::shared_ptr<UIComponent>& Factory::storeIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+        ComponentStorage::StoreIsolated(component);
 
         component->initialize();
 

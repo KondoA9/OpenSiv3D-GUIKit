@@ -4,8 +4,8 @@
 #include <atomic>
 
 namespace s3d::aoba {
-    class Page;
     class UIComponent;
+    class Page;
     enum class ColorMode;
 
     class Core final {
@@ -40,8 +40,6 @@ namespace s3d::aoba {
         static void Terminate();
 
         static void SwitchPage(const String& identifier);
-
-        static void AppendIsolatedComponent(const UIComponent& component);
 
         static void SetColorMode(ColorMode mode);
 
@@ -80,8 +78,8 @@ namespace s3d::aoba {
 
         static bool RestartTimeout(size_t id);
 
-		// Execute func in the next frame.
-		static void NextFrame(const std::function<void()>& func);
+        // Execute func in the next frame.
+        static void NextFrame(const std::function<void()>& func);
 
         template <class T>
         static T& GetPage(const String& identifier) noexcept {
@@ -106,12 +104,10 @@ namespace s3d::aoba {
 
         void appendPage(const std::shared_ptr<Page>& page);
 
-        void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
-
         void run();
 
         void update();
 
-		void updateNextFrameFunctions();
+        void updateNextFrameFunctions();
     };
 }
