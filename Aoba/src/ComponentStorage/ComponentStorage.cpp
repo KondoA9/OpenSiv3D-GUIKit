@@ -9,12 +9,15 @@ namespace s3d::aoba {
     }
 
     std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
+		// the components are not necessarily sorted.
+		// if a component has child components, the component is stored after children are stored.
         for (auto& component : Instance().m_components) {
             if (component && component->id() == id) {
                 return component;
             }
         }
 
+        // this code should not be called
         throw Error{U"A component with identifier \"{}\" not found."_fmt(id)};
     }
 
