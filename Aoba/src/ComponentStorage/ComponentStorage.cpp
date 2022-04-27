@@ -36,12 +36,10 @@ namespace s3d::aoba {
     }
 
     void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
-        Instance().releaseComponentsIfNeed();
         Instance().m_components.emplace_back(component);
     }
 
     void ComponentStorage::StoreIsolated(const std::shared_ptr<UIComponent>& component) {
-        Instance().releaseComponentsIfNeed();
         Instance().m_isolatedComponents.emplace_back(component);
     }
 
@@ -72,27 +70,6 @@ namespace s3d::aoba {
                 Instance().m_isolatedComponents.remove(component);
                 return;
             }
-        }
-    }
-
-    void ComponentStorage::releaseUnusedComponents() {
-        m_components.remove_if([](const std::shared_ptr<UIComponent>& component) { return !component; });
-        m_isolatedComponents.remove_if([](const std::shared_ptr<UIComponent>& component) { return !component; });
-    }
-
-    void ComponentStorage::releaseComponentsIfNeed() {
-        if (m_releaseCounter++; m_releaseCounter == 100) {
-            releaseUnusedComponents();
-
-            if (m_components.capacity() != m_components.size()) {
-                m_components.shrink_to_fit();
-            }
-
-            if (m_isolatedComponents.capacity() != m_isolatedComponents.size()) {
-                m_isolatedComponents.shrink_to_fit();
-            }
-
-            m_releaseCounter = 0;
         }
     }
 }
