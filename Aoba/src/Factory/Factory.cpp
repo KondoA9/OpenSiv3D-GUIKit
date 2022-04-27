@@ -20,7 +20,7 @@ namespace s3d::aoba {
         return Instance().m_id++;
     }
 
-    std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
+    const std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
         ComponentStorage::Store(component);
 
         component->initialize();

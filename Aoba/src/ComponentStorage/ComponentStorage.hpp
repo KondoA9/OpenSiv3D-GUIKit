@@ -18,7 +18,7 @@ namespace s3d::aoba {
 
         ComponentStorage& operator=(ComponentStorage&&) = delete;
 
-        static std::shared_ptr<UIComponent>& Get(size_t id);
+        static const std::shared_ptr<UIComponent>& Get(size_t id);
 
         static bool Has(size_t id);
 

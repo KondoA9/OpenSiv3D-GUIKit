@@ -8,7 +8,7 @@ namespace s3d::aoba {
         return instance;
     }
 
-    std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
+    const std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
 		// the components are not necessarily sorted.
 		// if a component has child components, the component is stored after children are stored.
         for (auto& component : Instance().m_components) {
