@@ -3,24 +3,95 @@
 #include "src/AobaLog/AobaLog.hpp"
 
 namespace s3d::aoba {
+    namespace Internal {
+        size_t FindIndexToInsert(const Array<std::shared_ptr<UIComponent>>& sortedArray,
+                                 const std::shared_ptr<UIComponent>& component) {
+            if (sortedArray.isEmpty()) {
+                return 0;
+            }
+
+            size_t left = 0, right = sortedArray.size() - 1;
+
+            while (left <= right) {
+                const size_t mid      = (left + right) / 2;
+                const size_t targetId = sortedArray[mid]->id();
+
+                if (targetId == component->id()) {
+                    return mid;
+                } else if (targetId < component->id()) {
+                    left = mid + 1;
+                } else {
+                    right = mid - 1;
+                }
+            }
+
+            return right + 1;
+        }
+
+        void InsertComponent(Array<std::shared_ptr<UIComponent>>& sortedArray,
+                             const std::shared_ptr<UIComponent>& component) {
+            const size_t i = FindIndexToInsert(sortedArray, component);
+            sortedArray.insert(sortedArray.begin() + i, component);
+        }
+
+        // Search the component from array by using binary search
+        Optional<size_t> SearchComponent(Array<std::shared_ptr<UIComponent>>& sortedArray, size_t id) {
+            if (sortedArray.isEmpty()) {
+                return none;
+            }
+
+            size_t left = 0, right = sortedArray.size() - 1;
+
+            while (left < right) {
+                const size_t mid      = left + (right - left) / 2;
+                const size_t targetId = sortedArray[mid]->id();
+
+                if (targetId < id) {
+                    left = mid + 1;
+                } else if (targetId > id) {
+                    // right is never be <0
+                    // mid=0 -> left=right=0 -> this cond does not satisfy while cond
+                    right = mid - 1;
+                } else {
+                    return mid;
+                }
+            }
+
+            if (left == right && sortedArray[left]->id() == id) {
+                return left;
+            }
+
+            return none;
+        }
+
+        void ReleaseComponent(Array<std::shared_ptr<UIComponent>>& componentsArray, size_t id) {
+            if (const auto& index = SearchComponent(componentsArray, id); index.has_value()) {
+                auto& component = componentsArray[index.value()];
+#if SIV3D_BUILD(DEBUG)
+                AobaLog::Log(AobaLog::Type::Info,
+                             U"ComponentStorage",
+                             U"Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" "
+                                 + ToString(component->id()));
+#endif
+                component.reset();
+                componentsArray.remove(component);
+                return;
+            }
+        }
+    }
+
     ComponentStorage& ComponentStorage::Instance() {
         static ComponentStorage instance;
         return instance;
     }
 
     const std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
-        // the components are not necessarily sorted.
-        // if a component has child components, the component is stored after children are stored.
-        for (auto& component : Instance().m_components) {
-            if (component && component->id() == id) {
-                return component;
-            }
+        if (const auto& index = Internal::SearchComponent(Instance().m_components, id); index.has_value()) {
+            return Instance().m_components[index.value()];
         }
 
-        for (auto& component : Instance().m_isolatedComponents) {
-            if (component && component->id() == id) {
-                return component;
-            }
+        if (const auto& index = Internal::SearchComponent(Instance().m_isolatedComponents, id); index.has_value()) {
+            return Instance().m_isolatedComponents[index.value()];
         }
 
         // this code should not be called
@@ -28,48 +99,22 @@ namespace s3d::aoba {
     }
 
     bool ComponentStorage::Has(size_t id) {
-        return Instance().m_components.includes_if([id](const std::shared_ptr<UIComponent>& component) {
-            return component && component->id() == id;
-        }) || Instance().m_isolatedComponents.includes_if([id](const std::shared_ptr<UIComponent>& component) {
-            return component && component->id() == id;
-        });
+        return Internal::SearchComponent(Instance().m_components, id).has_value()
+               || Internal::SearchComponent(Instance().m_isolatedComponents, id).has_value();
     }
 
     void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
-        Instance().m_components.emplace_back(component);
+        // Insert the component in ascending order
+        Internal::InsertComponent(Instance().m_components, component);
     }
 
     void ComponentStorage::StoreIsolated(const std::shared_ptr<UIComponent>& component) {
-        Instance().m_isolatedComponents.emplace_back(component);
+        // Insert the component in ascending order
+        Internal::InsertComponent(Instance().m_isolatedComponents, component);
     }
 
     void ComponentStorage::Release(size_t id) {
-        for (auto& component : Instance().m_components) {
-            if (component && component->id() == id) {
-#if SIV3D_BUILD(DEBUG)
-                AobaLog::Log(AobaLog::Type::Info,
-                             U"ComponentStorage",
-                             U"Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" "
-                                 + ToString(component->id()));
-#endif
-                component.reset();
-                Instance().m_components.remove(component);
-                return;
-            }
-        }
-
-        for (auto& component : Instance().m_isolatedComponents) {
-            if (component && component->id() == id) {
-#if SIV3D_BUILD(DEBUG)
-                AobaLog::Log(AobaLog::Type::Info,
-                             U"ComponentStorage",
-                             U"Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" "
-                                 + ToString(component->id()));
-#endif
-                component.reset();
-                Instance().m_isolatedComponents.remove(component);
-                return;
-            }
-        }
+        Internal::ReleaseComponent(Instance().m_components, id);
+        Internal::ReleaseComponent(Instance().m_isolatedComponents, id);
     }
 }
