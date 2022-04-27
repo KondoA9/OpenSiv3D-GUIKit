@@ -3,6 +3,7 @@
 #include "Aoba/UIView.hpp"
 #include "PageManager.hpp"
 #include "WindowManager.hpp"
+#include "src/ComponentStorage/ComponentStorage.hpp"
 #include "src/InputEvent/InputEventManager.hpp"
 
 namespace s3d::aoba {
@@ -131,7 +132,7 @@ namespace s3d::aoba {
         }
 
         // Draw isolated components
-        for (auto& component : m_isolatedComponents) {
+        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
             if (component->drawable()) {
                 component->draw();
             }
@@ -244,7 +245,7 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerInvert(m_windowScissorRect);
             }
 
-            for (auto& component : m_isolatedComponents) {
+            for (auto& component : ComponentStorage::GetIsolatedComponents()) {
                 component->updateLayer(m_windowScissorRect);
             }
         } else {
@@ -260,7 +261,7 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
             }
 
-            for (auto& component : m_isolatedComponents) {
+            for (auto& component : ComponentStorage::GetIsolatedComponents()) {
                 component->updateLayerIfNeeded(m_windowScissorRect);
             }
         }
@@ -272,7 +273,7 @@ namespace s3d::aoba {
             m_currentPage->view.updateInputEvents();
         }
 
-        for (auto& component : m_isolatedComponents) {
+        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
             if (component->eventUpdatable()) {
                 component->updateMouseIntersection();
                 component->updateInputEvents();

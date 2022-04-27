@@ -10,8 +10,8 @@ namespace s3d::aoba {
     }
 
     void InputEventManager::Register(const InputEvent& e) {
+        const auto& component   = ComponentStorage::Get(e.componentId);
         auto& inputEvents = Intance().m_inputEvents;
-        auto& component   = ComponentStorage::Get(e.componentId);
 
         // Get handlers that are matched to called event type
         const auto handlers = component->m_inputEventHandlers.removed_if(

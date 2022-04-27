@@ -16,8 +16,6 @@ namespace s3d::aoba {
         Array<std::shared_ptr<Page>> m_pages;
         std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
 
-        Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
-
         double m_pageTransitionRate = 1.0;
 
         Rect m_windowScissorRect;
@@ -44,8 +42,6 @@ namespace s3d::aoba {
         void switchPage(const String& identifier);
 
         void appendPage(const std::shared_ptr<Page>& page);
-
-        void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
         void terminate();
 

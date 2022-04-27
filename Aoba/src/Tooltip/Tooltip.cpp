@@ -43,8 +43,8 @@ namespace s3d::aoba {
     }
 
     void Tooltip::SetHoveredComponent(size_t componentId) {
+        const auto& component = ComponentStorage::Get(componentId);
         auto& instance  = Instance();
-        auto& component = ComponentStorage::Get(componentId);
 
         if (component->tooltipMessage.isEmpty()) {
             return;
