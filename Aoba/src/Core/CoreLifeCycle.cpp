@@ -1,88 +1,55 @@
-﻿#include <Aoba/Core.hpp>
-
-#include <Aoba/ColorTheme.hpp>
-
-#include "PageManager.hpp"
-#include "WindowManager.hpp"
+﻿#include "Aoba/ColorTheme.hpp"
+#include "Aoba/Core.hpp"
+#include "src/AobaLog/AobaLog.hpp"
+#include "src/Core/PageManager.hpp"
+#include "src/Core/TaskRunner.hpp"
+#include "src/Core/WindowManager.hpp"
 
 void AobaMain();
 
 void Main() {
-	(void)s3d::aoba::Core::Instance();
-	AobaMain();
+    (void)s3d::aoba::Core::Instance();
+    AobaMain();
 }
 
 namespace s3d::aoba {
-	void Core::Start() {
-		if (Instance().m_pageManager->initialize()) {
-			Instance().run();
-		}
-		else {
-			Logger << U"Error(Core): No pages are registered.";
-		}
-	}
+    bool Core::Start() {
+        if (Instance().m_pageManager->initialize()) {
+            Instance().run();
+            return true;
+        } else {
+            AobaLog::Log(AobaLog::Type::Error, U"Core", U"No pages are registered");
+            return false;
+        }
+    }
 
-	void Core::Terminate() {
-		Instance().m_pageManager->terminate();
-	}
+    void Core::Terminate() {
+        Instance().m_pageManager->terminate();
+    }
 
-	void Core::run() {
-		while (System::Update()) {
-			if (System::GetUserActions() == UserAction::CloseButtonClicked) {
-				m_pageManager->terminate();
-			}
+    void Core::run() {
+        while (System::Update()) {
+            if (System::GetUserActions() == UserAction::CloseButtonClicked) {
+                m_pageManager->terminate();
+            }
 
-			update();
-		}
-	}
+            update();
+        }
+    }
 
-	void Core::update() {
-		// Update window state
-		WindowManager::Update();
+    void Core::update() {
+        WindowManager::Update();
 
-		// Update pages
-		m_pageManager->update();
+		updateNextFrameFunctions();
 
-		// Update color theme
-		if (m_animateColor) {
-			m_animateColor = animateColor();
-		}
+        m_pageManager->update();
 
-		// Draw pages, components and events
-		m_pageManager->draw();
+        if (m_animateColor) {
+            m_animateColor = animateColor();
+        }
 
-		// Additional drawing events
-		for (auto& f : m_drawingEvents) {
-			f();
-		}
-		m_drawingEvents.release();
+        m_pageManager->draw();
 
-		// Update
-		updateMainThreadEvents();
-
-		updateTimeouts();
-	}
-
-	void Core::updateMainThreadEvents() {
-		std::lock_guard<std::mutex> lock(m_mainThreadInserterMutex);
-
-		for (const auto& f : m_eventsRequestedToRunInMainThread) {
-			f();
-		}
-
-		m_eventsRequestedToRunInMainThread.release();
-	}
-
-	void Core::updateTimeouts() {
-		bool alive = false;
-
-		for (auto& timeout : m_timeouts) {
-			timeout.update();
-			alive |= timeout.isAlive();
-		}
-
-		if (!alive) {
-			m_timeouts.release();
-		}
-	}
+        m_taskRunner->update();
+    }
 }

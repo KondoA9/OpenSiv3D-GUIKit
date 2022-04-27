@@ -3,75 +3,86 @@
 #include <Siv3D.hpp>
 
 namespace s3d::aoba {
-	class Core;
-	class PageManager;
-	class UIView;
+    class Core;
+    class PageManager;
+    class UIView;
 
-	class Page {
-		friend Core;
-		friend PageManager;
+    class Page {
+        friend Core;
+        friend PageManager;
 
-	public:
-		UIView& view;
+    public:
+        UIView& view;
 
-	private:
-		const String m_identifier;
-		bool m_loaded = false;
-		bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
+    private:
+        const String m_identifier;
+        bool m_loaded              = false;
+        bool m_acceptDragDropFiles = false, m_acceptDragDropTexts = false;
 
-	public:
-		Page() = delete;
+        // keyboard shortcut
+        Array<std::unique_ptr<class KeyShortcutBase>> m_keyShortcuts;
 
-		Page(const Page&) = delete;
+    public:
+        Page() = delete;
 
-		Page& operator =(const Page&) = delete;
+        Page(const Page&) = delete;
 
-		virtual ~Page() = default;
+        Page& operator=(const Page&) = delete;
 
-		const String& identifier() const {
-			return m_identifier;
-		}
+        virtual ~Page();
 
-		bool didLoaded() const {
-			return m_loaded;
-		}
+        const String& identifier() const {
+            return m_identifier;
+        }
 
-		// Return { accept files, accept texts }
-		std::tuple<bool, bool> isDragDropAccepted() const {
-			return { m_acceptDragDropFiles, m_acceptDragDropTexts };
-		}
+        bool didLoaded() const {
+            return m_loaded;
+        }
 
-		void acceptDragDrop(bool acceptFiles, bool acceptTexts);
+        // Return { accept files, accept texts }
+        std::tuple<bool, bool> isDragDropAccepted() const {
+            return {m_acceptDragDropFiles, m_acceptDragDropTexts};
+        }
 
-	protected:
-		// Called when Aoba core system loaded the page
-		virtual void onLoaded();
+        void acceptDragDrop(bool acceptFiles, bool acceptTexts);
 
-		// Called before Aoba core system draws the page
-		virtual void onBeforeAppeared();
+        void registerKeyShortcut(const Input& input, const std::function<void()>& callback);
 
-		// Called after Aoba core system draws the page
-		virtual void onAfterAppeared();
+        void registerKeyShortcut(const InputCombination& input, const std::function<void()>& callback);
 
-		// Called before Aoba core system erases the page
-		virtual void onBeforeDisappeared();
+        void registerKeyShortcut(const InputGroup& input, const std::function<void()>& callback);
 
-		// Called after Aoba core system erases the page
-		virtual void onAfterDisappeared();
+    protected:
+        // Called when Aoba core system loaded the page
+        virtual void onLoaded();
 
-		// Called when window resized
-		virtual void onWindowResized();
+        // Called before Aoba core system draws the page
+        virtual void onBeforeAppeared();
 
-		// Called before when application terminated
-		virtual void onBeforeAppTerminated();
+        // Called after Aoba core system draws the page
+        virtual void onAfterAppeared();
 
-		// Called when application terminated
-		virtual void onAppTerminated();
+        // Called before Aoba core system erases the page
+        virtual void onBeforeDisappeared();
 
-		// Called when the files or texts are drag and dropped
-		virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
+        // Called after Aoba core system erases the page
+        virtual void onAfterDisappeared();
 
-	private:
-		explicit Page(const String& identifier);
-	};
+        // Called when window resized
+        virtual void onWindowResized();
+
+        // Called before when application terminated
+        virtual void onBeforeAppTerminated();
+
+        // Called when application terminated
+        virtual void onAppTerminated();
+
+        // Called when the files or texts are drag and dropped
+        virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
+
+    private:
+        explicit Page(const String& identifier);
+
+		void update();
+    };
 }

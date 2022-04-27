@@ -28,47 +28,60 @@ include_directories(
 )
 
 add_library(aoba STATIC
+	"../Aoba/src/AobaLog/AobaLog.cpp"
+
+	"../Aoba/src/ColorTheme/ColorTheme.cpp"
+
+	"../Aoba/src/CommandLine/CommandLine.cpp"
+
+	"../Aoba/src/Component/UIButton.cpp"
+	"../Aoba/src/Component/UICheckBox.cpp"
+	"../Aoba/src/Component/UICircle.cpp"
+	"../Aoba/src/Component/UIComponent.cpp"
+	"../Aoba/src/Component/UIComponentMouseEvent.cpp"
+	"../Aoba/src/Component/UIIcon.cpp"
+	"../Aoba/src/Component/UIImageView.cpp"
+	"../Aoba/src/Component/UIInputField.cpp"
+	"../Aoba/src/Component/UIInputField/KeyboardOperation.cpp"
+	"../Aoba/src/Component/UIRect.cpp"
+	"../Aoba/src/Component/UISlider.cpp"
+	"../Aoba/src/Component/UITabView.cpp"
+	"../Aoba/src/Component/UIText.cpp"
+	"../Aoba/src/Component/UIToggleButton.cpp"
+	"../Aoba/src/Component/UIView.cpp"
+	"../Aoba/src/Component/UIVStackView.cpp"
+	
+	"../Aoba/src/ComponentStorage/ComponentStorage.cpp"
+
+	"../Aoba/src/Constraint/Constraint.cpp"
+
 	"../Aoba/src/Core/Core.cpp"
 	"../Aoba/src/Core/CoreLifeCycle.cpp"
 	"../Aoba/src/Core/PageCycle.cpp"
 	"../Aoba/src/Core/PageManager.cpp"
-	"../Aoba/src/Core/ParallelTaskManager.cpp"
+	"../Aoba/src/Core/TaskRunner.cpp"
+	"../Aoba/src/Core/TaskRunner/AsyncTaskManager.cpp"
+	"../Aoba/src/Core/TaskRunner/SyncTaskManager.cpp"
+	"../Aoba/src/Core/TaskRunner/Timeout.cpp"
+	"../Aoba/src/Core/TaskRunner/TimeoutTaskManager.cpp"
 	"../Aoba/src/Core/WindowManager.cpp"
 
 	"../Aoba/src/Factory/Factory.cpp"
-	
-	"../Aoba/src/ComponentStorage/ComponentStorage.cpp"
-
-	"../Aoba/src/Page/Page.cpp"
-
-	"../Aoba/src/ColorTheme/ColorTheme.cpp"
 
 	"../Aoba/src/Imaging/Imaging.cpp"
 
+	"../Aoba/src/InputEvent/InputEvent.cpp"
+	"../Aoba/src/InputEvent/InputEventManager.cpp"
+
+	"../Aoba/src/KeyShortcut/KeyShortcut.cpp"
+
+	"../Aoba/src/Layer/Layer.cpp"
+
+	"../Aoba/src/Page/Page.cpp"
+
 	"../Aoba/src/PixelUnit/PixelUnit.cpp"
 
-	"../Aoba/src/Timeout/Timeout.cpp"
+	"../Aoba/src/Tooltip/Tooltip.cpp"
 
-	"../Aoba/src/CommandLine/CommandLine.cpp"
-
-	"../Aoba/src/UserInterface/Font/UnifiedFont.cpp"
-	"../Aoba/src/UserInterface/Constraint/Constraint.cpp"
-	"../Aoba/src/UserInterface/Layer/Layer.cpp"
-
-	"../Aoba/src/UserInterface/Component/UIComponent/UIComponent.cpp"
-	"../Aoba/src/UserInterface/Component/UIComponent/UIComponentMouseEvent.cpp"
-	"../Aoba/src/UserInterface/Component/UIButton/UIButton.cpp"
-	"../Aoba/src/UserInterface/Component/UICircle/UICircle.cpp"
-	"../Aoba/src/UserInterface/Component/UICheckBox/UICheckBox.cpp"
-	"../Aoba/src/UserInterface/Component/UIIcon/UIIcon.cpp"
-	"../Aoba/src/UserInterface/Component/UIImageView/UIImageView.cpp"
-	"../Aoba/src/UserInterface/Component/UIInputField/UIInputField.cpp"
-	"../Aoba/src/UserInterface/Component/UIInputField/KeyboardOperation/KeyboardOperation.cpp"
-	"../Aoba/src/UserInterface/Component/UIRect/UIRect.cpp"
-	"../Aoba/src/UserInterface/Component/UISlider/UISlider.cpp"
-	"../Aoba/src/UserInterface/Component/UIText/UIText.cpp"
-	"../Aoba/src/UserInterface/Component/UIToggleButton/UIToggleButton.cpp"
-	"../Aoba/src/UserInterface/Component/UIView/UIView.cpp"
-	"../Aoba/src/UserInterface/Component/UITabView/UITabView.cpp"
-	"../Aoba/src/UserInterface/Component/UIVStackView/UIVStackView.cpp"
+	"../Aoba/src/UnifiedFont/UnifiedFont.cpp"
 )

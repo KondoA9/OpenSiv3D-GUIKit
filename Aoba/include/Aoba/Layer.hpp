@@ -5,55 +5,57 @@
 #include "Constraint.hpp"
 
 namespace s3d::aoba {
-	enum class LayerDirection {
-		Top,
-		Bottom,
-		CenterY,
-		Height,
-		Left,
-		Right,
-		CenterX,
-		Width
-	};
+    enum class LayerDirection { Top, Bottom, CenterY, Height, Left, Right, CenterX, Width };
 
-	struct Layer {
-	private:
-		Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
+    struct Layer {
+    private:
+        Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
 
-		Vec2 m_center = Vec2();
+        Vec2 m_center = Vec2();
 
-	public:
-		const Vec2& center() const;
+    public:
+        Rect asRect() const;
 
-		const Constraint& top() const;
+        RectF asRectF() const;
 
-		const Constraint& bottom() const;
+        const Vec2& center() const;
 
-		const Constraint& centerY() const;
+        const Constraint& top() const;
 
-		const Constraint& height() const;
+        const Constraint& bottom() const;
 
-		const Constraint& left() const;
+        const Constraint& centerY() const;
 
-		const Constraint& right() const;
+        const Constraint& height() const;
 
-		const Constraint& centerX() const;
+        const Constraint& left() const;
 
-		const Constraint& width() const;
+        const Constraint& right() const;
 
-		void updateConstraints();
+        const Constraint& centerX() const;
 
-		void setConstraint(LayerDirection direction, double constant, double multiplier);
+        const Constraint& width() const;
 
-		void setConstraint(LayerDirection direction, const std::function<double()>& func, double constant, double multiplier);
+        void updateConstraints();
 
-		void setConstraint(LayerDirection direction, Layer& otherLayer, LayerDirection otherLayerDirection, double constant, double multiplier);
+        void setConstraint(LayerDirection direction, double constant, double multiplier);
 
-		void removeConstraint(LayerDirection direction);
+        void setConstraint(LayerDirection direction,
+                           const std::function<double()>& func,
+                           double constant,
+                           double multiplier);
 
-		void removeAllConstraints();
+        void setConstraint(LayerDirection direction,
+                           Layer& otherLayer,
+                           LayerDirection otherLayerDirection,
+                           double constant,
+                           double multiplier);
 
-	private:
-		Constraint& constraintReferenceTo(LayerDirection direction);
-	};
+        void removeConstraint(LayerDirection direction);
+
+        void removeAllConstraints();
+
+    private:
+        Constraint& constraintReferenceTo(LayerDirection direction);
+    };
 }

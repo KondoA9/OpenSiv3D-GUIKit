@@ -1,9 +1,9 @@
 ﻿#pragma once
 
 namespace s3d::aoba::WindowManager {
-	void Initialize();
+    void Initialize();
 
-	void Update();
+    void Update();
 
-	bool DidResized();
+    bool DidResized();
 }

@@ -1,139 +1,111 @@
-﻿#include <Aoba/Core.hpp>
+﻿#include "Aoba/Core.hpp"
 
 #include <thread>
 
-#include <Aoba/Page.hpp>
-#include <Aoba/UnifiedFont.hpp>
-
+#include "Aoba/Page.hpp"
+#include "Aoba/UnifiedFont.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
-#include "PageManager.hpp"
-#include "ParallelTaskManager.hpp"
-#include "WindowManager.hpp"
+#include "src/Core/PageManager.hpp"
+#include "src/Core/TaskRunner.hpp"
+#include "src/Core/WindowManager.hpp"
 
 namespace s3d::aoba {
-	Core::Core() {
-		m_pageManager = new PageManager();
-		m_parallelTaskManager = new ParallelTaskManager();
+    Core::Core() {
+        m_pageManager = std::make_unique<PageManager>();
+        m_taskRunner  = std::make_unique<TaskRunner>();
 
-		WindowManager::Initialize();
+        WindowManager::Initialize();
 
-		UnifiedFont::Initialize();
+        UnifiedFont::Initialize();
 
-		Window::SetTitle(U"Aoba Framework");
+        Window::SetTitle(U"Aoba Framework");
 
-		Scene::SetResizeMode(ResizeMode::Actual);
+        Scene::SetResizeMode(ResizeMode::Actual);
 
-		System::SetTerminationTriggers(UserAction::NoAction);
+        System::SetTerminationTriggers(UserAction::NoAction);
 
-		Core::AddLicense();
-	}
+        Core::AddLicense();
+    }
 
-	Core::~Core() {
-		delete m_pageManager;
-		delete m_parallelTaskManager;
-	}
+    Core::~Core() {}
 
-	bool Core::IsParallelTaskAlive() {
-		return Instance().m_parallelTaskManager->isAlive();
-	}
+    Core& Core::Instance() {
+        static Core instance;
+        return instance;
+    }
 
-	void Core::SwitchPage(const String& identifier) {
-		Instance().m_pageManager->switchPage(identifier);
-	}
+    bool Core::IsAsyncTaskAlive() {
+        return Instance().m_taskRunner->isAsyncTaskAlive();
+    }
 
-	void Core::SetColorMode(ColorMode mode) {
-		Instance().m_animateColor = true;
-		ColorTheme::SetColorMode(mode);
-	}
+    bool Core::IsTerminationPrevented() {
+        return Instance().m_terminationPrevented;
+    }
 
-	void Core::ToggleColorMode() {
-		Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark : ColorMode::Light);
-	}
+    bool Core::IsTimeoutAlive(size_t id) {
+        return Instance().m_taskRunner->isTimeoutTaskAlive(id);
+    }
 
-	bool Core::animateColor() {
-		static double t = 0.0;
-		t += 5.0 * Scene::DeltaTime();
+    void Core::SwitchPage(const String& identifier) {
+        Instance().m_pageManager->switchPage(identifier);
+    }
 
-		if (t > 1.0) {
-			ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 0.0 : 1.0);
-			t = 0.0;
-			return false;
-		}
+    void Core::AppendIsolatedComponent(const UIComponent& component) {
+        Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
+    }
 
-		ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 1 - t : t);
-		return true;
-	}
+    void Core::SetColorMode(ColorMode mode) {
+        Instance().m_animateColor = true;
+        ColorTheme::SetColorMode(mode);
+    }
 
-	void Core::InsertProcessToMainThread(const std::function<void()>& func) {
-		std::lock_guard<std::mutex> lock(Instance().m_mainThreadInserterMutex);
-		Instance().m_eventsRequestedToRunInMainThread.push_back(func);
-	}
+    void Core::ToggleColorMode() {
+        Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark
+                                                                                   : ColorMode::Light);
+    }
 
-	void Core::CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion) {
-		if (completion) {
-			Instance().m_parallelTaskManager->createTask(func, [completion] {
-				Instance().InsertProcessToMainThread(completion);
-				});
-		}
-		else {
-			Instance().m_parallelTaskManager->createTask(func);
-		}
-	}
+    void Core::PreventTermination() {
+        Instance().m_terminationPrevented = true;
+    }
 
-	size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
-		Instance().m_timeouts.push_back(Timeout(func, ms, threading));
-		return Instance().m_timeouts[Instance().m_timeouts.size() - 1].id();
-	}
+    void Core::ContinueTermination() {
+        Instance().m_terminationPrevented = false;
+    }
 
-	bool Core::StopTimeout(size_t id) {
-		for (auto& timeout : Instance().m_timeouts) {
-			if (timeout.id() == id) {
-				return timeout.stop();
-			}
-		}
-		return false;
-	}
+    void Core::PostAsyncTask(const std::function<void()>& task, const std::function<void()>& completion) {
+        if (completion) {
+            Instance().m_taskRunner->addAsyncTask(task, [completion] { PostSyncTask(completion); });
+        } else {
+            Instance().m_taskRunner->addAsyncTask(task);
+        }
+    }
 
-	bool Core::RestartTimeout(size_t id) {
-		for (auto& timeout : Instance().m_timeouts) {
-			if (timeout.id() == id) {
-				return timeout.restart();
-			}
-		}
-		return false;
-	}
+    void Core::PostSyncTask(const std::function<void()>& task) {
+        Instance().m_taskRunner->addSyncTask(task);
+    }
 
-	bool Core::IsTimeoutAlive(size_t id) {
-		for (auto& timeout : Instance().m_timeouts) {
-			if (timeout.id() == id) {
-				return timeout.isAlive();
-			}
-		}
-		return false;
-	}
+    size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
+        return Instance().m_taskRunner->addTimeoutTask(func, ms, threading);
+    }
 
-	Page& Core::getPage(const String& identifier) const noexcept {
-		return m_pageManager->getPage(identifier);
-	}
+    bool Core::StopTimeout(size_t id) {
+        return Instance().m_taskRunner->stopTimeoutTask(id);
+    }
 
-	void Core::appendPage(const std::shared_ptr<Page>& page) {
-		m_pageManager->appendPage(page);
-	}
+    bool Core::RestartTimeout(size_t id) {
+        return Instance().m_taskRunner->restartTimeoutTask(id);
+    }
 
-	void Core::AppendIsolatedComponent(const UIComponent& component) {
-		Instance().appendIsolatedComponent(ComponentStorage::Get(component.id()));
-	}
+    void Core::NextFrame(const std::function<void()>& func) {
+        Instance().m_nextFrameFunctions.emplace_back(func);
+    }
 
-	void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-		m_pageManager->appendIsolatedComponent(component);
-	}
-
-	void Core::AddLicense() {
-		LicenseInfo licence;
-		licence.title = U"Aoba Framework";
-		licence.copyright = U"Copyright (c) 2021-2022 Ekyu Kondo";
-		licence.text =
-UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
+    void Core::AddLicense() {
+        LicenseInfo licence;
+        licence.title     = U"Aoba Framework";
+        licence.copyright = U"Copyright (c) 2021-2022 Ekyu Kondo";
+        licence.text =
+            UR"(Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
@@ -151,6 +123,43 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.)";
 
-		LicenseManager::AddLicense(licence);
-	}
+        LicenseManager::AddLicense(licence);
+    }
+
+    Page& Core::getPage(const String& identifier) const noexcept {
+        return m_pageManager->getPage(identifier);
+    }
+
+    bool Core::animateColor() {
+        static double t = 0.0;
+        t += 5.0 * Scene::DeltaTime();
+
+        if (t > 1.0) {
+            ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 0.0 : 1.0);
+            t = 0.0;
+            return false;
+        }
+
+        ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 1 - t : t);
+        return true;
+    }
+
+    void Core::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
+        m_pageManager->appendIsolatedComponent(component);
+    }
+
+    void Core::appendPage(const std::shared_ptr<Page>& page) {
+        m_pageManager->appendPage(page);
+    }
+
+    void Core::updateNextFrameFunctions() {
+		// this implementation supports recursive calling of NextFrame()
+        const auto count = m_nextFrameFunctions.size();
+        if (count > 0) {
+            for (size_t i = 0; i < count; i++) {
+                m_nextFrameFunctions[i]();
+            }
+            m_nextFrameFunctions.erase(m_nextFrameFunctions.begin(), m_nextFrameFunctions.begin() + count);
+        }
+    }
 }

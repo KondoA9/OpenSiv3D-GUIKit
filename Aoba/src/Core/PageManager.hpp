@@ -2,81 +2,74 @@
 
 #include <Siv3D.hpp>
 
-#include <Aoba/UIComponent.hpp>
+#include "Aoba/UIComponent.hpp"
 
 namespace s3d::aoba {
-	class Page;
+    class Page;
 
-	class PageManager final {
-		enum class PageTransition {
-			StartUp,
-			Stable,
-			StartChanging,
-			Changing,
-			JustChanged,
-			Termination
-		};
+    class PageManager final {
+        enum class PageTransition { StartUp, Stable, StartChanging, Changing, JustChanged, Termination };
 
-	private:
-		PageTransition m_pageTransition = PageTransition::StartUp;
+    private:
+        PageTransition m_pageTransition = PageTransition::StartUp;
 
-		Array<std::shared_ptr<Page>> m_pages;
-		std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
+        Array<std::shared_ptr<Page>> m_pages;
+        std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
 
-		Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
+        Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
 
-		double m_pageTransitionRate = 1.0;
+        double m_pageTransitionRate = 1.0;
 
-		Rect m_windowScissorRect;
+        Rect m_windowScissorRect;
 
-	public:
-		PageManager();
+    public:
+        PageManager();
 
-		PageManager(const PageManager&) = delete;
+        PageManager(const PageManager&) = delete;
 
-		PageManager(PageManager&&) = delete;
+        PageManager(PageManager&&) = delete;
 
-		PageManager& operator =(const PageManager&) = delete;
+        PageManager& operator=(const PageManager&) = delete;
 
-		PageManager& operator =(PageManager&&) = delete;
+        PageManager& operator=(PageManager&&) = delete;
 
-		Page& getPage(const String& identifier) const noexcept;
+        Page& getPage(const String& identifier) const noexcept;
 
-		bool initialize();
+        bool initialize();
 
-		void update();
+        void update();
 
-		void draw();
+        void draw();
 
-		void switchPage(const String& identifier);
+        void switchPage(const String& identifier);
 
-		void appendPage(const std::shared_ptr<Page>& page);
+        void appendPage(const std::shared_ptr<Page>& page);
 
-		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
+        void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
-		void terminate();
+        void terminate();
 
-	private:
-		const std::shared_ptr<Page>& getPagePtr(const String& identifier) const;
+    private:
+        const std::shared_ptr<Page>& getPagePtr(const String& identifier) const;
 
-		// Return true until the start up page appeared.
-		bool updateOnStartUp();
+        // Return true until the start up page appeared.
+        bool updateOnStartUp();
 
-		// Return true until the page changed.
-		bool updateOnPageChanging();
+        // Return true until the page changed.
+        bool updateOnPageChanging();
 
-		void updateOnStable();
+        void updateOnStable();
 
-		void preparePageChanging();
+        void preparePageChanging();
 
-		void finalizePageChanging();
+        void finalizePageChanging();
 
-		void updateOnTermination();
+        void updateOnTermination();
 
-		void updateViews();
+        void updateViews();
 
-		void updateLayers();
+        void updateLayers();
 
-		void updateInputEvents();
-	};
+        void updateInputEvents();
+    };
 }

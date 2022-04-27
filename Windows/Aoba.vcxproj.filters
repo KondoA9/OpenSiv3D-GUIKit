@@ -7,92 +7,20 @@
     <Filter Include="Aoba\ColorTheme">
       <UniqueIdentifier>{763e9ae4-251a-4624-aaa8-21ba53c04535}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\UserInterface">
-      <UniqueIdentifier>{29f96c91-8c0e-4b9f-a9d1-39203cf95980}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface">
-      <UniqueIdentifier>{4faaad3a-684d-48df-8ce7-5621f734b1e3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\Font">
-      <UniqueIdentifier>{2480c2de-8ad4-4ae0-bd1d-8e553f0472a3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\Layer">
-      <UniqueIdentifier>{0c52fae9-ddd3-4ec7-9a25-ce4cd2614791}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\Constraint">
-      <UniqueIdentifier>{c1aac708-f70f-429d-8896-0048554f2a48}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\Timeout">
-      <UniqueIdentifier>{b9c0167d-3b26-444b-a408-0ce707d480c6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\PixelUnit">
-      <UniqueIdentifier>{a0d0136b-6a55-4c46-9ce8-e929016f8675}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\Page">
       <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\Imaging">
       <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIButton">
-      <UniqueIdentifier>{ec9674fd-ca43-473c-8de7-b35a1209b4e6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UICircle">
-      <UniqueIdentifier>{b8611e17-9b49-4ee2-950b-76ae75203468}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIComponent">
-      <UniqueIdentifier>{44534fc3-1547-47be-92c3-a8e104ad3d8e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIIcon">
-      <UniqueIdentifier>{023d1fce-2d31-40cc-bf2a-f6970a5b79b1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIRect">
-      <UniqueIdentifier>{3472bbf6-3b46-4541-8eae-96fe44faddad}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIText">
-      <UniqueIdentifier>{da191142-abfd-426e-84d2-407fcf81d993}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIToggleButton">
-      <UniqueIdentifier>{bdab30ce-4e38-4b56-a2a7-a82dca310c5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIView">
-      <UniqueIdentifier>{f3ce28c6-f3d2-468a-9708-e861cd2fdad1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UISlider">
-      <UniqueIdentifier>{17c85d4d-06f8-4e04-b3d5-7ffe649a2dab}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIInputField">
-      <UniqueIdentifier>{64100a12-4a02-48d0-bdc7-03822862222a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\InputEvent">
-      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UICheckBox">
-      <UniqueIdentifier>{40771309-6547-4154-b832-db05add49ba5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIImageView">
-      <UniqueIdentifier>{cf997c9c-d86b-463c-bb4a-51a2778f1432}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UITabView">
-      <UniqueIdentifier>{5b4fabaf-7b4b-4aee-a4bb-59c438009da0}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\CommandLine">
       <UniqueIdentifier>{6d0d160c-5188-43c8-b5db-ec94219256aa}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIVStackView">
-      <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation">
-      <UniqueIdentifier>{1ba2773f-98d4-4967-be4b-688122e9ac14}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\Core">
       <UniqueIdentifier>{054a96f4-680e-475a-843d-cce404d55269}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\Core\PageManager">
       <UniqueIdentifier>{3232ea50-e972-4532-82ba-40f75cd65b71}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Aoba\Core\ParallelTaskManager">
-      <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
     </Filter>
     <Filter Include="Aoba\Factory">
       <UniqueIdentifier>{d858a611-8359-43ad-9dbc-9168c27a0fd7}</UniqueIdentifier>
@@ -103,25 +31,100 @@
     <Filter Include="Aoba\ComponentStorage">
       <UniqueIdentifier>{2d4c3037-5150-4845-a2b2-e097a05cf4c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\Core\TaskRunner">
+      <UniqueIdentifier>{eb02ae4e-e261-4034-98a8-934c6f7c56f0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\AobaLog">
+      <UniqueIdentifier>{f06c9c0b-d735-4684-99c1-766c23e0428a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\PixelUnit">
+      <UniqueIdentifier>{a0d0136b-6a55-4c46-9ce8-e929016f8675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Layer">
+      <UniqueIdentifier>{0c52fae9-ddd3-4ec7-9a25-ce4cd2614791}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\InputEvent">
+      <UniqueIdentifier>{e25aafe0-3815-4b6b-b9c1-ced9635c3a33}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Constraint">
+      <UniqueIdentifier>{c1aac708-f70f-429d-8896-0048554f2a48}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\UnifiedFont">
+      <UniqueIdentifier>{2480c2de-8ad4-4ae0-bd1d-8e553f0472a3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component">
+      <UniqueIdentifier>{4faaad3a-684d-48df-8ce7-5621f734b1e3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIButton">
+      <UniqueIdentifier>{ec9674fd-ca43-473c-8de7-b35a1209b4e6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UICircle">
+      <UniqueIdentifier>{b8611e17-9b49-4ee2-950b-76ae75203468}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIComponent">
+      <UniqueIdentifier>{44534fc3-1547-47be-92c3-a8e104ad3d8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIIcon">
+      <UniqueIdentifier>{023d1fce-2d31-40cc-bf2a-f6970a5b79b1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIRect">
+      <UniqueIdentifier>{3472bbf6-3b46-4541-8eae-96fe44faddad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIText">
+      <UniqueIdentifier>{da191142-abfd-426e-84d2-407fcf81d993}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIToggleButton">
+      <UniqueIdentifier>{bdab30ce-4e38-4b56-a2a7-a82dca310c5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIView">
+      <UniqueIdentifier>{f3ce28c6-f3d2-468a-9708-e861cd2fdad1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UISlider">
+      <UniqueIdentifier>{17c85d4d-06f8-4e04-b3d5-7ffe649a2dab}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIInputField">
+      <UniqueIdentifier>{64100a12-4a02-48d0-bdc7-03822862222a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIInputField\KeyboardOperation">
+      <UniqueIdentifier>{1ba2773f-98d4-4967-be4b-688122e9ac14}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UICheckBox">
+      <UniqueIdentifier>{40771309-6547-4154-b832-db05add49ba5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIImageView">
+      <UniqueIdentifier>{cf997c9c-d86b-463c-bb4a-51a2778f1432}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UITabView">
+      <UniqueIdentifier>{5b4fabaf-7b4b-4aee-a4bb-59c438009da0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Component\UIVStackView">
+      <UniqueIdentifier>{3bf9b2aa-4291-4fa2-8a61-c0d94b5c99a6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Tooltip">
+      <UniqueIdentifier>{dd42968e-bd00-4713-9212-9f21e7fabcfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\AsyncTaskManager">
+      <UniqueIdentifier>{a13dbbdd-d768-4077-9b2a-323a893adc28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\SyncTaskManager">
+      <UniqueIdentifier>{3ffa52c2-ee6b-4195-a073-933a69d51d3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\TimeoutTaskManager">
+      <UniqueIdentifier>{acdab193-6dac-4cfb-a228-ce9878b07c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\Core\TaskRunner\Timeout">
+      <UniqueIdentifier>{5cbf70a9-9134-4688-b319-0a96b773b854}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Aoba\KeyShortcut">
+      <UniqueIdentifier>{74b01146-42b6-4ee1-8a89-12fced3203f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
       <Filter>Aoba\ColorTheme</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Font\UnifiedFont.cpp">
-      <Filter>Aoba\UserInterface\Font</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Layer\Layer.cpp">
-      <Filter>Aoba\UserInterface\Layer</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Constraint\Constraint.cpp">
-      <Filter>Aoba\UserInterface\Constraint</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\Timeout\Timeout.cpp">
-      <Filter>Aoba\Timeout</Filter>
-    </ClCompile>
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp">
-      <Filter>Aoba\UserInterface\PixelUnit</Filter>
+      <Filter>Aoba\PixelUnit</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\Core.cpp">
       <Filter>Aoba\Core</Filter>
@@ -132,62 +135,14 @@
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp">
       <Filter>Aoba\Core</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIButton\UIButton.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIButton</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UICircle\UICircle.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UICircle</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIIcon\UIIcon.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIIcon</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIText\UIText.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIText</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIRect\UIRect.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIRect</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIToggleButton\UIToggleButton.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIToggleButton</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIView\UIView.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UISlider\UISlider.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UISlider</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\UIInputField.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIInputField</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIVStackView\UIVStackView.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIVStackView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UICheckBox\UICheckBox.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
-    </ClCompile>
     <ClCompile Include="..\Aoba\src\Page\Page.cpp">
       <Filter>Aoba\Page</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIImageView\UIImageView.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIImageView</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponentMouseEvent.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIComponent\UIComponent.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIComponent</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UITabView\UITabView.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UITabView</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp">
       <Filter>Aoba\CommandLine</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Factory\Factory.cpp">
       <Filter>Aoba\Factory</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\UserInterface\Component\UIInputField\KeyboardOperation\KeyboardOperation.cpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\WindowManager.cpp">
       <Filter>Aoba\Core\WindowManager</Filter>
@@ -198,11 +153,95 @@
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp">
       <Filter>Aoba\Core\PageManager</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\Core\ParallelTaskManager.cpp">
-      <Filter>Aoba\Core\ParallelTaskManager</Filter>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner.cpp">
+      <Filter>Aoba\Core\TaskRunner</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\ComponentStorage\ComponentStorage.cpp">
       <Filter>Aoba\ComponentStorage</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\AobaLog\AobaLog.cpp">
+      <Filter>Aoba\AobaLog</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp">
+      <Filter>Aoba\InputEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp">
+      <Filter>Aoba\InputEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Constraint\Constraint.cpp">
+      <Filter>Aoba\Constraint</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\UnifiedFont\UnifiedFont.cpp">
+      <Filter>Aoba\UnifiedFont</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Layer\Layer.cpp">
+      <Filter>Aoba\Layer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIInputField\KeyboardOperation.cpp">
+      <Filter>Aoba\Component\UIInputField\KeyboardOperation</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIVStackView.cpp">
+      <Filter>Aoba\Component\UIVStackView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIView.cpp">
+      <Filter>Aoba\Component\UIView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIToggleButton.cpp">
+      <Filter>Aoba\Component\UIToggleButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIText.cpp">
+      <Filter>Aoba\Component\UIText</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UITabView.cpp">
+      <Filter>Aoba\Component\UITabView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UISlider.cpp">
+      <Filter>Aoba\Component\UISlider</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIRect.cpp">
+      <Filter>Aoba\Component\UIRect</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIInputField.cpp">
+      <Filter>Aoba\Component\UIInputField</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIImageView.cpp">
+      <Filter>Aoba\Component\UIImageView</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIIcon.cpp">
+      <Filter>Aoba\Component\UIIcon</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIComponent.cpp">
+      <Filter>Aoba\Component\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIComponentMouseEvent.cpp">
+      <Filter>Aoba\Component\UIComponent</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UICircle.cpp">
+      <Filter>Aoba\Component\UICircle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UICheckBox.cpp">
+      <Filter>Aoba\Component\UICheckBox</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIButton.cpp">
+      <Filter>Aoba\Component\UIButton</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Tooltip\Tooltip.cpp">
+      <Filter>Aoba\Tooltip</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\AsyncTaskManager.cpp">
+      <Filter>Aoba\Core\TaskRunner\AsyncTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\SyncTaskManager.cpp">
+      <Filter>Aoba\Core\TaskRunner\SyncTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.cpp">
+      <Filter>Aoba\Core\TaskRunner\TimeoutTaskManager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
+      <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\KeyShortcut\KeyShortcut.cpp">
+      <Filter>Aoba\KeyShortcut</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -213,22 +252,19 @@
       <Filter>Aoba\ColorTheme</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UnifiedFont.hpp">
-      <Filter>Aoba\UserInterface\Font</Filter>
+      <Filter>Aoba\UnifiedFont</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp">
-      <Filter>Aoba\UserInterface\Layer</Filter>
+      <Filter>Aoba\Layer</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Constraint.hpp">
-      <Filter>Aoba\UserInterface\Constraint</Filter>
+      <Filter>Aoba\Constraint</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp">
       <Filter>Aoba\ColorTheme</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\Timeout.hpp">
-      <Filter>Aoba\Timeout</Filter>
-    </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp">
-      <Filter>Aoba\UserInterface\PixelUnit</Filter>
+      <Filter>Aoba\PixelUnit</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp">
       <Filter>Aoba\Page</Filter>
@@ -237,58 +273,58 @@
       <Filter>Aoba\Core</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp">
       <Filter>Aoba\Imaging</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIButton</Filter>
+      <Filter>Aoba\Component\UIButton</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UICircle.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UICircle</Filter>
+      <Filter>Aoba\Component\UICircle</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIComponent.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIComponent</Filter>
+      <Filter>Aoba\Component\UIComponent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIIcon.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIIcon</Filter>
+      <Filter>Aoba\Component\UIIcon</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIText.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIText</Filter>
+      <Filter>Aoba\Component\UIText</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIRect.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIRect</Filter>
+      <Filter>Aoba\Component\UIRect</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIToggleButton.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIToggleButton</Filter>
+      <Filter>Aoba\Component\UIToggleButton</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIView</Filter>
+      <Filter>Aoba\Component\UIView</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UISlider.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UISlider</Filter>
+      <Filter>Aoba\Component\UISlider</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIInputField.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIInputField</Filter>
+      <Filter>Aoba\Component\UIInputField</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIVStackView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIVStackView</Filter>
+      <Filter>Aoba\Component\UIVStackView</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp">
-      <Filter>Aoba\UserInterface\InputEvent</Filter>
+      <Filter>Aoba\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UICheckBox</Filter>
+      <Filter>Aoba\Component\UICheckBox</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIImageView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIImageView</Filter>
+      <Filter>Aoba\Component\UIImageView</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UITabView.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UITabView</Filter>
+      <Filter>Aoba\Component\UITabView</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\CommandLine.hpp">
       <Filter>Aoba\CommandLine</Filter>
@@ -297,7 +333,7 @@
       <Filter>Aoba\Factory</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp">
-      <Filter>Aoba\UserInterface\UserInterface\UIInputField\KeyboardOperation</Filter>
+      <Filter>Aoba\Component\UIInputField\KeyboardOperation</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp">
       <Filter>Aoba\Core\WindowManager</Filter>
@@ -305,11 +341,35 @@
     <ClInclude Include="..\Aoba\src\Core\PageManager.hpp">
       <Filter>Aoba\Core\PageManager</Filter>
     </ClInclude>
-    <ClInclude Include="..\Aoba\src\Core\ParallelTaskManager.hpp">
-      <Filter>Aoba\Core\ParallelTaskManager</Filter>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner.hpp">
+      <Filter>Aoba\Core\TaskRunner</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\src\ComponentStorage\ComponentStorage.hpp">
       <Filter>Aoba\ComponentStorage</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\AobaLog\AobaLog.hpp">
+      <Filter>Aoba\AobaLog</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp">
+      <Filter>Aoba\InputEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp">
+      <Filter>Aoba\Tooltip</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\AsyncTaskManager.hpp">
+      <Filter>Aoba\Core\TaskRunner\AsyncTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\SyncTaskManager.hpp">
+      <Filter>Aoba\Core\TaskRunner\SyncTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.hpp">
+      <Filter>Aoba\Core\TaskRunner\TimeoutTaskManager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Core\TaskRunner\Timeout.hpp">
+      <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\KeyShortcut\KeyShortcut.hpp">
+      <Filter>Aoba\KeyShortcut</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

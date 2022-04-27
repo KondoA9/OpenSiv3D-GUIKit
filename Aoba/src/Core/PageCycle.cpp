@@ -1,285 +1,284 @@
+﻿#include "Aoba/Core.hpp"
+#include "Aoba/Page.hpp"
+#include "Aoba/UIView.hpp"
 #include "PageManager.hpp"
-
-#include <Aoba/Core.hpp>
-#include <Aoba/Page.hpp>
-#include <Aoba/UIView.hpp>
-
 #include "WindowManager.hpp"
+#include "src/InputEvent/InputEventManager.hpp"
 
 namespace s3d::aoba {
-	void PageManager::update() {
-		// Load nextPage
-		if (m_nextPage && !m_nextPage->didLoaded()) {
-			m_nextPage->onLoaded();
-			m_nextPage->m_loaded = true;
-		}
+    void PageManager::update() {
+        // Load nextPage
+        if (m_nextPage && !m_nextPage->didLoaded()) {
+            m_nextPage->onLoaded();
+            m_nextPage->m_loaded = true;
+        }
 
-		if (WindowManager::DidResized()) {
-			// Update scissor rect
-			const auto size = Scene::Size();
-			m_windowScissorRect = Rect(0, 0, size.x, size.y);
+        if (WindowManager::DidResized()) {
+            // Update scissor rect
+            const auto size     = Scene::Size();
+            m_windowScissorRect = Rect(0, 0, size.x, size.y);
 
-			// Call window resize event
-			if (m_nextPage) {
-				m_nextPage->onWindowResized();
-			}
+            // Call window resize event
+            if (m_nextPage) {
+                m_nextPage->onWindowResized();
+            }
 
-			if (m_currentPage) {
-				m_currentPage->onWindowResized();
-			}
+            if (m_currentPage) {
+                m_currentPage->onWindowResized();
+            }
 
-			if (m_previousPage) {
-				m_previousPage->onWindowResized();
-			}
-		}
+            if (m_previousPage) {
+                m_previousPage->onWindowResized();
+            }
+        }
 
-		// Update DragDrop
-		if (m_nextPage) {
-			const auto& [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
-			DragDrop::AcceptFilePaths(acceptFiles);
-			DragDrop::AcceptText(acceptTexts);
-		}
+        // Update DragDrop
+        if (m_nextPage) {
+            const auto& [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
+            DragDrop::AcceptFilePaths(acceptFiles);
+            DragDrop::AcceptText(acceptTexts);
+        }
 
-		if (m_currentPage) {
-			if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
-				(acceptFiles || acceptTexts) &&
-				(DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
-				m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
-				DragDrop::Clear();
-			}
-		}
+        if (m_currentPage) {
+            if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
+                (acceptFiles || acceptTexts) && (DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
+                m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
+                DragDrop::Clear();
+            }
+        }
 
-		updateViews();
+        if (m_currentPage) {
+            m_currentPage->update();
+        }
 
-		updateLayers();
+        updateViews();
 
-		// Page transition
-		switch (m_pageTransition)
-		{
-		case PageTransition::StartUp:
-			if (!updateOnStartUp()) {
-				m_pageTransition = PageTransition::Stable;
-			}
-			break;
+        updateLayers();
 
-		case PageTransition::Stable:
-			updateOnStable();
-			break;
+        // Page transition
+        switch (m_pageTransition) {
+        case PageTransition::StartUp:
+            if (!updateOnStartUp()) {
+                m_pageTransition = PageTransition::Stable;
+            }
+            break;
 
-		case PageTransition::StartChanging:
-			preparePageChanging();
-			m_pageTransition = PageTransition::Changing;
-			break;
+        case PageTransition::Stable:
+            updateOnStable();
+            break;
 
-		case PageTransition::Changing:
-			if (!updateOnPageChanging()) {
-				m_pageTransition = PageTransition::JustChanged;
-			}
-			break;
+        case PageTransition::StartChanging:
+            preparePageChanging();
+            m_pageTransition = PageTransition::Changing;
+            break;
 
-		case PageTransition::JustChanged:
-			finalizePageChanging();
-			m_pageTransition = PageTransition::Stable;
-			break;
+        case PageTransition::Changing:
+            if (!updateOnPageChanging()) {
+                m_pageTransition = PageTransition::JustChanged;
+            }
+            break;
 
-		case PageTransition::Termination:
-			updateOnTermination();
-			break;
+        case PageTransition::JustChanged:
+            finalizePageChanging();
+            m_pageTransition = PageTransition::Stable;
+            break;
 
-		default:
-			assert(false);
-			break;
-		}
-	}
+        case PageTransition::Termination:
+            updateOnTermination();
+            break;
 
-	void PageManager::draw() {
-		switch (m_pageTransition)
-		{
-		case PageTransition::StartUp:
-			m_nextPage->view.draw();
-			break;
+        default:
+            assert(false);
+            break;
+        }
+    }
 
-		case PageTransition::Stable:
-			m_currentPage->view.draw();
-			break;
+    void PageManager::draw() {
+        switch (m_pageTransition) {
+        case PageTransition::StartUp:
+            m_nextPage->view.draw();
+            break;
 
-		case PageTransition::StartChanging:
-			m_previousPage->view.draw();
-			break;
+        case PageTransition::Stable:
+            m_currentPage->view.draw();
+            break;
 
-		case PageTransition::Changing:
-			// Draw previous and next page
-			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
-			m_nextPage->view.draw();
-			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, m_pageTransitionRate));
-			m_previousPage->view.draw();
-			break;
+        case PageTransition::StartChanging:
+            m_previousPage->view.draw();
+            break;
 
-		case PageTransition::JustChanged:
-			// Initialize ColorMultipiler
-			Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0));
-			m_nextPage->view.draw();
-			break;
+        case PageTransition::Changing:
+            // Draw previous and next page
+            Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0 - m_pageTransitionRate));
+            m_nextPage->view.draw();
+            Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, m_pageTransitionRate));
+            m_previousPage->view.draw();
+            break;
 
-		case PageTransition::Termination:
-			m_currentPage->view.draw();
-			break;
+        case PageTransition::JustChanged:
+            // Initialize ColorMultipiler
+            Graphics2D::Internal::SetColorMul(Float4(1.0, 1.0, 1.0, 1.0));
+            m_nextPage->view.draw();
+            break;
 
-		default:
-			assert(false);
-			break;
-		}
+        case PageTransition::Termination:
+            m_currentPage->view.draw();
+            break;
 
-		// Draw isolated components
-		for (auto& component : m_isolatedComponents) {
-			if (component->drawable()) {
-				component->draw();
-			}
-		}
-	}
+        default:
+            assert(false);
+            break;
+        }
 
-	bool PageManager::updateOnStartUp() {
-		// Run once when launching the app
-		if (static bool called = false; !called) {
-			m_nextPage->onBeforeAppeared();
-			called = true;
-		}
-		// Run at next frame
-		else {
-			m_nextPage->onAfterAppeared();
-			m_currentPage = m_nextPage;
-			m_nextPage.reset();
-			return false;
-		}
+        // Draw isolated components
+        for (auto& component : m_isolatedComponents) {
+            if (component->drawable()) {
+                component->draw();
+            }
+        }
+    }
 
-		return true;
-	}
+    bool PageManager::updateOnStartUp() {
+        // Run once when launching the app
+        if (static bool called = false; !called) {
+            m_nextPage->onBeforeAppeared();
+            called = true;
+        }
+        // Run at next frame
+        else {
+            m_nextPage->onAfterAppeared();
+            m_currentPage = m_nextPage;
+            m_nextPage.reset();
+            return false;
+        }
 
-	bool PageManager::updateOnPageChanging() {
-		m_pageTransitionRate -= 5.0 * Scene::DeltaTime();
+        return true;
+    }
 
-		// The page changed
-		if (m_pageTransitionRate < 0.0) {
-			m_pageTransitionRate = 1.0;
-			return false;
-		}
+    bool PageManager::updateOnPageChanging() {
+        m_pageTransitionRate -= 5.0 * Scene::DeltaTime();
 
-		return true;
-	}
+        // The page changed
+        if (m_pageTransitionRate < 0.0) {
+            m_pageTransitionRate = 1.0;
+            return false;
+        }
 
-	void PageManager::updateOnStable() {
-		assert(m_currentPage);
+        return true;
+    }
 
-		updateInputEvents();
-	}
+    void PageManager::updateOnStable() {
+        assert(m_currentPage);
 
-	void PageManager::updateOnTermination() {
-		static bool once = true;
+        updateInputEvents();
+    }
 
-		if (once) {
-			for (auto& page : m_pages) {
-				page->onBeforeAppTerminated();
-			}
+    void PageManager::updateOnTermination() {
+        static bool once = true;
 
-			once = false;
-		}
+        if (once) {
+            for (auto& page : m_pages) {
+                page->onBeforeAppTerminated();
+            }
 
-		if (!(aoba::Core::IsTerminationPrevented() || aoba::Core::IsParallelTaskAlive())) {
-			m_currentPage->onBeforeDisappeared();
+            once = false;
+        }
 
-			for (auto& page : m_pages) {
-				page->onAppTerminated();
-			}
+        if (!(aoba::Core::IsTerminationPrevented() || aoba::Core::IsAsyncTaskAlive())) {
+            m_currentPage->onBeforeDisappeared();
 
-			System::Exit();
-		}
-	}
+            for (auto& page : m_pages) {
+                page->onAppTerminated();
+            }
 
-	void PageManager::preparePageChanging() {
-		m_nextPage->onBeforeAppeared();
-		m_previousPage->onBeforeDisappeared();
+            System::Exit();
+        }
+    }
 
-		// Request to update layer of the next page
-		m_nextPage->view.requestToUpdateLayer();
-	}
+    void PageManager::preparePageChanging() {
+        m_previousPage->onBeforeDisappeared();
+        m_nextPage->onBeforeAppeared();
 
-	void PageManager::finalizePageChanging() {
-		m_nextPage->onAfterAppeared();
-		m_previousPage->onAfterDisappeared();
+        // Request to update layer of the next page
+        m_nextPage->view.requestToUpdateLayer();
+    }
 
-		m_currentPage = m_nextPage;
+    void PageManager::finalizePageChanging() {
+        m_previousPage->onAfterDisappeared();
+        m_nextPage->onAfterAppeared();
 
-		m_nextPage.reset();
-		m_previousPage.reset();
-	}
+        m_currentPage = m_nextPage;
 
-	void PageManager::updateViews() {
-		if (m_nextPage) {
-			m_nextPage->view.update();
-		}
+        m_nextPage.reset();
+        m_previousPage.reset();
+    }
 
-		if (m_currentPage) {
-			m_currentPage->view.update();
-		}
+    void PageManager::updateViews() {
+        if (m_nextPage) {
+            m_nextPage->view.update();
+        }
 
-		if (m_previousPage) {
-			m_previousPage->view.update();
-		}
-	}
+        if (m_currentPage) {
+            m_currentPage->view.update();
+        }
 
-	void PageManager::updateLayers() {
-		if (WindowManager::DidResized()) {
-			if (m_nextPage) {
-				m_nextPage->view.updateLayer(m_windowScissorRect);
-				m_nextPage->view.updateLayerInvert(m_windowScissorRect);
-			}
+        if (m_previousPage) {
+            m_previousPage->view.update();
+        }
+    }
 
-			if (m_currentPage) {
-				m_currentPage->view.updateLayer(m_windowScissorRect);
-				m_currentPage->view.updateLayerInvert(m_windowScissorRect);
-			}
+    void PageManager::updateLayers() {
+        if (WindowManager::DidResized()) {
+            if (m_nextPage) {
+                m_nextPage->view.updateLayer(m_windowScissorRect);
+                m_nextPage->view.updateLayerInvert(m_windowScissorRect);
+            }
 
-			if (m_previousPage) {
-				m_previousPage->view.updateLayer(m_windowScissorRect);
-				m_previousPage->view.updateLayerInvert(m_windowScissorRect);
-			}
+            if (m_currentPage) {
+                m_currentPage->view.updateLayer(m_windowScissorRect);
+                m_currentPage->view.updateLayerInvert(m_windowScissorRect);
+            }
 
-			for (auto& component : m_isolatedComponents) {
-				component->updateLayer(m_windowScissorRect);
-			}
-		}
-		else {
-			if (m_nextPage) {
-				m_nextPage->view.updateLayerIfNeeded(m_windowScissorRect);
-			}
+            if (m_previousPage) {
+                m_previousPage->view.updateLayer(m_windowScissorRect);
+                m_previousPage->view.updateLayerInvert(m_windowScissorRect);
+            }
 
-			if (m_currentPage) {
-				m_currentPage->view.updateLayerIfNeeded(m_windowScissorRect);
-			}
+            for (auto& component : m_isolatedComponents) {
+                component->updateLayer(m_windowScissorRect);
+            }
+        } else {
+            if (m_nextPage) {
+                m_nextPage->view.updateLayerIfNeeded(m_windowScissorRect);
+            }
 
-			if (m_previousPage) {
-				m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
-			}
+            if (m_currentPage) {
+                m_currentPage->view.updateLayerIfNeeded(m_windowScissorRect);
+            }
 
-			for (auto& component : m_isolatedComponents) {
-				component->updateLayerIfNeeded(m_windowScissorRect);
-			}
-		}
-	}
+            if (m_previousPage) {
+                m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
+            }
 
-	void PageManager::updateInputEvents() {
-		if (m_currentPage->view.eventUpdatable()) {
-			m_currentPage->view.updateMouseIntersection();
-			m_currentPage->view.updateInputEvents();
-		}
+            for (auto& component : m_isolatedComponents) {
+                component->updateLayerIfNeeded(m_windowScissorRect);
+            }
+        }
+    }
 
-		for (auto& component : m_isolatedComponents) {
-			if (component->eventUpdatable()) {
-				component->updateMouseIntersection();
-				component->updateInputEvents();
-			}
-		}
+    void PageManager::updateInputEvents() {
+        if (m_currentPage->view.eventUpdatable()) {
+            m_currentPage->view.updateMouseIntersection();
+            m_currentPage->view.updateInputEvents();
+        }
 
-		UIComponent::CallInputEvents();
-	}
+        for (auto& component : m_isolatedComponents) {
+            if (component->eventUpdatable()) {
+                component->updateMouseIntersection();
+                component->updateInputEvents();
+            }
+        }
+
+        InputEventManager::Call();
+    }
 }

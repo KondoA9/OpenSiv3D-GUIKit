@@ -1,45 +1,62 @@
-﻿#include <Aoba/Page.hpp>
+﻿#include "Aoba/Page.hpp"
 
-#include <Aoba/Factory.hpp>
-#include <Aoba/UIView.hpp>
+#include "Aoba/Factory.hpp"
+#include "Aoba/UIView.hpp"
+#include "src/KeyShortcut/KeyShortcut.hpp"
 
 namespace s3d::aoba {
-	Page::Page(const String& identifier) :
-		view(Factory::CreateComponent<UIView>()),
-		m_identifier(identifier)
-	{
-		acceptDragDrop(false, false);
+    Page::Page(const String& identifier) : view(Factory::CreateComponent<UIView>()), m_identifier(identifier) {
+        acceptDragDrop(false, false);
+        view.backgroundColor = DynamicColor::Background;
 
-		view.setConstraint(LayerDirection::Top);
-		view.setConstraint(LayerDirection::Bottom, [] {
-			return Scene::Size().y;
-			});
-		view.setConstraint(LayerDirection::Left);
-		view.setConstraint(LayerDirection::Right, [] {
-			return Scene::Size().x;
-			});
-	}
+        view.setConstraint(LayerDirection::Top);
+        view.setConstraint(LayerDirection::Bottom, [] { return Scene::Size().y; });
+        view.setConstraint(LayerDirection::Left);
+        view.setConstraint(LayerDirection::Right, [] { return Scene::Size().x; });
+    }
 
-	void Page::acceptDragDrop(bool acceptFiles, bool acceptTexts) {
-		m_acceptDragDropFiles = acceptFiles;
-		m_acceptDragDropTexts = acceptTexts;
-	}
+    void Page::acceptDragDrop(bool acceptFiles, bool acceptTexts) {
+        m_acceptDragDropFiles = acceptFiles;
+        m_acceptDragDropTexts = acceptTexts;
+    }
 
-	void Page::onLoaded() {}
+    Page::~Page() {}
 
-	void Page::onBeforeAppeared() {}
+    void Page::onLoaded() {}
 
-	void Page::onAfterAppeared() {}
+    void Page::onBeforeAppeared() {}
 
-	void Page::onBeforeDisappeared() {}
+    void Page::onAfterAppeared() {}
 
-	void Page::onAfterDisappeared() {}
+    void Page::onBeforeDisappeared() {}
 
-	void Page::onWindowResized() {}
+    void Page::onAfterDisappeared() {}
 
-	void Page::onBeforeAppTerminated() {}
+    void Page::onWindowResized() {}
 
-	void Page::onAppTerminated() {}
+    void Page::onBeforeAppTerminated() {}
 
-	void Page::onDragDrop(const Array<DroppedFilePath>&, const Array<DroppedText>&) {}
+    void Page::onAppTerminated() {}
+
+    void Page::onDragDrop(const Array<DroppedFilePath>&, const Array<DroppedText>&) {}
+
+    void Page::registerKeyShortcut(const Input& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<Input>>(input, callback));
+    }
+
+    void Page::registerKeyShortcut(const InputCombination& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<InputCombination>>(input, callback));
+    }
+
+    void Page::registerKeyShortcut(const InputGroup& input, const std::function<void()>& callback) {
+        m_keyShortcuts.emplace_back(std::make_unique<KeyShortcut<InputGroup>>(input, callback));
+    }
+
+    void Page::update() {
+        for (auto& shortcut : m_keyShortcuts) {
+            if (shortcut->keyDown()) {
+                shortcut->call();
+            }
+        }
+    }
 }

@@ -1,6 +1,6 @@
 ﻿#include "Test.h"
 
-#include <Aoba/Aoba.hpp>
+#include "Aoba/Aoba.hpp"
 
 #include "PagingTest.h"
 #include "ComponentsTest.h"

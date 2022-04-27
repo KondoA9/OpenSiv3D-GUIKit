@@ -4,62 +4,64 @@
 #include "UIButton.hpp"
 #include "UIView.hpp"
 
-AobaCreateEventComponentNS(TabView, Switched)
+AobaCreateEventComponentNS(TabView, Switched);
 
 namespace s3d::aoba {
-	class UITabView : public UIView {
-		struct Tab {
-			size_t index;
-			UIView& view;
-			UIButton& selector;
+    class UITabView : public UIView {
+        struct Tab {
+            size_t index;
+            UIView& view;
+            UIButton& selector;
 
-			bool enabled = true;
+            bool enabled = true;
 
-			void show() {
-				selector.setFont(UnifiedFontStyle::DefaultBold);
-				view.hidden = false;
-			}
+            Tab(size_t _index, UIView& _view, UIButton& _selector) : index(_index), view(_view), selector(_selector) {}
 
-			void hide() {
-				selector.setFont(UnifiedFontStyle::DefaultLight);
-				view.hidden = true;
-			}
-		};
+            void show() {
+                selector.setFont(UnifiedFontStyle::DefaultBold);
+                view.hidden = false;
+            }
 
-	private:
-		UIView& ui_tabView = Factory::Create<UIView>(*this);
-		UIView& ui_tabSelectorView = Factory::Create<UIView>(*this);
+            void hide() {
+                selector.setFont(UnifiedFontStyle::DefaultLight);
+                view.hidden = true;
+            }
+        };
 
-		Array<Tab> m_tabs;
-		size_t m_tabIndex = 0;
+    private:
+        UIView& ui_tabView         = Factory::Create<UIView>(*this);
+        UIView& ui_tabSelectorView = Factory::Create<UIView>(*this);
 
-	public:
-		using UIView::UIView;
+        Array<Tab> m_tabs;
+        size_t m_tabIndex = 0;
 
-		size_t index() const {
-			return m_tabIndex;
-		}
+    public:
+        using UIView::UIView;
 
-		template<class T>
-		T& appendTab(const String& name) {
-			static_assert(std::is_base_of<UIView, T>::value, "Specified Type does not inherit gui::UIView.");
+        size_t index() const {
+            return m_tabIndex;
+        }
 
-			auto& view = Factory::Create<T>(ui_tabView);
-			auto& selector = Factory::Create<UIButton>(ui_tabSelectorView);
+        template <class T>
+        T& appendTab(const String& name) {
+            static_assert(std::is_base_of<UIView, T>::value, "Specified Type does not inherit gui::UIView.");
 
-			initializeTab(name, selector, view);
+            auto& view     = Factory::Create<T>(ui_tabView);
+            auto& selector = Factory::Create<UIButton>(ui_tabSelectorView);
 
-			return view;
-		}
+            initializeTab(name, selector, view);
 
-		void setTab(size_t index);
+            return view;
+        }
 
-		void setTabEnabled(size_t index, bool enabled);
+        void setTab(size_t index);
 
-	protected:
-		void initialize() override;
+        void setTabEnabled(size_t index, bool enabled);
 
-	private:
-		void initializeTab(const String& name, UIButton& selector, UIView& view);
-	};
+    protected:
+        void initialize() override;
+
+    private:
+        void initializeTab(const String& name, UIButton& selector, UIView& view);
+    };
 }

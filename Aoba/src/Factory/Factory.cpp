@@ -1,24 +1,30 @@
-﻿#include <Aoba/Factory.hpp>
+﻿#include "Aoba/Factory.hpp"
 
-#include <Aoba/UIComponent.hpp>
-
+#include "Aoba/UIComponent.hpp"
+#include "src/AobaLog/AobaLog.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
 
 namespace s3d::aoba {
-	Factory& Factory::Instance() {
-		static Factory instance;
-		return instance;
-	}
+    Factory& Factory::Instance() {
+        static Factory instance;
+        return instance;
+    }
 
-	size_t Factory::createId() {
-		return Instance().m_id++;
-	}
+    void Factory::LogCreatedComponent(size_t id, const std::type_info& info) {
+        AobaLog::Log(AobaLog::Type::Info,
+                     U"Factory",
+                     U"Create " + Unicode::Widen(std::string(info.name())) + U" " + ToString(id));
+    }
 
-	std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
-		component->initialize();
+    size_t Factory::createId() {
+        return Instance().m_id++;
+    }
 
-		ComponentStorage::Store(component);
+    std::shared_ptr<UIComponent>& Factory::storeComponent(const std::shared_ptr<UIComponent>& component) {
+        ComponentStorage::Store(component);
 
-		return ComponentStorage::Get(component->id());
-	}
+        component->initialize();
+
+        return ComponentStorage::Get(component->id());
+    }
 }

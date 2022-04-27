@@ -1,136 +1,117 @@
 ﻿#pragma once
 
-#include <mutex>
+#include <Siv3D.hpp>
 #include <atomic>
 
-#include <Siv3D.hpp>
-
-#include "Timeout.hpp"
-#include "Page.hpp"
-
 namespace s3d::aoba {
-	class UIComponent;
-	enum class ColorMode;
+    class Page;
+    class UIComponent;
+    enum class ColorMode;
 
-	class Core final {
-	private:
-		class PageManager* m_pageManager;
-		class ParallelTaskManager* m_parallelTaskManager;
+    class Core final {
+    private:
+        std::unique_ptr<class PageManager> m_pageManager;
+        std::unique_ptr<class TaskRunner> m_taskRunner;
 
-		std::mutex m_mainThreadInserterMutex;
+        std::atomic<bool> m_terminationPrevented = false;
 
-		std::atomic<bool> m_terminationPrevented = false;
+        bool m_animateColor = false;
+        Array<std::function<void()>> m_nextFrameFunctions;
 
-		bool m_animateColor = false;
+    public:
+        Core(const Core&) = delete;
 
-		Array<std::function<void()>> m_drawingEvents, m_eventsRequestedToRunInMainThread;
-		Array<Timeout> m_timeouts;
+        Core(Core&&) = delete;
 
-	public:
-		Core(const Core&) = delete;
+        Core& operator=(const Core&) = delete;
 
-		Core(Core&&) = delete;
+        Core& operator=(Core&&) = delete;
 
-		Core& operator=(const Core&) = delete;
+        static Core& Instance();
 
-		Core& operator=(Core&&) = delete;
+        static bool IsAsyncTaskAlive();
 
-		static Core& Instance() {
-			static Core instance;
-			return instance;
-		}
+        static bool IsTerminationPrevented();
 
-		static bool IsTerminationPrevented() {
-			return Instance().m_terminationPrevented;
-		}
+        static bool IsTimeoutAlive(size_t id);
 
-		static bool IsParallelTaskAlive();
+        static bool Start();
 
-		static void Start();
+        static void Terminate();
 
-		static void SwitchPage(const String& identifier);
+        static void SwitchPage(const String& identifier);
 
-		static void SetColorMode(ColorMode mode);
+        static void AppendIsolatedComponent(const UIComponent& component);
 
-		static void ToggleColorMode();
+        static void SetColorMode(ColorMode mode);
 
-		static void Terminate();
+        static void ToggleColorMode();
 
-		// If you call this, you should call ContinueTermination() to terminate app
-		static void PreventTermination() {
-			Instance().m_terminationPrevented = true;
-		}
+        // If you call this, you should call ContinueTermination() to terminate app
+        static void PreventTermination();
 
-		static void ContinueTermination() {
-			Instance().m_terminationPrevented = false;
-		}
+        static void ContinueTermination();
 
-		/// <summary>
-		/// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
-		/// </summary>
-		/// <param name="func">The process that runs on main thread.</param>
-		static void InsertProcessToMainThread(const std::function<void()>& func);
+        /// <summary>
+        /// Request to run a task asynchrony, and if need, a completion process will runs on main thread.
+        /// </summary>
+        /// <param name="task">The process that runs asynchrony. Do not set a process that changes user
+        /// interfaces.</param> <param name="completion">The process that runs on main thread after func()
+        /// ended.</param>
+        static void PostAsyncTask(const std::function<void()>& task,
+                                  const std::function<void()>& completion = std::function<void()>());
 
-		/// <summary>
-		/// Request to run a task parallelly, and if need, a completion process will runs on main thread.
-		/// 
-		/// </summary>
-		/// <param name="func">The process that runs parallelly. Do not set a process that changes user interfaces.</param>
-		/// <param name="completion">The process that runs on main thread after func() ended.</param>
-		static void CreateParallelTask(const std::function<void()>& func, const std::function<void()>& completion = std::function<void()>());
+        /// <summary>
+        /// Request to run a process on main thread. In many cases, func is the process that changes user interfaces.
+        /// </summary>
+        /// <param name="task">The process that runs on main thread.</param>
+        static void PostSyncTask(const std::function<void()>& task);
 
-		/// <summary>
-		/// Set an event with timeout. Do not set a process that changes user interfaces.
-		/// </summary>
-		/// <param name="func">A function that runs when timed out.</param>
-		/// <param name="ms">The time to time out.</param>
-		/// <param name="threading">If true, the function runs asynchronously.</param>
-		/// <returns>The ID of the Timeout. ID is 1, 2, 3, ...</returns>
-		static size_t SetTimeout(const std::function<void()>& func, double ms, bool threading);
+        /// <summary>
+        /// Set an event with timeout. Do not set a process that changes user interfaces.
+        /// </summary>
+        /// <param name="func">A function that runs when timed out.</param>
+        /// <param name="ms">The time to time out.</param>
+        /// <param name="threading">If true, the function runs asynchronously.</param>
+        /// <returns>The ID of the Timeout. ID is 1, 2, 3, ...</returns>
+        static size_t SetTimeout(const std::function<void()>& func, double ms, bool threading);
 
-		static bool StopTimeout(size_t id);
+        static bool StopTimeout(size_t id);
 
-		static bool RestartTimeout(size_t id);
+        static bool RestartTimeout(size_t id);
 
-		static bool IsTimeoutAlive(size_t id);
+		// Execute func in the next frame.
+		static void NextFrame(const std::function<void()>& func);
 
-		static void AddDrawingEvent(const std::function<void()>& func) {
-			Instance().m_drawingEvents.push_back(func);
-		}
+        template <class T>
+        static T& GetPage(const String& identifier) noexcept {
+            return static_cast<T&>(Instance().getPage(identifier));
+        }
 
-		template<class T>
-		static T& GetPage(const String& identifier) noexcept {
-			return static_cast<T&>(Instance().getPage(identifier));
-		}
+        template <class T>
+        static void AppendPage(const String& identifier) {
+            Instance().appendPage(std::shared_ptr<T>(new T(identifier)));
+        }
 
-		template<class T>
-		static void AppendPage(const String& identifier) {
-			Instance().appendPage(std::shared_ptr<T>(new T(identifier)));
-		}
+    private:
+        Core();
 
-		static void AppendIsolatedComponent(const UIComponent& component);
+        ~Core();
 
-	private:
-		Core();
+        static void AddLicense();
 
-		~Core();
+        Page& getPage(const String& identifier) const noexcept;
 
-		static void AddLicense();
+        bool animateColor();
 
-		Page& getPage(const String& identifier) const noexcept;
+        void appendPage(const std::shared_ptr<Page>& page);
 
-		void appendPage(const std::shared_ptr<Page>& page);
+        void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
 
-		void appendIsolatedComponent(const std::shared_ptr<UIComponent>& component);
+        void run();
 
-		void run();
+        void update();
 
-		void update();
-
-		void updateMainThreadEvents();
-
-		void updateTimeouts();
-
-		bool animateColor();
-	};
+		void updateNextFrameFunctions();
+    };
 }
