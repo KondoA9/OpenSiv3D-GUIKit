@@ -54,9 +54,7 @@ namespace s3d::aoba {
                 if (targetId < id) {
                     left = mid + 1;
                 } else if (targetId > id) {
-                    // right is never be <0
-                    // mid=0 -> left=right=0 -> this cond does not satisfy while cond
-                    right = mid - 1;
+                    right = mid;
                 } else {
                     return mid;
                 }
