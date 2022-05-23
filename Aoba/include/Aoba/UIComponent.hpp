@@ -102,12 +102,18 @@ namespace s3d::aoba {
                            double constant   = 0.0,
                            double multiplier = 1.0);
 
-        void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
+        void setConstraint(LayerDirection direction,
+                           UIComponent* component,
+                           LayerDirection toDirection,
+                           double constant   = 0.0,
+                           double multiplier = 1.0);
 
         void setConstraint(LayerDirection direction,
                            const std::function<double()>& func,
                            double constant   = 0.0,
                            double multiplier = 1.0);
+
+        void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
 
         void removeConstraint(LayerDirection direction);
 

@@ -6,12 +6,9 @@
 #include "UIView.hpp"
 
 namespace s3d::aoba {
-    class Page;
     class UIComponent;
 
     class Factory {
-        friend Page;
-
     private:
         size_t m_id = 0;
 
@@ -26,7 +23,7 @@ namespace s3d::aoba {
 
         template <class T>
         [[nodiscard]] static T& Create(UIView& parent) {
-            auto& component = Factory::CreateComponent<T>();
+            auto& component = Factory::CreateComponent<T>(false);
 
             parent.appendComponent(component);
             parent.onAfterComponentAppended();
@@ -39,13 +36,15 @@ namespace s3d::aoba {
             return Factory::Create<T>(*parent);
         }
 
-        // Create component without parent component
+        // Create isolated component without parent view
         template <class T>
         [[nodiscard]] static T& Create() {
-            auto& component = Factory::CreateComponent<T>();
-            Core::AppendIsolatedComponent(component);
-            return component;
+            return Factory::CreateComponent<T>(true);
         }
+
+		// Create root view of page
+		// Do not call this function
+        [[nodiscard]] static UIView& _CreatePageView();
 
     private:
         Factory() = default;
@@ -57,18 +56,24 @@ namespace s3d::aoba {
         static void LogCreatedComponent(size_t id, const std::type_info& info);
 
         template <class T>
-        [[nodiscard]] static T& CreateComponent() {
+        [[nodiscard]] static T& CreateComponent(bool isolated) {
             const size_t id = Instance().createId();
 
 #if SIV3D_BUILD(DEBUG)
             LogCreatedComponent(id, typeid(T));
 #endif
 
-            return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(id))).get());
+            if (isolated) {
+                return *static_cast<T*>(Instance().storeIsolatedComponent(std::shared_ptr<T>(new T(id))).get());
+            } else {
+                return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(id))).get());
+            }
         }
 
         size_t createId();
 
-        std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
+        const std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
+
+        const std::shared_ptr<UIComponent>& storeIsolatedComponent(const std::shared_ptr<UIComponent>& component);
     };
 }

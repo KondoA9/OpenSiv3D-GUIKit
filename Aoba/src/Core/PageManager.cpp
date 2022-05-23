@@ -61,10 +61,6 @@ namespace s3d::aoba {
         m_pages.emplace_back(page);
     }
 
-    void PageManager::appendIsolatedComponent(const std::shared_ptr<UIComponent>& component) {
-        m_isolatedComponents.emplace_back(component);
-    }
-
     void PageManager::terminate() {
         m_pageTransition = PageTransition::Termination;
     }

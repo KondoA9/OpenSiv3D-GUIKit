@@ -35,22 +35,22 @@ protected:
 
         m_uiToggleColorModeButton.tooltipMessage = U"Toggle color mode";
 
-        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
+        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
         m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Left);
         m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Width, 40_px);
         m_uiToggleColorModeButton.addEventListener<aoba::Event::Mouse::LeftDown>(
             [this] { m_toggleColorModeHandler(); });
 
-        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
+        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
         m_uiParentDirButton.setConstraint(
             aoba::LayerDirection::Left, m_uiToggleColorModeButton, aoba::LayerDirection::Right);
         m_uiParentDirButton.setConstraint(aoba::LayerDirection::Width, 40_px);
         m_uiParentDirButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] { m_openParentDirHandler(); });
 
-        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
+        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
         m_uiOpenDirectoryButton.setConstraint(
             aoba::LayerDirection::Left, m_uiParentDirButton, aoba::LayerDirection::Right);
         m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Width, 120_px);
@@ -115,30 +115,30 @@ protected:
         });
 
         m_uiIcon.penetrateMouseEvent = true;
-        m_uiIcon.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiIcon.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
-        m_uiIcon.setConstraint(aoba::LayerDirection::Left, *this, aoba::LayerDirection::Left);
-        m_uiIcon.setConstraint(aoba::LayerDirection::Width, *this, aoba::LayerDirection::Height);
+        m_uiIcon.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiIcon.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
+        m_uiIcon.setConstraint(aoba::LayerDirection::Left, this, aoba::LayerDirection::Left);
+        m_uiIcon.setConstraint(aoba::LayerDirection::Width, this, aoba::LayerDirection::Height);
 
         m_uiFileName.penetrateMouseEvent = true;
-        m_uiFileName.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiFileName.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
+        m_uiFileName.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiFileName.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
         m_uiFileName.setConstraint(aoba::LayerDirection::Left, m_uiIcon, aoba::LayerDirection::Right);
         m_uiFileName.setConstraint(aoba::LayerDirection::Right, m_uiUpdatedDate, aoba::LayerDirection::Left);
 
         m_uiUpdatedDate.penetrateMouseEvent = true;
         m_uiUpdatedDate.setPadding(0, 0, 5_px, 5_px);
-        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
+        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
         m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Width, 220_px);
         m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Right, m_uiKind, aoba::LayerDirection::Left);
 
         m_uiKind.penetrateMouseEvent = true;
         m_uiKind.setPadding(0, 0, 5_px, 5_px);
-        m_uiKind.setConstraint(aoba::LayerDirection::Top, *this, aoba::LayerDirection::Top);
-        m_uiKind.setConstraint(aoba::LayerDirection::Bottom, *this, aoba::LayerDirection::Bottom);
+        m_uiKind.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
+        m_uiKind.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
         m_uiKind.setConstraint(aoba::LayerDirection::Width, 80_px);
-        m_uiKind.setConstraint(aoba::LayerDirection::Right, *this, aoba::LayerDirection::Right);
+        m_uiKind.setConstraint(aoba::LayerDirection::Right, this, aoba::LayerDirection::Right);
     }
 };
 
