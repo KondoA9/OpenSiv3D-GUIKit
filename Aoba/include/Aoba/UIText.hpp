@@ -21,8 +21,9 @@ namespace s3d::aoba {
         ColorTheme textColor = DynamicColor::Text;
 
     private:
-        String m_text             = U"";
-        Font m_font               = UnifiedFont::Get();
+        String m_text               = U"";
+        Font m_font                 = UnifiedFont::Get();
+        DrawableText m_drawableText = m_font(m_text);
         TextDirection m_direction = TextDirection::LeftCenter;
         RectF m_textRegion        = RectF();
         double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
@@ -45,15 +46,15 @@ namespace s3d::aoba {
 
         virtual void setPadding(double top, double bottom, double left, double right);
 
-        virtual void setFont(UnifiedFontStyle style);
+        virtual void setFont(const Font& font);
 
         virtual void setText(const String& text);
 
         virtual void setDirection(TextDirection direction);
 
-        virtual void setFont(const Font& font) {
-            m_font = font;
-        }
+		virtual void setFont(UnifiedFontStyle style) {
+            setFont(UnifiedFont::Get(style));
+		}
 
     protected:
         void initialize() override;
