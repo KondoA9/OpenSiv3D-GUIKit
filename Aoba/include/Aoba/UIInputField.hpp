@@ -100,7 +100,7 @@ namespace s3d::aoba {
 
         void updateInputEvents() override;
 
-        void updateDrawableText(bool updateField = false) override;
+        void updateDrawableText(const Rect& scissor, bool updateField = false) override;
 
         void draw() const override;
 

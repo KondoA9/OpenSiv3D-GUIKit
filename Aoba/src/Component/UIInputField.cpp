@@ -111,8 +111,8 @@ namespace s3d::aoba {
         }
     }
 
-    void UIInputField::updateDrawableText(bool updateField) {
-        UIText::updateDrawableText(updateField);
+    void UIInputField::updateDrawableText(const Rect& scissor, bool updateField) {
+        UIText::updateDrawableText(scissor, updateField);
 
         if (textRegion().h == 0) {
             const auto h = font().fontSize() * 1.416 + 6_px;

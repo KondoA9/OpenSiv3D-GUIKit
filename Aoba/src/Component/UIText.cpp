@@ -10,11 +10,11 @@ namespace s3d::aoba {
     }
 
     void UIText::updateLayer(const Rect& scissor) {
-        updateDrawableText();
+        updateDrawableText(scissor);
 
         UIRect::updateLayer(scissor);
 
-        updateDrawableText(true);
+        updateDrawableText(scissor, true);
     }
 
     void UIText::draw() const {
@@ -48,8 +48,8 @@ namespace s3d::aoba {
         requestToUpdateLayer();
     }
 
-    void UIText::updateDrawableText(bool updateField) {
-        updateTextRegion();
+    void UIText::updateDrawableText(const Rect& scissor, bool updateField) {
+        updateTextRegion(scissor);
 
         if (updateField) {
             fitTextRegionToRect();
@@ -66,13 +66,17 @@ namespace s3d::aoba {
         }
     }
 
-    void UIText::updateTextRegion() {
+    void UIText::updateTextRegion(const Rect& scissor) {
         const double top     = layer().top() + paddingTop;
         const double bottom  = layer().bottom() - paddingBottom;
         const double centerY = layer().centerY() + paddingTop - paddingBottom;
         const double left    = layer().left() + paddingLeft + 3.0_px;
         const double right   = layer().right() - paddingRight - 3.0_px;
         const double centerX = layer().centerX() + paddingLeft - paddingRight;
+
+        if (!scissor.intersects(layer().asRect())) {
+            return;
+        }
 
         switch (m_direction) {
         case TextDirection::LeftTop:

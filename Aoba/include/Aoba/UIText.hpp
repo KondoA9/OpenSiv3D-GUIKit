@@ -24,8 +24,8 @@ namespace s3d::aoba {
         String m_text               = U"";
         Font m_font                 = UnifiedFont::Get();
         DrawableText m_drawableText = m_font(m_text);
-        TextDirection m_direction = TextDirection::LeftCenter;
-        RectF m_textRegion        = RectF();
+        TextDirection m_direction   = TextDirection::LeftCenter;
+        RectF m_textRegion          = RectF();
         double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
     public:
@@ -52,9 +52,9 @@ namespace s3d::aoba {
 
         virtual void setDirection(TextDirection direction);
 
-		virtual void setFont(UnifiedFontStyle style) {
+        virtual void setFont(UnifiedFontStyle style) {
             setFont(UnifiedFont::Get(style));
-		}
+        }
 
     protected:
         void initialize() override;
@@ -63,10 +63,10 @@ namespace s3d::aoba {
 
         void draw() const override;
 
-        virtual void updateDrawableText(bool updateField = false);
+        virtual void updateDrawableText(const Rect& scissor, bool updateField = false);
 
     private:
-        void updateTextRegion();
+        void updateTextRegion(const Rect& scissor);
 
         void fitTextRegionToRect();
     };
