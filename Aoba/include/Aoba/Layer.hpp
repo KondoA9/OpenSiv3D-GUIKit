@@ -11,14 +11,12 @@ namespace s3d::aoba {
     private:
         Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
 
-        Vec2 m_center = Vec2();
-
     public:
         Rect asRect() const;
 
         RectF asRectF() const;
 
-        const Vec2& center() const;
+        Vec2 center() const;
 
         const Constraint& top() const;
 

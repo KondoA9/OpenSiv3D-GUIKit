@@ -11,8 +11,8 @@ namespace s3d::aoba {
         return RectF(m_left, m_top, m_width, m_height);
     }
 
-    const Vec2& Layer::center() const {
-        return m_center;
+    Vec2 Layer::center() const {
+        return Vec2(m_centerX, m_centerY);
     }
 
     const Constraint& Layer::top() const {
@@ -127,8 +127,6 @@ namespace s3d::aoba {
         } else {
             AobaLog::Log(AobaLog::Type::Warning, U"Layer", U"X-axis constraints are invalid");
         }
-
-        m_center = Vec2(m_centerX, m_centerY);
     }
 
     void Layer::setConstraint(LayerDirection direction, double constant, double multiplier) {
