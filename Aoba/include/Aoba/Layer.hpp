@@ -12,27 +12,49 @@ namespace s3d::aoba {
         Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
 
     public:
-        Rect asRect() const;
+        Rect asRect() const {
+            return asRectF().asRect();
+        }
 
-        RectF asRectF() const;
+        RectF asRectF() const {
+            return RectF(m_left, m_top, m_width, m_height);
+        }
 
-        Vec2 center() const;
+        Vec2 center() const {
+            return Vec2(m_centerX, m_centerY);
+        }
 
-        const Constraint& top() const;
+        const Constraint& top() const {
+            return m_top;
+        }
 
-        const Constraint& bottom() const;
+        const Constraint& bottom() const {
+            return m_bottom;
+        }
 
-        const Constraint& centerY() const;
+        const Constraint& centerY() const {
+            return m_centerY;
+        }
 
-        const Constraint& height() const;
+        const Constraint& height() const {
+            return m_height;
+        }
 
-        const Constraint& left() const;
+        const Constraint& left() const {
+            return m_left;
+        }
 
-        const Constraint& right() const;
+        const Constraint& right() const {
+            return m_right;
+        }
 
-        const Constraint& centerX() const;
+        const Constraint& centerX() const {
+            return m_centerX;
+        }
 
-        const Constraint& width() const;
+        const Constraint& width() const {
+            return m_width;
+        }
 
         void updateConstraints();
 

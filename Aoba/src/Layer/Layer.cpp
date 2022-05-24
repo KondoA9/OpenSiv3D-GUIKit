@@ -3,50 +3,6 @@
 #include "src/AobaLog/AobaLog.hpp"
 
 namespace s3d::aoba {
-    Rect Layer::asRect() const {
-        return asRectF().asRect();
-    }
-
-    RectF Layer::asRectF() const {
-        return RectF(m_left, m_top, m_width, m_height);
-    }
-
-    Vec2 Layer::center() const {
-        return Vec2(m_centerX, m_centerY);
-    }
-
-    const Constraint& Layer::top() const {
-        return m_top;
-    }
-
-    const Constraint& Layer::bottom() const {
-        return m_bottom;
-    }
-
-    const Constraint& Layer::centerY() const {
-        return m_centerY;
-    }
-
-    const Constraint& Layer::height() const {
-        return m_height;
-    }
-
-    const Constraint& Layer::left() const {
-        return m_left;
-    }
-
-    const Constraint& Layer::right() const {
-        return m_right;
-    }
-
-    const Constraint& Layer::centerX() const {
-        return m_centerX;
-    }
-
-    const Constraint& Layer::width() const {
-        return m_width;
-    }
-
     void Layer::updateConstraints() {
         // y-axis constraints
         // top & bottom
