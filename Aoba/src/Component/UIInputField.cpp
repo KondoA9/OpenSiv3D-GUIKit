@@ -1,4 +1,4 @@
-﻿#include "Aoba/UIInputField.hpp"
+#include "Aoba/UIInputField.hpp"
 
 #include "Aoba/Core.hpp"
 #include "Aoba/DynamicColor.hpp"
@@ -257,7 +257,7 @@ namespace s3d::aoba {
         ui_Warning->setConstraint(LayerDirection::Height, 30_px);
         ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
         ui_Warning->setConstraint(LayerDirection::Width, 250_px);
-        m_WarningTimeoutID = Core::SetTimeout([this] { ui_Warning->exist = false; }, 3000, false);
+        m_WarningTimeoutID = Core::SetTimeout([] { ui_Warning->exist = false; }, 3000, false);
 
         registerInputEvent(Event::Component::InputField::ForbiddenCharInputted(this, false));
     }
