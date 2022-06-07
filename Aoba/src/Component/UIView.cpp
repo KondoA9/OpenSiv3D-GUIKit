@@ -22,11 +22,12 @@ namespace s3d::aoba {
     }
 
     void UIView::appendComponent(const UIComponent& component) {
-        if (!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
-                return component.id() == component2->id();
-            })) {
-            m_components.emplace_back(ComponentStorage::Get(component.id()));
-        }
+        // The component cannot be appended multiple times
+        assert(!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
+            return component.id() == component2->id();
+        }));
+
+        m_components.emplace_back(ComponentStorage::Get(component.id()));
     }
 
     void UIView::update() {
