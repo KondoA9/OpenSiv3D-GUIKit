@@ -56,6 +56,10 @@ namespace s3d::aoba {
             setFont(UnifiedFont::Get(style));
         }
 
+		// Do not call this frequently.
+		// This is called automatically as needed.
+        void calcTextRegion();
+
     protected:
         void initialize() override;
 

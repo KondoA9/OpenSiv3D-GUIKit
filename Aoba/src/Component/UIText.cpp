@@ -66,17 +66,13 @@ namespace s3d::aoba {
         }
     }
 
-    void UIText::updateTextRegion(const Rect& scissor) {
+    void UIText::calcTextRegion() {
         const double top     = layer().top() + paddingTop;
         const double bottom  = layer().bottom() - paddingBottom;
         const double centerY = layer().centerY() + paddingTop - paddingBottom;
         const double left    = layer().left() + paddingLeft + 3.0_px;
         const double right   = layer().right() - paddingRight - 3.0_px;
         const double centerX = layer().centerX() + paddingLeft - paddingRight;
-
-        if (!scissor.intersects(layer().asRect())) {
-            return;
-        }
 
         switch (m_direction) {
         case TextDirection::LeftTop:
@@ -114,6 +110,12 @@ namespace s3d::aoba {
         case TextDirection::RightBottom:
             m_textRegion = m_drawableText.region(Arg::bottomRight(right, bottom));
             break;
+        }
+    }
+
+    void UIText::updateTextRegion(const Rect& scissor) {
+        if (scissor.intersects(layer().asRect())) {
+            calcTextRegion();
         }
     }
 
