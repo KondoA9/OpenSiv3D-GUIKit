@@ -52,7 +52,7 @@ namespace s3d::aoba {
             m_currentPage->update();
         }
 
-        updateViews();
+        updateComponents();
 
         updateLayers();
 
@@ -214,7 +214,7 @@ namespace s3d::aoba {
         m_previousPage.reset();
     }
 
-    void PageManager::updateViews() {
+    void PageManager::updateComponents() {
         if (m_nextPage) {
             m_nextPage->view.update();
         }
@@ -225,6 +225,10 @@ namespace s3d::aoba {
 
         if (m_previousPage) {
             m_previousPage->view.update();
+        }
+
+		for (auto& component : ComponentStorage::GetIsolatedComponents()) {
+            component->update();
         }
     }
 

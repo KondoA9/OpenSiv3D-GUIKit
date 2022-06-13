@@ -62,7 +62,7 @@ namespace s3d::aoba {
 
         void updateOnTermination();
 
-        void updateViews();
+        void updateComponents();
 
         void updateLayers();
 
