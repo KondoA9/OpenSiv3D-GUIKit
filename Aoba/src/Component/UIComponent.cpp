@@ -131,6 +131,7 @@ namespace s3d::aoba {
 
     void UIComponent::removeAllConstraints() {
         m_layer.removeAllConstraints();
+        m_dependentComponents.release();
     }
 
     void UIComponent::focus() {
