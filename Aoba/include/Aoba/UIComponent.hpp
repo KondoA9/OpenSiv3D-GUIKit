@@ -70,9 +70,10 @@ namespace s3d::aoba {
         bool m_initializedColors = false;
 
         Layer m_layer;
-        Array<Layer*> m_dependentLayers;
-        Rect m_drawableRegion    = Rect();
-        bool m_needToUpdateLayer = true;
+        Array<std::shared_ptr<UIComponent>> m_dependentComponents;
+        Rect m_drawableRegion              = Rect();
+        bool m_constraintsUpdatedThisFrame = false;
+        bool m_needToUpdateLayer           = true;
 
         // Mouse event
         MouseCondition m_mouseCondition;
@@ -222,5 +223,7 @@ namespace s3d::aoba {
         static void UpdateFocusEvent();
 
         virtual bool updateLayerIfNeeded(const Rect& scissor);
+
+        void updateConstraints();
     };
 }
