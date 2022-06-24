@@ -118,6 +118,9 @@
     <Filter Include="Aoba\KeyShortcut">
       <UniqueIdentifier>{74b01146-42b6-4ee1-8a89-12fced3203f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\Algorithm">
+      <UniqueIdentifier>{28abd0fe-ff8d-4be7-89ed-f46e0804d8f8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -370,6 +373,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\KeyShortcut\KeyShortcut.hpp">
       <Filter>Aoba\KeyShortcut</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\Algorithm\Algorithm.hpp">
+      <Filter>Aoba\Algorithm</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
