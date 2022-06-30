@@ -19,6 +19,9 @@ namespace s3d::aoba::Algorithm {
             if (value < key) {
                 left = mid + 1;
             } else if (value > key) {
+                if (mid == 0) {
+                    break;
+				}
                 right = mid - 1;
             } else {
                 return mid;
@@ -44,6 +47,9 @@ namespace s3d::aoba::Algorithm {
             if (value < key) {
                 left = mid + 1;
             } else if (value > key) {
+                if (mid == 0) {
+                    break;
+                }
                 right = mid - 1;
             } else {
                 return mid;
