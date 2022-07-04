@@ -15,7 +15,7 @@ namespace s3d::aoba {
         view.setConstraint(LayerDirection::Right, [] { return Scene::Size().x; });
     }
 
-    void Page::acceptDragDrop(bool acceptFiles, bool acceptTexts) {
+    void Page::acceptDragDrop(bool acceptFiles, bool acceptTexts) noexcept {
         m_acceptDragDropFiles = acceptFiles;
         m_acceptDragDropTexts = acceptTexts;
     }

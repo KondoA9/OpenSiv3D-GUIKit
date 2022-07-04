@@ -10,7 +10,7 @@ namespace s3d::aoba {
     public:
         using UIComponent::UIComponent;
 
-        const Ellipse& circle() const {
+        const Ellipse& circle() const noexcept {
             return m_circle;
         }
 

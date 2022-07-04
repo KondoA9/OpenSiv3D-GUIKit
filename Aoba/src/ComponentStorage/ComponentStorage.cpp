@@ -10,7 +10,7 @@
 namespace s3d::aoba {
     namespace Internal {
         size_t FindIndexToInsert(const Array<std::shared_ptr<UIComponent>>& sortedArray,
-                                 const std::shared_ptr<UIComponent>& component) {
+                                 const std::shared_ptr<UIComponent>& component) noexcept {
             if (sortedArray.isEmpty()) {
                 return 0;
             }
@@ -40,7 +40,7 @@ namespace s3d::aoba {
         }
 
         // Search the component from array by using binary search
-        Optional<size_t> SearchComponent(Array<std::shared_ptr<UIComponent>>& sortedArray, size_t id) {
+        Optional<size_t> SearchComponent(Array<std::shared_ptr<UIComponent>>& sortedArray, size_t id) noexcept {
             if (sortedArray.isEmpty()) {
                 return none;
             }
@@ -101,7 +101,7 @@ namespace s3d::aoba {
         throw Error{U"A component with identifier \"{}\" not found."_fmt(id)};
     }
 
-    bool ComponentStorage::Has(size_t id) {
+    bool ComponentStorage::Has(size_t id) noexcept {
         return Internal::SearchComponent(Instance().m_components, id).has_value()
                || Internal::SearchComponent(Instance().m_isolatedComponents, id).has_value();
     }

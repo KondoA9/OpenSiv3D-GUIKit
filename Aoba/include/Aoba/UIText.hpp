@@ -33,14 +33,15 @@ namespace s3d::aoba {
 
         virtual ~UIText() {}
 
-        const Font& font() const {
+        const Font& font() const noexcept {
             return m_font;
         }
 
-        const String& text() const {
+        const String& text() const noexcept {
             return m_text;
         }
-        const RectF& textRegion() const {
+
+        const RectF& textRegion() const noexcept {
             return m_textRegion;
         }
 
@@ -56,8 +57,8 @@ namespace s3d::aoba {
             setFont(UnifiedFont::Get(style));
         }
 
-		// Do not call this frequently.
-		// This is called automatically as needed.
+        // Do not call this frequently.
+        // This is called automatically as needed.
         void calcTextRegion();
 
     protected:
@@ -72,6 +73,6 @@ namespace s3d::aoba {
     private:
         void updateTextRegion(const Rect& scissor);
 
-        void fitTextRegionToRect();
+        void fitTextRegionToRect() noexcept;
     };
 }

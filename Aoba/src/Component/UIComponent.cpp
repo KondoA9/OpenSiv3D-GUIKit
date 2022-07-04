@@ -104,20 +104,20 @@ namespace s3d::aoba {
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) {
+    void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) noexcept {
         m_layer.setConstraint(direction, constant, multiplier);
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::removeConstraint(LayerDirection direction) {
+    void UIComponent::removeConstraint(LayerDirection direction) noexcept {
         m_layer.removeConstraint(direction);
     }
 
-    void UIComponent::removeAllConstraints() {
+    void UIComponent::removeAllConstraints() noexcept {
         m_layer.removeAllConstraints();
     }
 
-    void UIComponent::focus() {
+    void UIComponent::focus() noexcept {
         if (ComponentStorage::Has(m_id)) {
             // Focused component is this
             m_FocusedComponentId = m_id;
@@ -126,7 +126,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIComponent::unFocus() {
+    void UIComponent::unFocus() noexcept {
         if (isFocused()) {
             m_FocusedComponentId = none;
         }

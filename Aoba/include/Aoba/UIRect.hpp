@@ -10,11 +10,11 @@ namespace s3d::aoba {
     public:
         using UIComponent::UIComponent;
 
-        double cornerRadius() const {
+        double cornerRadius() const noexcept {
             return m_rect.r;
         }
 
-        void setCornerRadius(double r);
+        void setCornerRadius(double r) noexcept;
 
     protected:
         void updateMouseIntersection() override;

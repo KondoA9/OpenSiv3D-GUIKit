@@ -9,7 +9,7 @@ namespace s3d::aoba {
         struct State {
             bool down = false, pressed = false;
 
-            void reset() {
+            void reset() noexcept {
                 down = pressed = true;
             }
         };
@@ -25,11 +25,11 @@ namespace s3d::aoba {
     public:
         KeyboardOperation(const T& key, const std::function<void()>& handler) : m_key(key), m_handler(handler) {}
 
-        bool isCalled() const {
+        bool isCalled() const noexcept {
             return m_called;
         }
 
-        State state() const {
+        State state() const noexcept {
             return m_state;
         }
 

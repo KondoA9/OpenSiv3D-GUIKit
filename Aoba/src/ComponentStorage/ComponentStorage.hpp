@@ -27,7 +27,7 @@ namespace s3d::aoba {
             return Instance().m_isolatedComponents;
         }
 
-        static bool Has(size_t id);
+        static bool Has(size_t id) noexcept;
 
         static void Store(const std::shared_ptr<UIComponent>& component);
 
