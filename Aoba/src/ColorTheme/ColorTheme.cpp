@@ -4,7 +4,7 @@ namespace s3d::aoba {
     ColorMode CurrentMode;
     double T = 0.0;
 
-    Color ColorTheme::color() const {
+    constexpr Color ColorTheme::color() const noexcept {
         if (m_isTransition) {
             m_transitionTimer += Scene::DeltaTime();
             const double k = m_transitionTimer / m_transitionTime;
@@ -22,7 +22,7 @@ namespace s3d::aoba {
         }
     }
 
-    void ColorTheme::setColor(const Color& lightColor, const Color& darkColor, double transitionTime) {
+    void ColorTheme::setColor(const Color& lightColor, const Color& darkColor, double transitionTime) noexcept {
         if (m_isTransition) {
             const auto c = color();
             light        = c;
@@ -50,15 +50,15 @@ namespace s3d::aoba {
         m_isTransition    = true;
     }
 
-    ColorMode ColorTheme::CurrentColorMode() {
+    ColorMode ColorTheme::CurrentColorMode() noexcept {
         return CurrentMode;
     }
 
-    void ColorTheme::SetColorMode(ColorMode mode) {
+    void ColorTheme::SetColorMode(ColorMode mode) noexcept {
         CurrentMode = mode;
     }
 
-    void ColorTheme::Animate(double t) {
+    void ColorTheme::Animate(double t) noexcept {
         T = t;
     }
 }
