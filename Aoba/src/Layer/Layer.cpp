@@ -120,7 +120,7 @@ namespace s3d::aoba {
         m_width.removeConstraint();
     }
 
-    Constraint* const Layer::getConstraint(LayerDirection direction) noexcept {
+    Constraint* Layer::getConstraint(LayerDirection direction) noexcept {
         switch (direction) {
         case s3d::aoba::LayerDirection::Top:
             return &m_top;

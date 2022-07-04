@@ -76,6 +76,6 @@ namespace s3d::aoba {
         void removeAllConstraints() noexcept;
 
     private:
-        Constraint* const getConstraint(LayerDirection direction) noexcept;
+        Constraint* getConstraint(LayerDirection direction) noexcept;
     };
 }

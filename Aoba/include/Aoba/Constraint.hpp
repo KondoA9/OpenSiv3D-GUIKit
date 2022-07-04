@@ -18,7 +18,7 @@ namespace s3d::aoba {
         }
 
         // Return the pointer of the value
-        double* const data() noexcept {
+        double* data() noexcept {
             return &m_value;
         }
 
