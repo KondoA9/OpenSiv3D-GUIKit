@@ -25,7 +25,7 @@ namespace s3d::aoba {
     public:
         using UIView::UIView;
 
-        double value() const {
+        double value() const noexcept {
             return m_value;
         }
 
@@ -33,12 +33,12 @@ namespace s3d::aoba {
             m_valueChangedHandler = func;
         }
 
-        void setValue(double value) {
+        void setValue(double value) noexcept {
             m_value = Clamp(value, m_min, m_max);
             requestToUpdateLayer();
         }
 
-        void setRange(double min, double max) {
+        void setRange(double min, double max) noexcept {
             m_min   = min;
             m_max   = max;
             m_value = Clamp(m_value, m_min, m_max);

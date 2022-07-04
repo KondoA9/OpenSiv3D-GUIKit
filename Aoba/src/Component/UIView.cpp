@@ -127,7 +127,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIView::updateScissorRect(const Rect& parentScissorRect) {
+    void UIView::updateScissorRect(const Rect& parentScissorRect) noexcept {
         const auto left     = Max(parentScissorRect.x, static_cast<int>(layer().left()));
         const auto top      = Max(parentScissorRect.y, static_cast<int>(layer().top()));
         const auto right    = Min(parentScissorRect.x + parentScissorRect.w, static_cast<int>(layer().right()));

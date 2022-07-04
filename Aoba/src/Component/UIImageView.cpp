@@ -107,7 +107,7 @@ namespace s3d::aoba {
         return scale;
     }
 
-    double UIImageView::calcMaximumScale() {
+    double UIImageView::calcMaximumScale() noexcept {
         return m_minScale * m_maxPixel / m_minPixel;
     }
 

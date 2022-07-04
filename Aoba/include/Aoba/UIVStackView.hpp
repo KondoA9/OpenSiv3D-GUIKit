@@ -56,7 +56,7 @@ namespace s3d::aoba {
     private:
         void updateChildrenConstraints(bool reset = false);
 
-        void calcCurrentRowHeight();
+        void calcCurrentRowHeight() noexcept;
 
         void adjustRowsTrailingToViewBottom();
 
