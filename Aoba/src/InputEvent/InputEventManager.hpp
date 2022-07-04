@@ -13,7 +13,7 @@ namespace s3d::aoba {
         };
 
     private:
-        Array<CallableInputEvent> m_inputEvents; // events waiting for a calling
+        Array<CallableInputEvent> m_inputEvents;  // events waiting for a calling
 
     public:
         InputEventManager(const InputEventManager&) = delete;

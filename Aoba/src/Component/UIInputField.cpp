@@ -373,7 +373,7 @@ namespace s3d::aoba {
         return {fixedText};
     }
 
-    void UIInputField::selectAllText() {
+    void UIInputField::selectAllText() noexcept {
         m_textSelected         = true;
         m_selectingCursorStart = 0;
         m_cursorPos            = text().length();

@@ -1,13 +1,13 @@
 ﻿#include "Aoba/Constraint.hpp"
 
 namespace s3d::aoba {
-    void Constraint::setConstraint(double constant, double multiplier) {
+    void Constraint::setConstraint(double constant, double multiplier) noexcept {
         m_constant   = constant;
         m_multiplier = multiplier;
         m_exists     = true;
     }
 
-    void Constraint::setConstraint(double* const watchingValue, double constant, double multiplier) {
+    void Constraint::setConstraint(double* const watchingValue, double constant, double multiplier) noexcept {
         m_watchingValue = watchingValue;
         setConstraint(constant, multiplier);
     }
@@ -17,7 +17,7 @@ namespace s3d::aoba {
         setConstraint(constant, multiplier);
     }
 
-    void Constraint::removeConstraint() {
+    void Constraint::removeConstraint() noexcept {
         m_exists        = false;
         m_func          = std::function<double()>();
         m_watchingValue = nullptr;

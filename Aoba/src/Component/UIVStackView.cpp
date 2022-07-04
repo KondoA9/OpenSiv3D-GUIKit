@@ -71,7 +71,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIVStackView::calcCurrentRowHeight() {
+    void UIVStackView::calcCurrentRowHeight() noexcept {
         const size_t rows   = m_maxStackCount == 0 ? componentsCount() : m_maxStackCount;
         m_currentRowHeight  = m_rowHeight == 0.0 ? layer().height() / rows : m_rowHeight;
         m_currentRowsHeight = m_currentRowHeight * rows;

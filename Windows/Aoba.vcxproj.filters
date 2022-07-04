@@ -243,9 +243,6 @@
     <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
       <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
     </ClCompile>
-    <ClCompile Include="..\Aoba\src\KeyShortcut\KeyShortcut.cpp">
-      <Filter>Aoba\KeyShortcut</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp">

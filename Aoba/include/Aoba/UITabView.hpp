@@ -38,7 +38,7 @@ namespace s3d::aoba {
     public:
         using UIView::UIView;
 
-        size_t index() const {
+        size_t index() const noexcept {
             return m_tabIndex;
         }
 

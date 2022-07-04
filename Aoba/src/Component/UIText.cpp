@@ -119,7 +119,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIText::fitTextRegionToRect() {
+    void UIText::fitTextRegionToRect() noexcept {
         const auto oneLineWidth = m_textRegion.w;
 
         // Fit starting pos
@@ -138,7 +138,7 @@ namespace s3d::aoba {
         }
 
         // Fit overhang region
-        if (const auto bottom = layer().bottom(); m_textRegion.y + m_textRegion.h > bottom) {
+        if (const double bottom = layer().bottom(); m_textRegion.y + m_textRegion.h > bottom) {
             m_textRegion.h = bottom - m_textRegion.y;
         }
     }

@@ -127,8 +127,13 @@ namespace s3d::aoba {
         m_PreviousFocusedComponentId = m_FocusedComponentId;
     }
 
-    void UIComponent::_updateMouseCondition(
-        bool leftDown, bool leftUp, bool leftPress, bool rightDown, bool rightUp, bool rightPress, bool hover) {
+    void UIComponent::_updateMouseCondition(bool leftDown,
+                                            bool leftUp,
+                                            bool leftPress,
+                                            bool rightDown,
+                                            bool rightUp,
+                                            bool rightPress,
+                                            bool hover) noexcept {
         m_mouseCondition.left.down  = leftDown;
         m_mouseCondition.left.up    = leftUp;
         m_mouseCondition.left.press = leftPress;

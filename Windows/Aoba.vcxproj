@@ -46,7 +46,6 @@
     <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp" />
-    <ClCompile Include="..\Aoba\src\KeyShortcut\KeyShortcut.cpp" />
     <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />

@@ -13,7 +13,7 @@ namespace s3d::aoba {
 
     void Timeout::update() {
         if (isPending()) {
-            const auto currentTime   = std::chrono::system_clock::now();
+            const auto currentTime = std::chrono::system_clock::now();
             const auto elapsedTime = static_cast<double>(
                 std::chrono::duration_cast<std::chrono::milliseconds>(currentTime - m_startedTime).count());
             if (elapsedTime > m_ms) {
@@ -33,7 +33,7 @@ namespace s3d::aoba {
         }
     }
 
-    bool Timeout::restart() {
+    bool Timeout::restart() noexcept {
         if (isAlive() && !isRunning()) {
             m_startedTime = std::chrono::system_clock::now();
             return true;
@@ -41,7 +41,7 @@ namespace s3d::aoba {
         return false;
     }
 
-    bool Timeout::stop() {
+    bool Timeout::stop() noexcept {
         if (isAlive() && !isRunning()) {
             m_stopped = true;
             return true;

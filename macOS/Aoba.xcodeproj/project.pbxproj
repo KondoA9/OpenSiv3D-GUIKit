@@ -57,7 +57,6 @@
 		9E9A17402817F5D7007A6D81 /* ComponentStorage.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A16E82817F5D6007A6D81 /* ComponentStorage.cpp */; };
 		9E9A17412817F5D7007A6D81 /* ComponentStorage.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E9A16E92817F5D6007A6D81 /* ComponentStorage.hpp */; };
 		9E9A17422817F5D7007A6D81 /* Factory.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A16EB2817F5D6007A6D81 /* Factory.cpp */; };
-		9E9A17432817F5D7007A6D81 /* KeyShortcut.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A16ED2817F5D6007A6D81 /* KeyShortcut.cpp */; };
 		9E9A17442817F5D7007A6D81 /* KeyShortcut.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E9A16EE2817F5D6007A6D81 /* KeyShortcut.hpp */; };
 		9E9A17452817F5D7007A6D81 /* Constraint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E9A16F02817F5D6007A6D81 /* Constraint.cpp */; };
 		9E9A17462817F5D7007A6D81 /* UIRect.hpp in Headers */ = {isa = PBXBuildFile; fileRef = 9E9A16F32817F5D6007A6D81 /* UIRect.hpp */; };
@@ -144,7 +143,6 @@
 		9E9A16E82817F5D6007A6D81 /* ComponentStorage.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ComponentStorage.cpp; sourceTree = "<group>"; };
 		9E9A16E92817F5D6007A6D81 /* ComponentStorage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ComponentStorage.hpp; sourceTree = "<group>"; };
 		9E9A16EB2817F5D6007A6D81 /* Factory.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Factory.cpp; sourceTree = "<group>"; };
-		9E9A16ED2817F5D6007A6D81 /* KeyShortcut.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = KeyShortcut.cpp; sourceTree = "<group>"; };
 		9E9A16EE2817F5D6007A6D81 /* KeyShortcut.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = KeyShortcut.hpp; sourceTree = "<group>"; };
 		9E9A16F02817F5D6007A6D81 /* Constraint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Constraint.cpp; sourceTree = "<group>"; };
 		9E9A16F32817F5D6007A6D81 /* UIRect.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UIRect.hpp; sourceTree = "<group>"; };
@@ -398,7 +396,6 @@
 		9E9A16EC2817F5D6007A6D81 /* KeyShortcut */ = {
 			isa = PBXGroup;
 			children = (
-				9E9A16ED2817F5D6007A6D81 /* KeyShortcut.cpp */,
 				9E9A16EE2817F5D6007A6D81 /* KeyShortcut.hpp */,
 			);
 			path = KeyShortcut;
@@ -595,7 +592,6 @@
 				9E9A17252817F5D6007A6D81 /* PixelUnit.cpp in Sources */,
 				9E9A173B2817F5D7007A6D81 /* UIToggleButton.cpp in Sources */,
 				9E9A173D2817F5D7007A6D81 /* Layer.cpp in Sources */,
-				9E9A17432817F5D7007A6D81 /* KeyShortcut.cpp in Sources */,
 				9E9A17132817F5D6007A6D81 /* Tooltip.cpp in Sources */,
 				9E9A173F2817F5D7007A6D81 /* AobaLog.cpp in Sources */,
 				9E9A172E2817F5D7007A6D81 /* UIButton.cpp in Sources */,

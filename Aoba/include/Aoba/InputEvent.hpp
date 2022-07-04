@@ -3,10 +3,10 @@
 #include <Siv3D.hpp>
 
 // Create InputEvent
-#define AobaCreateEvent(EVENT_NAME)                                                                         \
-    struct EVENT_NAME : public s3d::aoba::InputEvent {                                                      \
-        explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) :       \
-            s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), *_component, callIfComponentInFront) {}   \
+#define AobaCreateEvent(EVENT_NAME)                                                                            \
+    struct EVENT_NAME : public s3d::aoba::InputEvent {                                                         \
+        explicit EVENT_NAME(s3d::aoba::UIComponent* _component, bool callIfComponentInFront = true) noexcept : \
+            s3d::aoba::InputEvent(typeid(EVENT_NAME).hash_code(), *_component, callIfComponentInFront) {}      \
     };
 
 // Create InputEvent in namespace NAMESPACE
@@ -29,20 +29,18 @@ namespace s3d::aoba {
 
         InputEvent() = delete;
 
-        InputEvent(size_t _id, const UIComponent& _component, bool _callIfComponentInFront);
+        InputEvent(size_t _id, const UIComponent& _component, bool _callIfComponentInFront) noexcept;
 
-        InputEvent(const InputEvent&) = default;
+        InputEvent(const InputEvent&) noexcept = default;
 
         InputEvent(InputEvent&&) noexcept = default;
 
-        InputEvent& operator=(const InputEvent&) {
-            return *this;
-        }
+        InputEvent& operator=(const InputEvent&) = delete;
 
         InputEvent& operator=(InputEvent&&) noexcept {
             return *this;
         }
 
-        virtual ~InputEvent(){};
+        virtual ~InputEvent() noexcept {};
     };
 }
