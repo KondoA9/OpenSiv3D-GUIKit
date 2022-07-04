@@ -4,7 +4,7 @@ namespace s3d::aoba {
     ColorMode CurrentMode;
     double T = 0.0;
 
-    constexpr Color ColorTheme::color() const noexcept {
+    Color ColorTheme::color() const noexcept {
         if (m_isTransition) {
             m_transitionTimer += Scene::DeltaTime();
             const double k = m_transitionTimer / m_transitionTime;

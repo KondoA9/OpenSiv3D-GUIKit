@@ -35,7 +35,7 @@ namespace s3d::aoba {
 
         ColorTheme& operator=(ColorTheme&&) noexcept = default;
 
-        constexpr Color color() const noexcept;
+        Color color() const noexcept;
 
         void setColor(const Color& lightColor, const Color& darkColor, double transitionTime = 0.0) noexcept;
 
@@ -71,15 +71,15 @@ namespace s3d::aoba {
             setColor(color, 0.1);
         }
 
-        constexpr operator Color() const noexcept {
+        operator Color() const noexcept {
             return color();
         }
 
-        constexpr operator ColorF() const noexcept {
+        operator ColorF() const noexcept {
             return static_cast<ColorF>(color());
         }
 
-        constexpr bool operator==(const Color& color) const noexcept {
+        bool operator==(const Color& color) const noexcept {
             return this->color() == color;
         }
 
