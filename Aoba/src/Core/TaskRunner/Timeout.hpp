@@ -22,29 +22,29 @@ namespace s3d::aoba {
 
         Timeout(const Timeout&) = delete;
 
-        Timeout(Timeout&&) = default;
+        Timeout(Timeout&&) noexcept = default;
 
-        size_t id() const {
+        size_t id() const noexcept {
             return m_id;
         }
 
-        bool isPending() const {
+        bool isPending() const noexcept {
             return !m_started && !m_stopped;
         }
 
-        bool isRunning() const {
+        bool isRunning() const noexcept {
             return m_started && !m_finished;
         }
 
-        bool isAlive() const {
+        bool isAlive() const noexcept {
             return !m_stopped && !m_finished;
         }
 
         void update();
 
-        bool restart();
+        bool restart() noexcept;
 
-        bool stop();
+        bool stop() noexcept;
 
         Timeout& operator=(const Timeout&) = delete;
 

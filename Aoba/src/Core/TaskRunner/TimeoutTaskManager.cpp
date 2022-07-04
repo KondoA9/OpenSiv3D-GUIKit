@@ -6,7 +6,7 @@ namespace s3d::aoba {
         return m_timeouts[m_timeouts.size() - 1].id();
     }
 
-    bool TimeoutTaskManager::isAlive(size_t id) const {
+    bool TimeoutTaskManager::isAlive(size_t id) const noexcept {
         for (const auto& timeout : m_timeouts) {
             if (timeout.id() == id) {
                 return timeout.isAlive();
@@ -15,7 +15,7 @@ namespace s3d::aoba {
         return false;
     }
 
-    bool TimeoutTaskManager::isRunning(size_t id) const {
+    bool TimeoutTaskManager::isRunning(size_t id) const noexcept {
         for (const auto& timeout : m_timeouts) {
             if (timeout.id() == id) {
                 return timeout.isRunning();
@@ -38,7 +38,7 @@ namespace s3d::aoba {
         }
     }
 
-    bool TimeoutTaskManager::stop(size_t id) {
+    bool TimeoutTaskManager::stop(size_t id) noexcept {
         for (auto& timeout : m_timeouts) {
             if (timeout.id() == id) {
                 return timeout.stop();
@@ -47,7 +47,7 @@ namespace s3d::aoba {
         return false;
     }
 
-    bool TimeoutTaskManager::restart(size_t id) {
+    bool TimeoutTaskManager::restart(size_t id) noexcept {
         for (auto& timeout : m_timeouts) {
             if (timeout.id() == id) {
                 return timeout.restart();

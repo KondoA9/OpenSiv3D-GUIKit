@@ -1,4 +1,4 @@
-#include "SyncTaskManager.hpp"
+﻿#include "SyncTaskManager.hpp"
 
 namespace s3d::aoba {
     void SyncTaskManager::addTask(const std::function<void()>& task) {

@@ -12,11 +12,11 @@ namespace s3d::aoba {
         TimeoutTaskManager m_timeoutTaskManager;
 
     public:
-        bool isAsyncTaskAlive() const;
+        bool isAsyncTaskAlive() const noexcept;
 
-        bool isTimeoutTaskAlive(size_t id) const;
+        bool isTimeoutTaskAlive(size_t id) const noexcept;
 
-        bool isTimeoutTaskRunning(size_t id) const;
+        bool isTimeoutTaskRunning(size_t id) const noexcept;
 
         void addAsyncTask(const std::function<void()>& task,
                           const std::function<void()>& completion = std::function<void()>());
@@ -27,8 +27,8 @@ namespace s3d::aoba {
 
         void update();
 
-        bool stopTimeoutTask(size_t id);
+        bool stopTimeoutTask(size_t id) noexcept;
 
-        bool restartTimeoutTask(size_t id);
+        bool restartTimeoutTask(size_t id) noexcept;
     };
 }
