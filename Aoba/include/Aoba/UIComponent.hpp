@@ -217,7 +217,7 @@ namespace s3d::aoba {
             bool leftDown, bool leftUp, bool leftPress, bool rightDown, bool rightUp, bool rightPress, bool hover);
 
     private:
-        UIComponent(size_t id) noexcept;
+        UIComponent(size_t id);
 
         static void UpdateFocusEvent();
 

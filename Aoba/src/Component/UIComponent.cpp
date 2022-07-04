@@ -8,7 +8,7 @@
 namespace s3d::aoba {
     Optional<size_t> UIComponent::m_FocusedComponentId = none, UIComponent::m_PreviousFocusedComponentId = none;
 
-    UIComponent::UIComponent(size_t id) noexcept :
+    UIComponent::UIComponent(size_t id) :
         backgroundColor(DynamicColor::BackgroundSecondary), frameColor(DynamicColor::Separator), m_id(id) {}
 
     UIComponent::~UIComponent() {
