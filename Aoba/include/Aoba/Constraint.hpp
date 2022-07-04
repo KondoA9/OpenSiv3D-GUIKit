@@ -13,12 +13,12 @@ namespace s3d::aoba {
         double m_multiplier     = 1.0;
 
     public:
-        bool isExist() const {
+        bool isExist() const noexcept {
             return m_exists;
         }
 
         // Return the pointer of the value
-        double* data() {
+        double* const data() noexcept {
             return &m_value;
         }
 
@@ -28,19 +28,19 @@ namespace s3d::aoba {
                                                    : *m_watchingValue * m_multiplier + m_constant;
         }
 
-        void setConstraint(double constant = 0.0, double multiplier = 1.0);
+        void setConstraint(double constant = 0.0, double multiplier = 1.0) noexcept;
 
-        void setConstraint(double* const watchingValue, double constant = 0.0, double multiplier = 1.0);
+        void setConstraint(double* const watchingValue, double constant = 0.0, double multiplier = 1.0) noexcept;
 
         void setConstraint(const std::function<double()>& func, double constant = 0.0, double multiplier = 1.0);
 
-        void removeConstraint();
+        void removeConstraint() noexcept;
 
-        operator double() const {
+        operator double() const noexcept {
             return m_value;
         }
 
-        Constraint& operator=(double value) {
+        Constraint& operator=(double value) noexcept {
             m_value = value;
             return *this;
         }
