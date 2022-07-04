@@ -9,7 +9,7 @@ namespace s3d::aoba {
     class Tooltip {
     private:
         Optional<size_t> m_componentId = none;
-        Optional<size_t> m_timeoutId = none;
+        Optional<size_t> m_timeoutId   = none;
 
         UIText& m_uiTooltipText = Factory::Create<UIText>();
 
