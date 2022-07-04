@@ -22,7 +22,7 @@ namespace s3d::aoba {
 
         Timeout(const Timeout&) = delete;
 
-        Timeout(Timeout&&) noexcept = default;
+        Timeout(Timeout&&) = default;
 
         size_t id() const noexcept {
             return m_id;
