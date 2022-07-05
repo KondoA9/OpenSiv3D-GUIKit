@@ -1,4 +1,4 @@
-﻿#include "ComponentStorage.hpp"
+#include "ComponentStorage.hpp"
 
 #include "src/Algorithm/Algorithm.hpp"
 #include "src/AobaLog/AobaLog.hpp"
@@ -30,10 +30,10 @@ namespace s3d::aoba {
             if (result.has_value()) {
                 auto& component = componentsArray[result.value()];
 #if SIV3D_BUILD(DEBUG)
+                const auto& componentRef = *component.get();
                 AobaLog::Log(AobaLog::Type::Info,
                              U"ComponentStorage",
-                             U"Destroy " + Unicode::Widen(std::string(typeid(*component).name())) + U" "
-                                 + ToString(component->id()));
+                             U"Destroy {} {}"_fmt(Unicode::Widen(typeid(componentRef).name()), component->id()));
 #endif
                 component.reset();
                 componentsArray.remove(component);
