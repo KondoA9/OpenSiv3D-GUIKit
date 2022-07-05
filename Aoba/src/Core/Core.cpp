@@ -12,6 +12,8 @@
 
 namespace s3d::aoba {
     Core::Core() {
+        m_mainThreadId = std::this_thread::get_id();
+
         m_pageManager = std::make_unique<PageManager>();
         m_taskRunner  = std::make_unique<TaskRunner>();
 
@@ -31,6 +33,10 @@ namespace s3d::aoba {
     Core& Core::Instance() {
         static Core instance;
         return instance;
+    }
+
+    bool Core::IsMainThread() noexcept {
+        return Instance().m_mainThreadId == std::this_thread::get_id();
     }
 
     bool Core::IsAsyncTaskAlive() noexcept {

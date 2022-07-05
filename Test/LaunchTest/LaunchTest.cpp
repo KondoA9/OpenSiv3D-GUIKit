@@ -1,19 +1,27 @@
-﻿#include "Test.h"
+﻿#include "Aoba/Aoba.hpp"
 
-#include "Aoba/Aoba.hpp"
+// clang-format off
+#include "Test.h"
+// clang-format on
 
-#include "PagingTest.h"
 #include "ComponentsTest.h"
 #include "FocusTest.h"
+#include "PagingTest.h"
 
 void AobaMain() {
-	Window::Resize(1280, 720);
+    // Test threading
+    Test::Assert(aoba::Core::IsMainThread(), "This is in main thread but recognized as not in main.");
+    std::thread([] {
+        Test::Assert(!aoba::Core::IsMainThread(), "This is not in main thread but recognized as in main.");
+    }).join();
 
-	aoba::Core::AppendPage<LifeCycleTest>(U"LifeCycleTest");
-	aoba::Core::AppendPage<ComponentsTest>(U"ComponentsTest");
-	aoba::Core::AppendPage<FocusTest>(U"FocusTest");
+    Window::Resize(1280, 720);
 
-	aoba::Core::Start();
+    aoba::Core::AppendPage<LifeCycleTest>(U"LifeCycleTest");
+    aoba::Core::AppendPage<ComponentsTest>(U"ComponentsTest");
+    aoba::Core::AppendPage<FocusTest>(U"FocusTest");
 
-	pagingTest.validate();
+    aoba::Core::Start();
+
+    pagingTest.validate();
 }
