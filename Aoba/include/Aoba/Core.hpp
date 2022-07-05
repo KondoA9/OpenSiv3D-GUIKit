@@ -10,6 +10,8 @@ namespace s3d::aoba {
 
     class Core final {
     private:
+        std::thread::id m_mainThreadId;
+
         std::unique_ptr<class PageManager> m_pageManager;
         std::unique_ptr<class TaskRunner> m_taskRunner;
 
@@ -28,6 +30,8 @@ namespace s3d::aoba {
         Core& operator=(Core&&) = delete;
 
         static Core& Instance();
+
+        static bool IsMainThread() noexcept;
 
         static bool IsAsyncTaskAlive() noexcept;
 
