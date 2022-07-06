@@ -5,7 +5,9 @@
 namespace s3d::aoba {
     enum class ColorMode { Light, Dark };
 
-    struct ColorTheme {
+    class ColorTheme {
+        friend class Core;
+
     public:
         Color mutable light, dark;
 
@@ -95,6 +97,7 @@ namespace s3d::aoba {
 
         static ColorMode CurrentColorMode() noexcept;
 
+    private:
         static void SetColorMode(ColorMode mode) noexcept;
 
         static void Animate(double t) noexcept;
