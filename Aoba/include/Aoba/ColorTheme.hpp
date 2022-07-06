@@ -75,6 +75,16 @@ namespace s3d::aoba {
             return color();
         }
 
+        ColorTheme& operator=(const Color& color) noexcept {
+            light = dark = m_transitionLight = m_transitionDark = color;
+            return *this;
+        }
+
+        ColorTheme& operator=(Color&& color) noexcept {
+            light = dark = m_transitionLight = m_transitionDark = color;
+            return *this;
+        }
+
         operator ColorF() const noexcept {
             return static_cast<ColorF>(color());
         }
