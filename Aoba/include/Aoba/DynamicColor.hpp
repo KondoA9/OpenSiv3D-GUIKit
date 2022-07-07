@@ -3,20 +3,6 @@
 #include "ColorTheme.hpp"
 
 namespace s3d::aoba {
-    namespace DynamicColor {
-        constexpr auto Clear = ColorTheme(Color(0, 0, 0, 0));
-
-        constexpr auto Background          = ColorTheme(Color(250, 250, 250), Color(30, 30, 30));
-        constexpr auto BackgroundSecondary = ColorTheme(Color(236, 239, 241), Color(66, 66, 66));
-        constexpr auto BackgroundTertiary  = ColorTheme(Color(207, 216, 220), Color(97, 97, 97));
-
-        constexpr auto BackgroundHovered = ColorTheme(Color(243, 245, 246), Color(48, 48, 48));
-
-        constexpr auto Separator = ColorTheme(Color(189, 189, 189), Color(97, 97, 97));
-
-        constexpr auto Text = ColorTheme(Color(33, 33, 33), Color(250, 250, 250));
-    }
-
     /////////////////////////////////////////////////////
     // Material design colors
     // Light 0 ~ 9 Dark
@@ -232,5 +218,19 @@ namespace s3d::aoba {
         constexpr auto BlueGrey7 = Color(69, 90, 100);
         constexpr auto BlueGrey8 = Color(55, 71, 79);
         constexpr auto BlueGrey9 = Color(38, 50, 56);
+    }
+
+    namespace DynamicColor {
+        constexpr auto Clear = ColorTheme(Color(0, 0, 0, 0));
+
+        constexpr auto Background          = ColorTheme(MaterialColor::Grey0, MaterialColor::Grey9);
+        constexpr auto BackgroundSecondary = ColorTheme(MaterialColor::BlueGrey0, MaterialColor::Grey8);
+        constexpr auto BackgroundTertiary  = ColorTheme(MaterialColor::BlueGrey1, MaterialColor::Grey7);
+
+        constexpr auto BackgroundHovered = ColorTheme(MaterialColor::Grey1, MaterialColor::Grey8);
+
+        constexpr auto Separator = ColorTheme(MaterialColor::Grey4, MaterialColor::Grey7);
+
+        constexpr auto Text = ColorTheme(MaterialColor::Grey9, MaterialColor::Grey0);
     }
 }

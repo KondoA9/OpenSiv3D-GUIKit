@@ -70,9 +70,10 @@ namespace s3d::aoba {
         bool m_initializedColors = false;
 
         Layer m_layer;
-        Array<Layer*> m_dependentLayers;
-        Rect m_drawableRegion    = Rect();
-        bool m_needToUpdateLayer = true;
+        Array<std::shared_ptr<UIComponent>> m_dependentComponents;
+        Rect m_drawableRegion              = Rect();
+        bool m_constraintsUpdatedThisFrame = false;
+        bool m_needToUpdateLayer           = true;
 
         // Mouse event
         MouseCondition m_mouseCondition;
@@ -113,33 +114,33 @@ namespace s3d::aoba {
                            double constant   = 0.0,
                            double multiplier = 1.0);
 
-        void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0);
+        void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0) noexcept;
 
-        void removeConstraint(LayerDirection direction);
+        void removeConstraint(LayerDirection direction) noexcept;
 
-        void removeAllConstraints();
+        void removeAllConstraints() noexcept;
 
-        const Layer& layer() const {
+        const Layer& layer() const noexcept {
             return m_layer;
         }
 
-        size_t id() const {
+        size_t id() const noexcept {
             return m_id;
         }
 
-        bool isFocused() const {
+        bool isFocused() const noexcept {
             return m_FocusedComponentId && m_FocusedComponentId == m_id;
         }
 
-        bool updatable() const {
+        bool updatable() const noexcept {
             return exist;
         }
 
-        bool layerUpdatable() const {
+        bool layerUpdatable() const noexcept {
             return updatable();
         }
 
-        bool drawable() const {
+        bool drawable() const noexcept {
             const bool insideRegion =
                 m_layer.top() <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
                 && m_layer.left() <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
@@ -148,17 +149,17 @@ namespace s3d::aoba {
             return updatable() && !hidden && insideRegion;
         }
 
-        bool eventUpdatable() const {
+        bool eventUpdatable() const noexcept {
             return drawable() && controllable;
         }
 
-        void requestToUpdateLayer() {
+        void requestToUpdateLayer() noexcept {
             m_needToUpdateLayer = true;
         }
 
-        void focus();
+        void focus() noexcept;
 
-        void unFocus();
+        void unFocus() noexcept;
 
         void registerKeyShortcut(const Input& input, const std::function<void()>& callback);
 
@@ -205,7 +206,7 @@ namespace s3d::aoba {
 
         void registerInputEvent(const InputEvent& e);
 
-        const MouseCondition& mouseCondition() const {
+        const MouseCondition& mouseCondition() const noexcept {
             return m_mouseCondition;
         }
 
@@ -213,14 +214,21 @@ namespace s3d::aoba {
         virtual void _destroy();
 
         // Do not call this function if the component is not UIRect or UICircle
-        void _updateMouseCondition(
-            bool leftDown, bool leftUp, bool leftPress, bool rightDown, bool rightUp, bool rightPress, bool hover);
+        void _updateMouseCondition(bool leftDown,
+                                   bool leftUp,
+                                   bool leftPress,
+                                   bool rightDown,
+                                   bool rightUp,
+                                   bool rightPress,
+                                   bool hover) noexcept;
 
     private:
-        UIComponent(size_t id) noexcept;
+        UIComponent(size_t id);
 
         static void UpdateFocusEvent();
 
         virtual bool updateLayerIfNeeded(const Rect& scissor);
+
+        void updateConstraints();
     };
 }

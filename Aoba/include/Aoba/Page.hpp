@@ -31,11 +31,11 @@ namespace s3d::aoba {
 
         virtual ~Page();
 
-        const String& identifier() const {
+        const String& identifier() const noexcept {
             return m_identifier;
         }
 
-        bool didLoaded() const {
+        bool didLoaded() const noexcept {
             return m_loaded;
         }
 
@@ -44,7 +44,7 @@ namespace s3d::aoba {
             return {m_acceptDragDropFiles, m_acceptDragDropTexts};
         }
 
-        void acceptDragDrop(bool acceptFiles, bool acceptTexts);
+        void acceptDragDrop(bool acceptFiles, bool acceptTexts) noexcept;
 
         void registerKeyShortcut(const Input& input, const std::function<void()>& callback);
 
@@ -83,6 +83,6 @@ namespace s3d::aoba {
     private:
         explicit Page(const String& identifier);
 
-		void update();
+        void update();
     };
 }

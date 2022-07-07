@@ -15,11 +15,11 @@ namespace s3d::aoba {
     public:
         using UIButton::UIButton;
 
-        bool isEnabled() const {
+        bool isEnabled() const noexcept {
             return m_enabled;
         }
 
-        void setEnabled(bool enabled) {
+        void setEnabled(bool enabled) noexcept {
             if (!m_enabled && enabled) {
                 backgroundColor.highlight(selectedColor);
                 textColor.highlight(selectedTextColor);

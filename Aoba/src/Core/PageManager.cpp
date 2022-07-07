@@ -14,9 +14,9 @@ namespace s3d::aoba {
         m_windowScissorRect = Rect(0, 0, size.x, size.y);
     }
 
-    bool PageManager::initialize() {
+    bool PageManager::initialize() noexcept {
         if (m_pages) {
-            // Set the initial page
+            // The following code does not throw an exception because the page is not empty.
             m_nextPage = m_pages[0];
             return true;
         }
@@ -24,7 +24,7 @@ namespace s3d::aoba {
         return false;
     }
 
-    Page& PageManager::getPage(const String& identifier) const noexcept {
+    Page& PageManager::getPage(const String& identifier) const {
         const auto& ptr = getPagePtr(identifier);
         auto& p         = *ptr;
         return p;

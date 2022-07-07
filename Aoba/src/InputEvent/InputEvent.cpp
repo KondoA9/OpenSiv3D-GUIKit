@@ -1,9 +1,9 @@
-#include "Aoba/InputEvent.hpp"
+﻿#include "Aoba/InputEvent.hpp"
 
 #include "Aoba/UIComponent.hpp"
 
 namespace s3d::aoba {
-    InputEvent::InputEvent(size_t _id, const UIComponent& _component, bool _callIfComponentInFront) :
+    InputEvent::InputEvent(size_t _id, const UIComponent& _component, bool _callIfComponentInFront) noexcept :
         id(_id),
         componentId(_component.id()),
         wheel(Mouse::Wheel()),

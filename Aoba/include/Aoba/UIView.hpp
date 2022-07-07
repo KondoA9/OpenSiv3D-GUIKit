@@ -21,7 +21,7 @@ namespace s3d::aoba {
 
         void release() override;
 
-        size_t componentsCount() const {
+        size_t componentsCount() const noexcept {
             return m_components.size();
         }
 
@@ -68,6 +68,6 @@ namespace s3d::aoba {
 
         void updateLayerInvert(const Rect& scissor);
 
-        void updateScissorRect(const Rect& parentScissorRect);
+        void updateScissorRect(const Rect& parentScissorRect) noexcept;
     };
 }

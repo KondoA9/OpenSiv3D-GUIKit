@@ -1,4 +1,4 @@
-#include "AsyncTaskManager.hpp"
+﻿#include "AsyncTaskManager.hpp"
 
 #include <thread>
 

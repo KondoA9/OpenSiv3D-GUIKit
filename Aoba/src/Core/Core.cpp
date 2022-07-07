@@ -12,6 +12,8 @@
 
 namespace s3d::aoba {
     Core::Core() {
+        m_mainThreadId = std::this_thread::get_id();
+
         m_pageManager = std::make_unique<PageManager>();
         m_taskRunner  = std::make_unique<TaskRunner>();
 
@@ -28,22 +30,24 @@ namespace s3d::aoba {
         Core::AddLicense();
     }
 
-    Core::~Core() {}
-
     Core& Core::Instance() {
         static Core instance;
         return instance;
     }
 
-    bool Core::IsAsyncTaskAlive() {
+    bool Core::IsMainThread() noexcept {
+        return Instance().m_mainThreadId == std::this_thread::get_id();
+    }
+
+    bool Core::IsAsyncTaskAlive() noexcept {
         return Instance().m_taskRunner->isAsyncTaskAlive();
     }
 
-    bool Core::IsTerminationPrevented() {
+    bool Core::IsTerminationPrevented() noexcept {
         return Instance().m_terminationPrevented;
     }
 
-    bool Core::IsTimeoutAlive(size_t id) {
+    bool Core::IsTimeoutAlive(size_t id) noexcept {
         return Instance().m_taskRunner->isTimeoutTaskAlive(id);
     }
 
@@ -51,21 +55,21 @@ namespace s3d::aoba {
         Instance().m_pageManager->switchPage(identifier);
     }
 
-    void Core::SetColorMode(ColorMode mode) {
+    void Core::SetColorMode(ColorMode mode) noexcept {
         Instance().m_animateColor = true;
         ColorTheme::SetColorMode(mode);
     }
 
-    void Core::ToggleColorMode() {
+    void Core::ToggleColorMode() noexcept {
         Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark
                                                                                    : ColorMode::Light);
     }
 
-    void Core::PreventTermination() {
+    void Core::PreventTermination() noexcept {
         Instance().m_terminationPrevented = true;
     }
 
-    void Core::ContinueTermination() {
+    void Core::ContinueTermination() noexcept {
         Instance().m_terminationPrevented = false;
     }
 
@@ -85,11 +89,11 @@ namespace s3d::aoba {
         return Instance().m_taskRunner->addTimeoutTask(func, ms, threading);
     }
 
-    bool Core::StopTimeout(size_t id) {
+    bool Core::StopTimeout(size_t id) noexcept {
         return Instance().m_taskRunner->stopTimeoutTask(id);
     }
 
-    bool Core::RestartTimeout(size_t id) {
+    bool Core::RestartTimeout(size_t id) noexcept {
         return Instance().m_taskRunner->restartTimeoutTask(id);
     }
 
@@ -127,7 +131,7 @@ SOFTWARE.)";
         return m_pageManager->getPage(identifier);
     }
 
-    bool Core::animateColor() {
+    bool Core::animateColor() noexcept {
         static double t = 0.0;
         t += 5.0 * Scene::DeltaTime();
 

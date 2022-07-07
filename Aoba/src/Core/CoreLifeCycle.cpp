@@ -40,7 +40,7 @@ namespace s3d::aoba {
     void Core::update() {
         WindowManager::Update();
 
-		updateNextFrameFunctions();
+        updateNextFrameFunctions();
 
         m_pageManager->update();
 

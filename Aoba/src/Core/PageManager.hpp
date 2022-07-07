@@ -31,9 +31,9 @@ namespace s3d::aoba {
 
         PageManager& operator=(PageManager&&) = delete;
 
-        Page& getPage(const String& identifier) const noexcept;
+        Page& getPage(const String& identifier) const;
 
-        bool initialize();
+        bool initialize() noexcept;
 
         void update();
 
@@ -62,7 +62,7 @@ namespace s3d::aoba {
 
         void updateOnTermination();
 
-        void updateViews();
+        void updateComponents();
 
         void updateLayers();
 

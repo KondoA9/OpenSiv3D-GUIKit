@@ -10,6 +10,8 @@ namespace s3d::aoba {
 
     class Core final {
     private:
+        std::thread::id m_mainThreadId;
+
         std::unique_ptr<class PageManager> m_pageManager;
         std::unique_ptr<class TaskRunner> m_taskRunner;
 
@@ -29,11 +31,13 @@ namespace s3d::aoba {
 
         static Core& Instance();
 
-        static bool IsAsyncTaskAlive();
+        static bool IsMainThread() noexcept;
 
-        static bool IsTerminationPrevented();
+        static bool IsAsyncTaskAlive() noexcept;
 
-        static bool IsTimeoutAlive(size_t id);
+        static bool IsTerminationPrevented() noexcept;
+
+        static bool IsTimeoutAlive(size_t id) noexcept;
 
         static bool Start();
 
@@ -41,14 +45,14 @@ namespace s3d::aoba {
 
         static void SwitchPage(const String& identifier);
 
-        static void SetColorMode(ColorMode mode);
+        static void SetColorMode(ColorMode mode) noexcept;
 
-        static void ToggleColorMode();
+        static void ToggleColorMode() noexcept;
 
         // If you call this, you should call ContinueTermination() to terminate app
-        static void PreventTermination();
+        static void PreventTermination() noexcept;
 
-        static void ContinueTermination();
+        static void ContinueTermination() noexcept;
 
         /// <summary>
         /// Request to run a task asynchrony, and if need, a completion process will runs on main thread.
@@ -74,9 +78,9 @@ namespace s3d::aoba {
         /// <returns>The ID of the Timeout. ID is 1, 2, 3, ...</returns>
         static size_t SetTimeout(const std::function<void()>& func, double ms, bool threading);
 
-        static bool StopTimeout(size_t id);
+        static bool StopTimeout(size_t id) noexcept;
 
-        static bool RestartTimeout(size_t id);
+        static bool RestartTimeout(size_t id) noexcept;
 
         // Execute func in the next frame.
         static void NextFrame(const std::function<void()>& func);
@@ -94,13 +98,11 @@ namespace s3d::aoba {
     private:
         Core();
 
-        ~Core();
-
         static void AddLicense();
 
         Page& getPage(const String& identifier) const noexcept;
 
-        bool animateColor();
+        bool animateColor() noexcept;
 
         void appendPage(const std::shared_ptr<Page>& page);
 

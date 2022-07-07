@@ -111,8 +111,8 @@ namespace s3d::aoba {
         }
     }
 
-    void UIInputField::updateDrawableText(bool updateField) {
-        UIText::updateDrawableText(updateField);
+    void UIInputField::updateDrawableText(const Rect& scissor, bool updateField) {
+        UIText::updateDrawableText(scissor, updateField);
 
         if (textRegion().h == 0) {
             const auto h = font().fontSize() * 1.416 + 6_px;
@@ -257,7 +257,7 @@ namespace s3d::aoba {
         ui_Warning->setConstraint(LayerDirection::Height, 30_px);
         ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
         ui_Warning->setConstraint(LayerDirection::Width, 250_px);
-        m_WarningTimeoutID = Core::SetTimeout([this] { ui_Warning->exist = false; }, 3000, false);
+        m_WarningTimeoutID = Core::SetTimeout([] { ui_Warning->exist = false; }, 3000, false);
 
         registerInputEvent(Event::Component::InputField::ForbiddenCharInputted(this, false));
     }
@@ -373,7 +373,7 @@ namespace s3d::aoba {
         return {fixedText};
     }
 
-    void UIInputField::selectAllText() {
+    void UIInputField::selectAllText() noexcept {
         m_textSelected         = true;
         m_selectingCursorStart = 0;
         m_cursorPos            = text().length();

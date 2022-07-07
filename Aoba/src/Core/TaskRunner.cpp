@@ -1,15 +1,15 @@
 ﻿#include "TaskRunner.hpp"
 
 namespace s3d::aoba {
-    bool TaskRunner::isAsyncTaskAlive() const {
+    bool TaskRunner::isAsyncTaskAlive() const noexcept {
         return m_asyncTaskManager.isAlive();
     }
 
-    bool TaskRunner::isTimeoutTaskAlive(size_t id) const {
+    bool TaskRunner::isTimeoutTaskAlive(size_t id) const noexcept {
         return m_timeoutTaskManager.isAlive(id);
     }
 
-    bool TaskRunner::isTimeoutTaskRunning(size_t id) const {
+    bool TaskRunner::isTimeoutTaskRunning(size_t id) const noexcept {
         return m_timeoutTaskManager.isRunning(id);
     }
 
@@ -30,11 +30,11 @@ namespace s3d::aoba {
         m_timeoutTaskManager.update();
     }
 
-    bool TaskRunner::stopTimeoutTask(size_t id) {
+    bool TaskRunner::stopTimeoutTask(size_t id) noexcept {
         return m_timeoutTaskManager.stop(id);
     }
 
-    bool TaskRunner::restartTimeoutTask(size_t id) {
+    bool TaskRunner::restartTimeoutTask(size_t id) noexcept {
         return m_timeoutTaskManager.restart(id);
     }
 }

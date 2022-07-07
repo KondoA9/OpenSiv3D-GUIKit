@@ -10,17 +10,17 @@ namespace s3d::aoba {
     }
 
     void UIText::updateLayer(const Rect& scissor) {
-        updateDrawableText();
+        updateDrawableText(scissor);
 
         UIRect::updateLayer(scissor);
 
-        updateDrawableText(true);
+        updateDrawableText(scissor, true);
     }
 
     void UIText::draw() const {
         UIRect::draw();
 
-        m_font(m_text).draw(m_textRegion, textColor);
+        m_drawableText.draw(m_textRegion, textColor);
     }
 
     void UIText::setPadding(double top, double bottom, double left, double right) {
@@ -31,13 +31,15 @@ namespace s3d::aoba {
         requestToUpdateLayer();
     }
 
-    void UIText::setFont(UnifiedFontStyle style) {
-        m_font = UnifiedFont::Get(style);
+    void UIText::setFont(const Font& font) {
+        m_font         = font;
+        m_drawableText = m_font(m_text);
         requestToUpdateLayer();
     }
 
     void UIText::setText(const String& text) {
-        m_text = text;
+        m_text         = text;
+        m_drawableText = m_font(m_text);
         requestToUpdateLayer();
     }
 
@@ -46,8 +48,8 @@ namespace s3d::aoba {
         requestToUpdateLayer();
     }
 
-    void UIText::updateDrawableText(bool updateField) {
-        updateTextRegion();
+    void UIText::updateDrawableText(const Rect& scissor, bool updateField) {
+        updateTextRegion(scissor);
 
         if (updateField) {
             fitTextRegionToRect();
@@ -64,7 +66,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIText::updateTextRegion() {
+    void UIText::calcTextRegion() {
         const double top     = layer().top() + paddingTop;
         const double bottom  = layer().bottom() - paddingBottom;
         const double centerY = layer().centerY() + paddingTop - paddingBottom;
@@ -74,44 +76,50 @@ namespace s3d::aoba {
 
         switch (m_direction) {
         case TextDirection::LeftTop:
-            m_textRegion = m_font(m_text).region(Arg::topLeft(left, top));
+            m_textRegion = m_drawableText.region(Arg::topLeft(left, top));
             break;
 
         case TextDirection::LeftCenter:
-            m_textRegion = m_font(m_text).region(Arg::leftCenter(left, centerY));
+            m_textRegion = m_drawableText.region(Arg::leftCenter(left, centerY));
             break;
 
         case TextDirection::LeftBottom:
-            m_textRegion = m_font(m_text).region(Arg::bottomLeft(left, bottom));
+            m_textRegion = m_drawableText.region(Arg::bottomLeft(left, bottom));
             break;
 
         case TextDirection::CenterTop:
-            m_textRegion = m_font(m_text).region(Arg::topCenter(centerX, top));
+            m_textRegion = m_drawableText.region(Arg::topCenter(centerX, top));
             break;
 
         case TextDirection::Center:
-            m_textRegion = m_font(m_text).region(Arg::center(centerX, centerY));
+            m_textRegion = m_drawableText.region(Arg::center(centerX, centerY));
             break;
 
         case TextDirection::CenterBottom:
-            m_textRegion = m_font(m_text).region(Arg::bottomCenter(centerX, bottom));
+            m_textRegion = m_drawableText.region(Arg::bottomCenter(centerX, bottom));
             break;
 
         case TextDirection::RightTop:
-            m_textRegion = m_font(m_text).region(Arg::topRight(right, top));
+            m_textRegion = m_drawableText.region(Arg::topRight(right, top));
             break;
 
         case TextDirection::RightCenter:
-            m_textRegion = m_font(m_text).region(Arg::rightCenter(right, centerY));
+            m_textRegion = m_drawableText.region(Arg::rightCenter(right, centerY));
             break;
 
         case TextDirection::RightBottom:
-            m_textRegion = m_font(m_text).region(Arg::bottomRight(right, bottom));
+            m_textRegion = m_drawableText.region(Arg::bottomRight(right, bottom));
             break;
         }
     }
 
-    void UIText::fitTextRegionToRect() {
+    void UIText::updateTextRegion(const Rect& scissor) {
+        if (scissor.intersects(layer().asRect())) {
+            calcTextRegion();
+        }
+    }
+
+    void UIText::fitTextRegionToRect() noexcept {
         const auto oneLineWidth = m_textRegion.w;
 
         // Fit starting pos
@@ -130,7 +138,7 @@ namespace s3d::aoba {
         }
 
         // Fit overhang region
-        if (const auto bottom = layer().bottom(); m_textRegion.y + m_textRegion.h > bottom) {
+        if (const double bottom = layer().bottom(); m_textRegion.y + m_textRegion.h > bottom) {
             m_textRegion.h = bottom - m_textRegion.y;
         }
     }

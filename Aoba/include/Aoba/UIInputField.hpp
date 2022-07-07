@@ -70,7 +70,7 @@ namespace s3d::aoba {
 
         virtual ~UIInputField() {}
 
-        const RectF& fieldRect() const {
+        const RectF& fieldRect() const noexcept {
             return m_fieldRect;
         }
 
@@ -80,16 +80,17 @@ namespace s3d::aoba {
             m_textFormatter = formatter;
         }
 
-        void removeTextFormatter() {
+        void removeTextFormatter() noexcept {
             m_textFormatter = none;
         }
 
         double number() {
+            assert(type == Type::Number);
+
             if (text().length() == 1 && text().starts_with('-')) {
                 return 0;
             }
 
-            assert(type == Type::Number);
             return ParseFloat<double>(text());
         }
 
@@ -100,7 +101,7 @@ namespace s3d::aoba {
 
         void updateInputEvents() override;
 
-        void updateDrawableText(bool updateField = false) override;
+        void updateDrawableText(const Rect& scissor, bool updateField = false) override;
 
         void draw() const override;
 
@@ -124,7 +125,7 @@ namespace s3d::aoba {
         FormatResult formatNumber(const String& str);
 
         // Controls
-        void selectAllText();
+        void selectAllText() noexcept;
 
         void deleteSelectedText();
 

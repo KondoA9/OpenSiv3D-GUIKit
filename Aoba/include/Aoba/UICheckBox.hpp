@@ -14,7 +14,7 @@ namespace s3d::aoba {
     public:
         using UIButton::UIButton;
 
-        bool isChecked() const {
+        bool isChecked() const noexcept {
             return m_checked;
         }
 

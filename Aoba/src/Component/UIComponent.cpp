@@ -8,7 +8,7 @@
 namespace s3d::aoba {
     Optional<size_t> UIComponent::m_FocusedComponentId = none, UIComponent::m_PreviousFocusedComponentId = none;
 
-    UIComponent::UIComponent(size_t id) noexcept :
+    UIComponent::UIComponent(size_t id) :
         backgroundColor(DynamicColor::BackgroundSecondary), frameColor(DynamicColor::Separator), m_id(id) {}
 
     UIComponent::~UIComponent() {
@@ -45,6 +45,8 @@ namespace s3d::aoba {
     }
 
     void UIComponent::update() {
+        m_constraintsUpdatedThisFrame = false;
+
         if (isFocused()) {
             for (auto& shortcut : m_keyShortcuts) {
                 if (shortcut->keyDown()) {
@@ -62,10 +64,7 @@ namespace s3d::aoba {
 
         m_drawableRegion = scissor;
 
-        for (auto layer : m_dependentLayers) {
-            layer->updateConstraints();
-        }
-        m_layer.updateConstraints();
+        updateConstraints();
     }
 
     bool UIComponent::updateLayerIfNeeded(const Rect& scissor) {
@@ -78,12 +77,29 @@ namespace s3d::aoba {
         return false;
     }
 
+    void UIComponent::updateConstraints() {
+        if (!m_constraintsUpdatedThisFrame) {
+            // Update layer of dependent components before updating self
+            for (auto& component : m_dependentComponents) {
+                component->updateConstraints();
+            }
+
+            m_layer.updateConstraints();
+        }
+        m_constraintsUpdatedThisFrame = true;
+    }
+
     void UIComponent::setConstraint(LayerDirection direction,
                                     UIComponent& component,
                                     LayerDirection toDirection,
                                     double constant,
                                     double multiplier) {
-        m_dependentLayers.emplace_back(&component.m_layer);
+        if (!m_dependentComponents.includes_if([&component](const std::shared_ptr<UIComponent>& dependent) {
+                return dependent->id() == component.id();
+            })) {
+            m_dependentComponents.emplace_back(ComponentStorage::Get(component.id()));
+        }
+
         m_layer.setConstraint(direction, component.m_layer, toDirection, constant, multiplier);
         m_needToUpdateLayer = true;
     }
@@ -104,20 +120,21 @@ namespace s3d::aoba {
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) {
+    void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) noexcept {
         m_layer.setConstraint(direction, constant, multiplier);
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::removeConstraint(LayerDirection direction) {
+    void UIComponent::removeConstraint(LayerDirection direction) noexcept {
         m_layer.removeConstraint(direction);
     }
 
-    void UIComponent::removeAllConstraints() {
+    void UIComponent::removeAllConstraints() noexcept {
         m_layer.removeAllConstraints();
+        m_dependentComponents.release();
     }
 
-    void UIComponent::focus() {
+    void UIComponent::focus() noexcept {
         if (ComponentStorage::Has(m_id)) {
             // Focused component is this
             m_FocusedComponentId = m_id;
@@ -126,7 +143,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIComponent::unFocus() {
+    void UIComponent::unFocus() noexcept {
         if (isFocused()) {
             m_FocusedComponentId = none;
         }

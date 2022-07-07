@@ -11,34 +11,54 @@ namespace s3d::aoba {
     private:
         Constraint m_top, m_bottom, m_centerY, m_height, m_left, m_right, m_centerX, m_width;
 
-        Vec2 m_center = Vec2();
-
     public:
-        Rect asRect() const;
+        Rect asRect() const noexcept {
+            return asRectF().asRect();
+        }
 
-        RectF asRectF() const;
+        RectF asRectF() const noexcept {
+            return RectF(m_left, m_top, m_width, m_height);
+        }
 
-        const Vec2& center() const;
+        Vec2 center() const noexcept {
+            return Vec2(m_centerX, m_centerY);
+        }
 
-        const Constraint& top() const;
+        const Constraint& top() const noexcept {
+            return m_top;
+        }
 
-        const Constraint& bottom() const;
+        const Constraint& bottom() const noexcept {
+            return m_bottom;
+        }
 
-        const Constraint& centerY() const;
+        const Constraint& centerY() const noexcept {
+            return m_centerY;
+        }
 
-        const Constraint& height() const;
+        const Constraint& height() const noexcept {
+            return m_height;
+        }
 
-        const Constraint& left() const;
+        const Constraint& left() const noexcept {
+            return m_left;
+        }
 
-        const Constraint& right() const;
+        const Constraint& right() const noexcept {
+            return m_right;
+        }
 
-        const Constraint& centerX() const;
+        const Constraint& centerX() const noexcept {
+            return m_centerX;
+        }
 
-        const Constraint& width() const;
+        const Constraint& width() const noexcept {
+            return m_width;
+        }
 
         void updateConstraints();
 
-        void setConstraint(LayerDirection direction, double constant, double multiplier);
+        void setConstraint(LayerDirection direction, double constant, double multiplier) noexcept;
 
         void setConstraint(LayerDirection direction,
                            const std::function<double()>& func,
@@ -49,13 +69,13 @@ namespace s3d::aoba {
                            Layer& otherLayer,
                            LayerDirection otherLayerDirection,
                            double constant,
-                           double multiplier);
+                           double multiplier) noexcept;
 
-        void removeConstraint(LayerDirection direction);
+        void removeConstraint(LayerDirection direction) noexcept;
 
-        void removeAllConstraints();
+        void removeAllConstraints() noexcept;
 
     private:
-        Constraint& constraintReferenceTo(LayerDirection direction);
+        Constraint* getConstraint(LayerDirection direction) noexcept;
     };
 }

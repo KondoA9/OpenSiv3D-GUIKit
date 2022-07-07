@@ -30,48 +30,48 @@ namespace s3d::aoba {
     public:
         using UIRect::UIRect;
 
-        const Point& currentPixel() const {
+        const Point& currentPixel() const noexcept {
             return m_cursoredPixel;
         }
 
-        const Point& prePixel() const {
+        const Point& prePixel() const noexcept {
             return m_preCursoredPixel;
         }
 
-        const RectF& textureRegion() const {
+        const RectF& textureRegion() const noexcept {
             return m_textureRegion;
         }
 
-        const RectF& rotatedTextureRegion() const {
+        const RectF& rotatedTextureRegion() const noexcept {
             return m_rotatedTextureRegion;
         }
 
-        double scale() const {
+        double scale() const noexcept {
             return m_scale;
         }
 
-        double minimumScale() const {
+        double minimumScale() const noexcept {
             return m_minScale;
         }
 
-        double maximumScale() const {
+        double maximumScale() const noexcept {
             return m_maxScale;
         }
 
-        double scaleRate() const {
+        double scaleRate() const noexcept {
             return m_scaleRate;
         }
 
         /// <returns>degrees</returns>
-        double angle() const {
+        double angle() const noexcept {
             return m_angle * 180.0 / Math::Pi;
         }
 
-        size_t texturesCount() const {
+        size_t texturesCount() const noexcept {
             return m_textures.size();
         }
 
-        RectF visibleTextureRect() const {
+        RectF visibleTextureRect() const noexcept {
             return RectF(m_rotatedTextureRegion.x < layer().left() ? layer().left() : m_rotatedTextureRegion.x,
                          m_rotatedTextureRegion.y < layer().top() ? layer().top() : m_rotatedTextureRegion.y,
                          m_rotatedTextureRegion.w < layer().width() ? m_rotatedTextureRegion.w : layer().width(),
@@ -125,7 +125,7 @@ namespace s3d::aoba {
     private:
         double calcMinimumScale();
 
-        double calcMaximumScale();
+        double calcMaximumScale() noexcept;
 
         void restrictImageMovement(bool safeRerecursion = false);
 

@@ -1,12 +1,8 @@
 ﻿#include "Aoba/UIRect.hpp"
 
 namespace s3d::aoba {
-    void UIRect::setCornerRadius(double r) {
-        m_rect = RoundRect(static_cast<int>(layer().left()),
-                           static_cast<int>(layer().top()),
-                           static_cast<int>(layer().width()),
-                           static_cast<int>(layer().height()),
-                           static_cast<int>(r));
+    void UIRect::setCornerRadius(double r) noexcept {
+        m_rect = RoundRect(layer().asRectF(), r);
     }
 
     void UIRect::draw() const {
@@ -21,11 +17,7 @@ namespace s3d::aoba {
     void UIRect::updateLayer(const Rect& scissor) {
         UIComponent::updateLayer(scissor);
 
-        m_rect = RoundRect(static_cast<int>(layer().left()),
-                           static_cast<int>(layer().top()),
-                           static_cast<int>(layer().width()),
-                           static_cast<int>(layer().height()),
-                           static_cast<int>(m_rect.r));
+        m_rect = RoundRect(layer().asRectF(), m_rect.r);
     }
 
     void UIRect::updateMouseIntersection() {

@@ -21,10 +21,11 @@ namespace s3d::aoba {
         ColorTheme textColor = DynamicColor::Text;
 
     private:
-        String m_text             = U"";
-        Font m_font               = UnifiedFont::Get();
-        TextDirection m_direction = TextDirection::LeftCenter;
-        RectF m_textRegion        = RectF();
+        String m_text               = U"";
+        Font m_font                 = UnifiedFont::Get();
+        DrawableText m_drawableText = m_font(m_text);
+        TextDirection m_direction   = TextDirection::LeftCenter;
+        RectF m_textRegion          = RectF();
         double paddingTop = 0.0, paddingBottom = 0.0, paddingLeft = 0.0, paddingRight = 0.0;
 
     public:
@@ -32,28 +33,33 @@ namespace s3d::aoba {
 
         virtual ~UIText() {}
 
-        const Font& font() const {
+        const Font& font() const noexcept {
             return m_font;
         }
 
-        const String& text() const {
+        const String& text() const noexcept {
             return m_text;
         }
-        const RectF& textRegion() const {
+
+        const RectF& textRegion() const noexcept {
             return m_textRegion;
         }
 
         virtual void setPadding(double top, double bottom, double left, double right);
 
-        virtual void setFont(UnifiedFontStyle style);
+        virtual void setFont(const Font& font);
 
         virtual void setText(const String& text);
 
         virtual void setDirection(TextDirection direction);
 
-        virtual void setFont(const Font& font) {
-            m_font = font;
+        virtual void setFont(UnifiedFontStyle style) {
+            setFont(UnifiedFont::Get(style));
         }
+
+        // Do not call this frequently.
+        // This is called automatically as needed.
+        void calcTextRegion();
 
     protected:
         void initialize() override;
@@ -62,11 +68,11 @@ namespace s3d::aoba {
 
         void draw() const override;
 
-        virtual void updateDrawableText(bool updateField = false);
+        virtual void updateDrawableText(const Rect& scissor, bool updateField = false);
 
     private:
-        void updateTextRegion();
+        void updateTextRegion(const Rect& scissor);
 
-        void fitTextRegionToRect();
+        void fitTextRegionToRect() noexcept;
     };
 }

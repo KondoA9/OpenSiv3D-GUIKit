@@ -16,16 +16,16 @@ namespace s3d::aoba {
     public:
         using UIText::UIText;
 
-        const Texture& icon() const {
+        const Texture& icon() const noexcept {
             return m_icon;
         }
 
-        void setIcon(const Icon& icon, int32 size) {
-            m_icon = Texture(icon, size);
+        void setIcon(const Texture& icon) noexcept {
+            m_icon = icon;
         }
 
-        void setIcon(const Texture& icon) {
-            m_icon = icon;
+        void setIcon(const Icon& icon, int32 size) {
+            setIcon(Texture(icon, size));
         }
 
     protected:

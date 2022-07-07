@@ -11,16 +11,16 @@ namespace s3d::aoba {
         std::vector<Timeout> m_timeouts;
 
     public:
-        bool isAlive(size_t id) const;
+        bool isAlive(size_t id) const noexcept;
 
-        bool isRunning(size_t id) const;
+        bool isRunning(size_t id) const noexcept;
 
         size_t addTask(const std::function<void()>& task, double ms, bool threading);
 
         void update();
 
-        bool stop(size_t id);
+        bool stop(size_t id) noexcept;
 
-        bool restart(size_t id);
+        bool restart(size_t id) noexcept;
     };
 }
