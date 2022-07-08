@@ -43,10 +43,10 @@ jobs:
           unar -o Dependencies/lib/ Dependencies/lib/macOS.7z -f
 
       - name: Build Aoba for macOS
-        run: xcodebuild -project macOS/Aoba.xcodeproj/ -configuration Debug -parallelizeTargets -quiet
+        run: xcodebuild -project macOS/Aoba.xcodeproj/ -configuration Debug -quiet
 
       - name: Build LaunchTest
-        run: xcodebuild -project macOS/Aoba-LaunchTest.xcodeproj/ -configuration Debug -parallelizeTargets -quiet
+        run: xcodebuild -project macOS/Aoba-LaunchTest.xcodeproj/ -configuration Debug -quiet
 
       #- name: Launch
       #  run: open ./App/Aoba-LaunchTest.app

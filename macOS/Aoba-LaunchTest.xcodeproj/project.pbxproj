@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -51,7 +51,7 @@
 		2CE5C855237FDE3900082EEC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2CE5C857237FDE4600082EEC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		2CE5C859237FDE5100082EEC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		9E0A9A64269C3BD7001A95DA /* libaoba.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libaoba.a"; path = "build/Release/libaoba.a"; sourceTree = "<group>"; };
+		9E0A9A64269C3BD7001A95DA /* libaoba.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libaoba.a; path = build/Release/libaoba.a; sourceTree = "<group>"; };
 		9E1AB8DC26A00BB200235A6A /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../App/icon.icns; sourceTree = "<group>"; };
 		9E1AB94126A00DCF00235A6A /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = ../App/resources/engine; sourceTree = "<group>"; };
 		9E1AB96026A00E6300235A6A /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../Dependencies/lib/macOS/boost/libboost_filesystem.a; sourceTree = "<group>"; };
@@ -221,6 +221,7 @@
 		2C17787A1CE0A9D800BB8AD0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					2C1778831CE0A9EA00BB8AD0 = {
@@ -397,7 +398,10 @@
 					"../Dependencies/include/**",
 				);
 				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../Dependencies/lib/macOS/**",
 					"build/**",
@@ -458,7 +462,10 @@
 					"../Dependencies/include/**",
 				);
 				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../Dependencies/lib/macOS/**",
 					"build/**",
