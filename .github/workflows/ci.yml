@@ -15,10 +15,10 @@ jobs:
   windows:
     runs-on: windows-2022
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - name: Add msbuild to PATH
-        uses: microsoft/setup-msbuild@v1.0.2
+      - name: Setup msbuild
+        uses: microsoft/setup-msbuild@v1.1
 
       - name: Extract libraries
         run: 7z x Dependencies\lib\Windows.7z -o"Dependencies\lib\"
@@ -35,7 +35,7 @@ jobs:
   macOS:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Extract libraries
         run: |
@@ -54,7 +54,7 @@ jobs:
   linux:
     runs-on: ubuntu-20.04
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - name: Extract libraries
         run: 7za x ./Dependencies/lib/Linux.7z -o"./Dependencies/lib/"
