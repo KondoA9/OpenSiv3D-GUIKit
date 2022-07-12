@@ -76,7 +76,7 @@ namespace s3d::aoba {
         /// <param name="ms">The time to time out.</param>
         /// <param name="threading">If true, the function runs asynchronously.</param>
         /// <returns>The ID of the Timeout. ID is 1, 2, 3, ...</returns>
-        static size_t SetTimeout(const std::function<void()>& func, double ms, bool threading);
+        static size_t SetTimeout(const std::function<void()>& func, uint64 ms, bool threading);
 
         static bool StopTimeout(size_t id) noexcept;
 

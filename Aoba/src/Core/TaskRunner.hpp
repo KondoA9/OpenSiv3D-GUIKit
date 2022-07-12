@@ -23,7 +23,7 @@ namespace s3d::aoba {
 
         void addSyncTask(const std::function<void()>& task);
 
-        size_t addTimeoutTask(const std::function<void()>& task, double ms, bool threading);
+        size_t addTimeoutTask(const std::function<void()>& task, uint64_t ms, bool threading);
 
         void update();
 
