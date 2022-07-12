@@ -13,7 +13,7 @@ namespace s3d::aoba {
 
     private:
         Color m_transitionLight, m_transitionDark;
-        double mutable m_transitionTimer = 0.0, m_transitionTime = 0.0;
+        uint64 mutable m_transitionTimer = 0, m_transitionTime = 0;
         bool mutable m_isTransition = false;
 
     public:
@@ -39,38 +39,38 @@ namespace s3d::aoba {
 
         Color color() const noexcept;
 
-        void setColor(const Color& lightColor, const Color& darkColor, double transitionTime = 0.0) noexcept;
+        void setColor(const Color& lightColor, const Color& darkColor, uint64 transitionTimeMs = 0) noexcept;
 
-        void setColor(const Color& color, double transitionTime = 0.0) noexcept {
-            setColor(color, color, transitionTime);
+        void setColor(const Color& color, uint64 transitionTimeMs = 0) noexcept {
+            setColor(color, color, transitionTimeMs);
         }
 
-        void setColor(const ColorTheme& color, double transitionTime = 0.0) noexcept {
-            setColor(color.light, color.dark, transitionTime);
+        void setColor(const ColorTheme& color, uint64 transitionTimeMs = 0) noexcept {
+            setColor(color.light, color.dark, transitionTimeMs);
         }
 
         void highlight(const Color& lightColor, const Color& darkColor) noexcept {
-            setColor(lightColor, darkColor, 0.25);
+            setColor(lightColor, darkColor, 250);
         }
 
         void highlight(const Color& color) noexcept {
-            setColor(color, 0.25);
+            setColor(color, 250);
         }
 
         void highlight(const ColorTheme& color) noexcept {
-            setColor(color, 0.25);
+            setColor(color, 250);
         }
 
         void lowlight(const Color& lightColor, const Color& darkColor) noexcept {
-            setColor(lightColor, darkColor, 0.1);
+            setColor(lightColor, darkColor, 100);
         }
 
         void lowlight(const Color& color) noexcept {
-            setColor(color, 0.1);
+            setColor(color, 100);
         }
 
         void lowlight(const ColorTheme& color) noexcept {
-            setColor(color, 0.1);
+            setColor(color, 100);
         }
 
         operator Color() const noexcept {
@@ -100,6 +100,7 @@ namespace s3d::aoba {
     private:
         static void SetColorMode(ColorMode mode) noexcept;
 
+        // t: light:0.0 ~ dark:1.0
         static void Animate(double t) noexcept;
     };
 }
