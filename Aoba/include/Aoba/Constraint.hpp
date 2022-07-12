@@ -5,12 +5,12 @@
 namespace s3d::aoba {
     struct Constraint {
     private:
-        double m_value = 0;
-        bool m_exists  = false;
-        std::function<double()> m_func;
-        double* m_watchingValue = nullptr;
-        double m_constant       = 0.0;
-        double m_multiplier     = 1.0;
+        double m_value                 = 0;
+        bool m_exists                  = false;
+        double m_constant              = 0.0;
+        double m_multiplier            = 1.0;
+        double* m_watchingValue        = nullptr;
+        std::function<double()> m_func = nullptr;
 
     public:
         bool isExist() const noexcept {

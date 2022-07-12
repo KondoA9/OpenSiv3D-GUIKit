@@ -8,7 +8,7 @@ namespace s3d::aoba {
         // Reset
         m_multiplier    = 1.0;
         m_watchingValue = nullptr;
-        m_func          = std::function<double()>();
+        m_func          = nullptr;
     }
 
     void Constraint::setConstraint(double* const watchingValue, double constant, double multiplier) noexcept {
@@ -18,7 +18,7 @@ namespace s3d::aoba {
         m_exists        = true;
 
         // Reset
-        m_func = std::function<double()>();
+        m_func = nullptr;
     }
 
     void Constraint::setConstraint(const std::function<double()>& func, double constant, double multiplier) {
@@ -35,7 +35,7 @@ namespace s3d::aoba {
         m_constant      = 0.0;
         m_multiplier    = 1.0;
         m_watchingValue = nullptr;
-        m_func          = std::function<double()>();
+        m_func          = nullptr;
         m_exists        = false;
     }
 }
