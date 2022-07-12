@@ -1,7 +1,7 @@
 ﻿#include "TimeoutTaskManager.hpp"
 
 namespace s3d::aoba {
-    size_t TimeoutTaskManager::addTask(const std::function<void()>& task, double ms, bool threading) {
+    size_t TimeoutTaskManager::addTask(const std::function<void()>& task, uint64_t ms, bool threading) {
         m_timeouts.emplace_back(task, ms, threading);
         return m_timeouts[m_timeouts.size() - 1].id();
     }

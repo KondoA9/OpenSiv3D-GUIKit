@@ -15,7 +15,7 @@ namespace s3d::aoba {
 
         bool isRunning(size_t id) const noexcept;
 
-        size_t addTask(const std::function<void()>& task, double ms, bool threading);
+        size_t addTask(const std::function<void()>& task, uint64_t ms, bool threading);
 
         void update();
 

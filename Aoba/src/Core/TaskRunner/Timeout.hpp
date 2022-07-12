@@ -9,7 +9,7 @@ namespace s3d::aoba {
         static std::atomic<size_t> m_Id;
 
         const size_t m_id;
-        const double m_ms;
+        const uint64_t m_ms;
         const bool m_threading;
         const std::function<void()> m_func;
 
@@ -18,7 +18,7 @@ namespace s3d::aoba {
         bool m_started = false, m_stopped = false, m_finished = false;
 
     public:
-        Timeout(const std::function<void()>& func, double ms, bool threading);
+        Timeout(const std::function<void()>& func, uint64_t ms, bool threading);
 
         Timeout(const Timeout&) = delete;
 

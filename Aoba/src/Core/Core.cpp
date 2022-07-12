@@ -85,7 +85,7 @@ namespace s3d::aoba {
         Instance().m_taskRunner->addSyncTask(task);
     }
 
-    size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
+    size_t Core::SetTimeout(const std::function<void()>& func, uint64 ms, bool threading) {
         return Instance().m_taskRunner->addTimeoutTask(func, ms, threading);
     }
 
