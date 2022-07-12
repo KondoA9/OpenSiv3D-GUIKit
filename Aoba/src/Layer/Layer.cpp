@@ -85,8 +85,8 @@ namespace s3d::aoba {
         }
     }
 
-    void Layer::setConstraint(LayerDirection direction, double constant, double multiplier) noexcept {
-        getConstraint(direction)->setConstraint(constant, multiplier);
+    void Layer::setConstraint(LayerDirection direction, double constant) noexcept {
+        getConstraint(direction)->setConstraint(constant);
     }
 
     void Layer::setConstraint(LayerDirection direction,

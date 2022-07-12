@@ -129,6 +129,7 @@
     <ClInclude Include="..\Test\LaunchTest\GUITest\Page\FocusTestPage.hpp" />
     <ClInclude Include="..\Test\LaunchTest\GUITest\Page\LifeCycleTestPage.hpp" />
     <ClInclude Include="..\Test\LaunchTest\Test.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\UnitTest\Constraint.hpp" />
     <ClInclude Include="..\Test\LaunchTest\UnitTest\IsMainThread.hpp" />
     <ClInclude Include="..\Test\LaunchTest\UnitTest\UnitTest.hpp" />
   </ItemGroup>

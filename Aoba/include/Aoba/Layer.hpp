@@ -58,7 +58,7 @@ namespace s3d::aoba {
 
         void updateConstraints();
 
-        void setConstraint(LayerDirection direction, double constant, double multiplier) noexcept;
+        void setConstraint(LayerDirection direction, double constant) noexcept;
 
         void setConstraint(LayerDirection direction,
                            const std::function<double()>& func,

@@ -114,7 +114,7 @@ namespace s3d::aoba {
                            double constant   = 0.0,
                            double multiplier = 1.0);
 
-        void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0) noexcept;
+        void setConstraint(LayerDirection direction, double constant = 0.0) noexcept;
 
         void removeConstraint(LayerDirection direction) noexcept;
 

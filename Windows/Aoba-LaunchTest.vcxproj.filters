@@ -57,5 +57,8 @@
     <ClInclude Include="..\Test\LaunchTest\UnitTest\UnitTest.hpp">
       <Filter>Source Files\UnitTest</Filter>
     </ClInclude>
+    <ClInclude Include="..\Test\LaunchTest\UnitTest\Constraint.hpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
