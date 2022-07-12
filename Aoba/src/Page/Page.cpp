@@ -5,7 +5,7 @@
 #include "src/KeyShortcut/KeyShortcut.hpp"
 
 namespace s3d::aoba {
-    Page::Page(const String& identifier) : view(Factory::_CreatePageView()), m_identifier(identifier) {
+    Page::Page(StringView identifier) : view(Factory::_CreatePageView()), m_identifier(identifier) {
         acceptDragDrop(false, false);
         view.backgroundColor = DynamicColor::Background;
 

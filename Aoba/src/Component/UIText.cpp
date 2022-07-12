@@ -37,7 +37,7 @@ namespace s3d::aoba {
         requestToUpdateLayer();
     }
 
-    void UIText::setText(const String& text) {
+    void UIText::setText(StringView text) {
         m_text         = text;
         m_drawableText = m_font(m_text);
         requestToUpdateLayer();

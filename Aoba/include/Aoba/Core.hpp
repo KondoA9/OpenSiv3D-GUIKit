@@ -43,7 +43,7 @@ namespace s3d::aoba {
 
         static void Terminate();
 
-        static void SwitchPage(const String& identifier);
+        static void SwitchPage(StringView identifier);
 
         static void SetColorMode(ColorMode mode) noexcept;
 
@@ -86,12 +86,12 @@ namespace s3d::aoba {
         static void NextFrame(const std::function<void()>& func);
 
         template <class T>
-        static T& GetPage(const String& identifier) noexcept {
+        static T& GetPage(StringView identifier) noexcept {
             return static_cast<T&>(Instance().getPage(identifier));
         }
 
         template <class T>
-        static void AppendPage(const String& identifier) {
+        static void AppendPage(StringView identifier) {
             Instance().appendPage(std::shared_ptr<T>(new T(identifier)));
         }
 
@@ -100,7 +100,7 @@ namespace s3d::aoba {
 
         static void AddLicense();
 
-        Page& getPage(const String& identifier) const noexcept;
+        Page& getPage(StringView identifier) const noexcept;
 
         bool animateColor() noexcept;
 

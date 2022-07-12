@@ -31,7 +31,7 @@ namespace s3d::aoba {
 
         PageManager& operator=(PageManager&&) = delete;
 
-        Page& getPage(const String& identifier) const;
+        Page& getPage(StringView identifier) const;
 
         bool initialize() noexcept;
 
@@ -39,14 +39,14 @@ namespace s3d::aoba {
 
         void draw();
 
-        void switchPage(const String& identifier);
+        void switchPage(StringView identifier);
 
         void appendPage(const std::shared_ptr<Page>& page);
 
         void terminate();
 
     private:
-        const std::shared_ptr<Page>& getPagePtr(const String& identifier) const;
+        const std::shared_ptr<Page>& getPagePtr(StringView identifier) const;
 
         // Return true until the start up page appeared.
         bool updateOnStartUp();

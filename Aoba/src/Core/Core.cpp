@@ -51,7 +51,7 @@ namespace s3d::aoba {
         return Instance().m_taskRunner->isTimeoutTaskAlive(id);
     }
 
-    void Core::SwitchPage(const String& identifier) {
+    void Core::SwitchPage(StringView identifier) {
         Instance().m_pageManager->switchPage(identifier);
     }
 
@@ -127,7 +127,7 @@ SOFTWARE.)";
         LicenseManager::AddLicense(licence);
     }
 
-    Page& Core::getPage(const String& identifier) const noexcept {
+    Page& Core::getPage(StringView identifier) const noexcept {
         return m_pageManager->getPage(identifier);
     }
 

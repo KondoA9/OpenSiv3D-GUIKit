@@ -49,7 +49,7 @@ namespace s3d::aoba {
 
         virtual void setFont(const Font& font);
 
-        virtual void setText(const String& text);
+        virtual void setText(StringView text);
 
         virtual void setDirection(TextDirection direction);
 
