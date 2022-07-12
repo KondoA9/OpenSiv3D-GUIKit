@@ -28,7 +28,7 @@ namespace s3d::aoba {
                                                    : *m_watchingValue * m_multiplier + m_constant;
         }
 
-        void setConstraint(double constant = 0.0, double multiplier = 1.0) noexcept;
+        void setConstraint(double constant = 0.0) noexcept;
 
         void setConstraint(double* const watchingValue, double constant = 0.0, double multiplier = 1.0) noexcept;
 

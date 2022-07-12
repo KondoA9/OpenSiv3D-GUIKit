@@ -120,8 +120,8 @@ namespace s3d::aoba {
         m_needToUpdateLayer = true;
     }
 
-    void UIComponent::setConstraint(LayerDirection direction, double constant, double multiplier) noexcept {
-        m_layer.setConstraint(direction, constant, multiplier);
+    void UIComponent::setConstraint(LayerDirection direction, double constant) noexcept {
+        m_layer.setConstraint(direction, constant);
         m_needToUpdateLayer = true;
     }
 
