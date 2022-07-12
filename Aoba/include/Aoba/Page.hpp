@@ -31,7 +31,7 @@ namespace s3d::aoba {
 
         virtual ~Page();
 
-        const String& identifier() const noexcept {
+        StringView identifier() const noexcept {
             return m_identifier;
         }
 
@@ -81,7 +81,7 @@ namespace s3d::aoba {
         virtual void onDragDrop(const Array<DroppedFilePath>& files, const Array<DroppedText>& texts);
 
     private:
-        explicit Page(const String& identifier);
+        explicit Page(StringView identifier);
 
         void update();
     };

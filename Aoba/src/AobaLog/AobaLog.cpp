@@ -4,7 +4,7 @@ namespace s3d::aoba {
     namespace AobaLog {
         constexpr auto AobaLogger = detail::Logger_impl{};
 
-        void Log(Type type, const String& scope, const String& message) {
+        void Log(Type type, StringView scope, StringView message) {
             switch (type) {
             case Type::Info:
                 AobaLogger << U"Aoba({}) [Info] {}"_fmt(scope, message);

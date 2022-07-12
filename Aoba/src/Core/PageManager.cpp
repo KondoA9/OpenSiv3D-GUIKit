@@ -24,14 +24,14 @@ namespace s3d::aoba {
         return false;
     }
 
-    Page& PageManager::getPage(const String& identifier) const {
+    Page& PageManager::getPage(StringView identifier) const {
         const auto& ptr = getPagePtr(identifier);
         auto& p         = *ptr;
         return p;
     }
 
 #pragma warning(disable : 4715)
-    const std::shared_ptr<Page>& PageManager::getPagePtr(const String& identifier) const {
+    const std::shared_ptr<Page>& PageManager::getPagePtr(StringView identifier) const {
         for (const auto& page : m_pages) {
             if (page->identifier() == identifier) {
                 return page;
@@ -44,7 +44,7 @@ namespace s3d::aoba {
     }
 #pragma warning(default : 4715)
 
-    void PageManager::switchPage(const String& identifier) {
+    void PageManager::switchPage(StringView identifier) {
         if (const auto& page = getPagePtr(identifier); m_pageTransition == PageTransition::Stable && page) {
             m_nextPage     = page;
             m_previousPage = m_currentPage;

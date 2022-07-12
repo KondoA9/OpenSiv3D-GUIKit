@@ -104,7 +104,7 @@ namespace s3d::aoba {
         }
     }
 
-    void UIInputField::setText(const String& str) {
+    void UIInputField::setText(StringView str) {
         UIText::setText(str);
         if (ui_Warning) {
             ui_Warning->exist = false;
@@ -125,15 +125,17 @@ namespace s3d::aoba {
     String UIInputField::updateText() {
         // Delete selected text if inputted
         {
-            const auto previousText = text();
-            auto editedText         = text();
+            const String previousText = text();
+            String editedText         = text();
+
             TextInput::UpdateText(editedText, TextInputMode::AllowBackSpaceDelete);
+
             if (previousText != editedText) {
                 deleteSelectedText();
             }
         }
 
-        auto editingString = text();
+        String editingString = text();
 
         m_cursorPos = TextInput::UpdateText(editingString, m_cursorPos, TextInputMode::AllowBackSpaceDelete);
 
@@ -296,7 +298,7 @@ namespace s3d::aoba {
         m_selectingRect = RectF(startPos, textRegion().y, width, textRegion().h);
     }
 
-    UIInputField::FormatResult UIInputField::formatText(const String& str) {
+    UIInputField::FormatResult UIInputField::formatText(StringView str) {
         if (m_textFormatter.has_value()) {
             return m_textFormatter.value()(str);
         }
@@ -310,10 +312,10 @@ namespace s3d::aoba {
         }
     }
 
-    UIInputField::FormatResult UIInputField::formatNumber(const String& str) {
+    UIInputField::FormatResult UIInputField::formatNumber(StringView str) {
         // Remove chars if not '-', '.' or numbers
         String fixedText =
-            str.removed_if([](const char32& c) { return !('0' <= c && c <= '9') && c != '-' && c != '.'; });
+            String(str).removed_if([](const char32& c) { return !('0' <= c && c <= '9') && c != '-' && c != '.'; });
 
         // Remove dots if integer
         if (numberType == NumberType::Integer) {

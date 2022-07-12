@@ -43,7 +43,7 @@ namespace s3d::aoba {
         }
 
         template <class T>
-        T& appendTab(const String& name) {
+        T& appendTab(StringView name) {
             static_assert(std::is_base_of<UIView, T>::value, "Specified Type does not inherit gui::UIView.");
 
             auto& view     = Factory::Create<T>(ui_tabView);
@@ -62,6 +62,6 @@ namespace s3d::aoba {
         void initialize() override;
 
     private:
-        void initializeTab(const String& name, UIButton& selector, UIView& view);
+        void initializeTab(StringView name, UIButton& selector, UIView& view);
     };
 }

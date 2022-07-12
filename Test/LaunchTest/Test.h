@@ -1,12 +1,12 @@
 ﻿#include <iostream>
 
 namespace Test {
-	void Terminate(const std::string& msg) {
+	void Terminate(std::string_view msg) {
 		std::cerr << msg << std::endl;
 		std::terminate();
 	}
 
-	void Assert(bool expression, const std::string& msg) {
+	void Assert(bool expression, std::string_view msg) {
 		if (!expression) {
 			Terminate(msg);
 		}
@@ -16,12 +16,12 @@ namespace Test {
 		return "[Log]: ";
 	}
 
-	void LogWithMsg(const std::string& msg) {
+	void LogWithMsg(std::string_view msg) {
 		std::cout << LogMessageTemplate() << msg << std::endl;
 	}
 
 	template<class T>
-	void LogWithMsg(T* arg, const std::string& msg) {
+	void LogWithMsg(T* arg, std::string_view msg) {
 		std::cout << LogMessageTemplate() << typeid(*arg).name() << ": " << msg << std::endl;
 	}
 }
