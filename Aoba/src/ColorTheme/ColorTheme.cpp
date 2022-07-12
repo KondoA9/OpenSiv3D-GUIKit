@@ -6,9 +6,9 @@ namespace s3d::aoba {
 
     Color ColorTheme::color() const noexcept {
         if (m_isTransition) {
-            m_transitionTimer += Scene::DeltaTime();
-            const double k = m_transitionTimer / m_transitionTime;
-            if (k > 1.0) {
+            m_transitionTimer += static_cast<uint64>(Scene::DeltaTime() * 1000);
+            const double k = m_transitionTime == 0 ? 1.0 : static_cast<double>(m_transitionTimer) / static_cast<double>(m_transitionTime);
+            if (k >= 1.0) {
                 light          = m_transitionLight;
                 dark           = m_transitionDark;
                 m_isTransition = false;
@@ -22,14 +22,14 @@ namespace s3d::aoba {
         }
     }
 
-    void ColorTheme::setColor(const Color& lightColor, const Color& darkColor, double transitionTime) noexcept {
+    void ColorTheme::setColor(const Color& lightColor, const Color& darkColor, uint64 transitionTimeMs) noexcept {
         if (m_isTransition) {
             const auto c = color();
             light        = c;
             dark         = c;
         }
 
-        if (transitionTime <= 0.0) {
+        if (transitionTimeMs == 0) {
             light = lightColor;
             dark  = darkColor;
         }
@@ -45,8 +45,8 @@ namespace s3d::aoba {
         m_transitionLight = lightColor.a == 0 ? Color(light, 0) : lightColor;
         m_transitionDark  = darkColor.a == 0 ? Color(dark, 0) : darkColor;
 
-        m_transitionTime  = transitionTime;
-        m_transitionTimer = 0.0;
+        m_transitionTime  = transitionTimeMs;
+        m_transitionTimer = 0;
         m_isTransition    = true;
     }
 
@@ -59,6 +59,6 @@ namespace s3d::aoba {
     }
 
     void ColorTheme::Animate(double t) noexcept {
-        T = t;
+        T = Clamp(t, 0.0, 1.0);
     }
 }
