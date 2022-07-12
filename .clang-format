@@ -43,3 +43,5 @@ IndentCaseLabels: false
 IndentWidth: 4
 
 NamespaceIndentation: All
+
+UseTab: Never
