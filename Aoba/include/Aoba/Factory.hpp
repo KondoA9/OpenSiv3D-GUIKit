@@ -42,8 +42,8 @@ namespace s3d::aoba {
             return Factory::CreateComponent<T>(true);
         }
 
-		// Create root view of page
-		// Do not call this function
+        // Create root view of page
+        // Do not call this function
         [[nodiscard]] static UIView& _CreatePageView();
 
     private:

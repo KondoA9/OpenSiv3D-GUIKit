@@ -21,7 +21,7 @@ namespace s3d::aoba::Algorithm {
             } else if (value > key) {
                 if (mid == 0) {
                     break;
-				}
+                }
                 right = mid - 1;
             } else {
                 return mid;

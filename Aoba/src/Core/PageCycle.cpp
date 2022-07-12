@@ -227,7 +227,7 @@ namespace s3d::aoba {
             m_previousPage->view.update();
         }
 
-		for (auto& component : ComponentStorage::GetIsolatedComponents()) {
+        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
             component->update();
         }
     }
