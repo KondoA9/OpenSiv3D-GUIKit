@@ -7,8 +7,8 @@ namespace s3d::aoba {
     Color ColorTheme::color() const noexcept {
         if (m_isTransition) {
             m_transitionTimer += static_cast<uint64>(Scene::DeltaTime() * 1000);
-            const double k = static_cast<double>(m_transitionTimer / m_transitionTime);
-            if (k > 1.0) {
+            const double k = m_transitionTime == 0 ? 1.0 : static_cast<double>(m_transitionTimer) / static_cast<double>(m_transitionTime);
+            if (k >= 1.0) {
                 light          = m_transitionLight;
                 dark           = m_transitionDark;
                 m_isTransition = false;
