@@ -3,7 +3,7 @@
 	bool m_value = false;
 
 public:
-	PageEvent(const std::string& name) :
+	PageEvent(std::string_view name) :
 		m_name(name)
 	{}
 
