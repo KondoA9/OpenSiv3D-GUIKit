@@ -119,13 +119,18 @@
     <ResourceCompile Include="..\App\Resource.rc" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Test\LaunchTest\GUITest\GUITest.cpp" />
     <ClCompile Include="..\Test\LaunchTest\LaunchTest.cpp" />
+    <ClCompile Include="..\Test\LaunchTest\Test.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Test\LaunchTest\ComponentsTest.h" />
-    <ClInclude Include="..\Test\LaunchTest\FocusTest.h" />
-    <ClInclude Include="..\Test\LaunchTest\PagingTest.h" />
-    <ClInclude Include="..\Test\LaunchTest\Test.h" />
+    <ClInclude Include="..\Test\LaunchTest\GUITest\GUITest.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\GUITest\Page\ComponentsTestPage.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\GUITest\Page\FocusTestPage.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\GUITest\Page\LifeCycleTestPage.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\Test.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\UnitTest\IsMainThread.hpp" />
+    <ClInclude Include="..\Test\LaunchTest\UnitTest\UnitTest.hpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

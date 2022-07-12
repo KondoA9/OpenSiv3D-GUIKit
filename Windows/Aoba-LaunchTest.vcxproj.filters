@@ -5,13 +5,18 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
     <Filter Include="Resource Files">
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Source Files\GUITest">
+      <UniqueIdentifier>{211f27f0-85db-4d01-bd62-fd70d2ad9bce}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\GUITest\Page">
+      <UniqueIdentifier>{d177a838-7b47-4a1a-b35c-63e2ae8c8b1f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\UnitTest">
+      <UniqueIdentifier>{0badb0f5-f9c6-4e6b-8683-b0847d6c4b56}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -23,19 +28,34 @@
     <ClCompile Include="..\Test\LaunchTest\LaunchTest.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\Test\LaunchTest\GUITest\GUITest.cpp">
+      <Filter>Source Files\GUITest</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Test\LaunchTest\Test.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Test\LaunchTest\PagingTest.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Test\LaunchTest\Test.hpp">
+      <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\Test\LaunchTest\Test.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Test\LaunchTest\GUITest\GUITest.hpp">
+      <Filter>Source Files\GUITest</Filter>
     </ClInclude>
-    <ClInclude Include="..\Test\LaunchTest\ComponentsTest.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Test\LaunchTest\GUITest\Page\ComponentsTestPage.hpp">
+      <Filter>Source Files\GUITest\Page</Filter>
     </ClInclude>
-    <ClInclude Include="..\Test\LaunchTest\FocusTest.h">
-      <Filter>Header Files</Filter>
+    <ClInclude Include="..\Test\LaunchTest\GUITest\Page\FocusTestPage.hpp">
+      <Filter>Source Files\GUITest\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test\LaunchTest\GUITest\Page\LifeCycleTestPage.hpp">
+      <Filter>Source Files\GUITest\Page</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test\LaunchTest\UnitTest\IsMainThread.hpp">
+      <Filter>Source Files\UnitTest</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Test\LaunchTest\UnitTest\UnitTest.hpp">
+      <Filter>Source Files\UnitTest</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
