@@ -29,31 +29,19 @@ protected:
     void initialize() override {
         UIView::initialize();
 
-        m_uiOpenDirectoryButton.setText(U"Open");
-        m_uiParentDirButton.setIcon(Texture(Icon(0xf062), 20_px));
+        layout<aoba::AlignH>({aoba::LOConstant(m_uiToggleColorModeButton, 40_px),
+                              aoba::LOConstant(m_uiParentDirButton, 40_px),
+                              aoba::LOConstant(m_uiOpenDirectoryButton, 120_px)});
+
         m_uiToggleColorModeButton.setIcon(Texture(Icon(0xf186), 20_px));
-
         m_uiToggleColorModeButton.tooltipMessage = U"Toggle color mode";
-
-        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Left);
-        m_uiToggleColorModeButton.setConstraint(aoba::LayerDirection::Width, 40_px);
         m_uiToggleColorModeButton.addEventListener<aoba::Event::Mouse::LeftDown>(
             [this] { m_toggleColorModeHandler(); });
 
-        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiParentDirButton.setConstraint(
-            aoba::LayerDirection::Left, m_uiToggleColorModeButton, aoba::LayerDirection::Right);
-        m_uiParentDirButton.setConstraint(aoba::LayerDirection::Width, 40_px);
+        m_uiParentDirButton.setIcon(Texture(Icon(0xf062), 20_px));
         m_uiParentDirButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] { m_openParentDirHandler(); });
 
-        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiOpenDirectoryButton.setConstraint(
-            aoba::LayerDirection::Left, m_uiParentDirButton, aoba::LayerDirection::Right);
-        m_uiOpenDirectoryButton.setConstraint(aoba::LayerDirection::Width, 120_px);
+        m_uiOpenDirectoryButton.setText(U"Open");
         m_uiOpenDirectoryButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] {
             const auto result = Dialog::SelectFolder();
             if (result.has_value()) {
@@ -101,8 +89,12 @@ protected:
     void initialize() override {
         UIView::initialize();
 
-        m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
-        m_uiKind.backgroundColor        = aoba::DynamicColor::Background;
+        layout<aoba::AlignH>({
+            aoba::LOFunction(m_uiIcon, [this] { return layer().height(); }),
+            aoba::LOFill(m_uiFileName),
+            aoba::LOConstant(m_uiUpdatedDate, 220_px),
+            aoba::LOConstant(m_uiKind, 80_px),
+        });
 
         addEventListener<aoba::Event::Mouse::Hovered>(
             [this] { backgroundColor.highlight(aoba::DynamicColor::BackgroundSecondary); });
@@ -114,31 +106,16 @@ protected:
             }
         });
 
-        m_uiIcon.penetrateMouseEvent = true;
-        m_uiIcon.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiIcon.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiIcon.setConstraint(aoba::LayerDirection::Left, this, aoba::LayerDirection::Left);
-        m_uiIcon.setConstraint(aoba::LayerDirection::Width, this, aoba::LayerDirection::Height);
-
-        m_uiFileName.penetrateMouseEvent = true;
-        m_uiFileName.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiFileName.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiFileName.setConstraint(aoba::LayerDirection::Left, m_uiIcon, aoba::LayerDirection::Right);
-        m_uiFileName.setConstraint(aoba::LayerDirection::Right, m_uiUpdatedDate, aoba::LayerDirection::Left);
-
+        m_uiIcon.penetrateMouseEvent        = true;
+        m_uiFileName.penetrateMouseEvent    = true;
         m_uiUpdatedDate.penetrateMouseEvent = true;
-        m_uiUpdatedDate.setPadding(0, 0, 5_px, 5_px);
-        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Width, 220_px);
-        m_uiUpdatedDate.setConstraint(aoba::LayerDirection::Right, m_uiKind, aoba::LayerDirection::Left);
+        m_uiKind.penetrateMouseEvent        = true;
 
-        m_uiKind.penetrateMouseEvent = true;
+        m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
+        m_uiUpdatedDate.setPadding(0, 0, 5_px, 5_px);
+
+        m_uiKind.backgroundColor = aoba::DynamicColor::Background;
         m_uiKind.setPadding(0, 0, 5_px, 5_px);
-        m_uiKind.setConstraint(aoba::LayerDirection::Top, this, aoba::LayerDirection::Top);
-        m_uiKind.setConstraint(aoba::LayerDirection::Bottom, this, aoba::LayerDirection::Bottom);
-        m_uiKind.setConstraint(aoba::LayerDirection::Width, 80_px);
-        m_uiKind.setConstraint(aoba::LayerDirection::Right, this, aoba::LayerDirection::Right);
     }
 };
 
@@ -154,14 +131,11 @@ private:
 
 protected:
     void onLoaded() override {
-        m_uiToolbar.backgroundColor = aoba::DynamicColor::BackgroundSecondary;
-        m_uiMovePage.setText(U"Move page");
+        view.layout<aoba::AlignV>(
+            {aoba::LOConstant(m_uiToolbar, 30_px), aoba::LOFill(m_uiFilesView), aoba::LOConstant(m_uiMovePage, 40_px)});
 
-        m_uiToolbar.drawFrame = true;
-        m_uiToolbar.setConstraint(aoba::LayerDirection::Top, view, aoba::LayerDirection::Top);
-        m_uiToolbar.setConstraint(aoba::LayerDirection::Height, 30_px);
-        m_uiToolbar.setConstraint(aoba::LayerDirection::Left);
-        m_uiToolbar.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
+        m_uiToolbar.backgroundColor = aoba::DynamicColor::BackgroundSecondary;
+        m_uiToolbar.drawFrame       = true;
         m_uiToolbar.setToggleColorModeHandler([this] { aoba::Core::ToggleColorMode(); });
         m_uiToolbar.setFolderOpendHandler([this](const FilePath& path) { setup(path); });
         m_uiToolbar.setOpenParentDirHandler([this] {
@@ -172,15 +146,8 @@ protected:
         m_uiFilesView.setLeadingDirection(aoba::LeadingDirection::Bottom);
         m_uiFilesView.setRowHeight(30_px);
         m_uiFilesView.setVerticalMargin(20_px);
-        m_uiFilesView.setConstraint(aoba::LayerDirection::Top, m_uiToolbar, aoba::LayerDirection::Bottom);
-        m_uiFilesView.setConstraint(aoba::LayerDirection::Bottom, m_uiMovePage, aoba::LayerDirection::Top);
-        m_uiFilesView.setConstraint(aoba::LayerDirection::Left, view, aoba::LayerDirection::Left);
-        m_uiFilesView.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 
-        m_uiMovePage.setConstraint(aoba::LayerDirection::Height, 40_px);
-        m_uiMovePage.setConstraint(aoba::LayerDirection::Bottom, view, aoba::LayerDirection::Bottom);
-        m_uiMovePage.setConstraint(aoba::LayerDirection::Left, view, aoba::LayerDirection::Left);
-        m_uiMovePage.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
+        m_uiMovePage.setText(U"Move page");
         m_uiMovePage.addEventListener<aoba::Event::Mouse::LeftDown>([this] { aoba::Core::SwitchPage(U"start"); });
     }
 
@@ -210,6 +177,9 @@ private:
 
 protected:
     void onLoaded() override {
+        view.layout<aoba::AlignV>(
+            {aoba::LOFill(m_uiTitle), aoba::LOConstant(m_uiInputField, 100_px), aoba::LOConstant(m_uiButton, 100_px)});
+
         registerKeyShortcut(KeySpace, [] { Print << U"Page shortcut: space"; });
 
         m_uiTitle.setText(U"This is the example application of Aoba.");
@@ -220,23 +190,9 @@ protected:
         m_uiTitle.registerKeyShortcut(KeyControl + KeyS, [] { Print << U"Ctrl+S Save"; });
         m_uiTitle.registerKeyShortcut(KeyLeft | KeyRight, [] { Print << U"Key left or right"; });
 
-        m_uiButton.setText(U"Next");
-
-        m_uiTitle.setConstraint(aoba::LayerDirection::Top);
-        m_uiTitle.setConstraint(aoba::LayerDirection::Height, view, aoba::LayerDirection::Height, 0.0, 0.5);
-        m_uiTitle.setConstraint(aoba::LayerDirection::Left);
-        m_uiTitle.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
-
         m_uiInputField.setText(U"This is the example application of Aoba.");
-        m_uiInputField.setConstraint(aoba::LayerDirection::Height, 100_px);
-        m_uiInputField.setConstraint(aoba::LayerDirection::Bottom, m_uiButton, aoba::LayerDirection::Top);
-        m_uiInputField.setConstraint(aoba::LayerDirection::Left);
-        m_uiInputField.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
 
-        m_uiButton.setConstraint(aoba::LayerDirection::Height, 100_px);
-        m_uiButton.setConstraint(aoba::LayerDirection::Bottom, view, aoba::LayerDirection::Bottom);
-        m_uiButton.setConstraint(aoba::LayerDirection::Left);
-        m_uiButton.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
+        m_uiButton.setText(U"Next");
         m_uiButton.addEventListener<aoba::Event::Mouse::LeftDown>([this] { aoba::Core::SwitchPage(U"explorer"); });
     }
 };
