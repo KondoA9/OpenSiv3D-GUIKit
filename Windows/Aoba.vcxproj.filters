@@ -121,6 +121,9 @@
     <Filter Include="Aoba\Algorithm">
       <UniqueIdentifier>{28abd0fe-ff8d-4be7-89ed-f46e0804d8f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\Layout">
+      <UniqueIdentifier>{dce09202-836b-4360-be69-b0378908f00d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -242,6 +245,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
       <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\Component\UIView\Layout.cpp">
+      <Filter>Aoba\Component\UIView</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -373,6 +379,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Algorithm\Algorithm.hpp">
       <Filter>Aoba\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Layout.hpp">
+      <Filter>Aoba\Layout</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

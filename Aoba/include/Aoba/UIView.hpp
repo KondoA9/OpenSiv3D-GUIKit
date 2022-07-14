@@ -6,6 +6,10 @@ namespace s3d::aoba {
     class Factory;
     class PageManager;
 
+    namespace Layout::Internal {
+        struct ILayout;
+    }
+
     class UIView : public UIRect {
         friend Factory;
         friend PageManager;
@@ -42,6 +46,11 @@ namespace s3d::aoba {
         T& getComponent(size_t index) {
             return *static_cast<T*>(m_components[index].get());
         }
+
+        template <class T,
+                  typename = typename std::enable_if<std::is_same<T, Layout::AlignHorizontal>::value
+                                                     || std::is_same<T, Layout::AlignVertical>::value>::type>
+        UIView& layout(Array<std::shared_ptr<Layout::Internal::ILayout>>&& children);
 
     protected:
         // This function runs after a component appended. gui::Factory::Create<UIComponent>(this);

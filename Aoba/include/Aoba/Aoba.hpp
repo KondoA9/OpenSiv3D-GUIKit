@@ -9,6 +9,7 @@
 #include "DynamicColor.hpp"
 #include "Factory.hpp"
 #include "Imaging.hpp"
+#include "Layout.hpp"
 #include "MouseEvent.hpp"
 #include "Page.hpp"
 #include "PixelUnit.hpp"
