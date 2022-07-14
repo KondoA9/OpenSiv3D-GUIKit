@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "UIRect.hpp"
 
@@ -6,8 +6,13 @@ namespace s3d::aoba {
     class Factory;
     class PageManager;
 
-    namespace Layout::Internal {
-        struct ILayout;
+    namespace Layout {
+        struct AlignHorizontal;
+        struct AlignVertical;
+
+        namespace Internal {
+            struct ILayout;
+        }
     }
 
     class UIView : public UIRect {
