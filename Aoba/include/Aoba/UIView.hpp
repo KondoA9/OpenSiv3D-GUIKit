@@ -1,19 +1,11 @@
-#pragma once
+﻿#pragma once
 
+#include "Layout.hpp"
 #include "UIRect.hpp"
 
 namespace s3d::aoba {
     class Factory;
     class PageManager;
-
-    namespace Layout {
-        struct AlignHorizontal;
-        struct AlignVertical;
-
-        namespace Internal {
-            struct ILayout;
-        }
-    }
 
     class UIView : public UIRect {
         friend Factory;
@@ -55,7 +47,7 @@ namespace s3d::aoba {
         template <class T,
                   typename = typename std::enable_if<std::is_same<T, Layout::AlignHorizontal>::value
                                                      || std::is_same<T, Layout::AlignVertical>::value>::type>
-        UIView& layout(Array<std::shared_ptr<Layout::Internal::ILayout>>&& children);
+        UIView& layout(Array<LayoutType>&& children);
 
     protected:
         // This function runs after a component appended. gui::Factory::Create<UIComponent>(this);

@@ -81,4 +81,6 @@ namespace s3d::aoba {
 
     using AlignH = Layout::AlignHorizontal;
     using AlignV = Layout::AlignVertical;
+
+    using LayoutType = std::shared_ptr<Layout::Internal::ILayout>;
 }

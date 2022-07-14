@@ -1,5 +1,4 @@
-﻿#include <Aoba/Layout.hpp>
-#include <Aoba/UIView.hpp>
+﻿#include <Aoba/UIView.hpp>
 
 namespace s3d::aoba {
     namespace Internal {
@@ -41,9 +40,7 @@ namespace s3d::aoba {
             }
         }
 
-        void LayoutMulti(UIComponent& parent,
-                         Array<std::shared_ptr<Layout::Internal::ILayout>>&& children,
-                         bool isHorizontal) {
+        void LayoutMulti(UIComponent& parent, Array<LayoutType>&& children, bool isHorizontal) {
             const auto startingEdge           = isHorizontal ? LayerDirection::Left : LayerDirection::Top;
             const auto endingEdge             = isHorizontal ? LayerDirection::Right : LayerDirection::Bottom;
             const auto sizeDirection          = isHorizontal ? LayerDirection::Width : LayerDirection::Height;
@@ -136,7 +133,7 @@ namespace s3d::aoba {
             }
         }
 
-        UIView& Layout(UIView& self, Array<std::shared_ptr<Layout::Internal::ILayout>>&& children, bool isHorizontal) {
+        UIView& Layout(UIView& self, Array<LayoutType>&& children, bool isHorizontal) {
             if (!children.isEmpty()) {
                 if (children.size() == 1) {
                     LayoutSingle(self, children[0].get(), isHorizontal);
@@ -149,12 +146,12 @@ namespace s3d::aoba {
     }
 
     template <>
-    UIView& UIView::layout<Layout::AlignHorizontal>(Array<std::shared_ptr<Layout::Internal::ILayout>>&& children) {
+    UIView& UIView::layout<Layout::AlignHorizontal>(Array<LayoutType>&& children) {
         return Internal::Layout(*this, std::move(children), true);
     }
 
     template <>
-    UIView& UIView::layout<Layout::AlignVertical>(Array<std::shared_ptr<Layout::Internal::ILayout>>&& children) {
+    UIView& UIView::layout<Layout::AlignVertical>(Array<LayoutType>&& children) {
         return Internal::Layout(*this, std::move(children), false);
     }
 }
