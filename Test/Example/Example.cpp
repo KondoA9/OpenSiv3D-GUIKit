@@ -29,9 +29,11 @@ protected:
     void initialize() override {
         UIView::initialize();
 
-        layout<aoba::AlignH>({aoba::LOConstant(m_uiToggleColorModeButton, 40_px),
-                              aoba::LOConstant(m_uiParentDirButton, 40_px),
-                              aoba::LOConstant(m_uiOpenDirectoryButton, 120_px)});
+        layout<aoba::AlignH>({
+            aoba::LOConstant(m_uiToggleColorModeButton, 40_px),
+            aoba::LOConstant(m_uiParentDirButton, 40_px),
+            aoba::LOConstant(m_uiOpenDirectoryButton, 120_px),
+        });
 
         m_uiToggleColorModeButton.setIcon(Texture(Icon(0xf186), 20_px));
         m_uiToggleColorModeButton.tooltipMessage = U"Toggle color mode";
@@ -131,8 +133,11 @@ private:
 
 protected:
     void onLoaded() override {
-        view.layout<aoba::AlignV>(
-            {aoba::LOConstant(m_uiToolbar, 30_px), aoba::LOFill(m_uiFilesView), aoba::LOConstant(m_uiMovePage, 40_px)});
+        view.layout<aoba::AlignV>({
+            aoba::LOConstant(m_uiToolbar, 30_px),
+            aoba::LOFill(m_uiFilesView),
+            aoba::LOConstant(m_uiMovePage, 40_px),
+        });
 
         m_uiToolbar.backgroundColor = aoba::DynamicColor::BackgroundSecondary;
         m_uiToolbar.drawFrame       = true;
@@ -177,9 +182,11 @@ private:
 
 protected:
     void onLoaded() override {
-        view.layout<aoba::AlignV>({aoba::LOFill(m_uiTitle).margin(20_px, 40_px, 60_px, 80_px),
-                                   aoba::LOConstant(m_uiInputField, 100_px),
-                                   aoba::LOConstant(m_uiButton, 100_px).margin(40_px, 30_px, 20_px, 10_px)});
+        view.layout<aoba::AlignV>({
+            aoba::LOFill(m_uiTitle).margin(20_px, 40_px, 60_px, 80_px),
+            aoba::LOConstant(m_uiInputField, 100_px),
+            aoba::LOConstant(m_uiButton, 100_px).margin(40_px, 30_px, 20_px, 10_px),
+        });
 
         registerKeyShortcut(KeySpace, [] { Print << U"Page shortcut: space"; });
 

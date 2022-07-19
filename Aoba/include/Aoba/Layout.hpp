@@ -128,27 +128,34 @@ namespace s3d::aoba {
     }
 
     // Layout the component with the constant value
-    [[nodiscard]] inline Layout::LayoutProxy LOConstant(UIComponent& component, double constant) {
-        return {std::make_shared<Layout::Constant>(component, constant)};
-    }
+    class LOConstant : public Layout::LayoutProxy {
+    public:
+        LOConstant(UIComponent& component, double constant) noexcept :
+            Layout::LayoutProxy(std::make_shared<Layout::Constant>(component, constant)) {}
+    };
 
     // Layout the component with filling
-    [[nodiscard]] inline Layout::LayoutProxy LOFill(UIComponent& component) {
-        return {std::make_shared<Layout::Fill>(component)};
-    }
+    class LOFill : public Layout::LayoutProxy {
+    public:
+        LOFill(UIComponent& component) noexcept : Layout::LayoutProxy(std::make_shared<Layout::Fill>(component)) {}
+    };
 
     // Layout the component with the return value of the function
-    [[nodiscard]] inline Layout::LayoutProxy LOFunction(UIComponent& component,
-                                                        const std::function<double()>& func,
-                                                        double constant   = 0.0,
-                                                        double multiplier = 1.0) {
-        return {std::make_shared<Layout::Function>(component, func, constant, multiplier)};
-    }
+    class LOFunction : public Layout::LayoutProxy {
+    public:
+        LOFunction(UIComponent& component,
+                   const std::function<double()>& func,
+                   double constant   = 0.0,
+                   double multiplier = 1.0) noexcept :
+            Layout::LayoutProxy(std::make_shared<Layout::Function>(component, func, constant, multiplier)) {}
+    };
 
     // Layout the component with the ratio to the parent component
-    [[nodiscard]] inline Layout::LayoutProxy LORatio(UIComponent& component, double ratio) {
-        return {std::make_shared<Layout::Ratio>(component, ratio)};
-    }
+    class LORatio : public Layout::LayoutProxy {
+    public:
+        LORatio(UIComponent& component, double ratio) noexcept :
+            Layout::LayoutProxy(std::make_shared<Layout::Ratio>(component, ratio)) {}
+    };
 
     using AlignH = Layout::AlignHorizontal;
     using AlignV = Layout::AlignVertical;
