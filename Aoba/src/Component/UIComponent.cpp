@@ -82,8 +82,8 @@ namespace s3d::aoba {
     void UIComponent::updateConstraints() {
         if (!m_constraintsUpdatedThisFrame) {
             // Update layer of dependent components before updating self
-            for (auto const component : m_dependentComponents) {
-                component->updateConstraints();
+            for (auto& component : m_dependentComponents) {
+                component.get().updateConstraints();
             }
 
             m_layer.updateConstraints();
@@ -97,8 +97,8 @@ namespace s3d::aoba {
                                     double constant,
                                     double multiplier) {
         if (!m_dependentComponents.includes_if(
-                [&component](UIComponent* const dependent) { return dependent->id() == component.id(); })) {
-            m_dependentComponents.emplace_back(&ComponentStorage::Get(component.id()));
+                [&component](const UIComponent& dependent) { return dependent.id() == component.id(); })) {
+            m_dependentComponents.push_back(ComponentStorage::Get(component.id()));
         }
 
         m_layer.setConstraint(direction, component.m_layer, toDirection, constant, multiplier);

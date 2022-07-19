@@ -70,7 +70,7 @@ namespace s3d::aoba {
         bool m_initializedColors = false;
 
         Layer m_layer;
-        Array<UIComponent*> m_dependentComponents;
+        Array<std::reference_wrapper<UIComponent>> m_dependentComponents;
         Rect m_drawableRegion              = Rect();
         bool m_constraintsUpdatedThisFrame = false;
         bool m_needToUpdateLayer           = true;
