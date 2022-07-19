@@ -18,7 +18,6 @@ AobaCreateEventComponent(Focused);
 AobaCreateEventComponent(UnFocused);
 
 namespace s3d::aoba {
-    class Core;
     class Factory;
     class InputEventManager;
     class PageManager;
@@ -48,7 +47,6 @@ namespace s3d::aoba {
             }
         };
 
-        friend Core;
         friend Factory;
         friend InputEventManager;
         friend PageManager;
