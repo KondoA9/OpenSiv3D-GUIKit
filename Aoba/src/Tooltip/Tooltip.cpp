@@ -46,7 +46,7 @@ namespace s3d::aoba {
         const auto& component = ComponentStorage::Get(componentId);
         auto& instance        = Instance();
 
-        if (component->tooltipMessage.isEmpty()) {
+        if (component.tooltipMessage.isEmpty()) {
             return;
         }
 
@@ -60,7 +60,7 @@ namespace s3d::aoba {
         instance.m_timeoutId   = Core::SetTimeout(
             [&instance, &component] {
                 instance.m_uiTooltipText.hidden = false;
-                instance.m_uiTooltipText.setText(component->tooltipMessage);
+                instance.m_uiTooltipText.setText(component.tooltipMessage);
             },
             500,
             false);

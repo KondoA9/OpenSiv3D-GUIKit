@@ -11,7 +11,7 @@ namespace s3d::aoba {
         friend PageManager;
 
     private:
-        Array<std::shared_ptr<UIComponent>> m_components;
+        Array<std::reference_wrapper<UIComponent>> m_components;
         Rect m_scissorRect = Rect(0, 0, 0, 0), m_parentScissorRect = Rect(0, 0, 0, 0);
 
     public:
@@ -26,21 +26,21 @@ namespace s3d::aoba {
         }
 
         const UIComponent& getComponent(size_t index) const {
-            return *m_components[index].get();
+            return m_components[index];
+        }
+
+        UIComponent& getComponent(size_t index) {
+            return m_components[index];
         }
 
         template <class T>
         const T& getComponent(size_t index) const {
-            return *static_cast<T*>(m_components[index].get());
-        }
-
-        UIComponent& getComponent(size_t index) {
-            return *m_components[index].get();
+            return static_cast<const T&>(getComponent(index));
         }
 
         template <class T>
         T& getComponent(size_t index) {
-            return *static_cast<T*>(m_components[index].get());
+            return static_cast<T&>(getComponent(index));
         }
 
     protected:

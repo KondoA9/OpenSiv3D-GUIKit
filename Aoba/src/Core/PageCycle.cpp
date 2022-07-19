@@ -132,11 +132,11 @@ namespace s3d::aoba {
         }
 
         // Draw isolated components
-        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-            if (component->drawable()) {
-                component->draw();
+        ComponentStorage::MapIsolatedComponents([](const UIComponent& component) {
+            if (component.drawable()) {
+                component.draw();
             }
-        }
+        });
     }
 
     bool PageManager::updateOnStartUp() {
@@ -227,9 +227,7 @@ namespace s3d::aoba {
             m_previousPage->view.update();
         }
 
-        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-            component->update();
-        }
+        ComponentStorage::MapIsolatedComponents([](UIComponent& component) { component.update(); });
     }
 
     void PageManager::updateLayers() {
@@ -249,9 +247,8 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerInvert(m_windowScissorRect);
             }
 
-            for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-                component->updateLayer(m_windowScissorRect);
-            }
+            ComponentStorage::MapIsolatedComponents(
+                [this](UIComponent& component) { component.updateLayer(m_windowScissorRect); });
         } else {
             if (m_nextPage) {
                 m_nextPage->view.updateLayerIfNeeded(m_windowScissorRect);
@@ -265,9 +262,8 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
             }
 
-            for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-                component->updateLayerIfNeeded(m_windowScissorRect);
-            }
+            ComponentStorage::MapIsolatedComponents(
+                [this](UIComponent& component) { component.updateLayerIfNeeded(m_windowScissorRect); });
         }
     }
 
@@ -277,12 +273,12 @@ namespace s3d::aoba {
             m_currentPage->view.updateInputEvents();
         }
 
-        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-            if (component->eventUpdatable()) {
-                component->updateMouseIntersection();
-                component->updateInputEvents();
+        ComponentStorage::MapIsolatedComponents([](UIComponent& component) {
+            if (component.eventUpdatable()) {
+                component.updateMouseIntersection();
+                component.updateInputEvents();
             }
-        }
+        });
 
         InputEventManager::Call();
     }

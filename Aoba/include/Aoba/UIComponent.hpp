@@ -70,7 +70,7 @@ namespace s3d::aoba {
         bool m_initializedColors = false;
 
         Layer m_layer;
-        Array<std::shared_ptr<UIComponent>> m_dependentComponents;
+        Array<std::reference_wrapper<UIComponent>> m_dependentComponents;
         Rect m_drawableRegion              = Rect();
         bool m_constraintsUpdatedThisFrame = false;
         bool m_needToUpdateLayer           = true;
@@ -95,7 +95,7 @@ namespace s3d::aoba {
 
         virtual ~UIComponent();
 
-        virtual void release() {}
+        virtual void release();
 
         void setConstraint(LayerDirection direction,
                            UIComponent& component,
@@ -210,10 +210,10 @@ namespace s3d::aoba {
             return m_mouseCondition;
         }
 
-        // Do not call this function if the component is not UIView
+        // Do not call this in other than UIView.
         virtual void _destroy();
 
-        // Do not call this function if the component is not UIRect or UICircle
+        // Do not call this in other than UIRect or UICircle.
         void _updateMouseCondition(bool leftDown,
                                    bool leftUp,
                                    bool leftPress,

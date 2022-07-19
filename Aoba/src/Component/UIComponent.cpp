@@ -11,8 +11,10 @@ namespace s3d::aoba {
     UIComponent::UIComponent(size_t id) :
         backgroundColor(DynamicColor::BackgroundSecondary), frameColor(DynamicColor::Separator), m_id(id) {}
 
-    UIComponent::~UIComponent() {
-        _destroy();
+    UIComponent::~UIComponent() {}
+
+    void UIComponent::release() {
+        removeAllConstraints();
     }
 
     void UIComponent::_destroy() {
@@ -81,7 +83,7 @@ namespace s3d::aoba {
         if (!m_constraintsUpdatedThisFrame) {
             // Update layer of dependent components before updating self
             for (auto& component : m_dependentComponents) {
-                component->updateConstraints();
+                component.get().updateConstraints();
             }
 
             m_layer.updateConstraints();
@@ -94,10 +96,9 @@ namespace s3d::aoba {
                                     LayerDirection toDirection,
                                     double constant,
                                     double multiplier) {
-        if (!m_dependentComponents.includes_if([&component](const std::shared_ptr<UIComponent>& dependent) {
-                return dependent->id() == component.id();
-            })) {
-            m_dependentComponents.emplace_back(ComponentStorage::Get(component.id()));
+        if (!m_dependentComponents.includes_if(
+                [&component](const UIComponent& dependent) { return dependent.id() == component.id(); })) {
+            m_dependentComponents.push_back(ComponentStorage::Get(component.id()));
         }
 
         m_layer.setConstraint(direction, component.m_layer, toDirection, constant, multiplier);
