@@ -14,7 +14,7 @@ namespace s3d::aoba {
     void UIView::release() {
         UIRect::release();
 
-        for (auto& component : m_components) {
+        for (auto const component : m_components) {
             component->_destroy();
         }
 
@@ -23,17 +23,16 @@ namespace s3d::aoba {
 
     void UIView::appendComponent(const UIComponent& component) {
         // The component cannot be appended multiple times
-        assert(!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
-            return component.id() == component2->id();
-        }));
+        assert(!m_components.includes_if(
+            [&component](UIComponent* const component2) { return component.id() == component2->id(); }));
 
-        m_components.emplace_back(ComponentStorage::Get(component.id()));
+        m_components.emplace_back(ComponentStorage::Get(component.id()).get());
     }
 
     void UIView::update() {
         UIRect::update();
 
-        for (const auto& component : m_components) {
+        for (auto const component : m_components) {
             if (component->updatable()) {
                 component->update();
             }
@@ -45,7 +44,7 @@ namespace s3d::aoba {
 
         UIRect::updateLayer(scissor);
 
-        for (const auto& component : m_components) {
+        for (auto const component : m_components) {
             if (component->layerUpdatable()) {
                 component->updateLayer(m_scissorRect);
             }
@@ -67,7 +66,7 @@ namespace s3d::aoba {
     bool UIView::updateLayerIfNeeded(const Rect& scissor) {
         if (UIRect::updateLayerIfNeeded(scissor)) {
             updateScissorRect(scissor);
-            for (const auto& component : m_components) {
+            for (auto const component : m_components) {
                 if (component->exist) {
                     component->updateLayer(m_scissorRect);
                 }
@@ -75,7 +74,7 @@ namespace s3d::aoba {
             return true;
         } else {
             bool updated = false;
-            for (const auto& component : m_components) {
+            for (auto const component : m_components) {
                 if (component->exist) {
                     updated |= component->updateLayerIfNeeded(m_scissorRect);
                 }
@@ -91,7 +90,7 @@ namespace s3d::aoba {
 
         Graphics2D::SetScissorRect(m_scissorRect);
 
-        for (const auto& component : m_components) {
+        for (auto const component : m_components) {
             if (component->drawable()) {
                 component->draw();
             }
@@ -101,7 +100,7 @@ namespace s3d::aoba {
     }
 
     void UIView::_destroy() {
-        for (auto& component : m_components) {
+        for (auto const component : m_components) {
             component->_destroy();
         }
 
@@ -111,7 +110,7 @@ namespace s3d::aoba {
     void UIView::updateMouseIntersection() {
         UIRect::updateMouseIntersection();
 
-        for (const auto& component : m_components) {
+        for (auto const component : m_components) {
             if (component->eventUpdatable()) {
                 component->updateMouseIntersection();
             }
@@ -121,7 +120,7 @@ namespace s3d::aoba {
     void UIView::updateInputEvents() {
         UIRect::updateInputEvents();
 
-        for (const auto& component : m_components) {
+        for (auto const component : m_components) {
             if (component->eventUpdatable()) {
                 component->updateInputEvents();
             }
