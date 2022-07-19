@@ -61,11 +61,6 @@ namespace s3d::aoba {
         bool penetrateMouseEvent = false;
         bool tooltipDisabled     = false;
 
-        // Whether the component exists.
-        // If false, all calculation is skipped.
-        // In short, the component is not shown and the layer is not updated.
-        bool existence = true;
-
         // Whether the component is hidden.
         bool hidden = false;
 
@@ -142,19 +137,22 @@ namespace s3d::aoba {
             return m_FocusedComponentId && m_FocusedComponentId == m_id;
         }
 
+        // Whether the component is not hidden.
         bool isUpdatable() const noexcept {
-            return existence;
+            return !hidden;
         }
 
+        // Whether the component is not hidden and is inside the region of the parent view.
         bool isDrawable() const noexcept {
             const bool insideRegion =
                 m_layer.top() <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
                 && m_layer.left() <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
                 && m_layer.bottom() >= m_drawableRegion.y && m_layer.right() >= m_drawableRegion.x;
 
-            return isUpdatable() && !hidden && insideRegion;
+            return isUpdatable() && insideRegion;
         }
 
+        // Whether the component is drawable and controllable.
         bool isOperatable() const noexcept {
             return isDrawable() && controllable;
         }
