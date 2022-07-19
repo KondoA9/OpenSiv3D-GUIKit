@@ -6,6 +6,7 @@
 #include "InputEventHandler.hpp"
 #include "Layer.hpp"
 #include "MouseEvent.hpp"
+#include "Property.hpp"
 
 // Create InputEvent in namespace s3d::aoba::Event::Component
 #define AobaCreateEventComponent(EVENT_NAME) AobaCreateEventNSEvent(Component, EVENT_NAME)
@@ -62,7 +63,14 @@ namespace s3d::aoba {
         bool tooltipDisabled     = false;
 
         // Whether the component is hidden.
-        bool hidden = false;
+        Internal::Prop<bool> hidden = {
+            false,
+            [this](bool value) {
+                if (!value) {
+                    requestToUpdateLayer();
+                }
+            },
+        };
 
         // Whether events of the component will be fired.
         bool controllable = true;
