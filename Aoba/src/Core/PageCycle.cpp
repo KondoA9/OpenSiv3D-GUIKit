@@ -52,10 +52,6 @@ namespace s3d::aoba {
             m_currentPage->update();
         }
 
-        updateComponents();
-
-        updateLayers();
-
         // Page transition
         switch (m_pageTransition) {
         case PageTransition::StartUp:
@@ -92,6 +88,10 @@ namespace s3d::aoba {
             assert(false);
             break;
         }
+
+        updateComponents();
+
+        updateLayers();
     }
 
     void PageManager::draw() {
