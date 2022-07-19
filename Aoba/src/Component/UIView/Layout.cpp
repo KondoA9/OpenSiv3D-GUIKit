@@ -2,7 +2,7 @@
 
 namespace s3d::aoba {
     namespace Internal {
-        void LayoutSingle(UIComponent& parent, Layout::Internal::ILayout* const child, bool isHorizontal) {
+        void LayoutSingle(UIComponent& parent, Layout::LayoutProxy&& child, bool isHorizontal) {
             auto& component = child->component;
 
             const auto startingEdge           = isHorizontal ? LayerDirection::Left : LayerDirection::Top;
@@ -11,36 +11,43 @@ namespace s3d::aoba {
             const auto otherAlignStartingEdge = isHorizontal ? LayerDirection::Top : LayerDirection::Left;
             const auto otherAlignEndingEdge   = isHorizontal ? LayerDirection::Bottom : LayerDirection::Right;
 
-            component.setConstraint(otherAlignStartingEdge, parent, otherAlignStartingEdge);
-            component.setConstraint(otherAlignEndingEdge, parent, otherAlignEndingEdge);
-            component.setConstraint(startingEdge, parent, startingEdge);
+            component.setConstraint(
+                startingEdge, parent, startingEdge, isHorizontal ? child.margin().left : child.margin().top);
+            component.setConstraint(otherAlignStartingEdge,
+                                    parent,
+                                    otherAlignStartingEdge,
+                                    isHorizontal ? child.margin().top : child.margin().left);
+            component.setConstraint(otherAlignEndingEdge,
+                                    parent,
+                                    otherAlignEndingEdge,
+                                    -(isHorizontal ? child.margin().bottom : child.margin().right));
 
             switch (child->type) {
                 using Layout::Internal::ILayout;
 
             case ILayout::Type::Constant:
-                component.setConstraint(sizeDirection, static_cast<Layout::Constant*>(child)->constant);
+                component.setConstraint(sizeDirection, child.as<Layout::Constant>().constant);
                 break;
 
             case ILayout::Type::Function:
                 component.setConstraint(sizeDirection,
-                                        static_cast<Layout::Function*>(child)->func,
-                                        static_cast<Layout::Function*>(child)->constant,
-                                        static_cast<Layout::Function*>(child)->multiplier);
+                                        child.as<Layout::Function>().func,
+                                        child.as<Layout::Function>().constant,
+                                        child.as<Layout::Function>().multiplier);
                 break;
 
             case ILayout::Type::Percent:
-                component.setConstraint(
-                    sizeDirection, parent, sizeDirection, 0.0, static_cast<Layout::Ratio*>(child)->ratio);
+                component.setConstraint(sizeDirection, parent, sizeDirection, 0.0, child.as<Layout::Ratio>().ratio);
                 break;
 
             case ILayout::Type::Fill:
-                component.setConstraint(endingEdge, parent, endingEdge);
+                component.setConstraint(
+                    endingEdge, parent, endingEdge, -(isHorizontal ? child.margin().right : child.margin().bottom));
                 break;
             }
         }
 
-        void LayoutMulti(UIComponent& parent, Array<LayoutType>&& children, bool isHorizontal) {
+        void LayoutMulti(UIComponent& parent, Array<Layout::LayoutProxy>&& children, bool isHorizontal) {
             const auto startingEdge           = isHorizontal ? LayerDirection::Left : LayerDirection::Top;
             const auto endingEdge             = isHorizontal ? LayerDirection::Right : LayerDirection::Bottom;
             const auto sizeDirection          = isHorizontal ? LayerDirection::Width : LayerDirection::Height;
@@ -55,61 +62,83 @@ namespace s3d::aoba {
                 auto& component = children[i]->component;
 
                 // Set other align constraints
-                component.setConstraint(otherAlignStartingEdge, parent, otherAlignStartingEdge);
-                component.setConstraint(otherAlignEndingEdge, parent, otherAlignEndingEdge);
+                component.setConstraint(otherAlignStartingEdge,
+                                        parent,
+                                        otherAlignStartingEdge,
+                                        isHorizontal ? children[i].margin().top : children[i].margin().left);
+                component.setConstraint(otherAlignEndingEdge,
+                                        parent,
+                                        otherAlignEndingEdge,
+                                        -(isHorizontal ? children[i].margin().bottom : children[i].margin().right));
 
                 // Set starting edge constraint
                 if (inverse) {
                     if (i == children.size() - 1) {
-                        component.setConstraint(endingEdge, parent, endingEdge);
+                        component.setConstraint(
+                            endingEdge,
+                            parent,
+                            endingEdge,
+                            -(isHorizontal ? children[i].margin().right : children[i].margin().bottom));
                     } else {
-                        component.setConstraint(endingEdge, children[i + 1]->component, startingEdge);
+                        const auto margin = isHorizontal
+                                                ? Abs(children[i + 1].margin().left - children[i].margin().right)
+                                                : Abs(children[i + 1].margin().top - children[i].margin().bottom);
+                        component.setConstraint(endingEdge, children[i + 1]->component, startingEdge, -margin);
                     }
                 } else {
                     if (i == 0) {
-                        component.setConstraint(startingEdge, parent, startingEdge);
+                        component.setConstraint(startingEdge,
+                                                parent,
+                                                startingEdge,
+                                                isHorizontal ? children[i].margin().left : children[i].margin().top);
                     } else {
-                        component.setConstraint(startingEdge, children[i - 1]->component, endingEdge);
+                        const auto margin = isHorizontal
+                                                ? Abs(children[i - 1].margin().right - children[i].margin().left)
+                                                : Abs(children[i - 1].margin().bottom - children[i].margin().top);
+                        component.setConstraint(startingEdge, children[i - 1]->component, endingEdge, margin);
                     }
                 }
 
+                // Set ending edge or width / height constraint
                 switch (children[i]->type) {
                     using Layout::Internal::ILayout;
 
                 case ILayout::Type::Constant:
-                    component.setConstraint(sizeDirection, static_cast<Layout::Constant*>(children[i].get())->constant);
+                    component.setConstraint(sizeDirection, children[i].as<Layout::Constant>().constant);
                     break;
 
                 case ILayout::Type::Function:
                     component.setConstraint(sizeDirection,
-                                            static_cast<Layout::Function*>(children[i].get())->func,
-                                            static_cast<Layout::Function*>(children[i].get())->constant,
-                                            static_cast<Layout::Function*>(children[i].get())->multiplier);
+                                            children[i].as<Layout::Function>().func,
+                                            children[i].as<Layout::Function>().constant,
+                                            children[i].as<Layout::Function>().multiplier);
                     break;
 
                 case ILayout::Type::Percent:
-                    component.setConstraint(sizeDirection,
-                                            parent,
-                                            sizeDirection,
-                                            0.0,
-                                            static_cast<Layout::Ratio*>(children[i].get())->ratio);
+                    component.setConstraint(
+                        sizeDirection, parent, sizeDirection, 0.0, children[i].as<Layout::Ratio>().ratio);
                     break;
 
                 case ILayout::Type::Fill:
-                    if (inverse) {
-                        if (i == children.size() - 1) {
-                            component.setConstraint(startingEdge, children[i - 1]->component, endingEdge);
-                        } else {
-                            component.setConstraint(startingEdge, children[i - 1]->component, endingEdge);
-                        }
+                    // Fill is only one in the align
+                    assert(!inverse);
+
+                    if (i == children.size() - 1) {
+                        component.setConstraint(
+                            endingEdge,
+                            parent,
+                            endingEdge,
+                            -(isHorizontal ? children[i].margin().right : children[i].margin().bottom));
+                    } else if (i == 0) {
+                        const auto margin = isHorizontal
+                                                ? Abs(children[i + 1].margin().left - children[i].margin().right)
+                                                : Abs(children[i + 1].margin().top - children[i].margin().bottom);
+                        component.setConstraint(endingEdge, children[i + 1]->component, startingEdge, -margin);
                     } else {
-                        if (i == children.size() - 1) {
-                            component.setConstraint(endingEdge, parent, endingEdge);
-                        } else if (i == 0) {
-                            component.setConstraint(endingEdge, children[i + 1]->component, startingEdge);
-                        } else {
-                            component.setConstraint(endingEdge, children[i + 1]->component, startingEdge);
-                        }
+                        const auto margin = isHorizontal
+                                                ? Abs(children[i + 1].margin().left - children[i].margin().right)
+                                                : Abs(children[i + 1].margin().top - children[i].margin().bottom);
+                        component.setConstraint(endingEdge, children[i + 1]->component, startingEdge, -margin);
                     }
 
                     inverseIndex = i;
@@ -133,10 +162,10 @@ namespace s3d::aoba {
             }
         }
 
-        UIView& Layout(UIView& self, Array<LayoutType>&& children, bool isHorizontal) {
+        UIView& Layout(UIView& self, Array<Layout::LayoutProxy>&& children, bool isHorizontal) {
             if (!children.isEmpty()) {
                 if (children.size() == 1) {
-                    LayoutSingle(self, children[0].get(), isHorizontal);
+                    LayoutSingle(self, std::move(children[0]), isHorizontal);
                 } else {
                     LayoutMulti(self, std::move(children), isHorizontal);
                 }
@@ -146,12 +175,12 @@ namespace s3d::aoba {
     }
 
     template <>
-    UIView& UIView::layout<Layout::AlignHorizontal>(Array<LayoutType>&& children) {
+    UIView& UIView::layout<Layout::AlignHorizontal>(Array<Layout::LayoutProxy>&& children) {
         return Internal::Layout(*this, std::move(children), true);
     }
 
     template <>
-    UIView& UIView::layout<Layout::AlignVertical>(Array<LayoutType>&& children) {
+    UIView& UIView::layout<Layout::AlignVertical>(Array<Layout::LayoutProxy>&& children) {
         return Internal::Layout(*this, std::move(children), false);
     }
 }

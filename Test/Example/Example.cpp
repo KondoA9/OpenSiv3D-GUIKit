@@ -177,11 +177,13 @@ private:
 
 protected:
     void onLoaded() override {
-        view.layout<aoba::AlignV>(
-            {aoba::LOFill(m_uiTitle), aoba::LOConstant(m_uiInputField, 100_px), aoba::LOConstant(m_uiButton, 100_px)});
+        view.layout<aoba::AlignV>({aoba::LOFill(m_uiTitle).margin(20_px, 40_px, 60_px, 80_px),
+                                   aoba::LOConstant(m_uiInputField, 100_px),
+                                   aoba::LOConstant(m_uiButton, 100_px).margin(40_px, 30_px, 20_px, 10_px)});
 
         registerKeyShortcut(KeySpace, [] { Print << U"Page shortcut: space"; });
 
+        m_uiTitle.backgroundColor = aoba::MaterialColor::Blue0;
         m_uiTitle.setText(U"This is the example application of Aoba.");
         m_uiTitle.setFont(aoba::UnifiedFontStyle::Header);
         m_uiTitle.setDirection(aoba::TextDirection::Center);

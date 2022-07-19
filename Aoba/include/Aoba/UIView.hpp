@@ -47,7 +47,7 @@ namespace s3d::aoba {
         template <class T,
                   typename = typename std::enable_if<std::is_same<T, Layout::AlignHorizontal>::value
                                                      || std::is_same<T, Layout::AlignVertical>::value>::type>
-        UIView& layout(Array<LayoutType>&& children);
+        UIView& layout(Array<Layout::LayoutProxy>&& children);
 
     protected:
         // This function runs after a component appended. gui::Factory::Create<UIComponent>(this);
