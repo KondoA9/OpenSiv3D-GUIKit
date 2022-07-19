@@ -1,6 +1,5 @@
 ﻿#include "ComponentStorage.hpp"
 
-#include "src/Algorithm/Algorithm.hpp"
 #include "src/AobaLog/AobaLog.hpp"
 
 // ComponentStorage::m_components and ComponentStorage::m_isolatedComponents are sorted when a new component is

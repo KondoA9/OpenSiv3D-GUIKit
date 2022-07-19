@@ -2,13 +2,12 @@
 
 #include <Siv3D.hpp>
 
-#include "Core.hpp"
 #include "UIView.hpp"
 
 namespace s3d::aoba {
     class UIComponent;
 
-    class Factory {
+    class Factory final {
     private:
         size_t m_id = 0;
 

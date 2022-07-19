@@ -3,7 +3,7 @@
 #include "Aoba/UIComponent.hpp"
 
 namespace s3d::aoba {
-    class ComponentStorage {
+    class ComponentStorage final {
     private:
         Array<std::unique_ptr<UIComponent>> m_components;
         Array<std::unique_ptr<UIComponent>> m_isolatedComponents;
