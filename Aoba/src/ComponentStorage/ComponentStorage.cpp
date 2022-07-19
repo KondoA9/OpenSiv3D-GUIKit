@@ -15,14 +15,15 @@ namespace s3d::aoba {
                 components, id, [](const std::shared_ptr<UIComponent>& component) { return component->id(); });
         }
 
-        void InsertComponent(Array<std::shared_ptr<UIComponent>>& sortedArray,
-                             const std::shared_ptr<UIComponent>& component) {
+        const std::shared_ptr<UIComponent>& InsertComponent(Array<std::shared_ptr<UIComponent>>& sortedArray,
+                                                            const std::shared_ptr<UIComponent>&& component) {
             const auto index = Algorithm::FindLowerElement<std::shared_ptr<UIComponent>>(
                 sortedArray, component->id(), [](const std::shared_ptr<UIComponent>& component) {
                     return component->id();
                 });
 
             sortedArray.insert(sortedArray.begin() + index, component);
+            return sortedArray[index];
         }
 
         void ReleaseComponent(Array<std::shared_ptr<UIComponent>>& componentsArray, size_t id) {
@@ -65,14 +66,14 @@ namespace s3d::aoba {
                || Internal::FindComponentById(Instance().m_isolatedComponents, id).has_value();
     }
 
-    void ComponentStorage::Store(const std::shared_ptr<UIComponent>& component) {
+    const std::shared_ptr<UIComponent>& ComponentStorage::Store(std::shared_ptr<UIComponent>&& component) {
         // Insert the component in ascending order
-        Internal::InsertComponent(Instance().m_components, component);
+        return Internal::InsertComponent(Instance().m_components, std::move(component));
     }
 
-    void ComponentStorage::StoreIsolated(const std::shared_ptr<UIComponent>& component) {
+    const std::shared_ptr<UIComponent>& ComponentStorage::StoreIsolated(std::shared_ptr<UIComponent>&& component) {
         // Insert the component in ascending order
-        Internal::InsertComponent(Instance().m_isolatedComponents, component);
+        return Internal::InsertComponent(Instance().m_isolatedComponents, std::move(component));
     }
 
     void ComponentStorage::Release(size_t id) {

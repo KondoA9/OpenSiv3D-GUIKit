@@ -72,8 +72,8 @@ namespace s3d::aoba {
 
         size_t createId();
 
-        const std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
+        const std::shared_ptr<UIComponent>& storeComponent(std::shared_ptr<UIComponent>&& component);
 
-        const std::shared_ptr<UIComponent>& storeIsolatedComponent(const std::shared_ptr<UIComponent>& component);
+        const std::shared_ptr<UIComponent>& storeIsolatedComponent(std::shared_ptr<UIComponent>&& component);
     };
 }
