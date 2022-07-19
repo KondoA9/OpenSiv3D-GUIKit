@@ -19,12 +19,16 @@ namespace s3d::aoba {
 
         static const std::shared_ptr<UIComponent>& Get(size_t id);
 
-        static const Array<std::shared_ptr<UIComponent>>& GetComponents() {
-            return Instance().m_components;
+        static void MapComponents(const std::function<void(UIComponent&)>& func) {
+            for (const auto& component : Instance().m_components) {
+                func(*component);
+            }
         }
 
-        static const Array<std::shared_ptr<UIComponent>>& GetIsolatedComponents() {
-            return Instance().m_isolatedComponents;
+        static void MapIsolatedComponents(const std::function<void(UIComponent&)>& func) {
+            for (const auto& component : Instance().m_isolatedComponents) {
+                func(*component);
+            }
         }
 
         static bool Has(size_t id);
