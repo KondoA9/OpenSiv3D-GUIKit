@@ -68,6 +68,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\PixelUnit.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Property.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UICheckBox.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\UICircle.hpp" />

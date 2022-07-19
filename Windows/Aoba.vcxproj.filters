@@ -121,6 +121,9 @@
     <Filter Include="Aoba\Algorithm">
       <UniqueIdentifier>{28abd0fe-ff8d-4be7-89ed-f46e0804d8f8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\Property">
+      <UniqueIdentifier>{d8167679-043b-4603-8e2c-b6f99edabcbc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\src\Algorithm\Algorithm.hpp">
       <Filter>Aoba\Algorithm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\include\Aoba\Property.hpp">
+      <Filter>Aoba\Property</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
