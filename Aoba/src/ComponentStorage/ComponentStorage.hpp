@@ -5,8 +5,8 @@
 namespace s3d::aoba {
     class ComponentStorage {
     private:
-        Array<std::shared_ptr<UIComponent>> m_components;
-        Array<std::shared_ptr<UIComponent>> m_isolatedComponents;
+        Array<std::unique_ptr<UIComponent>> m_components;
+        Array<std::unique_ptr<UIComponent>> m_isolatedComponents;
 
     public:
         ComponentStorage(const ComponentStorage&) = delete;
@@ -33,9 +33,9 @@ namespace s3d::aoba {
 
         static bool Has(size_t id);
 
-        static UIComponent& Store(std::shared_ptr<UIComponent>&& component);
+        static UIComponent& Store(std::unique_ptr<UIComponent>&& component);
 
-        static UIComponent& StoreIsolated(std::shared_ptr<UIComponent>&& component);
+        static UIComponent& StoreIsolated(std::unique_ptr<UIComponent>&& component);
 
         static void Release(size_t id);
 
@@ -45,5 +45,11 @@ namespace s3d::aoba {
         ~ComponentStorage() = default;
 
         static ComponentStorage& Instance();
+
+        Optional<size_t> findComponentById(size_t id, bool isolated);
+
+        UIComponent& insertComponent(std::unique_ptr<UIComponent>&& component, bool isolated);
+
+        void releaseComponent(size_t id, bool isolated);
     };
 }

@@ -64,16 +64,16 @@ namespace s3d::aoba {
 #endif
 
             if (isolated) {
-                return static_cast<T&>(Instance().storeIsolatedComponent(std::shared_ptr<T>(new T(id))));
+                return static_cast<T&>(Instance().storeIsolatedComponent(std::unique_ptr<T>(new T(id))));
             } else {
-                return static_cast<T&>(Instance().storeComponent(std::shared_ptr<T>(new T(id))));
+                return static_cast<T&>(Instance().storeComponent(std::unique_ptr<T>(new T(id))));
             }
         }
 
         size_t createId();
 
-        UIComponent& storeComponent(std::shared_ptr<UIComponent>&& component);
+        UIComponent& storeComponent(std::unique_ptr<UIComponent>&& component);
 
-        UIComponent& storeIsolatedComponent(std::shared_ptr<UIComponent>&& component);
+        UIComponent& storeIsolatedComponent(std::unique_ptr<UIComponent>&& component);
     };
 }
