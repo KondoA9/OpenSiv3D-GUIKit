@@ -12,13 +12,13 @@ namespace s3d::aoba {
     }
 
     void UIView::release() {
-        UIRect::release();
-
         for (auto const component : m_components) {
             component->_destroy();
         }
 
         m_components.release();
+
+        UIRect::release();
     }
 
     void UIView::appendComponent(const UIComponent& component) {
@@ -103,6 +103,8 @@ namespace s3d::aoba {
         for (auto const component : m_components) {
             component->_destroy();
         }
+
+        m_components.release();
 
         UIRect::_destroy();
     }

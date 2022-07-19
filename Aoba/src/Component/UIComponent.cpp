@@ -11,9 +11,7 @@ namespace s3d::aoba {
     UIComponent::UIComponent(size_t id) :
         backgroundColor(DynamicColor::BackgroundSecondary), frameColor(DynamicColor::Separator), m_id(id) {}
 
-    UIComponent::~UIComponent() {
-        _destroy();
-    }
+    UIComponent::~UIComponent() {}
 
     void UIComponent::_destroy() {
         release();
