@@ -24,18 +24,18 @@ namespace s3d::aoba {
         return Instance().m_id++;
     }
 
-    const std::shared_ptr<UIComponent>& Factory::storeComponent(std::shared_ptr<UIComponent>&& component) {
-        const auto& storedComponent = ComponentStorage::Store(std::move(component));
+    UIComponent& Factory::storeComponent(std::shared_ptr<UIComponent>&& component) {
+        auto& storedComponent = ComponentStorage::Store(std::move(component));
 
-        storedComponent->initialize();
+        storedComponent.initialize();
 
         return storedComponent;
     }
 
-    const std::shared_ptr<UIComponent>& Factory::storeIsolatedComponent(std::shared_ptr<UIComponent>&& component) {
-        const auto& storedComponent = ComponentStorage::StoreIsolated(std::move(component));
+    UIComponent& Factory::storeIsolatedComponent(std::shared_ptr<UIComponent>&& component) {
+        auto& storedComponent = ComponentStorage::StoreIsolated(std::move(component));
 
-        storedComponent->initialize();
+        storedComponent.initialize();
 
         return storedComponent;
     }

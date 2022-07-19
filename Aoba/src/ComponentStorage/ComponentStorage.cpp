@@ -15,15 +15,15 @@ namespace s3d::aoba {
                 components, id, [](const std::shared_ptr<UIComponent>& component) { return component->id(); });
         }
 
-        const std::shared_ptr<UIComponent>& InsertComponent(Array<std::shared_ptr<UIComponent>>& sortedArray,
-                                                            const std::shared_ptr<UIComponent>&& component) {
+        UIComponent& InsertComponent(Array<std::shared_ptr<UIComponent>>& sortedArray,
+                                     const std::shared_ptr<UIComponent>&& component) {
             const auto index = Algorithm::FindLowerElement<std::shared_ptr<UIComponent>>(
                 sortedArray, component->id(), [](const std::shared_ptr<UIComponent>& component) {
                     return component->id();
                 });
 
             sortedArray.insert(sortedArray.begin() + index, component);
-            return sortedArray[index];
+            return *sortedArray[index];
         }
 
         void ReleaseComponent(Array<std::shared_ptr<UIComponent>>& componentsArray, size_t id) {
@@ -66,12 +66,12 @@ namespace s3d::aoba {
                || Internal::FindComponentById(Instance().m_isolatedComponents, id).has_value();
     }
 
-    const std::shared_ptr<UIComponent>& ComponentStorage::Store(std::shared_ptr<UIComponent>&& component) {
+    UIComponent& ComponentStorage::Store(std::shared_ptr<UIComponent>&& component) {
         // Insert the component in ascending order
         return Internal::InsertComponent(Instance().m_components, std::move(component));
     }
 
-    const std::shared_ptr<UIComponent>& ComponentStorage::StoreIsolated(std::shared_ptr<UIComponent>&& component) {
+    UIComponent& ComponentStorage::StoreIsolated(std::shared_ptr<UIComponent>&& component) {
         // Insert the component in ascending order
         return Internal::InsertComponent(Instance().m_isolatedComponents, std::move(component));
     }
