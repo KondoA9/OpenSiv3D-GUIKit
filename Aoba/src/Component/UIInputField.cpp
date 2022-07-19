@@ -107,7 +107,7 @@ namespace s3d::aoba {
     void UIInputField::setText(StringView str) {
         UIText::setText(str);
         if (ui_Warning) {
-            ui_Warning->exist = false;
+            ui_Warning->existence = false;
         }
     }
 
@@ -254,12 +254,12 @@ namespace s3d::aoba {
 
         Core::StopTimeout(m_WarningTimeoutID);
 
-        ui_Warning->exist = true;
+        ui_Warning->existence = true;
         ui_Warning->setConstraint(LayerDirection::Top, [this] { return m_fieldRect.y + m_fieldRect.h + 3_px; });
         ui_Warning->setConstraint(LayerDirection::Height, 30_px);
         ui_Warning->setConstraint(LayerDirection::CenterX, *this, LayerDirection::CenterX);
         ui_Warning->setConstraint(LayerDirection::Width, 250_px);
-        m_WarningTimeoutID = Core::SetTimeout([] { ui_Warning->exist = false; }, 3000, false);
+        m_WarningTimeoutID = Core::SetTimeout([] { ui_Warning->existence = false; }, 3000, false);
 
         registerInputEvent(Event::Component::InputField::ForbiddenCharInputted(this, false));
     }

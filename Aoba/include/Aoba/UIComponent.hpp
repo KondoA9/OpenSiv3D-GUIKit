@@ -59,8 +59,18 @@ namespace s3d::aoba {
         double frameThickness = 1.0;
         bool fillInner = true, drawFrame = false;
         bool penetrateMouseEvent = false;
-        bool hidden = false, exist = true, controllable = true;
-        bool tooltipDisabled = false;
+        bool tooltipDisabled     = false;
+
+        // Whether the component exists.
+        // If false, all calculation is skipped.
+        // In short, the component is not shown and the layer is not updated.
+        bool existence = true;
+
+        // Whether the component is hidden.
+        bool hidden = false;
+
+        // Whether events of the component will be fired.
+        bool controllable = true;
 
     private:
         static Optional<size_t> m_FocusedComponentId, m_PreviousFocusedComponentId;
@@ -132,25 +142,21 @@ namespace s3d::aoba {
             return m_FocusedComponentId && m_FocusedComponentId == m_id;
         }
 
-        bool updatable() const noexcept {
-            return exist;
+        bool isUpdatable() const noexcept {
+            return existence;
         }
 
-        bool layerUpdatable() const noexcept {
-            return updatable();
-        }
-
-        bool drawable() const noexcept {
+        bool isDrawable() const noexcept {
             const bool insideRegion =
                 m_layer.top() <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
                 && m_layer.left() <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
                 && m_layer.bottom() >= m_drawableRegion.y && m_layer.right() >= m_drawableRegion.x;
 
-            return updatable() && !hidden && insideRegion;
+            return isUpdatable() && !hidden && insideRegion;
         }
 
-        bool eventUpdatable() const noexcept {
-            return drawable() && controllable;
+        bool isOperatable() const noexcept {
+            return isDrawable() && controllable;
         }
 
         void requestToUpdateLayer() noexcept {

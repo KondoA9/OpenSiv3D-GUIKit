@@ -133,7 +133,7 @@ namespace s3d::aoba {
 
         // Draw isolated components
         ComponentStorage::MapIsolatedComponents([](const UIComponent& component) {
-            if (component.drawable()) {
+            if (component.isDrawable()) {
                 component.draw();
             }
         });
@@ -268,13 +268,13 @@ namespace s3d::aoba {
     }
 
     void PageManager::updateInputEvents() {
-        if (m_currentPage->view.eventUpdatable()) {
+        if (m_currentPage->view.isOperatable()) {
             m_currentPage->view.updateMouseIntersection();
             m_currentPage->view.updateInputEvents();
         }
 
         ComponentStorage::MapIsolatedComponents([](UIComponent& component) {
-            if (component.eventUpdatable()) {
+            if (component.isOperatable()) {
                 component.updateMouseIntersection();
                 component.updateInputEvents();
             }
