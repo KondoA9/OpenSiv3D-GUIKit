@@ -43,9 +43,8 @@ namespace s3d::aoba {
         return Instance().insertComponent(std::move(component), true);
     }
 
-    void ComponentStorage::Release(size_t id) {
-        Instance().releaseComponent(id, false);
-        Instance().releaseComponent(id, true);
+    bool ComponentStorage::Release(size_t id) {
+        return Instance().releaseComponent(id, false) || Instance().releaseComponent(id, true);
     }
 
     Optional<size_t> ComponentStorage::findComponentById(size_t id, bool isolated) {
@@ -106,7 +105,7 @@ namespace s3d::aoba {
         return *STORAGE_CONTAINER(isolated)[lowerIndex];
     }
 
-    void ComponentStorage::releaseComponent(size_t id, bool isolated) {
+    bool ComponentStorage::releaseComponent(size_t id, bool isolated) {
         const auto index = findComponentById(id, isolated);
         if (index.has_value()) {
 #if SIV3D_BUILD(DEBUG)
@@ -118,6 +117,8 @@ namespace s3d::aoba {
 #endif
             STORAGE_CONTAINER(isolated)[index.value()].reset();
             STORAGE_CONTAINER(isolated).remove(STORAGE_CONTAINER(isolated)[index.value()]);
+            return true;
         }
+        return false;
     }
 }

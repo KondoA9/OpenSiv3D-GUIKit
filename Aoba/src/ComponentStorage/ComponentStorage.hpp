@@ -37,7 +37,7 @@ namespace s3d::aoba {
 
         static UIComponent& StoreIsolated(std::unique_ptr<UIComponent>&& component);
 
-        static void Release(size_t id);
+        static bool Release(size_t id);
 
     private:
         ComponentStorage() = default;
@@ -50,6 +50,6 @@ namespace s3d::aoba {
 
         UIComponent& insertComponent(std::unique_ptr<UIComponent>&& component, bool isolated);
 
-        void releaseComponent(size_t id, bool isolated);
+        bool releaseComponent(size_t id, bool isolated);
     };
 }
