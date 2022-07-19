@@ -26,7 +26,7 @@ namespace s3d::aoba {
         assert(!m_components.includes_if(
             [&component](UIComponent* const component2) { return component.id() == component2->id(); }));
 
-        m_components.emplace_back(ComponentStorage::Get(component.id()).get());
+        m_components.emplace_back(&ComponentStorage::Get(component.id()));
     }
 
     void UIView::update() {

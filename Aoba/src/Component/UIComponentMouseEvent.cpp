@@ -116,11 +116,11 @@ namespace s3d::aoba {
         if (!noFocusedComponent && !noFocusEventCalled) {
             if (m_PreviousFocusedComponentId && ComponentStorage::Has(m_PreviousFocusedComponentId.value())) {
                 InputEventManager::Register(Event::Component::UnFocused(
-                    ComponentStorage::Get(m_PreviousFocusedComponentId.value()).get(), false));
+                    ComponentStorage::Get(m_PreviousFocusedComponentId.value()), false));
             }
             if (m_FocusedComponentId && ComponentStorage::Has(m_FocusedComponentId.value())) {
                 InputEventManager::Register(
-                    Event::Component::Focused(ComponentStorage::Get(m_FocusedComponentId.value()).get(), false));
+                    Event::Component::Focused(ComponentStorage::Get(m_FocusedComponentId.value()), false));
             }
         }
 

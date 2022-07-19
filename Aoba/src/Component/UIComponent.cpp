@@ -13,6 +13,10 @@ namespace s3d::aoba {
 
     UIComponent::~UIComponent() {}
 
+    void UIComponent::release() {
+        removeAllConstraints();
+    }
+
     void UIComponent::_destroy() {
         release();
         InputEventManager::Unregister(m_id);
@@ -78,7 +82,7 @@ namespace s3d::aoba {
     void UIComponent::updateConstraints() {
         if (!m_constraintsUpdatedThisFrame) {
             // Update layer of dependent components before updating self
-            for (auto& component : m_dependentComponents) {
+            for (auto const component : m_dependentComponents) {
                 component->updateConstraints();
             }
 
@@ -92,10 +96,9 @@ namespace s3d::aoba {
                                     LayerDirection toDirection,
                                     double constant,
                                     double multiplier) {
-        if (!m_dependentComponents.includes_if([&component](const std::shared_ptr<UIComponent>& dependent) {
-                return dependent->id() == component.id();
-            })) {
-            m_dependentComponents.emplace_back(ComponentStorage::Get(component.id()));
+        if (!m_dependentComponents.includes_if(
+                [&component](UIComponent* const dependent) { return dependent->id() == component.id(); })) {
+            m_dependentComponents.emplace_back(&ComponentStorage::Get(component.id()));
         }
 
         m_layer.setConstraint(direction, component.m_layer, toDirection, constant, multiplier);

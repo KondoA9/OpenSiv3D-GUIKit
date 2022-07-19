@@ -70,7 +70,7 @@ namespace s3d::aoba {
         bool m_initializedColors = false;
 
         Layer m_layer;
-        Array<std::shared_ptr<UIComponent>> m_dependentComponents;
+        Array<UIComponent*> m_dependentComponents;
         Rect m_drawableRegion              = Rect();
         bool m_constraintsUpdatedThisFrame = false;
         bool m_needToUpdateLayer           = true;
@@ -95,7 +95,7 @@ namespace s3d::aoba {
 
         virtual ~UIComponent();
 
-        virtual void release() {}
+        virtual void release();
 
         void setConstraint(LayerDirection direction,
                            UIComponent& component,

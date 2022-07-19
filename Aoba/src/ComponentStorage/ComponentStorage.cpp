@@ -48,13 +48,13 @@ namespace s3d::aoba {
         return instance;
     }
 
-    const std::shared_ptr<UIComponent>& ComponentStorage::Get(size_t id) {
+    UIComponent& ComponentStorage::Get(size_t id) {
         if (const auto& index = Internal::FindComponentById(Instance().m_components, id); index.has_value()) {
-            return Instance().m_components[index.value()];
+            return *Instance().m_components[index.value()];
         }
 
         if (const auto& index = Internal::FindComponentById(Instance().m_isolatedComponents, id); index.has_value()) {
-            return Instance().m_isolatedComponents[index.value()];
+            return *Instance().m_isolatedComponents[index.value()];
         }
 
         // this code should not be called
