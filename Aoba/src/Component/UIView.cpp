@@ -12,8 +12,8 @@ namespace s3d::aoba {
     }
 
     void UIView::release() {
-        for (auto const component : m_components) {
-            component->_destroy();
+        for (const auto& component : m_components) {
+            component.get()._destroy();
         }
 
         m_components.release();
@@ -24,17 +24,17 @@ namespace s3d::aoba {
     void UIView::appendComponent(const UIComponent& component) {
         // The component cannot be appended multiple times
         assert(!m_components.includes_if(
-            [&component](UIComponent* const component2) { return component.id() == component2->id(); }));
+            [&component](const UIComponent& component2) { return component.id() == component2.id(); }));
 
-        m_components.emplace_back(&ComponentStorage::Get(component.id()));
+        m_components.emplace_back(ComponentStorage::Get(component.id()));
     }
 
     void UIView::update() {
         UIRect::update();
 
-        for (auto const component : m_components) {
-            if (component->updatable()) {
-                component->update();
+        for (const auto& component : m_components) {
+            if (component.get().updatable()) {
+                component.get().update();
             }
         }
     }
@@ -44,9 +44,9 @@ namespace s3d::aoba {
 
         UIRect::updateLayer(scissor);
 
-        for (auto const component : m_components) {
-            if (component->layerUpdatable()) {
-                component->updateLayer(m_scissorRect);
+        for (const auto& component : m_components) {
+            if (component.get().layerUpdatable()) {
+                component.get().updateLayer(m_scissorRect);
             }
         }
     }
@@ -55,8 +55,8 @@ namespace s3d::aoba {
         updateScissorRect(scissor);
 
         for (int i = static_cast<int>(m_components.size()) - 1; i >= 0; i--) {
-            if (m_components[i]->exist) {
-                m_components[i]->updateLayer(m_scissorRect);
+            if (m_components[i].get().exist) {
+                m_components[i].get().updateLayer(m_scissorRect);
             }
         }
 
@@ -66,17 +66,17 @@ namespace s3d::aoba {
     bool UIView::updateLayerIfNeeded(const Rect& scissor) {
         if (UIRect::updateLayerIfNeeded(scissor)) {
             updateScissorRect(scissor);
-            for (auto const component : m_components) {
-                if (component->exist) {
-                    component->updateLayer(m_scissorRect);
+            for (const auto& component : m_components) {
+                if (component.get().exist) {
+                    component.get().updateLayer(m_scissorRect);
                 }
             }
             return true;
         } else {
             bool updated = false;
-            for (auto const component : m_components) {
-                if (component->exist) {
-                    updated |= component->updateLayerIfNeeded(m_scissorRect);
+            for (const auto& component : m_components) {
+                if (component.get().exist) {
+                    updated |= component.get().updateLayerIfNeeded(m_scissorRect);
                 }
             }
             return updated;
@@ -90,9 +90,9 @@ namespace s3d::aoba {
 
         Graphics2D::SetScissorRect(m_scissorRect);
 
-        for (auto const component : m_components) {
-            if (component->drawable()) {
-                component->draw();
+        for (const auto& component : m_components) {
+            if (component.get().drawable()) {
+                component.get().draw();
             }
         }
 
@@ -100,8 +100,8 @@ namespace s3d::aoba {
     }
 
     void UIView::_destroy() {
-        for (auto const component : m_components) {
-            component->_destroy();
+        for (const auto& component : m_components) {
+            component.get()._destroy();
         }
 
         m_components.release();
@@ -112,9 +112,9 @@ namespace s3d::aoba {
     void UIView::updateMouseIntersection() {
         UIRect::updateMouseIntersection();
 
-        for (auto const component : m_components) {
-            if (component->eventUpdatable()) {
-                component->updateMouseIntersection();
+        for (const auto& component : m_components) {
+            if (component.get().eventUpdatable()) {
+                component.get().updateMouseIntersection();
             }
         }
     }
@@ -122,9 +122,9 @@ namespace s3d::aoba {
     void UIView::updateInputEvents() {
         UIRect::updateInputEvents();
 
-        for (auto const component : m_components) {
-            if (component->eventUpdatable()) {
-                component->updateInputEvents();
+        for (const auto& component : m_components) {
+            if (component.get().eventUpdatable()) {
+                component.get().updateInputEvents();
             }
         }
     }
