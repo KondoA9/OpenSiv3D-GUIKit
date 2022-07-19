@@ -222,9 +222,6 @@ namespace s3d::aoba {
             return m_mouseCondition;
         }
 
-        // Do not call this in other than UIView.
-        virtual void _destroy();
-
         // Do not call this in other than UIRect or UICircle.
         void _updateMouseCondition(bool leftDown,
                                    bool leftUp,
@@ -240,6 +237,9 @@ namespace s3d::aoba {
         static void UpdateFocusEvent();
 
         virtual bool updateLayerIfNeeded(const Rect& scissor);
+
+        // Do not call this in other than UIView.
+        virtual void _destroy();
 
         void updateConstraints();
     };
