@@ -35,13 +35,13 @@ namespace s3d::aoba {
 
         // Update DragDrop
         if (m_nextPage) {
-            const auto& [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
+            const auto [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
             DragDrop::AcceptFilePaths(acceptFiles);
             DragDrop::AcceptText(acceptTexts);
         }
 
         if (m_currentPage) {
-            if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
+            if (const auto [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
                 (acceptFiles || acceptTexts) && (DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
                 m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
                 DragDrop::Clear();
