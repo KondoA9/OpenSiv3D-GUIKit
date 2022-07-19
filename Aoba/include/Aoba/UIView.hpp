@@ -29,13 +29,13 @@ namespace s3d::aoba {
             return *m_components[index];
         }
 
-        template <class T>
-        const T& getComponent(size_t index) const {
-            return static_cast<T&>(getComponent(index));
-        }
-
         UIComponent& getComponent(size_t index) {
             return *m_components[index];
+        }
+
+        template <class T>
+        const T& getComponent(size_t index) const {
+            return static_cast<const T&>(getComponent(index));
         }
 
         template <class T>
