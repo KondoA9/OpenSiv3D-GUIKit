@@ -100,7 +100,7 @@ namespace s3d::aoba {
 
         virtual ~UIComponent();
 
-        virtual void release();
+        virtual void release() {}
 
         void setConstraint(LayerDirection direction,
                            UIComponent& component,

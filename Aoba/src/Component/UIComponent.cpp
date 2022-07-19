@@ -13,10 +13,6 @@ namespace s3d::aoba {
 
     UIComponent::~UIComponent() {}
 
-    void UIComponent::release() {
-        removeAllConstraints();
-    }
-
     void UIComponent::_destroy() {
         release();
         InputEventManager::Unregister(m_id);
