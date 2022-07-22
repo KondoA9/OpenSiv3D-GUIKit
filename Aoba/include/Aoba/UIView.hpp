@@ -1,5 +1,6 @@
 ﻿#pragma once
 
+#include "Layout.hpp"
 #include "UIRect.hpp"
 
 namespace s3d::aoba {
@@ -42,6 +43,11 @@ namespace s3d::aoba {
         T& getComponent(size_t index) {
             return static_cast<T&>(getComponent(index));
         }
+
+        template <class T,
+                  typename = typename std::enable_if<std::is_same<T, Layout::AlignHorizontal>::value
+                                                     || std::is_same<T, Layout::AlignVertical>::value>::type>
+        UIView& layout(Array<Layout::LayoutProxy>&& children);
 
     protected:
         // This function runs after a component appended. gui::Factory::Create<UIComponent>(this);

@@ -28,6 +28,7 @@
     <ClCompile Include="..\Aoba\src\Component\UIText.cpp" />
     <ClCompile Include="..\Aoba\src\Component\UIToggleButton.cpp" />
     <ClCompile Include="..\Aoba\src\Component\UIView.cpp" />
+    <ClCompile Include="..\Aoba\src\Component\UIView\Layout.cpp" />
     <ClCompile Include="..\Aoba\src\Component\UIVStackView.cpp" />
     <ClCompile Include="..\Aoba\src\Constraint\Constraint.cpp" />
     <ClCompile Include="..\Aoba\src\Core\PageCycle.cpp" />
@@ -64,6 +65,7 @@
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp" />
+    <ClInclude Include="..\Aoba\include\Aoba\Layout.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEventHandler.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Page.hpp" />

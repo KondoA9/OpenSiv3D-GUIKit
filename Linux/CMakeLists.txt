@@ -49,6 +49,7 @@ add_library(aoba STATIC
 	"../Aoba/src/Component/UIText.cpp"
 	"../Aoba/src/Component/UIToggleButton.cpp"
 	"../Aoba/src/Component/UIView.cpp"
+	"../Aoba/src/Component/UIView/Layout.cpp"
 	"../Aoba/src/Component/UIVStackView.cpp"
 	
 	"../Aoba/src/ComponentStorage/ComponentStorage.cpp"
