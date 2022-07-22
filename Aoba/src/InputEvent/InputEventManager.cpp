@@ -14,10 +14,10 @@ namespace s3d::aoba {
         auto& inputEvents     = Intance().m_inputEvents;
 
         // Get handlers that are matched to called event type
-        const auto handlers = component->m_inputEventHandlers.removed_if(
+        const auto handlers = component.m_inputEventHandlers.removed_if(
             [e](const InputEventHandler& handler) { return handler.eventTypeId != e.id; });
 
-        if (e.callIfComponentInFront && !component->penetrateMouseEvent) {
+        if (e.callIfComponentInFront && !component.penetrateMouseEvent) {
             if (inputEvents && inputEvents[inputEvents.size() - 1].inputEvent.componentId != e.componentId) {
                 inputEvents = inputEvents.removed_if(
                     [](const CallableInputEvent& e) { return e.inputEvent.callIfComponentInFront; });
@@ -25,7 +25,7 @@ namespace s3d::aoba {
             inputEvents.emplace_back(e, handlers);
         } else {
             // Append handlers if event stack is empty or the component penetrates a mouse event
-            if (!inputEvents || component->penetrateMouseEvent) {
+            if (!inputEvents || component.penetrateMouseEvent) {
                 inputEvents.emplace_back(e, handlers);
             } else {
                 for (size_t i : step(inputEvents.size())) {

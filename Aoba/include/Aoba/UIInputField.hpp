@@ -49,7 +49,7 @@ namespace s3d::aoba {
                 deleteSelectedText();
             });
 
-        Optional<std::function<FormatResult(const String& str)>> m_textFormatter = none;
+        Optional<std::function<FormatResult(StringView str)>> m_textFormatter = none;
 
         bool m_textSelected           = false;
         bool m_selectingByKeyboard    = false;
@@ -74,9 +74,9 @@ namespace s3d::aoba {
             return m_fieldRect;
         }
 
-        void setText(const String& str) override;
+        void setText(StringView str) override;
 
-        void setTextFormatter(const std::function<FormatResult(const String& str)>& formatter) {
+        void setTextFormatter(const std::function<FormatResult(StringView str)>& formatter) {
             m_textFormatter = formatter;
         }
 
@@ -107,7 +107,7 @@ namespace s3d::aoba {
 
         virtual String updateText();
 
-        virtual FormatResult formatText(const String& str);
+        virtual FormatResult formatText(StringView str);
 
     private:
         void updateCursorMovement();
@@ -122,7 +122,7 @@ namespace s3d::aoba {
 
         void updateTextControls();
 
-        FormatResult formatNumber(const String& str);
+        FormatResult formatNumber(StringView str);
 
         // Controls
         void selectAllText() noexcept;

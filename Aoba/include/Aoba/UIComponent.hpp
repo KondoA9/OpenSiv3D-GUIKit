@@ -6,6 +6,7 @@
 #include "InputEventHandler.hpp"
 #include "Layer.hpp"
 #include "MouseEvent.hpp"
+#include "Property.hpp"
 
 // Create InputEvent in namespace s3d::aoba::Event::Component
 #define AobaCreateEventComponent(EVENT_NAME) AobaCreateEventNSEvent(Component, EVENT_NAME)
@@ -17,7 +18,6 @@ AobaCreateEventComponent(Focused);
 AobaCreateEventComponent(UnFocused);
 
 namespace s3d::aoba {
-    class Core;
     class Factory;
     class InputEventManager;
     class PageManager;
@@ -47,7 +47,6 @@ namespace s3d::aoba {
             }
         };
 
-        friend Core;
         friend Factory;
         friend InputEventManager;
         friend PageManager;
@@ -59,8 +58,20 @@ namespace s3d::aoba {
         double frameThickness = 1.0;
         bool fillInner = true, drawFrame = false;
         bool penetrateMouseEvent = false;
-        bool hidden = false, exist = true, controllable = true;
-        bool tooltipDisabled = false;
+        bool tooltipDisabled     = false;
+
+        // Whether the component is hidden.
+        Internal::Prop<bool> hidden = {
+            false,
+            [this](bool value) {
+                if (!value) {
+                    requestToUpdateLayer();
+                }
+            },
+        };
+
+        // Whether events of the component will be fired.
+        bool controllable = true;
 
     private:
         static Optional<size_t> m_FocusedComponentId, m_PreviousFocusedComponentId;
@@ -70,7 +81,7 @@ namespace s3d::aoba {
         bool m_initializedColors = false;
 
         Layer m_layer;
-        Array<std::shared_ptr<UIComponent>> m_dependentComponents;
+        Array<std::reference_wrapper<UIComponent>> m_dependentComponents;
         Rect m_drawableRegion              = Rect();
         bool m_constraintsUpdatedThisFrame = false;
         bool m_needToUpdateLayer           = true;
@@ -114,7 +125,7 @@ namespace s3d::aoba {
                            double constant   = 0.0,
                            double multiplier = 1.0);
 
-        void setConstraint(LayerDirection direction, double constant = 0.0, double multiplier = 1.0) noexcept;
+        void setConstraint(LayerDirection direction, double constant = 0.0) noexcept;
 
         void removeConstraint(LayerDirection direction) noexcept;
 
@@ -132,25 +143,24 @@ namespace s3d::aoba {
             return m_FocusedComponentId && m_FocusedComponentId == m_id;
         }
 
-        bool updatable() const noexcept {
-            return exist;
+        // Whether the component is not hidden.
+        bool isUpdatable() const noexcept {
+            return !hidden;
         }
 
-        bool layerUpdatable() const noexcept {
-            return updatable();
-        }
-
-        bool drawable() const noexcept {
+        // Whether the component is not hidden and is inside the region of the parent view.
+        bool isDrawable() const noexcept {
             const bool insideRegion =
                 m_layer.top() <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
                 && m_layer.left() <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
                 && m_layer.bottom() >= m_drawableRegion.y && m_layer.right() >= m_drawableRegion.x;
 
-            return updatable() && !hidden && insideRegion;
+            return isUpdatable() && insideRegion;
         }
 
-        bool eventUpdatable() const noexcept {
-            return drawable() && controllable;
+        // Whether the component is drawable and controllable.
+        bool isOperatable() const noexcept {
+            return isDrawable() && controllable;
         }
 
         void requestToUpdateLayer() noexcept {
@@ -210,10 +220,7 @@ namespace s3d::aoba {
             return m_mouseCondition;
         }
 
-        // Do not call this function if the component is not UIView
-        virtual void _destroy();
-
-        // Do not call this function if the component is not UIRect or UICircle
+        // Do not call this in other than UIRect or UICircle.
         void _updateMouseCondition(bool leftDown,
                                    bool leftUp,
                                    bool leftPress,
@@ -228,6 +235,9 @@ namespace s3d::aoba {
         static void UpdateFocusEvent();
 
         virtual bool updateLayerIfNeeded(const Rect& scissor);
+
+        // Do not call this in other than UIView.
+        virtual void _destroy();
 
         void updateConstraints();
     };

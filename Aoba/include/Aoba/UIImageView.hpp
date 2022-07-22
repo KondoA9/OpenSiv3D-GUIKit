@@ -88,16 +88,24 @@ namespace s3d::aoba {
             m_textures[index].fill(image);
         }
 
-        void updateTexture(size_t index, const Image& image, const Rect& rect) {
-            m_textures[index].fillRegion(image, rect);
-        }
-
         void updateTextureIfNotBusy(size_t index, const Image& image) {
             m_textures[index].fillIfNotBusy(image);
         }
 
+        void updateTexture(size_t index, const Image& image, const Rect& rect) {
+            const auto x = Clamp(rect.x, 0, image.width());
+            const auto y = Clamp(rect.y, 0, image.height());
+            const auto w = Clamp(rect.w, 0, image.width() - x);
+            const auto h = Clamp(rect.h, 0, image.height() - y);
+            m_textures[index].fillRegion(image, Rect{x, y, w, h});
+        }
+
         void updateTextureIfNotBusy(size_t index, const Image& image, const Rect& rect) {
-            m_textures[index].fillRegionIfNotBusy(image, rect);
+            const auto x = Clamp(rect.x, 0, image.width());
+            const auto y = Clamp(rect.y, 0, image.height());
+            const auto w = Clamp(rect.w, 0, image.width() - x);
+            const auto h = Clamp(rect.h, 0, image.height() - y);
+            m_textures[index].fillRegionIfNotBusy(image, Rect{x, y, w, h});
         }
 
         void setAlphaRate(size_t index, double rate) {

@@ -45,7 +45,7 @@ namespace s3d::aoba {
             requestToUpdateLayer();
         }
 
-        void setLabel(const String& label) {
+        void setLabel(StringView label) {
             m_uiText.setText(label);
         }
 

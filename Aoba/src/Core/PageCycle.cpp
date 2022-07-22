@@ -35,13 +35,13 @@ namespace s3d::aoba {
 
         // Update DragDrop
         if (m_nextPage) {
-            const auto& [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
+            const auto [acceptFiles, acceptTexts] = m_nextPage->isDragDropAccepted();
             DragDrop::AcceptFilePaths(acceptFiles);
             DragDrop::AcceptText(acceptTexts);
         }
 
         if (m_currentPage) {
-            if (const auto& [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
+            if (const auto [acceptFiles, acceptTexts] = m_currentPage->isDragDropAccepted();
                 (acceptFiles || acceptTexts) && (DragDrop::HasNewFilePaths() || DragDrop::HasNewText())) {
                 m_currentPage->onDragDrop(DragDrop::GetDroppedFilePaths(), DragDrop::GetDroppedText());
                 DragDrop::Clear();
@@ -51,10 +51,6 @@ namespace s3d::aoba {
         if (m_currentPage) {
             m_currentPage->update();
         }
-
-        updateComponents();
-
-        updateLayers();
 
         // Page transition
         switch (m_pageTransition) {
@@ -92,6 +88,10 @@ namespace s3d::aoba {
             assert(false);
             break;
         }
+
+        updateComponents();
+
+        updateLayers();
     }
 
     void PageManager::draw() {
@@ -132,11 +132,11 @@ namespace s3d::aoba {
         }
 
         // Draw isolated components
-        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-            if (component->drawable()) {
-                component->draw();
+        ComponentStorage::MapIsolatedComponents([](const UIComponent& component) {
+            if (component.isDrawable()) {
+                component.draw();
             }
-        }
+        });
     }
 
     bool PageManager::updateOnStartUp() {
@@ -227,9 +227,7 @@ namespace s3d::aoba {
             m_previousPage->view.update();
         }
 
-		for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-            component->update();
-        }
+        ComponentStorage::MapIsolatedComponents([](UIComponent& component) { component.update(); });
     }
 
     void PageManager::updateLayers() {
@@ -249,9 +247,8 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerInvert(m_windowScissorRect);
             }
 
-            for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-                component->updateLayer(m_windowScissorRect);
-            }
+            ComponentStorage::MapIsolatedComponents(
+                [this](UIComponent& component) { component.updateLayer(m_windowScissorRect); });
         } else {
             if (m_nextPage) {
                 m_nextPage->view.updateLayerIfNeeded(m_windowScissorRect);
@@ -265,24 +262,23 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
             }
 
-            for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-                component->updateLayerIfNeeded(m_windowScissorRect);
-            }
+            ComponentStorage::MapIsolatedComponents(
+                [this](UIComponent& component) { component.updateLayerIfNeeded(m_windowScissorRect); });
         }
     }
 
     void PageManager::updateInputEvents() {
-        if (m_currentPage->view.eventUpdatable()) {
+        if (m_currentPage->view.isOperatable()) {
             m_currentPage->view.updateMouseIntersection();
             m_currentPage->view.updateInputEvents();
         }
 
-        for (auto& component : ComponentStorage::GetIsolatedComponents()) {
-            if (component->eventUpdatable()) {
-                component->updateMouseIntersection();
-                component->updateInputEvents();
+        ComponentStorage::MapIsolatedComponents([](UIComponent& component) {
+            if (component.isOperatable()) {
+                component.updateMouseIntersection();
+                component.updateInputEvents();
             }
-        }
+        });
 
         InputEventManager::Call();
     }

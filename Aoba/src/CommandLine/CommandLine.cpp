@@ -5,7 +5,7 @@
 #endif
 
 namespace s3d::CLI {
-    bool Execute(const String& command) {
+    bool Execute(StringView command) {
 #if SIV3D_PLATFORM(WINDOWS)
         return Execute(command, WindowType::Hide, true, none);
 #else
@@ -14,7 +14,7 @@ namespace s3d::CLI {
     }
 
 #if SIV3D_PLATFORM(WINDOWS)
-    bool Execute(const String& command,
+    bool Execute(StringView command,
                  WindowType windowType,
                  bool waitProcessTermination,
                  const Optional<String>& currentDirectory) {
@@ -53,7 +53,7 @@ namespace s3d::CLI {
     }
 #endif
 
-    bool Curl(const String& url, const FilePath& output, bool createDirectories) {
+    bool Curl(StringView url, const FilePath& output, bool createDirectories) {
         bool result = true;
 
         if (createDirectories) {

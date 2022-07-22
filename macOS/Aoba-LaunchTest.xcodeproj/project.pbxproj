@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 53;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -39,7 +39,9 @@
 		9E32BE8026F85ABD0065D9ED /* libopusfile.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7E26F85ABD0065D9ED /* libopusfile.a */; };
 		9E32BE8126F85ABD0065D9ED /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE7F26F85ABD0065D9ED /* libopus.a */; };
 		9E32BE8326F85BCC0065D9ED /* libcurl.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E32BE8226F85BC10065D9ED /* libcurl.tbd */; };
-		9E41CB7026A97BB300F739A9 /* LaunchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */; };
+		9E3E827C287D1B06005FD3C9 /* GUITest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3E8278287D1B06005FD3C9 /* GUITest.cpp */; };
+		9E3E827D287D1B06005FD3C9 /* LaunchTest.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3E8279287D1B06005FD3C9 /* LaunchTest.cpp */; };
+		9E3E827E287D1B06005FD3C9 /* Test.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9E3E827A287D1B06005FD3C9 /* Test.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +53,7 @@
 		2CE5C855237FDE3900082EEC /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		2CE5C857237FDE4600082EEC /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
 		2CE5C859237FDE5100082EEC /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
-		9E0A9A64269C3BD7001A95DA /* libaoba.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libaoba.a"; path = "build/Release/libaoba.a"; sourceTree = "<group>"; };
+		9E0A9A64269C3BD7001A95DA /* libaoba.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libaoba.a; path = build/Release/libaoba.a; sourceTree = "<group>"; };
 		9E1AB8DC26A00BB200235A6A /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = ../App/icon.icns; sourceTree = "<group>"; };
 		9E1AB94126A00DCF00235A6A /* engine */ = {isa = PBXFileReference; lastKnownFileType = folder; name = engine; path = ../App/resources/engine; sourceTree = "<group>"; };
 		9E1AB96026A00E6300235A6A /* libboost_filesystem.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libboost_filesystem.a; path = ../Dependencies/lib/macOS/boost/libboost_filesystem.a; sourceTree = "<group>"; };
@@ -77,11 +79,16 @@
 		9E32BE7E26F85ABD0065D9ED /* libopusfile.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopusfile.a; path = ../Dependencies/lib/macOS/opus/libopusfile.a; sourceTree = "<group>"; };
 		9E32BE7F26F85ABD0065D9ED /* libopus.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libopus.a; path = ../Dependencies/lib/macOS/opus/libopus.a; sourceTree = "<group>"; };
 		9E32BE8226F85BC10065D9ED /* libcurl.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libcurl.tbd; path = usr/lib/libcurl.tbd; sourceTree = SDKROOT; };
-		9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaunchTest.cpp; sourceTree = "<group>"; };
-		9E41CB6C26A97BB300F739A9 /* PagingTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PagingTest.h; sourceTree = "<group>"; };
-		9E41CB6D26A97BB300F739A9 /* Test.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Test.h; sourceTree = "<group>"; };
-		9E41CB6E26A97BB300F739A9 /* ComponentsTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComponentsTest.h; sourceTree = "<group>"; };
-		9E41CB6F26A97BB300F739A9 /* FocusTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FocusTest.h; sourceTree = "<group>"; };
+		9E3E8270287D1B06005FD3C9 /* UnitTest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = UnitTest.hpp; sourceTree = "<group>"; };
+		9E3E8271287D1B06005FD3C9 /* IsMainThread.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = IsMainThread.hpp; sourceTree = "<group>"; };
+		9E3E8274287D1B06005FD3C9 /* LifeCycleTestPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = LifeCycleTestPage.hpp; sourceTree = "<group>"; };
+		9E3E8275287D1B06005FD3C9 /* FocusTestPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = FocusTestPage.hpp; sourceTree = "<group>"; };
+		9E3E8276287D1B06005FD3C9 /* ComponentsTestPage.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = ComponentsTestPage.hpp; sourceTree = "<group>"; };
+		9E3E8277287D1B06005FD3C9 /* GUITest.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = GUITest.hpp; sourceTree = "<group>"; };
+		9E3E8278287D1B06005FD3C9 /* GUITest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = GUITest.cpp; sourceTree = "<group>"; };
+		9E3E8279287D1B06005FD3C9 /* LaunchTest.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LaunchTest.cpp; sourceTree = "<group>"; };
+		9E3E827A287D1B06005FD3C9 /* Test.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Test.cpp; sourceTree = "<group>"; };
+		9E3E827B287D1B06005FD3C9 /* Test.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Test.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +135,7 @@
 		2C1778791CE0A9D800BB8AD0 = {
 			isa = PBXGroup;
 			children = (
-				9E41CB6A26A97BB300F739A9 /* LaunchTest */,
+				9E3E826E287D1B06005FD3C9 /* LaunchTest */,
 				9E1AB94126A00DCF00235A6A /* engine */,
 				2C1778921CE0A9EA00BB8AD0 /* Info.plist */,
 				9E1AB8DC26A00BB200235A6A /* icon.icns */,
@@ -182,17 +189,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9E41CB6A26A97BB300F739A9 /* LaunchTest */ = {
+		9E3E826E287D1B06005FD3C9 /* LaunchTest */ = {
 			isa = PBXGroup;
 			children = (
-				9E41CB6B26A97BB300F739A9 /* LaunchTest.cpp */,
-				9E41CB6C26A97BB300F739A9 /* PagingTest.h */,
-				9E41CB6D26A97BB300F739A9 /* Test.h */,
-				9E41CB6E26A97BB300F739A9 /* ComponentsTest.h */,
-				9E41CB6F26A97BB300F739A9 /* FocusTest.h */,
+				9E3E826F287D1B06005FD3C9 /* UnitTest */,
+				9E3E8272287D1B06005FD3C9 /* GUITest */,
+				9E3E8279287D1B06005FD3C9 /* LaunchTest.cpp */,
+				9E3E827A287D1B06005FD3C9 /* Test.cpp */,
+				9E3E827B287D1B06005FD3C9 /* Test.hpp */,
 			);
 			name = LaunchTest;
 			path = ../Test/LaunchTest;
+			sourceTree = "<group>";
+		};
+		9E3E826F287D1B06005FD3C9 /* UnitTest */ = {
+			isa = PBXGroup;
+			children = (
+				9E3E8270287D1B06005FD3C9 /* UnitTest.hpp */,
+				9E3E8271287D1B06005FD3C9 /* IsMainThread.hpp */,
+			);
+			path = UnitTest;
+			sourceTree = "<group>";
+		};
+		9E3E8272287D1B06005FD3C9 /* GUITest */ = {
+			isa = PBXGroup;
+			children = (
+				9E3E8273287D1B06005FD3C9 /* Page */,
+				9E3E8277287D1B06005FD3C9 /* GUITest.hpp */,
+				9E3E8278287D1B06005FD3C9 /* GUITest.cpp */,
+			);
+			path = GUITest;
+			sourceTree = "<group>";
+		};
+		9E3E8273287D1B06005FD3C9 /* Page */ = {
+			isa = PBXGroup;
+			children = (
+				9E3E8274287D1B06005FD3C9 /* LifeCycleTestPage.hpp */,
+				9E3E8275287D1B06005FD3C9 /* FocusTestPage.hpp */,
+				9E3E8276287D1B06005FD3C9 /* ComponentsTestPage.hpp */,
+			);
+			path = Page;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -221,6 +257,7 @@
 		2C17787A1CE0A9D800BB8AD0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1250;
 				TargetAttributes = {
 					2C1778831CE0A9EA00BB8AD0 = {
@@ -263,7 +300,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9E41CB7026A97BB300F739A9 /* LaunchTest.cpp in Sources */,
+				9E3E827E287D1B06005FD3C9 /* Test.cpp in Sources */,
+				9E3E827D287D1B06005FD3C9 /* LaunchTest.cpp in Sources */,
+				9E3E827C287D1B06005FD3C9 /* GUITest.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -302,11 +341,9 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-std=c++1z",
-				);
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -342,10 +379,8 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				OTHER_CPLUSPLUSFLAGS = (
-					"$(OTHER_CFLAGS)",
-					"-std=c++1z",
-				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				OTHER_CPLUSPLUSFLAGS = "$(OTHER_CFLAGS)";
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -397,7 +432,10 @@
 					"../Dependencies/include/**",
 				);
 				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../Dependencies/lib/macOS/**",
 					"build/**",
@@ -458,7 +496,10 @@
 					"../Dependencies/include/**",
 				);
 				INFOPLIST_FILE = Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
 				LIBRARY_SEARCH_PATHS = (
 					"../Dependencies/lib/macOS/**",
 					"build/**",

@@ -51,7 +51,7 @@ namespace s3d::aoba {
         return Instance().m_taskRunner->isTimeoutTaskAlive(id);
     }
 
-    void Core::SwitchPage(const String& identifier) {
+    void Core::SwitchPage(StringView identifier) {
         Instance().m_pageManager->switchPage(identifier);
     }
 
@@ -85,7 +85,7 @@ namespace s3d::aoba {
         Instance().m_taskRunner->addSyncTask(task);
     }
 
-    size_t Core::SetTimeout(const std::function<void()>& func, double ms, bool threading) {
+    size_t Core::SetTimeout(const std::function<void()>& func, uint64 ms, bool threading) {
         return Instance().m_taskRunner->addTimeoutTask(func, ms, threading);
     }
 
@@ -127,7 +127,7 @@ SOFTWARE.)";
         LicenseManager::AddLicense(licence);
     }
 
-    Page& Core::getPage(const String& identifier) const noexcept {
+    Page& Core::getPage(StringView identifier) const noexcept {
         return m_pageManager->getPage(identifier);
     }
 

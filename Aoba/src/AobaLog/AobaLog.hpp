@@ -7,6 +7,6 @@ namespace s3d::aoba {
         enum class Type { Info, Warning, Error };
 
         // Output is "Aoba(scope) [Info / Warning / Error] message"
-        void Log(Type type, const String& scope, const String& message);
+        void Log(Type type, StringView scope, StringView message);
     }
 }

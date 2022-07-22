@@ -38,7 +38,7 @@ namespace s3d::aoba {
         m_tabs[index].enabled = enabled;
     }
 
-    void UITabView::initializeTab(const String& name, UIButton& selector, UIView& view) {
+    void UITabView::initializeTab(StringView name, UIButton& selector, UIView& view) {
         const size_t index = m_tabs.size();
 
         selector.setText(name);

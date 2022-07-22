@@ -12,20 +12,19 @@ namespace s3d::aoba {
     }
 
     void UIView::release() {
-        UIRect::release();
-
-        for (auto& component : m_components) {
-            component->_destroy();
+        for (const auto& component : m_components) {
+            component.get()._destroy();
         }
 
         m_components.release();
+
+        UIRect::release();
     }
 
     void UIView::appendComponent(const UIComponent& component) {
         // The component cannot be appended multiple times
-        assert(!m_components.includes_if([&component](const std::shared_ptr<UIComponent>& component2) {
-            return component.id() == component2->id();
-        }));
+        assert(!m_components.includes_if(
+            [&component](const UIComponent& component2) { return component.id() == component2.id(); }));
 
         m_components.emplace_back(ComponentStorage::Get(component.id()));
     }
@@ -34,8 +33,8 @@ namespace s3d::aoba {
         UIRect::update();
 
         for (const auto& component : m_components) {
-            if (component->updatable()) {
-                component->update();
+            if (component.get().isUpdatable()) {
+                component.get().update();
             }
         }
     }
@@ -46,8 +45,8 @@ namespace s3d::aoba {
         UIRect::updateLayer(scissor);
 
         for (const auto& component : m_components) {
-            if (component->layerUpdatable()) {
-                component->updateLayer(m_scissorRect);
+            if (component.get().isUpdatable()) {
+                component.get().updateLayer(m_scissorRect);
             }
         }
     }
@@ -56,8 +55,8 @@ namespace s3d::aoba {
         updateScissorRect(scissor);
 
         for (int i = static_cast<int>(m_components.size()) - 1; i >= 0; i--) {
-            if (m_components[i]->exist) {
-                m_components[i]->updateLayer(m_scissorRect);
+            if (m_components[i].get().isUpdatable()) {
+                m_components[i].get().updateLayer(m_scissorRect);
             }
         }
 
@@ -68,16 +67,16 @@ namespace s3d::aoba {
         if (UIRect::updateLayerIfNeeded(scissor)) {
             updateScissorRect(scissor);
             for (const auto& component : m_components) {
-                if (component->exist) {
-                    component->updateLayer(m_scissorRect);
+                if (component.get().isUpdatable()) {
+                    component.get().updateLayer(m_scissorRect);
                 }
             }
             return true;
         } else {
             bool updated = false;
             for (const auto& component : m_components) {
-                if (component->exist) {
-                    updated |= component->updateLayerIfNeeded(m_scissorRect);
+                if (component.get().isUpdatable()) {
+                    updated |= component.get().updateLayerIfNeeded(m_scissorRect);
                 }
             }
             return updated;
@@ -92,8 +91,8 @@ namespace s3d::aoba {
         Graphics2D::SetScissorRect(m_scissorRect);
 
         for (const auto& component : m_components) {
-            if (component->drawable()) {
-                component->draw();
+            if (component.get().isDrawable()) {
+                component.get().draw();
             }
         }
 
@@ -101,9 +100,11 @@ namespace s3d::aoba {
     }
 
     void UIView::_destroy() {
-        for (auto& component : m_components) {
-            component->_destroy();
+        for (const auto& component : m_components) {
+            component.get()._destroy();
         }
+
+        m_components.release();
 
         UIRect::_destroy();
     }
@@ -112,8 +113,8 @@ namespace s3d::aoba {
         UIRect::updateMouseIntersection();
 
         for (const auto& component : m_components) {
-            if (component->eventUpdatable()) {
-                component->updateMouseIntersection();
+            if (component.get().isOperatable()) {
+                component.get().updateMouseIntersection();
             }
         }
     }
@@ -122,8 +123,8 @@ namespace s3d::aoba {
         UIRect::updateInputEvents();
 
         for (const auto& component : m_components) {
-            if (component->eventUpdatable()) {
-                component->updateInputEvents();
+            if (component.get().isOperatable()) {
+                component.get().updateInputEvents();
             }
         }
     }

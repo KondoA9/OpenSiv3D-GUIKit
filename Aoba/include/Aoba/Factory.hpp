@@ -2,13 +2,12 @@
 
 #include <Siv3D.hpp>
 
-#include "Core.hpp"
 #include "UIView.hpp"
 
 namespace s3d::aoba {
     class UIComponent;
 
-    class Factory {
+    class Factory final {
     private:
         size_t m_id = 0;
 
@@ -42,8 +41,8 @@ namespace s3d::aoba {
             return Factory::CreateComponent<T>(true);
         }
 
-		// Create root view of page
-		// Do not call this function
+        // Create root view of page
+        // Do not call this function
         [[nodiscard]] static UIView& _CreatePageView();
 
     private:
@@ -64,16 +63,16 @@ namespace s3d::aoba {
 #endif
 
             if (isolated) {
-                return *static_cast<T*>(Instance().storeIsolatedComponent(std::shared_ptr<T>(new T(id))).get());
+                return static_cast<T&>(Instance().storeIsolatedComponent(std::unique_ptr<T>(new T(id))));
             } else {
-                return *static_cast<T*>(Instance().storeComponent(std::shared_ptr<T>(new T(id))).get());
+                return static_cast<T&>(Instance().storeComponent(std::unique_ptr<T>(new T(id))));
             }
         }
 
         size_t createId();
 
-        const std::shared_ptr<UIComponent>& storeComponent(const std::shared_ptr<UIComponent>& component);
+        UIComponent& storeComponent(std::unique_ptr<UIComponent>&& component);
 
-        const std::shared_ptr<UIComponent>& storeIsolatedComponent(const std::shared_ptr<UIComponent>& component);
+        UIComponent& storeIsolatedComponent(std::unique_ptr<UIComponent>&& component);
     };
 }

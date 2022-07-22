@@ -21,7 +21,7 @@ namespace s3d::aoba {
         m_syncTaskManager.addTask(task);
     }
 
-    size_t TaskRunner::addTimeoutTask(const std::function<void()>& task, double ms, bool threading) {
+    size_t TaskRunner::addTimeoutTask(const std::function<void()>& task, uint64_t ms, bool threading) {
         return m_timeoutTaskManager.addTask(task, ms, threading);
     }
 
