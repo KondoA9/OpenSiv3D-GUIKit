@@ -6,6 +6,18 @@
 #include "src/Tooltip/Tooltip.hpp"
 
 namespace s3d::aoba {
+    namespace Internal {
+        struct RequestCursorStyle {
+            void operator()(StringView style) {
+                Cursor::RequestStyle(style);
+            }
+            void operator()(CursorStyle style) {
+                Cursor::RequestStyle(style);
+            }
+            void operator()(const None_t&) {}
+        };
+    }
+
     Optional<size_t> UIComponent::m_FocusedComponentId = none, UIComponent::m_PreviousFocusedComponentId = none;
 
     UIComponent::UIComponent(size_t id) :
@@ -30,8 +42,8 @@ namespace s3d::aoba {
                 Tooltip::Hide(m_id);
             }
         });
-        addEventListener<Event::Mouse::Hovering>(
-            [this] { std::visit([](const auto& style) { Cursor::RequestStyle(style); }, cursorStyle); });
+        addEventListener<Event::Mouse::Hovering>([this] { std::visit(Internal::RequestCursorStyle(), cursorStyle); },
+                                                 true);
         addEventListener<Event::Mouse::LeftDownRaw>([this] {
             if (!tooltipDisabled) {
                 Tooltip::Hide(m_id);
