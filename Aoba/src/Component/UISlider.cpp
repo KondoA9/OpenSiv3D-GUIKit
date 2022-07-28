@@ -12,6 +12,8 @@ namespace s3d::aoba {
 
         const double handleRadius = 6_px;
 
+        cursorStyle = CursorStyle::Hand;
+
         addEventListener<Event::Component::Slider::Sliding>(
             [this, handleRadius] {
                 const double pre = m_value;
@@ -34,8 +36,6 @@ namespace s3d::aoba {
 
         addEventListener<Event::Mouse::UnHovered>(
             [this] { m_uiHandle.backgroundColor.lowlight(DynamicColor::Background); }, true);
-
-        addEventListener<Event::Mouse::Hovering>([] { Cursor::RequestStyle(CursorStyle::Hand); }, true);
 
         const double h                   = 3.0_px;
         m_uiRailLeft.drawFrame           = true;

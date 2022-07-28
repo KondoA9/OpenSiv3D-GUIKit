@@ -11,6 +11,8 @@ namespace s3d::aoba {
     void UIButton::initialize() {
         UIText::initialize();
 
+        cursorStyle = CursorStyle::Hand;
+
         setDirection(TextDirection::Center);
 
         addEventListener<Event::Mouse::Hovered>(
@@ -26,8 +28,6 @@ namespace s3d::aoba {
                 textColor.lowlight(defaultTextColor);
             },
             true);
-
-        addEventListener<Event::Mouse::Hovering>([] { Cursor::RequestStyle(CursorStyle::Hand); }, true);
     }
 
     void UIButton::initializeColors() {

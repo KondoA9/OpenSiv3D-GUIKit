@@ -101,6 +101,8 @@ protected:
     void initialize() override {
         UIView::initialize();
 
+        cursorStyle = CursorStyle::Hand;
+
         m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
         m_uiKind.backgroundColor        = aoba::DynamicColor::Background;
 
