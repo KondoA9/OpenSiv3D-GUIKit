@@ -30,6 +30,8 @@ namespace s3d::aoba {
                 Tooltip::Hide(m_id);
             }
         });
+        addEventListener<Event::Mouse::Hovering>(
+            [this] { std::visit([](const auto& style) { Cursor::RequestStyle(style); }, cursorStyle); });
         addEventListener<Event::Mouse::LeftDownRaw>([this] {
             if (!tooltipDisabled) {
                 Tooltip::Hide(m_id);
