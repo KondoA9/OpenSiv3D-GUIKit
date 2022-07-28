@@ -14,7 +14,7 @@ namespace s3d::aoba {
     void UIInputField::initialize() {
         UIText::initialize();
 
-        addEventListener<Event::Mouse::Hovering>([] { Cursor::RequestStyle(CursorStyle::IBeam); });
+        cursorStyle = CursorStyle::IBeam;
 
         addEventListener<Event::Component::Focused>(
             [this] {

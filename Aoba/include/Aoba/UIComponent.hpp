@@ -54,8 +54,9 @@ namespace s3d::aoba {
 
     public:
         ColorTheme backgroundColor, frameColor;
-        String tooltipMessage = U"";
-        double frameThickness = 1.0;
+        String tooltipMessage                                 = U"";
+        std::variant<CursorStyle, String, None_t> cursorStyle = none;  // Embedded style, custom style or unset
+        double frameThickness                                 = 1.0;
         bool fillInner = true, drawFrame = false;
         bool penetrateMouseEvent = false;
         bool tooltipDisabled     = false;
