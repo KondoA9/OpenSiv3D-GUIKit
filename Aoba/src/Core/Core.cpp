@@ -123,8 +123,8 @@ SOFTWARE.)";
         return m_pageManager->getPage(identifier);
     }
 
-    void Core::appendPage(const std::shared_ptr<Page>& page) {
-        m_pageManager->appendPage(page);
+    void Core::appendPage(std::unique_ptr<Page>&& page) {
+        m_pageManager->appendPage(std::move(page));
     }
 
     void Core::callNextFrameFunctions() {

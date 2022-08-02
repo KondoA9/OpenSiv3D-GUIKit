@@ -87,7 +87,7 @@ namespace s3d::aoba {
 
         template <class T>
         static void AppendPage(StringView identifier) {
-            Instance().appendPage(std::shared_ptr<T>(new T(identifier)));
+            Instance().appendPage(std::unique_ptr<T>(new T(identifier)));
         }
 
     private:
@@ -97,7 +97,7 @@ namespace s3d::aoba {
 
         Page& getPage(StringView identifier) const noexcept;
 
-        void appendPage(const std::shared_ptr<Page>& page);
+        void appendPage(std::unique_ptr<Page>&& page);
 
         void run();
 
