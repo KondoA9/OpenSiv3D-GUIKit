@@ -45,6 +45,7 @@
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp" />
+    <ClCompile Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.cpp" />
     <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
@@ -92,6 +93,7 @@
     <ClInclude Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp" />
+    <ClInclude Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.hpp" />
     <ClInclude Include="..\Aoba\src\KeyShortcut\KeyShortcut.hpp" />
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp" />
   </ItemGroup>

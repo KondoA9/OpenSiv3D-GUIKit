@@ -118,6 +118,9 @@
     <Filter Include="Aoba\Property">
       <UniqueIdentifier>{d8167679-043b-4603-8e2c-b6f99edabcbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\IsolatedComponentManager">
+      <UniqueIdentifier>{e728841e-7d5a-4ad4-898e-45f28735626a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -236,6 +239,9 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
       <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.cpp">
+      <Filter>Aoba\IsolatedComponentManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Property.hpp">
       <Filter>Aoba\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.hpp">
+      <Filter>Aoba\IsolatedComponentManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

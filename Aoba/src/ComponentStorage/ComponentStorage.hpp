@@ -19,18 +19,6 @@ namespace s3d::aoba {
 
         static UIComponent& Get(size_t id);
 
-        static void MapComponents(const std::function<void(UIComponent&)>& func) {
-            for (const auto& component : Instance().m_components) {
-                func(*component);
-            }
-        }
-
-        static void MapIsolatedComponents(const std::function<void(UIComponent&)>& func) {
-            for (const auto& component : Instance().m_isolatedComponents) {
-                func(*component);
-            }
-        }
-
         static bool Has(size_t id);
 
         static UIComponent& Store(std::unique_ptr<UIComponent>&& component);

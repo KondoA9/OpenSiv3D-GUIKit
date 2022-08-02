@@ -3,6 +3,7 @@
 #include "Aoba/UIComponent.hpp"
 #include "src/AobaLog/AobaLog.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
+#include "src/IsolatedComponentManager/IsolatedComponentManager.hpp"
 
 namespace s3d::aoba {
     Factory& Factory::Instance() {
@@ -34,6 +35,8 @@ namespace s3d::aoba {
 
     UIComponent& Factory::storeIsolatedComponent(std::unique_ptr<UIComponent>&& component) {
         auto& storedComponent = ComponentStorage::StoreIsolated(std::move(component));
+
+        IsolatedComponentManager::Store(storedComponent);
 
         storedComponent.initialize();
 
