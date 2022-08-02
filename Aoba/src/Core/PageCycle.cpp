@@ -149,7 +149,7 @@ namespace s3d::aoba {
         else {
             m_nextPage->onAfterAppeared();
             m_currentPage = m_nextPage;
-            m_nextPage.reset();
+            m_nextPage    = nullptr;
             return false;
         }
 
@@ -209,9 +209,8 @@ namespace s3d::aoba {
         m_nextPage->onAfterAppeared();
 
         m_currentPage = m_nextPage;
-
-        m_nextPage.reset();
-        m_previousPage.reset();
+        m_nextPage     = nullptr;
+        m_previousPage = nullptr;
     }
 
     void PageManager::updateComponents() {
