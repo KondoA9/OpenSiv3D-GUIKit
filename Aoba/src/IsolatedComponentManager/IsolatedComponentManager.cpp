@@ -1,4 +1,4 @@
-#include "IsolatedComponentManager.hpp"
+﻿#include "IsolatedComponentManager.hpp"
 
 namespace s3d::aoba {
     IsolatedComponentManager& IsolatedComponentManager::Instance() {
