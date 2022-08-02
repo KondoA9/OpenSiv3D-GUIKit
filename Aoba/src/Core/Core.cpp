@@ -88,7 +88,9 @@ namespace s3d::aoba {
     }
 
     void Core::NextFrame(const std::function<void()>& func) {
-        Instance().m_nextFrameFunctions.emplace_back(func);
+        if (func != nullptr) {
+            Instance().m_nextFrameFunctions.emplace_back(func);
+        }
     }
 
     void Core::AddLicense() {
