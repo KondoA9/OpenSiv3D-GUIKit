@@ -5,6 +5,7 @@
 #include "WindowManager.hpp"
 #include "src/ComponentStorage/ComponentStorage.hpp"
 #include "src/InputEvent/InputEventManager.hpp"
+#include "src/IsolatedComponentManager/IsolatedComponentManager.hpp"
 
 namespace s3d::aoba {
     void PageManager::update() {
@@ -132,11 +133,7 @@ namespace s3d::aoba {
         }
 
         // Draw isolated components
-        ComponentStorage::MapIsolatedComponents([](const UIComponent& component) {
-            if (component.isDrawable()) {
-                component.draw();
-            }
-        });
+        IsolatedComponentManager::Draw();
     }
 
     bool PageManager::updateOnStartUp() {
@@ -208,7 +205,7 @@ namespace s3d::aoba {
         m_previousPage->onAfterDisappeared();
         m_nextPage->onAfterAppeared();
 
-        m_currentPage = m_nextPage;
+        m_currentPage  = m_nextPage;
         m_nextPage     = nullptr;
         m_previousPage = nullptr;
     }
@@ -226,7 +223,7 @@ namespace s3d::aoba {
             m_previousPage->view.update();
         }
 
-        ComponentStorage::MapIsolatedComponents([](UIComponent& component) { component.update(); });
+        IsolatedComponentManager::Update();
     }
 
     void PageManager::updateLayers() {
@@ -246,8 +243,7 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerInvert(m_windowScissorRect);
             }
 
-            ComponentStorage::MapIsolatedComponents(
-                [this](UIComponent& component) { component.updateLayer(m_windowScissorRect); });
+            IsolatedComponentManager::UpdateLayer(m_windowScissorRect);
         } else {
             if (m_nextPage) {
                 m_nextPage->view.updateLayerIfNeeded(m_windowScissorRect);
@@ -261,8 +257,7 @@ namespace s3d::aoba {
                 m_previousPage->view.updateLayerIfNeeded(m_windowScissorRect);
             }
 
-            ComponentStorage::MapIsolatedComponents(
-                [this](UIComponent& component) { component.updateLayerIfNeeded(m_windowScissorRect); });
+            IsolatedComponentManager::UpdateLayerIfNeed(m_windowScissorRect);
         }
     }
 
@@ -272,12 +267,7 @@ namespace s3d::aoba {
             m_currentPage->view.updateInputEvents();
         }
 
-        ComponentStorage::MapIsolatedComponents([](UIComponent& component) {
-            if (component.isOperatable()) {
-                component.updateMouseIntersection();
-                component.updateInputEvents();
-            }
-        });
+        IsolatedComponentManager::UpdateEvent();
 
         InputEventManager::Call();
     }

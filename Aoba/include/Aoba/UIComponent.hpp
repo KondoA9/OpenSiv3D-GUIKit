@@ -20,6 +20,7 @@ AobaCreateEventComponent(UnFocused);
 namespace s3d::aoba {
     class Factory;
     class InputEventManager;
+    class IsolatedComponentManager;
     class PageManager;
     class UIView;
 
@@ -49,6 +50,7 @@ namespace s3d::aoba {
 
         friend Factory;
         friend InputEventManager;
+        friend IsolatedComponentManager;
         friend PageManager;
         friend UIView;
 
