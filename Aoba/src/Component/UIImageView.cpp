@@ -1,7 +1,5 @@
 ﻿#include "Aoba/UIImageView.hpp"
 
-#include "Aoba/Imaging.hpp"
-
 namespace s3d::aoba {
     void UIImageView::initialize() {
         UIRect::initialize();
@@ -16,11 +14,11 @@ namespace s3d::aoba {
         addEventListener<Event::Mouse::Hovering>(
             [this](const Event::Mouse::Hovering& e) {
                 if (m_textures) {
-                    m_cursoredPixel   = Imaging::ScenePosToPixel(e.pos, m_textureRegion, m_scale, angle());
+                    m_cursoredPixel   = screenToPixel(e.pos);
                     m_cursoredPixel.x = Clamp(m_cursoredPixel.x, 0, m_textures[0].width() - 1);
                     m_cursoredPixel.y = Clamp(m_cursoredPixel.y, 0, m_textures[0].height() - 1);
 
-                    m_preCursoredPixel   = Imaging::ScenePosToPixel(e.previousPos, m_textureRegion, m_scale, angle());
+                    m_preCursoredPixel   = screenToPixel(e.previousPos);
                     m_preCursoredPixel.x = Clamp(m_preCursoredPixel.x, 0, m_textures[0].width() - 1);
                     m_preCursoredPixel.y = Clamp(m_preCursoredPixel.y, 0, m_textures[0].height() - 1);
                 }
@@ -97,7 +95,7 @@ namespace s3d::aoba {
     }
 
     double UIImageView::calcMinimumScale() {
-        m_baseRotatedTextureSize = Imaging::GetSizeFitsTexture(m_textures[0].size(), angle());
+        m_baseRotatedTextureSize = getSizeFitsTexture();
 
         double scale = layer().width() / static_cast<double>(m_baseRotatedTextureSize.x);
         if (const double h = scale * m_baseRotatedTextureSize.y; h > layer().height()) {
@@ -182,7 +180,7 @@ namespace s3d::aoba {
 
     void UIImageView::setViewingCenterPixel(const Point& centerPixel) {
         // Current scene position of the pixel that will be centered
-        const auto pos      = Imaging::PixelToScenePos(centerPixel, m_textureRegion, m_scale, angle());
+        const auto pos      = pixelToScreenPos(centerPixel);
         const auto movement = layer().center() - pos;
         setDrawingCenterPos(m_drawingCenterPos.movedBy(movement));
     }
@@ -204,5 +202,23 @@ namespace s3d::aoba {
     void UIImageView::setDrawingCenterPos(const Vec2& pos) {
         m_drawingCenterPos = pos;
         updateTextureRegion();
+    }
+
+    Size UIImageView::getSizeFitsTexture() const noexcept {
+        const auto textureSize = m_textures[0].size();
+
+        const auto center = Vec2(textureSize.x * 0.5, textureSize.y * 0.5);
+
+        const auto leftTop     = Vec2(-center.x, -center.y).rotated(m_angle);
+        const auto leftBottom  = Vec2(-center.x, -center.y + textureSize.y).rotated(m_angle);
+        const auto rightTop    = Vec2(-center.x + textureSize.x, -center.y).rotated(m_angle);
+        const auto rightBottom = Vec2(-center.x + textureSize.x, -center.y + textureSize.y).rotated(m_angle);
+
+        const auto left   = Min({leftTop.x, rightTop.x, leftBottom.x, rightBottom.x});
+        const auto right  = Max({leftTop.x, rightTop.x, leftBottom.x, rightBottom.x});
+        const auto top    = Min({leftTop.y, rightTop.y, leftBottom.y, rightBottom.y});
+        const auto bottom = Max({leftTop.y, rightTop.y, leftBottom.y, rightBottom.y});
+
+        return {static_cast<Size::value_type>(right - left), static_cast<Size::value_type>(bottom - top)};
     }
 }

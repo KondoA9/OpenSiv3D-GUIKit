@@ -43,7 +43,6 @@
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp" />
     <ClCompile Include="..\Aoba\src\Core\Core.cpp" />
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp" />
-    <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp" />
     <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
@@ -60,7 +59,6 @@
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Core.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp" />

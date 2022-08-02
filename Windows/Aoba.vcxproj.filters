@@ -10,9 +10,6 @@
     <Filter Include="Aoba\Page">
       <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\Imaging">
-      <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\CommandLine">
       <UniqueIdentifier>{6d0d160c-5188-43c8-b5db-ec94219256aa}</UniqueIdentifier>
     </Filter>
@@ -131,9 +128,6 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\Core.cpp">
       <Filter>Aoba\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp">
-      <Filter>Aoba\Imaging</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp">
       <Filter>Aoba\Core</Filter>
@@ -274,9 +268,6 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp">
       <Filter>Aoba\InputEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp">
-      <Filter>Aoba\Imaging</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp">
       <Filter>Aoba\Component\UIButton</Filter>
