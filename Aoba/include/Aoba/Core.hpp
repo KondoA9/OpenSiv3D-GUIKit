@@ -103,6 +103,6 @@ namespace s3d::aoba {
 
         void update();
 
-        void updateNextFrameFunctions();
+        void callNextFrameFunctions();
     };
 }

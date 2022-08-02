@@ -125,8 +125,8 @@ SOFTWARE.)";
         m_pageManager->appendPage(page);
     }
 
-    void Core::updateNextFrameFunctions() {
-        // this implementation supports recursive calling of NextFrame()
+    void Core::callNextFrameFunctions() {
+        // This implementation supports recursive calling of NextFrame()
         const auto count = m_nextFrameFunctions.size();
         if (count > 0) {
             for (size_t i = 0; i < count; i++) {
