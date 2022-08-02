@@ -55,16 +55,6 @@ namespace s3d::aoba {
         Instance().m_pageManager->switchPage(identifier);
     }
 
-    void Core::SetColorMode(ColorMode mode) noexcept {
-        Instance().m_animateColor = true;
-        ColorTheme::SetColorMode(mode);
-    }
-
-    void Core::ToggleColorMode() noexcept {
-        Instance().SetColorMode(ColorTheme::CurrentColorMode() == ColorMode::Light ? ColorMode::Dark
-                                                                                   : ColorMode::Light);
-    }
-
     void Core::PreventTermination() noexcept {
         Instance().m_terminationPrevented = true;
     }
@@ -129,20 +119,6 @@ SOFTWARE.)";
 
     Page& Core::getPage(StringView identifier) const noexcept {
         return m_pageManager->getPage(identifier);
-    }
-
-    bool Core::animateColor() noexcept {
-        static double t = 0.0;
-        t += 5.0 * Scene::DeltaTime();
-
-        if (t > 1.0) {
-            ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 0.0 : 1.0);
-            t = 0.0;
-            return false;
-        }
-
-        ColorTheme::Animate(ColorTheme::CurrentColorMode() == ColorMode::Light ? 1 - t : t);
-        return true;
     }
 
     void Core::appendPage(const std::shared_ptr<Page>& page) {

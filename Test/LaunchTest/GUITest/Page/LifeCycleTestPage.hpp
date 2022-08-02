@@ -87,16 +87,17 @@ protected:
         // Toggle color mode test
         aoba::Core::SetTimeout(
             [] {
-                aoba::Core::SetColorMode(aoba::ColorMode::Light);
-                aoba::Core::ToggleColorMode();
+                aoba::ColorTheme::SetMode(aoba::ColorMode::Light);
+                aoba::ColorTheme::ToggleMode();
             },
             2000,
             false);
 
         aoba::Core::SetTimeout(
             [this] {
+                Test::Assert(aoba::ColorTheme::CurrentMode() == aoba::ColorMode::Dark, "Color mode must be dark");
                 Test::Assert(view.backgroundColor == aoba::DynamicColor::Background.dark,
-                             "Toggled color mode to dark from light, but color of the view is not dark color");
+                             "Color mode is dark but color of the view is not dark color");
             },
             4000,
             false);

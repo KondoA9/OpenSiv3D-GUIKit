@@ -44,9 +44,7 @@ namespace s3d::aoba {
 
         m_pageManager->update();
 
-        if (m_animateColor) {
-            m_animateColor = animateColor();
-        }
+        ColorTheme::Update();
 
         m_pageManager->draw();
 

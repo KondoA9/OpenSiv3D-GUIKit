@@ -17,7 +17,6 @@ namespace s3d::aoba {
 
         std::atomic<bool> m_terminationPrevented = false;
 
-        bool m_animateColor = false;
         Array<std::function<void()>> m_nextFrameFunctions;
 
     public:
@@ -44,10 +43,6 @@ namespace s3d::aoba {
         static void Terminate();
 
         static void SwitchPage(StringView identifier);
-
-        static void SetColorMode(ColorMode mode) noexcept;
-
-        static void ToggleColorMode() noexcept;
 
         // If you call this, you should call ContinueTermination() to terminate app
         static void PreventTermination() noexcept;
@@ -101,8 +96,6 @@ namespace s3d::aoba {
         static void AddLicense();
 
         Page& getPage(StringView identifier) const noexcept;
-
-        bool animateColor() noexcept;
 
         void appendPage(const std::shared_ptr<Page>& page);
 
