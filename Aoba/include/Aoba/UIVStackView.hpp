@@ -26,6 +26,8 @@ namespace s3d::aoba {
 
         void release() override;
 
+        void scrollToComponentViewable(size_t componentIndex);
+
         void setMaxStackCount(size_t count) {
             m_maxStackCount = count;
             updateChildrenConstraints(true);
