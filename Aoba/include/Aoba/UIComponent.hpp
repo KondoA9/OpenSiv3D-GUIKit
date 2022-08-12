@@ -154,9 +154,9 @@ namespace s3d::aoba {
         // Whether the component is not hidden and is inside the region of the parent view.
         bool isDrawable() const noexcept {
             const bool insideRegion =
-                m_layer.top() <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
-                && m_layer.left() <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
-                && m_layer.bottom() >= m_drawableRegion.y && m_layer.right() >= m_drawableRegion.x;
+                m_layer.top() < static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
+                && m_layer.left() < static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
+                && m_layer.bottom() > m_drawableRegion.y && m_layer.right() > m_drawableRegion.x;
 
             return isUpdatable() && insideRegion;
         }
