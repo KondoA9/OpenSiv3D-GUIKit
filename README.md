@@ -2,7 +2,7 @@
 
 **:construction: This repository is under development.**
 
-C++ GUI framework with [OpenSiv3D](https://github.com/Siv3D/OpenSiv3D) v0.6.4.
+C++ GUI framework with [OpenSiv3D](https://github.com/Siv3D/OpenSiv3D) v0.6.5.
 
 This is being developed mainly for [DermAnnotation](https://kondoa9.github.io/DermAnnotation/).
 
