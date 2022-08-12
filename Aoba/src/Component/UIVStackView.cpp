@@ -108,4 +108,20 @@ namespace s3d::aoba {
             requestToUpdateLayer();
         }
     }
+
+    void UIVStackView::scrollToComponentViewable(size_t componentIndex) {
+        if (componentsCount() != 0) {
+            componentIndex = Clamp(componentIndex, size_t(0), componentsCount() - 1);
+            if (!getComponent(componentIndex).isDrawable()) {
+                const auto dy = (m_rowHeight == 0.0
+                                     ? (layer().height() / (m_maxStackCount == 0 ? componentsCount() : m_maxStackCount))
+                                     : m_rowHeight)
+                                * componentIndex;
+
+                m_leadingPositionConstant = 0;
+
+                scroll(dy);
+            }
+        }
+    }
 }
