@@ -19,6 +19,9 @@ jobs:
 
       - name: Setup msbuild
         uses: microsoft/setup-msbuild@v1.1
+        with:
+          vs-version: "[17.3,17.4)"
+          msbuild-architecture: x64
 
       - name: Extract libraries
         run: 7z x Dependencies\lib\Windows.7z -o"Dependencies\lib\"
