@@ -20,6 +20,7 @@ namespace s3d::aoba {
 
     void UIVStackView::onAfterComponentAppended() {
         m_constraintsApplied = false;
+        calcCurrentRowHeight();
         requestToUpdateLayer();
     }
 
@@ -30,8 +31,6 @@ namespace s3d::aoba {
         }
 
         UIView::updateLayer(scissor);
-
-        calcCurrentRowHeight();
 
         adjustRowsTrailingToViewBottom();
     }
