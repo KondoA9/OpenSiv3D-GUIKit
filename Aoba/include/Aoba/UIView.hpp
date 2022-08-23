@@ -44,7 +44,7 @@ namespace s3d::aoba {
         }
 
     protected:
-        // This function runs after a component appended. gui::Factory::Create<UIComponent>(this);
+        // This function is called after a component appended.
         virtual void onAfterComponentAppended() {}
 
         void initialize() override;
