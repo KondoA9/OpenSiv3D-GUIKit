@@ -13,8 +13,8 @@ namespace s3d::aoba {
     private:
         PageTransition m_pageTransition = PageTransition::StartUp;
 
-        Array<std::shared_ptr<Page>> m_pages;
-        std::shared_ptr<Page> m_nextPage, m_currentPage, m_previousPage;
+        Array<std::unique_ptr<Page>> m_pages;
+        Page *m_nextPage = nullptr, *m_currentPage = nullptr, *m_previousPage = nullptr;
 
         double m_pageTransitionRate = 1.0;
 
@@ -41,12 +41,12 @@ namespace s3d::aoba {
 
         void switchPage(StringView identifier);
 
-        void appendPage(const std::shared_ptr<Page>& page);
+        void appendPage(std::unique_ptr<Page>&& page);
 
         void terminate();
 
     private:
-        const std::shared_ptr<Page>& getPagePtr(StringView identifier) const;
+        size_t getPageIndex(StringView identifier) const;
 
         // Return true until the start up page appeared.
         bool updateOnStartUp();

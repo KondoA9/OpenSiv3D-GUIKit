@@ -43,9 +43,9 @@
     <ClCompile Include="..\Aoba\src\CommandLine\CommandLine.cpp" />
     <ClCompile Include="..\Aoba\src\Core\Core.cpp" />
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp" />
-    <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEvent.cpp" />
     <ClCompile Include="..\Aoba\src\InputEvent\InputEventManager.cpp" />
+    <ClCompile Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.cpp" />
     <ClCompile Include="..\Aoba\src\Layer\Layer.cpp" />
     <ClCompile Include="..\Aoba\src\Page\Page.cpp" />
     <ClCompile Include="..\Aoba\src\PixelUnit\PixelUnit.cpp" />
@@ -60,7 +60,6 @@
     <ClInclude Include="..\Aoba\include\Aoba\DynamicColor.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Core.hpp" />
-    <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\InputEvent.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\KeyboardOperation.hpp" />
     <ClInclude Include="..\Aoba\include\Aoba\Layer.hpp" />
@@ -94,6 +93,7 @@
     <ClInclude Include="..\Aoba\src\Core\TaskRunner\TimeoutTaskManager.hpp" />
     <ClInclude Include="..\Aoba\src\Core\WindowManager.hpp" />
     <ClInclude Include="..\Aoba\src\InputEvent\InputEventManager.hpp" />
+    <ClInclude Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.hpp" />
     <ClInclude Include="..\Aoba\src\KeyShortcut\KeyShortcut.hpp" />
     <ClInclude Include="..\Aoba\src\Tooltip\Tooltip.hpp" />
   </ItemGroup>
@@ -154,7 +154,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;MSDFGEN_USE_CPP11;__WINDOWS_WASAPI__;WITH_MINIAUDIO;WITH_NOSOUND;_CRT_SECURE_NO_WARNINGS;AS_DEBUG;AS_USE_NAMESPACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>_DEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;MSDFGEN_USE_CPP11;__WINDOWS_WASAPI__;WITH_MINIAUDIO;WITH_NOSOUND;_CRT_SECURE_NO_WARNINGS;AS_DEBUG;AS_USE_NAMESPACE;_SILENCE_CXX20_CISO646_REMOVED_WARNING;_SILENCE_ALL_CXX23_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -181,7 +181,7 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;MSDFGEN_USE_CPP11;__WINDOWS_WASAPI__;WITH_MINIAUDIO;WITH_NOSOUND;_CRT_SECURE_NO_WARNINGS;AS_USE_NAMESPACE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>NDEBUG;_LIB;_ENABLE_EXTENDED_ALIGNED_STORAGE;SIV3D_LIBRARY_BUILD;GLEW_STATIC;ONIG_STATIC;MUPARSER_STATIC;MSDFGEN_USE_CPP11;__WINDOWS_WASAPI__;WITH_MINIAUDIO;WITH_NOSOUND;_CRT_SECURE_NO_WARNINGS;AS_USE_NAMESPACE;_SILENCE_CXX20_CISO646_REMOVED_WARNING;_SILENCE_ALL_CXX23_DEPRECATION_WARNINGS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>

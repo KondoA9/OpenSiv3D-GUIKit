@@ -95,12 +95,13 @@ namespace s3d::aoba {
             return this->color() == color;
         }
 
-        static ColorMode CurrentColorMode() noexcept;
+        static void SetMode(ColorMode mode) noexcept;
+
+        static void ToggleMode() noexcept;
+
+        static ColorMode CurrentMode() noexcept;
 
     private:
-        static void SetColorMode(ColorMode mode) noexcept;
-
-        // t: light:0.0 ~ dark:1.0
-        static void Animate(double t) noexcept;
+        static void Update() noexcept;
     };
 }

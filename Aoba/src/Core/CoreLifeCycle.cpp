@@ -40,13 +40,11 @@ namespace s3d::aoba {
     void Core::update() {
         WindowManager::Update();
 
-        updateNextFrameFunctions();
+        callNextFrameFunctions();
 
         m_pageManager->update();
 
-        if (m_animateColor) {
-            m_animateColor = animateColor();
-        }
+        ColorTheme::Update();
 
         m_pageManager->draw();
 

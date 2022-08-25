@@ -8,6 +8,7 @@ namespace s3d::aoba {
         UIText::initialize();
 
         hoveredTextColor = Palette::White;
+        cursorStyle      = CursorStyle::Hand;
 
         addEventListener<Event::Mouse::LeftDown>(
             [this] {
@@ -41,7 +42,5 @@ namespace s3d::aoba {
                 }
             },
             true);
-
-        addEventListener<Event::Mouse::Hovering>([] { Cursor::RequestStyle(CursorStyle::Hand); }, true);
     }
 }

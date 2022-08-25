@@ -17,7 +17,7 @@ namespace s3d::aoba {
     bool PageManager::initialize() noexcept {
         if (m_pages) {
             // The following code does not throw an exception because the page is not empty.
-            m_nextPage = m_pages[0];
+            m_nextPage      = m_pages[0].get();
             return true;
         }
 
@@ -25,16 +25,14 @@ namespace s3d::aoba {
     }
 
     Page& PageManager::getPage(StringView identifier) const {
-        const auto& ptr = getPagePtr(identifier);
-        auto& p         = *ptr;
-        return p;
+        return *m_pages[getPageIndex(identifier)];
     }
 
 #pragma warning(disable : 4715)
-    const std::shared_ptr<Page>& PageManager::getPagePtr(StringView identifier) const {
-        for (const auto& page : m_pages) {
-            if (page->identifier() == identifier) {
-                return page;
+    size_t PageManager::getPageIndex(StringView identifier) const {
+        for (size_t i = 0; i < m_pages.size(); i++) {
+            if (m_pages[i]->identifier() == identifier) {
+                return i;
             }
         }
 
@@ -45,10 +43,10 @@ namespace s3d::aoba {
 #pragma warning(default : 4715)
 
     void PageManager::switchPage(StringView identifier) {
-        if (const auto& page = getPagePtr(identifier); m_pageTransition == PageTransition::Stable && page) {
-            m_nextPage     = page;
-            m_previousPage = m_currentPage;
-            m_currentPage.reset();
+        if (const auto index = getPageIndex(identifier); m_pageTransition == PageTransition::Stable && m_pages[index]) {
+            m_nextPage          = m_pages[index].get();
+            m_previousPage      = m_currentPage;
+            m_currentPage       = nullptr;
             m_pageTransition = PageTransition::StartChanging;
         } else {
             AobaLog::Log(AobaLog::Type::Error,
@@ -57,8 +55,8 @@ namespace s3d::aoba {
         }
     }
 
-    void PageManager::appendPage(const std::shared_ptr<Page>& page) {
-        m_pages.emplace_back(page);
+    void PageManager::appendPage(std::unique_ptr<Page>&& page) {
+        m_pages.emplace_back(std::move(page));
     }
 
     void PageManager::terminate() {

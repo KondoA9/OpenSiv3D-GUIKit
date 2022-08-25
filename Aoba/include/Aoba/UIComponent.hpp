@@ -20,6 +20,7 @@ AobaCreateEventComponent(UnFocused);
 namespace s3d::aoba {
     class Factory;
     class InputEventManager;
+    class IsolatedComponentManager;
     class PageManager;
     class UIView;
 
@@ -49,13 +50,15 @@ namespace s3d::aoba {
 
         friend Factory;
         friend InputEventManager;
+        friend IsolatedComponentManager;
         friend PageManager;
         friend UIView;
 
     public:
         ColorTheme backgroundColor, frameColor;
-        String tooltipMessage = U"";
-        double frameThickness = 1.0;
+        String tooltipMessage                                 = U"";
+        std::variant<CursorStyle, String, None_t> cursorStyle = none;  // Embedded style, custom style or unset
+        double frameThickness                                 = 1.0;
         bool fillInner = true, drawFrame = false;
         bool penetrateMouseEvent = false;
         bool tooltipDisabled     = false;
@@ -151,9 +154,9 @@ namespace s3d::aoba {
         // Whether the component is not hidden and is inside the region of the parent view.
         bool isDrawable() const noexcept {
             const bool insideRegion =
-                m_layer.top() <= static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
-                && m_layer.left() <= static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
-                && m_layer.bottom() >= m_drawableRegion.y && m_layer.right() >= m_drawableRegion.x;
+                m_layer.top() < static_cast<double>(m_drawableRegion.y) + static_cast<double>(m_drawableRegion.h)
+                && m_layer.left() < static_cast<double>(m_drawableRegion.x) + static_cast<double>(m_drawableRegion.w)
+                && m_layer.bottom() > m_drawableRegion.y && m_layer.right() > m_drawableRegion.x;
 
             return isUpdatable() && insideRegion;
         }

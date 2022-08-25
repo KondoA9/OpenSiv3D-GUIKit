@@ -78,6 +78,42 @@ namespace s3d::aoba {
                          m_rotatedTextureRegion.h < layer().height() ? m_rotatedTextureRegion.h : layer().height());
         }
 
+        Point screenToPixel(const Vec2& screenPos) const noexcept {
+            // Transform cursor pos to pixel without rotation
+            const Point pixel =
+                Vec2((screenPos.x - m_textureRegion.x) / m_scale, (screenPos.y - m_textureRegion.y) / m_scale)
+                    .asPoint();
+
+            // Size
+            const auto width  = m_textureRegion.w / m_scale;
+            const auto height = m_textureRegion.h / m_scale;
+
+            // Center of the texture
+            const auto cx = width * 0.5;
+            const auto cy = height * 0.5;
+
+            // Fix the origin to center of the texture
+            const auto x = pixel.x - cx;
+            const auto y = pixel.y - cy;
+
+            return (Vec2(x, y).rotated(-m_angle) + Vec2(cx, cy)).asPoint();
+        }
+
+        Point pixelToScreenPos(const Point& pixel) const noexcept {
+            // Transform pixel to cursor pos without rotation
+            const Vec2 pos = Vec2(pixel.x * m_scale + m_textureRegion.x, pixel.y * m_scale + m_textureRegion.y);
+
+            // Center of the texture
+            const auto cx = m_textureRegion.center().x;
+            const auto cy = m_textureRegion.center().y;
+
+            // Fix the origin to center of the texture
+            const auto x = pos.x - cx;
+            const auto y = pos.y - cy;
+
+            return (Vec2(x, y).rotated(m_angle) + Vec2(cx, cy)).asPoint();
+        }
+
         void release() override;
 
         void releaseImages();
@@ -131,6 +167,8 @@ namespace s3d::aoba {
         void updateLayer(const Rect& scissor) override;
 
     private:
+        Size getSizeFitsTexture() const noexcept;
+
         double calcMinimumScale();
 
         double calcMaximumScale() noexcept;

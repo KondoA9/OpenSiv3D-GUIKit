@@ -10,9 +10,6 @@
     <Filter Include="Aoba\Page">
       <UniqueIdentifier>{8424d4af-cd80-4f12-8932-dd9fbd041b6f}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Aoba\Imaging">
-      <UniqueIdentifier>{c23f2867-f5ed-4223-a958-91779da88bec}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Aoba\CommandLine">
       <UniqueIdentifier>{6d0d160c-5188-43c8-b5db-ec94219256aa}</UniqueIdentifier>
     </Filter>
@@ -121,6 +118,9 @@
     <Filter Include="Aoba\Property">
       <UniqueIdentifier>{d8167679-043b-4603-8e2c-b6f99edabcbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Aoba\IsolatedComponentManager">
+      <UniqueIdentifier>{e728841e-7d5a-4ad4-898e-45f28735626a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\Aoba\src\ColorTheme\ColorTheme.cpp">
@@ -131,9 +131,6 @@
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\Core.cpp">
       <Filter>Aoba\Core</Filter>
-    </ClCompile>
-    <ClCompile Include="..\Aoba\src\Imaging\Imaging.cpp">
-      <Filter>Aoba\Imaging</Filter>
     </ClCompile>
     <ClCompile Include="..\Aoba\src\Core\CoreLifeCycle.cpp">
       <Filter>Aoba\Core</Filter>
@@ -243,6 +240,9 @@
     <ClCompile Include="..\Aoba\src\Core\TaskRunner\Timeout.cpp">
       <Filter>Aoba\Core\TaskRunner\Timeout</Filter>
     </ClCompile>
+    <ClCompile Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.cpp">
+      <Filter>Aoba\IsolatedComponentManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Aoba\include\Aoba\Aoba.hpp">
@@ -274,9 +274,6 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\MouseEvent.hpp">
       <Filter>Aoba\InputEvent</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Aoba\include\Aoba\Imaging.hpp">
-      <Filter>Aoba\Imaging</Filter>
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\UIButton.hpp">
       <Filter>Aoba\Component\UIButton</Filter>
@@ -373,6 +370,9 @@
     </ClInclude>
     <ClInclude Include="..\Aoba\include\Aoba\Property.hpp">
       <Filter>Aoba\Property</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Aoba\src\IsolatedComponentManager\IsolatedComponentManager.hpp">
+      <Filter>Aoba\IsolatedComponentManager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

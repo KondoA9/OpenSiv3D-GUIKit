@@ -6,7 +6,7 @@ private:
     std::function<void(const FilePath&)> m_folderOpenedHandler;
     std::function<void()> m_openParentDirHandler;
 
-    aoba::UIToggleButton& m_uiToggleColorModeButton = aoba::Factory::Create<aoba::UIToggleButton>(this);
+    aoba::UIButton& m_uiToggleColorModeButton       = aoba::Factory::Create<aoba::UIButton>(this);
     aoba::UIButton& m_uiParentDirButton             = aoba::Factory::Create<aoba::UIButton>(this);
     aoba::UIButton& m_uiOpenDirectoryButton         = aoba::Factory::Create<aoba::UIButton>(this);
 
@@ -101,6 +101,8 @@ protected:
     void initialize() override {
         UIView::initialize();
 
+        cursorStyle = CursorStyle::Hand;
+
         m_uiUpdatedDate.backgroundColor = aoba::DynamicColor::Background;
         m_uiKind.backgroundColor        = aoba::DynamicColor::Background;
 
@@ -162,7 +164,7 @@ protected:
         m_uiToolbar.setConstraint(aoba::LayerDirection::Height, 30_px);
         m_uiToolbar.setConstraint(aoba::LayerDirection::Left);
         m_uiToolbar.setConstraint(aoba::LayerDirection::Right, view, aoba::LayerDirection::Right);
-        m_uiToolbar.setToggleColorModeHandler([this] { aoba::Core::ToggleColorMode(); });
+        m_uiToolbar.setToggleColorModeHandler([this] { aoba::ColorTheme::ToggleMode(); });
         m_uiToolbar.setFolderOpendHandler([this](const FilePath& path) { setup(path); });
         m_uiToolbar.setOpenParentDirHandler([this] {
             const FilePath path = FileSystem::ParentPath(m_path);

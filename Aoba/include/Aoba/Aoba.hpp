@@ -1,6 +1,6 @@
 ﻿#pragma once
 
-// Siv3D v0.6.4
+// Siv3D v0.6.5
 #include <Siv3D.hpp>
 
 // Aoba includes
@@ -8,7 +8,6 @@
 #include "Core.hpp"
 #include "DynamicColor.hpp"
 #include "Factory.hpp"
-#include "Imaging.hpp"
 #include "MouseEvent.hpp"
 #include "Page.hpp"
 #include "PixelUnit.hpp"
