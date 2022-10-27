@@ -9,6 +9,8 @@ namespace s3d::aoba {
 
         ColorTheme selectedColor = DefaultSelectedColor, selectedTextColor = DefaultSelectedTextColor;
 
+        std::function<void(bool)> onChange = nullptr;
+
     private:
         bool m_enabled = false;
 
@@ -27,7 +29,11 @@ namespace s3d::aoba {
                 backgroundColor.lowlight(defaultColor);
                 textColor.highlight(defaultTextColor);
             }
-            m_enabled = enabled;
+
+            if (onChange && m_enabled != enabled) {
+                m_enabled = enabled;
+                onChange(m_enabled);
+            }
         }
 
     protected:

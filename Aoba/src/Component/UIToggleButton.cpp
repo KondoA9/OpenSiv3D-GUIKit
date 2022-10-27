@@ -12,14 +12,7 @@ namespace s3d::aoba {
 
         addEventListener<Event::Mouse::LeftDown>(
             [this] {
-                m_enabled = !m_enabled;
-                if (m_enabled) {
-                    backgroundColor.highlight(selectedColor);
-                    textColor.highlight(selectedTextColor);
-                } else {
-                    backgroundColor.lowlight(hoveredColor);
-                    textColor.lowlight(defaultTextColor);
-                }
+                setEnabled(!m_enabled);
             },
             true);
 
